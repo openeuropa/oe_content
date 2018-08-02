@@ -1,0 +1,2 @@
+imports:
+  - { resource: vendor/openeuropa/code-review/dist/drupal-conventions.yml }

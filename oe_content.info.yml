@@ -1,0 +1,9 @@
+name: OpenEuropa Content
+description: Contains the commission corporate entity types in Drupal.
+package: OpenEuropa
+
+type: module
+core: 8.x
+dependencies:
+  - rdf_entity:rdf_entity
+  - rdf_draft:rdf_draft

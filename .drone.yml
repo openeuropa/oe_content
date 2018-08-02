@@ -1,0 +1,50 @@
+workspace:
+  base: /test
+  path: oe_content
+
+services:
+  web:
+    image: fpfis/httpd-php-dev:7.1
+    environment:
+      - DOCUMENT_ROOT=/test/oe_content
+  mysql:
+    image: percona/percona-server:5.6
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+  sparql:
+    image: tenforce/virtuoso:1.3.1-virtuoso7.2.4
+    environment:
+      SPARQL_UPDATE=true
+      DEFAULT_GRAPH="http://web/oe_content"
+
+pipeline:
+  composer-install:
+    group: prepare
+    image: fpfis/httpd-php-dev:7.1
+    volumes:
+      - /cache:/cache
+    commands:
+      - composer install
+
+  site-install:
+    image: fpfis/httpd-php-dev:7.1
+    commands:
+      - ./vendor/bin/run drupal:site-install
+
+  grumphp:
+    group: test
+    image: fpfis/httpd-php-dev:7.1
+    commands:
+      - ./vendor/bin/grumphp run
+
+  phpunit:
+    group: test
+    image: fpfis/httpd-php-dev:7.1
+    commands:
+      - ./vendor/bin/phpunit
+
+  behat:
+    group: test
+    image: fpfis/php71-build
+    commands:
+      - ./vendor/bin/behat
