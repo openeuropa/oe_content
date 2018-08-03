@@ -1,6 +1,6 @@
 # OpenEuropa Content
 
-This is a Drupal module that contains the commission corporate entity types.
+This is a Drupal module that contains the EC corporate entity types.
 
 ## Requirements
 
@@ -42,7 +42,6 @@ You can build the test site by running the following steps.
 
 * Install Virtuoso. For basic instructions, see [setting up
 Virtuoso](https://github.com/ec-europa/rdf_entity/blob/8.x-1.x/README.md).
-During installation some RDF based taxonomies will be imported from the `resources/fixtures` folder.
 Make sure Virtuoso can read from this folder by adding it to the `DirsAllowed`
 setting in your `virtuoso.ini`. For example:
 
@@ -99,8 +98,6 @@ $ docker-compose exec web ./vendor/bin/run drupal:site-install
 ```
 
 Your test site will be available at [http://localhost:8080/build](http://localhost:8080/build).
-
-The default graph is set by the DEFAULT_GRAPH environment variable, which defaults to [http://localhost:8890/oe_content](http://localhost:8890/oe_content).
 
 To run the grumphp test:
 

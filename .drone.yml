@@ -15,7 +15,6 @@ services:
     image: tenforce/virtuoso:1.3.1-virtuoso7.2.4
     environment:
       SPARQL_UPDATE=true
-      DEFAULT_GRAPH="http://web/oe_content"
 
 pipeline:
   composer-install:

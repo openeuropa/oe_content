@@ -1,5 +1,5 @@
 name: OpenEuropa Content
-description: Contains the commission corporate entity types in Drupal.
+description: Contains the EC corporate entity types in Drupal.
 package: OpenEuropa
 
 type: module
