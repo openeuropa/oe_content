@@ -42,12 +42,6 @@ You can build the test site by running the following steps.
 
 * Install Virtuoso. For basic instructions, see [setting up
 Virtuoso](https://github.com/ec-europa/rdf_entity/blob/8.x-1.x/README.md).
-Make sure Virtuoso can read from this folder by adding it to the `DirsAllowed`
-setting in your `virtuoso.ini`. For example:
-
-```
-DirsAllowed = /var/www/joinup/resources/fixtures, /usr/share/virtuoso-opensource-7/vad
-```
 
 * Install all the composer dependencies:
 
