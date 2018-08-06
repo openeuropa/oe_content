@@ -1,6 +1,6 @@
 {
     "name": "openeuropa/oe_content",
-    "description": "OpenEuropa Drupal module template.",
+    "description": "OpenEuropa Drupal module that contains the EC corporate entity types.",
     "type": "drupal-module",
     "license": "EUPL-1.2",
     "minimum-stability": "dev",
@@ -13,6 +13,7 @@
     },
     "require-dev": {
         "composer/installers": "^1.2",
+        "cweagans/composer-patches": "~1.0",
         "drupal/config_devel": "~1.2",
         "drupal/drupal-extension": "^4.0.0@alpha",
         "drupal-composer/drupal-scaffold": "^2.2",
@@ -23,6 +24,16 @@
     },
     "suggest": {
         "drupal/console": "^1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\oe_theme\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Drupal\\Tests\\oe_theme\\": "tests"
+        }
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
@@ -36,10 +47,23 @@
         }
     },
     "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patches": {
+            "drupal/core": {
+                "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-07-05/2943172-kernel-test-base-3.patch"
+            }
+        },
         "installer-paths": {
             "build/core": ["type:drupal-core"],
+            "build/profiles/contrib/{$name}": ["type:drupal-profile"],
             "build/modules/contrib/{$name}": ["type:drupal-module"],
             "build/themes/contrib/{$name}": ["type:drupal-theme"]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "7.1.9"
         }
     }
 }
