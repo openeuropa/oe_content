@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Drupal\\oe_theme\\": "./src/"
+            "Drupal\\oe_content\\": "./src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Drupal\\Tests\\oe_theme\\": "tests"
+            "Drupal\\Tests\\oe_content\\": "./tests/"
         }
     },
     "scripts": {
