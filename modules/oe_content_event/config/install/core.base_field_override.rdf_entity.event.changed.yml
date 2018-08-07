@@ -1,0 +1,18 @@
+uuid: daab2db1-5fd0-4307-8538-5dea08a6b268
+langcode: en
+status: true
+dependencies:
+  config:
+    - rdf_entity.rdfentity.event
+id: rdf_entity.event.changed
+field_name: changed
+entity_type: rdf_entity
+bundle: event
+label: Changed
+description: 'The time that the entity was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

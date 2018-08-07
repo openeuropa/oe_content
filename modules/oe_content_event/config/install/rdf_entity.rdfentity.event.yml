@@ -1,0 +1,7 @@
+uuid: 4099c17f-44c2-407d-a54a-c90c4d99f676
+langcode: en
+status: true
+dependencies: {  }
+name: Event
+rid: event
+description: ''

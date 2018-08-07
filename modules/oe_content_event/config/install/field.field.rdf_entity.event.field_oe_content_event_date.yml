@@ -1,0 +1,21 @@
+uuid: 103d044a-700d-4df3-abff-276d97fc81a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.rdf_entity.field_oe_content_event_date
+    - rdf_entity.rdfentity.event
+  module:
+    - datetime_range
+id: rdf_entity.event.field_oe_content_event_date
+field_name: field_oe_content_event_date
+entity_type: rdf_entity
+bundle: event
+label: 'Event date and time'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

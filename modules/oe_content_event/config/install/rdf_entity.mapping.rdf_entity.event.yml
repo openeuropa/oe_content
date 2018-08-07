@@ -1,0 +1,69 @@
+uuid: 4db3a96b-9bc8-44ed-8c11-f6d229586978
+langcode: en
+status: true
+dependencies:
+  config:
+    - rdf_entity.graph.default
+    - rdf_entity.graph.draft
+    - rdf_entity.rdfentity.event
+id: rdf_entity.event
+entity_type_id: rdf_entity
+bundle: event
+rdf_type: ''
+graph:
+  default: 'http://europa.eu/event/published'
+  draft: 'http://europa.eu/event/draft'
+base_fields_mapping:
+  rid:
+    target_id:
+      predicate: ''
+      format: ''
+  uid:
+    target_id:
+      predicate: ''
+      format: ''
+  label:
+    value:
+      predicate: ''
+      format: ''
+  created:
+    value:
+      predicate: ''
+      format: ''
+  changed:
+    value:
+      predicate: ''
+      format: ''
+  uuid:
+    value:
+      predicate: ''
+      format: ''
+  langcode:
+    value:
+      predicate: ''
+      format: ''
+  default_langcode:
+    value:
+      predicate: ''
+      format: ''
+  content_translation_source:
+    value:
+      predicate: ''
+      format: ''
+  content_translation_outdated:
+    value:
+      predicate: ''
+      format: ''
+  content_translation_uid:
+    target_id:
+      predicate: ''
+      format: ''
+  content_translation_status:
+    value:
+      predicate: ''
+      format: ''
+  graph:
+    target_id:
+      predicate: ''
+      format: ''
+entity_id_plugin: default

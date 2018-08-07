@@ -1,0 +1,21 @@
+uuid: 1310a077-cee5-4c72-8507-7a2040cc5648
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.rdf_entity.field_oe_content_event_descripti
+    - rdf_entity.rdfentity.event
+  module:
+    - text
+id: rdf_entity.event.field_oe_content_event_descripti
+field_name: field_oe_content_event_descripti
+entity_type: rdf_entity
+bundle: event
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

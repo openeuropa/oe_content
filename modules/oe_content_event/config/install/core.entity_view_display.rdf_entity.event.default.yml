@@ -1,0 +1,77 @@
+uuid: 0d4268f3-3dcb-43f0-baba-cfbe49a03085
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.rdf_entity.event.field_oe_content_event_available
+    - field.field.rdf_entity.event.field_oe_content_event_date
+    - field.field.rdf_entity.event.field_oe_content_event_descripti
+    - field.field.rdf_entity.event.field_oe_content_event_introduct
+    - field.field.rdf_entity.event.field_oe_content_event_links
+    - rdf_entity.rdfentity.event
+  module:
+    - datetime_range
+    - link
+    - text
+    - user
+id: rdf_entity.event.default
+targetEntityType: rdf_entity
+bundle: event
+mode: default
+content:
+  field_oe_content_event_available:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_oe_content_event_date:
+    weight: 7
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_oe_content_event_descripti:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_oe_content_event_introduct:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_oe_content_event_links:
+    weight: 6
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  label:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  changed: true
+  created: true
+  langcode: true

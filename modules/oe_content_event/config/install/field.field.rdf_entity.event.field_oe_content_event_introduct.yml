@@ -1,0 +1,21 @@
+uuid: 56ead395-5d9b-436c-bbdd-27dd2501a957
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.rdf_entity.field_oe_content_event_introduct
+    - rdf_entity.rdfentity.event
+  module:
+    - text
+id: rdf_entity.event.field_oe_content_event_introduct
+field_name: field_oe_content_event_introduct
+entity_type: rdf_entity
+bundle: event
+label: Introduction
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

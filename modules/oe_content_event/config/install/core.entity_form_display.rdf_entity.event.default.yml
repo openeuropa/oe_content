@@ -1,0 +1,124 @@
+uuid: 5b767fbe-0565-439f-a232-b88f3771c35a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.rdf_entity.event.field_oe_content_event_available
+    - field.field.rdf_entity.event.field_oe_content_event_date
+    - field.field.rdf_entity.event.field_oe_content_event_descripti
+    - field.field.rdf_entity.event.field_oe_content_event_introduct
+    - field.field.rdf_entity.event.field_oe_content_event_links
+    - rdf_entity.rdfentity.event
+  module:
+    - datetime_range
+    - field_group
+    - link
+    - text
+third_party_settings:
+  field_group:
+    group_oe_content_event_content:
+      children:
+        - label
+        - langcode
+        - field_oe_content_event_descripti
+        - field_oe_content_event_introduct
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Content
+    group_oe_content_event_descripti:
+      children:
+        - field_oe_content_event_links
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Description
+    group_oe_content_event_practical:
+      children:
+        - field_oe_content_event_available
+        - field_oe_content_event_date
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Practical information'
+id: rdf_entity.event.default
+targetEntityType: rdf_entity
+bundle: event
+mode: default
+content:
+  field_oe_content_event_available:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_oe_content_event_date:
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_oe_content_event_descripti:
+    weight: -3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_oe_content_event_introduct:
+    weight: -2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_oe_content_event_links:
+    weight: 14
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  label:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: -4
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  translation:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true
