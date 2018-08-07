@@ -1,13 +1,12 @@
-uuid: 5b767fbe-0565-439f-a232-b88f3771c35a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.rdf_entity.event.field_oe_content_event_available
-    - field.field.rdf_entity.event.field_oe_content_event_date
-    - field.field.rdf_entity.event.field_oe_content_event_descripti
-    - field.field.rdf_entity.event.field_oe_content_event_introduct
-    - field.field.rdf_entity.event.field_oe_content_event_links
+    - field.field.rdf_entity.event.oe_ct_event_available_languages
+    - field.field.rdf_entity.event.oe_ct_event_date
+    - field.field.rdf_entity.event.oe_ct_event_description
+    - field.field.rdf_entity.event.oe_ct_event_introduction
+    - field.field.rdf_entity.event.oe_ct_event_links
     - rdf_entity.rdfentity.event
   module:
     - datetime_range
@@ -20,8 +19,8 @@ third_party_settings:
       children:
         - label
         - langcode
-        - field_oe_content_event_descripti
-        - field_oe_content_event_introduct
+        - oe_ct_event_description
+        - oe_ct_event_introduction
       parent_name: ''
       weight: 0
       format_type: fieldset
@@ -33,7 +32,7 @@ third_party_settings:
       label: Content
     group_oe_content_event_descripti:
       children:
-        - field_oe_content_event_links
+        - oe_ct_event_links
       parent_name: ''
       weight: 1
       format_type: fieldset
@@ -45,8 +44,8 @@ third_party_settings:
       label: Description
     group_oe_content_event_practical:
       children:
-        - field_oe_content_event_available
-        - field_oe_content_event_date
+        - oe_ct_event_available_languages
+        - oe_ct_event_date
       parent_name: ''
       weight: 2
       format_type: fieldset
@@ -61,7 +60,7 @@ targetEntityType: rdf_entity
 bundle: event
 mode: default
 content:
-  field_oe_content_event_available:
+  oe_ct_event_available_languages:
     weight: 12
     settings:
       size: 60
@@ -69,13 +68,13 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_oe_content_event_date:
+  oe_ct_event_date:
     weight: 15
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
     region: content
-  field_oe_content_event_descripti:
+  oe_ct_event_description:
     weight: -3
     settings:
       rows: 5
@@ -83,7 +82,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_oe_content_event_introduct:
+  oe_ct_event_introduction:
     weight: -2
     settings:
       rows: 5
@@ -91,7 +90,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_oe_content_event_links:
+  oe_ct_event_links:
     weight: 14
     settings:
       placeholder_url: ''

@@ -1,13 +1,12 @@
-uuid: 0d4268f3-3dcb-43f0-baba-cfbe49a03085
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.rdf_entity.event.field_oe_content_event_available
-    - field.field.rdf_entity.event.field_oe_content_event_date
-    - field.field.rdf_entity.event.field_oe_content_event_descripti
-    - field.field.rdf_entity.event.field_oe_content_event_introduct
-    - field.field.rdf_entity.event.field_oe_content_event_links
+    - field.field.rdf_entity.event.oe_ct_event_available_languages
+    - field.field.rdf_entity.event.oe_ct_event_date
+    - field.field.rdf_entity.event.oe_ct_event_description
+    - field.field.rdf_entity.event.oe_ct_event_introduction
+    - field.field.rdf_entity.event.oe_ct_event_links
     - rdf_entity.rdfentity.event
   module:
     - datetime_range
@@ -19,7 +18,7 @@ targetEntityType: rdf_entity
 bundle: event
 mode: default
 content:
-  field_oe_content_event_available:
+  oe_ct_event_available_languages:
     weight: 4
     label: above
     settings:
@@ -27,7 +26,7 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_oe_content_event_date:
+  oe_ct_event_date:
     weight: 7
     label: above
     settings:
@@ -37,21 +36,21 @@ content:
     third_party_settings: {  }
     type: daterange_default
     region: content
-  field_oe_content_event_descripti:
+  oe_ct_event_description:
     weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_oe_content_event_introduct:
+  oe_ct_event_introduction:
     weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_oe_content_event_links:
+  oe_ct_event_links:
     weight: 6
     label: above
     settings:

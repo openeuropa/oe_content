@@ -1,4 +1,3 @@
-uuid: 54ca269d-26eb-431c-9854-f7c87c7bfde0
 langcode: en
 status: true
 dependencies:
@@ -10,8 +9,8 @@ third_party_settings:
       value:
         predicate: 'https://schema.org/inLanguage'
         format: literal
-id: rdf_entity.field_oe_content_event_available
-field_name: field_oe_content_event_available
+id: rdf_entity.oe_ct_event_available_languages
+field_name: oe_ct_event_available_languages
 entity_type: rdf_entity
 type: string
 settings:

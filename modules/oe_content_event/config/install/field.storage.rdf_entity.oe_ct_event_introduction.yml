@@ -1,4 +1,3 @@
-uuid: 2de71bfd-1a75-42ca-bac6-d02f332ec1a9
 langcode: en
 status: true
 dependencies:
@@ -14,8 +13,8 @@ third_party_settings:
       format:
         predicate: ''
         format: no_format
-id: rdf_entity.field_oe_content_event_introduct
-field_name: field_oe_content_event_introduct
+id: rdf_entity.oe_ct_event_introduction
+field_name: oe_ct_event_introduction
 entity_type: rdf_entity
 type: text_long
 settings: {  }

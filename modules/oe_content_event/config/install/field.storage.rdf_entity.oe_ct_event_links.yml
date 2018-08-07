@@ -1,25 +1,27 @@
-uuid: 54e2f86e-885a-43ae-864c-171a240a3232
 langcode: en
 status: true
 dependencies:
   module:
+    - link
     - rdf_entity
-    - text
 third_party_settings:
   rdf_entity:
     mapping:
-      value:
-        predicate: 'https://schema.org/description'
-        format: t_literal
-      format:
+      uri:
+        predicate: 'http://schema.org/relatedLink'
+        format: literal
+      title:
         predicate: ''
         format: no_format
-id: rdf_entity.field_oe_content_event_descripti
-field_name: field_oe_content_event_descripti
+      options:
+        predicate: ''
+        format: no_format
+id: rdf_entity.oe_ct_event_links
+field_name: oe_ct_event_links
 entity_type: rdf_entity
-type: text_long
+type: link
 settings: {  }
-module: text
+module: link
 locked: false
 cardinality: 1
 translatable: true

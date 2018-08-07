@@ -1,4 +1,3 @@
-uuid: 3a873fcb-2753-4fea-b31b-b94152593a42
 langcode: en
 status: true
 dependencies:
@@ -14,8 +13,8 @@ third_party_settings:
       end_value:
         predicate: 'https://schema.org/endDate'
         format: 'xsd:dateTime'
-id: rdf_entity.field_oe_content_event_date
-field_name: field_oe_content_event_date
+id: rdf_entity.oe_ct_event_date
+field_name: oe_ct_event_date
 entity_type: rdf_entity
 type: daterange
 settings:

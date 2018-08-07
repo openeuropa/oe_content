@@ -1,17 +1,16 @@
-uuid: 56ead395-5d9b-436c-bbdd-27dd2501a957
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.rdf_entity.field_oe_content_event_introduct
+    - field.storage.rdf_entity.oe_ct_event_description
     - rdf_entity.rdfentity.event
   module:
     - text
-id: rdf_entity.event.field_oe_content_event_introduct
-field_name: field_oe_content_event_introduct
+id: rdf_entity.event.oe_ct_event_description
+field_name: oe_ct_event_description
 entity_type: rdf_entity
 bundle: event
-label: Introduction
+label: Description
 description: ''
 required: false
 translatable: true
