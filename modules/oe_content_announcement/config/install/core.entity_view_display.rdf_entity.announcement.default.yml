@@ -1,0 +1,60 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.rdf_entity.announcement.oe_ct_announcement_body
+    - field.field.rdf_entity.announcement.oe_ct_announcement_description
+    - field.field.rdf_entity.announcement.oe_ct_announcement_introduction
+    - field.field.rdf_entity.announcement.oe_ct_announcement_publish_date
+    - rdf_entity.rdfentity.announcement
+  module:
+    - datetime
+    - text
+    - user
+id: rdf_entity.announcement.default
+targetEntityType: rdf_entity
+bundle: announcement
+mode: default
+content:
+  label:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_ct_announcement_body:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_ct_announcement_description:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_ct_announcement_introduction:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_ct_announcement_publish_date:
+    weight: 4
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden:
+  changed: true
+  created: true
+  langcode: true
