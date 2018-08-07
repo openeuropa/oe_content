@@ -8,3 +8,4 @@ dependencies:
   - oe_content:oe_content
   - drupal:datetime_range
   - drupal:link
+  - field_group:field_group
