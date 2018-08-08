@@ -8,7 +8,6 @@ dependencies:
     - field.field.rdf_entity.announcement.oe_ct_announcement_publish_date
     - rdf_entity.rdfentity.announcement
   module:
-    - datetime
     - field_group
     - text
 third_party_settings:
@@ -104,7 +103,7 @@ content:
     weight: 7
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
+    type: datetime_timestamp
     region: content
   translation:
     weight: 6

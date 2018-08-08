@@ -90,7 +90,7 @@ class FeatureContext extends DrupalContext {
    *   Thrown when the field was not found.
    */
   public function findDateFields($field) {
-    $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-datetime-default');
+    $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-datetime-timestamp');
     $field_selectors = array_filter($field_selectors, function ($field_selector) use ($field) {
       return $field_selector->has('named', ['content', $field]);
     });
