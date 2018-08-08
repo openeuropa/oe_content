@@ -8,5 +8,6 @@ node_modules
 npm-debug.log
 package-lock.json
 runner.yml
+phpunit.xml
 vendor
 yarn.lock
