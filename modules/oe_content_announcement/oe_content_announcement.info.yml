@@ -1,0 +1,8 @@
+name: OE Content Announcement
+description: Provides the Announcement RDF entity type
+core: 8.x
+type: module
+package: OpenEuropa
+
+dependencies:
+  - oe_content:oe_content

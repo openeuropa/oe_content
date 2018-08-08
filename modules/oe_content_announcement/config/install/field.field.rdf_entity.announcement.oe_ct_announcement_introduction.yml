@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.rdf_entity.oe_ct_announcement_introduction
+    - rdf_entity.rdfentity.announcement
+  module:
+    - text
+id: rdf_entity.announcement.oe_ct_announcement_introduction
+field_name: oe_ct_announcement_introduction
+entity_type: rdf_entity
+bundle: announcement
+label: Introduction
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
