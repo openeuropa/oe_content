@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.rdf_entity.oe_ct_event_links
+    - field.storage.rdf_entity.oe_ct_event_website
     - rdf_entity.rdfentity.event
   module:
     - link
-id: rdf_entity.event.oe_ct_event_links
-field_name: oe_ct_event_links
+id: rdf_entity.event.oe_ct_event_website
+field_name: oe_ct_event_website
 entity_type: rdf_entity
 bundle: event
-label: 'Related links'
+label: Website
 description: ''
 required: false
 translatable: false

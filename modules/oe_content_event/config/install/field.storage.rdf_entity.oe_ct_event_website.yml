@@ -8,7 +8,7 @@ third_party_settings:
   rdf_entity:
     mapping:
       uri:
-        predicate: 'http://schema.org/relatedLink'
+        predicate: 'http://schema.org/sameAs'
         format: 'xsd:anyURI'
       title:
         predicate: ''
@@ -16,8 +16,8 @@ third_party_settings:
       options:
         predicate: ''
         format: no_format
-id: rdf_entity.oe_ct_event_links
-field_name: oe_ct_event_links
+id: rdf_entity.oe_ct_event_website
+field_name: oe_ct_event_website
 entity_type: rdf_entity
 type: link
 settings: {  }

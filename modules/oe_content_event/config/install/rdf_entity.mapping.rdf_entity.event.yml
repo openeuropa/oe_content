@@ -8,23 +8,23 @@ dependencies:
 id: rdf_entity.event
 entity_type_id: rdf_entity
 bundle: event
-rdf_type: ''
+rdf_type: 'http://schema.org/Event'
 graph:
   default: 'http://europa.eu/event/published'
   draft: 'http://europa.eu/event/draft'
 base_fields_mapping:
   rid:
     target_id:
-      predicate: ''
-      format: ''
+      predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+      format: 'resource'
   uid:
     target_id:
       predicate: ''
       format: ''
   label:
     value:
-      predicate: ''
-      format: ''
+      predicate: 'http://schema.org/name'
+      format: 't_literal'
   created:
     value:
       predicate: ''

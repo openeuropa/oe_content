@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.rdf_entity.event.oe_ct_event_website
     - field.field.rdf_entity.event.oe_ct_event_available_languages
     - field.field.rdf_entity.event.oe_ct_event_date
     - field.field.rdf_entity.event.oe_ct_event_description
@@ -18,6 +19,18 @@ targetEntityType: rdf_entity
 bundle: event
 mode: default
 content:
+  oe_ct_event_website:
+    weight: 8
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   oe_ct_event_available_languages:
     weight: 4
     label: above
