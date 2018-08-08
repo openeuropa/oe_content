@@ -20,9 +20,12 @@ class FeatureContext extends DrupalContext {
    * @Given /^I am logged in with a user that can create and view "([^"]*)" RDF entities/
    */
   public function iAmLoggedInWithUserThatCanCreateAndViewRdfEntityTypes($entity_type) {
-    $permission_map = [
-      'Announcement' => 'create announcement rdf entity',
-    ];
+    /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
+    $types = \Drupal::entityTypeManager()->getStorage('rdf_type')->loadMultiple();
+    $permission_map = [];
+    foreach ($types as $id => $type) {
+      $permission_map[$type->label()] = "create $id rdf entity";
+    }
 
     if (!isset($permission_map[$entity_type])) {
       throw new \InvalidArgumentException('The provided entity type is not correct.');
@@ -90,7 +93,7 @@ class FeatureContext extends DrupalContext {
    *   Thrown when the field was not found.
    */
   public function findDateFields($field) {
-    $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-datetime-default');
+    $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-datetime-timestamp');
     $field_selectors = array_filter($field_selectors, function ($field_selector) use ($field) {
       return $field_selector->has('named', ['content', $field]);
     });

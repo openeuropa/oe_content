@@ -24,6 +24,7 @@ drupal:
     # Enable the modules.
     - "./vendor/bin/drush en oe_content -y"
     - "./vendor/bin/drush en oe_content_announcement -y"
+    - "./vendor/bin/drush en oe_content_event -y"
   settings:
     settings:
       file_scan_ignore_directories:
