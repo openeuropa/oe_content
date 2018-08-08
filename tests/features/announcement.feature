@@ -1,4 +1,4 @@
-@api @run
+@api
 Feature: Announcement feature
   In order to have announcements on the site
   As an editor
