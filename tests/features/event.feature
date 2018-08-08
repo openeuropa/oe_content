@@ -1,4 +1,4 @@
-@api @run
+@api
 Feature: Event feature
   In order to have events on the site
   As an editor
