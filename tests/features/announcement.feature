@@ -1,4 +1,4 @@
-@api
+@api @run
 Feature: Announcement feature
   In order to have announcements on the site
   As an editor
@@ -11,12 +11,12 @@ Feature: Announcement feature
     And I fill in "Introduction" with "My intro"
     And I fill in "Description" with "My description"
     And I fill in "Body" with "My body"
-    And I fill in "First published on" with the date "2018-08-15"
+    And I fill in "First published on" with the date "2018-08-08"
     And I fill in "First published on" with the time "01:01:02"
     And I press "Save"
     Then I should see "My announcement"
     Then I should see "My intro"
     Then I should see "My description"
     Then I should see "My body"
-    Then I should see "Thu, 01/01/1970 - 02:33"
+    Then I should see "Wed, 08/08/2018 - 01:01"
 

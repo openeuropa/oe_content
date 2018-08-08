@@ -8,7 +8,6 @@ dependencies:
     - field.field.rdf_entity.announcement.oe_ct_announcement_publish_date
     - rdf_entity.rdfentity.announcement
   module:
-    - datetime
     - text
     - user
 id: rdf_entity.announcement.default
@@ -49,10 +48,11 @@ content:
     weight: 4
     label: above
     settings:
-      format_type: medium
-      timezone_override: ''
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
     third_party_settings: {  }
-    type: datetime_default
+    type: timestamp
     region: content
 hidden:
   changed: true
