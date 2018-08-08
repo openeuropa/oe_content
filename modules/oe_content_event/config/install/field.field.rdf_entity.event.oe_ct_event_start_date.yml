@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.rdf_entity.oe_ct_event_start_date
+    - rdf_entity.rdfentity.event
+  module:
+    - datetime
+id: rdf_entity.event.oe_ct_event_start_date
+field_name: oe_ct_event_start_date
+entity_type: rdf_entity
+bundle: event
+label: 'Start date'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: 1533728188
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

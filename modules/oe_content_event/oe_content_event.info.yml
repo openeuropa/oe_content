@@ -6,5 +6,4 @@ type: module
 core: 8.x
 dependencies:
   - oe_content:oe_content
-  - drupal:datetime_range
   - drupal:link
