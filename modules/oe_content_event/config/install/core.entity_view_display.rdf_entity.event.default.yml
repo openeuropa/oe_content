@@ -11,7 +11,6 @@ dependencies:
     - field.field.rdf_entity.event.oe_ct_event_website
     - rdf_entity.rdfentity.event
   module:
-    - datetime
     - link
     - text
     - user
@@ -46,13 +45,14 @@ content:
     type: text_default
     region: content
   oe_ct_event_end_date:
-    type: datetime_default
+    type: timestamp
     weight: 7
     region: content
     label: above
     settings:
-      format_type: medium
-      timezone_override: ''
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
     third_party_settings: {  }
   oe_ct_event_introduction:
     weight: 2
@@ -74,13 +74,14 @@ content:
     type: link
     region: content
   oe_ct_event_start_date:
-    type: datetime_default
+    type: timestamp
     weight: 6
     region: content
     label: above
     settings:
-      format_type: medium
-      timezone_override: ''
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
     third_party_settings: {  }
   oe_ct_event_website:
     weight: 5

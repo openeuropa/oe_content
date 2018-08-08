@@ -4,8 +4,6 @@ dependencies:
   config:
     - field.storage.rdf_entity.oe_ct_event_start_date
     - rdf_entity.rdfentity.event
-  module:
-    - datetime
 id: rdf_entity.event.oe_ct_event_start_date
 field_name: oe_ct_event_start_date
 entity_type: rdf_entity
