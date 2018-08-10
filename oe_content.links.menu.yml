@@ -1,0 +1,10 @@
+oe_content.index:
+  route_name: oe_content.index
+  parent: system.admin_config
+  description: 'OE Content configuration'
+  title: 'OE Content'
+oe_content.settings_form:
+  route_name: oe_content.settings_form
+  parent: oe_content.index
+  description: 'OE Content general settings'
+  title: 'Settings'

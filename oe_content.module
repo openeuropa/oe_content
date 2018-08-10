@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * The OE Content module.
+ * @file
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\rdf_entity\Entity\Rdf;
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
+  // Add the "provenance_uri" field to the RDF entity type.
+  if ($entity_type->id() !== 'rdf_entity') {
+    return;
+  }
+
+  $fields = [];
+
+  $fields['provenance_uri'] = BaseFieldDefinition::create('uri')
+    ->setLabel(t('Provenance URI'))
+    ->setDescription(t('A URI that indicates the provenance of the entity.'))
+    ->setTranslatable(FALSE);
+
+  return $fields;
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function oe_content_entity_presave(EntityInterface $entity) {
+  // RDF entities need to be saved with a provenance URI.
+  if (!$entity instanceof Rdf) {
+    return;
+  }
+
+  $uri = \Drupal::config('oe_content.settings')->get('provenance_uri');
+  if (!$uri) {
+    // In case there is no config, we default to the Base URL of the site.
+    $uri = \Drupal::request()->getBaseUrl();
+  }
+
+  $entity->set('provenance_uri', $uri);
+}
