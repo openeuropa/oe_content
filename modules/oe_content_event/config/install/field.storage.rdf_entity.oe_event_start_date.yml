@@ -3,22 +3,18 @@ status: true
 dependencies:
   module:
     - rdf_entity
-    - text
 third_party_settings:
   rdf_entity:
     mapping:
       value:
-        predicate: 'http://schema.org/alternativeHeadline'
-        format: t_literal
-      format:
-        predicate: ''
-        format: no_format
-id: rdf_entity.oe_ct_announcement_introduction
-field_name: oe_ct_announcement_introduction
+        predicate: 'http://schema.org/startDate'
+        format: 'xsd:dateTime'
+id: rdf_entity.oe_event_start_date
+field_name: oe_event_start_date
 entity_type: rdf_entity
-type: text_long
+type: timestamp
 settings: {  }
-module: text
+module: core
 locked: false
 cardinality: 1
 translatable: true

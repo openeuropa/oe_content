@@ -2,23 +2,23 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.rdf_entity.event.oe_ct_event_available_languages
-    - field.field.rdf_entity.event.oe_ct_event_description
-    - field.field.rdf_entity.event.oe_ct_event_end_date
-    - field.field.rdf_entity.event.oe_ct_event_introduction
-    - field.field.rdf_entity.event.oe_ct_event_links
-    - field.field.rdf_entity.event.oe_ct_event_start_date
-    - field.field.rdf_entity.event.oe_ct_event_website
-    - rdf_entity.rdfentity.event
+    - field.field.rdf_entity.oe_event.oe_event_available_languages
+    - field.field.rdf_entity.oe_event.oe_event_description
+    - field.field.rdf_entity.oe_event.oe_event_end_date
+    - field.field.rdf_entity.oe_event.oe_event_introduction
+    - field.field.rdf_entity.oe_event.oe_event_links
+    - field.field.rdf_entity.oe_event.oe_event_start_date
+    - field.field.rdf_entity.oe_event.oe_event_website
+    - rdf_entity.rdfentity.oe_event
   module:
     - link
     - text
     - user
 _core:
   default_config_hash: iHU2245_qci_uxizC8eznX5gxj9814yNw4MSqIqoTaE
-id: rdf_entity.event.default
+id: rdf_entity.oe_event.default
 targetEntityType: rdf_entity
-bundle: event
+bundle: oe_event
 mode: default
 content:
   label:
@@ -29,7 +29,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  oe_ct_event_available_languages:
+  oe_event_available_languages:
     weight: 3
     label: above
     settings:
@@ -37,14 +37,14 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  oe_ct_event_description:
+  oe_event_description:
     weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  oe_ct_event_end_date:
+  oe_event_end_date:
     type: timestamp
     weight: 7
     region: content
@@ -54,14 +54,14 @@ content:
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
-  oe_ct_event_introduction:
+  oe_event_introduction:
     weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  oe_ct_event_links:
+  oe_event_links:
     weight: 4
     label: above
     settings:
@@ -73,7 +73,7 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  oe_ct_event_start_date:
+  oe_event_start_date:
     type: timestamp
     weight: 6
     region: content
@@ -83,7 +83,7 @@ content:
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
-  oe_ct_event_website:
+  oe_event_website:
     weight: 5
     label: above
     settings:

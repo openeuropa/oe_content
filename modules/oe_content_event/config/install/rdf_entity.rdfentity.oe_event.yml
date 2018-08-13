@@ -2,5 +2,5 @@ langcode: en
 status: true
 dependencies: {  }
 name: Event
-rid: event
+rid: oe_event
 description: ''

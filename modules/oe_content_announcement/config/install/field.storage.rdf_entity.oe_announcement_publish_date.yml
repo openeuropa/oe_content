@@ -7,13 +7,13 @@ third_party_settings:
   rdf_entity:
     mapping:
       value:
-        predicate: 'http://schema.org/startDate'
+        predicate: 'http://schema.org/datePublished'
         format: 'xsd:dateTime'
-id: rdf_entity.oe_ct_event_start_date
-field_name: oe_ct_event_start_date
+id: rdf_entity.oe_announcement_publish_date
+field_name: oe_announcement_publish_date
 entity_type: rdf_entity
 type: timestamp
-settings: {  }
+settings: {}
 module: core
 locked: false
 cardinality: 1

@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.rdf_entity.oe_ct_event_end_date
-    - rdf_entity.rdfentity.event
-id: rdf_entity.event.oe_ct_event_end_date
-field_name: oe_ct_event_end_date
+    - field.storage.rdf_entity.oe_event_start_date
+    - rdf_entity.rdfentity.oe_event
+id: rdf_entity.oe_event.oe_event_start_date
+field_name: oe_event_start_date
 entity_type: rdf_entity
-bundle: event
-label: 'End date'
+bundle: oe_event
+label: 'Start date'
 description: ''
 required: true
 translatable: true

@@ -3,18 +3,22 @@ status: true
 dependencies:
   module:
     - rdf_entity
+    - text
 third_party_settings:
   rdf_entity:
     mapping:
       value:
-        predicate: 'http://schema.org/datePublished'
-        format: 'xsd:dateTime'
-id: rdf_entity.oe_ct_announcement_publish_date
-field_name: oe_ct_announcement_publish_date
+        predicate: 'http://schema.org/articleBody'
+        format: t_literal
+      format:
+        predicate: ''
+        format: no_format
+id: rdf_entity.oe_announcement_body
+field_name: oe_announcement_body
 entity_type: rdf_entity
-type: timestamp
-settings: {}
-module: core
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true

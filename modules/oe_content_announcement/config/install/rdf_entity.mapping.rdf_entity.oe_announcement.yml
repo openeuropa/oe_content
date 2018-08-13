@@ -4,27 +4,27 @@ dependencies:
   config:
     - rdf_entity.graph.default
     - rdf_entity.graph.draft
-    - rdf_entity.rdfentity.event
-id: rdf_entity.event
+    - rdf_entity.rdfentity.oe_announcement
+id: rdf_entity.oe_announcement
 entity_type_id: rdf_entity
-bundle: event
-rdf_type: 'http://schema.org/Event'
+bundle: oe_announcement
+rdf_type: 'http://schema.org/Article'
 graph:
-  default: 'http://europa.eu/event/published'
-  draft: 'http://europa.eu/event/draft'
+  default: 'https://europa.eu/announcement/published'
+  draft: 'https://europa.eu/announcement/draft'
 base_fields_mapping:
   rid:
     target_id:
       predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
-      format: 'resource'
+      format: resource
   uid:
     target_id:
       predicate: ''
       format: ''
   label:
     value:
-      predicate: 'http://schema.org/name'
-      format: 't_literal'
+      predicate: 'http://schema.org/headline'
+      format: t_literal
   created:
     value:
       predicate: ''
@@ -42,22 +42,6 @@ base_fields_mapping:
       predicate: ''
       format: ''
   default_langcode:
-    value:
-      predicate: ''
-      format: ''
-  content_translation_source:
-    value:
-      predicate: ''
-      format: ''
-  content_translation_outdated:
-    value:
-      predicate: ''
-      format: ''
-  content_translation_uid:
-    target_id:
-      predicate: ''
-      format: ''
-  content_translation_status:
     value:
       predicate: ''
       format: ''

@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.rdf_entity.oe_ct_announcement_introduction
-    - rdf_entity.rdfentity.announcement
+    - field.storage.rdf_entity.oe_announcement_introduction
+    - rdf_entity.rdfentity.oe_announcement
   module:
     - text
-id: rdf_entity.announcement.oe_ct_announcement_introduction
-field_name: oe_ct_announcement_introduction
+id: rdf_entity.oe_announcement.oe_announcement_introduction
+field_name: oe_announcement_introduction
 entity_type: rdf_entity
-bundle: announcement
+bundle: oe_announcement
 label: Introduction
 description: ''
 required: false

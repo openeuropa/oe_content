@@ -2,20 +2,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.rdf_entity.announcement.oe_ct_announcement_body
-    - field.field.rdf_entity.announcement.oe_ct_announcement_description
-    - field.field.rdf_entity.announcement.oe_ct_announcement_introduction
-    - field.field.rdf_entity.announcement.oe_ct_announcement_publish_date
-    - rdf_entity.rdfentity.announcement
+    - field.field.rdf_entity.oe_announcement.oe_announcement_body
+    - field.field.rdf_entity.oe_announcement.oe_announcement_description
+    - field.field.rdf_entity.oe_announcement.oe_announcement_introduction
+    - field.field.rdf_entity.oe_announcement.oe_announcement_publish_date
+    - rdf_entity.rdfentity.oe_announcement
   module:
     - field_group
     - text
 third_party_settings:
   field_group:
-    group_announcement:
+    oe_group_announcement:
       children:
-        - group_announcement_content
-        - group_announcement_related
+        - oe_group_announcement_content
+        - oe_group_announcement_related
       parent_name: ''
       weight: 0
       format_type: tabs
@@ -24,16 +24,16 @@ third_party_settings:
         classes: ''
         direction: horizontal
       label: Announcement
-    group_announcement_content:
+    oe_group_announcement_content:
       children:
         - label
         - langcode
-        - oe_ct_announcement_introduction
-        - oe_ct_announcement_description
-        - oe_ct_announcement_body
+        - oe_announcement_introduction
+        - oe_announcement_description
+        - oe_announcement_body
         - translation
-        - oe_ct_announcement_publish_date
-      parent_name: group_announcement
+        - oe_announcement_publish_date
+      parent_name: oe_group_announcement
       weight: 8
       format_type: tab
       format_settings:
@@ -43,9 +43,9 @@ third_party_settings:
         description: ''
         required_fields: true
       label: Content
-    group_announcement_related:
+    oe_group_announcement_related:
       children: {  }
-      parent_name: group_announcement
+      parent_name: oe_group_announcement
       weight: 9
       format_type: tab
       format_settings:
@@ -55,9 +55,9 @@ third_party_settings:
         description: ''
         required_fields: true
       label: Related content
-id: rdf_entity.announcement.default
+id: rdf_entity.oe_announcement.default
 targetEntityType: rdf_entity
-bundle: announcement
+bundle: oe_announcement
 mode: default
 content:
   label:
@@ -75,7 +75,7 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  oe_ct_announcement_body:
+  oe_announcement_body:
     weight: 5
     settings:
       rows: 5
@@ -83,7 +83,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  oe_ct_announcement_description:
+  oe_announcement_description:
     weight: 4
     settings:
       rows: 5
@@ -91,7 +91,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  oe_ct_announcement_introduction:
+  oe_announcement_introduction:
     weight: 3
     settings:
       rows: 5
@@ -99,7 +99,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  oe_ct_announcement_publish_date:
+  oe_announcement_publish_date:
     weight: 7
     settings: {  }
     third_party_settings: {  }

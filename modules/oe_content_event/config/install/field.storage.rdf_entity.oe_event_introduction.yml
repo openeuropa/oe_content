@@ -13,8 +13,8 @@ third_party_settings:
       format:
         predicate: ''
         format: no_format
-id: rdf_entity.oe_ct_event_introduction
-field_name: oe_ct_event_introduction
+id: rdf_entity.oe_event_introduction
+field_name: oe_event_introduction
 entity_type: rdf_entity
 type: text_long
 settings: {  }

@@ -2,26 +2,23 @@ langcode: en
 status: true
 dependencies:
   module:
-    - link
     - rdf_entity
+    - text
 third_party_settings:
   rdf_entity:
     mapping:
-      uri:
-        predicate: 'http://schema.org/sameAs'
-        format: 'xsd:anyURI'
-      title:
+      value:
+        predicate: 'https://schema.org/description'
+        format: t_literal
+      format:
         predicate: ''
         format: no_format
-      options:
-        predicate: ''
-        format: no_format
-id: rdf_entity.oe_ct_event_website
-field_name: oe_ct_event_website
+id: rdf_entity.oe_event_description
+field_name: oe_event_description
 entity_type: rdf_entity
-type: link
+type: text_long
 settings: {  }
-module: link
+module: text
 locked: false
 cardinality: 1
 translatable: true

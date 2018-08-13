@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.rdf_entity.oe_ct_announcement_publish_date
-    - rdf_entity.rdfentity.announcement
-id: rdf_entity.announcement.oe_ct_announcement_publish_date
-field_name: oe_ct_announcement_publish_date
+    - field.storage.rdf_entity.oe_announcement_publish_date
+    - rdf_entity.rdfentity.oe_announcement
+id: rdf_entity.oe_announcement.oe_announcement_publish_date
+field_name: oe_announcement_publish_date
 entity_type: rdf_entity
-bundle: announcement
+bundle: oe_announcement
 label: 'First published on'
 description: ''
 required: false

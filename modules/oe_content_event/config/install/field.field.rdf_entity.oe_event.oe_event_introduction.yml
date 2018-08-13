@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.rdf_entity.oe_ct_event_introduction
-    - rdf_entity.rdfentity.event
+    - field.storage.rdf_entity.oe_event_introduction
+    - rdf_entity.rdfentity.oe_event
   module:
     - text
-id: rdf_entity.event.oe_ct_event_introduction
-field_name: oe_ct_event_introduction
+id: rdf_entity.oe_event.oe_event_introduction
+field_name: oe_event_introduction
 entity_type: rdf_entity
-bundle: event
+bundle: oe_event
 label: Introduction
 description: ''
 required: false

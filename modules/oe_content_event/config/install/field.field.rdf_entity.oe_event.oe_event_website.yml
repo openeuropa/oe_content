@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.rdf_entity.oe_ct_event_website
-    - rdf_entity.rdfentity.event
+    - field.storage.rdf_entity.oe_event_website
+    - rdf_entity.rdfentity.oe_event
   module:
     - link
-id: rdf_entity.event.oe_ct_event_website
-field_name: oe_ct_event_website
+id: rdf_entity.oe_event.oe_event_website
+field_name: oe_event_website
 entity_type: rdf_entity
-bundle: event
+bundle: oe_event
 label: Website
 description: ''
 required: false

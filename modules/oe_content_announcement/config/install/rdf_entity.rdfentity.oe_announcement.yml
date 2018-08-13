@@ -2,5 +2,5 @@ langcode: en
 status: true
 dependencies: {  }
 name: Announcement
-rid: announcement
+rid: oe_announcement
 description: ''

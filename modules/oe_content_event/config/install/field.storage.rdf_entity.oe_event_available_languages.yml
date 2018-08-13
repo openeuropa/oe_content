@@ -9,8 +9,8 @@ third_party_settings:
       value:
         predicate: 'https://schema.org/inLanguage'
         format: literal
-id: rdf_entity.oe_ct_event_available_languages
-field_name: oe_ct_event_available_languages
+id: rdf_entity.oe_event_available_languages
+field_name: oe_event_available_languages
 entity_type: rdf_entity
 type: string
 settings:
