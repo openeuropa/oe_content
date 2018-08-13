@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.rdf_entity.oe_announcement_publish_date
+    - rdf_entity.rdfentity.oe_announcement
+id: rdf_entity.oe_announcement.oe_announcement_publish_date
+field_name: oe_announcement_publish_date
+entity_type: rdf_entity
+bundle: oe_announcement
+label: 'First published on'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1533728188
+default_value_callback: ''
+settings: {  }
+field_type: timestamp
