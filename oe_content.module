@@ -1,8 +1,8 @@
 <?php
 
 /**
- * The OE Content module.
  * @file
+ * The OE Content module.
  */
 
 use Drupal\Core\Entity\EntityInterface;
