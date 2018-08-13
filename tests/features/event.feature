@@ -26,4 +26,5 @@ Feature: Event feature
     Then I should see "http://example.com/my-event"
     Then I should see "Wed, 08/08/2018 - 12:00"
     Then I should see "Wed, 08/08/2018 - 14:00"
+    Then I delete the RDF entity with the name "My event"
 

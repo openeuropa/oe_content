@@ -19,4 +19,5 @@ Feature: Announcement feature
     Then I should see "My description"
     Then I should see "My body"
     Then I should see "Wed, 08/08/2018 - 01:01"
+    Then I delete the RDF entity with the name "My announcement"
 
