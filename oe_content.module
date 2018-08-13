@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * OpenEuropa content module.
+ */
+
+/**
+ * Implements hook_rdf_apply_default_fields_alter().
+ */
+function oe_content_rdf_apply_default_fields_alter($type, &$values) {
+  // Since the "full_html" is not guaranteed to exist, we default to plain_text
+  // as the format for the text_long field type.
+  if ($type == 'text_long') {
+    foreach ($values as &$value) {
+      if ($value['format'] == 'full_html') {
+        $value['format'] = 'plain_text';
+      }
+    }
+  }
+}

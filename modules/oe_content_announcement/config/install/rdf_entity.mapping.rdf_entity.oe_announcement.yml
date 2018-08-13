@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - rdf_entity.graph.default
+    - rdf_entity.graph.draft
+    - rdf_entity.rdfentity.oe_announcement
+id: rdf_entity.oe_announcement
+entity_type_id: rdf_entity
+bundle: oe_announcement
+rdf_type: 'http://schema.org/Article'
+graph:
+  default: 'https://europa.eu/announcement/published'
+  draft: 'https://europa.eu/announcement/draft'
+base_fields_mapping:
+  rid:
+    target_id:
+      predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+      format: resource
+  uid:
+    target_id:
+      predicate: ''
+      format: ''
+  label:
+    value:
+      predicate: 'http://schema.org/headline'
+      format: t_literal
+  created:
+    value:
+      predicate: ''
+      format: ''
+  changed:
+    value:
+      predicate: ''
+      format: ''
+  uuid:
+    value:
+      predicate: ''
+      format: ''
+  langcode:
+    value:
+      predicate: ''
+      format: ''
+  default_langcode:
+    value:
+      predicate: ''
+      format: ''
+  graph:
+    target_id:
+      predicate: ''
+      format: ''
+entity_id_plugin: default

@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - rdf_entity
+    - text
+third_party_settings:
+  rdf_entity:
+    mapping:
+      value:
+        predicate: 'https://schema.org/text'
+        format: t_literal
+      format:
+        predicate: ''
+        format: no_format
+id: rdf_entity.oe_event_introduction
+field_name: oe_event_introduction
+entity_type: rdf_entity
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
