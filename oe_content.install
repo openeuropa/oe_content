@@ -16,7 +16,7 @@ function oe_content_requirements($phase) {
 
   if (!\Drupal::configFactory()->get('oe_content.settings')->get('provenance_uri')) {
     $requirements['oe_content'] = [
-      'title' => t('OE Content Provenance URI'),
+      'title' => t('OpenEuropa Content Provenance URI'),
       'description' => t('The RDF entity provenance URI is not set.'),
       'severity' => REQUIREMENT_ERROR,
     ];

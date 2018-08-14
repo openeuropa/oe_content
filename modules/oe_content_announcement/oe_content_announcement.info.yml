@@ -6,3 +6,17 @@ package: OpenEuropa
 
 dependencies:
   - oe_content:oe_content
+
+config_devel:
+  - core.entity_form_display.rdf_entity.oe_announcement.default
+  - core.entity_view_display.rdf_entity.oe_announcement.default
+  - field.field.rdf_entity.oe_announcement.oe_announcement_body
+  - field.field.rdf_entity.oe_announcement.oe_announcement_description
+  - field.field.rdf_entity.oe_announcement.oe_announcement_introduction
+  - field.field.rdf_entity.oe_announcement.oe_announcement_publish_date
+  - field.storage.rdf_entity.oe_announcement_body
+  - field.storage.rdf_entity.oe_announcement_description
+  - field.storage.rdf_entity.oe_announcement_introduction
+  - field.storage.rdf_entity.oe_announcement_publish_date
+  - rdf_entity.mapping.rdf_entity.oe_announcement
+  - rdf_entity.rdfentity.oe_announcement

@@ -54,7 +54,7 @@ third_party_settings:
         formatter: closed
         description: ''
         required_fields: true
-      label: Related content
+      label: 'Related content'
 id: rdf_entity.oe_announcement.default
 targetEntityType: rdf_entity
 bundle: oe_announcement
@@ -67,13 +67,6 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  langcode:
-    type: language_select
-    weight: 2
-    region: content
-    settings:
-      include_locked: true
     third_party_settings: {  }
   oe_announcement_body:
     weight: 5

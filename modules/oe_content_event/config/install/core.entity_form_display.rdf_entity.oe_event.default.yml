@@ -73,8 +73,6 @@ third_party_settings:
         description: ''
         required_fields: true
       label: 'Practical information'
-_core:
-  default_config_hash: a3ibnjhulUJwG-Q0MI38HmYe40Z469LpqyLfxqN5IyM
 id: rdf_entity.oe_event.default
 targetEntityType: rdf_entity
 bundle: oe_event

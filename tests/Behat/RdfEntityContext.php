@@ -8,12 +8,10 @@ use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Drupal\DrupalExtension\Context\ConfigContext;
 use Drupal\rdf_entity\RdfInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Defines step definitions specifically for testing the RDF entities.
- *
- * This is needed due to issues with the Kernel testing of the RDF entity module
- * in Drupal 8.6.
  *
  * We are extending ConfigContext to override the setConfig() method until
  * issue https://github.com/jhedstrom/drupalextension/issues/498 is fixed.
@@ -63,32 +61,39 @@ class RdfEntityContext extends ConfigContext {
    * @Given the site Provenance URI is set to :uri
    * @And the site Provenance URI is set to :uri
    */
-  public function theSiteProvenanceUriIsSetTo($uri): void {
+  public function setSiteProvenanceUri($uri): void {
     $this->setConfig('oe_content.settings', 'provenance_uri', $uri);
   }
 
   /**
    * User creation and login for creating RDF entities.
    *
-   * A custom step that creates a user that has the permissions to create and
+   * A custom step that creates a user that has the permissions to manage and
    * view RDF entities of a give type.
    *
    * @Given I am logged in with a user that can create and view :bundle RDF entities
    */
-  public function iAmLoggedInWithUserThatCanCreateAndViewRdfEntityTypes($bundle): void {
+  public function assertLoggedInWithRdfEntityTypePermissions($bundle): void {
     /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
     $types = \Drupal::entityTypeManager()->getStorage('rdf_type')->loadMultiple();
     $permission_map = [];
     foreach ($types as $id => $type) {
-      $permission_map[$type->label()] = "create $id rdf entity";
+      $permission_map[$type->label()] = [
+        "create $id rdf entity",
+        "edit $id rdf entity",
+        "delete $id rdf entity",
+      ];
     }
 
     if (!isset($permission_map[$bundle])) {
       throw new \InvalidArgumentException('The provided entity type is not correct.');
     }
 
-    $permission = $permission_map[$bundle];
-    $permissions = ['view rdf entity', 'view rdf entity overview', $permission];
+    $permissions = array_merge($permission_map[$bundle], [
+      'view rdf entity',
+      'view rdf entity overview',
+    ]);
+
     $role = $this->getDriver()->roleCreate($permissions);
 
     // Create user.
@@ -113,7 +118,7 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Given I create an :bundle RDF entity with the name :name
    */
-  public function iCreateTestRdfEntityWithTheName($bundle, $name): void {
+  public function createRdfEntityWithLabel($bundle, $name): void {
     $values = [
       'bundle' => $bundle,
       'label' => $name,
@@ -127,7 +132,7 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Then the Provenance URI of the RDF entity with the name :name should be :provenance_uri
    */
-  public function theProvenanceUriOfTheRdfEntityWithTheNameShouldBe($name, $provenance_uri): void {
+  public function assertRdfEntityProvenanceUri($name, $provenance_uri): void {
     $entity = $this->loadRdfEntityByName($name);
     if ($entity->get('provenance_uri')->value !== $provenance_uri) {
       throw new \Exception('The RDF entity did not get created with the proper Provenance URI.');
@@ -137,10 +142,10 @@ class RdfEntityContext extends ConfigContext {
   /**
    * Removes a RDF entity with a given name.
    *
-   * @Then /^I delete the RDF entity with the name "([^"]*)"$/
+   * @Then I delete the RDF entity with the name :name
    */
-  public function iDeleteTheRdfEntityWithTheName($arg1): void {
-    $entity = $this->loadRdfEntityByName($arg1);
+  public function deleteRdfEntityByLabel($name): void {
+    $entity = $this->loadRdfEntityByName($name);
     $entity->delete();
   }
 
@@ -149,9 +154,10 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Then I should have :operation access to the RDF entity with the name :name
    */
-  public function iShouldHaveAccessToTheRdfEntityWithTheName($operation, $name): void {
+  public function assertAccessToTheRdfEntityWithTheName($operation, $name): void {
     $entity = $this->loadRdfEntityByName($name);
-    if (!$entity->access($operation)) {
+    $current_user = $this->getCurrentUser();
+    if (!$entity->access($operation, $current_user)) {
       throw new \Exception('The current user does not have access for this operation and they should.');
     }
   }
@@ -161,12 +167,11 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Then I should not have :operation access to the RDF entity with the name :name
    */
-  public function iShouldNotHaveAccessToTheRdfEntityWithTheName($operation, $name): void {
+  public function assertNoAccessToTheRdfEntityWithTheName($operation, $name): void {
     $entity = $this->loadRdfEntityByName($name);
-    var_dump('entiy prov: ' . $entity->get('provenance_uri')->value);
-    var_dump('site prov: ' . \Drupal::config('oe_content.settings')->get('provenance_uri'));
-    if ($entity->access($operation)) {
-      throw new \Exception('The current user has access for this operation and they should not..');
+    $current_user = $this->getCurrentUser();
+    if ($entity->access($operation, $current_user)) {
+      throw new \Exception('The current user has access for this operation and they should not.');
     }
   }
 
@@ -179,7 +184,7 @@ class RdfEntityContext extends ConfigContext {
   protected function createRdfEntity(array $values): void {
     $bundle = isset($values['bundle']) ? $values['bundle'] : NULL;
     if (!$bundle) {
-      throw new \InvalidArgumentException('No bundle provided..');
+      throw new \InvalidArgumentException('No bundle provided.');
     }
 
     /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
@@ -212,12 +217,27 @@ class RdfEntityContext extends ConfigContext {
    */
   protected function loadRdfEntityByName($name): RdfInterface {
     $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $name]);
-
     if (!$entities) {
       throw new \Exception('RDF entity not found.');
     }
-
     return reset($entities);
+  }
+
+  /**
+   * Returns the currently logged-in user.
+   *
+   * @return \Drupal\user\UserInterface
+   *   The User entity.
+   */
+  protected function getCurrentUser(): UserInterface {
+    $object = $this->userManager->getCurrentUser();
+    if (!$object) {
+      return NULL;
+    }
+
+    /** @var \Drupal\user\UserInterface $user */
+    $user = \Drupal::entityTypeManager()->getStorage('user')->load($object->uid);
+    return $user;
   }
 
   /**

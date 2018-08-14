@@ -72,5 +72,5 @@ function oe_content_rdf_entity_access(EntityInterface $entity, $operation, Accou
   }
 
   $provenance_uri = \Drupal::config('oe_content.settings')->get('provenance_uri');
-  return $entity->get('provenance_uri')->value === $provenance_uri ? AccessResult::allowed() : AccessResult::forbidden();
+  return $entity->get('provenance_uri')->value === $provenance_uri ? AccessResult::neutral() : AccessResult::forbidden();
 }
