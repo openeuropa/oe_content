@@ -5,6 +5,7 @@ default:
         - %paths.base%/tests/features
       contexts:
         - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\ConfigContext
         - Drupal\Tests\oe_content\Behat\RdfEntityContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
   extensions:
