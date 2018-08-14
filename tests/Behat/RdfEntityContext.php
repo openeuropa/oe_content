@@ -158,10 +158,10 @@ class RdfEntityContext extends RawDrupalContext {
   /**
    * Removes a RDF entity with a given name.
    *
-   * @Then /^I delete the RDF entity with the name "([^"]*)"$/
+   * @Then I delete the RDF entity with the name :name
    */
-  public function iDeleteTheRdfEntityWithTheName($arg1): void {
-    $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $arg1]);
+  public function iDeleteTheRdfEntityWithTheName($name): void {
+    $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $name]);
     if ($entities) {
       $entity = reset($entities);
       $entity->delete();
@@ -180,7 +180,7 @@ class RdfEntityContext extends RawDrupalContext {
   protected function createRdfEntity(array $values): void {
     $bundle = isset($values['bundle']) ? $values['bundle'] : NULL;
     if (!$bundle) {
-      throw new \InvalidArgumentException('No bundle provided..');
+      throw new \InvalidArgumentException('No bundle provided.');
     }
 
     /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
