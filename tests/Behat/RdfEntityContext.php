@@ -61,7 +61,7 @@ class RdfEntityContext extends ConfigContext {
    * @Given the site Provenance URI is set to :uri
    * @And the site Provenance URI is set to :uri
    */
-  public function setSiteProvenanceUri($uri): void {
+  public function setSiteProvenanceUri(string $uri): void {
     $this->setConfig('oe_content.settings', 'provenance_uri', $uri);
   }
 
@@ -73,7 +73,7 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Given I am logged in with a user that can create and view :bundle RDF entities
    */
-  public function assertLoggedInWithRdfEntityTypePermissions($bundle): void {
+  public function assertLoggedInWithRdfEntityTypePermissions(string $bundle): void {
     /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
     $types = \Drupal::entityTypeManager()->getStorage('rdf_type')->loadMultiple();
     $permission_map = [];
@@ -118,7 +118,7 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Given I create an :bundle RDF entity with the name :name
    */
-  public function createRdfEntityWithLabel($bundle, $name): void {
+  public function createRdfEntityWithLabel(string $bundle, string $name): void {
     $values = [
       'bundle' => $bundle,
       'label' => $name,
@@ -132,7 +132,7 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Then the Provenance URI of the RDF entity with the name :name should be :provenance_uri
    */
-  public function assertRdfEntityProvenanceUri($name, $provenance_uri): void {
+  public function assertRdfEntityProvenanceUri(string $name, string $provenance_uri): void {
     $entity = $this->loadRdfEntityByName($name);
     if ($entity->get('provenance_uri')->value !== $provenance_uri) {
       throw new \Exception('The RDF entity did not get created with the proper Provenance URI.');
@@ -144,7 +144,7 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Then I delete the RDF entity with the name :name
    */
-  public function deleteRdfEntityByLabel($name): void {
+  public function deleteRdfEntityByLabel(string $name): void {
     $entity = $this->loadRdfEntityByName($name);
     $entity->delete();
   }
@@ -154,7 +154,7 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Then I should have :operation access to the RDF entity with the name :name
    */
-  public function assertAccessToTheRdfEntityWithTheName($operation, $name): void {
+  public function assertAccessToTheRdfEntityWithTheName(string $operation, string $name): void {
     $entity = $this->loadRdfEntityByName($name);
     $current_user = $this->getCurrentUser();
     if (!$entity->access($operation, $current_user)) {
@@ -167,7 +167,7 @@ class RdfEntityContext extends ConfigContext {
    *
    * @Then I should not have :operation access to the RDF entity with the name :name
    */
-  public function assertNoAccessToTheRdfEntityWithTheName($operation, $name): void {
+  public function assertNoAccessToTheRdfEntityWithTheName(string $operation, string $name): void {
     $entity = $this->loadRdfEntityByName($name);
     $current_user = $this->getCurrentUser();
     if ($entity->access($operation, $current_user)) {
@@ -215,7 +215,7 @@ class RdfEntityContext extends ConfigContext {
    * @return \Drupal\rdf_entity\RdfInterface
    *   The RDF entity instance.
    */
-  protected function loadRdfEntityByName($name): RdfInterface {
+  protected function loadRdfEntityByName(string $name): RdfInterface {
     $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $name]);
     if (!$entities) {
       throw new \Exception('RDF entity not found.');
