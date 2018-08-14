@@ -7,3 +7,23 @@ core: 8.x
 dependencies:
   - oe_content:oe_content
   - drupal:link
+
+config_devel:
+  - core.entity_form_display.rdf_entity.oe_event.default
+  - core.entity_view_display.rdf_entity.oe_event.default
+  - field.field.rdf_entity.oe_event.oe_event_available_languages
+  - field.field.rdf_entity.oe_event.oe_event_description
+  - field.field.rdf_entity.oe_event.oe_event_end_date
+  - field.field.rdf_entity.oe_event.oe_event_introduction
+  - field.field.rdf_entity.oe_event.oe_event_links
+  - field.field.rdf_entity.oe_event.oe_event_start_date
+  - field.field.rdf_entity.oe_event.oe_event_website
+  - field.storage.rdf_entity.oe_event_available_languages
+  - field.storage.rdf_entity.oe_event_description
+  - field.storage.rdf_entity.oe_event_end_date
+  - field.storage.rdf_entity.oe_event_introduction
+  - field.storage.rdf_entity.oe_event_links
+  - field.storage.rdf_entity.oe_event_start_date
+  - field.storage.rdf_entity.oe_event_website
+  - rdf_entity.mapping.rdf_entity.oe_event
+  - rdf_entity.rdfentity.oe_event

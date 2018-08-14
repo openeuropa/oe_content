@@ -12,47 +12,6 @@ use Drupal\DrupalExtension\Context\DrupalContext;
 class FeatureContext extends DrupalContext {
 
   /**
-   * User creation and login for creating RDF entities.
-   *
-   * A custom step that creates a user that has the permissions to create and
-   * view RDF entities of a give type.
-   *
-   * @Given /^I am logged in with a user that can create and view "([^"]*)" RDF entities/
-   */
-  public function iAmLoggedInWithUserThatCanCreateAndViewRdfEntityTypes($entity_type) {
-    /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
-    $types = \Drupal::entityTypeManager()->getStorage('rdf_type')->loadMultiple();
-    $permission_map = [];
-    foreach ($types as $id => $type) {
-      $permission_map[$type->label()] = "create $id rdf entity";
-    }
-
-    if (!isset($permission_map[$entity_type])) {
-      throw new \InvalidArgumentException('The provided entity type is not correct.');
-    }
-
-    $permission = $permission_map[$entity_type];
-    $permissions = ['view rdf entity', 'view rdf entity overview', $permission];
-    $role = $this->getDriver()->roleCreate($permissions);
-
-    // Create user.
-    $user = (object) [
-      'name' => $this->getRandom()->name(8),
-      'pass' => $this->getRandom()->name(16),
-      'role' => $role,
-    ];
-    $user->mail = "{$user->name}@example.com";
-    $this->userCreate($user);
-
-    // Assign the temporary role with given permissions.
-    $this->getDriver()->userAddRole($user, $role);
-    $this->roles[] = $role;
-
-    // Login.
-    $this->login($user);
-  }
-
-  /**
    * Fills a date or time field at a datetime widget.
    *
    * Example: When I fill in "Start date" with the date "29-08-2016".

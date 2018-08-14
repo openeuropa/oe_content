@@ -16,7 +16,7 @@ base_fields_mapping:
   rid:
     target_id:
       predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
-      format: 'resource'
+      format: resource
   uid:
     target_id:
       predicate: ''
@@ -24,7 +24,7 @@ base_fields_mapping:
   label:
     value:
       predicate: 'http://schema.org/name'
-      format: 't_literal'
+      format: t_literal
   created:
     value:
       predicate: ''
@@ -45,22 +45,10 @@ base_fields_mapping:
     value:
       predicate: ''
       format: ''
-  content_translation_source:
+  provenance_uri:
     value:
-      predicate: ''
-      format: ''
-  content_translation_outdated:
-    value:
-      predicate: ''
-      format: ''
-  content_translation_uid:
-    target_id:
-      predicate: ''
-      format: ''
-  content_translation_status:
-    value:
-      predicate: ''
-      format: ''
+      predicate: 'http://europa.eu/provenance_uri'
+      format: resource
   graph:
     target_id:
       predicate: ''

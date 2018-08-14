@@ -4,6 +4,7 @@ Feature: Announcement feature
   As an editor
   I need to be able to create and see announcements
 
+  @rdf-provenance
   Scenario: Create announcement
     Given I am logged in with a user that can create and view "Announcement" RDF entities
     And I visit "/rdf_entity/add/oe_announcement"
@@ -19,4 +20,5 @@ Feature: Announcement feature
     Then I should see "My description"
     Then I should see "My body"
     Then I should see "Wed, 08/08/2018 - 01:01"
+    Then I delete the RDF entity with the name "My announcement"
 

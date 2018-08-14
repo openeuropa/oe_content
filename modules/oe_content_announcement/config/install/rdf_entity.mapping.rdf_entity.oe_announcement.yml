@@ -45,6 +45,10 @@ base_fields_mapping:
     value:
       predicate: ''
       format: ''
+  provenance_uri:
+    value:
+      predicate: 'http://europa.eu/provenance_uri'
+      format: resource
   graph:
     target_id:
       predicate: ''

@@ -4,6 +4,7 @@ Feature: Event feature
   As an editor
   I need to be able to create and see events
 
+  @rdf-provenance
   Scenario: Create event
     Given I am logged in with a user that can create and view "Event" RDF entities
     And I visit "/rdf_entity/add/oe_event"
@@ -26,4 +27,5 @@ Feature: Event feature
     Then I should see "http://example.com/my-event"
     Then I should see "Wed, 08/08/2018 - 12:00"
     Then I should see "Wed, 08/08/2018 - 14:00"
+    Then I delete the RDF entity with the name "My event"
 
