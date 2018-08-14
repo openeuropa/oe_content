@@ -13,7 +13,7 @@ id: rdf_entity.oe_announcement_publish_date
 field_name: oe_announcement_publish_date
 entity_type: rdf_entity
 type: timestamp
-settings: {}
+settings: {  }
 module: core
 locked: false
 cardinality: 1

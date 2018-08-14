@@ -14,8 +14,6 @@ dependencies:
     - link
     - text
     - user
-_core:
-  default_config_hash: iHU2245_qci_uxizC8eznX5gxj9814yNw4MSqIqoTaE
 id: rdf_entity.oe_event.default
 targetEntityType: rdf_entity
 bundle: oe_event
