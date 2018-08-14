@@ -1,4 +1,6 @@
 @api
+# This is needed due to issues with the Kernel testing of the RDF entity module
+# in Drupal 8.6.
 Feature: Provenance feature
   In order to deal with RDF entities on a site level
   As a content editor

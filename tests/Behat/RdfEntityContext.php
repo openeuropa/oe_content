@@ -10,9 +10,6 @@ use Drupal\DrupalExtension\Context\RawDrupalContext;
 
 /**
  * Defines step definitions specifically for testing the RDF entities.
- *
- * This is needed due to issues with the Kernel testing of the RDF entity module
- * in Drupal 8.6.
  */
 class RdfEntityContext extends RawDrupalContext {
 
@@ -78,7 +75,7 @@ class RdfEntityContext extends RawDrupalContext {
    *
    * @Given the site Provenance URI is set to :uri
    */
-  public function theSiteProvenanceUriIsSetTo($uri): void {
+  public function setSiteProvenanceUri($uri): void {
     $this->configContext->setConfig('oe_content.settings', 'provenance_uri', $uri);
   }
 
@@ -90,7 +87,7 @@ class RdfEntityContext extends RawDrupalContext {
    *
    * @Given I am logged in with a user that can create and view :bundle RDF entities
    */
-  public function iAmLoggedInWithUserThatCanCreateAndViewRdfEntityTypes($bundle) {
+  public function assertLoggedInWithRdfEntityTypePermissions($bundle) {
     /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
     $types = \Drupal::entityTypeManager()->getStorage('rdf_type')->loadMultiple();
     $permission_map = [];
@@ -128,7 +125,7 @@ class RdfEntityContext extends RawDrupalContext {
    *
    * @Given I create an :bundle RDF entity with the name :name
    */
-  public function iCreateTestRdfEntityWithTheName($bundle, $name): void {
+  public function createRdfEntityWithLabel($bundle, $name): void {
     $values = [
       'bundle' => $bundle,
       'label' => $name,
@@ -142,7 +139,7 @@ class RdfEntityContext extends RawDrupalContext {
    *
    * @Then the Provenance URI of the RDF entity with the name :name should be :provenance_uri
    */
-  public function theProvenanceUriOfTheRdfEntityWithTheNameShouldBe($name, $provenance_uri): void {
+  public function assertRdfEntityProvenanceUri($name, $provenance_uri): void {
     $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $name]);
     if (!$entities) {
       throw new \Exception('The RDF entity could not be found.');
@@ -160,7 +157,7 @@ class RdfEntityContext extends RawDrupalContext {
    *
    * @Then I delete the RDF entity with the name :name
    */
-  public function iDeleteTheRdfEntityWithTheName($name): void {
+  public function deleteRdfEntityByLabel($name): void {
     $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $name]);
     if ($entities) {
       $entity = reset($entities);
