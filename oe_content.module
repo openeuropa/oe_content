@@ -2,7 +2,7 @@
 
 /**
  * @file
- * The OE Content module.
+ * The OpenEuropa Content module.
  */
 
 use Drupal\Core\Entity\EntityInterface;
@@ -40,8 +40,7 @@ function oe_content_entity_presave(EntityInterface $entity) {
 
   $uri = \Drupal::config('oe_content.settings')->get('provenance_uri');
   if (!$uri) {
-    // In case there is no config, we default to the Base URL of the site.
-    $uri = \Drupal::request()->getBaseUrl();
+    throw new \Exception('The Provenance URI is not set.');
   }
 
   $entity->set('provenance_uri', $uri);

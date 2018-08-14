@@ -17,21 +17,34 @@ use Drupal\DrupalExtension\Context\RawDrupalContext;
 class RdfEntityContext extends RawDrupalContext {
 
   /**
-   * Before scenario hook for the rdf entities tests.
+   * An array of RDF entities we need to keep track to delete.
+   *
+   * @var \Drupal\rdf_entity\RdfInterface[]
+   */
+  protected $rdfEntities = [];
+
+  /**
+   * The Configuration context.
+   *
+   * @var \Drupal\DrupalExtension\Context\ConfigContext
+   */
+  protected $configContext;
+
+  /**
+   * Before scenario hook get the ConfigContext.
    *
    * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
    *   The Hook scope.
    *
-   * @BeforeScenario @rdf-test
+   * @BeforeScenario
    */
-  public function beforeScenarioRdfSetup(BeforeScenarioScope $scope): void {
-    // In case a URI is being set in the scenario, keep track of the old one.
-    $existing = \Drupal::configFactory()->get('oe_content.settings')->get('provenance_uri');
-    \Drupal::state()->set('behat_rdf_test_existing_provenance', $existing);
+  public function gatherConfigContext(BeforeScenarioScope $scope): void {
+    $environment = $scope->getEnvironment();
+    $this->configContext = $environment->getContext('Drupal\DrupalExtension\Context\ConfigContext');
   }
 
   /**
-   * After scenario hook for the rdf entities tests.
+   * After scenario hook to delete the RDF entities.
    *
    * @param \Behat\Behat\Hook\Scope\AfterScenarioScope $scope
    *   The Hook scope.
@@ -39,89 +52,105 @@ class RdfEntityContext extends RawDrupalContext {
    * @AfterScenario @rdf-test
    */
   public function afterScenarioRdfCleanUp(AfterScenarioScope $scope): void {
-    // If a provenance URI was changed, restore the previous one..
-    $provenance_uri = \Drupal::state()->get('behat_rdf_test_existing_provenance');
-    \Drupal::configFactory()
-      ->getEditable('oe_content.settings')
-      ->set('provenance_uri', $provenance_uri)
-      ->save();
-    \Drupal::state()->delete('behat_rdf_test_existing_provenance');
-
-    $label = \Drupal::state()->get('behat_rdf_test_created_entity');
-    if ($label) {
-      $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $label]);
-      if ($entities) {
-        $entity = reset($entities);
-        $entity->delete();
-      }
-      \Drupal::state()->delete('behat_rdf_test_created_entity');
+    if (empty($this->rdfEntities)) {
+      return;
     }
+
+    foreach ($this->rdfEntities as $rdf) {
+      $rdf->delete();
+    }
+  }
+
+  /**
+   * Before scenario hook sets a default Provenance URI on the site.
+   *
+   * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
+   *   The Hook scope.
+   *
+   * @BeforeScenario @rdf-provenance
+   */
+  public function setDefaultProvenance(BeforeScenarioScope $scope): void {
+    $this->configContext->setConfig('oe_content.settings', 'provenance_uri', 'http://example.com');
   }
 
   /**
    * Configures the Provenance URI.
    *
-   * @Given /^the site Provenance URI is set to "([^"]*)"/
+   * @Given the site Provenance URI is set to :uri
    */
-  public function theSiteProvenanceUriIsSetTo($arg1) {
-    $existing = \Drupal::configFactory()->get('oe_content.settings')->get('provenance_uri');
-    // Keep track of the existing URI to clear it after the test.
-    \Drupal::state()->set('behat_rdf_test_existing_provenance', $existing);
-    \Drupal::configFactory()
-      ->getEditable('oe_content.settings')
-      ->set('provenance_uri', $arg1)
-      ->save();
+  public function theSiteProvenanceUriIsSetTo($uri): void {
+    $this->configContext->setConfig('oe_content.settings', 'provenance_uri', $uri);
+  }
 
-    if (\Drupal::configFactory()->get('oe_content.settings')->get('provenance_uri') !== $arg1) {
-      throw new \Exception('The Provenance URI was not set in the configuration.');
+  /**
+   * User creation and login for creating RDF entities.
+   *
+   * A custom step that creates a user that has the permissions to create and
+   * view RDF entities of a give type.
+   *
+   * @Given I am logged in with a user that can create and view :bundle RDF entities
+   */
+  public function iAmLoggedInWithUserThatCanCreateAndViewRdfEntityTypes($bundle) {
+    /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
+    $types = \Drupal::entityTypeManager()->getStorage('rdf_type')->loadMultiple();
+    $permission_map = [];
+    foreach ($types as $id => $type) {
+      $permission_map[$type->label()] = "create $id rdf entity";
     }
+
+    if (!isset($permission_map[$bundle])) {
+      throw new \InvalidArgumentException('The provided entity type is not correct.');
+    }
+
+    $permission = $permission_map[$bundle];
+    $permissions = ['view rdf entity', 'view rdf entity overview', $permission];
+    $role = $this->getDriver()->roleCreate($permissions);
+
+    // Create user.
+    $user = (object) [
+      'name' => $this->getRandom()->name(8),
+      'pass' => $this->getRandom()->name(16),
+      'role' => $role,
+    ];
+    $user->mail = "{$user->name}@example.com";
+    $this->userCreate($user);
+
+    // Assign the temporary role with given permissions.
+    $this->getDriver()->userAddRole($user, $role);
+    $this->roles[] = $role;
+
+    // Login.
+    $this->login($user);
   }
 
   /**
    * Creates a test RDF entity.
    *
-   * @Given /^I create an "([^"]*)" RDF entity with the name "([^"]*)"$/
+   * @Given I create an :bundle RDF entity with the name :name
    */
-  public function iCreateTestRdfEntityWithTheName($arg1, $arg2) {
-    /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
-    $types = \Drupal::entityTypeManager()->getStorage('rdf_type')->loadMultiple();
-    $map = [];
-    foreach ($types as $id => $type) {
-      $map[$type->label()] = $type->id();
-    }
+  public function iCreateTestRdfEntityWithTheName($bundle, $name): void {
+    $values = [
+      'bundle' => $bundle,
+      'label' => $name,
+    ];
 
-    if (!isset($map[$arg1])) {
-      throw new \InvalidArgumentException('The provided entity type is not correct.');
-    }
-
-    $entity = \Drupal::entityTypeManager()->getStorage('rdf_entity')->create([
-      'rid' => $map[$arg1],
-      'label' => $arg2,
-    ]);
-    $entity->save();
-
-    if (!\Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['rid' => $map[$arg1], 'label' => $arg2])) {
-      throw new \Exception('The RDF entity did not get created.');
-    }
-
-    // Keep track of the entity to clear it after the test.
-    \Drupal::state()->set('behat_rdf_test_created_entity', $arg2);
+    $this->createRdfEntity($values);
   }
 
   /**
    * Tests that the created RDF entity has the correct provenance URI.
    *
-   * @Then /^the Provenance URI of the RDF entity with the name "([^"]*)" should be "([^"]*)"$/
+   * @Then the Provenance URI of the RDF entity with the name :name should be :provenance_uri
    */
-  public function theProvenanceUriOfTheRdfEntityWithTheNameShouldBe($arg1, $arg2) {
-    $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $arg1]);
+  public function theProvenanceUriOfTheRdfEntityWithTheNameShouldBe($name, $provenance_uri): void {
+    $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $name]);
     if (!$entities) {
       throw new \Exception('The RDF entity could not be found.');
     }
 
     /** @var \Drupal\rdf_entity\RdfInterface $rdf */
     $rdf = reset($entities);
-    if ($rdf->get('provenance_uri')->value !== $arg2) {
+    if ($rdf->get('provenance_uri')->value !== $provenance_uri) {
       throw new \Exception('The RDF entity did not get created with the proper Provenance URI.');
     }
   }
@@ -131,7 +160,7 @@ class RdfEntityContext extends RawDrupalContext {
    *
    * @Then /^I delete the RDF entity with the name "([^"]*)"$/
    */
-  public function iDeleteTheRdfEntityWithTheName($arg1) {
+  public function iDeleteTheRdfEntityWithTheName($arg1): void {
     $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $arg1]);
     if ($entities) {
       $entity = reset($entities);
@@ -140,6 +169,37 @@ class RdfEntityContext extends RawDrupalContext {
     }
 
     throw new \Exception('RDF entity was not found to be deleted.');
+  }
+
+  /**
+   * Creates keeps track of an RDF entity.
+   *
+   * @param array $values
+   *   Values for the RDF entity.
+   */
+  protected function createRdfEntity(array $values): void {
+    $bundle = isset($values['bundle']) ? $values['bundle'] : NULL;
+    if (!$bundle) {
+      throw new \InvalidArgumentException('No bundle provided..');
+    }
+
+    /** @var \Drupal\rdf_entity\RdfEntityTypeInterface[] $types */
+    $types = \Drupal::entityTypeManager()->getStorage('rdf_type')->loadMultiple();
+    $map = [];
+    foreach ($types as $id => $type) {
+      $map[$type->label()] = $type->id();
+    }
+
+    if (!isset($map[$bundle])) {
+      throw new \InvalidArgumentException('The provided entity type is not correct.');
+    }
+
+    $values += [
+      'rid' => $map[$bundle],
+    ];
+    $entity = \Drupal::entityTypeManager()->getStorage('rdf_entity')->create($values);
+    $entity->save();
+    $this->rdfEntities[] = $entity;
   }
 
 }
