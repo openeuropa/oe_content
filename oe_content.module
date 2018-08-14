@@ -5,9 +5,11 @@
  * The OpenEuropa Content module.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\rdf_entity\Entity\Rdf;
 
 /**
@@ -59,4 +61,16 @@ function oe_content_rdf_apply_default_fields_alter($type, &$values) {
       }
     }
   }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function oe_content_rdf_entity_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  if ($operation == 'view') {
+    return AccessResult::neutral();
+  }
+
+  $provenance_uri = \Drupal::config('oe_content.settings')->get('provenance_uri');
+  return $entity->get('provenance_uri')->value === $provenance_uri ? AccessResult::allowed() : AccessResult::forbidden();
 }
