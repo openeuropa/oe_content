@@ -22,4 +22,4 @@ Feature: Provenance feature
     Then I should not have "edit" access to the RDF entity with the name "Test Provenance Access One"
     And I should not have "delete" access to the RDF entity with the name "Test Provenance Access One"
     And I should have "edit" access to the RDF entity with the name "Test Provenance Access Two"
-    And I should have "edit" access to the RDF entity with the name "Test Provenance Access Two"
+    And I should have "delete" access to the RDF entity with the name "Test Provenance Access Two"

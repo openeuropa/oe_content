@@ -15,6 +15,9 @@ use Drupal\user\UserInterface;
  *
  * We are extending ConfigContext to override the setConfig() method until
  * issue https://github.com/jhedstrom/drupalextension/issues/498 is fixed.
+ *
+ * @todo Extend DrupalRawContext and gather the config context when the above
+ * issue is fixed.
  */
 class RdfEntityContext extends ConfigContext {
 
@@ -243,7 +246,7 @@ class RdfEntityContext extends ConfigContext {
   /**
    * {@inheritdoc}
    *
-   * To be removed when https://github.com/jhedstrom/drupalextension/issues/498
+   * @todo Remove when https://github.com/jhedstrom/drupalextension/issues/498
    * gets fixed.
    */
   public function setConfig($name, $key, $value) {
