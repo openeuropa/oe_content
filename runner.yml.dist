@@ -40,6 +40,9 @@ drupal:
           port: ${drupal.sparql.port}
           namespace: 'Drupal\rdf_entity\Database\Driver\sparql'
           driver: 'sparql'
+    config:
+      oe_content.settings:
+        provenance_uri: 'http://example.com'
 
 commands:
   drupal:site-setup:
