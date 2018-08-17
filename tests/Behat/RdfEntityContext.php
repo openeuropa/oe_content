@@ -47,6 +47,23 @@ class RdfEntityContext extends ConfigContext {
   }
 
   /**
+   * Before scenario hook to unset the global provenance_uri.
+   *
+   * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
+   *   The Hook scope.
+   *
+   * @BeforeScenario @rdf-test
+   */
+  public function beforeScenarioRdfCleanUp(BeforeScenarioScope $scope): void {
+    // We remove the provenance_uri from the global settings override so that
+    // we can test it being set and used in the configuration.
+    global $config;
+    if (isset($config['oe_content.settings']) && array_key_exists('provenance_uri', $config['oe_content.settings'])) {
+      unset($config['oe_content.settings']['provenance_uri']);
+    }
+  }
+
+  /**
    * Before scenario hook sets a default Provenance URI on the site.
    *
    * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
