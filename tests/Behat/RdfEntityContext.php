@@ -57,6 +57,7 @@ class RdfEntityContext extends ConfigContext {
   public function beforeScenarioRdfCleanUp(BeforeScenarioScope $scope): void {
     // We remove the provenance_uri from the global settings override so that
     // we can test it being set and used in the configuration.
+    // @codingStandardsIgnoreLine
     global $config;
     if (isset($config['oe_content.settings']) && array_key_exists('provenance_uri', $config['oe_content.settings'])) {
       unset($config['oe_content.settings']['provenance_uri']);
