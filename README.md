@@ -12,7 +12,8 @@ In order to determine the provenance of an entity, a "provenance URI" can be set
 at the site level, which gets automatically saved with the entity. Access rules also
 depend on this URI.
 
-To set the provenance URI, add the following line to the settings.php file (with the
+When installing the module, the provenance URI is set based on the base URL of the site.
+However, it can be overridden by adding the following line to the settings.php file (with the
 your respective URI):
 
 ```

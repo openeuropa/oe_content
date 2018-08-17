@@ -24,3 +24,15 @@ function oe_content_requirements($phase) {
 
   return $requirements;
 }
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_install() {
+  // @codingStandardsIgnoreLine
+  global $base_url;
+  \Drupal::configFactory()
+    ->getEditable('oe_content.settings')
+    ->set('provenance_uri', $base_url)
+    ->save();
+}
