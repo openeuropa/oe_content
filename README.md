@@ -20,8 +20,6 @@ your respective URI):
 $config['oe_content.settings']['provenance_uri'] = 'http://example.com';
 ```
 
-The task runner will automatically add this on your development environment.
-
 ## Requirements
 
 This depends on the following software:
