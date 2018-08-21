@@ -19,20 +19,20 @@ base_fields_mapping:
       format: resource
   uid:
     target_id:
-      predicate: ''
-      format: ''
+      predicate: 'http://schema.org/creator'
+      format: 'xsd:integer'
   label:
     value:
       predicate: 'http://schema.org/name'
       format: t_literal
   created:
     value:
-      predicate: ''
-      format: ''
+      predicate: 'http://schema.org/dateCreated'
+      format: 'xsd:dateTime'
   changed:
     value:
-      predicate: ''
-      format: ''
+      predicate: 'http://schema.org/dateModified'
+      format: 'xsd:dateTime'
   uuid:
     value:
       predicate: ''
