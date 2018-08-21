@@ -39,12 +39,12 @@ base_fields_mapping:
       format: ''
   langcode:
     value:
-      predicate: ''
-      format: ''
+      predicate: 'http://europa.eu/langcode'
+      format: 'xsd:string'
   default_langcode:
     value:
-      predicate: ''
-      format: ''
+      predicate: 'http://europa.eu/default_langcode'
+      format: 'xsd:boolean'
   provenance_uri:
     value:
       predicate: 'http://europa.eu/provenance_uri'
