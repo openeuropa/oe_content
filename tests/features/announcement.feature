@@ -4,7 +4,6 @@ Feature: Announcement feature
   As an editor
   I need to be able to create and see announcements
 
-  @rdf-provenance
   Scenario: Create announcement
     Given I am logged in with a user that can create and view "Announcement" RDF entities
     And I visit "/rdf_entity/add/oe_announcement"
