@@ -8,3 +8,4 @@ dependencies:
   - rdf_entity:rdf_entity
   - rdf_draft:rdf_draft
   - field_group:field_group
+  - rdf_taxonomy:rdf_taxonomy
