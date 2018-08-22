@@ -1,0 +1,58 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - rdf_entity.graph.default
+    - taxonomy.vocabulary.organisation_types
+id: taxonomy_term.organisation_types
+entity_type_id: taxonomy_term
+bundle: organisation_types
+rdf_type: 'http://publications.europa.eu/resource/authority/organization-type'
+graph:
+  default: 'http://publications.europa.eu/resource/authority/organization-type'
+base_fields_mapping:
+  uuid:
+    value:
+      predicate: ''
+      format: ''
+  langcode:
+    value:
+      predicate: ''
+      format: ''
+  vid:
+    target_id:
+      predicate: 'http://www.w3.org/2004/02/skos/core#inScheme'
+      format: resource
+  status:
+    value:
+      predicate: ''
+      format: ''
+  name:
+    value:
+      predicate: 'http://www.w3.org/2004/02/skos/core#prefLabel'
+      format: t_literal
+  description:
+    format:
+      predicate: ''
+      format: ''
+  weight:
+    value:
+      predicate: ''
+      format: ''
+  parent:
+    target_id:
+      predicate: ''
+      format: ''
+  changed:
+    value:
+      predicate: ''
+      format: ''
+  default_langcode:
+    value:
+      predicate: ''
+      format: ''
+  graph:
+    target_id:
+      predicate: ''
+      format: ''
+entity_id_plugin: default
