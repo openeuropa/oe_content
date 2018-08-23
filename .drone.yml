@@ -15,6 +15,7 @@ services:
     image: openeuropa/triple-store-dev
     environment:
      - SPARQL_UPDATE=true
+     - DBA_PASSWORD=dba
 
 pipeline:
   composer-install:
