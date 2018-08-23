@@ -41,11 +41,6 @@ drupal:
           namespace: 'Drupal\rdf_entity\Database\Driver\sparql'
           driver: 'sparql'
 
-rdf:
-  # The location of the Virtuoso binary. Preferably overwrite this locally with a
-  # absolute path for increased security.
-  binary: "virtuoso-t"
-
 commands:
   drupal:site-setup:
     - { task: "symlink", from: "../../..", to: "${drupal.root}/modules/custom/oe_content" }
@@ -57,3 +52,10 @@ commands:
     - { task: "process", source: "phpunit.xml.dist", destination: "phpunit.xml" }
   setup:behat:
     - { task: "process", source: "behat.yml.dist", destination: "behat.yml" }
+  sparql:purge:
+    - "docker-compose exec sparql ./vendor/bin/robo purge"
+  sparql:import:
+    - "docker-compose exec sparql ./vendor/bin/robo import"
+  sparql:reset:
+    - { task: "run", command: "sparql:purge" }
+    - { task: "run", command: "sparql:import" }
