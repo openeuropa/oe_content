@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - rdf_entity
+third_party_settings:
+  rdf_entity:
+    mapping:
+      uri:
+        predicate: 'http://schema.org/significantLink'
+        format: 'xsd:anyURI'
+      title:
+        predicate: ''
+        format: no_format
+      options:
+        predicate: ''
+        format: no_format
+id: rdf_entity.oe_department_links
+field_name: oe_department_links
+entity_type: rdf_entity
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

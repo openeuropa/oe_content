@@ -6,6 +6,7 @@ The main entity type is the RDF Entity which has the following bundles:
 
 * Event
 * Announcement
+* Department
 
 All bundles of this entity type have predicate mappings for RDF shared storage.
 In order to determine the provenance of an entity, a "provenance URI" can be set

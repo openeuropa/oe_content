@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Department module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for the RDF entity type.
+ */
+function oe_content_department_rdf_entity_presave(EntityInterface $entity) {
+  if ($entity->bundle() !== 'oe_department') {
+    return;
+  }
+
+  $name = $entity->get('oe_department_name')->entity->label();
+  $entity->set('label', $name);
+}
