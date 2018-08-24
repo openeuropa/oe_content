@@ -1,4 +1,4 @@
-@api
+@api @run
 Feature: Vocabularies feature
   In order to categorise my content
   As an editor
@@ -11,5 +11,6 @@ Feature: Vocabularies feature
     And I should see "Organisation Types"
     And I should see "Resource Types"
     And I should see "Target Audiences"
+    And I should see "Thesaurus"
     And all vocabularies have terms in them
 
