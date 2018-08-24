@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\rdf_entity\Entity\Rdf;
+use Drupal\Core\Database\Query\AlterableInterface;
 
 /**
  * Implements hook_entity_base_field_info().
@@ -73,4 +74,32 @@ function oe_content_rdf_entity_access(EntityInterface $entity, $operation, Accou
 
   $provenance_uri = \Drupal::config('oe_content.settings')->get('provenance_uri');
   return $entity->get('provenance_uri')->value === $provenance_uri ? AccessResult::neutral() : AccessResult::forbidden();
+}
+
+/**
+ * Implements hook_entity_load().
+ */
+function oe_content_taxonomy_term_load(array $entities) {
+  // Taxonomy terms have a status field for handling publishing state. We need
+  // to default to TRUE for all terms.
+  foreach ($entities as $entity) {
+    $entity->set('status', TRUE);
+  }
+}
+
+/**
+ * Implements hook_query_QUERY_TAG_alter() for the taxonomy_term_access tag.
+ */
+function oe_content_query_taxonomy_term_access_alter(AlterableInterface $query) {
+  if (!\Drupal::moduleHandler()->moduleExists('rdf_taxonomy')) {
+    return;
+  }
+  // We need to remove the Status condition for RDF taxonomies when they are
+  // queried.
+  $conditions = &$query->conditions();
+  foreach ($conditions as $key => $condition) {
+    if ($condition['field'] === 'status') {
+      unset($conditions[$key]);
+    }
+  }
 }
