@@ -81,7 +81,9 @@ function oe_content_rdf_entity_access(EntityInterface $entity, $operation, Accou
  */
 function oe_content_taxonomy_term_load(array $entities) {
   // Taxonomy terms have a status field for handling publishing state. We need
-  // to default to TRUE for all terms.
+  // to default to TRUE for all terms because the RDF storage which handles
+  // taxonomy does not know about Status.
+  // @todo Remove once we refactor away from RDF taxonomy.
   foreach ($entities as $entity) {
     $entity->set('status', TRUE);
   }
@@ -91,11 +93,9 @@ function oe_content_taxonomy_term_load(array $entities) {
  * Implements hook_query_QUERY_TAG_alter() for the taxonomy_term_access tag.
  */
 function oe_content_query_taxonomy_term_access_alter(AlterableInterface $query) {
-  if (!\Drupal::moduleHandler()->moduleExists('rdf_taxonomy')) {
-    return;
-  }
   // We need to remove the Status condition for RDF taxonomies when they are
-  // queried.
+  // queried. Same reason as oe_content_taxonomy_term_load().
+  // @todo Remove once we refactor away from RDF taxonomy.
   $conditions = &$query->conditions();
   foreach ($conditions as $key => $condition) {
     if ($condition['field'] === 'status') {

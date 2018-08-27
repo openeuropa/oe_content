@@ -1,4 +1,4 @@
-@api @run
+@api
 Feature: Vocabularies feature
   In order to categorise my content
   As an editor
