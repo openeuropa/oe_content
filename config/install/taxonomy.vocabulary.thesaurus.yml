@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Thesaurus
+vid: thesaurus
+description: ''
+hierarchy: 0
+weight: 0

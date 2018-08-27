@@ -52,3 +52,11 @@ commands:
     - { task: "process", source: "phpunit.xml.dist", destination: "phpunit.xml" }
   setup:behat:
     - { task: "process", source: "behat.yml.dist", destination: "behat.yml" }
+  # Use the following commands only if you can run Task Runner commands on your host machine.
+  sparql:purge:
+    - "docker-compose exec sparql ./vendor/bin/robo purge"
+  sparql:import:
+    - "docker-compose exec sparql ./vendor/bin/robo import"
+  sparql:reset:
+    - { task: "run", command: "sparql:purge" }
+    - { task: "run", command: "sparql:import" }

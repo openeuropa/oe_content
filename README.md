@@ -132,3 +132,45 @@ To run the behat test:
 ```
 $ docker-compose exec web ./vendor/bin/behat
 ```
+
+### Working with content
+
+The project ships with the following Task Runner commands to work with content in the RDF store, they require Docker Compose
+services to be up and running.
+
+Purge all data:
+
+```
+$ docker-compose exec sparql ./vendor/bin/robo purge
+```
+
+Or, if you can run commands on your host machine:
+
+```
+$ ./vendor/bin/run sparql:purge
+```
+
+Import default data:
+
+```
+$ docker-compose exec sparql ./vendor/bin/robo import
+```
+
+Or, if you can run commands on your host machine:
+
+```
+$ ./vendor/bin/run sparql:import
+```
+
+Reset all data, i.e. run purge and import:
+
+```
+$ docker-compose exec sparql ./vendor/bin/robo purge
+$ docker-compose exec sparql ./vendor/bin/robo import
+```
+
+Or, if you can run commands on your host machine:
+
+```
+$ ./vendor/bin/run sparql:reset
+```
