@@ -95,9 +95,9 @@ function oe_content_taxonomy_term_storage_load(array $entities): void {
 /**
  * Implements hook_query_QUERY_TAG_alter() for the taxonomy_term_access tag.
  */
-function oe_content_query_taxonomy_term_access_alter(AlterableInterface $query): void {
+function oe_content_query_taxonomy_term_access_alter(AlterableInterface $query) {
   // We need to remove the Status condition for RDF taxonomies when they are
-  // queried. Same reason as oe_content_taxonomy_term_storage_load().
+  // queried. Same reason as oe_content_taxonomy_term_load().
   // @todo Remove once we refactor away from RDF taxonomy.
   $conditions = &$query->conditions();
   foreach ($conditions as $key => $condition) {
