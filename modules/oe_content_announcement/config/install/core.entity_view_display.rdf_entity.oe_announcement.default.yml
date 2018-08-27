@@ -2,6 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.rdf_entity.oe_announcement.oe_announcement_department
+    - field.field.rdf_entity.oe_announcement.oe_announcement_location
+    - field.field.rdf_entity.oe_announcement.oe_announcement_type
+    - field.field.rdf_entity.oe_announcement.oe_announcenment_subject
     - field.field.rdf_entity.oe_announcement.oe_announcement_body
     - field.field.rdf_entity.oe_announcement.oe_announcement_description
     - field.field.rdf_entity.oe_announcement.oe_announcement_introduction
@@ -10,11 +14,45 @@ dependencies:
   module:
     - text
     - user
+_core:
+  default_config_hash: EXruJF4sFGfKxf7pw7krySaUsIGGEmGoc_g45Ed88l4
 id: rdf_entity.oe_announcement.default
 targetEntityType: rdf_entity
 bundle: oe_announcement
 mode: default
 content:
+  oe_announcement_department:
+    weight: 7
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  oe_announcement_location:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_announcement_type:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  oe_announcenment_subject:
+    weight: 8
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   label:
     label: hidden
     type: string
