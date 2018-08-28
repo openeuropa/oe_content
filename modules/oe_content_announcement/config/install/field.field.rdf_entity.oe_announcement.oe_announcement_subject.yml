@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.rdf_entity.oe_announcement_subject
+    - rdf_entity.rdfentity.oe_announcement
+    - taxonomy.vocabulary.thesaurus
+id: rdf_entity.oe_announcement.oe_announcement_subject
+field_name: oe_announcement_subject
+entity_type: rdf_entity
+bundle: oe_announcement
+label: Subject
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      thesaurus: thesaurus
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
