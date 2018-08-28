@@ -1,0 +1,5 @@
+services:
+  oe_content.rdf_admin_route_subscriber:
+    class: Drupal\oe_content\EventSubscriber\RdfAdminRouteSubscriber
+    tags:
+      - { name: event_subscriber }
