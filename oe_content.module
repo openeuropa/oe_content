@@ -5,7 +5,10 @@
  * The OpenEuropa Content module.
  */
 
+declare(strict_types = 1);
+
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -16,10 +19,10 @@ use Drupal\Core\Database\Query\AlterableInterface;
 /**
  * Implements hook_entity_base_field_info().
  */
-function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
+function oe_content_entity_base_field_info(EntityTypeInterface $entity_type): array {
   // Add the "provenance_uri" field to the RDF entity type.
   if ($entity_type->id() !== 'rdf_entity') {
-    return;
+    return [];
   }
 
   $fields = [];
@@ -35,7 +38,7 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
 /**
  * Implements hook_entity_presave().
  */
-function oe_content_entity_presave(EntityInterface $entity) {
+function oe_content_entity_presave(EntityInterface $entity): void {
   // RDF entities need to be saved with a provenance URI.
   if (!$entity instanceof Rdf) {
     return;
@@ -52,7 +55,7 @@ function oe_content_entity_presave(EntityInterface $entity) {
 /**
  * Implements hook_rdf_apply_default_fields_alter().
  */
-function oe_content_rdf_apply_default_fields_alter($type, &$values) {
+function oe_content_rdf_apply_default_fields_alter(string $type, array &$values): void {
   // Since the "full_html" is not guaranteed to exist, we default to plain_text
   // as the format for the text_long field type.
   if ($type == 'text_long') {
@@ -67,7 +70,7 @@ function oe_content_rdf_apply_default_fields_alter($type, &$values) {
 /**
  * Implements hook_ENTITY_TYPE_access().
  */
-function oe_content_rdf_entity_access(EntityInterface $entity, $operation, AccountInterface $account) {
+function oe_content_rdf_entity_access(EntityInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
   if ($operation == 'view') {
     return AccessResult::neutral();
   }
@@ -79,7 +82,7 @@ function oe_content_rdf_entity_access(EntityInterface $entity, $operation, Accou
 /**
  * Implements hook_ENTITY_TYPE_storage_load().
  */
-function oe_content_taxonomy_term_storage_load(array $entities) {
+function oe_content_taxonomy_term_storage_load(array $entities): void {
   // Taxonomy terms have a status field for handling publishing state. We need
   // to default to TRUE for all terms because the RDF storage which handles
   // taxonomy does not know about Status.
@@ -92,7 +95,7 @@ function oe_content_taxonomy_term_storage_load(array $entities) {
 /**
  * Implements hook_query_QUERY_TAG_alter() for the taxonomy_term_access tag.
  */
-function oe_content_query_taxonomy_term_access_alter(AlterableInterface $query) {
+function oe_content_query_taxonomy_term_access_alter(AlterableInterface $query): void {
   // We need to remove the Status condition for RDF taxonomies when they are
   // queried. Same reason as oe_content_taxonomy_term_storage_load().
   // @todo Remove once we refactor away from RDF taxonomy.

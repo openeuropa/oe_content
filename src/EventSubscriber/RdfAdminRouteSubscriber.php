@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content\EventSubscriber;
 
 use Drupal\Core\Routing\RouteSubscriberBase;
@@ -13,7 +15,7 @@ class RdfAdminRouteSubscriber extends RouteSubscriberBase {
   /**
    * {@inheritdoc}
    */
-  protected function alterRoutes(RouteCollection $collection) {
+  protected function alterRoutes(RouteCollection $collection): void {
     // Make the RDF entity management routes use the admin theme.
     $rdf_routes = [
       'rdf_entity.rdf_add_page',
