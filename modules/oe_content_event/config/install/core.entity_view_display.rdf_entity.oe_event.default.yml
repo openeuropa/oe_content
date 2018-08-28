@@ -2,6 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.rdf_entity.oe_event.oe_event_organiser
+    - field.field.rdf_entity.oe_event.oe_event_subject
+    - field.field.rdf_entity.oe_event.oe_event_target_audience
     - field.field.rdf_entity.oe_event.oe_event_available_languages
     - field.field.rdf_entity.oe_event.oe_event_description
     - field.field.rdf_entity.oe_event.oe_event_end_date
@@ -19,6 +22,30 @@ targetEntityType: rdf_entity
 bundle: oe_event
 mode: default
 content:
+  oe_event_organiser:
+    weight: 10
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  oe_event_subject:
+    weight: 8
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  oe_event_target_audience:
+    weight: 9
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   label:
     label: hidden
     type: string

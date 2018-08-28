@@ -2,6 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.rdf_entity.oe_event.oe_event_organiser
+    - field.field.rdf_entity.oe_event.oe_event_subject
+    - field.field.rdf_entity.oe_event.oe_event_target_audience
     - field.field.rdf_entity.oe_event.oe_event_available_languages
     - field.field.rdf_entity.oe_event.oe_event_description
     - field.field.rdf_entity.oe_event.oe_event_end_date
@@ -46,6 +49,7 @@ third_party_settings:
       label: Content
     oe_group_event_description:
       children:
+        - oe_event_subject
         - oe_event_links
         - oe_event_website
       parent_name: oe_group_event
@@ -62,7 +66,9 @@ third_party_settings:
       children:
         - oe_event_start_date
         - oe_event_end_date
+        - oe_event_target_audience
         - oe_event_available_languages
+        - oe_event_organiser
       parent_name: oe_group_event
       weight: 22
       format_type: tab
@@ -78,6 +84,33 @@ targetEntityType: rdf_entity
 bundle: oe_event
 mode: default
 content:
+  oe_event_organiser:
+    weight: 29
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  oe_event_subject:
+    weight: 23
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  oe_event_target_audience:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   label:
     type: string_textfield
     weight: -5
@@ -87,7 +120,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   oe_event_available_languages:
-    weight: 17
+    weight: 28
     settings:
       size: 60
       placeholder: ''
@@ -103,7 +136,7 @@ content:
     type: text_textarea
     region: content
   oe_event_end_date:
-    weight: 16
+    weight: 26
     settings: {  }
     third_party_settings: {  }
     type: datetime_timestamp
@@ -117,7 +150,7 @@ content:
     type: text_textarea
     region: content
   oe_event_links:
-    weight: 14
+    weight: 24
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -125,13 +158,13 @@ content:
     type: link_default
     region: content
   oe_event_start_date:
-    weight: 15
+    weight: 25
     settings: {  }
     third_party_settings: {  }
     type: datetime_timestamp
     region: content
   oe_event_website:
-    weight: 15
+    weight: 25
     settings:
       placeholder_url: ''
       placeholder_title: ''
