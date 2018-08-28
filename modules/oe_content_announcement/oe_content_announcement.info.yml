@@ -17,7 +17,7 @@ config_devel:
   - field.field.rdf_entity.oe_announcement.oe_announcement_location
   - field.field.rdf_entity.oe_announcement.oe_announcement_publish_date
   - field.field.rdf_entity.oe_announcement.oe_announcement_type
-  - field.field.rdf_entity.oe_announcement.oe_announcenment_subject
+  - field.field.rdf_entity.oe_announcement.oe_announcement_subject
   - field.storage.rdf_entity.oe_announcement_body
   - field.storage.rdf_entity.oe_announcement_department
   - field.storage.rdf_entity.oe_announcement_description
@@ -25,6 +25,6 @@ config_devel:
   - field.storage.rdf_entity.oe_announcement_location
   - field.storage.rdf_entity.oe_announcement_publish_date
   - field.storage.rdf_entity.oe_announcement_type
-  - field.storage.rdf_entity.oe_announcenment_subject
+  - field.storage.rdf_entity.oe_announcement_subject
   - rdf_entity.mapping.rdf_entity.oe_announcement
   - rdf_entity.rdfentity.oe_announcement

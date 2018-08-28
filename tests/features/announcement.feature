@@ -11,7 +11,7 @@ Feature: Announcement feature
     And I fill in "Introduction" with "My intro"
     And I fill in "Description" with "My description"
     And I fill in "Location" with "My location"
-    And I fill in "Announcement Type" with "Press release"
+    And I fill in "Announcement type" with "Press release"
     And I fill in "Body" with "My body"
     And I fill in "First published on" with the date "2018-08-08"
     And I fill in "First published on" with the time "01:01:02"

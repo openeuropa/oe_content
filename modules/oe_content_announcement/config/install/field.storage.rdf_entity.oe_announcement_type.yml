@@ -1,4 +1,3 @@
-uuid: 2452ab36-8a82-43fc-a63e-de136685a19c
 langcode: en
 status: true
 dependencies:
@@ -20,7 +19,7 @@ settings:
 module: core
 locked: false
 cardinality: 1
-translatable: true
+translatable: false
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

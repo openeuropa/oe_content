@@ -1,4 +1,3 @@
-uuid: 792c3b2e-8cda-4777-878f-008088b2be6c
 langcode: en
 status: true
 dependencies:
@@ -11,8 +10,8 @@ third_party_settings:
       target_id:
         predicate: 'http://schema.org/about'
         format: resource
-id: rdf_entity.oe_announcenment_subject
-field_name: oe_announcenment_subject
+id: rdf_entity.oe_announcement_subject
+field_name: oe_announcement_subject
 entity_type: rdf_entity
 type: entity_reference
 settings:
@@ -20,7 +19,7 @@ settings:
 module: core
 locked: false
 cardinality: 1
-translatable: true
+translatable: false
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

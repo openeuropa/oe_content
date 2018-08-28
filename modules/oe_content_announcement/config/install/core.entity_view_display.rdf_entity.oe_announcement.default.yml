@@ -5,7 +5,7 @@ dependencies:
     - field.field.rdf_entity.oe_announcement.oe_announcement_department
     - field.field.rdf_entity.oe_announcement.oe_announcement_location
     - field.field.rdf_entity.oe_announcement.oe_announcement_type
-    - field.field.rdf_entity.oe_announcement.oe_announcenment_subject
+    - field.field.rdf_entity.oe_announcement.oe_announcement_subject
     - field.field.rdf_entity.oe_announcement.oe_announcement_body
     - field.field.rdf_entity.oe_announcement.oe_announcement_description
     - field.field.rdf_entity.oe_announcement.oe_announcement_introduction
@@ -14,8 +14,6 @@ dependencies:
   module:
     - text
     - user
-_core:
-  default_config_hash: EXruJF4sFGfKxf7pw7krySaUsIGGEmGoc_g45Ed88l4
 id: rdf_entity.oe_announcement.default
 targetEntityType: rdf_entity
 bundle: oe_announcement
@@ -45,7 +43,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  oe_announcenment_subject:
+  oe_announcement_subject:
     weight: 8
     label: above
     settings:

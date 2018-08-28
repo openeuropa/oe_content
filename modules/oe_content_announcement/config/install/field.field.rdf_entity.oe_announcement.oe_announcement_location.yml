@@ -1,4 +1,3 @@
-uuid: 1f9b2ccf-2aff-48e5-a958-9d5c7b67836f
 langcode: en
 status: true
 dependencies:
@@ -12,7 +11,7 @@ bundle: oe_announcement
 label: Location
 description: ''
 required: true
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
