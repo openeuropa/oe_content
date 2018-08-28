@@ -16,14 +16,21 @@ config_devel:
   - field.field.rdf_entity.oe_event.oe_event_end_date
   - field.field.rdf_entity.oe_event.oe_event_introduction
   - field.field.rdf_entity.oe_event.oe_event_links
+  - field.field.rdf_entity.oe_event.oe_event_organiser
   - field.field.rdf_entity.oe_event.oe_event_start_date
+  - field.field.rdf_entity.oe_event.oe_event_subject
+  - field.field.rdf_entity.oe_event.oe_event_target_audience
   - field.field.rdf_entity.oe_event.oe_event_website
   - field.storage.rdf_entity.oe_event_available_languages
   - field.storage.rdf_entity.oe_event_description
   - field.storage.rdf_entity.oe_event_end_date
   - field.storage.rdf_entity.oe_event_introduction
   - field.storage.rdf_entity.oe_event_links
+  - field.storage.rdf_entity.oe_event_organiser
   - field.storage.rdf_entity.oe_event_start_date
+  - field.storage.rdf_entity.oe_event_subject
+  - field.storage.rdf_entity.oe_event_target_audience
   - field.storage.rdf_entity.oe_event_website
   - rdf_entity.mapping.rdf_entity.oe_event
   - rdf_entity.rdfentity.oe_event
+
