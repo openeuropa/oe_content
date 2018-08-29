@@ -59,8 +59,7 @@ $ drush en oe_content
 
 You can build the test site by running the following steps.
 
-* Install Virtuoso. For basic instructions, see [setting up
-Virtuoso](https://github.com/ec-europa/rdf_entity/blob/8.x-1.x/README.md).
+* Install Virtuoso. The easiest way to do this is by using the OpenEuropa [Triple store](https://github.com/openeuropa/triple-store-dev) development Docker container which also pre-imports the main Europa vocabularies.
 
 * Install all the composer dependencies:
 

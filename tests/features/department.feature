@@ -10,7 +10,7 @@ Feature: Department feature
     And I fill in "Name" with "Directorate-General for Informatics"
     And I fill in "Description" with "My description"
     And I fill in "Department type" with "Directorate-General"
-    And I fill in "Links" with "https://ec.europa.eu/info/departments/informatics_en"
+    And I fill in "News from this department" with "https://ec.europa.eu/info/departments/informatics_en"
     And I fill in "Subject" with "information technology industry"
     And I press "Save"
     Then I should see "Directorate-General for Informatics"

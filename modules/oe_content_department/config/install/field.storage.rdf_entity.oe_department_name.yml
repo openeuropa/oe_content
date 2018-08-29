@@ -9,7 +9,7 @@ third_party_settings:
     mapping:
       target_id:
         predicate: 'http://europa.eu/department-name-reference'
-        format: literal
+        format: resource
 id: rdf_entity.oe_department_name
 field_name: oe_department_name
 entity_type: rdf_entity

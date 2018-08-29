@@ -10,7 +10,7 @@ id: rdf_entity.oe_department.oe_department_links
 field_name: oe_department_links
 entity_type: rdf_entity
 bundle: oe_department
-label: Links
+label: 'News from this department'
 description: ''
 required: false
 translatable: true
