@@ -1,0 +1,28 @@
+name: OpenEuropa Department Content
+description: Contains the EC corporate Department entity type.
+package: OpenEuropa
+
+type: module
+core: 8.x
+dependencies:
+  - oe_content:oe_content
+  - drupal:link
+
+config_devel:
+  - core.entity_form_display.rdf_entity.oe_department.default
+  - core.entity_view_display.rdf_entity.oe_department.default
+  - field.field.rdf_entity.oe_department.oe_department_description
+  - field.field.rdf_entity.oe_department.oe_department_links
+  - field.field.rdf_entity.oe_department.oe_department_name
+  - field.field.rdf_entity.oe_department.oe_department_subject
+  - field.field.rdf_entity.oe_department.oe_department_tasks_description
+  - field.field.rdf_entity.oe_department.oe_department_type
+  - field.storage.rdf_entity.oe_department_description
+  - field.storage.rdf_entity.oe_department_links
+  - field.storage.rdf_entity.oe_department_name
+  - field.storage.rdf_entity.oe_department_subject
+  - field.storage.rdf_entity.oe_department_tasks_description
+  - field.storage.rdf_entity.oe_department_type
+  - rdf_entity.mapping.rdf_entity.oe_department
+  - rdf_entity.rdfentity.oe_department
+

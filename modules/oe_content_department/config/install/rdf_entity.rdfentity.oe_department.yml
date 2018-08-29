@@ -1,0 +1,6 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Department
+rid: oe_department
+description: ''

@@ -16,6 +16,7 @@ drupal:
     # Prepare the instance.
     - "./vendor/bin/drush en toolbar -y"
     - "./vendor/bin/drush en config_devel -y"
+    - "./vendor/bin/drush en field_ui -y"
     - "./vendor/bin/drush theme:enable bartik -y"
     - "./vendor/bin/drush theme:enable seven -y"
     - "./vendor/bin/drush config-set system.theme default bartik -y"
@@ -25,6 +26,7 @@ drupal:
     - "./vendor/bin/drush en oe_content -y"
     - "./vendor/bin/drush en oe_content_announcement -y"
     - "./vendor/bin/drush en oe_content_event -y"
+    - "./vendor/bin/drush en oe_content_department -y"
   settings:
     settings:
       file_scan_ignore_directories:
