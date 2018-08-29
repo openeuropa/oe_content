@@ -30,7 +30,7 @@ third_party_settings:
       format_settings:
         id: ''
         classes: ''
-        direction: horizontal
+        direction: vertical
       label: Event
     oe_group_event_content:
       children:
