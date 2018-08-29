@@ -26,7 +26,7 @@ third_party_settings:
       format_settings:
         id: ''
         classes: ''
-        direction: horizontal
+        direction: vertical
       label: Announcement
     oe_group_announcement_content:
       children:

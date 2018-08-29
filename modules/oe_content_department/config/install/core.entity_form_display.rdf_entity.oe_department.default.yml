@@ -25,7 +25,7 @@ third_party_settings:
       format_settings:
         id: ''
         classes: ''
-        direction: horizontal
+        direction: vertical
       label: Department
     oe_group_profile_information:
       children:
