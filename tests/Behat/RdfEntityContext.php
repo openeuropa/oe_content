@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_content\Behat;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Drupal\DrupalExtension\Context\ConfigContext;
 use Drupal\rdf_entity\RdfInterface;
+use Drupal\taxonomy\TermInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -166,12 +167,60 @@ class RdfEntityContext extends ConfigContext {
   }
 
   /**
+   * Creates a an announcement RDF entity and visits its canonical URL.
+   *
+   * @Given I visit an announcement page that links to the department :name taxonomy term
+   */
+  public function visitAnnouncementThatLinksToDepartment(string $name): void {
+    $department = $this->getDepartmentByName($name);
+    $values = [
+      'bundle' => 'Announcement',
+      'label' => 'My announcement',
+      'oe_announcement_department' => $department->id(),
+      'oe_announcement_location' => 'Brussels',
+      'oe_announcement_subject' => 'http://eurovoc.europa.eu/1422',
+      'oe_announcement_type' => 'http://publications.europa.eu/resource/authority/resource-type/PRESS_REL',
+    ];
+
+    $entity = $this->createRdfEntity($values);
+    $this->visitPath($entity->toUrl()->toString());
+  }
+
+  /**
+   * Asserts that we are on the canonical page of an RDF entity.
+   *
+   * @Then I should be on the :name RDF entity page
+   */
+  public function assertOnRdfEntityPage(string $name): void {
+    $path = $this->getSession()->getCurrentUrl();
+
+    $entities = \Drupal::entityTypeManager()->getStorage('rdf_entity')->loadByProperties(['label' => $name]);
+    if (!$entities) {
+      throw new \Exception('Missing RDF entity with name: ' . $name);
+    }
+
+    $entity = reset($entities);
+    $url = $entity->toUrl()->toString();
+    global $base_url;
+    // The "absolute" option on the Url object does not take the subfolder into
+    // account so we append the base URL like so.
+    $url = $base_url . $url;
+
+    if ($path !== $url) {
+      throw new \Exception(sprintf('The current URL of %s does not match the URL of the entity "%s" which is %s', $path, $name, $url->toString()));
+    }
+  }
+
+  /**
    * Creates keeps track of an RDF entity.
    *
    * @param array $values
    *   Values for the RDF entity.
+   *
+   * @return \Drupal\rdf_entity\RdfInterface
+   *   The entity.
    */
-  protected function createRdfEntity(array $values): void {
+  protected function createRdfEntity(array $values): RdfInterface {
     $bundle = isset($values['bundle']) ? $values['bundle'] : NULL;
     if (!$bundle) {
       throw new \InvalidArgumentException('No bundle provided.');
@@ -191,9 +240,17 @@ class RdfEntityContext extends ConfigContext {
     $values += [
       'rid' => $map[$bundle],
     ];
+
+    if ($map[$bundle] === 'oe_department') {
+      $department = $this->getDepartmentByName($values['label']);
+      $values['oe_department_name'] = $department->id();
+    }
+
+    /** @var \Drupal\rdf_entity\RdfInterface $entity */
     $entity = \Drupal::entityTypeManager()->getStorage('rdf_entity')->create($values);
     $entity->save();
     $this->rdfEntities[] = $entity;
+    return $entity;
   }
 
   /**
@@ -228,6 +285,25 @@ class RdfEntityContext extends ConfigContext {
     /** @var \Drupal\user\UserInterface $user */
     $user = \Drupal::entityTypeManager()->getStorage('user')->load($object->uid);
     return $user;
+  }
+
+  /**
+   * Returns the Department taxonomy term by name.
+   *
+   * @param string $name
+   *   The name of the department.
+   *
+   * @return \Drupal\taxonomy\TermInterface
+   *   The taxonomy term.
+   */
+  protected function getDepartmentByName(string $name): TermInterface {
+    // We need to reference the Department term.
+    $departments = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $name]);
+    if (!$departments) {
+      throw new \Exception('There was no department found by the name: ' . $name);
+    }
+
+    return reset($departments);
   }
 
   /**

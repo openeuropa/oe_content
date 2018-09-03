@@ -3,3 +3,8 @@ services:
     class: Drupal\oe_content\EventSubscriber\RdfAdminRouteSubscriber
     tags:
       - { name: event_subscriber }
+  oe_content.rdf_entity_redirect:
+    class: Drupal\oe_content\EventSubscriber\RdfEntityRedirectSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

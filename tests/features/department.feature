@@ -20,3 +20,10 @@ Feature: Department feature
     And I should see the link "information technology industry"
     Then I delete the RDF entity with the name "Directorate-General for Informatics"
 
+  @rdf-test
+  Scenario: Department reference fields should link to Department pages
+    Given I am logged in with a user that can create and view "Announcement" RDF entities
+    And I create an "Department" RDF entity with the name "Directorate-General for Informatics"
+    And I visit an announcement page that links to the department "Directorate-General for Informatics" taxonomy term
+    And I click "Directorate-General for Informatics"
+    Then I should be on the "Directorate-General for Informatics" RDF entity page
