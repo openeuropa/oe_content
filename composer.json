@@ -53,7 +53,8 @@
         "patches": {
             "drupal/rdf_entity": {
                 "GH-63: Paginating the term list page - https://github.com/ec-europa/rdf_entity/pull/64": "https://patch-diff.githubusercontent.com/raw/ec-europa/rdf_entity/pull/64.patch",
-                "GH-61 - Fixing RDF taxonomy access bug - https://github.com/ec-europa/rdf_entity/pull/62": "https://patch-diff.githubusercontent.com/raw/ec-europa/rdf_entity/pull/62.patch"
+                "GH-61 - Fixing RDF taxonomy access bug - https://github.com/ec-europa/rdf_entity/pull/62": "https://patch-diff.githubusercontent.com/raw/ec-europa/rdf_entity/pull/62.patch",
+                "Run on 8.6.x - https://github.com/ec-europa/rdf_entity/pull/65": "https://patch-diff.githubusercontent.com/raw/ec-europa/rdf_entity/pull/65.patch"
             }
         },
         "installer-paths": {
