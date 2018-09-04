@@ -40,7 +40,7 @@ drupal:
           prefix: ""
           host: ${drupal.sparql.host}
           port: ${drupal.sparql.port}
-          namespace: 'Drupal\rdf_entity\Database\Driver\sparql'
+          namespace: 'Drupal\Driver\Database\sparql'
           driver: 'sparql'
 
 commands:
