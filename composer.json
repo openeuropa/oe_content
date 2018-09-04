@@ -43,10 +43,6 @@
     },
     "repositories": [
         {
-            "type": "git",
-            "url": "https://github.com/openeuropa/rdf_entity"
-        },
-        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
@@ -57,8 +53,7 @@
         "patches": {
             "drupal/rdf_entity": {
                 "GH-63: Paginating the term list page - https://github.com/ec-europa/rdf_entity/pull/64": "https://patch-diff.githubusercontent.com/raw/ec-europa/rdf_entity/pull/64.patch",
-                "GH-61 - Fixing RDF taxonomy access bug - https://github.com/ec-europa/rdf_entity/pull/62": "https://patch-diff.githubusercontent.com/raw/ec-europa/rdf_entity/pull/62.patch",
-                "GH-59: Multi-column field support (for cardinality 0) - https://github.com/ec-europa/rdf_entity/pull/60": "https://patch-diff.githubusercontent.com/raw/ec-europa/rdf_entity/pull/60.patch"
+                "GH-61 - Fixing RDF taxonomy access bug - https://github.com/ec-europa/rdf_entity/pull/62": "https://patch-diff.githubusercontent.com/raw/ec-europa/rdf_entity/pull/62.patch"
             }
         },
         "installer-paths": {
