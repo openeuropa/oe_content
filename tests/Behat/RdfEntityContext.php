@@ -207,7 +207,7 @@ class RdfEntityContext extends ConfigContext {
     $url = $base_url . $url;
 
     if ($path !== $url) {
-      throw new \Exception(sprintf('The current URL of %s does not match the URL of the entity "%s" which is %s', $path, $name, $url->toString()));
+      throw new \Exception(sprintf('The current URL of %s does not match the URL of the entity "%s" which is %s', $path, $name, $url));
     }
   }
 
