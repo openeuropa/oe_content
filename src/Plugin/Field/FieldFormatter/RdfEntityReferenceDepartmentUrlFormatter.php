@@ -95,7 +95,7 @@ class RdfEntityReferenceDepartmentUrlFormatter extends RdfEntityReferenceLabelFo
 
     // Only allow RDF taxonomy entities.
     $entities = array_filter($entities, function (EntityInterface $entity) {
-      return $entity instanceof TermInterface;
+      return $entity instanceof TermInterface && $entity->bundle() === 'corporate_bodies';
     });
 
     return $entities;
