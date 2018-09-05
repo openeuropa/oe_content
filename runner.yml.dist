@@ -46,6 +46,10 @@ drupal:
 commands:
   drupal:site-setup:
     - { task: "symlink", from: "../../..", to: "${drupal.root}/modules/custom/oe_content" }
+    # @todo: remove after this PR gets in https://github.com/ec-europa/rdf_entity/pull/65.
+    - task: "append"
+      file: "build/sites/default/default.settings.php"
+      text: "\n$class_loader->addClassMap(['Drupal\\Driver\\Database\\sparql\\Connection' => $app_root . '/modules/contrib/rdf_entity/driver/sparql/Connection.php']);\n"
     - { task: "run", command: "drupal:drush-setup" }
     - { task: "run", command: "drupal:settings-setup" }
     - { task: "run", command: "setup:phpunit" }

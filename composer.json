@@ -29,10 +29,7 @@
     "autoload": {
         "psr-4": {
             "Drupal\\oe_content\\": "./src/"
-        },
-        "classmap": [
-            "build/modules/contrib/rdf_entity/driver/sparql/Connection.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
