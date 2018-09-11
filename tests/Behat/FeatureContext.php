@@ -81,4 +81,27 @@ class FeatureContext extends RawDrupalContext {
     return $field_selectors;
   }
 
+  /**
+   * Check that a link is pointing to a specific target.
+   *
+   * @Then I should see the link :link pointing to :url
+   *
+   * @throws \Exception
+   *   If link cannot be found or target is incorrect.
+   */
+  public function assertLinkWithHref($link, $url) {
+    $page = $this->getSession()->getPage();
+
+    $result = $page->findLink($link);
+    if (empty($result)) {
+      throw new \Exception("No link '{$link}' on the page");
+    }
+
+    $href = $result->getAttribute('href');
+    if ($url != $href) {
+      throw new \Exception("The link '{$link}' points to '{$href}'");
+    }
+
+  }
+
 }

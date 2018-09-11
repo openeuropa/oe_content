@@ -11,8 +11,8 @@ third_party_settings:
         predicate: 'http://schema.org/relatedLink'
         format: 'xsd:anyURI'
       title:
-        predicate: ''
-        format: no_format
+        predicate: 'http://europa.eu/oe_event_links/title'
+        format: literal
       options:
         predicate: ''
         format: no_format
