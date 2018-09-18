@@ -5,13 +5,14 @@ declare(strict_types = 1);
 namespace Drupal\oe_content\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
+use Drupal\oe_content\Event\DepartmentReferencingEvent;
 use Drupal\taxonomy\TermInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Plugin implementation of the 'rdf_entity_reference_department_url' formatter.
@@ -27,11 +28,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class RdfEntityReferenceDepartmentUrlFormatter extends RdfEntityReferenceLabelFormatterBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The entity type manager.
+   * The event dispatcher.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
    */
-  protected $entityTypeManager;
+  protected $eventDispatcher;
 
   /**
    * Constructs a RdfEntityReferenceDepartmentUrlFormatter object.
@@ -50,12 +51,12 @@ class RdfEntityReferenceDepartmentUrlFormatter extends RdfEntityReferenceLabelFo
    *   The view mode.
    * @param array $third_party_settings
    *   Any third party settings.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *   The entity type manager.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
+   *   The event dispatcher.
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, EntityTypeManagerInterface $entityTypeManager) {
+  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, EventDispatcherInterface $eventDispatcher) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
-    $this->entityTypeManager = $entityTypeManager;
+    $this->eventDispatcher = $eventDispatcher;
   }
 
   /**
@@ -70,7 +71,7 @@ class RdfEntityReferenceDepartmentUrlFormatter extends RdfEntityReferenceLabelFo
       $configuration['label'],
       $configuration['view_mode'],
       $configuration['third_party_settings'],
-      $container->get('entity_type.manager')
+      $container->get('event_dispatcher')
     );
   }
 
@@ -105,18 +106,14 @@ class RdfEntityReferenceDepartmentUrlFormatter extends RdfEntityReferenceLabelFo
    * {@inheritdoc}
    */
   protected function getUrlForEntity(EntityInterface $entity): Url {
-    $uris = $this->entityTypeManager->getStorage('rdf_entity')->getQuery()
-      ->condition('rid', 'oe_department')
-      ->condition('oe_department_name', $entity->id())
-      ->execute();
-
-    if (!$uris) {
+    $event = new DepartmentReferencingEvent($entity);
+    $event = $this->eventDispatcher->dispatch(DepartmentReferencingEvent::EVENT, $event);
+    $rdf_entity = $event->getRdfEntity();
+    if (!$rdf_entity) {
       return $entity->toUrl()->setAbsolute(TRUE);
     }
 
-    // Normally there should only be one Department instance.
-    $uri = reset($uris);
-    return Url::fromUri($uri);
+    return Url::fromUri($rdf_entity->id());
   }
 
 }
