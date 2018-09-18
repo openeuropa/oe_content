@@ -8,3 +8,8 @@ services:
     arguments: ['@entity_type.manager']
     tags:
       - { name: event_subscriber }
+  oe_content.default_department_referencing_subscriber:
+    class: Drupal\oe_content\EventSubscriber\DefaultDepartmentReferencingSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }
