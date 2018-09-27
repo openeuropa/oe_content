@@ -1,8 +1,24 @@
 # Change Log
 
+## [0.2.0](https://github.com/openeuropa/oe_content/tree/0.2.0) (2018-09-27)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/0.1.0...0.2.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1188: Refactoring the department referencing to a dispatcher. [\#24](https://github.com/openeuropa/oe_content/pull/24) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1184: Making the event related links use a title and mapping to RDF. [\#23](https://github.com/openeuropa/oe_content/pull/23) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1199: Removing the patch for RDF working with Drupal 8.6. [\#22](https://github.com/openeuropa/oe_content/pull/22) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1203: Make the eurovoc reference fields in oe\_content multivalue \(unlimited\) [\#21](https://github.com/openeuropa/oe_content/pull/21) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1200: Map text format in oe\_content on all fields which use it [\#20](https://github.com/openeuropa/oe_content/pull/20) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1199: Remove hardcoded classmap from composer.json. [\#19](https://github.com/openeuropa/oe_content/pull/19) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-1199: Make sure RDF Entity module is compatible with Drupal core 8.6.x [\#18](https://github.com/openeuropa/oe_content/pull/18) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-1191: OE Content field formatters [\#17](https://github.com/openeuropa/oe_content/pull/17) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1161: Apply patches to rdf\_entity instead of using GitHub fork [\#16](https://github.com/openeuropa/oe_content/pull/16) ([ademarco](https://github.com/ademarco))
+
 ## [0.1.0](https://github.com/openeuropa/oe_content/tree/0.1.0) (2018-08-29)
 **Merged pull requests:**
 
+- Create CHANGELOG.md for 0.1.0 release [\#15](https://github.com/openeuropa/oe_content/pull/15) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1102: Using vertical tabs on all the bundles. [\#14](https://github.com/openeuropa/oe_content/pull/14) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1178: RDF bundles should use the admin theme for editing purpose [\#13](https://github.com/openeuropa/oe_content/pull/13) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1118: Add term reference fields to the event bundle [\#12](https://github.com/openeuropa/oe_content/pull/12) ([upchuk](https://github.com/upchuk))
