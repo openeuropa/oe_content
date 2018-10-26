@@ -7,7 +7,7 @@ namespace Drupal\Tests\oe_content\Behat;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Drupal\DrupalExtension\Context\ConfigContext;
 use Drupal\rdf_entity\RdfInterface;
-use Drupal\taxonomy\TermInterface;
+use Drupal\rdf_skos\Entity\ConceptInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -83,6 +83,8 @@ class RdfEntityContext extends ConfigContext {
     $permissions = array_merge($permission_map[$bundle], [
       'view rdf entity',
       'view rdf entity overview',
+      // Add permission also to view SKOS Concepts.
+      'view published skos concept entities',
     ]);
 
     $role = $this->getDriver()->roleCreate($permissions);
@@ -288,17 +290,16 @@ class RdfEntityContext extends ConfigContext {
   }
 
   /**
-   * Returns the Department taxonomy term by name.
+   * Returns the Department SKOS Concept by name.
    *
    * @param string $name
    *   The name of the department.
    *
-   * @return \Drupal\taxonomy\TermInterface
-   *   The taxonomy term.
+   * @return \Drupal\rdf_skos\Entity\ConceptInterface
+   *   The SKOS Concept.
    */
-  protected function getDepartmentByName(string $name): TermInterface {
-    // We need to reference the Department term.
-    $departments = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $name]);
+  protected function getDepartmentByName(string $name): ConceptInterface {
+    $departments = \Drupal::entityTypeManager()->getStorage('skos_concept')->loadByProperties(['pref_label' => $name, 'in_scheme' => 'http://publications.europa.eu/resource/authority/corporate-body']);
     if (!$departments) {
       throw new \Exception('There was no department found by the name: ' . $name);
     }

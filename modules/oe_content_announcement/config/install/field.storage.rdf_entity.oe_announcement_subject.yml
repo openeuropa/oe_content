@@ -3,7 +3,7 @@ status: true
 dependencies:
   module:
     - rdf_entity
-    - taxonomy
+    - rdf_skos
 third_party_settings:
   rdf_entity:
     mapping:
@@ -13,10 +13,10 @@ third_party_settings:
 id: rdf_entity.oe_announcement_subject
 field_name: oe_announcement_subject
 entity_type: rdf_entity
-type: entity_reference
+type: skos_concept_entity_reference
 settings:
-  target_type: taxonomy_term
-module: core
+  target_type: skos_concept
+module: rdf_skos
 locked: false
 cardinality: -1
 translatable: false

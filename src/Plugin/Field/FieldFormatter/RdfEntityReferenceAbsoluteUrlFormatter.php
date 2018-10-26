@@ -18,7 +18,7 @@ use Drupal\rdf_entity\RdfInterface;
  *   id = "rdf_entity_reference_absolute_url",
  *   label = @Translation("RDF Entity Reference Absolute URL"),
  *   field_types = {
- *     "entity_reference"
+ *     "skos_concept_entity_reference"
  *   }
  * )
  */

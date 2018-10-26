@@ -4,7 +4,8 @@ dependencies:
   config:
     - field.storage.rdf_entity.oe_event_target_audience
     - rdf_entity.rdfentity.oe_event
-    - taxonomy.vocabulary.target_audiences
+  module:
+    - rdf_skos
 id: rdf_entity.oe_event.oe_event_target_audience
 field_name: oe_event_target_audience
 entity_type: rdf_entity
@@ -16,13 +17,12 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: 'default:skos_concept'
   handler_settings:
-    target_bundles:
-      target_audiences: target_audiences
+    target_bundles: null
     sort:
-      field: name
-      direction: asc
-    auto_create: false
-    auto_create_bundle: ''
-field_type: entity_reference
+      field: _none
+    auto_create: 0
+    concept_schemes:
+      - 'http://publications.europa.eu/resource/authority/target-audience'
+field_type: skos_concept_entity_reference

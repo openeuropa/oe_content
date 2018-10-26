@@ -13,3 +13,6 @@ services:
     arguments: ['@entity_type.manager']
     tags:
       - { name: event_subscriber }
+  oe_content.op_skos_setup:
+    class: Drupal\oe_content\PublicationsOfficeSkosGraphSetup
+    arguments: ['@config.factory']
