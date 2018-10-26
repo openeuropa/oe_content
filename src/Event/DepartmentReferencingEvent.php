@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_content\Event;
 
 use Drupal\rdf_entity\RdfInterface;
-use Drupal\taxonomy\TermInterface;
+use Drupal\rdf_skos\Entity\ConceptInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -19,11 +19,11 @@ class DepartmentReferencingEvent extends Event {
   const EVENT = 'oe_content.department_referencing_event';
 
   /**
-   * The department term.
+   * The department SKOS Concept.
    *
-   * @var \Drupal\taxonomy\TermInterface
+   * @var \Drupal\rdf_skos\Entity\ConceptInterface
    */
-  protected $term;
+  protected $concept;
 
   /**
    * The oe_department RDF entity mapped to the department term.
@@ -35,21 +35,21 @@ class DepartmentReferencingEvent extends Event {
   /**
    * DepartmentReferencingEvent constructor.
    *
-   * @param \Drupal\taxonomy\TermInterface $term
-   *   The department taxonomy term.
+   * @param \Drupal\rdf_skos\Entity\ConceptInterface $concept
+   *   The department SKOS Concept.
    */
-  public function __construct(TermInterface $term) {
-    $this->term = $term;
+  public function __construct(ConceptInterface $concept) {
+    $this->concept = $concept;
   }
 
   /**
    * Returns the department term.
    *
-   * @return \Drupal\taxonomy\TermInterface
-   *   The term.
+   * @return \Drupal\rdf_skos\Entity\ConceptInterface
+   *   The SKOS Concept.
    */
-  public function getTerm(): TermInterface {
-    return $this->term;
+  public function getConcept(): ConceptInterface {
+    return $this->concept;
   }
 
   /**

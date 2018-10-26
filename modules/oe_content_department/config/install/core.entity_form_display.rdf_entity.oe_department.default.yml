@@ -85,7 +85,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: skos_concept_entity_reference_autocomplete
     region: content
   oe_department_subject:
     weight: 27
@@ -94,7 +94,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: skos_concept_entity_reference_autocomplete
     region: content
   oe_department_tasks_description:
     weight: 4
@@ -111,7 +111,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: skos_concept_entity_reference_autocomplete
     region: content
 hidden:
   created: true

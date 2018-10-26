@@ -35,4 +35,9 @@ function oe_content_install() {
     ->getEditable('oe_content.settings')
     ->set('provenance_uri', $base_url)
     ->save();
+
+  // Configure the RDF SKOS graphs.
+  if (!\Drupal::service('config.installer')->isSyncing()) {
+    \Drupal::service('oe_content.op_skos_setup')->setup();
+  }
 }

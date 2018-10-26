@@ -4,7 +4,8 @@ dependencies:
   config:
     - field.storage.rdf_entity.oe_announcement_type
     - rdf_entity.rdfentity.oe_announcement
-    - taxonomy.vocabulary.resource_types
+  module:
+    - rdf_skos
 id: rdf_entity.oe_announcement.oe_announcement_type
 field_name: oe_announcement_type
 entity_type: rdf_entity
@@ -16,13 +17,12 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: 'default:skos_concept'
   handler_settings:
-    target_bundles:
-      resource_types: resource_types
+    target_bundles: null
     sort:
-      field: name
-      direction: asc
-    auto_create: false
-    auto_create_bundle: ''
-field_type: entity_reference
+      field: _none
+    auto_create: 0
+    concept_schemes:
+      - 'http://publications.europa.eu/resource/authority/resource-type'
+field_type: skos_concept_entity_reference

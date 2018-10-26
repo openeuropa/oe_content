@@ -43,7 +43,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    type: skos_concept_entity_reference_label
     region: content
   oe_department_subject:
     weight: 5
@@ -51,7 +51,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    type: skos_concept_entity_reference_label
     region: content
   oe_department_tasks_description:
     weight: 3
@@ -66,7 +66,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    type: skos_concept_entity_reference_label
     region: content
   label:
     label: hidden

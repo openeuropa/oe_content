@@ -40,7 +40,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    type: skos_concept_entity_reference_label
     region: content
   oe_announcement_subject:
     weight: 8
@@ -48,7 +48,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    type: skos_concept_entity_reference_label
     region: content
   label:
     label: hidden

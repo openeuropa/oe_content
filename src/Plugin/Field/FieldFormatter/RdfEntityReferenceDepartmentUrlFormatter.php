@@ -10,7 +10,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\oe_content\Event\DepartmentReferencingEvent;
-use Drupal\taxonomy\TermInterface;
+use Drupal\rdf_skos\Entity\ConceptInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -21,7 +21,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  *   id = "rdf_entity_reference_department_url",
  *   label = @Translation("RDF Entity Reference Department URL"),
  *   field_types = {
- *     "entity_reference"
+ *     "skos_concept_entity_reference"
  *   }
  * )
  */
@@ -94,9 +94,9 @@ class RdfEntityReferenceDepartmentUrlFormatter extends RdfEntityReferenceLabelFo
   protected function getEntitiesToView(EntityReferenceFieldItemListInterface $items, $langcode): array {
     $entities = parent::getEntitiesToView($items, $langcode);
 
-    // Only allow RDF taxonomy entities.
+    // Only allow SKOS Concepts.
     $entities = array_filter($entities, function (EntityInterface $entity) {
-      return $entity instanceof TermInterface && $entity->bundle() === 'corporate_bodies';
+      return $entity instanceof ConceptInterface;
     });
 
     return $entities;

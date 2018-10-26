@@ -73,7 +73,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: skos_concept_entity_reference_autocomplete
     region: content
   oe_announcement_location:
     weight: 4
@@ -90,7 +90,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: skos_concept_entity_reference_autocomplete
     region: content
   oe_announcement_subject:
     weight: 9
@@ -99,7 +99,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: skos_concept_entity_reference_autocomplete
     region: content
   label:
     type: string_textfield

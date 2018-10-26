@@ -1,5 +1,5 @@
 name: OpenEuropa Announcement Content
-description: Provides the Announcement RDF entity type
+description: Contains the EC corporate Announcement entity type.
 core: 8.x
 type: module
 package: OpenEuropa

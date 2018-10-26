@@ -65,10 +65,10 @@ class DefaultDepartmentReferencingSubscriber implements EventSubscriberInterface
       return;
     }
 
-    $term = $event->getTerm();
+    $concept = $event->getConcept();
     $uris = $this->entityTypeManager->getStorage('rdf_entity')->getQuery()
       ->condition('rid', 'oe_department')
-      ->condition('oe_department_name', $term->id())
+      ->condition('oe_department_name', $concept->id())
       ->execute();
 
     if (!$uris) {

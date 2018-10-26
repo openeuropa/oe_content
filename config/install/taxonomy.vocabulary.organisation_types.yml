@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: 'Organisation Types'
-vid: organisation_types
-description: ''
-hierarchy: 0
-weight: 0
