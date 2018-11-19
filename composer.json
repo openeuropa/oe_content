@@ -6,23 +6,22 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.1",
-        "drupal/core": "~8.6@alpha",
         "drupal/field_group": "^1.0",
         "drupal/rdf_entity": "dev-1.x",
         "easyrdf/easyrdf": "0.10.0-alpha1 as 0.9.2",
+        "openeuropa/drupal-core-require": "^8.6",
+        "php": "^7.1",
         "rdf_skos/rdf_skos": "dev-master"
     },
     "require-dev": {
         "composer/installers": "^1.2",
-        "cweagans/composer-patches": "~1.0",
         "drupal/config_devel": "~1.2",
         "drupal/drupal-extension": "^4.0.0@alpha",
         "drupal-composer/drupal-scaffold": "^2.2",
         "drush/drush": "^9",
         "openeuropa/code-review": "~0.2",
-        "openeuropa/task-runner": "^0.7",
-        "openeuropa/drupal-core-require-dev": "~8.6"
+        "openeuropa/drupal-core-require-dev": "^8.6",
+        "openeuropa/task-runner": "^0.7"
     },
     "suggest": {
         "drupal/console": "^1"
