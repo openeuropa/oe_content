@@ -10,8 +10,8 @@
         "drupal/rdf_entity": "dev-1.x",
         "easyrdf/easyrdf": "0.10.0-alpha1 as 0.9.2",
         "openeuropa/drupal-core-require": "^8.6",
-        "php": "^7.1",
-        "rdf_skos/rdf_skos": "dev-master"
+        "openeuropa/rdf_skos": "dev-master",
+        "php": "^7.1"
     },
     "require-dev": {
         "composer/installers": "^1.2",
@@ -45,10 +45,6 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/openeuropa/rdf_skos"
         }
     ],
     "extra": {
