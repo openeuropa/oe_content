@@ -1,10 +1,22 @@
 # Change Log
 
+## [0.3.0](https://github.com/openeuropa/oe_content/tree/0.3.0) (2018-12-17)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/0.2.0...0.3.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1384: Removing legacy code from when RDF Taxonomy was used. [\#30](https://github.com/openeuropa/oe_content/pull/30) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1422: Fixing easyrdf package version. [\#29](https://github.com/openeuropa/oe_content/pull/29) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1384: Using the openeuropa namespaced rdf\_skos. [\#28](https://github.com/openeuropa/oe_content/pull/28) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1322: Use the proper Docker way of overriding docker-composer.yml file. [\#27](https://github.com/openeuropa/oe_content/pull/27) ([drupol](https://github.com/drupol))
+- OPENEUROPA-1295: Make OE Content use RDF SKOS instead of RDF taxonomy [\#26](https://github.com/openeuropa/oe_content/pull/26) ([upchuk](https://github.com/upchuk))
+
 ## [0.2.0](https://github.com/openeuropa/oe_content/tree/0.2.0) (2018-09-27)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.1.0...0.2.0)
 
 **Merged pull requests:**
 
+- OPENEUROPA-1241: Update CHANGELOG.md. [\#25](https://github.com/openeuropa/oe_content/pull/25) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1188: Refactoring the department referencing to a dispatcher. [\#24](https://github.com/openeuropa/oe_content/pull/24) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1184: Making the event related links use a title and mapping to RDF. [\#23](https://github.com/openeuropa/oe_content/pull/23) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1199: Removing the patch for RDF working with Drupal 8.6. [\#22](https://github.com/openeuropa/oe_content/pull/22) ([upchuk](https://github.com/upchuk))
