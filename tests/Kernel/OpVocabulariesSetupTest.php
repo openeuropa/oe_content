@@ -18,6 +18,7 @@ class OpVocabulariesSetupTest extends RdfKernelTestBase {
    */
   public static $modules = [
     'oe_content',
+    'content_lock',
     'rdf_skos',
   ];
 
@@ -29,6 +30,7 @@ class OpVocabulariesSetupTest extends RdfKernelTestBase {
     $this->installConfig(['oe_content', 'rdf_skos']);
     $this->installEntitySchema('skos_concept_scheme');
     $this->installEntitySchema('skos_concept');
+    $this->installSchema('content_lock', 'content_lock');
 
     $this->container->get('module_handler')->loadInclude('oe_content', 'install');
     oe_content_install();
