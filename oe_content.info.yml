@@ -5,6 +5,7 @@ package: OpenEuropa
 type: module
 core: 8.x
 dependencies:
+  - drupal:content_lock
   - rdf_entity:rdf_entity
   - rdf_draft:rdf_draft
   - field_group:field_group

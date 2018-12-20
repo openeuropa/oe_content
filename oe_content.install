@@ -40,4 +40,24 @@ function oe_content_install() {
   if (!\Drupal::service('config.installer')->isSyncing()) {
     \Drupal::service('oe_content.op_skos_setup')->setup();
   }
+
+  // Set default settings for Content Lock.
+  $locked_contents = [
+    'file' => [
+      '*' => '*',
+    ],
+    'node' => [
+      '*' => '*',
+    ],
+    'rdf_entity' => [
+      '*' => '*',
+    ],
+    'skos_concept' => [
+      '*' => '*',
+    ],
+  ];
+  \Drupal::configFactory()
+    ->getEditable('content_lock.settings')
+    ->set('types', $locked_contents)
+    ->save();
 }
