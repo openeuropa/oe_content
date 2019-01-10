@@ -21,6 +21,8 @@ your respective URI):
 $config['oe_content.settings']['provenance_uri'] = 'http://example.com';
 ```
 
+The module uses the RDF SKOS module to provide SKOS modelling for the Publications Office taxonomy vocabularies. These are directly made available in the dependent RDF triple store.
+
 **Table of contents:**
 
 - [Requirements](#requirements)
@@ -35,17 +37,64 @@ $config['oe_content.settings']['provenance_uri'] = 'http://example.com';
 This depends on the following software:
 
 * [PHP 7.1](http://php.net/)
-
-### Requirements for OpenEuropa Content
-
-* [drupal/rdf_entity 1.x](https://www.drupal.org/project/rdf_entity)
+* Virtuoso (or equivalent) triple store which contains the RDF representations of the following Publications Office (OP) vocabularies: Corporate Bodies, Target Audiences, Organisation Types, Resource Types, Eurovoc
 
 ## Installation
 
-* Install the package and its dependencies:
+Install the package and its dependencies:
 
 ```bash
 composer require openeuropa/oe_content
+```
+
+It is strongly recommended to use the provisioned Docker image for Virtuoso that contains already the OP vocabularies. To do this, add the image to your `docker.compose.yml` file:
+
+```
+  sparql:
+    image: openeuropa/triple-store-dev
+    environment:
+    - SPARQL_UPDATE=true
+    - DBA_PASSWORD=dba
+    ports:
+      - "8890:8890"
+```
+
+Otherwise, make sure you have the triple store instance running and have imported those vocabularies.
+
+Next, if you are using the Task Runner to set up your site, add the `runner.yml` configuration for connecting to the triple store. Under the `drupal` key:
+
+```
+  sparql:
+    host: "sparql"
+    port: "8890"
+```
+
+Still in the `runner.yml`, add the instruction to create the Drupal settings for connecting to the triple store. Under the `drupal.settings.databases` key:
+
+```
+  sparql_default:
+    default:
+      prefix: ""
+      host: ${drupal.sparql.host}
+      port: ${drupal.sparql.port}
+      namespace: 'Drupal\Driver\Database\sparql'
+      driver: 'sparql'
+```
+
+Then you can proceed with the regular Task Runner commands for setting up the site.
+
+Otherwise, ensure that in your site's `setting.php` file you have the connection information to your own triple store instance:
+
+```
+$databases["sparql_default"] = array(
+  'default' => array(
+    'prefix' => '', 
+    'host' => 'your-triple-store-host',
+    'port' => '8890',
+    'namespace' => 'Drupal\\Driver\\Database\\sparql',
+    'driver' => 'sparql'
+  )
+);
 ```
 
 ## Usage
@@ -57,6 +106,23 @@ If you want to use OpenEuropa Content, enable the module:
 ```bash
 drush en oe_content
 ```
+
+Each content type resides in its own individual submodule so enable them as needed.
+
+For being able to work with the SKOS entities, configure the SKOS concepts and SKOS concept schemes to point to the relevant RDF graphs. Add the following:
+
+```
+corporate_body|http://publications.europa.eu/resource/authority/corporate-body
+target_audience|http://publications.europa.eu/resource/authority/target-audience
+organisation_type|http://publications.europa.eu/resource/authority/organization-type
+resource_type|http://publications.europa.eu/resource/authority/resource-type
+eurovoc|http://publications.europa.eu/resource/dataset/eurovoc
+```
+
+...to the configuration forms on both the following pages:
+
+* `admin/structure/skos_concept_scheme/settings`
+* `admin/structure/skos_concept/settings`
 
 ## Development setup
 
