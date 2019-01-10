@@ -37,12 +37,7 @@ The module uses the RDF SKOS module to provide SKOS modelling for the Publicatio
 This depends on the following software:
 
 * [PHP 7.1](http://php.net/)
-* Virtuoso (or equivalent) triple store
-
-### Requirements for OpenEuropa Content
-
-* [RDF Entity](https://www.drupal.org/project/rdf_entity)
-* [RDF SKOS](https://github.com/openeuropa/rdf_skos)
+* Virtuoso (or equivalent) triple store which contains the RDF representations of the following Publications Office (OP) vocabularies: Corporate Bodies, Target Audiences, Organisation Types, Resource Types, Eurovoc
 
 ## Installation
 
@@ -52,7 +47,7 @@ Install the package and its dependencies:
 composer require openeuropa/oe_content
 ```
 
-Add the Virtuoso-based triple store image to your `docker.compose.yml` file:
+It is strongly recommended to use the provisioned Docker image for Virtuoso that contains already the OP vocabularies. To do this, add the image to your `docker.compose.yml` file:
 
 ```
   sparql:
@@ -64,7 +59,9 @@ Add the Virtuoso-based triple store image to your `docker.compose.yml` file:
       - "8890:8890"
 ```
 
-Add the `runner.yml` configuration for connecting to the triple store. Under the `drupal` key:
+Otherwise, make sure you have the triple store instance running and have imported those vocabularies.
+
+Next, if you are using the Task Runner to set up your site, add the `runner.yml` configuration for connecting to the triple store. Under the `drupal` key:
 
 ```
   sparql:
@@ -82,6 +79,22 @@ Still in the `runner.yml`, add the instruction to create the Drupal settings for
       port: ${drupal.sparql.port}
       namespace: 'Drupal\Driver\Database\sparql'
       driver: 'sparql'
+```
+
+Then you can proceed with the regular Task Runner commands for setting up the site.
+
+Otherwise, ensure that in your site's `setting.php` file you have the connection information to your own triple store instance:
+
+```
+$databases["sparql_default"] = array(
+  'default' => array(
+    'prefix' => '', 
+    'host' => 'your-triple-store-host',
+    'port' => '8890',
+    'namespace' => 'Drupal\\Driver\\Database\\sparql',
+    'driver' => 'sparql'
+  )
+);
 ```
 
 ## Usage
