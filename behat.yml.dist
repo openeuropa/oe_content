@@ -8,6 +8,11 @@ default:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\Tests\oe_content\Behat\RdfEntityContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
+        - OpenEuropa\Behat\TransformationContext:
+            pages:
+              Add Announcement: 'rdf_entity/add/oe_announcement'
+              Add Department: 'rdf_entity/add/oe_department'
+              Add Event: 'rdf_entity/add/oe_event'
   extensions:
     Behat\MinkExtension:
       goutte: ~

@@ -6,7 +6,7 @@ Feature: Event feature
 
   Scenario: Create event
     Given I am logged in with a user that can create and view "Event" RDF entities
-    And I visit "/rdf_entity/add/oe_event"
+    And I visit "the Add Event page"
     And I fill in "Title" with "My event"
     And I fill in "Introduction" with "My intro"
     And I fill in "Description" with "My description"
