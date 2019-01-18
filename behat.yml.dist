@@ -10,9 +10,9 @@ default:
         - Drupal\Tests\oe_content\Behat\FeatureContext
         - OpenEuropa\Behat\TransformationContext:
             pages:
-              Add Announcement: 'rdf_entity/add/oe_announcement'
-              Add Department: 'rdf_entity/add/oe_department'
-              Add Event: 'rdf_entity/add/oe_event'
+              announcement creation: 'rdf_entity/add/oe_announcement'
+              department creation: 'rdf_entity/add/oe_department'
+              event creation: 'rdf_entity/add/oe_event'
   extensions:
     Behat\MinkExtension:
       goutte: ~

@@ -6,7 +6,7 @@ Feature: Announcement feature
 
   Scenario: Create announcement
     Given I am logged in with a user that can create and view "Announcement" RDF entities
-    And I visit "the Add Announcement page"
+    And I visit "the announcement creation page"
     And I fill in "Title" with "My announcement"
     And I fill in "Introduction" with "My intro"
     And I fill in "Description" with "My description"

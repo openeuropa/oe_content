@@ -6,7 +6,7 @@ Feature: Department feature
 
   Scenario: Create department
     Given I am logged in with a user that can create and view "Department" RDF entities
-    And I visit "the Add Department page"
+    And I visit "the department creation page"
     And I fill in "Name" with "Directorate-General for Informatics"
     And I fill in "Description" with "My description"
     And I fill in "Department type" with "Directorate-General"
