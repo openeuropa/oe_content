@@ -47,4 +47,4 @@ pipeline:
     group: test
     image: fpfis/php71-build
     commands:
-      - ./vendor/bin/behat
+      - ./vendor/bin/behat --strict
