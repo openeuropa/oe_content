@@ -59,6 +59,12 @@ drupal:
               name: resource_type
               uri: http://publications.europa.eu/resource/authority/resource-type
             -
+              name: place
+              uri: http://publications.europa.eu/resource/dataset/place
+            -
+              name: public_event_type
+              uri: http://publications.europa.eu/resource/dataset/public-event-type
+            -
               name: eurovoc
               uri: http://publications.europa.eu/resource/dataset/eurovoc
           skos_concept:
@@ -74,6 +80,12 @@ drupal:
             -
               name: resource_type
               uri: http://publications.europa.eu/resource/authority/resource-type
+            -
+              name: place
+              uri: http://publications.europa.eu/resource/dataset/place
+            -
+              name: public_event_type
+              uri: http://publications.europa.eu/resource/dataset/public-event-type
             -
               name: eurovoc
               uri: http://publications.europa.eu/resource/dataset/eurovoc
