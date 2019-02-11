@@ -1,5 +1,7 @@
 # OpenEuropa Content
 
+**This component is in active development. It is not ready to be used.**
+
 This is a Drupal module that contains the European Commission corporate entity types.
 
 The main entity type is the RDF Entity which has the following bundles:
