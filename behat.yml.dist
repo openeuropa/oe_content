@@ -14,7 +14,7 @@ default:
               department creation: 'rdf_entity/add/oe_department'
               event creation: 'rdf_entity/add/oe_event'
   extensions:
-    Behat\MinkExtension:
+    Drupal\MinkExtension:
       goutte: ~
       selenium2: ~
       javascript_session: selenium2

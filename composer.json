@@ -16,7 +16,7 @@
     "require-dev": {
         "composer/installers": "^1.2",
         "drupal/config_devel": "~1.2",
-        "drupal/drupal-extension": "^4.0.0@alpha",
+        "drupal/drupal-extension": "^4.0",
         "drupal-composer/drupal-scaffold": "^2.2",
         "drush/drush": "^9",
         "openeuropa/behat-transformation-context" : "~0.1",
