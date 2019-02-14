@@ -1,7 +1,0 @@
-oe_content.settings:
-  type: config_object
-  label: 'OpenEuropa Content settings'
-  mapping:
-    provenance_uri:
-      type: uri
-      label: 'Provenance URI'

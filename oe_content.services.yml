@@ -1,18 +1,4 @@
 services:
-  oe_content.rdf_admin_route_subscriber:
-    class: Drupal\oe_content\EventSubscriber\RdfAdminRouteSubscriber
-    tags:
-      - { name: event_subscriber }
-  oe_content.rdf_entity_redirect:
-    class: Drupal\oe_content\EventSubscriber\RdfEntityRedirectSubscriber
-    arguments: ['@entity_type.manager']
-    tags:
-      - { name: event_subscriber }
-  oe_content.default_department_referencing_subscriber:
-    class: Drupal\oe_content\EventSubscriber\DefaultDepartmentReferencingSubscriber
-    arguments: ['@entity_type.manager']
-    tags:
-      - { name: event_subscriber }
   oe_content.op_skos_setup:
     class: Drupal\oe_content\PublicationsOfficeSkosGraphSetup
     arguments: ['@config.factory']
