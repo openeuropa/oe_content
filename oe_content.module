@@ -26,7 +26,7 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setSetting('max_length', 255)
     ->setDisplayConfigurable('view', FALSE)
     ->setDisplayOptions('form', [
-      'type' => 'textfield',
+      'type' => 'string_textfield',
       'weight' => 0,
     ])
     ->setDisplayConfigurable('form', TRUE);
@@ -39,7 +39,7 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setSetting('max_length', 255)
     ->setDisplayConfigurable('view', FALSE)
     ->setDisplayOptions('form', [
-      'type' => 'textfield',
+      'type' => 'string_textfield',
       'weight' => 0,
     ])
     ->setDisplayConfigurable('form', TRUE);

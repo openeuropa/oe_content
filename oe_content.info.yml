@@ -7,4 +7,4 @@ core: 8.x
 dependencies:
   - field_group:field_group
   - rdf_skos:rdf_skos
-  - link:link
+  - drupal:link
