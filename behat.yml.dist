@@ -7,6 +7,9 @@ default:
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
+        - OpenEuropa\Behat\TransformationContext:
+            pages:
+              page creation: 'node/add/oe_page'
   extensions:
     Drupal\MinkExtension:
       goutte: ~
