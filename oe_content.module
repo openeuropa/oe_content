@@ -24,11 +24,16 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setTranslatable(TRUE)
     ->setRevisionable(TRUE)
     ->setSetting('max_length', 255)
-    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayOptions('view', [
+      'label' => 'hidden',
+      'type' => 'string',
+      'weight' => -5,
+    ])
     ->setDisplayOptions('form', [
       'type' => 'string_textfield',
       'weight' => 0,
     ])
+    ->setDisplayConfigurable('view', FALSE)
     ->setDisplayConfigurable('form', TRUE);
 
   $fields['oe_content_navigation_title'] = BaseFieldDefinition::create('string')
@@ -37,11 +42,16 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setTranslatable(TRUE)
     ->setRevisionable(TRUE)
     ->setSetting('max_length', 255)
-    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayOptions('view', [
+      'label' => 'hidden',
+      'type' => 'string',
+      'weight' => -5,
+    ])
     ->setDisplayOptions('form', [
       'type' => 'string_textfield',
       'weight' => 0,
     ])
+    ->setDisplayConfigurable('view', FALSE)
     ->setDisplayConfigurable('form', TRUE);
 
   $fields['oe_content_content_owner'] = BaseFieldDefinition::create('skos_concept_entity_reference')
@@ -52,13 +62,18 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
     ->setSettings([
       'target_type' => 'skos_concept',
+      'handler_settings' => [
+        'concept_schemes' => [
+          'http://publications.europa.eu/resource/authority/corporate-body',
+        ],
+      ],
       'default_value' => 0,
     ])
-    ->setDisplayConfigurable('view', FALSE)
     ->setDisplayOptions('form', [
       'type' => 'skos_concept_entity_reference_autocomplete',
       'weight' => 0,
     ])
+    ->setDisplayConfigurable('view', FALSE)
     ->setDisplayConfigurable('form', TRUE);
 
   $fields['oe_content_legacy_link'] = BaseFieldDefinition::create('link')
@@ -70,11 +85,11 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
       'link_type' => LinkItemInterface::LINK_EXTERNAL,
       'title' => DRUPAL_DISABLED,
     ])
-    ->setDisplayConfigurable('view', FALSE)
     ->setDisplayOptions('form', [
       'type' => 'link_default',
       'weight' => 0,
     ])
+    ->setDisplayConfigurable('view', FALSE)
     ->setDisplayConfigurable('form', TRUE);
 
   return $fields;
