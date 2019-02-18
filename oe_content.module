@@ -18,6 +18,10 @@ use Drupal\link\LinkItemInterface;
 function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
   $fields = [];
 
+  if ($entity_type->id() !== 'node') {
+    return $fields;
+  }
+
   $fields['oe_content_short_title'] = BaseFieldDefinition::create('string')
     ->setLabel(t('Short title'))
     ->setRequired(FALSE)
