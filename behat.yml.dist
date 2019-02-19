@@ -6,13 +6,7 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\DrupalContext
-        - Drupal\Tests\oe_content\Behat\RdfEntityContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
-        - OpenEuropa\Behat\TransformationContext:
-            pages:
-              announcement creation: 'rdf_entity/add/oe_announcement'
-              department creation: 'rdf_entity/add/oe_department'
-              event creation: 'rdf_entity/add/oe_event'
   extensions:
     Drupal\MinkExtension:
       goutte: ~

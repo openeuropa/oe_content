@@ -6,36 +6,9 @@
  */
 
 /**
- * Implements hook_requirements().
- */
-function oe_content_requirements($phase) {
-  $requirements = [];
-  if ($phase !== 'runtime') {
-    return $requirements;
-  }
-
-  if (!\Drupal::configFactory()->get('oe_content.settings')->get('provenance_uri')) {
-    $requirements['oe_content'] = [
-      'title' => t('OpenEuropa Content Provenance URI'),
-      'description' => t('The RDF entity provenance URI is not set.'),
-      'severity' => REQUIREMENT_ERROR,
-    ];
-  }
-
-  return $requirements;
-}
-
-/**
  * Implements hook_install().
  */
 function oe_content_install() {
-  // @codingStandardsIgnoreLine
-  global $base_url;
-  \Drupal::configFactory()
-    ->getEditable('oe_content.settings')
-    ->set('provenance_uri', $base_url)
-    ->save();
-
   // Configure the RDF SKOS graphs.
   if (!\Drupal::service('config.installer')->isSyncing()) {
     \Drupal::service('oe_content.op_skos_setup')->setup();

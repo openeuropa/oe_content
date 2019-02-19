@@ -39,6 +39,8 @@ class PublicationsOfficeSkosGraphSetup {
       'target_audience' => 'http://publications.europa.eu/resource/authority/target-audience',
       'organisation_type' => 'http://publications.europa.eu/resource/authority/organization-type',
       'resource_type' => 'http://publications.europa.eu/resource/authority/resource-type',
+      'place' => 'http://publications.europa.eu/resource/dataset/place',
+      'public_event_type' => 'http://publications.europa.eu/resource/dataset/public-event-type',
       'eurovoc' => 'http://publications.europa.eu/resource/dataset/eurovoc',
     ];
   }

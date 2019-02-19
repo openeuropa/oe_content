@@ -1,6 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: Announcement
-rid: oe_announcement
-description: ''

@@ -24,9 +24,7 @@ drupal:
     - "./vendor/bin/drush config-set node.settings use_admin_theme 1 -y"
     # Enable the modules.
     - "./vendor/bin/drush en oe_content -y"
-    - "./vendor/bin/drush en oe_content_announcement -y"
-    - "./vendor/bin/drush en oe_content_event -y"
-    - "./vendor/bin/drush en oe_content_department -y"
+    - "./vendor/bin/drush cr"
   settings:
     settings:
       file_scan_ignore_directories:

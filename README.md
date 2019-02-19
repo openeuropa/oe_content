@@ -4,25 +4,6 @@
 
 This is a Drupal module that contains the European Commission corporate entity types.
 
-The main entity type is the RDF Entity which has the following bundles:
-
-* Event
-* Announcement
-* Department
-
-All bundles of this entity type have predicate mappings for RDF shared storage.
-In order to determine the provenance of an entity, a "provenance URI" can be set
-at the site level, which gets automatically saved with the entity. Access rules also
-depend on this URI.
-
-When installing the module, the provenance URI is set based on the base URL of the site.
-However, it can be overridden by adding the following line to the settings.php file (with the
-your respective URI):
-
-```php
-$config['oe_content.settings']['provenance_uri'] = 'http://example.com';
-```
-
 The module uses the RDF SKOS module to provide SKOS modelling for the Publications Office taxonomy vocabularies. These are directly made available in the dependent RDF triple store.
 
 **Table of contents:**
@@ -108,23 +89,6 @@ If you want to use OpenEuropa Content, enable the module:
 ```bash
 drush en oe_content
 ```
-
-Each content type resides in its own individual submodule so enable them as needed.
-
-For being able to work with the SKOS entities, configure the SKOS concepts and SKOS concept schemes to point to the relevant RDF graphs. Add the following:
-
-```
-corporate_body|http://publications.europa.eu/resource/authority/corporate-body
-target_audience|http://publications.europa.eu/resource/authority/target-audience
-organisation_type|http://publications.europa.eu/resource/authority/organization-type
-resource_type|http://publications.europa.eu/resource/authority/resource-type
-eurovoc|http://publications.europa.eu/resource/dataset/eurovoc
-```
-
-...to the configuration forms on both the following pages:
-
-* `admin/structure/skos_concept_scheme/settings`
-* `admin/structure/skos_concept/settings`
 
 ## Development setup
 

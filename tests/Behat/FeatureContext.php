@@ -12,25 +12,6 @@ use Drupal\DrupalExtension\Context\RawDrupalContext;
 class FeatureContext extends RawDrupalContext {
 
   /**
-   * Ensures that all vocabularies on the site have terms in them.
-   *
-   * @Then all vocabularies have terms in them
-   */
-  public function allVocabulariesHaveTermsInThem() {
-    $vocabularies = \Drupal::entityTypeManager()->getStorage('taxonomy_vocabulary')->loadMultiple();
-    foreach ($vocabularies as $vocabulary) {
-      $result = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getQuery()
-        ->condition('vid', $vocabulary->id())
-        ->range(0, 1)
-        ->execute();
-
-      if (!$result) {
-        throw new \Exception(sprintf('The vocabulary "%s" does not have any terms', $vocabulary->label()));
-      }
-    }
-  }
-
-  /**
    * Fills a date or time field at a datetime widget.
    *
    * Example: When I fill in "Start date" with the date "29-08-2016".
