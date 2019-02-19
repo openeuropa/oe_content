@@ -23,5 +23,6 @@ settings:
     sort:
       field: _none
     auto_create: 0
-    concept_schemes: {  }
+    concept_schemes:
+      - 'http://eurovoc.europa.eu/100141'
 field_type: skos_concept_entity_reference
