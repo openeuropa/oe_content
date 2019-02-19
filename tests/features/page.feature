@@ -15,5 +15,7 @@ Feature: Page feature
     And I fill in "Summary" with "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     And I fill in "Body" with "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     And I fill in "Teaser" with "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    And I fill in "Subject" with "financing (http://eurovoc.europa.eu/1000)"
+    And I fill in "Author" with "European Patent Office (http://publications.europa.eu/resource/authority/corporate-body/EPOFF)"
     When I press "Save"
     Then I should see "My page"
