@@ -6,3 +6,95 @@
  */
 
 declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\link\LinkItemInterface;
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+
+  if ($entity_type->id() !== 'node') {
+    return $fields;
+  }
+
+  $fields['oe_content_short_title'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('Short title'))
+    ->setRequired(FALSE)
+    ->setTranslatable(TRUE)
+    ->setRevisionable(TRUE)
+    ->setSetting('max_length', 255)
+    ->setDisplayOptions('view', [
+      'label' => 'hidden',
+      'type' => 'string',
+      'weight' => -5,
+    ])
+    ->setDisplayOptions('form', [
+      'type' => 'string_textfield',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['oe_content_navigation_title'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('Navigation title'))
+    ->setRequired(FALSE)
+    ->setTranslatable(TRUE)
+    ->setRevisionable(TRUE)
+    ->setSetting('max_length', 255)
+    ->setDisplayOptions('view', [
+      'label' => 'hidden',
+      'type' => 'string',
+      'weight' => -5,
+    ])
+    ->setDisplayOptions('form', [
+      'type' => 'string_textfield',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['oe_content_content_owner'] = BaseFieldDefinition::create('skos_concept_entity_reference')
+    ->setLabel(t('Content owner'))
+    ->setRequired(TRUE)
+    ->setTranslatable(FALSE)
+    ->setRevisionable(TRUE)
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+    ->setSettings([
+      'target_type' => 'skos_concept',
+      'handler_settings' => [
+        'concept_schemes' => [
+          'http://publications.europa.eu/resource/authority/corporate-body',
+        ],
+      ],
+      'default_value' => 0,
+    ])
+    ->setDisplayOptions('form', [
+      'type' => 'skos_concept_entity_reference_autocomplete',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['oe_content_legacy_link'] = BaseFieldDefinition::create('link')
+    ->setLabel(t('Legacy link'))
+    ->setRequired(FALSE)
+    ->setTranslatable(TRUE)
+    ->setRevisionable(TRUE)
+    ->setSettings([
+      'link_type' => LinkItemInterface::LINK_EXTERNAL,
+      'title' => DRUPAL_DISABLED,
+    ])
+    ->setDisplayOptions('form', [
+      'type' => 'link_default',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  return $fields;
+}

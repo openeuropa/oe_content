@@ -40,53 +40,6 @@ drupal:
           port: ${drupal.sparql.port}
           namespace: 'Drupal\Driver\Database\sparql'
           driver: 'sparql'
-    config:
-      rdf_skos.graphs:
-        entity_types:
-          skos_concept_scheme:
-            -
-              name: target_audience
-              uri: http://publications.europa.eu/resource/authority/target-audience
-            -
-              name: corporate_bodies
-              uri: http://publications.europa.eu/resource/authority/corporate-body
-            -
-              name: organisation_type
-              uri: http://publications.europa.eu/resource/authority/organization-type
-            -
-              name: resource_type
-              uri: http://publications.europa.eu/resource/authority/resource-type
-            -
-              name: place
-              uri: http://publications.europa.eu/resource/dataset/place
-            -
-              name: public_event_type
-              uri: http://publications.europa.eu/resource/dataset/public-event-type
-            -
-              name: eurovoc
-              uri: http://publications.europa.eu/resource/dataset/eurovoc
-          skos_concept:
-            -
-              name: target_audience
-              uri: http://publications.europa.eu/resource/authority/target-audience
-            -
-              name: corporate_bodies
-              uri: http://publications.europa.eu/resource/authority/corporate-body
-            -
-              name: organisation_type
-              uri: http://publications.europa.eu/resource/authority/organization-type
-            -
-              name: resource_type
-              uri: http://publications.europa.eu/resource/authority/resource-type
-            -
-              name: place
-              uri: http://publications.europa.eu/resource/dataset/place
-            -
-              name: public_event_type
-              uri: http://publications.europa.eu/resource/dataset/public-event-type
-            -
-              name: eurovoc
-              uri: http://publications.europa.eu/resource/dataset/eurovoc
 
 commands:
   drupal:site-setup:

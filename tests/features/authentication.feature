@@ -13,3 +13,4 @@ Feature: User authentication
     And I should see the text "Password"
     But I should not see the text "Log out"
     And I should not see the text "View profile"
+    
