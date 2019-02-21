@@ -21,6 +21,7 @@
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/code-review": "~0.2",
         "openeuropa/drupal-core-require-dev": "^8.6",
+        "openeuropa/oe_media": "~0.1.0",
         "openeuropa/task-runner": "^0.7"
     },
     "suggest": {

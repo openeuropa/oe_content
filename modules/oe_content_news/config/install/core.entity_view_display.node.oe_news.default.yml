@@ -1,0 +1,82 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oe_news.body
+    - field.field.node.oe_news.oe_news_author
+    - field.field.node.oe_news.oe_news_location
+    - field.field.node.oe_news.oe_news_publication_date
+    - field.field.node.oe_news.oe_news_subject
+    - field.field.node.oe_news.oe_news_summary
+    - field.field.node.oe_news.oe_news_teaser
+    - node.type.oe_news
+  module:
+    - rdf_skos
+    - text
+    - user
+id: node.oe_news.default
+targetEntityType: node
+bundle: oe_news
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  oe_news_author:
+    weight: 107
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_label
+    region: content
+  oe_news_location:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_label
+    region: content
+  oe_news_publication_date:
+    weight: 105
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+    type: timestamp
+    region: content
+  oe_news_subject:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_label
+    region: content
+  oe_news_summary:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_news_teaser:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }
