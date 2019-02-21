@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_oe_page_author
+    - field.storage.node.oe_page_subject
     - node.type.oe_page
   module:
     - rdf_skos
-id: node.oe_page.field_oe_page_author
-field_name: field_oe_page_author
+id: node.oe_page.oe_page_subject
+field_name: oe_page_subject
 entity_type: node
 bundle: oe_page
-label: Author
+label: Subject
 description: ''
 required: false
 translatable: false
@@ -24,5 +24,5 @@ settings:
       field: _none
     auto_create: 0
     concept_schemes:
-      - 'http://publications.europa.eu/resource/authority/corporate-body'
+      - 'http://eurovoc.europa.eu/100141'
 field_type: skos_concept_entity_reference

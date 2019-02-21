@@ -3,14 +3,13 @@ status: true
 dependencies:
   module:
     - node
-    - rdf_skos
-id: node.field_oe_page_author
-field_name: field_oe_page_author
+    - text
+id: node.oe_page_teaser
+field_name: oe_page_teaser
 entity_type: node
-type: skos_concept_entity_reference
-settings:
-  target_type: skos_concept
-module: rdf_skos
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true

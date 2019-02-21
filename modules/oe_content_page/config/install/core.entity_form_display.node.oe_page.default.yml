@@ -3,10 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_page.body
-    - field.field.node.oe_page.field_oe_page_author
-    - field.field.node.oe_page.field_oe_page_subject
-    - field.field.node.oe_page.field_oe_page_summary
-    - field.field.node.oe_page.field_oe_page_teaser
+    - field.field.node.oe_page.oe_page_author
+    - field.field.node.oe_page.oe_page_subject
+    - field.field.node.oe_page.oe_page_summary
+    - field.field.node.oe_page.oe_page_teaser
     - node.type.oe_page
   module:
     - link
@@ -32,7 +32,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_oe_page_author:
+  oe_page_author:
     weight: 125
     settings:
       match_operator: CONTAINS
@@ -41,7 +41,7 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
-  field_oe_page_subject:
+  oe_page_subject:
     weight: 124
     settings:
       match_operator: CONTAINS
@@ -50,7 +50,7 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
-  field_oe_page_summary:
+  oe_page_summary:
     weight: 123
     settings:
       rows: 5
@@ -58,7 +58,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_oe_page_teaser:
+  oe_page_teaser:
     weight: 122
     settings:
       rows: 5

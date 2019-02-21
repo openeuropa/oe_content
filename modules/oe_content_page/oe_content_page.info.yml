@@ -12,12 +12,12 @@ config_devel:
   - core.entity_view_display.node.oe_page.default
   - core.entity_view_display.node.oe_page.teaser
   - field.field.node.oe_page.body
-  - field.field.node.oe_page.field_oe_page_author
-  - field.field.node.oe_page.field_oe_page_subject
-  - field.field.node.oe_page.field_oe_page_summary
-  - field.field.node.oe_page.field_oe_page_teaser
-  - field.storage.node.field_oe_page_author
-  - field.storage.node.field_oe_page_subject
-  - field.storage.node.field_oe_page_summary
-  - field.storage.node.field_oe_page_teaser
+  - field.field.node.oe_page.oe_page_author
+  - field.field.node.oe_page.oe_page_subject
+  - field.field.node.oe_page.oe_page_summary
+  - field.field.node.oe_page.oe_page_teaser
+  - field.storage.node.oe_page_author
+  - field.storage.node.oe_page_subject
+  - field.storage.node.oe_page_summary
+  - field.storage.node.oe_page_teaser
   - node.type.oe_page
