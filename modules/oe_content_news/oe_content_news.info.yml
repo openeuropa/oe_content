@@ -20,6 +20,8 @@ config_devel:
   - field.field.node.oe_news.oe_news_subject
   - field.field.node.oe_news.oe_news_summary
   - field.field.node.oe_news.oe_news_teaser
+  - field.field.node.oe_news.oe_news_featured_media
+  - field.storage.node.oe_news_featured_media
   - field.storage.node.oe_news_author
   - field.storage.node.oe_news_location
   - field.storage.node.oe_news_publication_date

@@ -4,6 +4,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.oe_news.body
+    - field.field.node.oe_news.oe_news_author
+    - field.field.node.oe_news.oe_news_location
+    - field.field.node.oe_news.oe_news_publication_date
+    - field.field.node.oe_news.oe_news_subject
+    - field.field.node.oe_news.oe_news_summary
+    - field.field.node.oe_news.oe_news_teaser
     - node.type.oe_news
   module:
     - text
@@ -26,4 +32,10 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  oe_news_author: true
+  oe_news_location: true
+  oe_news_publication_date: true
+  oe_news_subject: true
+  oe_news_summary: true
+  oe_news_teaser: true

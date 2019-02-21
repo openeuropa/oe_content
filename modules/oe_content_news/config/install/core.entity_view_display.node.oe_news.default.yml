@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_news.body
+    - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_author
     - field.field.node.oe_news.oe_news_location
     - field.field.node.oe_news.oe_news_publication_date
@@ -23,6 +24,20 @@ content:
     label: hidden
     type: text_default
     weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  oe_news_featured_media:
+    type: entity_reference_entity_view
+    weight: 108
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -73,10 +88,5 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
     region: content
 hidden: {  }
