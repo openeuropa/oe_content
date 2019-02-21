@@ -4,6 +4,10 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.oe_page.body
+    - field.field.node.oe_page.oe_page_author
+    - field.field.node.oe_page.oe_page_subject
+    - field.field.node.oe_page.oe_page_summary
+    - field.field.node.oe_page.oe_page_teaser
     - node.type.oe_page
   module:
     - text
@@ -26,4 +30,8 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  oe_page_author: true
+  oe_page_subject: true
+  oe_page_summary: true
+  oe_page_teaser: true
