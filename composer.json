@@ -10,6 +10,7 @@
         "drupal/field_group": "^1.0",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "dev-master",
+        "openeuropa/oe_media": "~0.2.0",
         "php": "^7.1"
     },
     "require-dev": {
@@ -21,7 +22,6 @@
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/code-review": "~0.2",
         "openeuropa/drupal-core-require-dev": "^8.6",
-        "openeuropa/oe_media": "~0.1.0",
         "openeuropa/task-runner": "^0.7"
     },
     "suggest": {
