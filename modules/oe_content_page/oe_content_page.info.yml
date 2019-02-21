@@ -1,5 +1,5 @@
 name: OpenEuropa Page Content
-description: Contains the EC corporate Page entity type.
+description: Contains the EC corporate Page content type.
 package: OpenEuropa
 
 type: module
