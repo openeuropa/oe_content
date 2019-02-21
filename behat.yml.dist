@@ -9,7 +9,7 @@ default:
         - Drupal\Tests\oe_content\Behat\FeatureContext
         - OpenEuropa\Behat\TransformationContext:
             pages:
-              page creation: 'node/add/oe_page'
+              Page creation: 'node/add/oe_page'
   extensions:
     Drupal\MinkExtension:
       goutte: ~
