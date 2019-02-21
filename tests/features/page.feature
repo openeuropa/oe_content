@@ -24,5 +24,7 @@ Feature: Page content creation
     And I should see "Summary text"
     And I should see "Body text"
     And I should see "Teaser text"
-    And I should see "financing"
-    And I should see "European Patent Office"
+    And I should see the link "financing"
+    And I should see the link "European Patent Office"
+
+
