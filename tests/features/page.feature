@@ -9,7 +9,7 @@ Feature: Page content creation
     And I visit "the Page creation page"
     And I fill in "Title" with "My page"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I fill in "Legacy link" with "http://google.com"
+    And I fill in "Legacy link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Short title" with "Shorter title"
     And I fill in "Summary" with "Summary text"
@@ -26,5 +26,3 @@ Feature: Page content creation
     And I should see "Teaser text"
     And I should see the link "financing"
     And I should see the link "European Patent Office"
-
-
