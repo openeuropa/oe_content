@@ -10,7 +10,6 @@ dependencies:
 config_devel:
   - core.entity_form_display.node.oe_page.default
   - core.entity_view_display.node.oe_page.default
-  - core.entity_view_display.node.oe_page.teaser
   - field.field.node.oe_page.body
   - field.field.node.oe_page.oe_page_author
   - field.field.node.oe_page.oe_page_subject
