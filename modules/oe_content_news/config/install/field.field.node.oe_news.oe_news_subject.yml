@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_news_subject
+    - node.type.oe_news
+  module:
+    - rdf_skos
+id: node.oe_news.oe_news_subject
+field_name: oe_news_subject
+entity_type: node
+bundle: oe_news
+label: Subject
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:skos_concept'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: 0
+    concept_schemes:
+      - 'http://eurovoc.europa.eu/100141'
+field_type: skos_concept_entity_reference

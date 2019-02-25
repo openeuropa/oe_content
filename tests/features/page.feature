@@ -26,5 +26,3 @@ Feature: Page content creation
     And I should see "Teaser text"
     And I should see the link "financing"
     And I should see the link "European Patent Office"
-
-

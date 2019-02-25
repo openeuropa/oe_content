@@ -24,7 +24,7 @@ pipeline:
     volumes:
       - /cache:/cache
     commands:
-      - composer install
+      - composer install --ansi --no-suggest --no-progress
 
   site-install:
     image: fpfis/httpd-php-dev:7.1

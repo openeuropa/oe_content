@@ -25,6 +25,7 @@ drupal:
     # Enable the modules.
     - "./vendor/bin/drush en oe_content -y"
     - "./vendor/bin/drush en oe_content_page -y"
+    - "./vendor/bin/drush en oe_content_news -y"
     - "./vendor/bin/drush cr"
   settings:
     settings:

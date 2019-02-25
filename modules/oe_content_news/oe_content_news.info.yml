@@ -1,0 +1,30 @@
+name: OpenEuropa News Content
+description: Contains the EC corporate News content type.
+package: OpenEuropa
+
+type: module
+core: 8.x
+dependencies:
+  - oe_content:oe_content
+  - oe_media:oe_media
+  - oe_media_avportal:oe_media_avportal
+
+config_devel:
+  - core.entity_form_display.node.oe_news.default
+  - core.entity_view_display.node.oe_news.default
+  - field.field.node.oe_news.body
+  - field.field.node.oe_news.oe_news_author
+  - field.field.node.oe_news.oe_news_location
+  - field.field.node.oe_news.oe_news_publication_date
+  - field.field.node.oe_news.oe_news_subject
+  - field.field.node.oe_news.oe_news_summary
+  - field.field.node.oe_news.oe_news_teaser
+  - field.field.node.oe_news.oe_news_featured_media
+  - field.storage.node.oe_news_featured_media
+  - field.storage.node.oe_news_author
+  - field.storage.node.oe_news_location
+  - field.storage.node.oe_news_publication_date
+  - field.storage.node.oe_news_subject
+  - field.storage.node.oe_news_summary
+  - field.storage.node.oe_news_teaser
+  - node.type.oe_news

@@ -7,9 +7,12 @@ default:
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
+        - Drupal\Tests\oe_content\Behat\CleanupContext
         - OpenEuropa\Behat\TransformationContext:
             pages:
               Page creation: 'node/add/oe_page'
+              News creation: 'node/add/oe_news'
+              AV Portal photo creation: 'media/add/av_portal_photo'
   extensions:
     Drupal\MinkExtension:
       goutte: ~
