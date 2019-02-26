@@ -6,5 +6,5 @@ type: oe_page
 description: ''
 help: ''
 new_revision: true
-preview_mode: 1
+preview_mode: 0
 display_submitted: true
