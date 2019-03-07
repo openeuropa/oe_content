@@ -9,7 +9,7 @@
         "drupal/core": "^8.6",
         "drupal/field_group": "^1.0",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
-        "openeuropa/rdf_skos": "dev-master",
+        "openeuropa/rdf_skos": "dev-OPENEUROPA-1690",
         "openeuropa/oe_media": "~0.2.0",
         "php": "^7.1"
     },

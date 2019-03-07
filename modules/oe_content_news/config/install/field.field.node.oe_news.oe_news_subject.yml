@@ -25,4 +25,10 @@ settings:
     auto_create: 0
     concept_schemes:
       - 'http://eurovoc.europa.eu/100141'
+    field:
+      field_name: oe_news_subject
+      entity_type: node
+      bundle: oe_news
+      concept_schemes:
+        - 'http://eurovoc.europa.eu/100141'
 field_type: skos_concept_entity_reference
