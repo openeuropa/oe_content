@@ -70,6 +70,14 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
         'concept_schemes' => [
           'http://publications.europa.eu/resource/authority/corporate-body',
         ],
+        'field' => [
+          'field_name' => 'oe_content_content_owner',
+          'entity_type' => 'node',
+          'bundle' => NULL,
+          'concept_schemes' => [
+            'http://publications.europa.eu/resource/authority/corporate-body',
+          ],
+        ],
       ],
       'default_value' => 0,
     ])

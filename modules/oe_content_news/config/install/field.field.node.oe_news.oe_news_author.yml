@@ -25,4 +25,10 @@ settings:
     auto_create: 0
     concept_schemes:
       - 'http://publications.europa.eu/resource/authority/corporate-body'
+    field:
+      field_name: oe_news_author
+      entity_type: node
+      bundle: oe_news
+      concept_schemes:
+        - 'http://publications.europa.eu/resource/authority/corporate-body'
 field_type: skos_concept_entity_reference
