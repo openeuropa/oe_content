@@ -36,7 +36,7 @@ class PublicationsOfficeSkosGraphSetup {
   protected function getGraphInfo(): array {
     return [
       'corporate_body' => 'http://publications.europa.eu/resource/authority/corporate-body',
-      'corporate_body_classification' => 'http://publications.europa.eu/resource/dataset/corporate-body-classification',
+      'corporate_body_classification' => 'http://publications.europa.eu/resource/authority/corporate-body-classification',
       'target_audience' => 'http://publications.europa.eu/resource/authority/target-audience',
       'organisation_type' => 'http://publications.europa.eu/resource/authority/organization-type',
       'resource_type' => 'http://publications.europa.eu/resource/authority/resource-type',
