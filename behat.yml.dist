@@ -16,9 +16,12 @@ default:
   extensions:
     Drupal\MinkExtension:
       goutte: ~
-      selenium2: ~
       ajax_timeout: 10
       javascript_session: selenium2
+      browser_name: 'chrome'
+      selenium2:
+        wd_host: '${selenium.host}:${selenium.port}/wd/hub'
+        capabilities: { "browser": "${selenium.browser}", "version": "*" }
       base_url: "${drupal.base_url}"
     Drupal\DrupalExtension:
       api_driver: "drupal"

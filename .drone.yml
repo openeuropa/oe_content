@@ -16,15 +16,37 @@ services:
     environment:
      - SPARQL_UPDATE=true
      - DBA_PASSWORD=dba
+  selenium:
+    image: selenium/standalone-chrome:3.11
+    environment:
+      - DISPLAY=:99
+      - SE_OPTS=-debug
 
 pipeline:
-  composer-install:
+  composer-install-lowest:
+    group: prepare
+    image: fpfis/httpd-php-dev:7.1
+    volumes:
+      - /cache:/cache
+    commands:
+      # @todo remove "composer install" step once the following issue is fixed.
+      # @link https://webgate.ec.europa.eu/CITnet/jira/browse/OPENEUROPA-1234
+      - composer install --ansi --no-suggest --no-progress
+      - composer update --prefer-lowest --prefer-stable --ansi --no-suggest --no-progress
+    when:
+      matrix:
+        COMPOSER_BOUNDARY: lowest
+
+  composer-install-highest:
     group: prepare
     image: fpfis/httpd-php-dev:7.1
     volumes:
       - /cache:/cache
     commands:
       - composer install --ansi --no-suggest --no-progress
+    when:
+      matrix:
+        COMPOSER_BOUNDARY: highest
 
   site-install:
     image: fpfis/httpd-php-dev:7.1
@@ -48,3 +70,8 @@ pipeline:
     image: fpfis/php71-build
     commands:
       - ./vendor/bin/behat --strict
+
+matrix:
+  COMPOSER_BOUNDARY:
+    - lowest
+    - highest

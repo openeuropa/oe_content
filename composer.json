@@ -22,9 +22,9 @@
         "drupal-composer/drupal-scaffold": "^2.2",
         "drush/drush": "^9",
         "openeuropa/behat-transformation-context" : "~0.1",
-        "openeuropa/code-review": "~0.2",
-        "openeuropa/drupal-core-require-dev": "^8.6",
-        "openeuropa/task-runner": "^0.7"
+        "openeuropa/code-review": "^1.0.0-alpha4",
+        "openeuropa/task-runner": "~1.0.0-beta2",
+        "openeuropa/drupal-core-require-dev": "^8.6"
     },
     "suggest": {
         "drupal/console": "^1"
