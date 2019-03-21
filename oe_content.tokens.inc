@@ -14,7 +14,7 @@ use Drupal\Core\Render\BubbleableMetadata;
  */
 function oe_content_token_info() {
 
-  // Core tokens for nodes.
+  // Short titlte fallback token.
   $node['short-title-fallback'] = [
     'name' => t("Short title fallback"),
     'description' => t('Short title field in case it is available or the title field otherwise.'),
@@ -40,7 +40,7 @@ function oe_content_tokens($type, $tokens, array $data, array $options, Bubbleab
   foreach ($tokens as $name => $original) {
     switch ($name) {
       case 'short-title-fallback':
-        $replacements[$original] = $node->oe_content_short_title->value ?? $node->getTitle() ;
+        $replacements[$original] = $node->oe_content_short_title->value ?? $node->getTitle();
         break;
     }
   }
