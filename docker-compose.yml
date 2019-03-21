@@ -37,6 +37,7 @@ services:
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
+      - VNC_NO_PASSWORD=1
     ports:
       - "5900:5900"
     expose:

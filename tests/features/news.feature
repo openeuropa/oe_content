@@ -40,3 +40,19 @@ Feature: News content creation
     And I should see the link "financing"
     And I should see the link "European Patent Office"
     And I should see the AV Portal photo "Euro with miniature figurines" with source "//ec.europa.eu/avservices/avs/files/video6/repository/prod/photo/store/store2/4/P038924-352937.jpg"
+
+  @javascript
+  Scenario: Length limited fields are not allowing characters above the limit configured.
+    Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media" permission
+    When I visit "the News creation page"
+    Then I should see the text "Content limited to 150 characters, remaining: 150"
+    And I should see the text "Content limited to 250 characters, remaining: 250"
+    When I fill in "Title" with "My news"
+    And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
+    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
+    And I fill in "Summary" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
+    And I fill in "Body" with "Body text"
+    And I fill in "Subject" with "financing"
+    And I fill in "Author" with "European Patent Office"
+    And I press "Save"
+    Then I should not see "The text to remove."
