@@ -6,6 +6,7 @@ type: module
 core: 8.x
 dependencies:
   - oe_content:oe_content
+  - maxlength:maxlength
 
 config_devel:
   - core.entity_form_display.node.oe_page.default
