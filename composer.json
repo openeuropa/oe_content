@@ -24,6 +24,7 @@
         "openeuropa/code-review": "^1.0@beta",
         "openeuropa/task-runner": "~1.0@beta",
         "openeuropa/drupal-core-require-dev": "^8.6",
+        "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.0"
     },
     "suggest": {
