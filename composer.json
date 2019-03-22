@@ -8,22 +8,22 @@
     "require": {
         "drupal/core": "^8.6",
         "drupal/field_group": "^1.0",
-        "drupal/maxlength": "1.0-beta2",
+        "drupal/maxlength": "~1.0-beta2",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "dev-master",
         "openeuropa/oe_media": "~0.2.0",
         "php": "^7.1"
     },
     "require-dev": {
-        "composer/installers": "^1.2",
+        "composer/installers": "^1.5",
         "drupal/config_devel": "~1.2",
         "drupal/drupal-extension": "^4.0",
         "drupal/maxlength": "1.0-beta2",
         "drupal-composer/drupal-scaffold": "^2.2",
-        "drush/drush": "^9",
-        "openeuropa/behat-transformation-context" : "~0.1",
-        "openeuropa/code-review": "^1.0.0-alpha4",
-        "openeuropa/task-runner": "~1.0.0-beta2",
+        "drush/drush": "^9.0",
+        "openeuropa/behat-transformation-context" : "~0.1.1",
+        "openeuropa/code-review": "^1.0@beta",
+        "openeuropa/task-runner": "~1.0@beta",
         "openeuropa/drupal-core-require-dev": "^8.6"
     },
     "suggest": {
