@@ -6,6 +6,7 @@ drupal:
     name: "OpenEuropa"
   database:
     host: "mysql"
+    port: "3306"
     name: "oe_content"
     user: "root"
     password: ""

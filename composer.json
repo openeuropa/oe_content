@@ -11,24 +11,23 @@
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "dev-master",
-        "openeuropa/oe_media": "~0.2",
+        "openeuropa/oe_media": "~0.3",
         "php": "^7.1"
     },
     "require-dev": {
         "composer/installers": "~1.5",
-        "drupal-composer/drupal-scaffold": "~2.2",
+        "drupal-composer/drupal-scaffold": "~2.5.2",
         "drupal/config_devel": "~1.2",
         "drupal/console": "~1.0",
-        "drupal/drupal-extension": "~4.0.0@beta",
-        "drush/drush": "~9.0@stable",
+        "drupal/drupal-extension": "~4.0",
+        "drush/drush": "~9.0",
+        "nikic/php-parser": "^3.1.5",
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/code-review": "~1.0@beta",
         "openeuropa/drupal-core-require-dev": "^8.6",
-        "openeuropa/task-runner": "~1.0-beta5",
-        "phpunit/phpunit": "~6.0"
-    },
-    "suggest": {
-        "drupal/console": "^1"
+        "openeuropa/task-runner": "~1.0@beta",
+        "phpunit/phpunit": "~6.0",
+        "symfony/dom-crawler": "~3.0"
     },
     "autoload": {
         "psr-4": {
@@ -45,12 +44,12 @@
         "post-install-cmd": "./vendor/bin/run drupal:site-setup",
         "post-update-cmd": "./vendor/bin/run drupal:site-setup"
     },
-    "repositories": {
-        "drupal": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
-    },
+    ],
     "extra": {
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,

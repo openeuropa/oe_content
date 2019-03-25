@@ -18,7 +18,7 @@ default:
       goutte: ~
       ajax_timeout: 10
       javascript_session: selenium2
-      browser_name: 'chrome'
+      browser_name: "${selenium.browser}"
       selenium2:
         wd_host: '${selenium.host}:${selenium.port}/wd/hub'
         capabilities: { "browser": "${selenium.browser}", "version": "*" }
@@ -26,6 +26,6 @@ default:
     Drupal\DrupalExtension:
       api_driver: "drupal"
       drupal:
-        drupal_root: "build"
+        drupal_root: "${drupal.root}"
   formatters:
     progress: ~

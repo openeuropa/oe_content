@@ -5,6 +5,8 @@
  * The OpenEuropa Content installation file.
  */
 
+declare(strict_types = 1);
+
 /**
  * Implements hook_install().
  */
