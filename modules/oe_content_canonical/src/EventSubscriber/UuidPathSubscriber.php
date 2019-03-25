@@ -1,52 +1,41 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content_canonical\EventSubscriber;
 
-use Drupal\Core\Path\CurrentPathStack;
+use Drupal\oe_content_canonical\ContentUuidResolverInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\PostResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Provides a path subscriber that converts path aliases.
  */
-class ContentUuidSubscriber implements EventSubscriberInterface {
-
+class UuidPathSubscriber implements EventSubscriberInterface {
 
   /**
-   * The current path.
+   * Provides methods for converter UUID to entity canonical url or alias.
    *
-   * @var \Drupal\Core\Path\CurrentPathStack
+   * @var \Drupal\oe_content_canonical\ContentUuidResolverInterface
    */
-  protected $currentPath;
+  protected $uuidResolver;
 
   /**
    * Constructs a new ContentUuidSubscriber instance.
    *
-   * @param \Drupal\Core\Path\CurrentPathStack $current_path
-   *   The current path.
+   * @param \Drupal\oe_content_canonical\ContentUuidResolverInterface $uuid_resolver
+   *   Provides methods for converter UUID to entity canonical url or alias.
    */
-  public function __construct(CurrentPathStack $current_path) {
-    $this->currentPath = $current_path;
-  }
-
-  /**
-   * Sets the cache key on the alias manager cache decorator.
-   *
-   * KernelEvents::CONTROLLER is used in order to be executed after routing.
-   *
-   * @param \Symfony\Component\HttpKernel\Event\FilterControllerEvent $event
-   *   The Event to process.
-   */
-  public function onKernelController(FilterControllerEvent $event) {
-
+  public function __construct(ContentUuidResolverInterface $uuid_resolver) {
+    $this->uuidResolver = $uuid_resolver;
   }
 
   /**
    * Ensures system paths for the request get cached.
    */
-  public function onKernelTerminate(PostResponseEvent $event) {
+  public function onKernelTerminate(PostResponseEvent $event): void {
+    $this->uuidResolver->writeCache();
   }
 
   /**
@@ -55,8 +44,7 @@ class ContentUuidSubscriber implements EventSubscriberInterface {
    * @return array
    *   An array of event listener definitions.
    */
-  public static function getSubscribedEvents() {
-    $events[KernelEvents::CONTROLLER][] = ['onKernelController', 200];
+  public static function getSubscribedEvents(): array {
     $events[KernelEvents::TERMINATE][] = ['onKernelTerminate', 200];
     return $events;
   }
