@@ -5,3 +5,4 @@ oe_content_canonical.redirect:
     _title: 'Redirect in progress'
   requirements:
     _permission: 'access content'
+

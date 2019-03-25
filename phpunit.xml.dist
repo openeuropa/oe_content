@@ -11,6 +11,7 @@
   <testsuites>
     <testsuite>
       <directory>./tests/</directory>
+      <directory>./modules/*/tests/</directory>
     </testsuite>
   </testsuites>
 </phpunit>
