@@ -11,13 +11,15 @@ use Drupal\Core\Render\BubbleableMetadata;
 
 /**
  * Implements hook_token_info().
+ *
+ * Provides short title token.
  */
 function oe_content_token_info() {
 
-  // Short titlte fallback token.
+  // Short title fallback token.
   $node['short-title-fallback'] = [
     'name' => t("Short title fallback"),
-    'description' => t('Short title field in case it is available or the title field otherwise.'),
+    'description' => t('Short title field in case it is not empty or the title field otherwise.'),
   ];
 
   return [
@@ -27,6 +29,8 @@ function oe_content_token_info() {
 
 /**
  * Implements hook_tokens().
+ *
+ * Provides short title token implementation.
  */
 function oe_content_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
   $replacements = [];
