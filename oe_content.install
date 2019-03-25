@@ -16,3 +16,24 @@ function oe_content_install() {
     \Drupal::service('oe_content.op_skos_setup')->setup();
   }
 }
+
+/**
+ * Hide base fields.
+ */
+function oe_content_update_8001() {
+  // Remove base fields from display.
+  $base_fields = [
+    'oe_content_short_title',
+    'oe_content_navigation_title',
+    'oe_content_content_owner',
+    'oe_content_legacy_link',
+  ];
+  /** @var \Drupal\Core\Entity\EntityDefinitionUpdateManagerInterface $entity_definition_update_manager */
+  $entity_definition_update_manager = \Drupal::service('entity.definition_update_manager');
+  foreach ($base_fields as $base_field) {
+    $field_definition = $entity_definition_update_manager->getFieldStorageDefinition($base_field, 'node');
+    $field_definition->setDisplayConfigurable('view', TRUE);
+    $field_definition->setDisplayOptions('view', []);
+    $entity_definition_update_manager->updateFieldStorageDefinition($field_definition);
+  }
+}

@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the OE Paragraphs module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+
+
+
+/**
+ * Hide fields from page content type.
+ */
+function oe_content_page_update_8001() {
+
+  // Remove fields from view display.
+  $view_display = EntityViewDisplay::load('node.oe_page.default');
+  $view_display->set('content', [
+    'body' => [
+      'label'=> 'hidden',
+      'type'=> 'text_default',
+      'weight'=> 0,
+      'settings'=> [],
+      'third_party_settings'=> [],
+      'region'=> 'content',
+    ],
+  ]);
+  $view_display->set('hidden', [
+    'links'=> true,
+    'oe_content_content_owner'=> true,
+    'oe_content_legacy_link'=> true,
+    'oe_content_navigation_title'=> true,
+    'oe_content_short_title'=> true,
+    'oe_page_author'=> true,
+    'oe_page_subject'=> true,
+    'oe_page_summary'=> true,
+    'oe_page_teaser'=> true,
+  ]);
+  $view_display->save();
+}
