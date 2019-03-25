@@ -103,19 +103,13 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
     // Generate and test tokens.
     $tests = [];
     $tests['[node:short-title-fallback]'] = $node_short_titled->get('oe_content_short_title')->value;
-    $base_metadata = BubbleableMetadata::createFromObject($node_short_titled);
     $bubbleable_metadata = new BubbleableMetadata();
-    $metadata_tests = [];
-    $metadata_tests['[node:short-title-fallback]'] = $base_metadata;
 
     // Test to make sure that we generated something for each token.
     $this->assertFalse(in_array(0, array_map('strlen', $tests)), 'No empty tokens generated.');
-
     foreach ($tests as $input => $expected) {
-
       $output = $this->tokenService->replace($input, ['node' => $node_short_titled], ['langcode' => $this->interfaceLanguage->getId()], $bubbleable_metadata);
-      $this->assertEqual($output, $expected, format_string('Node token %token replaced.', ['%token' => $input]));
-      $this->assertEqual($bubbleable_metadata, $metadata_tests[$input]);
+      $this->assertEquals($output, $expected, format_string('Node token %token replaced.', ['%token' => $input]));
     }
 
     // Adds a french translation and tests if value from source translation is
@@ -131,19 +125,14 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
     $tests['[node:short-title-fallback]'] = $node_short_titled->getUntranslated()->get('oe_content_short_title')->value;
     foreach ($tests as $input => $expected) {
       $output = $this->tokenService->replace($input, ['node' => $node_short_titled], ['langcode' => $this->interfaceLanguage->getId()], $bubbleable_metadata);
-      $this->assertEqual($output, $expected, format_string('Node token %token replaced.', ['%token' => $input]));
-      $this->assertEqual($bubbleable_metadata, $metadata_tests[$input]);
+      $this->assertEquals($output, $expected, format_string('Node token %token replaced.', ['%token' => $input]));
     }
 
     // Tests the token with a node without short title field value.
     $tests['[node:short-title-fallback]'] = $node_titled->getUntranslated()->getTitle();
-    $bubbleable_metadata = new BubbleableMetadata();
-    $base_metadata = BubbleableMetadata::createFromObject($node_titled);
-    $metadata_tests['[node:short-title-fallback]'] = $base_metadata;
     foreach ($tests as $input => $expected) {
       $output = $this->tokenService->replace($input, ['node' => $node_titled], ['langcode' => $this->interfaceLanguage->getId()], $bubbleable_metadata);
-      $this->assertEqual($output, $expected, format_string('Node token %token replaced.', ['%token' => $input]));
-      $this->assertEqual($bubbleable_metadata, $metadata_tests[$input]);
+      $this->assertEquals($output, $expected, format_string('Node token %token replaced.', ['%token' => $input]));
     }
 
   }
