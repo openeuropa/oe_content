@@ -3,14 +3,10 @@ imports:
 parameters:
   tasks.phpcs.ignore_patterns:
     - build/
-    - node_modules/
     - vendor/
   tasks.phpcs.triggered_by:
     - inc
     - install
-    - module
-    - php
-    - theme
 
   extra_tasks:
     phpparser:

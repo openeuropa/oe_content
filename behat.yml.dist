@@ -27,5 +27,10 @@ default:
       api_driver: "drupal"
       drupal:
         drupal_root: "${drupal.root}"
+      region_map:
+        news Teaser form element: "#edit-oe-news-teaser-wrapper div.counter"
+        news Summary form element: "#edit-oe-news-summary-wrapper div.counter"
+        page Teaser form element: "#edit-oe-page-teaser-wrapper div.counter"
+        page Summary form element: "#edit-oe-page-summary-wrapper div.counter"
   formatters:
     progress: ~
