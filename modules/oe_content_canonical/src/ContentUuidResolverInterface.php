@@ -14,12 +14,12 @@ interface ContentUuidResolverInterface {
    *
    * @param string $uuid
    *   UUID of a content.
+   * @param string $langcode
+   *   Language of a content.
    *
    * @return string|null
    *   Url for target content.
-   *
-   * @throws EntityMalformedException
    */
-  public function getAliasByUuid(string $uuid): ?string;
+  public function getAliasByUuid(string $uuid, string $langcode = NULL): ?string;
 
 }
