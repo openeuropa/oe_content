@@ -8,18 +8,19 @@
     "require": {
         "drupal/core": "^8.6",
         "drupal/field_group": "^1.0",
-        "drupal/rdf_entity": "1.0-alpha12",
+        "drupal/rdf_entity": "dev-refactor-graphloader as 1.0.0-alpha12",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "dev-master",
         "php": "^7.1"
     },
     "require-dev": {
         "composer/installers": "^1.2",
-        "drupal/config_devel": "~1.2",
-        "drupal/drupal-extension": "^4.0",
         "drupal-composer/drupal-scaffold": "^2.2",
+        "drupal/config_devel": "~1.2",
+        "drupal/devel": "^2.0",
+        "drupal/drupal-extension": "^4.0",
         "drush/drush": "^9",
-        "openeuropa/behat-transformation-context" : "~0.1",
+        "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~0.2",
         "openeuropa/drupal-core-require-dev": "^8.6",
         "openeuropa/task-runner": "^0.7"
@@ -46,7 +47,11 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        }
+        },
+	{
+            "type": "vcs",
+            "url": "https://github.com/ec-europa/rdf_entity.git"
+	}
     ],
     "extra": {
         "composer-exit-on-patch-failure": true,

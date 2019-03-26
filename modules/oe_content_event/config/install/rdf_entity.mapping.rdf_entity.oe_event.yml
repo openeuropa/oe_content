@@ -13,6 +13,10 @@ graph:
   default: 'http://europa.eu/event/published'
   draft: 'http://europa.eu/event/draft'
 base_fields_mapping:
+  vid:
+    value:
+      predicate: 'http://purl.org/dc/terms/isVersionOf'
+      format: resource
   rid:
     target_id:
       predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
@@ -41,10 +45,30 @@ base_fields_mapping:
     value:
       predicate: 'http://europa.eu/langcode'
       format: 'xsd:string'
+  revision_timestamp:
+    value:
+      predicate: ''
+      format: ''
+  revision_uid:
+    target_id:
+      predicate: ''
+      format: ''
+  revision_log:
+    value:
+      predicate: ''
+      format: ''
   default_langcode:
     value:
       predicate: 'http://europa.eu/default_langcode'
       format: 'xsd:boolean'
+  revision_default:
+    value:
+      predicate: ''
+      format: ''
+  revision_translation_affected:
+    value:
+      predicate: ''
+      format: ''
   provenance_uri:
     value:
       predicate: 'http://europa.eu/provenance_uri'

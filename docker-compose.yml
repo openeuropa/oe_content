@@ -1,5 +1,13 @@
-version: '2'
+version: '3.4'
 services:
+  dockerhost:
+    image: qoomon/docker-host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      - PORTS=0:1024,9000
+
   web:
     image: fpfis/httpd-php-dev:7.1
     working_dir: /var/www/html
@@ -9,7 +17,7 @@ services:
       - .:/var/www/html # Non Mac users.
       # - nfsmount:/var/www/html # Mac Users with the nfsmount volume.
     environment:
-      XDEBUG_CONFIG: "remote_enable=1 remote_host=10.254.254.254 remote_port=9000 idekey=PHPSTORM remote_autostart=1"
+      XDEBUG_CONFIG: "extension=xdebug.so remote_enable=1 remote_connect_back=1 remote_host=http://dockerhost remote_port=9000 idekey=PHPSTORM remote_autostart=0"
       PHP_IDE_CONFIG: "serverName=Docker"
       # For Xdebug setup, run this command in the terminal:
       # For Mac users: sudo ifconfig en0 alias 10.254.254.254 255.255.255.0
