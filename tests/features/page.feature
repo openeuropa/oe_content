@@ -20,9 +20,6 @@ Feature: Page content creation
     When I press "Save"
     Then I should see "My page"
     And I should see "Body text"
-    And I should see "Teaser text"
-    And I should see the link "financing"
-    And I should see the link "European Patent Office"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.

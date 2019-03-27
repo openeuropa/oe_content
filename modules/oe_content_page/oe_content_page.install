@@ -10,7 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
 /**
- * Hide fields from page content type and make the body field the only visible one.
+ * Hide fields from page content type and the body field the only visible one.
  */
 function oe_content_page_update_8001() {
 
@@ -18,24 +18,24 @@ function oe_content_page_update_8001() {
   $view_display = EntityViewDisplay::load('node.oe_page.default');
   $view_display->set('content', [
     'body' => [
-      'label'=> 'hidden',
-      'type'=> 'text_default',
-      'weight'=> 0,
-      'settings'=> [],
-      'third_party_settings'=> [],
-      'region'=> 'content',
+      'label' => 'hidden',
+      'type' => 'text_default',
+      'weight' => 0,
+      'settings' => [],
+      'third_party_settings' => [],
+      'region' => 'content',
     ],
   ]);
   $view_display->set('hidden', [
-    'links'=> true,
-    'oe_content_content_owner'=> true,
-    'oe_content_legacy_link'=> true,
-    'oe_content_navigation_title'=> true,
-    'oe_content_short_title'=> true,
-    'oe_page_author'=> true,
-    'oe_page_subject'=> true,
-    'oe_page_summary'=> true,
-    'oe_page_teaser'=> true,
+    'links' => TRUE,
+    'oe_content_content_owner' => TRUE,
+    'oe_content_legacy_link' => TRUE,
+    'oe_content_navigation_title' => TRUE,
+    'oe_content_short_title' => TRUE,
+    'oe_page_author' => TRUE,
+    'oe_page_subject' => TRUE,
+    'oe_page_summary' => TRUE,
+    'oe_page_teaser' => TRUE,
   ]);
   $view_display->save();
 }
