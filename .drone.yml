@@ -16,15 +16,37 @@ services:
     environment:
      - SPARQL_UPDATE=true
      - DBA_PASSWORD=dba
+  selenium:
+    image: selenium/standalone-chrome:3.11
+    environment:
+      - DISPLAY=:99
+      - SE_OPTS=-debug
 
 pipeline:
-  composer-install:
+  composer-install-lowest:
+    group: prepare
+    image: fpfis/httpd-php-dev:7.1
+    volumes:
+      - /cache:/cache
+    commands:
+      # @todo remove "composer install" step once the following issue is fixed.
+      # @link https://webgate.ec.europa.eu/CITnet/jira/browse/OPENEUROPA-1234
+      - composer install --ansi --no-suggest --no-progress
+      - composer update --prefer-lowest --prefer-stable --ansi --no-suggest --no-progress
+    when:
+      matrix:
+        COMPOSER_BOUNDARY: lowest
+
+  composer-install-highest:
     group: prepare
     image: fpfis/httpd-php-dev:7.1
     volumes:
       - /cache:/cache
     commands:
       - composer install --ansi --no-suggest --no-progress
+    when:
+      matrix:
+        COMPOSER_BOUNDARY: highest
 
   site-install:
     image: fpfis/httpd-php-dev:7.1
@@ -45,6 +67,14 @@ pipeline:
 
   behat:
     group: test
-    image: fpfis/php71-build
+    image: fpfis/httpd-php-dev:7.1
     commands:
+      # Reset permission since installation runs as root. @todo Fix this.
+      - ./vendor/bin/drush -y config-set system.performance css.preprocess 0
+      - ./vendor/bin/drush -y config-set system.performance js.preprocess 0
       - ./vendor/bin/behat --strict
+
+matrix:
+  COMPOSER_BOUNDARY:
+    - lowest
+    - highest

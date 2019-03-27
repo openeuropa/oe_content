@@ -28,6 +28,21 @@ services:
     ports:
       - "8890:8890"
 
+  # If you would like to see what is going on you can run the following on your host:
+  # docker run --rm -p 4444:4444 -p 5900:5900 --network="host" selenium/standalone-chrome-debug:latest
+  # Newer version of this image might run into this issue:
+  # @link https://github.com/elgalu/docker-selenium/issues/20
+  selenium:
+    image: selenium/standalone-chrome-debug:3.11
+    environment:
+      - DISPLAY=:99
+      - SE_OPTS=-debug
+      - VNC_NO_PASSWORD=1
+    ports:
+      - "5900:5900"
+    expose:
+      - '4444'
+
 #### Mac users: uncomment the "volumes" key to enable the NFS file sharing. You can find more information about Docker for Mac here: https://github.com/openeuropa/openeuropa/blob/master/docs/starting/tooling.md#using-docker-on-macos
 
 #volumes:

@@ -8,6 +8,7 @@ dependencies:
   - oe_content:oe_content
   - oe_media:oe_media
   - oe_media_avportal:oe_media_avportal
+  - maxlength:maxlength
 
 config_devel:
   - core.entity_form_display.node.oe_news.default

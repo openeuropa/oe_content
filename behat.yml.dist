@@ -16,13 +16,21 @@ default:
   extensions:
     Drupal\MinkExtension:
       goutte: ~
-      selenium2: ~
       ajax_timeout: 10
       javascript_session: selenium2
+      browser_name: "${selenium.browser}"
+      selenium2:
+        wd_host: '${selenium.host}:${selenium.port}/wd/hub'
+        capabilities: { "browser": "${selenium.browser}", "version": "*" }
       base_url: "${drupal.base_url}"
     Drupal\DrupalExtension:
       api_driver: "drupal"
       drupal:
-        drupal_root: "build"
+        drupal_root: "${drupal.root}"
+      region_map:
+        news Teaser form element: "#edit-oe-news-teaser-wrapper div.counter"
+        news Summary form element: "#edit-oe-news-summary-wrapper div.counter"
+        page Teaser form element: "#edit-oe-page-teaser-wrapper div.counter"
+        page Summary form element: "#edit-oe-page-summary-wrapper div.counter"
   formatters:
     progress: ~
