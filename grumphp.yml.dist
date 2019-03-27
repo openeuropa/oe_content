@@ -3,16 +3,11 @@ imports:
 parameters:
   tasks.phpcs.ignore_patterns:
     - build/
+    - node_modules/
     - vendor/
   tasks.phpcs.triggered_by:
     - inc
     - install
-
-  extra_tasks:
-    phpparser:
-      ignore_patterns: %tasks.phpcs.ignore_patterns%
-      visitors:
-        declare_strict_types: ~
-      triggered_by: %tasks.phpcs.triggered_by%
-  extensions:
-    - OpenEuropa\CodeReview\ExtraTasksExtension
+    - module
+    - php
+    - yml
