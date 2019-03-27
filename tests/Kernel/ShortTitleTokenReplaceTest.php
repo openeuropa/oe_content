@@ -151,13 +151,13 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
     $tests[] = [
       'node' => $node_short_titled,
       'expected' => $node_short_titled->get('oe_content_short_title')->value,
-      // The source short title should be used even in another language,.
+      // The source short title should be used even in another language.
       'langcode' => 'fr',
     ];
     $tests[] = [
       'node' => $node_titled,
       'expected' => $node_titled->label(),
-      // The source title should be used even in another language,.
+      // The source title should be used even in another language.
       'langcode' => 'fr',
     ];
 
