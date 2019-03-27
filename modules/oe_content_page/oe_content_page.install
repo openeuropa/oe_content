@@ -2,17 +2,15 @@
 
 /**
  * @file
- * Install, update and uninstall functions for the OE Paragraphs module.
+ * Install, update and uninstall functions for the OE Content Page module.
  */
 
 declare(strict_types = 1);
 
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
-
-
 /**
- * Hide fields from page content type.
+ * Hide fields from page content type and make the body field the only visible one.
  */
 function oe_content_page_update_8001() {
 

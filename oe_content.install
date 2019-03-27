@@ -18,7 +18,7 @@ function oe_content_install() {
 }
 
 /**
- * Hide base fields.
+ * Change the configuration of the base fields so that the view is editable and its hidden by default.
  */
 function oe_content_update_8001() {
   // Remove base fields from display.
