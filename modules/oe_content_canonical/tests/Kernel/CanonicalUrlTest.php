@@ -36,7 +36,7 @@ class CanonicalUrlTest extends KernelTestBase {
     'language',
     'content_translation',
     'oe_content_canonical',
-    ];
+  ];
 
   /**
    * {@inheritdoc}
@@ -70,12 +70,12 @@ class CanonicalUrlTest extends KernelTestBase {
   }
 
   /**
-   * Test return of ContentUuidResolver service on Create, Update, Remove aliases with translation.
+   * Test return of ContentUuidResolver service.
    */
   public function testContentUuidResolver(): void {
 
-    /** @var \Drupal\oe_content_canonical\ContentUuidResolver $content_uuid_resolver */
-    $content_uuid_resolver = \Drupal::service('oe_content_canonical.resolver');
+    /** @var \Drupal\oe_content_canonical\ContentUuidResolver $uuid_resolver */
+    $uuid_resolver = \Drupal::service('oe_content_canonical.resolver');
 
     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
 
@@ -87,29 +87,28 @@ class CanonicalUrlTest extends KernelTestBase {
 
     $node->save();
 
-    $alias_of_node = $content_uuid_resolver->getAliasByUuid($node->uuid());
+    $alias_of_node = $uuid_resolver->getAliasByUuid($node->uuid());
 
     $this->assertEquals('/foo', $alias_of_node);
 
-    $content_uuid_resolver->resetStaticCache();
+    $uuid_resolver->resetStaticCache();
     $node = $node_storage->load($node->id());
 
     $node->path->alias = '/newalias';
     $node->save();
-    $path_of_node = $content_uuid_resolver->getAliasByUuid($node->uuid());
+    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid());
     $this->assertEquals('/newalias', $path_of_node);
 
-
-    $content_uuid_resolver->resetStaticCache();
+    $uuid_resolver->resetStaticCache();
     $node = $node_storage->load($node->id());
 
     $node->path->alias = '';
     $node->save();
-    $path_of_node = $content_uuid_resolver->getAliasByUuid($node->uuid());
+    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid());
     $this->assertEquals('/node/' . $node->id(), $path_of_node);
 
     // Add a translation, verify it is being saved as expected.
-    $content_uuid_resolver->resetStaticCache();
+    $uuid_resolver->resetStaticCache();
     $translation = $node->addTranslation('fr', $node->toArray());
     $translation->get('path')->alias = '/petitbar';
     $translation->save();
@@ -118,24 +117,24 @@ class CanonicalUrlTest extends KernelTestBase {
     $node->path->alias = '/original_en';
     $node->save();
 
-    $path_of_node = $content_uuid_resolver->getAliasByUuid($node->uuid(), 'fr');
+    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid(), 'fr');
     $this->assertEquals('/petitbar', $path_of_node);
 
     // Check original language.
-    $content_uuid_resolver->resetStaticCache();
-    $path_of_node = $content_uuid_resolver->getAliasByUuid($node->uuid(), 'en');
+    $uuid_resolver->resetStaticCache();
+    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid(), 'en');
     $this->assertEquals('/original_en', $path_of_node);
 
     // Update a translation, verify it is being saved as expected.
-    $content_uuid_resolver->resetStaticCache();
+    $uuid_resolver->resetStaticCache();
     $translation = $node->getTranslation('fr');
     $translation->get('path')->alias = '/petitfoo';
     $translation->save();
 
-    $path_of_node = $content_uuid_resolver->getAliasByUuid($node->uuid(), 'fr');
+    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid(), 'fr');
     $this->assertEquals('/petitfoo', $path_of_node);
 
-    $path_of_node = $content_uuid_resolver->getAliasByUuid($this->randomString(), 'fr');
+    $path_of_node = $uuid_resolver->getAliasByUuid($this->randomString(), 'fr');
     $this->assertEquals(NULL, $path_of_node);
   }
 
@@ -143,11 +142,9 @@ class CanonicalUrlTest extends KernelTestBase {
    * Test CanonicalUrlController response with caching mechanism.
    */
   public function testCanonicalUrlController(): void {
-    /** @var \Drupal\oe_content_canonical\ContentUuidResolver $content_uuid_resolver */
-    $content_uuid_resolver = \Drupal::service('oe_content_canonical.resolver');
+    /** @var \Drupal\oe_content_canonical\ContentUuidResolver $uuid_resolver */
+    $uuid_resolver = \Drupal::service('oe_content_canonical.resolver');
     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-
-
 
     $node = Node::create([
       'title' => 'Testing create()',
@@ -160,8 +157,8 @@ class CanonicalUrlTest extends KernelTestBase {
     $node->save();
 
     // Test redirect with alias.
-    $canonical_url_controller = CanonicalUrlController::create($this->container);
-    $response = $canonical_url_controller->index($node->uuid());
+    $url_controller = CanonicalUrlController::create($this->container);
+    $response = $url_controller->index($node->uuid());
     $target_url = $response->getTargetUrl();
     $this->assertEquals('/foo', $target_url);
 
@@ -169,22 +166,21 @@ class CanonicalUrlTest extends KernelTestBase {
     $node->path->alias = '';
     $node->save();
 
-    $content_uuid_resolver->resetStaticCache();
-    $response = $canonical_url_controller->index($node->uuid());
+    $uuid_resolver->resetStaticCache();
+    $response = $url_controller->index($node->uuid());
     $target_url = $response->getTargetUrl();
     $this->assertEquals('/node/' . $node->id(), $target_url);
 
     // Test redirect with multilingual aliases.
-    $content_uuid_resolver->resetStaticCache();
+    $uuid_resolver->resetStaticCache();
     $translation = $node->addTranslation('fr', $node->toArray());
     $translation->get('path')->alias = '/petitbar';
     $translation->save();
 
-    $content_uuid_resolver->resetStaticCache();
+    $uuid_resolver->resetStaticCache();
     $node = $node_storage->load($node->id());
     $node->path->alias = '/original_en';
     $node->save();
-
 
     $path = '/fr/content/' . $translation->uuid();
     $request = Request::create($path);
@@ -195,7 +191,7 @@ class CanonicalUrlTest extends KernelTestBase {
     $response = $http_kernel->handle($request, HttpKernelInterface::MASTER_REQUEST, FALSE);
     $this->assertEquals('/petitbar', $response->getTargetUrl());
 
-    $content_uuid_resolver->resetStaticCache();
+    $uuid_resolver->resetStaticCache();
     $path = '/content/' . $translation->uuid();
     $request = Request::create($path);
     $request->attributes->set(RouteObjectInterface::ROUTE_NAME, 'oe_content_canonical.redirect');
@@ -206,7 +202,4 @@ class CanonicalUrlTest extends KernelTestBase {
     $this->assertEquals('/original_en', $response->getTargetUrl());
   }
 
-
-
-
-  }
+}
