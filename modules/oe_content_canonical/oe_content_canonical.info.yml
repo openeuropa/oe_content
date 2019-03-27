@@ -1,6 +1,0 @@
-name: OpenEuropa Canonical URL
-description: Provides UUID-based canonical URLs.
-package: OpenEuropa
-
-type: module
-core: 8.x

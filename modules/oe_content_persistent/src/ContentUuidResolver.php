@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_canonical;
+namespace Drupal\oe_content_persistent;
 
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\CacheDecorator\CacheDecoratorInterface;
@@ -163,7 +163,7 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
       }
       else {
         // Informing about cache writing on kernel termination.
-        // @see \Drupal\oe_content_canonical\EventSubscriber\UuidPathSubscriber and $this->writeCache().
+        // @see \Drupal\oe_content_persistent\EventSubscriber\UuidPathSubscriber and $this->writeCache().
         $this->cacheNeedsWriting = TRUE;
       }
     }

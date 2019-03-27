@@ -1,0 +1,6 @@
+name: OpenEuropa Persistent URLs
+description: Provides UUID-based persistent URLs.
+package: OpenEuropa
+
+type: module
+core: 8.x

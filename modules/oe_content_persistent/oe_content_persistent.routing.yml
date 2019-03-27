@@ -1,7 +1,7 @@
-oe_content_canonical.redirect:
+oe_content_persistent.redirect:
   path: '/content/{uuid}'
   defaults:
-    _controller: '\Drupal\oe_content_canonical\Controller\CanonicalUrlController::index'
+    _controller: '\Drupal\oe_content_persistent\Controller\PersistentUrlController::index'
     _title: 'Redirect in progress'
   requirements:
     _permission: 'access content'

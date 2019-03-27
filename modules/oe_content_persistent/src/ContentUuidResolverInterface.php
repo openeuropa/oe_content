@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_canonical;
+namespace Drupal\oe_content_persistent;
 
 /**
- * Provides methods for converter UUID to entity canonical url or alias.
+ * Provides methods for converter UUID to entity persistent url or alias.
  */
 interface ContentUuidResolverInterface {
 

@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_canonical\Kernel;
+namespace Drupal\Tests\oe_content_persistent\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\oe_content_canonical\Controller\CanonicalUrlController;
+use Drupal\oe_content_persistent\Controller\PersistentUrlController;
 use Drupal\user\RoleInterface;
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,11 +16,11 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Route;
 
 /**
- * Tests loading and storing data using PathItem.
+ * Tests Persistent url related controller and service.
  *
  * @group path
  */
-class CanonicalUrlTest extends KernelTestBase {
+class PersistentUrlTest extends KernelTestBase {
 
   /**
    * Modules to enable.
@@ -35,7 +35,7 @@ class CanonicalUrlTest extends KernelTestBase {
     'filter',
     'language',
     'content_translation',
-    'oe_content_canonical',
+    'oe_content_persistent',
   ];
 
   /**
@@ -74,8 +74,8 @@ class CanonicalUrlTest extends KernelTestBase {
    */
   public function testContentUuidResolver(): void {
 
-    /** @var \Drupal\oe_content_canonical\ContentUuidResolver $uuid_resolver */
-    $uuid_resolver = \Drupal::service('oe_content_canonical.resolver');
+    /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
+    $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
 
     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
 
@@ -139,11 +139,11 @@ class CanonicalUrlTest extends KernelTestBase {
   }
 
   /**
-   * Test CanonicalUrlController response with caching mechanism.
+   * Test PersistentUrlController response with caching mechanism.
    */
-  public function testCanonicalUrlController(): void {
-    /** @var \Drupal\oe_content_canonical\ContentUuidResolver $uuid_resolver */
-    $uuid_resolver = \Drupal::service('oe_content_canonical.resolver');
+  public function testPersistentUrlController(): void {
+    /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
+    $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
 
     $node = Node::create([
@@ -157,7 +157,7 @@ class CanonicalUrlTest extends KernelTestBase {
     $node->save();
 
     // Test redirect with alias.
-    $url_controller = CanonicalUrlController::create($this->container);
+    $url_controller = PersistentUrlController::create($this->container);
     $response = $url_controller->index($node->uuid());
     $target_url = $response->getTargetUrl();
     $this->assertEquals('/foo', $target_url);
@@ -184,7 +184,7 @@ class CanonicalUrlTest extends KernelTestBase {
 
     $path = '/fr/content/' . $translation->uuid();
     $request = Request::create($path);
-    $request->attributes->set(RouteObjectInterface::ROUTE_NAME, 'oe_content_canonical.redirect');
+    $request->attributes->set(RouteObjectInterface::ROUTE_NAME, 'oe_content_persistent.redirect');
     $request->attributes->set(RouteObjectInterface::ROUTE_OBJECT, new Route($path));
     /** @var \Symfony\Component\HttpKernel\HttpKernelInterface $http_kernel */
     $http_kernel = \Drupal::service('http_kernel');
@@ -194,7 +194,7 @@ class CanonicalUrlTest extends KernelTestBase {
     $uuid_resolver->resetStaticCache();
     $path = '/content/' . $translation->uuid();
     $request = Request::create($path);
-    $request->attributes->set(RouteObjectInterface::ROUTE_NAME, 'oe_content_canonical.redirect');
+    $request->attributes->set(RouteObjectInterface::ROUTE_NAME, 'oe_content_persistent.redirect');
     $request->attributes->set(RouteObjectInterface::ROUTE_OBJECT, new Route($path));
     /** @var \Symfony\Component\HttpKernel\HttpKernelInterface $http_kernel */
     $http_kernel = \Drupal::service('http_kernel');

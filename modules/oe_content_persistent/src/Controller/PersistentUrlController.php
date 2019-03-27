@@ -2,30 +2,30 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_canonical\Controller;
+namespace Drupal\oe_content_persistent\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\oe_content_canonical\ContentUuidResolverInterface;
+use Drupal\oe_content_persistent\ContentUuidResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Returns response for redirect to node (or other entity types) aliases.
  */
-class CanonicalUrlController extends ControllerBase implements ContainerInjectionInterface {
+class PersistentUrlController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
    * The Content UUID transformer to alias/system path.
    *
-   * @var \Drupal\oe_content_canonical\ContentUuidResolverInterface
+   * @var \Drupal\oe_content_persistent\ContentUuidResolverInterface
    */
   protected $contentUuidResolver;
 
   /**
-   * CanonicalUrlController constructor.
+   * PersistentUrlController constructor.
    *
-   * @param \Drupal\oe_content_canonical\ContentUuidResolverInterface $uuid_resolver
+   * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
    *   The service for transforming uuid to alias/system path.
    */
   public function __construct(ContentUuidResolverInterface $uuid_resolver) {
@@ -37,12 +37,12 @@ class CanonicalUrlController extends ControllerBase implements ContainerInjectio
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('oe_content_canonical.resolver')
+      $container->get('oe_content_persistent.resolver')
     );
   }
 
   /**
-   * The controller callback method for handling redirect of canonical urls.
+   * The controller callback method for handling redirect of persistent urls.
    *
    * @param string $uuid
    *   The UUID of content for redirect.
