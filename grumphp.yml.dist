@@ -6,8 +6,24 @@ parameters:
     - node_modules/
     - vendor/
   tasks.phpcs.triggered_by:
-    - inc
-    - install
-    - module
     - php
+    - module
+    - inc
+    - theme
+    - install
     - yml
+
+  extra_tasks:
+    phpparser:
+      ignore_patterns: %tasks.phpcs.ignore_patterns%
+      visitors:
+        declare_strict_types: ~
+      triggered_by:
+        - php
+        - module
+        - inc
+        - theme
+        - install
+
+  extensions:
+    - OpenEuropa\CodeReview\ExtraTasksExtension
