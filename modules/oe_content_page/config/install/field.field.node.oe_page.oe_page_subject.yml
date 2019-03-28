@@ -24,11 +24,11 @@ settings:
       field: _none
     auto_create: 0
     concept_schemes:
-      - 'http://eurovoc.europa.eu/100141'
+      - 'http://data.europa.eu/uxp'
     field:
       field_name: oe_page_subject
       entity_type: node
       bundle: oe_page
       concept_schemes:
-        - 'http://eurovoc.europa.eu/100141'
+        - 'http://data.europa.eu/uxp'
 field_type: skos_concept_entity_reference

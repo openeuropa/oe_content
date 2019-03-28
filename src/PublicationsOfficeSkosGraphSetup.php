@@ -43,6 +43,7 @@ class PublicationsOfficeSkosGraphSetup {
       'place' => 'http://publications.europa.eu/resource/dataset/place',
       'public_event_type' => 'http://publications.europa.eu/resource/dataset/public-event-type',
       'eurovoc' => 'http://publications.europa.eu/resource/dataset/eurovoc',
+      'europa_digital_thesaurus' => 'http://data.europa.eu/uxp',
     ];
   }
 
