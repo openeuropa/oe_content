@@ -8,12 +8,7 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\oe_content_persistent\Controller\PersistentUrlController;
 use Drupal\user\RoleInterface;
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\Routing\Route;
 
 /**
  * Tests Persistent url related controller and service.
@@ -136,70 +131,6 @@ class PersistentUrlTest extends KernelTestBase {
 
     $path_of_node = $uuid_resolver->getAliasByUuid($this->randomString(), 'fr');
     $this->assertEquals(NULL, $path_of_node);
-  }
-
-  /**
-   * Test PersistentUrlController response with caching mechanism.
-   */
-  public function testPersistentUrlController(): void {
-    /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
-    $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
-    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-
-    $node = Node::create([
-      'title' => 'Testing create()',
-      'type' => 'page',
-      'path' => ['alias' => '/foo'],
-      'status' => TRUE,
-      'uid' => 0,
-    ]);
-
-    $node->save();
-
-    // Test redirect with alias.
-    $url_controller = PersistentUrlController::create($this->container);
-    $response = $url_controller->index($node->uuid());
-    $target_url = $response->getTargetUrl();
-    $this->assertEquals('/foo', $target_url);
-
-    // Test redirect without alias.
-    $node->path->alias = '';
-    $node->save();
-
-    $uuid_resolver->resetStaticCache();
-    $response = $url_controller->index($node->uuid());
-    $target_url = $response->getTargetUrl();
-    $this->assertEquals('/node/' . $node->id(), $target_url);
-
-    // Test redirect with multilingual aliases.
-    $uuid_resolver->resetStaticCache();
-    $translation = $node->addTranslation('fr', $node->toArray());
-    $translation->get('path')->alias = '/petitbar';
-    $translation->save();
-
-    $uuid_resolver->resetStaticCache();
-    $node = $node_storage->load($node->id());
-    $node->path->alias = '/original_en';
-    $node->save();
-
-    $path = '/fr/content/' . $translation->uuid();
-    $request = Request::create($path);
-    $request->attributes->set(RouteObjectInterface::ROUTE_NAME, 'oe_content_persistent.redirect');
-    $request->attributes->set(RouteObjectInterface::ROUTE_OBJECT, new Route($path));
-    /** @var \Symfony\Component\HttpKernel\HttpKernelInterface $http_kernel */
-    $http_kernel = \Drupal::service('http_kernel');
-    $response = $http_kernel->handle($request, HttpKernelInterface::MASTER_REQUEST, FALSE);
-    $this->assertEquals('/petitbar', $response->getTargetUrl());
-
-    $uuid_resolver->resetStaticCache();
-    $path = '/content/' . $translation->uuid();
-    $request = Request::create($path);
-    $request->attributes->set(RouteObjectInterface::ROUTE_NAME, 'oe_content_persistent.redirect');
-    $request->attributes->set(RouteObjectInterface::ROUTE_OBJECT, new Route($path));
-    /** @var \Symfony\Component\HttpKernel\HttpKernelInterface $http_kernel */
-    $http_kernel = \Drupal::service('http_kernel');
-    $response = $http_kernel->handle($request, HttpKernelInterface::MASTER_REQUEST, FALSE);
-    $this->assertEquals('/original_en', $response->getTargetUrl());
   }
 
 }
