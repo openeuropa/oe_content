@@ -12,7 +12,6 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Path\AliasManagerInterface;
-use Drupal\Core\Render\Renderer;
 use Drupal\Core\Url;
 
 /**
@@ -79,21 +78,14 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
   protected $cache;
 
   /**
-   * The renderer service.
-   *
-   * @var \Drupal\Core\Render\RendererInterface
-   */
-  protected $renderer;
-
-  /**
-   * List of allowed entity types.
+   * List of supported storages.
    *
    * @var array
    */
-  protected $entityTypes;
+  protected $supportedStorages;
 
   /**
-   * Constructs an ContentUuidResolver.
+   * Constructs a ContentUuidResolver.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
@@ -103,18 +95,15 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
    *   The alias manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend.
-   * @param \Drupal\Core\Render\Renderer $renderer
-   *   The renderer service.
-   * @param array $entity_types
-   *   List of allowed entity types.
+   * @param array $supported_storages
+   *   List of supported storages.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, AliasManagerInterface $alias_manager, CacheBackendInterface $cache, Renderer $renderer, array $entity_types = []) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, AliasManagerInterface $alias_manager, CacheBackendInterface $cache, array $supported_storages = []) {
     $this->entityTypeManager = $entity_type_manager;
     $this->languageManager = $language_manager;
     $this->aliasManager = $alias_manager;
     $this->cache = $cache;
-    $this->renderer = $renderer;
-    $this->entityTypes = $entity_types;
+    $this->supportedStorages = $supported_storages;
   }
 
   /**
@@ -189,9 +178,9 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
       return $cached->data;
     }
 
-    // Try to retrieve alias or system path from allowed entity types.
-    foreach ($this->entityTypes as $entity_type) {
-      $storage = $this->entityTypeManager->getStorage($entity_type);
+    // Try to retrieve entities from supported storages.
+    foreach ($this->supportedStorages as $storage_type) {
+      $storage = $this->entityTypeManager->getStorage($storage_type);
       // Retrieving correct entity by uuid as we can't get entity internal url
       // without loading full entity.
       $entities = $storage->loadByProperties(['uuid' => $uuid]);

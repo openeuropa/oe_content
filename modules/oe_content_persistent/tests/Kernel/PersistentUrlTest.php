@@ -27,7 +27,6 @@ class PersistentUrlTest extends KernelTestBase {
     'node',
     'user',
     'system',
-    'filter',
     'language',
     'content_translation',
     'oe_content_persistent',
@@ -48,7 +47,6 @@ class PersistentUrlTest extends KernelTestBase {
     $node_type = NodeType::create(['type' => 'page']);
     $node_type->save();
 
-    $this->installConfig(['filter']);
     $this->installConfig(['language']);
     $this->installConfig(['user']);
 

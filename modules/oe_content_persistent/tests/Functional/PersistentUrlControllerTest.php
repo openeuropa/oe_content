@@ -26,7 +26,6 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     'node',
     'user',
     'system',
-    'filter',
     'language',
     'content_translation',
     'oe_content_persistent',
