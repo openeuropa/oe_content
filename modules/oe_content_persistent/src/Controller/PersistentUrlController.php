@@ -53,7 +53,7 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
   public function index(string $uuid): RedirectResponse {
     $this->contentUuidResolver->setCacheKey($uuid);
     if ($alias = $this->contentUuidResolver->getAliasByUuid($uuid)) {
-      return new RedirectResponse($alias, 302);
+      return new RedirectResponse($alias, 302, ['PURL' => TRUE]);
     }
 
     return $this->redirect('system.404');

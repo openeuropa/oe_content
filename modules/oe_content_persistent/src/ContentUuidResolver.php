@@ -5,18 +5,22 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_persistent;
 
 use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Cache\RefinableCacheableDependencyTrait;
 use Drupal\Core\CacheDecorator\CacheDecoratorInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Path\AliasManagerInterface;
+use Drupal\Core\Render\Renderer;
 use Drupal\Core\Url;
 
 /**
  * Default implementation of Content UUID resolver.
  */
 class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecoratorInterface {
+
+  use RefinableCacheableDependencyTrait;
 
   /**
    * Holds the map of uuid lookups per language.
@@ -37,7 +41,7 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
    *
    * @var array
    */
-  protected $cacheTags = [];
+  protected $uuidCacheTags = [];
 
   /**
    * Whether the cache needs to be written.
@@ -75,6 +79,13 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
   protected $cache;
 
   /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
    * List of allowed entity types.
    *
    * @var array
@@ -92,14 +103,17 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
    *   The alias manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend.
+   * @param \Drupal\Core\Render\Renderer $renderer
+   *   The renderer service.
    * @param array $entity_types
    *   List of allowed entity types.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, AliasManagerInterface $alias_manager, CacheBackendInterface $cache, array $entity_types = []) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, AliasManagerInterface $alias_manager, CacheBackendInterface $cache, Renderer $renderer, array $entity_types = []) {
     $this->entityTypeManager = $entity_type_manager;
     $this->languageManager = $language_manager;
     $this->aliasManager = $alias_manager;
     $this->cache = $cache;
+    $this->renderer = $renderer;
     $this->entityTypes = $entity_types;
   }
 
@@ -121,7 +135,7 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
    * Clear static cache.
    */
   public function resetStaticCache(): void {
-    $this->cacheTags = [];
+    $this->uuidCacheTags = [];
     $this->lookupMap = [];
     $this->cacheNeedsWriting = FALSE;
   }
@@ -135,7 +149,7 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
     if ($this->cacheNeedsWriting === TRUE && !empty($this->cacheKey) && !empty($this->lookupMap)) {
       $twenty_four_hours = 60 * 60 * 24;
 
-      if ($cache_tags = reset($this->cacheTags)) {
+      if ($cache_tags = reset($this->uuidCacheTags)) {
         $this->cache->set($this->cacheKey, reset($this->lookupMap), $this->getRequestTime() + $twenty_four_hours, $cache_tags);
       }
       else {
@@ -159,6 +173,8 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
     // (if we use service inside controller).
     if ($this->cacheKey) {
       if ($cached = $this->cache->get($this->cacheKey)) {
+        // Used for bubble up cache tags to page cache level.
+        $this->addCacheTags($cached->tags);
         return $cached->data;
       }
       else {
@@ -186,8 +202,11 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
       $entity = reset($entities);
       if ($entity instanceof EntityInterface) {
         $alias = $this->aliasManager->getAliasByPath('/' . $entity->toUrl()->getInternalPath(), $langcode);
+        // Normalize url with related parts like langcode prefix and base url.
         $this->lookupMap[$uuid] = Url::fromUserInput($alias)->toString();
-        $this->cacheTags[$uuid] = $entity->getCacheTags();
+        $this->uuidCacheTags[$uuid] = $entity->getCacheTags();
+        // Used for bubble up cache tags to page cache level.
+        $this->addCacheableDependency($entity);
         break;
       }
     }
