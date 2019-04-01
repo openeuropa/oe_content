@@ -32,14 +32,10 @@ Feature: News content creation
     Then I should see "My News item"
     And I should not see "Navi title"
     And I should not see "Shorter title"
-    And I should see "Summary text"
+    And I should not see "Summary text"
+    And I should see "Navi title"
+    And I should see "Shorter title"
     And I should see "Body text"
-    And I should see the link "Budapest"
-    And I should see "Thu, 02/21/2019"
-    And I should see "Teaser text"
-    And I should see the link "financing"
-    And I should see the link "European Patent Office"
-    And I should see the AV Portal photo "Euro with miniature figurines" with source "//ec.europa.eu/avservices/avs/files/video6/repository/prod/photo/store/store2/4/P038924-352937.jpg"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
