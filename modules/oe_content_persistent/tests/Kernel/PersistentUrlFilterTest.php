@@ -1,0 +1,119 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace Drupal\Tests\oe_content_persistent\Kernel;
+
+use Drupal\filter\FilterPluginCollection;
+use Drupal\KernelTests\KernelTestBase;
+use Drupal\language\Entity\ConfigurableLanguage;
+use Drupal\node\Entity\Node;
+
+/**
+ * Tests Persistent url related controller and service.
+ *
+ * @group path
+ */
+class PersistentUrlFilterTest extends KernelTestBase {
+
+  /**
+   * Modules to enable.
+   *
+   * @var array
+   */
+  public static $modules = [
+    'system',
+    'filter',
+    'field',
+    'text',
+    'path',
+    'node',
+    'user',
+    'language',
+    'content_translation',
+    'oe_content_persistent',
+  ];
+
+  /**
+   * All available filters.
+   *
+   * @var \Drupal\filter\Plugin\FilterInterface[]
+   */
+  protected $filters;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+
+    $this->installEntitySchema('node');
+    $this->installEntitySchema('user');
+    $this->installEntitySchema('configurable_language');
+    $this->installConfig(['filter', 'node', 'system', 'language', 'user']);
+    $this->installSchema('node', ['node_access']);
+
+    ConfigurableLanguage::create(['id' => 'fr'])->save();
+
+    $manager = $this->container->get('plugin.manager.filter');
+    $bag = new FilterPluginCollection($manager, []);
+    $this->filters = $bag->getAll();
+  }
+
+  /**
+   * Test return of ContentUuidResolver service.
+   */
+  public function testPersistentUrlFilter(): void {
+
+    /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
+    $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
+
+    $filter = $this->filters['filter_purl'];
+
+    $test = function ($input, $langcode = 'en') use ($filter) {
+      return $filter->process($input, $langcode);
+    };
+
+    $node = Node::create([
+      'title' => $this->randomString(),
+      'type' => 'page',
+    ]);
+    $node->save();
+
+    $input = '<a href="/content/' . $node->uuid() . '">test</a>';
+    $expected = '<a href="/node/' . $node->id() . '">test</a>';
+    $output = $test($input, 'en');
+    $this->assertSame($expected, $output->getProcessedText());
+
+    $uuid_resolver->resetStaticCache();
+    $node->path->alias = '/alias1';
+    $node->save();
+
+    $expected = '<a href="/alias1">test</a>';
+    $output = $test($input, 'en');
+    $this->assertSame($expected, $output->getProcessedText());
+
+    $uuid_resolver->resetStaticCache();
+    $node->path->alias = '/alias2';
+    $node->save();
+
+    $expected = '<a href="/alias2">test</a>';
+    $output = $test($input, 'en');
+    $this->assertSame($expected, $output->getProcessedText());
+
+    $translation = $node->addTranslation('fr', $node->toArray());
+    $translation->path->alias = '/alias_fr';
+    $translation->save();
+
+    $uuid_resolver->resetStaticCache();
+    $expected = '<a href="/alias_fr">test</a>';
+    $output = $test($input, 'fr');
+    $this->assertSame($expected, $output->getProcessedText());
+
+    $uuid_resolver->resetStaticCache();
+    $expected = '<a href="/alias2">test</a>';
+    $output = $test($input, 'en');
+    $this->assertSame($expected, $output->getProcessedText());
+  }
+
+}
