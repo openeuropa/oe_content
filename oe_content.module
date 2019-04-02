@@ -28,16 +28,11 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setTranslatable(TRUE)
     ->setRevisionable(TRUE)
     ->setSetting('max_length', 255)
-    ->setDisplayOptions('view', [
-      'label' => 'hidden',
-      'type' => 'string',
-      'weight' => -5,
-    ])
     ->setDisplayOptions('form', [
       'type' => 'string_textfield',
       'weight' => 0,
     ])
-    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
   $fields['oe_content_navigation_title'] = BaseFieldDefinition::create('string')
@@ -46,16 +41,11 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setTranslatable(TRUE)
     ->setRevisionable(TRUE)
     ->setSetting('max_length', 255)
-    ->setDisplayOptions('view', [
-      'label' => 'hidden',
-      'type' => 'string',
-      'weight' => -5,
-    ])
     ->setDisplayOptions('form', [
       'type' => 'string_textfield',
       'weight' => 0,
     ])
-    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
   $fields['oe_content_content_owner'] = BaseFieldDefinition::create('skos_concept_entity_reference')
@@ -85,7 +75,7 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
       'type' => 'skos_concept_entity_reference_autocomplete',
       'weight' => 0,
     ])
-    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
   $fields['oe_content_legacy_link'] = BaseFieldDefinition::create('link')
@@ -101,7 +91,7 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
       'type' => 'link_default',
       'weight' => 0,
     ])
-    ->setDisplayConfigurable('view', FALSE)
+    ->setDisplayConfigurable('view', TRUE)
     ->setDisplayConfigurable('form', TRUE);
 
   return $fields;
