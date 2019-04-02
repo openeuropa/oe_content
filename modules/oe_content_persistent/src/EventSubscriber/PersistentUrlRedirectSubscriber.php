@@ -12,6 +12,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Allows manipulation of the response object when performing a redirect.
+ *
+ * But the main purpose of this implemented event subscriber
+ * is to update cache tags from ContentUuidResolver service
+ * for proper invalidating cache tags for page_cache.
  */
 class PersistentUrlRedirectSubscriber implements EventSubscriberInterface {
 
@@ -53,6 +57,9 @@ class PersistentUrlRedirectSubscriber implements EventSubscriberInterface {
    *   An array of event listener definitions.
    */
   public static function getSubscribedEvents() {
+    // Executing this event subscriber after all KernelEvents::RESPONSE
+    // event handlers and after
+    // \Drupal\Core\EventSubscriber\RedirectResponseSubscriber.
     $events[KernelEvents::RESPONSE][] = ['updateRedirectCacheability', -2000];
     return $events;
   }

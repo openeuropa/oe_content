@@ -4,9 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_persistent;
 
-use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\RefinableCacheableDependencyTrait;
-use Drupal\Core\CacheDecorator\CacheDecoratorInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -17,7 +15,7 @@ use Drupal\Core\Url;
 /**
  * Default implementation of Content UUID resolver.
  */
-class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecoratorInterface {
+class ContentUuidResolver implements ContentUuidResolverInterface {
 
   use RefinableCacheableDependencyTrait;
 
@@ -27,27 +25,6 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
    * @var array
    */
   protected $lookupMap = [];
-
-  /**
-   * The cache key to use when caching paths.
-   *
-   * @var string
-   */
-  protected $cacheKey;
-
-  /**
-   * The cache tags to use when caching paths.
-   *
-   * @var array
-   */
-  protected $uuidCacheTags = [];
-
-  /**
-   * Whether the cache needs to be written.
-   *
-   * @var bool
-   */
-  protected $cacheNeedsWriting = FALSE;
 
   /**
    * The entity type manager.
@@ -71,13 +48,6 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
   protected $aliasManager;
 
   /**
-   * The cache backend.
-   *
-   * @var \Drupal\Core\Cache\CacheBackendInterface
-   */
-  protected $cache;
-
-  /**
    * List of supported storages.
    *
    * @var array
@@ -93,58 +63,21 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
    *   The language manager.
    * @param \Drupal\Core\Path\AliasManagerInterface $alias_manager
    *   The alias manager.
-   * @param \Drupal\Core\Cache\CacheBackendInterface $cache
-   *   The cache backend.
    * @param array $supported_storages
    *   List of supported storages.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, AliasManagerInterface $alias_manager, CacheBackendInterface $cache, array $supported_storages = []) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, AliasManagerInterface $alias_manager, array $supported_storages = []) {
     $this->entityTypeManager = $entity_type_manager;
     $this->languageManager = $language_manager;
     $this->aliasManager = $alias_manager;
-    $this->cache = $cache;
     $this->supportedStorages = $supported_storages;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setCacheKey($key) {
-    $this->cacheKey = $this->getCachePrefixKey() . $key;
-  }
-
-  /**
-   * Getting current cache key.
-   */
-  public function getCacheKey() {
-    return $this->cacheKey;
   }
 
   /**
    * Clear static cache.
    */
   public function resetStaticCache(): void {
-    $this->uuidCacheTags = [];
     $this->lookupMap = [];
-    $this->cacheNeedsWriting = FALSE;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function writeCache() {
-    // We assume that better to write cache only on request finishing
-    // on Controller page.
-    if ($this->cacheNeedsWriting === TRUE && !empty($this->cacheKey) && !empty($this->lookupMap)) {
-      $twenty_four_hours = 60 * 60 * 24;
-
-      if ($cache_tags = reset($this->uuidCacheTags)) {
-        $this->cache->set($this->cacheKey, reset($this->lookupMap), $this->getRequestTime() + $twenty_four_hours, $cache_tags);
-      }
-      else {
-        $this->cache->set($this->cacheKey, reset($this->lookupMap), $this->getRequestTime() + $twenty_four_hours);
-      }
-    }
   }
 
   /**
@@ -154,28 +87,8 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
     $langcode = $langcode ?: $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_URL)->getId();
 
     // Here we are trying to use static cache.
-    if (!empty($this->lookupMap[$uuid])) {
-      return $this->lookupMap[$uuid];
-    }
-
-    // Using cache key initialized in controller
-    // (if we use service inside controller).
-    if ($this->cacheKey) {
-      if ($cached = $this->cache->get($this->cacheKey)) {
-        // Used for bubble up cache tags to page cache level.
-        $this->addCacheTags($cached->tags);
-        return $cached->data;
-      }
-      else {
-        // Informing about cache writing on kernel termination.
-        // @see \Drupal\oe_content_persistent\EventSubscriber\UuidPathSubscriber and $this->writeCache().
-        $this->cacheNeedsWriting = TRUE;
-      }
-    }
-    // Reuse previously cached alias of uuid,
-    // even if we don't use this service with controller.
-    elseif ($cached = $this->cache->get($this->getCachePrefixKey() . $uuid)) {
-      return $cached->data;
+    if (!empty($this->lookupMap[$uuid][$langcode])) {
+      return $this->lookupMap[$uuid][$langcode];
     }
 
     // Try to retrieve entities from supported storages.
@@ -192,33 +105,14 @@ class ContentUuidResolver implements ContentUuidResolverInterface, CacheDecorato
       if ($entity instanceof EntityInterface) {
         $alias = $this->aliasManager->getAliasByPath('/' . $entity->toUrl()->getInternalPath(), $langcode);
         // Normalize url with related parts like langcode prefix and base url.
-        $this->lookupMap[$uuid] = Url::fromUserInput($alias)->toString();
-        $this->uuidCacheTags[$uuid] = $entity->getCacheTags();
+        $this->lookupMap[$uuid][$langcode] = Url::fromUserInput($alias)->toString();
         // Used for bubble up cache tags to page cache level.
         $this->addCacheableDependency($entity);
         break;
       }
     }
 
-    return $this->lookupMap[$uuid] ?? NULL;
-  }
-
-  /**
-   * Return prefix for cache key.
-   */
-  protected function getCachePrefixKey(): string {
-    $langcode = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_URL)->getId();
-    return 'content_uuid:' . $langcode . ':';
-  }
-
-  /**
-   * Wrapper method for REQUEST_TIME constant.
-   *
-   * @return int
-   *   Return current timestamp.
-   */
-  protected function getRequestTime(): int {
-    return defined('REQUEST_TIME') ? REQUEST_TIME : (int) $_SERVER['REQUEST_TIME'];
+    return $this->lookupMap[$uuid][$langcode] ?? NULL;
   }
 
 }

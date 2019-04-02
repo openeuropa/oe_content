@@ -51,8 +51,13 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    *   A redirect response to actual alias or system path.
    */
   public function index(string $uuid): RedirectResponse {
-    $this->contentUuidResolver->setCacheKey($uuid);
     if ($alias = $this->contentUuidResolver->getAliasByUuid($uuid)) {
+      // Unfortunately we can't use instance of CacheableSecuredRedirectResponse
+      // because we have exception inside
+      // \Drupal\Core\EventSubscriber\EarlyRenderingControllerWrapperSubscriber
+      // class.
+      // More infor you could find in this article:
+      // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
       return new RedirectResponse($alias, 302, ['PURL' => TRUE]);
     }
 

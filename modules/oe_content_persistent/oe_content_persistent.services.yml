@@ -4,13 +4,7 @@ parameters:
 services:
   oe_content_persistent.resolver:
     class: \Drupal\oe_content_persistent\ContentUuidResolver
-    arguments: ['@entity_type.manager', '@language_manager', '@path.alias_manager', '@cache.data', '%oe_content_persistent.supported_storages%']
-
-  oe_content_persistent.subscriber:
-    class: \Drupal\oe_content_persistent\EventSubscriber\UuidPathSubscriber
-    tags:
-      - { name: event_subscriber }
-    arguments: ['@oe_content_persistent.resolver']
+    arguments: ['@entity_type.manager', '@language_manager', '@path.alias_manager', '%oe_content_persistent.supported_storages%']
 
   oe_content_persistent.redirect_subscriber:
     class: \Drupal\oe_content_persistent\EventSubscriber\PersistentUrlRedirectSubscriber
