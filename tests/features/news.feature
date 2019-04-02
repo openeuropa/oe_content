@@ -33,9 +33,11 @@ Feature: News content creation
     And I should not see "Navi title"
     And I should not see "Shorter title"
     And I should not see "Summary text"
-    And I should see "Navi title"
-    And I should see "Shorter title"
-    And I should see "Body text"
+    And I should not see the link "Budapest"
+    And I should not see "Thu, 02/21/2019"
+    And I should not see "Teaser text"
+    And I should not see the link "financing"
+    And I should not see the link "European Patent Office"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
