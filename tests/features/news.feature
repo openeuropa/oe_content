@@ -9,7 +9,7 @@ Feature: News content creation
     Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media" permission
     # Create a "Media AV portal photo".
     And I visit "the AV Portal photo creation page"
-    And I fill in "Media AV Portal Photo" with "https://ec.europa.eu/avservices/photo/photoDetails.cfm?sitelang=en&ref=038924#14"
+    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
     And I press "Save"
     # Create a "News" content.
     And I visit "the News creation page"
