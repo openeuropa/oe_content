@@ -1,0 +1,37 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_linkit_matcher_alter().
+ */
+function oe_content_persistent_linkit_matcher_alter(array &$plugins) {
+  if (isset($plugins['entity:node'])) {
+    $plugins['entity:node']['class'] = "Drupal\\oe_content_persistent\\LinkitMatcherPlugin\\NodePurlMatcher";
+  }
+
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function oe_content_persistent_entity_type_alter(array &$entity_types) {
+  // Provide purl link template.
+  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  foreach ($entity_types as $entity_type) {
+    if (\Drupal::service('oe_content_persistent.resolver')->isSupportedEntityType($entity_type) && $entity_type->hasLinkTemplate('canonical')) {
+      if (!$entity_type->hasLinkTemplate('purl')) {
+        $entity_type->setLinkTemplate('purl', '/content/{uuid}');
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_filter_info_alter().
+ */
+function oe_content_persistent_filter_info_alter(array &$plugins) {
+  if (isset($plugins['linkit'])) {
+    $plugins['linkit']['class'] = "Drupal\\oe_content_persistent\\LinkitFilterPlugin\\LinkitPurlFilter";
+  }
+}

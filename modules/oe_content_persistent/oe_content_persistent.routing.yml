@@ -6,3 +6,12 @@ oe_content_persistent.redirect:
   requirements:
     _permission: 'access content'
     uuid: '[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}'
+
+#entity.node.purl:
+#  path: '/content/{uuid}'
+#  defaults:
+#    _controller: '\Drupal\oe_content_persistent\Controller\PersistentUrlController::index'
+#    _title: 'Redirect in progress'
+#  requirements:
+#    _permission: 'access content'
+#    uuid: '[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}'
