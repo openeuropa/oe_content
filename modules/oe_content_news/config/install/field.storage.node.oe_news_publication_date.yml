@@ -2,13 +2,15 @@ langcode: en
 status: true
 dependencies:
   module:
+    - datetime
     - node
 id: node.oe_news_publication_date
 field_name: oe_news_publication_date
 entity_type: node
-type: timestamp
-settings: {  }
-module: core
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
 locked: false
 cardinality: 1
 translatable: true
