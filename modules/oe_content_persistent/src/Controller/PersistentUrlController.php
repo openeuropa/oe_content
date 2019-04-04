@@ -6,6 +6,7 @@ namespace Drupal\oe_content_persistent\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -51,14 +52,16 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    *   A redirect response to actual alias or system path.
    */
   public function index(string $uuid): RedirectResponse {
-    if ($alias = $this->contentUuidResolver->getAliasByUuid($uuid)) {
+    if ($entity = $this->contentUuidResolver->getEntityByUuid($uuid)) {
       // Unfortunately we can't use instance of CacheableSecuredRedirectResponse
       // because we have exception inside
       // \Drupal\Core\EventSubscriber\EarlyRenderingControllerWrapperSubscriber
       // class.
       // More infor you could find in this article:
       // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
-      return new RedirectResponse($alias, 302, ['PURL' => TRUE]);
+      if ($entity instanceof TranslatableInterface) {
+        return new RedirectResponse($entity->toUrl()->toString(), 302, ['PURL' => TRUE]);
+      }
     }
 
     return $this->redirect('system.404');

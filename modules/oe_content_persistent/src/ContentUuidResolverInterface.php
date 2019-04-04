@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_persistent;
 
+use Drupal\Core\Entity\TranslatableInterface;
+
 /**
  * Provides methods for converter UUID to entity persistent url or alias.
  */
@@ -17,9 +19,9 @@ interface ContentUuidResolverInterface {
    * @param string $langcode
    *   Language of a content.
    *
-   * @return string|null
+   * @return \Drupal\Core\Entity\TranslatableInterface|null
    *   Url for target content.
    */
-  public function getAliasByUuid(string $uuid, string $langcode = NULL): ?string;
+  public function getEntityByUuid(string $uuid, string $langcode = NULL): ?TranslatableInterface;
 
 }

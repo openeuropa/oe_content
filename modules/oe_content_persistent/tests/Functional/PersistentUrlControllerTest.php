@@ -60,6 +60,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $this->assertUrl('/foo');
     $this->assertText('Testing create()');
 
+    $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($node->id());
     $node->path->alias = '/foo2';
     $node->save();
 

@@ -45,7 +45,8 @@ class PersistentUrlRedirectSubscriber implements EventSubscriberInterface {
   public function updateRedirectCacheability(FilterResponseEvent $event): void {
     $response = $event->getResponse();
     if ($response instanceof LocalRedirectResponse && $response->headers->get('PURL', FALSE) === TRUE) {
-      $response->getCacheableMetadata()->addCacheTags($this->contentUuidResolver->getCacheTags());
+      $entity = $this->contentUuidResolver->getEntityByUuid($event->getRequest()->get('uuid'));
+      $response->addCacheableDependency($entity);
     }
 
   }

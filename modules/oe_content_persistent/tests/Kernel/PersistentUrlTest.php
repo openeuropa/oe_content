@@ -70,35 +70,42 @@ class PersistentUrlTest extends KernelTestBase {
     /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
     $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
 
+    // @TODO Investigate impact.
+    /** @var \Drupal\Core\PathProcessor\PathProcessorManager $path_processor_manager */
+    $path_processor_manager = \Drupal::service('path_processor_manager');
+    /** @var \Drupal\Core\PathProcessor\PathProcessorAlias $path_processor */
+    $path_processor = \Drupal::service('path_processor_alias');
+    $path_processor_manager->addOutbound($path_processor);
     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
 
     $node = Node::create([
       'title' => 'Testing create()',
       'type' => 'page',
       'path' => ['alias' => '/foo'],
+      'status' => TRUE,
     ]);
-
     $node->save();
 
-    $alias_of_node = $uuid_resolver->getAliasByUuid($node->uuid());
-
-    $this->assertEquals('/foo', $alias_of_node);
+    $node_storage->resetCache();
+    /* @var \Drupal\Core\Entity\TranslatableInterface $entity */
+    $entity = $uuid_resolver->getEntityByUuid($node->uuid());
+    $this->assertEquals('/foo', $entity->toUrl()->toString());
 
     $uuid_resolver->resetStaticCache();
     $node = $node_storage->load($node->id());
 
-    $node->path->alias = '/newalias';
+    $node->get('path')->alias = '/newalias';
     $node->save();
-    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid());
-    $this->assertEquals('/newalias', $path_of_node);
+    $entity = $uuid_resolver->getEntityByUuid($node->uuid());
+    $this->assertEquals('/newalias', $entity->toUrl()->toString());
 
     $uuid_resolver->resetStaticCache();
     $node = $node_storage->load($node->id());
 
     $node->path->alias = '';
     $node->save();
-    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid());
-    $this->assertEquals('/node/' . $node->id(), $path_of_node);
+    $entity = $uuid_resolver->getEntityByUuid($node->uuid());
+    $this->assertEquals('/node/' . $node->id(), $entity->toUrl()->toString());
 
     // Add a translation, verify it is being saved as expected.
     $uuid_resolver->resetStaticCache();
@@ -110,13 +117,13 @@ class PersistentUrlTest extends KernelTestBase {
     $node->path->alias = '/original_en';
     $node->save();
 
-    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid(), 'fr');
-    $this->assertEquals('/petitbar', $path_of_node);
+    $entity = $uuid_resolver->getEntityByUuid($node->uuid(), 'fr');
+    $this->assertEquals('/fr/petitbar', $entity->toUrl()->toString());
 
     // Check original language.
     $uuid_resolver->resetStaticCache();
-    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid(), 'en');
-    $this->assertEquals('/original_en', $path_of_node);
+    $entity = $uuid_resolver->getEntityByUuid($node->uuid(), 'en');
+    $this->assertEquals('/original_en', $entity->toUrl()->toString());
 
     // Update a translation, verify it is being saved as expected.
     $uuid_resolver->resetStaticCache();
@@ -124,11 +131,11 @@ class PersistentUrlTest extends KernelTestBase {
     $translation->get('path')->alias = '/petitfoo';
     $translation->save();
 
-    $path_of_node = $uuid_resolver->getAliasByUuid($node->uuid(), 'fr');
-    $this->assertEquals('/petitfoo', $path_of_node);
+    $entity = $uuid_resolver->getEntityByUuid($node->uuid(), 'fr');
+    $this->assertEquals('/fr/petitfoo', $entity->toUrl()->toString());
 
-    $path_of_node = $uuid_resolver->getAliasByUuid($this->randomString(), 'fr');
-    $this->assertEquals(NULL, $path_of_node);
+    $entity = $uuid_resolver->getEntityByUuid($this->randomString(), 'fr');
+    $this->assertEquals(NULL, $entity);
   }
 
 }
