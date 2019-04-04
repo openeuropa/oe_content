@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content_persistent\Routing;
 
 use Drupal\Core\Routing\RouteSubscriberBase;
@@ -45,15 +47,15 @@ class PurlRouteSubscriber extends RouteSubscriberBase {
           ],
           [
             '_permission' => 'access content',
-            //'uuid' => '[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}',
+            'uuid' => '[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}',
+          ],
+          [
+            'parameters' => [
+              'uuid' => [
+                'type' => 'entity:node',
+              ],
+            ],
           ]
-//          [
-//            'parameters' => [
-//              'uuid' => [
-//                'type' => 'entity:uuid',
-//              ],
-//            ],
-//          ]
         );
         $collection->add("entity.$entity_type_id.purl", $route);
       }

@@ -1,16 +1,69 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content_persistent\LinkitFilterPlugin;
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\filter\FilterProcessResult;
-use Drupal\linkit\Plugin\Filter\LinkitFilter;
+use Drupal\filter\Plugin\FilterBase;
 use Drupal\linkit\SubstitutionManagerInterface;
+use Drupal\oe_content_persistent\ContentUuidResolverInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides overriden linkit filter.
  */
-class LinkitPurlFilter extends LinkitFilter {
+class LinkitPurlFilter extends FilterBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * The Content UUID transformer to alias/system path.
+   *
+   * @var \Drupal\oe_content_persistent\ContentUuidResolverInterface
+   */
+  protected $contentUuidResolver;
+
+  /**
+   * The substitution manager.
+   *
+   * @var \Drupal\linkit\SubstitutionManagerInterface
+   */
+  protected $substitutionManager;
+
+  /**
+   * Constructs a LinkitFilter object.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
+   *   The service for transforming uuid to alias/system path.
+   * @param \Drupal\linkit\SubstitutionManagerInterface $substitution_manager
+   *   The substitution manager.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentUuidResolverInterface $uuid_resolver, SubstitutionManagerInterface $substitution_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+    $this->contentUuidResolver = $uuid_resolver;
+    $this->substitutionManager = $substitution_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('oe_content_persistent.resolver'),
+      $container->get('plugin.manager.linkit.substitution')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -26,20 +79,10 @@ class LinkitPurlFilter extends LinkitFilter {
         /** @var \DOMElement $element */
         try {
           // Load the appropriate translation of the linked entity.
-          $entity_type = $element->getAttribute('data-entity-type');
           $uuid = $element->getAttribute('data-entity-uuid');
 
-          // Make the substitution optional, for backwards compatibility,
-          // maintaining the previous hard-coded direct file link assumptions,
-          // for content created before the substitution feature.
-          if (!$substitution_type = $element->getAttribute('data-entity-substitution')) {
-            $substitution_type = $entity_type === 'file' ? 'file' : SubstitutionManagerInterface::DEFAULT_SUBSTITUTION;
-          }
-
-          $entity = $this->entityRepository->loadEntityByUuid($entity_type, $uuid);
+          $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
           if ($entity) {
-
-            $entity = $this->entityRepository->getTranslationFromContext($entity, $langcode);
 
             /** @var \Drupal\Core\GeneratedUrl $url */
             $url = $this->substitutionManager

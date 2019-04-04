@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_persistent;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
 
