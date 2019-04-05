@@ -1,0 +1,7 @@
+name: Persistent Url test
+description: Provides configuration for testing integration to wysiwyg.
+core: 8.x
+type: module
+
+dependencies:
+  - ckeditor:ckeditor

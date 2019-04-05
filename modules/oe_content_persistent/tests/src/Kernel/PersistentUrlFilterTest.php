@@ -58,6 +58,12 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $manager = $this->container->get('plugin.manager.filter');
     $bag = new FilterPluginCollection($manager, []);
     $this->filters = $bag->getAll();
+
+    /** @var \Drupal\Core\PathProcessor\PathProcessorManager $path_processor_manager */
+    $path_processor_manager = \Drupal::service('path_processor_manager');
+    /** @var \Drupal\Core\PathProcessor\PathProcessorAlias $path_processor */
+    $path_processor = \Drupal::service('path_processor_alias');
+    $path_processor_manager->addOutbound($path_processor);
   }
 
   /**

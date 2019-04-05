@@ -67,6 +67,8 @@ class LinkitPurlFilter extends FilterBase implements ContainerFactoryPluginInter
 
   /**
    * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD)
    */
   public function process($text, $langcode) {
     $result = new FilterProcessResult($text);
@@ -79,10 +81,18 @@ class LinkitPurlFilter extends FilterBase implements ContainerFactoryPluginInter
         /** @var \DOMElement $element */
         try {
           // Load the appropriate translation of the linked entity.
+          $entity_type = $element->getAttribute('data-entity-type');
           $uuid = $element->getAttribute('data-entity-uuid');
 
           $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
           if ($entity) {
+
+            // Make the substitution optional, for backwards compatibility,
+            // maintaining the previous hard-coded direct file link assumptions,
+            // for content created before the substitution feature.
+            if (!$substitution_type = $element->getAttribute('data-entity-substitution')) {
+              $substitution_type = $entity_type === 'file' ? 'file' : SubstitutionManagerInterface::DEFAULT_SUBSTITUTION;
+            }
 
             /** @var \Drupal\Core\GeneratedUrl $url */
             $url = $this->substitutionManager

@@ -29,7 +29,7 @@ interface ContentUuidResolverInterface {
    * Gets the entity types that support PURL.
    *
    * @return \Drupal\Core\Entity\EntityTypeInterface[]
-   *   An array of entity types that support Persistent uniform resource locator.
+   *   An array of entity types that support PURL.
    */
   public function getSupportedEntityTypes(): array;
 
@@ -39,7 +39,7 @@ interface ContentUuidResolverInterface {
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   Entity type object.
    *
-   * @return boolean
+   * @return bool
    *   Is this content type supported.
    */
   public function isSupportedEntityType(EntityTypeInterface $entity_type): bool;

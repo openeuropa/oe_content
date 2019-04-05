@@ -1,6 +1,11 @@
 <?php
 
-declare(strict_types=1);
+/**
+ * @file
+ * The OpenEuropa Content Persistent module.
+ */
+
+declare(strict_types = 1);
 
 /**
  * Implements hook_linkit_matcher_alter().
@@ -16,8 +21,7 @@ function oe_content_persistent_linkit_matcher_alter(array &$plugins) {
  * Implements hook_entity_type_alter().
  */
 function oe_content_persistent_entity_type_alter(array &$entity_types) {
-  // Provide purl link template.
-  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  /* @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
   foreach ($entity_types as $entity_type) {
     if (\Drupal::service('oe_content_persistent.resolver')->isSupportedEntityType($entity_type) && $entity_type->hasLinkTemplate('canonical')) {
       if (!$entity_type->hasLinkTemplate('purl')) {

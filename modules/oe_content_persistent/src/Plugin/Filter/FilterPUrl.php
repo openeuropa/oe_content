@@ -74,10 +74,10 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
       // If there is a 'src' attribute, set it to the file entity's current
       // URL. This ensures the URL works even after the file location changes.
       if (preg_match('/[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}/i', $matches[1]) && $uuid = $matches[1]) {
-        $alias = $this->contentUuidResolver->getAliasByUuid($matches[1], $langcode);
-        if ($alias) {
-          $node->setAttribute('href', $alias);
-          $result->addCacheTags($this->contentUuidResolver->getCacheTags());
+        $entity = $this->contentUuidResolver->getEntityByUuid($matches[1], $langcode);
+        if ($entity) {
+          $node->setAttribute('href', $entity->toUrl()->toString());
+          $result->addCacheableDependency($entity);
         }
       }
     }
