@@ -10,14 +10,15 @@ use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Returns response for redirect to node (or other entity types) aliases.
+ * Controller that redirects to an entity based on its UUID.
  */
 class PersistentUrlController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
-   * The Content UUID transformer to alias/system path.
+   * The content UUID resolver.
    *
    * @var \Drupal\oe_content_persistent\ContentUuidResolverInterface
    */
@@ -27,7 +28,7 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    * PersistentUrlController constructor.
    *
    * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
-   *   The service for transforming uuid to alias/system path.
+   *   The content UUID resolver.
    */
   public function __construct(ContentUuidResolverInterface $uuid_resolver) {
     $this->contentUuidResolver = $uuid_resolver;
@@ -43,7 +44,7 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
   }
 
   /**
-   * The controller callback method for handling redirect of persistent urls.
+   * Performs the redirect based on the UUID.
    *
    * @param string $uuid
    *   The UUID of content for redirect.
@@ -53,18 +54,18 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    */
   public function index(string $uuid): RedirectResponse {
     if ($entity = $this->contentUuidResolver->getEntityByUuid($uuid)) {
-      // Unfortunately we can't use instance of CacheableSecuredRedirectResponse
-      // because we have exception inside
-      // \Drupal\Core\EventSubscriber\EarlyRenderingControllerWrapperSubscriber
-      // class.
-      // More infor you could find in this article:
+      // Unfortunately we cannot use
+      // an instance of CacheableSecuredRedirectResponse because we get
+      // an exception inside
+      // \Drupal\Core\EventSubscriber\EarlyRenderingControllerWrapperSubscriber.
+      // More information you could find in this article:
       // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
       if ($entity instanceof TranslatableInterface) {
         return new RedirectResponse($entity->toUrl()->toString(), 302, ['PURL' => TRUE]);
       }
     }
 
-    return $this->redirect('system.404');
+    throw new NotFoundHttpException();
   }
 
 }

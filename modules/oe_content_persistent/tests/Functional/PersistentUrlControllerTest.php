@@ -9,7 +9,7 @@ use Drupal\node\Entity\NodeType;
 use Drupal\Tests\BrowserTestBase;
 
 /**
- * Test PersistentUrlController response with caching mechanism.
+ * Tests the PersistentUrlController response.
  *
  * @group oe_content
  */
@@ -20,7 +20,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'path',
     'node',
     'user',
@@ -38,14 +38,12 @@ class PersistentUrlControllerTest extends BrowserTestBase {
 
     $node_type = NodeType::create(['type' => 'page']);
     $node_type->save();
-
   }
 
   /**
-   * Tests the path cache with Persistent Controller.
+   * Tests the response of the Persistent Controller.
    */
   public function testPersistentUrlController(): void {
-
     $node = Node::create([
       'title' => 'Testing create()',
       'type' => 'page',
@@ -64,6 +62,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->path->alias = '/foo2';
     $node->save();
 
+    // Ensure the cache is invalidated correctly.
     $this->drupalGet('/content/' . $node->uuid());
     $this->assertResponse(200);
     $this->assertUrl('/foo2');
@@ -76,6 +75,10 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $this->assertResponse(200);
     $this->assertUrl('/node/' . $node->id());
     $this->assertText('Testing create()');
+
+    // Check try to get not existing entity.
+    $this->drupalGet('/content/' . \Drupal::service('uuid')->generate());
+    $this->assertResponse(404);
 
     // Not valid uuid.
     $this->drupalGet('/content/' . $this->randomString());

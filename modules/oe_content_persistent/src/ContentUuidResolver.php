@@ -4,17 +4,17 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_persistent;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Language\LanguageInterface;
 
 /**
- * Default implementation of Content UUID resolver.
+ * Default implementation of a Content UUID resolver.
  */
 class ContentUuidResolver implements ContentUuidResolverInterface {
 
   /**
-   * Holds the map of uuid lookups per language.
+   * Static cache of UUID lookups, per language.
    *
    * @var array
    */
@@ -48,7 +48,7 @@ class ContentUuidResolver implements ContentUuidResolverInterface {
   }
 
   /**
-   * Clear static cache.
+   * Resets the static cache.
    */
   public function resetStaticCache(): void {
     $this->lookupMap = [];
@@ -57,7 +57,7 @@ class ContentUuidResolver implements ContentUuidResolverInterface {
   /**
    * {@inheritdoc}
    */
-  public function getEntityByUuid(string $uuid, string $langcode = NULL): ?TranslatableInterface {
+  public function getEntityByUuid(string $uuid, string $langcode = NULL): ?EntityInterface {
     $langcode = $langcode ?? LanguageInterface::LANGCODE_DEFAULT;
 
     // Try the static cache first.

@@ -13,14 +13,15 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * Allows manipulation of the response object when performing a redirect.
  *
- * But the main purpose of this implemented event subscriber
- * is to update cache tags from ContentUuidResolver service
- * for proper invalidating cache tags for page_cache.
+ * The main purpose of this subscriber is to add
+ * the UUID-resolved entity cache metadata to the response.
+ *
+ * @see Drupal\oe_content_persistent\Controller\PersistentUrlController().
  */
 class PersistentUrlRedirectSubscriber implements EventSubscriberInterface {
 
   /**
-   * The Content UUID transformer to alias/system path.
+   * The content UUID resolver.
    *
    * @var \Drupal\oe_content_persistent\ContentUuidResolverInterface
    */
@@ -52,10 +53,7 @@ class PersistentUrlRedirectSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Registers the methods in this class that should be listeners.
-   *
-   * @return array
-   *   An array of event listener definitions.
+   * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
     // Executing this event subscriber after all KernelEvents::RESPONSE
