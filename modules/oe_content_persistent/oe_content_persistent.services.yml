@@ -1,0 +1,13 @@
+parameters:
+  oe_content_persistent.supported_storages:
+    - node
+services:
+  oe_content_persistent.resolver:
+    class: \Drupal\oe_content_persistent\ContentUuidResolver
+    arguments: ['@entity_type.manager', '%oe_content_persistent.supported_storages%']
+
+  oe_content_persistent.redirect_subscriber:
+    class: \Drupal\oe_content_persistent\EventSubscriber\PersistentUrlRedirectSubscriber
+    arguments: ['@oe_content_persistent.resolver']
+    tags:
+      - { name: event_subscriber }
