@@ -11,9 +11,3 @@ services:
     arguments: ['@oe_content_persistent.resolver']
     tags:
       - { name: event_subscriber }
-
-#  oe_content_persistent.route_subscriber:
-#    class: Drupal\oe_content_persistent\Routing\PurlRouteSubscriber
-#    arguments: ['@oe_content_persistent.resolver']
-#    tags:
-#      - { name: event_subscriber }

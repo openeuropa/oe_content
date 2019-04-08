@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_persistent\LinkitFilterPlugin;
+namespace Drupal\oe_content_persistent\Plugin\LinkitFilterPlugin;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class LinkitPurlFilter extends FilterBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The Content UUID transformer to alias/system path.
+   * The content UUID resolver.
    *
    * @var \Drupal\oe_content_persistent\ContentUuidResolverInterface
    */
@@ -41,7 +41,7 @@ class LinkitPurlFilter extends FilterBase implements ContainerFactoryPluginInter
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
-   *   The service for transforming uuid to alias/system path.
+   *   The content UUID resolver.
    * @param \Drupal\linkit\SubstitutionManagerInterface $substitution_manager
    *   The substitution manager.
    */

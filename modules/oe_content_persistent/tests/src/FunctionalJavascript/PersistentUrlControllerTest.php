@@ -2,18 +2,20 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_persistent\Functional;
+namespace Drupal\Tests\oe_content_persistent\FunctionalJavascript;
 
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\BrowserTestBase;
 
 /**
  * Tests the PersistentUrlController response.
  *
  * @group oe_content
+ *
+ * Usage of FunctionalJavascript test based on problem of phpunit settings.
  */
-class PersistentUrlControllerTest extends BrowserTestBase {
+class PersistentUrlControllerTest extends WebDriverTestBase {
 
   /**
    * Modules to enable.
@@ -53,10 +55,12 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     ]);
     $node->save();
 
+    $session = $this->getSession();
+    $page = $session->getPage();
+
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
     $this->assertUrl('/foo');
-    $this->assertText('Testing create()');
+    $page->hasContent('Testing create()');
 
     $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($node->id());
     $node->path->alias = '/foo2';
@@ -64,25 +68,23 @@ class PersistentUrlControllerTest extends BrowserTestBase {
 
     // Ensure the cache is invalidated correctly.
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
     $this->assertUrl('/foo2');
-    $this->assertText('Testing create()');
+    $page->hasContent('Testing create()');
 
     $node->path->alias = '';
     $node->save();
 
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
     $this->assertUrl('/node/' . $node->id());
-    $this->assertText('Testing create()');
+    $page->hasContent('Testing create()');
 
     // Check try to get not existing entity.
     $this->drupalGet('/content/' . \Drupal::service('uuid')->generate());
-    $this->assertResponse(404);
+    $this->assertFalse($page->hasContent('Testing create()'));
 
     // Not valid uuid.
     $this->drupalGet('/content/' . $this->randomString());
-    $this->assertResponse(404);
+    $this->assertFalse($page->hasContent('Testing create()'));
   }
 
 }

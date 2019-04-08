@@ -23,11 +23,13 @@ drupal:
     - "./vendor/bin/drush config-set system.theme default bartik -y"
     - "./vendor/bin/drush config-set system.theme admin seven -y"
     - "./vendor/bin/drush config-set node.settings use_admin_theme 1 -y"
+    - "./vendor/bin/drush -y config-set system.performance css.preprocess 0"
+    - "./vendor/bin/drush -y config-set system.performance js.preprocess 0"
     # Enable the modules.
     - "./vendor/bin/drush en oe_content -y"
     - "./vendor/bin/drush en oe_content_page -y"
     - "./vendor/bin/drush en oe_content_news -y"
-    - "./vendor/bin/drush en oe_content_persistent linkit -y"
+    - "./vendor/bin/drush en oe_content_persistent -y"
     - "./vendor/bin/drush cr"
   settings:
     settings:

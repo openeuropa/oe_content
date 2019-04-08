@@ -4,3 +4,5 @@ package: OpenEuropa
 
 type: module
 core: 8.x
+dependencies:
+  - linkit:linkit

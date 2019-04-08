@@ -6,6 +6,8 @@ namespace Drupal\Tests\oe_content_persistent\FunctionalJavascript;
 
 use Drupal\Core\Url;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\language\Entity\ConfigurableLanguage;
+use Drupal\user\RoleInterface;
 
 /**
  * Base class for Persistent URL Wysiwyg integration FunctionalJavaScript tests.
@@ -26,6 +28,8 @@ class PersistentUrlWysiwygTest extends WebDriverTestBase {
     'content_translation',
     'filter',
     'linkit',
+    'dynamic_page_cache',
+    'page_cache',
     'oe_content_persistent',
     'oe_content_persistent_test',
   ];
@@ -36,7 +40,11 @@ class PersistentUrlWysiwygTest extends WebDriverTestBase {
   public function setUp() {
     parent::setUp();
 
+    ConfigurableLanguage::create(['id' => 'fr'])->save();
+
     $this->drupalCreateContentType(['type' => 'page']);
+
+    user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, ['access content']);
 
     $user = $this->drupalCreateUser([
       'access content',
@@ -57,7 +65,9 @@ class PersistentUrlWysiwygTest extends WebDriverTestBase {
     $page = $session->getPage();
     $web_assert = $this->assertSession();
 
-    $node1 = $this->drupalCreateNode();
+    $node1 = $this->drupalCreateNode([
+      'status' => TRUE,
+    ]);
 
     $node2 = $this->drupalCreateNode();
     $this->drupalGet('/node/' . $node2->id() . '/edit');
@@ -106,6 +116,13 @@ class PersistentUrlWysiwygTest extends WebDriverTestBase {
 
     $test_node_url = $node2->toUrl()->setAbsolute()->toString();
 
+    $this->drupalLogout();
+
+    $this->drupalGet($test_node_url);
+    $processed_link = $page->find('css', '.field--name-body a');
+    $actual_url = $processed_link->getAttribute('href');
+    $this->assertSame($node1->toUrl()->toString(), $actual_url);
+
     $node1->get('path')->alias = '/alias1';
     $node1->save();
 
@@ -118,10 +135,19 @@ class PersistentUrlWysiwygTest extends WebDriverTestBase {
     $node1->save();
 
     $this->drupalGet($test_node_url);
-    $this->getSession()->wait(15000);
     $processed_link = $page->find('css', '.field--name-body a');
     $actual_url = $processed_link->getAttribute('href');
     $this->assertSame($node1->toUrl()->toString(), $actual_url);
+
+    $translation = $node1->addTranslation('fr', $node1->toArray());
+    $translation->save();
+
+    $test_node_fr_url = '/fr/node/' . $node2->id();
+
+    $this->drupalGet($test_node_fr_url);
+    $processed_link = $page->find('css', '.field--name-body a');
+    $actual_url = $processed_link->getAttribute('href');
+    $this->assertSame($translation->toUrl()->toString(), $actual_url);
 
   }
 
