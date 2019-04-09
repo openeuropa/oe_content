@@ -18,10 +18,14 @@ services:
      - SPARQL_UPDATE=true
      - DBA_PASSWORD=dba
   selenium:
-    image: selenium/standalone-chrome:3.11
+    image: selenium/standalone-chrome:3
+    pull: true
+    shm_size: 2g
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
+      - SCREEN_WIDTH=1280
+      - SCREEN_HEIGHT=800
 
 pipeline:
   composer-install-lowest:
