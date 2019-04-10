@@ -50,7 +50,14 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $this->installEntitySchema('node');
     $this->installEntitySchema('user');
     $this->installEntitySchema('configurable_language');
-    $this->installConfig(['filter', 'node', 'system', 'language', 'user']);
+    $this->installConfig([
+      'filter',
+      'node',
+      'system',
+      'language',
+      'user',
+      'oe_content_persistent',
+    ]);
     $this->installSchema('node', ['node_access']);
 
     ConfigurableLanguage::create(['id' => 'fr'])->save();
@@ -75,7 +82,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
 
     $filter = $this->filters['filter_purl'];
-
+    $base_url = $this->config('oe_content_persistent.settings')->get('base_url');
     $test = function ($input, $langcode = 'en') use ($filter) {
       return $filter->process($input, $langcode);
     };
@@ -86,7 +93,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
     ]);
     $node->save();
 
-    $input = '<a href="/content/' . $node->uuid() . '">test</a>';
+    $input = '<a href="' . $base_url . $node->uuid() . '">test</a>';
     $expected = '<a href="/node/' . $node->id() . '">test</a>';
     $output = $test($input, 'en');
     $this->assertSame($expected, $output->getProcessedText());

@@ -6,3 +6,4 @@ type: module
 dependencies:
   - ckeditor:ckeditor
   - linkit:linkit
+  - drupal:path

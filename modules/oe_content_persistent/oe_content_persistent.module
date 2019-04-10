@@ -12,15 +12,6 @@ declare(strict_types = 1);
  */
 function oe_content_persistent_linkit_matcher_alter(array &$plugins) {
   if (isset($plugins['entity:node'])) {
-    $plugins['entity:node']['class'] = "Drupal\\oe_content_persistent\\Plugin\\LinkitMatcherPlugin\\NodePurlMatcher";
-  }
-}
-
-/**
- * Implements hook_filter_info_alter().
- */
-function oe_content_persistent_filter_info_alter(array &$plugins) {
-  if (isset($plugins['linkit'])) {
-    $plugins['linkit']['class'] = "Drupal\\oe_content_persistent\\Plugin\\LinkitFilterPlugin\\LinkitPurlFilter";
+    $plugins['entity:node']['class'] = 'Drupal\\oe_content_persistent\\Plugin\\LinkitMatcherPlugin\\NodePurlMatcher';
   }
 }

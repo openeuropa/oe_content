@@ -1,0 +1,7 @@
+oe_content_persistent.settings:
+  type: config_object
+  label: 'Configuration for PURL.'
+  mapping:
+    base_url:
+      type: uri
+      label: 'Inter institutional base path'

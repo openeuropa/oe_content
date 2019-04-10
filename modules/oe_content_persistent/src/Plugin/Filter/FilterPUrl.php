@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_persistent\Plugin\Filter;
 
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Uuid\Uuid;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
@@ -16,21 +18,29 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @Filter(
  *   id = "filter_purl",
- *   title = @Translation("Convert Persistent Uniform Resource Locator into URLs"),
- *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_REVERSIBLE
+ *   title = @Translation("Convert Persistent Uniform Resource Locator into
+ *   URLs"), type =
+ *   Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_REVERSIBLE
  * )
  */
 class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The Content UUID transformer to alias/system path.
+   * The Content UUID resolver service.
    *
    * @var \Drupal\oe_content_persistent\ContentUuidResolverInterface
    */
   protected $contentUuidResolver;
 
   /**
-   * Constructs a \Drupal\editor\Plugin\Filter\EditorFileReference object.
+   * The config of PURL.
+   *
+   * @var \Drupal\Core\Config\ImmutableConfig
+   */
+  protected $config;
+
+  /**
+   * Constructs a new FilterPurl object.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -39,11 +49,14 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
-   *   The service for transforming uuid to alias/system path.
+   *   The content UUID resolver service.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentUuidResolverInterface $uuid_resolver) {
-    $this->contentUuidResolver = $uuid_resolver;
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentUuidResolverInterface $uuid_resolver, ConfigFactoryInterface $config_factory) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->contentUuidResolver = $uuid_resolver;
+    $this->config = $config_factory->get('oe_content_persistent.settings');
   }
 
   /**
@@ -54,7 +67,8 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('oe_content_persistent.resolver')
+      $container->get('oe_content_persistent.resolver'),
+      $container->get('config.factory')
     );
   }
 
@@ -66,19 +80,30 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
 
     $dom = Html::load($text);
     $xpath = new \DOMXPath($dom);
+    $url_regexp = '/^' . preg_quote($this->config->get('base_url'), '/') . '(' . Uuid::VALID_PATTERN . ')/i';
+
+    $result->addCacheableDependency($this->config);
+
     foreach ($xpath->query('//a') as $node) {
-      $href = $node->getAttribute('href');
+      try {
+        $href = $node->getAttribute('href');
+        // If there is a 'href' attribute that contains a UUID,
+        // set it to the entity's current URL. This ensures that the URL works
+        // even after a change of entity storage or import of data.
+        if (preg_match($url_regexp, $href, $matches) && Uuid::isValid($matches[1]) && $uuid = $matches[1]) {
+          $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
+          if ($entity) {
+            $url = $entity->toUrl()->toString(TRUE);
 
-      preg_match('/\/content\/([0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12})/i', $href, $matches);
-
-      // If there is a 'src' attribute, set it to the file entity's current
-      // URL. This ensures the URL works even after the file location changes.
-      if (preg_match('/[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}/i', $matches[1]) && $uuid = $matches[1]) {
-        $entity = $this->contentUuidResolver->getEntityByUuid($matches[1], $langcode);
-        if ($entity) {
-          $node->setAttribute('href', $entity->toUrl()->toString());
-          $result->addCacheableDependency($entity);
+            $node->setAttribute('href', $url->getGeneratedUrl());
+            $result
+              ->addCacheableDependency($entity)
+              ->addCacheableDependency($url);
+          }
         }
+      }
+      catch (\Exception $e) {
+        watchdog_exception('filter_purl', $e);
       }
     }
     $result->setProcessedText(Html::serialize($dom));
