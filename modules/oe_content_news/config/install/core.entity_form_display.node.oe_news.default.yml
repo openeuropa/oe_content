@@ -30,7 +30,7 @@ content:
     third_party_settings: {  }
     region: content
   created:
-    type: datetime_timestamp
+    type: datetime_default
     weight: 14
     region: content
     settings: {  }
