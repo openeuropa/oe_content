@@ -29,7 +29,7 @@ drupal:
     - "./vendor/bin/drush en oe_content -y"
     - "./vendor/bin/drush en oe_content_page -y"
     - "./vendor/bin/drush en oe_content_news -y"
-    - "./vendor/bin/drush en oe_content_persistent -y"
+    - "./vendor/bin/drush en oe_content_persistent path -y"
     - "./vendor/bin/drush cr"
   settings:
     settings:
@@ -38,6 +38,7 @@ drupal:
         - "bower_components"
         - "vendor"
         - "${drupal.root}"
+      extension_discovery_scan_tests: TRUE
     databases:
       sparql_default:
         default:

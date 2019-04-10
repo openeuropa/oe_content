@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   module:
-    - linkit
-name: 'Basic HTML'
-format: basic_html
+    - oe_content_persistent_test
+name: 'Base HTML'
+format: base_html
 weight: 0
 filters:
   linkit:

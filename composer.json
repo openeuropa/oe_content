@@ -28,7 +28,8 @@
         "openeuropa/drupal-core-require-dev": "^8.6",
         "openeuropa/task-runner": "~1.0@beta",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.0"
+        "symfony/dom-crawler": "~3.0",
+        "drupaltest/behat-traits": "dev-8.x-1.x"
     },
     "autoload": {
         "psr-4": {

@@ -1,12 +1,9 @@
-uuid: ee53f09c-98ac-46a7-9ef0-be676055a833
 langcode: en
 status: true
 dependencies:
-  config:
-    - filter.format.basic_html
   module:
-    - ckeditor
-format: basic_html
+    - oe_content_persistent_test
+format: base_html
 editor: ckeditor
 settings:
   toolbar:

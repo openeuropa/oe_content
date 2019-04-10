@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat;
 
+use Behat\Behat\Hook\Scope\AfterScenarioScope;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 
 /**
@@ -102,6 +104,39 @@ class FeatureContext extends RawDrupalContext {
     }
 
     $this->assertSession()->elementAttributeContains('css', 'img.avportal-photo', 'src', $src);
+  }
+
+  /**
+   * Enables config and modules for PURL processing functionalities.
+   *
+   * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
+   *   The scope.
+   *
+   * @beforeScenario @purl-linkit
+   */
+  public function enableTestModule(BeforeScenarioScope $scope): void {
+    \Drupal::service('module_installer')->install([
+      'ckeditor',
+      'content_translation',
+      'oe_content_persistent_test',
+    ]);
+  }
+
+  /**
+   * Remove config and disable modules for PURL processing functionalities.
+   *
+   * @param \Behat\Behat\Hook\Scope\AfterScenarioScope $scope
+   *   The scope.
+   *
+   * @afterScenario @purl-linkit
+   */
+  public function disableTestModule(AfterScenarioScope $scope): void {
+    \Drupal::service('module_installer')->uninstall([
+      'ckeditor',
+      'content_translation',
+      'oe_content_persistent_test',
+    ]);
+    \Drupal::configFactory()->getEditable('filter.format.base_html')->delete();
   }
 
 }
