@@ -30,7 +30,7 @@ content:
     third_party_settings: {  }
     region: content
   created:
-    type: datetime_default
+    type: datetime_timestamp
     weight: 14
     region: content
     settings: {  }
@@ -99,7 +99,7 @@ content:
     weight: 5
     settings: {  }
     third_party_settings: {  }
-    type: datetime_timestamp
+    type: datetime_default
     region: content
   oe_news_subject:
     weight: 6
