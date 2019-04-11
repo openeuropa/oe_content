@@ -19,7 +19,6 @@ Feature: News content creation
     And I fill in "Body" with "Body text"
     And I fill in "Location" with "Budapest"
     And I fill in "Publication date" with the date "2019-02-21"
-    And I fill in "Publication date" with the time "16:59:00"
     And I fill in "Subject" with "financing"
     And I fill in "Author" with "European Patent Office"
     # Reference the media photo to the news item.

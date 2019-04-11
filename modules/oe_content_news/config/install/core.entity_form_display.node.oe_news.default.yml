@@ -99,7 +99,7 @@ content:
     weight: 5
     settings: {  }
     third_party_settings: {  }
-    type: datetime_timestamp
+    type: datetime_default
     region: content
   oe_news_subject:
     weight: 6
