@@ -4,3 +4,8 @@ package: OpenEuropa
 
 type: module
 core: 8.x
+
+configure: oe_content_persistent.purl_settings
+
+dependencies:
+  - linkit:linkit

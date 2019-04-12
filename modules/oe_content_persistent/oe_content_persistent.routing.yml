@@ -6,3 +6,11 @@ oe_content_persistent.redirect:
   requirements:
     _permission: 'access content'
     uuid: '[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}'
+
+oe_content_persistent.purl_settings:
+  path: '/admin/config/purl/settings'
+  defaults:
+    _form: '\Drupal\oe_content_persistent\Form\PurlSettingsForm'
+    _title: 'PURL settings'
+  requirements:
+    _permission: 'configure purl settings'

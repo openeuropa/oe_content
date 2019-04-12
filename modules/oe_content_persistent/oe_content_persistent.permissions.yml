@@ -1,0 +1,3 @@
+configure purl settings:
+  title: 'Configure purl settings'
+  restrict access: true

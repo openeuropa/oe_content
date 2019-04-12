@@ -4,7 +4,11 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat;
 
+use Behat\Behat\Hook\Scope\AfterScenarioScope;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Drupal\Core\Cache\Cache;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\node\NodeInterface;
 
 /**
  * Defines step definitions that are generally useful in this project.
@@ -102,6 +106,149 @@ class FeatureContext extends RawDrupalContext {
     }
 
     $this->assertSession()->elementAttributeContains('css', 'img.avportal-photo', 'src', $src);
+  }
+
+  /**
+   * Enables config and modules for PURL processing functionalities.
+   *
+   * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
+   *   The scope.
+   *
+   * @beforeScenario @purl-linkit
+   */
+  public function enableTestModule(BeforeScenarioScope $scope): void {
+    \Drupal::service('module_installer')->install([
+      'ckeditor',
+      'content_translation',
+      'oe_content_persistent_test',
+    ]);
+  }
+
+  /**
+   * Remove config and disable modules for PURL processing functionalities.
+   *
+   * @param \Behat\Behat\Hook\Scope\AfterScenarioScope $scope
+   *   The scope.
+   *
+   * @afterScenario @purl-linkit
+   */
+  public function disableTestModule(AfterScenarioScope $scope): void {
+    \Drupal::service('module_installer')->uninstall([
+      'ckeditor',
+      'content_translation',
+      'oe_content_persistent_test',
+    ]);
+    \Drupal::configFactory()->getEditable('filter.format.base_html')->delete();
+  }
+
+  /**
+   * Set alias of the node.
+   *
+   * @param string $node_title
+   *   Title of the node.
+   * @param string $alias
+   *   Alias of the node.
+   * @param string|null $language_name
+   *   Language name if applicable.
+   *
+   * @When I update alias of :node_title node to :alias
+   * @When I update alias of :node_title node to :alias for :language_name
+   */
+  public function updateNodeAlias(string $node_title, string $alias, $language_name = NULL) {
+    $node = $this->getNodeByTitle($node_title);
+
+    if ($language_name) {
+      $langcode = $this->getLangcodeByName($language_name);
+      $node = $node->addTranslation($langcode, $node->toArray());
+    }
+
+    $node->get('path')->alias = $alias;
+    $node->save();
+    // @todo Investigate is this related to this issue https://www.drupal.org/node/2480077.
+    // @see example \Drupal\Tests\path\Functional\PathAliasTest::testPathCache
+    \Drupal::cache('data')->deleteAll();
+  }
+
+  /**
+   * Check link to node.
+   *
+   * @param string $node_title
+   *   Title of the node.
+   * @param string|null $alias
+   *   Alias of the node.
+   *
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   *
+   * @Then I should see a link pointing to the :node_title node
+   * @Then I should see a persistent link for the node :node_title pointing to :alias
+   */
+  public function assertProcessedLink(string $node_title, $alias = NULL) {
+    $node = $this->getNodeByTitle($node_title);
+    if ($alias === NULL) {
+      $alias = $node->toUrl()->toString();
+    }
+    $alias = '/' . $this->getDrupalParameter('drupal')['drupal_root'] . $alias;
+    $node_url = \Drupal::config('oe_content_persistent.settings')->get('base_url') . $node->uuid();
+    $this->assertLinkWithHref($node_url, $alias);
+  }
+
+  /**
+   * Clicks on a fieldset form element.
+   *
+   * @param string $field
+   *   The name of the fieldset.
+   *
+   * @Given I click the fieldset :field
+   */
+  public function assertClickFieldset(string $field): void {
+    $this->getSession()->getPage()->find('named', ['link_or_button', $field])->click();
+  }
+
+  /**
+   * Retrieves a node by its title.
+   *
+   * @param string $title
+   *   The node title.
+   *
+   * @return \Drupal\node\NodeInterface
+   *   The node entity.
+   */
+  protected function getNodeByTitle(string $title): NodeInterface {
+    $storage = \Drupal::entityTypeManager()->getStorage('node');
+    $nodes = $storage->loadByProperties([
+      'title' => $title,
+    ]);
+
+    if (!$nodes) {
+      throw new \Exception("Could not find node with title '$title'.");
+    }
+
+    if (count($nodes) > 1) {
+      throw new \Exception("Multiple nodes with title '$title' found.");
+    }
+
+    return reset($nodes);
+  }
+
+  /**
+   * Retrieves a langcode by language name.
+   *
+   * @param string $language_name
+   *   Name of language.
+   *
+   * @return string
+   *   Langcode of language.
+   */
+  protected function getLangcodeByName(string $language_name): string {
+    $languages = \Drupal::service('language_manager')->getStandardLanguageList();
+
+    foreach ($languages as $langcode => $language) {
+      if ($language[0] === $language_name) {
+        return $langcode;
+      }
+    }
+
+    throw new \Exception("Language name '$language_name' is not valid.");
   }
 
 }

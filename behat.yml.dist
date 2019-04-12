@@ -8,6 +8,7 @@ default:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
         - Drupal\Tests\oe_content\Behat\CleanupContext
+        - Drupal\Tests\oe_content\Behat\WysiwygContext
         - OpenEuropa\Behat\TransformationContext:
             pages:
               Page creation: 'node/add/oe_page'
