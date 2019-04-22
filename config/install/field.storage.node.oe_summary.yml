@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - text
-id: node.oe_news_teaser
-field_name: oe_news_teaser
+id: node.oe_summary
+field_name: oe_summary
 entity_type: node
 type: text_long
 settings: {  }

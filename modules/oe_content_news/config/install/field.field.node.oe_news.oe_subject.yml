@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_news_author
+    - field.storage.node.oe_subject
     - node.type.oe_news
   module:
     - rdf_skos
-id: node.oe_news.oe_news_author
-field_name: oe_news_author
+id: node.oe_news.oe_subject
+field_name: oe_subject
 entity_type: node
 bundle: oe_news
-label: Author
+label: Subject
 description: ''
 required: true
 translatable: false
@@ -24,11 +24,11 @@ settings:
       field: _none
     auto_create: 0
     concept_schemes:
-      - 'http://publications.europa.eu/resource/authority/corporate-body'
+      - 'http://data.europa.eu/uxp'
     field:
-      field_name: oe_news_author
+      field_name: oe_subject
       entity_type: node
       bundle: oe_news
       concept_schemes:
-        - 'http://publications.europa.eu/resource/authority/corporate-body'
+        - 'http://data.europa.eu/uxp'
 field_type: skos_concept_entity_reference

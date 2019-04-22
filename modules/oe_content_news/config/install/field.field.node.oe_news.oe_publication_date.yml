@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_news_publication_date
+    - field.storage.node.oe_publication_date
     - node.type.oe_news
   module:
     - datetime
-id: node.oe_news.oe_news_publication_date
-field_name: oe_news_publication_date
+id: node.oe_news.oe_publication_date
+field_name: oe_publication_date
 entity_type: node
 bundle: oe_news
 label: 'Publication date'

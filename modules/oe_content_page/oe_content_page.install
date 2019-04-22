@@ -31,10 +31,10 @@ function oe_content_page_update_8001() {
     'oe_content_legacy_link' => TRUE,
     'oe_content_navigation_title' => TRUE,
     'oe_content_short_title' => TRUE,
-    'oe_page_author' => TRUE,
-    'oe_page_subject' => TRUE,
-    'oe_page_summary' => TRUE,
-    'oe_page_teaser' => TRUE,
+    'oe_author' => TRUE,
+    'oe_subject' => TRUE,
+    'oe_summary' => TRUE,
+    'oe_teaser' => TRUE,
   ]);
   $view_display->save();
 }

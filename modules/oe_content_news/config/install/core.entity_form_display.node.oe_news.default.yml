@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_news.body
-    - field.field.node.oe_news.oe_news_author
+    - field.field.node.oe_news.oe_author
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_location
-    - field.field.node.oe_news.oe_news_publication_date
-    - field.field.node.oe_news.oe_news_subject
-    - field.field.node.oe_news.oe_news_summary
-    - field.field.node.oe_news.oe_news_teaser
+    - field.field.node.oe_news.oe_publication_date
+    - field.field.node.oe_news.oe_subject
+    - field.field.node.oe_news.oe_summary
+    - field.field.node.oe_news.oe_teaser
     - node.type.oe_news
   module:
     - link
@@ -68,7 +68,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  oe_news_author:
+  oe_author:
     weight: 7
     settings:
       match_operator: CONTAINS
@@ -95,13 +95,13 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
-  oe_news_publication_date:
+  oe_publication_date:
     weight: 5
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
-  oe_news_subject:
+  oe_subject:
     weight: 6
     settings:
       match_operator: CONTAINS
@@ -110,7 +110,7 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
-  oe_news_summary:
+  oe_summary:
     weight: 2
     settings:
       rows: 5
@@ -123,7 +123,7 @@ content:
         maxlength_js_truncate_html: true
     type: text_textarea
     region: content
-  oe_news_teaser:
+  oe_teaser:
     weight: 1
     settings:
       rows: 5
