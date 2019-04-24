@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.oe_news
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+id: node.oe_news
+target_entity_type_id: node
+target_bundle: oe_news
+default_langcode: site_default
+language_alterable: true
