@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_page_summary
-    - node.type.oe_page
+    - field.storage.node.oe_summary
+    - node.type.oe_news
   module:
     - text
-id: node.oe_page.oe_page_summary
-field_name: oe_page_summary
+id: node.oe_news.oe_summary
+field_name: oe_summary
 entity_type: node
-bundle: oe_page
+bundle: oe_news
 label: Summary
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

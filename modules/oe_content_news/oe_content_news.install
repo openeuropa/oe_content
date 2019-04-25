@@ -31,13 +31,13 @@ function oe_content_news_update_8001() {
     'oe_content_legacy_link' => TRUE,
     'oe_content_navigation_title' => TRUE,
     'oe_content_short_title' => TRUE,
-    'oe_news_author' => TRUE,
-    'oe_news_subject' => TRUE,
-    'oe_news_summary' => TRUE,
-    'oe_news_teaser' => TRUE,
+    'oe_author' => TRUE,
+    'oe_subject' => TRUE,
+    'oe_summary' => TRUE,
+    'oe_teaser' => TRUE,
     'oe_news_featured_media' => TRUE,
     'oe_news_location' => TRUE,
-    'oe_news_publication_date' => TRUE,
+    'oe_publication_date' => TRUE,
   ]);
 
   $view_display->save();

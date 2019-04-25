@@ -3,16 +3,15 @@ status: true
 dependencies:
   module:
     - node
-    - rdf_skos
-id: node.oe_news_subject
-field_name: oe_news_subject
+    - text
+id: node.oe_teaser
+field_name: oe_teaser
 entity_type: node
-type: skos_concept_entity_reference
-settings:
-  target_type: skos_concept
-module: rdf_skos
+type: text_long
+settings: {  }
+module: text
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

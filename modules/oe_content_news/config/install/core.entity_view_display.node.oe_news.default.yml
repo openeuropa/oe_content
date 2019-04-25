@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_news.body
-    - field.field.node.oe_news.oe_news_author
+    - field.field.node.oe_news.oe_author
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_location
-    - field.field.node.oe_news.oe_news_publication_date
-    - field.field.node.oe_news.oe_news_subject
-    - field.field.node.oe_news.oe_news_summary
-    - field.field.node.oe_news.oe_news_teaser
+    - field.field.node.oe_news.oe_publication_date
+    - field.field.node.oe_news.oe_subject
+    - field.field.node.oe_news.oe_summary
+    - field.field.node.oe_news.oe_teaser
     - node.type.oe_news
   module:
     - text
@@ -28,10 +28,10 @@ content:
     region: content
 hidden:
   links: true
-  oe_news_author: true
+  oe_author: true
   oe_news_featured_media: true
   oe_news_location: true
-  oe_news_publication_date: true
-  oe_news_subject: true
-  oe_news_summary: true
-  oe_news_teaser: true
+  oe_publication_date: true
+  oe_subject: true
+  oe_summary: true
+  oe_teaser: true
