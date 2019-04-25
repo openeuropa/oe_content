@@ -1,10 +1,48 @@
 # Change Log
 
+## [0.4.0](https://github.com/openeuropa/oe_content/tree/0.4.0) (2019-04-25)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/0.3.0...0.4.0)
+
+**Closed issues:**
+
+- Update the drone file. [\#43](https://github.com/openeuropa/oe_content/issues/43)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1852: Default and optional content language settings for the content types. [\#60](https://github.com/openeuropa/oe_content/pull/60) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1783: Refactoring fields to more generic names. [\#59](https://github.com/openeuropa/oe_content/pull/59) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1672: Enable and configure the teaser view mode for news. [\#58](https://github.com/openeuropa/oe_content/pull/58) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1738: Add support for inline content linking [\#57](https://github.com/openeuropa/oe_content/pull/57) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1724: Make publication date a datetime field. [\#56](https://github.com/openeuropa/oe_content/pull/56) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1659: Updating the News view display. [\#55](https://github.com/openeuropa/oe_content/pull/55) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1709: Replace eurovoc with digital europa thesaurus. [\#54](https://github.com/openeuropa/oe_content/pull/54) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1737: Provide UUID-based Persistent URLs [\#53](https://github.com/openeuropa/oe_content/pull/53) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1659: Change display of base field. [\#52](https://github.com/openeuropa/oe_content/pull/52) ([imanoleguskiza](https://github.com/imanoleguskiza))
+-  OPENEUROPA-1667: Limit text field length [\#51](https://github.com/openeuropa/oe_content/pull/51) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1723: Short title token [\#50](https://github.com/openeuropa/oe_content/pull/50) ([hernani](https://github.com/hernani))
+- OPENEUROPA-1730: Remove default value on publication field. [\#49](https://github.com/openeuropa/oe_content/pull/49) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1690: Fixing corporate body classification graph. [\#48](https://github.com/openeuropa/oe_content/pull/48) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1690: Adding Skos Concept reference field config. [\#47](https://github.com/openeuropa/oe_content/pull/47) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1679: Remove preview mode from content types. [\#46](https://github.com/openeuropa/oe_content/pull/46) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1508: Remove teaser view mode from Page. [\#45](https://github.com/openeuropa/oe_content/pull/45) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1508 Create News Content Type [\#44](https://github.com/openeuropa/oe_content/pull/44) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1632 Create page content type [\#42](https://github.com/openeuropa/oe_content/pull/42) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1509 Add common base field definitions for content types. [\#41](https://github.com/openeuropa/oe_content/pull/41) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1509: Remove RDF related implementations. [\#40](https://github.com/openeuropa/oe_content/pull/40) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1609: Add ajax\_timeout setting for behat. [\#39](https://github.com/openeuropa/oe_content/pull/39) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1609 Fix behat.yml.dist to use drupal-extension properly. [\#38](https://github.com/openeuropa/oe_content/pull/38) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1604: Adding new SKOS vocabularies. [\#37](https://github.com/openeuropa/oe_content/pull/37) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1520: Use drupal core. [\#36](https://github.com/openeuropa/oe_content/pull/36) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1533: Add --strict flag for Behat tests execution. [\#35](https://github.com/openeuropa/oe_content/pull/35) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1522: Make sure we don't use Drupal paths in Behat scenarios. [\#34](https://github.com/openeuropa/oe_content/pull/34) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1498: Add documentation on OE Content on how to use this component on a site [\#33](https://github.com/openeuropa/oe_content/pull/33) ([upchuk](https://github.com/upchuk))
+
 ## [0.3.0](https://github.com/openeuropa/oe_content/tree/0.3.0) (2018-12-17)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.2.0...0.3.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.3.0 release. [\#31](https://github.com/openeuropa/oe_content/pull/31) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1384: Removing legacy code from when RDF Taxonomy was used. [\#30](https://github.com/openeuropa/oe_content/pull/30) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1422: Fixing easyrdf package version. [\#29](https://github.com/openeuropa/oe_content/pull/29) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1384: Using the openeuropa namespaced rdf\_skos. [\#28](https://github.com/openeuropa/oe_content/pull/28) ([upchuk](https://github.com/upchuk))
