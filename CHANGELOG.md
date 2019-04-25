@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.4.1](https://github.com/openeuropa/oe_content/tree/0.4.1) (2019-04-25)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/0.4.0...0.4.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1821: Updating dependencies. [\#62](https://github.com/openeuropa/oe_content/pull/62) ([upchuk](https://github.com/upchuk))
+
 ## [0.4.0](https://github.com/openeuropa/oe_content/tree/0.4.0) (2019-04-25)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.3.0...0.4.0)
 
@@ -9,6 +16,7 @@
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 0.4.0. [\#61](https://github.com/openeuropa/oe_content/pull/61) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1852: Default and optional content language settings for the content types. [\#60](https://github.com/openeuropa/oe_content/pull/60) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1783: Refactoring fields to more generic names. [\#59](https://github.com/openeuropa/oe_content/pull/59) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1672: Enable and configure the teaser view mode for news. [\#58](https://github.com/openeuropa/oe_content/pull/58) ([upchuk](https://github.com/upchuk))
