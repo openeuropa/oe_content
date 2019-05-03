@@ -1,10 +1,18 @@
 # Change Log
 
+## [0.4.2](https://github.com/openeuropa/oe_content/tree/0.4.2) (2019-05-03)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/0.4.1...0.4.2)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1813: Updating 0.x dependencies. [\#64](https://github.com/openeuropa/oe_content/pull/64) ([upchuk](https://github.com/upchuk))
+
 ## [0.4.1](https://github.com/openeuropa/oe_content/tree/0.4.1) (2019-04-25)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.4.0...0.4.1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 0.4.1. [\#63](https://github.com/openeuropa/oe_content/pull/63) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1821: Updating dependencies. [\#62](https://github.com/openeuropa/oe_content/pull/62) ([upchuk](https://github.com/upchuk))
 
 ## [0.4.0](https://github.com/openeuropa/oe_content/tree/0.4.0) (2019-04-25)
