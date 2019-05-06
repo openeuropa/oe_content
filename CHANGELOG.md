@@ -1,10 +1,18 @@
 # Change Log
 
+## [0.5.0](https://github.com/openeuropa/oe_content/tree/0.5.0) (2019-05-06)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/0.4.2...0.5.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1813: Upgrade to 8.7. [\#66](https://github.com/openeuropa/oe_content/pull/66) ([upchuk](https://github.com/upchuk))
+
 ## [0.4.2](https://github.com/openeuropa/oe_content/tree/0.4.2) (2019-05-03)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.4.1...0.4.2)
 
 **Merged pull requests:**
 
+- OPENEUROPA-1766: Preparing release 0.4.2. [\#65](https://github.com/openeuropa/oe_content/pull/65) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1813: Updating 0.x dependencies. [\#64](https://github.com/openeuropa/oe_content/pull/64) ([upchuk](https://github.com/upchuk))
 
 ## [0.4.1](https://github.com/openeuropa/oe_content/tree/0.4.1) (2019-04-25)
@@ -52,6 +60,7 @@
 - OPENEUROPA-1533: Add --strict flag for Behat tests execution. [\#35](https://github.com/openeuropa/oe_content/pull/35) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1522: Make sure we don't use Drupal paths in Behat scenarios. [\#34](https://github.com/openeuropa/oe_content/pull/34) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1498: Add documentation on OE Content on how to use this component on a site [\#33](https://github.com/openeuropa/oe_content/pull/33) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1384: Removing legacy code from when RDF Taxonomy was used. [\#30](https://github.com/openeuropa/oe_content/pull/30) ([upchuk](https://github.com/upchuk))
 
 ## [0.3.0](https://github.com/openeuropa/oe_content/tree/0.3.0) (2018-12-17)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.2.0...0.3.0)
@@ -59,7 +68,6 @@
 **Merged pull requests:**
 
 - Update CHANGELOG.md for 0.3.0 release. [\#31](https://github.com/openeuropa/oe_content/pull/31) ([ademarco](https://github.com/ademarco))
-- OPENEUROPA-1384: Removing legacy code from when RDF Taxonomy was used. [\#30](https://github.com/openeuropa/oe_content/pull/30) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1422: Fixing easyrdf package version. [\#29](https://github.com/openeuropa/oe_content/pull/29) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1384: Using the openeuropa namespaced rdf\_skos. [\#28](https://github.com/openeuropa/oe_content/pull/28) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1322: Use the proper Docker way of overriding docker-composer.yml file. [\#27](https://github.com/openeuropa/oe_content/pull/27) ([drupol](https://github.com/drupol))
