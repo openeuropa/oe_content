@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_page.body
+    - field.field.node.oe_page.oe_related_links
     - field.field.node.oe_page.oe_author
     - field.field.node.oe_page.oe_subject
     - field.field.node.oe_page.oe_summary
@@ -147,4 +148,12 @@ content:
       placeholder: ''
     region: content
     third_party_settings: {  }
+  oe_related_links:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
 hidden: {  }

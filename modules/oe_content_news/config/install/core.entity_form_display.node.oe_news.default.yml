@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_news.body
+    - field.field.node.oe_news.oe_related_links
     - field.field.node.oe_news.oe_author
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_location
@@ -177,4 +178,12 @@ content:
       placeholder: ''
     region: content
     third_party_settings: {  }
+  oe_related_links:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
 hidden: {  }

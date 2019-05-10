@@ -10,17 +10,14 @@ dependencies:
   - oe_media_avportal:oe_media_avportal
 
 config_devel:
-  - core.entity_form_display.node.oe_news.default
-  - core.entity_view_display.node.oe_news.default
-  - core.entity_view_display.node.oe_news.teaser
-  - field.field.node.oe_news.body
-  - field.field.node.oe_news.oe_news_location
-  - field.field.node.oe_news.oe_news_featured_media
-  - field.storage.node.oe_news_featured_media
-  - field.storage.node.oe_author
-  - field.storage.node.oe_news_location
-  - field.storage.node.oe_publication_date
-  - field.storage.node.oe_subject
-  - field.storage.node.oe_summary
-  - field.storage.node.oe_teaser
-  - node.type.oe_news
+  install:
+    - core.entity_form_display.node.oe_news.default
+    - core.entity_view_display.node.oe_news.default
+    - core.entity_view_display.node.oe_news.teaser
+    - field.field.node.oe_news.body
+    - field.field.node.oe_news.oe_news_location
+    - field.field.node.oe_news.oe_news_featured_media
+    - field.field.node.oe_news.oe_related_links
+    - field.storage.node.oe_news_featured_media
+    - field.storage.node.oe_news_location
+    - node.type.oe_news

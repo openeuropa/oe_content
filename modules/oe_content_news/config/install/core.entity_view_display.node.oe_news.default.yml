@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_news.body
+    - field.field.node.oe_news.oe_related_links
     - field.field.node.oe_news.oe_author
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_location
@@ -35,3 +36,4 @@ hidden:
   oe_subject: true
   oe_summary: true
   oe_teaser: true
+  oe_related_links: true

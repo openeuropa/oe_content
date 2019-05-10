@@ -27,6 +27,8 @@ Feature: News content creation
     And I fill in "Legacy link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Short title" with "Shorter title"
+    And I fill in "URL" with "http://example.com"
+    And I fill in "Link text" with "My link"
     When I press "Save"
     Then I should see "My News item"
     And I should not see "Navi title"
@@ -37,6 +39,7 @@ Feature: News content creation
     And I should not see "Teaser text"
     And I should not see the link "financing"
     And I should not see the link "European Patent Office"
+    And I should not see the link "My link"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.

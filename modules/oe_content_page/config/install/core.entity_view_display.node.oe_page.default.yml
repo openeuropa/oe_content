@@ -3,13 +3,14 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_page.body
+    - field.field.node.oe_page.oe_related_links
     - field.field.node.oe_page.oe_author
     - field.field.node.oe_page.oe_subject
     - field.field.node.oe_page.oe_summary
     - field.field.node.oe_page.oe_teaser
     - node.type.oe_page
   module:
-    - rdf_skos
+    - link
     - text
     - user
 id: node.oe_page.default
@@ -34,3 +35,4 @@ hidden:
   oe_subject: true
   oe_summary: true
   oe_teaser: true
+  oe_related_links: true
