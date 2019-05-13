@@ -31,11 +31,11 @@ content:
 hidden:
   body: true
   links: true
+  oe_author: true
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
   oe_content_short_title: true
-  oe_author: true
   oe_news_featured_media: true
   oe_news_location: true
   oe_publication_date: true

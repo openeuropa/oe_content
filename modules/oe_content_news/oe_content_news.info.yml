@@ -15,9 +15,14 @@ config_devel:
     - core.entity_view_display.node.oe_news.default
     - core.entity_view_display.node.oe_news.teaser
     - field.field.node.oe_news.body
-    - field.field.node.oe_news.oe_news_location
+    - field.field.node.oe_news.oe_author
     - field.field.node.oe_news.oe_news_featured_media
+    - field.field.node.oe_news.oe_news_location
+    - field.field.node.oe_news.oe_publication_date
     - field.field.node.oe_news.oe_related_links
+    - field.field.node.oe_news.oe_subject
+    - field.field.node.oe_news.oe_summary
+    - field.field.node.oe_news.oe_teaser
     - field.storage.node.oe_news_featured_media
     - field.storage.node.oe_news_location
     - node.type.oe_news
