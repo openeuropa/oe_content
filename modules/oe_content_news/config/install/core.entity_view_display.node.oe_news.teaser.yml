@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_location
     - field.field.node.oe_news.oe_publication_date
+    - field.field.node.oe_news.oe_related_links
     - field.field.node.oe_news.oe_subject
     - field.field.node.oe_news.oe_summary
     - field.field.node.oe_news.oe_teaser
@@ -38,5 +39,6 @@ hidden:
   oe_news_featured_media: true
   oe_news_location: true
   oe_publication_date: true
+  oe_related_links: true
   oe_subject: true
   oe_summary: true

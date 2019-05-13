@@ -25,6 +25,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  oe_related_links:
+    type: link
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
 hidden:
   links: true
   oe_content_content_owner: true
@@ -35,4 +47,3 @@ hidden:
   oe_subject: true
   oe_summary: true
   oe_teaser: true
-  oe_related_links: true

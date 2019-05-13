@@ -39,7 +39,7 @@ Feature: News content creation
     And I should not see "Teaser text"
     And I should not see the link "financing"
     And I should not see the link "European Patent Office"
-    And I should not see the link "My link"
+    And I should see the link "My link"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.

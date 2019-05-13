@@ -16,16 +16,16 @@ Feature: Page content creation
     And I fill in "Body" with "Body text"
     And I fill in "URL" with "http://example.com"
     And I fill in "Link text" with "My link"
-    And I should not see "Teaser text"
-    And I should not see the link "financing"
-    And I should not see the link "European Patent Office"
-    And I should not see the link "My link"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
     And I fill in "Author" with "European Patent Office"
     When I press "Save"
     Then I should see "My page"
     And I should see "Body text"
+    And I should not see "Teaser text"
+    And I should not see the link "financing"
+    And I should not see the link "European Patent Office"
+    And I should see the link "My link"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
