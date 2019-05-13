@@ -26,3 +26,5 @@ config_devel:
     - field.storage.node.oe_news_featured_media
     - field.storage.node.oe_news_location
     - node.type.oe_news
+  optional:
+    - language.content_settings.node.oe_news
