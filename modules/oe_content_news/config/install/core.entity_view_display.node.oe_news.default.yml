@@ -7,11 +7,13 @@ dependencies:
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_location
     - field.field.node.oe_news.oe_publication_date
+    - field.field.node.oe_news.oe_related_links
     - field.field.node.oe_news.oe_subject
     - field.field.node.oe_news.oe_summary
     - field.field.node.oe_news.oe_teaser
     - node.type.oe_news
   module:
+    - link
     - text
     - user
 id: node.oe_news.default
@@ -26,9 +28,25 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  oe_related_links:
+    type: link
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
 hidden:
   links: true
   oe_author: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
   oe_news_featured_media: true
   oe_news_location: true
   oe_publication_date: true

@@ -10,3 +10,7 @@ dependencies:
   - field_group:field_group
   - rdf_skos:rdf_skos
   - maxlength:maxlength
+
+config_devel:
+  install:
+    - field.storage.node.oe_related_links

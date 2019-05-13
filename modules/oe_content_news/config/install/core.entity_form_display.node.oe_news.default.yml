@@ -7,11 +7,13 @@ dependencies:
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_location
     - field.field.node.oe_news.oe_publication_date
+    - field.field.node.oe_news.oe_related_links
     - field.field.node.oe_news.oe_subject
     - field.field.node.oe_news.oe_summary
     - field.field.node.oe_news.oe_teaser
     - node.type.oe_news
   module:
+    - datetime
     - link
     - maxlength
     - rdf_skos
@@ -35,6 +37,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_author:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: '60'
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
     weight: 9
@@ -68,15 +79,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  oe_author:
-    weight: 7
-    settings:
-      match_operator: CONTAINS
-      size: '60'
-      placeholder: ''
-    third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   oe_news_featured_media:
     weight: 8
     settings:
@@ -100,6 +102,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  oe_related_links:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   oe_subject:
     weight: 6
