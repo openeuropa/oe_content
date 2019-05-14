@@ -20,11 +20,12 @@ bundle: oe_page
 mode: default
 content:
   body:
-    type: text_textarea
+    type: text_textarea_with_summary
     weight: 3
     settings:
       rows: 9
       placeholder: ''
+      summary_rows: 3
     third_party_settings: {  }
     region: content
   created:
@@ -39,7 +40,7 @@ content:
     region: content
     settings:
       match_operator: CONTAINS
-      size: '60'
+      size: 60
       placeholder: ''
     third_party_settings: {  }
   oe_content_legacy_link:
@@ -70,7 +71,7 @@ content:
     weight: 5
     settings:
       match_operator: CONTAINS
-      size: '60'
+      size: 60
       placeholder: ''
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
@@ -79,7 +80,7 @@ content:
     weight: 4
     settings:
       match_operator: CONTAINS
-      size: '60'
+      size: 60
       placeholder: ''
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
