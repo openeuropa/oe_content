@@ -22,7 +22,7 @@ settings:
     target_bundles: null
     sort:
       field: _none
-    auto_create: 0
+    auto_create: false
     concept_schemes:
       - 'http://data.europa.eu/uxp'
     field:
