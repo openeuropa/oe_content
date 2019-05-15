@@ -1,10 +1,18 @@
 # Change Log
 
+## [1.0.0-beta1](https://github.com/openeuropa/oe_content/tree/1.0.0-beta1) (2019-05-15)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/0.6.0...1.0.0-beta1)
+
+**Closed issues:**
+
+- 1.0.0-beta1 release [\#72](https://github.com/openeuropa/oe_content/issues/72)
+
 ## [0.6.0](https://github.com/openeuropa/oe_content/tree/0.6.0) (2019-05-14)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.5.0...0.6.0)
 
 **Merged pull requests:**
 
+- Update changelog for release 0.6.0. [\#70](https://github.com/openeuropa/oe_content/pull/70) ([brummbar](https://github.com/brummbar))
 - OPENEUROPA-1890: Fixing field exports. [\#69](https://github.com/openeuropa/oe_content/pull/69) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1890: Related links field. [\#68](https://github.com/openeuropa/oe_content/pull/68) ([upchuk](https://github.com/upchuk))
 
