@@ -1,11 +1,22 @@
 # Change Log
 
+## [1.0.0-beta2](https://github.com/openeuropa/oe_content/tree/1.0.0-beta2) (2019-05-15)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0-beta1...1.0.0-beta2)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1864: Update OpenEuropa Media version. [\#73](https://github.com/openeuropa/oe_content/pull/73) ([ademarco](https://github.com/ademarco))
+
 ## [1.0.0-beta1](https://github.com/openeuropa/oe_content/tree/1.0.0-beta1) (2019-05-15)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.6.0...1.0.0-beta1)
 
 **Closed issues:**
 
 - 1.0.0-beta1 release [\#72](https://github.com/openeuropa/oe_content/issues/72)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1864: Update Changelog for release 1.0.0-beta1. [\#71](https://github.com/openeuropa/oe_content/pull/71) ([sergepavle](https://github.com/sergepavle))
 
 ## [0.6.0](https://github.com/openeuropa/oe_content/tree/0.6.0) (2019-05-14)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.5.0...0.6.0)
