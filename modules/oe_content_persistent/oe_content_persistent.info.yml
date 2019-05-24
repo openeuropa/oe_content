@@ -9,3 +9,7 @@ configure: oe_content_persistent.purl_settings
 
 dependencies:
   - linkit:linkit
+
+config_devel:
+  install:
+    - oe_content_persistent.settings
