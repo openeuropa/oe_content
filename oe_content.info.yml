@@ -13,4 +13,9 @@ dependencies:
 
 config_devel:
   install:
+    - field.storage.node.oe_author
+    - field.storage.node.oe_publication_date
     - field.storage.node.oe_related_links
+    - field.storage.node.oe_subject
+    - field.storage.node.oe_summary
+    - field.storage.node.oe_teaser

@@ -18,3 +18,5 @@ config_devel:
     - field.field.node.oe_page.oe_summary
     - field.field.node.oe_page.oe_teaser
     - node.type.oe_page
+  optional:
+    - language.content_settings.node.oe_page
