@@ -1,0 +1,22 @@
+name: OpenEuropa Policy Content
+description: Contains the EC corporate Policy content type.
+package: OpenEuropa
+
+type: module
+core: 8.x
+dependencies:
+  - oe_content:oe_content
+
+config_devel:
+  install:
+    - core.entity_form_display.node.oe_policy.default
+    - core.entity_view_display.node.oe_policy.default
+    - core.entity_view_display.node.oe_policy.teaser
+    - field.field.node.oe_policy.body
+    - field.field.node.oe_policy.oe_author
+    - field.field.node.oe_policy.oe_subject
+    - field.field.node.oe_policy.oe_summary
+    - field.field.node.oe_policy.oe_teaser
+    - node.type.oe_news
+  optional:
+    - language.content_settings.node.oe_policy
