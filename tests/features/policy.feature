@@ -1,6 +1,6 @@
 @api
 Feature: Policy content creation
-  In order to have policy on the site
+  In order to have policies on the site
   As an editor
   I need to be able to create and see policy items
 
