@@ -13,6 +13,7 @@ default:
             pages:
               Page creation: 'node/add/oe_page'
               News creation: 'node/add/oe_news'
+              Policy creation: 'node/add/oe_policy'
               AV Portal photo creation: 'media/add/av_portal_photo'
   extensions:
     Drupal\MinkExtension:
