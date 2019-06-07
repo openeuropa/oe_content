@@ -4,7 +4,7 @@ workspace:
 
 services:
   web:
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-ci:7.1
     environment:
       - DOCUMENT_ROOT=/test/oe_content
   mysql:
@@ -18,7 +18,7 @@ services:
      - SPARQL_UPDATE=true
      - DBA_PASSWORD=dba
   selenium:
-    image: selenium/standalone-chrome:3
+    image: selenium/standalone-chrome:3.141.59-oxygen
     pull: true
     shm_size: 2g
     environment:
@@ -30,7 +30,7 @@ services:
 pipeline:
   composer-install-lowest:
     group: prepare
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-ci:7.1
     volumes:
       - /cache:/cache
     commands:
@@ -44,7 +44,7 @@ pipeline:
 
   composer-install-highest:
     group: prepare
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-ci:7.1
     volumes:
       - /cache:/cache
     commands:
@@ -54,7 +54,7 @@ pipeline:
         COMPOSER_BOUNDARY: highest
 
   site-install:
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-ci:7.1
     commands:
       - ./vendor/bin/run drupal:site-install
 
@@ -66,20 +66,14 @@ pipeline:
 
   phpunit:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-ci:7.1
     commands:
-      - chown -R www-data /test/oe_content/build/sites
-      - find /test/oe_content/build/sites/default/files -type d -exec chmod 775 {} \;
-      - find /test/oe_content/build/sites/default/files -type f -exec chmod 664 {} \;
-      - su -s /bin/bash -c "./vendor/bin/phpunit" www-data
+      - ./vendor/bin/phpunit
 
   behat:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-ci:7.1
     commands:
-      # Reset permission since installation runs as root. @todo Fix this.
-      - ./vendor/bin/drush -y config-set system.performance css.preprocess 0
-      - ./vendor/bin/drush -y config-set system.performance js.preprocess 0
       - ./vendor/bin/behat --strict
 
 matrix:
