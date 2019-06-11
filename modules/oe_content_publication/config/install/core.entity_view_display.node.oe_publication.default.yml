@@ -4,11 +4,15 @@ dependencies:
   config:
     - field.field.node.oe_publication.body
     - field.field.node.oe_publication.oe_author
+    - field.field.node.oe_publication.oe_publication_date
+    - field.field.node.oe_publication.oe_publication_responsible
+    - field.field.node.oe_publication.oe_publication_type
     - field.field.node.oe_publication.oe_subject
     - field.field.node.oe_publication.oe_summary
     - field.field.node.oe_publication.oe_teaser
     - node.type.oe_publication
   module:
+    - datetime
     - text
     - user
 id: node.oe_publication.default
@@ -23,6 +27,15 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  oe_publication_date:
+    weight: 1
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
 hidden:
   links: true
   oe_author: true
@@ -30,6 +43,8 @@ hidden:
   oe_content_legacy_link: true
   oe_content_navigation_title: true
   oe_content_short_title: true
+  oe_publication_responsible: true
+  oe_publication_type: true
   oe_subject: true
   oe_summary: true
   oe_teaser: true

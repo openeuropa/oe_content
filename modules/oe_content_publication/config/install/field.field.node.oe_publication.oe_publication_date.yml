@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_publication_date
+    - node.type.oe_publication
+  module:
+    - datetime
+id: node.oe_publication.oe_publication_date
+field_name: oe_publication_date
+entity_type: node
+bundle: oe_publication
+label: 'Publication date'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime
