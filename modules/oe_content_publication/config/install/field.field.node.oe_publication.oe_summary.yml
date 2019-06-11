@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_summary
+    - node.type.oe_publication
+  module:
+    - text
+id: node.oe_publication.oe_summary
+field_name: oe_summary
+entity_type: node
+bundle: oe_publication
+label: Summary
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

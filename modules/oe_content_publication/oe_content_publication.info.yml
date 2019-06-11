@@ -1,0 +1,21 @@
+name: OpenEuropa Publication Content
+description: Contains the EC corporate Publication content type.
+package: OpenEuropa
+
+type: module
+core: 8.x
+dependencies:
+  - oe_content:oe_content
+
+config_devel:
+  install:
+    - core.entity_form_display.node.oe_publication.default
+    - core.entity_view_display.node.oe_publication.default
+    - field.field.node.oe_publication.body
+    - field.field.node.oe_publication.oe_author
+    - field.field.node.oe_publication.oe_subject
+    - field.field.node.oe_publication.oe_summary
+    - field.field.node.oe_publication.oe_teaser
+    - node.type.oe_publication
+  optional:
+    - language.content_settings.node.oe_publication
