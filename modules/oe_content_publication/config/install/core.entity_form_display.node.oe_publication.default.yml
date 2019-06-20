@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_publication.oe_author
-    - field.field.node.oe_publication.oe_document
+    - field.field.node.oe_publication.oe_documents
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_type
     - field.field.node.oe_publication.oe_subject
@@ -69,7 +69,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  oe_document:
+  oe_documents:
     weight: 7
     settings:
       match_operator: CONTAINS
