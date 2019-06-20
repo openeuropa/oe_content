@@ -4,7 +4,7 @@ Feature: Publication content creation
   As an editor
   I need to be able to create and see publication items
 
-  Scenario: Creation of a Publicaiton content through the UI.
+  Scenario: Creation of a Publication content through the UI.
     Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
     # Create a "Publication" content.
     And I visit "the Publication creation page"
@@ -20,9 +20,10 @@ Feature: Publication content creation
     And I fill in "Short title" with "Shorter title"
     When I press "Save"
     Then I should see "My Publication item"
+    And I should see "Acknowledgement receipt"
+    And I should see "Summary text"
     And I should not see "Navi title"
     And I should not see "Shorter title"
-    And I should not see "Summary text"
     And I should not see "Teaser text"
     And I should not see the link "financing"
     And I should not see the link "European Patent Office"

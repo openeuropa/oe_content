@@ -2,8 +2,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.oe_publication.oe_document
     - field.field.node.oe_publication.oe_author
+    - field.field.node.oe_publication.oe_document
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_type
     - field.field.node.oe_publication.oe_subject
@@ -12,6 +12,8 @@ dependencies:
     - node.type.oe_publication
   module:
     - datetime
+    - rdf_skos
+    - text
     - user
 id: node.oe_publication.default
 targetEntityType: node
@@ -20,7 +22,7 @@ mode: default
 content:
   oe_document:
     type: entity_reference_entity_view
-    weight: 2
+    weight: 3
     label: above
     settings:
       view_mode: default
@@ -28,7 +30,7 @@ content:
     third_party_settings: {  }
     region: content
   oe_publication_date:
-    weight: 1
+    weight: 2
     label: above
     settings:
       format_type: medium
@@ -36,6 +38,21 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
+  oe_publication_type:
+    type: skos_concept_entity_reference_label
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_summary:
+    type: text_default
+    weight: 0
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   links: true
   oe_author: true
@@ -43,7 +60,5 @@ hidden:
   oe_content_legacy_link: true
   oe_content_navigation_title: true
   oe_content_short_title: true
-  oe_publication_type: true
   oe_subject: true
-  oe_summary: true
   oe_teaser: true
