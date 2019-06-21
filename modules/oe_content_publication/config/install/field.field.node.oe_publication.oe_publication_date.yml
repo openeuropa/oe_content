@@ -12,7 +12,7 @@ entity_type: node
 bundle: oe_publication
 label: 'Publication date'
 description: ''
-required: false
+required: true
 translatable: true
 default_value:
   -

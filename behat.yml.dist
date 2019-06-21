@@ -16,6 +16,7 @@ default:
               Policy creation: 'node/add/oe_policy'
               Publication creation: 'node/add/oe_publication'
               AV Portal photo creation: 'media/add/av_portal_photo'
+              document creation: 'media/add/document'
   extensions:
     Drupal\MinkExtension:
       goutte: ~
@@ -26,6 +27,7 @@ default:
         wd_host: '${selenium.host}:${selenium.port}/wd/hub'
         capabilities: { "browser": "${selenium.browser}", "version": "*" }
       base_url: "${drupal.base_url}"
+      files_path: "%paths.base%/tests/fixtures/"
     Drupal\DrupalExtension:
       api_driver: "drupal"
       drupal:
