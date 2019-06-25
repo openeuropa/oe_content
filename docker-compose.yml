@@ -33,7 +33,7 @@ services:
   # Newer version of this image might run into this issue:
   # @link https://github.com/elgalu/docker-selenium/issues/20
   selenium:
-    image: selenium/standalone-chrome-debug:3
+    image: selenium/standalone-chrome-debug:3.141.59-oxygen
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
