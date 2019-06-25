@@ -13,7 +13,7 @@ Feature: Policy content creation
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Body" with "Body text"
     And I fill in "Subject" with "financing"
-    And I fill in "Author" with "European Patent Office"
+    And I fill in "Responsible department" with "European Patent Office"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Legacy link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
@@ -40,7 +40,7 @@ Feature: Policy content creation
     And I fill in "Summary" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
     And I fill in "Body" with "Body text"
     And I fill in "Subject" with "financing"
-    And I fill in "Author" with "European Patent Office"
+    And I fill in "Responsible department" with "European Patent Office"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."
