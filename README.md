@@ -1,7 +1,5 @@
 # OpenEuropa Content
 
-**This component is in active development. It is not ready to be used.**
-
 This is a Drupal module that contains the European Commission corporate entity types.
 
 The module uses the RDF SKOS module to provide SKOS modelling for the Publications Office taxonomy vocabularies. These are directly made available in the dependent RDF triple store.
