@@ -1,10 +1,18 @@
 # Change Log
 
+## [1.0.0](https://github.com/openeuropa/oe_content/tree/1.0.0) (2019-06-26)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0-beta3...1.0.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2014: Hide the documents field label. [\#82](https://github.com/openeuropa/oe_content/pull/82) ([upchuk](https://github.com/upchuk))
+
 ## [1.0.0-beta3](https://github.com/openeuropa/oe_content/tree/1.0.0-beta3) (2019-06-25)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0-beta2...1.0.0-beta3)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md release 1.0.0-beta3. [\#81](https://github.com/openeuropa/oe_content/pull/81) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1928: Create Publication content type inside OE Content component. [\#80](https://github.com/openeuropa/oe_content/pull/80) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1927: Update Author field label. [\#79](https://github.com/openeuropa/oe_content/pull/79) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1927: Create Policy content Type. [\#78](https://github.com/openeuropa/oe_content/pull/78) ([sergepavle](https://github.com/sergepavle))
