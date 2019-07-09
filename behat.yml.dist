@@ -33,6 +33,7 @@ default:
       drupal:
         drupal_root: "${drupal.root}"
       region_map:
+        title form element: ".field--name-title"
         teaser form element: ".field--name-oe-teaser"
         summary form element: ".field--name-oe-summary"
   formatters:

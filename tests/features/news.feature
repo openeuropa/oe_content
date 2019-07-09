@@ -45,6 +45,7 @@ Feature: News content creation
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media" permission
     When I visit "the News creation page"
+    Then I should see the text "Content limited to 255 characters, remaining: 255" in the "title form element"
     Then I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     When I fill in "Title" with "My news"
