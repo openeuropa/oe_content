@@ -6,7 +6,6 @@ namespace Drupal\Tests\oe_content\Behat;
 
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Drupal\Core\Cache\Cache;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\node\NodeInterface;
 
