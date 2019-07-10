@@ -6,7 +6,6 @@ namespace Drupal\Tests\oe_content\Behat;
 
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Drupal\Core\Cache\Cache;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\node\NodeInterface;
 
@@ -190,6 +189,24 @@ class FeatureContext extends RawDrupalContext {
     $alias = '/' . $this->getDrupalParameter('drupal')['drupal_root'] . $alias;
     $node_url = \Drupal::config('oe_content_persistent.settings')->get('base_url') . $node->uuid();
     $this->assertLinkWithHref($node_url, $alias);
+  }
+
+  /**
+   * Check link to target.
+   *
+   * @param string $link
+   *   Link identifier.
+   * @param string $path
+   *   Target path of the link.
+   *
+   * @throws \Exception
+   *   Throws an exception if the link is not found or if the target is wrong.
+   *
+   * @Then I should see the link :link point to :path
+   */
+  public function assertLinkTarget(string $link, $path) {
+    $target_url = \Drupal::config('oe_content_persistent.settings')->get('base_url') . $path;
+    $this->assertLinkWithHref($link, $target_url);
   }
 
   /**

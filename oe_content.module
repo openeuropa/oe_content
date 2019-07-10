@@ -10,7 +10,9 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\link\LinkItemInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_entity_base_field_info().
@@ -95,4 +97,24 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDisplayConfigurable('form', TRUE);
 
   return $fields;
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function oe_content_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+  // We add an after build method so we can alter the Url of the help link.
+  if ($element['#type'] == 'text_format') {
+    $element['#after_build'][] = '_oe_content_alter_textarea_help';
+  }
+}
+
+/**
+ * After build callback to alter the Url of the help link on text areas.
+ */
+function _oe_content_alter_textarea_help($form_element, FormStateInterface $form_state) {
+  if (isset($form_element['format'])) {
+    $form_element['format']['help']['about']['#url'] = Url::fromRoute('filter.tips', ['filter_format' => $form_element['#format']]);
+  }
+  return $form_element;
 }
