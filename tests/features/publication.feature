@@ -42,7 +42,7 @@ Feature: Publication content creation
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
     When I visit "the Publication creation page"
-    Then I should see the text "Content limited to 255 characters, remaining: 255" in the "title form element"
+    Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     When I fill in "Title" with "My Publication"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
