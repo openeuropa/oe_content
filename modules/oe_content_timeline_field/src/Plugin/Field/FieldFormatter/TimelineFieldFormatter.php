@@ -25,7 +25,7 @@ class TimelineFieldFormatter extends FormatterBase {
   public static function defaultSettings() {
     return [
       'timeline_limit' => 0,
-      'button_label' => '',
+      'show_more' => '',
     ] + parent::defaultSettings();
   }
 
@@ -44,11 +44,11 @@ class TimelineFieldFormatter extends FormatterBase {
         '#step' => 1,
         '#required' => FALSE,
       ],
-      'button_label' => [
+      'show_more' => [
         '#type' => 'textfield',
-        '#title' => $this->t('Button label'),
-        '#description' => $this->t('Set the label of the button to show all items when the limit is used. Default is "Show all timeline" when no value is given.'),
-        '#default_value' => $this->getSetting('button_label'),
+        '#title' => $this->t('Show more label'),
+        '#description' => $this->t('Set the label of the show more button when the limit is used. Default is "Show all timeline" when no value is given.'),
+        '#default_value' => $this->getSetting('show_more'),
       ],
     ] + parent::settingsForm($form, $form_state);
   }
@@ -57,19 +57,23 @@ class TimelineFieldFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $elements = [];
+    $elements = [
+      '#theme' => 'timeline',
+      '#items' => [],
+      '#timeline_limit' => $this->getSetting('timeline_limit'),
+      '#show_more' => $this->getSetting('show_more'),
+    ];
 
     // The ProcessedText element already handles cache context & tag bubbling.
     // @see \Drupal\filter\Element\ProcessedText::preRenderText()
     foreach ($items as $delta => $item) {
-      $elements[$delta]['title'] = [
-        '#type' => 'processed_text',
-        '#text' => $item->title,
-        '#langcode' => $item->getLangcode(),
+
+      $elements['#items'][$delta]['title'] = [
+        '#plain_text' => $item->title,
       ];
-      $elements[$delta]['text'] = [
+      $elements['#items'][$delta]['body'] = [
         '#type' => 'processed_text',
-        '#text' => $item->text,
+        '#text' => $item->body,
         '#format' => $item->format,
         '#langcode' => $item->getLangcode(),
       ];

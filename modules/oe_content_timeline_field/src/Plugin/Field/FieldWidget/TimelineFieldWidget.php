@@ -35,10 +35,10 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
       '#required' => FALSE,
     ];
 
-    $element['text'] = [
+    $element['body'] = [
       '#type' => 'text_format',
-      '#title' => $this->t('Text'),
-      '#default_value' => $items[$delta]->text ?? NULL,
+      '#title' => $this->t('Body'),
+      '#default_value' => $items[$delta]->body ?? NULL,
       '#rows' => 5,
       '#required' => FALSE,
       '#format' => isset($items[$delta]->format) ? $items[$delta]->format : NULL,
@@ -53,8 +53,8 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
    */
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
     foreach ($values as &$item) {
-      $item['format'] = $item['text']['format'];
-      $item['text'] = $item['text']['value'];
+      $item['format'] = $item['body']['format'];
+      $item['body'] = $item['body']['value'];
     }
 
     return $values;

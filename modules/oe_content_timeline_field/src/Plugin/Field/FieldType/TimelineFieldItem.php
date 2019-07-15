@@ -32,7 +32,7 @@ class TimelineFieldItem extends FieldItemBase {
           'type' => 'text',
           'size' => 'big',
         ],
-        'text' => [
+        'body' => [
           'type' => 'text',
           'size' => 'big',
         ],
@@ -53,9 +53,9 @@ class TimelineFieldItem extends FieldItemBase {
   public function isEmpty() {
     // We consider the field empty if either of these properties left empty.
     $title = $this->get('title')->getValue();
-    $text = $this->get('text')->getValue();
+    $body = $this->get('body')->getValue();
 
-    return $title === NULL || $title === '' || $text === NULL || $text === '';
+    return $title === NULL || $title === '' || $body === NULL || $body === '';
   }
 
   /**
@@ -65,18 +65,18 @@ class TimelineFieldItem extends FieldItemBase {
     $properties['title'] = DataDefinition::create('string')
       ->setLabel(t('Timeline title'));
 
-    $properties['text'] = DataDefinition::create('string')
-      ->setLabel(t('Timeline text'));
+    $properties['body'] = DataDefinition::create('string')
+      ->setLabel(t('Timeline body'));
 
     $properties['format'] = DataDefinition::create('filter_format')
       ->setLabel(t('Text format'));
 
-    $properties['text_processed'] = DataDefinition::create('string')
-      ->setLabel(t('Processed text'))
-      ->setDescription(t('The timeline text with the text format applied.'))
+    $properties['body_processed'] = DataDefinition::create('string')
+      ->setLabel(t('Processed body'))
+      ->setDescription(t('The timeline body with the text format applied.'))
       ->setComputed(TRUE)
       ->setClass('\Drupal\text\TextProcessed')
-      ->setSetting('text source', 'text')
+      ->setSetting('text source', 'body')
       ->setInternal(FALSE);
 
     return $properties;
@@ -89,7 +89,7 @@ class TimelineFieldItem extends FieldItemBase {
     $this->setValue(
       [
         'title' => '',
-        'text' => '',
+        'body' => '',
         'format' => filter_fallback_format(),
       ],
       $notify

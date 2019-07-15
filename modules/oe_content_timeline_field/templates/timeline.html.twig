@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Timeline component.
+ */
+#}
+
+{% if items is not empty and items is iterable %}
+  <ul>
+    {% for item in items %}
+      <li>
+        <div>{{ item.title }}</div>
+        <div>{{ item.body }}</div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% if timeline_limit > 0 %}
+  <button>{{ show_more }}</button>
+{% endif %}
