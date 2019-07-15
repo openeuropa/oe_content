@@ -7,11 +7,11 @@
     "prefer-stable": true,
     "require": {
         "drupal/core": "^8.7",
-        "drupal/field_group": "^1.0",
+        "drupal/field_group": "^3.0@rc",
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
-        "openeuropa/rdf_skos": "~0.3",
+        "openeuropa/rdf_skos": "~0.4",
         "openeuropa/oe_media": "^1.0@beta",
         "php": "^7.1"
     },
