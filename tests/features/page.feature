@@ -31,7 +31,8 @@ Feature: Page content creation
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_page content, access content, edit own oe_page content, view published skos concept entities" permission
     When I visit "the Page creation page"
-    Then I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
+    Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
+    And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     When I fill in "Title" with "My page"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
