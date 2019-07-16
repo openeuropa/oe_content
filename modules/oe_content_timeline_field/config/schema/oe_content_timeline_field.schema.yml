@@ -1,0 +1,12 @@
+# Schema for the configuration files of the Timeline module.
+
+field.formatter.settings.timeline_formatter:
+  type: mapping
+  label: 'Timeline field formatter settings'
+  mapping:
+    timeline_limit:
+      type: string
+      label: 'Timeline item limit'
+    show_more:
+      type: string
+      label: 'Show more button label'
