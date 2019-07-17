@@ -117,7 +117,6 @@ class TimelineFieldTest extends RdfKernelTestBase {
       'status' => TRUE,
     ])->setComponent($this->fieldStorage->getName(), $this->displayOptions)
       ->save();
-
   }
 
   /**
@@ -129,15 +128,18 @@ class TimelineFieldTest extends RdfKernelTestBase {
       'title' => 'My node title',
       'field_timeline' => [
         [
+          'label' => '16/07/2019',
           'title' => 'Item 1',
           'body' => 'Item 1 body',
           'format' => 'my_text_format',
         ],
         [
+          'label' => '16/07/2019',
           'title' => 'Item 2',
           'body' => 'Item 2 body',
         ],
         [
+          'label' => '16/07/2019',
           'title' => 'Item 3',
           'body' => 'Item 3 body',
         ],
@@ -155,16 +157,19 @@ class TimelineFieldTest extends RdfKernelTestBase {
 
     $expected = [
       [
+        'label' => '16/07/2019',
         'title' => 'Item 1',
         'body' => 'Item 1 body',
         'format' => 'my_text_format',
       ],
       [
+        'label' => '16/07/2019',
         'title' => 'Item 2',
         'body' => 'Item 2 body',
         'format' => NULL,
       ],
       [
+        'label' => '16/07/2019',
         'title' => 'Item 3',
         'body' => 'Item 3 body',
         'format' => NULL,
@@ -184,16 +189,19 @@ class TimelineFieldTest extends RdfKernelTestBase {
       'title' => 'My node title',
       'field_timeline' => [
         [
+          'label' => '16/07/2019',
           'title' => 'Item 1',
           'body' => 'Item 1 body',
           'format' => 'my_text_format',
         ],
         [
+          'label' => '16/07/2019',
           'title' => 'Item 2',
           'body' => 'Item 2 body',
           'format' => 'my_text_format',
         ],
         [
+          'label' => '16/07/2019',
           'title' => 'Item 3',
           'body' => 'Item 3 body',
           'format' => 'my_text_format',

@@ -13,7 +13,11 @@ declare(strict_types = 1);
 function oe_content_timeline_field_theme() {
   return [
     'timeline' => [
-      'variables' => ['timeline_limit' => 0, 'show_more' => NULL, 'items' => []],
+      'variables' => [
+        'timeline_limit' => 0,
+        'show_more' => NULL,
+        'items' => []
+      ],
     ],
   ];
 }

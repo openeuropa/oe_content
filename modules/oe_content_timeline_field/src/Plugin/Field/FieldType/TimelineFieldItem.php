@@ -15,6 +15,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   id = "timeline_field",
  *   label = @Translation("Timeline"),
  *   module = "oe_content_timeline_field",
+ *   category = @Translation("OpenEuropa"),
  *   description = @Translation("Stores timeline and its items."),
  *   default_formatter = "timeline_formatter",
  *   default_widget = "timeline_widget"
@@ -28,6 +29,10 @@ class TimelineFieldItem extends FieldItemBase {
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     return [
       'columns' => [
+        'label' => [
+          'type' => 'varchar_ascii',
+          'length' => 255,
+        ],
         'title' => [
           'type' => 'text',
           'size' => 'big',
@@ -52,16 +57,20 @@ class TimelineFieldItem extends FieldItemBase {
    */
   public function isEmpty() {
     // We consider the field empty if either of these properties left empty.
+    $label = $this->get('label')->getValue();
     $title = $this->get('title')->getValue();
     $body = $this->get('body')->getValue();
 
-    return $title === NULL || $title === '' || $body === NULL || $body === '';
+    return $label === NULL || $label === '' || $title === NULL || $title === '' || $body === NULL || $body === '';
   }
 
   /**
    * {@inheritdoc}
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
+    $properties['label'] = DataDefinition::create('string')
+      ->setLabel(t('Timeline label'));
+
     $properties['title'] = DataDefinition::create('string')
       ->setLabel(t('Timeline title'));
 

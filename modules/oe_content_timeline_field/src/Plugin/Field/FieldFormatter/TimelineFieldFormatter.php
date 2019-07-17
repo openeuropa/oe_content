@@ -69,6 +69,9 @@ class TimelineFieldFormatter extends FormatterBase {
     // The ProcessedText element already handles cache context & tag bubbling.
     // @see \Drupal\filter\Element\ProcessedText::preRenderText()
     foreach ($items as $delta => $item) {
+      $elements['#items'][$delta]['label'] = [
+        '#plain_text' => $item->label,
+      ];
       $elements['#items'][$delta]['title'] = [
         '#plain_text' => $item->title,
       ];
