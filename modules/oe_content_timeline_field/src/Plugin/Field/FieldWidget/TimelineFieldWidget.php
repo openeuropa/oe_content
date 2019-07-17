@@ -28,7 +28,7 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $element['label'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('label'),
+      '#title' => $this->t('Label'),
       '#default_value' => $items[$delta]->label ?? NULL,
       '#size' => 60,
       '#maxlength' => 100,
