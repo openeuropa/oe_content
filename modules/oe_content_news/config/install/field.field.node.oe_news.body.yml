@@ -10,7 +10,7 @@ id: node.oe_news.body
 field_name: body
 entity_type: node
 bundle: oe_news
-label: Body
+label: Body text
 description: ''
 required: true
 translatable: true

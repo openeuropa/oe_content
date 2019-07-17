@@ -16,7 +16,7 @@ Feature: Publication content creation
     # Create a "Publication" content.
     And I visit "the Publication creation page"
     And I fill in "Title" with "My Publication item"
-    And I fill in "Summary" with "Summary text"
+    And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
     And I fill in "Publication date" with the date "2019-02-21"
@@ -47,7 +47,7 @@ Feature: Publication content creation
     When I fill in "Title" with "My Publication"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
-    And I fill in "Summary" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
+    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
     And I fill in "Subject" with "financing"
     And I fill in "Responsible department" with "European Patent Office"
     And I press "Save"

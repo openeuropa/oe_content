@@ -14,8 +14,8 @@ Feature: Persistent URLs
     When I visit "the News creation page"
     And I fill in "Title" with "News 1"
     And I enter "Teaser text" in the "Teaser" wysiwyg editor
-    And I enter "Summary text" in the "Summary" wysiwyg editor
-    And I enter "Body text" in the "Body" wysiwyg editor
+    And I enter "Summary text" in the "Introduction" wysiwyg editor
+    And I enter "Body text" in the "Body text" wysiwyg editor
     And I fill in "Subject" with "financing"
     And I fill in "Author" with "European Patent Office"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
@@ -25,8 +25,8 @@ Feature: Persistent URLs
     When I visit "the News creation page"
     And I fill in "Title" with "News 2"
     And I enter "Teaser text" in the "Teaser" wysiwyg editor
-    And I enter "Summary text" in the "Summary" wysiwyg editor
-    And I insert a link to "News 1" in the "Body" field through the WYSIWYG editor
+    And I enter "Summary text" in the "Introduction" wysiwyg editor
+    And I insert a link to "News 1" in the "Body text" field through the WYSIWYG editor
     And I fill in "Subject" with "financing"
     And I fill in "Author" with "European Patent Office"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"

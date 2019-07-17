@@ -10,7 +10,7 @@ id: node.oe_policy.body
 field_name: body
 entity_type: node
 bundle: oe_policy
-label: Body
+label: Body text
 description: ''
 required: true
 translatable: true
