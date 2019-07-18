@@ -8,7 +8,7 @@
 {% if items is not empty and items is iterable %}
   <ul>
     {% for item in items %}
-      <li>
+      <li{{ limit > 0 and loop.index > limit ? ' class="over-limit"' : '' }}>
         <div>{{ item.label }}</div>
         <div>{{ item.title }}</div>
         <div>{{ item.body }}</div>

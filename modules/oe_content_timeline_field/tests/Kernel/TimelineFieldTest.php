@@ -248,6 +248,7 @@ class TimelineFieldTest extends EntityKernelTestBase {
     $this->assertContains('<div>Item 3</div>', (string) $output);
     $this->assertContains('<p>Item 3 body</p>', (string) $output);
     $this->assertContains('<button>Button label</button>', (string) $output);
+    $this->assertContains('<li class="over-limit">', (string) $output);
 
     // Change the limit to show all item without show more button.
     $this->displayOptions['settings']['limit'] = 0;
