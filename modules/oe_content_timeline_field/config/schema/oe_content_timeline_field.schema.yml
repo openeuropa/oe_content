@@ -4,7 +4,7 @@ field.formatter.settings.timeline_formatter:
   type: mapping
   label: 'Timeline field formatter settings'
   mapping:
-    timeline_limit:
+    limit:
       type: string
       label: 'Timeline item limit'
     show_more:

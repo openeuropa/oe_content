@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Timeline component.
+ * Timeline template.
  */
 #}
 
@@ -16,6 +16,6 @@
     {% endfor %}
   </ul>
 {% endif %}
-{% if timeline_limit > 0 %}
+{% if limit > 0 %}
   <button>{{ show_more }}</button>
 {% endif %}

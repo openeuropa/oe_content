@@ -26,7 +26,7 @@ class TimelineFieldFormatter extends FormatterBase {
    */
   public static function defaultSettings() {
     return [
-      'timeline_limit' => 0,
+      'limit' => 0,
       'show_more' => '',
     ] + parent::defaultSettings();
   }
@@ -36,15 +36,14 @@ class TimelineFieldFormatter extends FormatterBase {
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     return [
-      'timeline_limit' => [
+      'limit' => [
         '#type' => 'number',
         '#title' => $this->t('Timeline limit'),
         '#description' => $this->t('The number of items to show. Default is "0" to show all items.'),
-        '#default_value' => $this->getSetting('timeline_limit'),
+        '#default_value' => $this->getSetting('limit'),
         '#size' => 2,
         '#min' => 0,
         '#step' => 1,
-        '#required' => FALSE,
       ],
       'show_more' => [
         '#type' => 'textfield',
@@ -62,7 +61,7 @@ class TimelineFieldFormatter extends FormatterBase {
     $elements = [
       '#theme' => 'timeline',
       '#items' => [],
-      '#timeline_limit' => $this->getSetting('timeline_limit'),
+      '#limit' => $this->getSetting('limit'),
       '#show_more' => $this->getSetting('show_more'),
     ];
 

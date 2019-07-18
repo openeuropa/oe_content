@@ -8,14 +8,14 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\filter\Entity\FilterFormat;
+use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
 
 /**
  * Tests the timeline field type definition.
  */
-class TimelineFieldTest extends RdfKernelTestBase {
+class TimelineFieldTest extends EntityKernelTestBase {
 
   /**
    * A field storage to use in this test class.
@@ -40,7 +40,7 @@ class TimelineFieldTest extends RdfKernelTestBase {
     'type' => 'timeline_formatter',
     'label' => 'hidden',
     'settings' => [
-      'timeline_limit' => 2,
+      'limit' => 2,
       'show_more' => 'Button label',
     ],
   ];
@@ -52,11 +52,8 @@ class TimelineFieldTest extends RdfKernelTestBase {
    */
   public static $modules = [
     'field',
-    'link',
     'node',
-    'oe_content',
     'oe_content_timeline_field',
-    'rdf_skos',
     'system',
     'text',
     'user',
@@ -72,8 +69,6 @@ class TimelineFieldTest extends RdfKernelTestBase {
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
     $this->installConfig(['field', 'node', 'system']);
-    module_load_include('install', 'oe_content');
-    oe_content_install();
 
     // Create content type.
     $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
@@ -178,6 +173,28 @@ class TimelineFieldTest extends RdfKernelTestBase {
     // Assert the base field values.
     $this->assertEquals('My node title', $node->label());
     $this->assertEquals($expected, $node->get('field_timeline')->getValue());
+
+    // Test empty timeline.
+    $values = [
+      'type' => 'test_ct',
+      'title' => 'My second node',
+      'field_timeline' => [
+        [
+          'label' => '16/07/2019',
+          'title' => '',
+          'body' => 'Item 1 body',
+          'format' => 'my_text_format',
+        ],
+      ],
+    ];
+
+    // Create node.
+    $node = Node::create($values);
+    $node->save();
+
+    // Assert the base field values.
+    $this->assertEquals('My second node', $node->label());
+    $this->assertEmpty($node->get('field_timeline')->getValue());
   }
 
   /**
@@ -233,7 +250,7 @@ class TimelineFieldTest extends RdfKernelTestBase {
     $this->assertContains('<button>Button label</button>', (string) $output);
 
     // Change the limit to show all item without show more button.
-    $this->displayOptions['settings']['timeline_limit'] = 0;
+    $this->displayOptions['settings']['limit'] = 0;
     $display->setComponent('field_timeline', $this->displayOptions)->save();
 
     $build = $display->build($node);

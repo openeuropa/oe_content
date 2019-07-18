@@ -81,10 +81,8 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
    */
   public static function validateFormElement(array &$element, FormStateInterface $form_state) {
     // Check for title field is empty when other values are there.
-    if (!empty($element['label']['#value']) || !empty($element['body']['value']['#value'])) {
-      if (empty($element['title']['#value'])) {
-        $form_state->setError($element['title'], t("The title field can't be empty."));
-      }
+    if ((!empty($element['label']['#value']) || !empty($element['body']['value']['#value'])) && empty($element['title']['#value'])) {
+      $form_state->setError($element['title'], t("The title field can't be empty."));
     }
   }
 
