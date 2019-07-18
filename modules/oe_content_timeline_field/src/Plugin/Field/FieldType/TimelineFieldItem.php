@@ -56,12 +56,10 @@ class TimelineFieldItem extends FieldItemBase {
    * {@inheritdoc}
    */
   public function isEmpty() {
-    // We consider the field empty if either of these properties left empty.
-    $label = $this->get('label')->getValue();
+    // We consider the field empty if the title is left empty.
     $title = $this->get('title')->getValue();
-    $body = $this->get('body')->getValue();
 
-    return $label === NULL || $label === '' || $title === NULL || $title === '' || $body === NULL || $body === '';
+    return $title === NULL || $title === '';
   }
 
   /**
@@ -97,6 +95,7 @@ class TimelineFieldItem extends FieldItemBase {
   public function applyDefaultValue($notify = TRUE) {
     $this->setValue(
       [
+        'label' => '',
         'title' => '',
         'body' => '',
         'format' => filter_fallback_format(),
