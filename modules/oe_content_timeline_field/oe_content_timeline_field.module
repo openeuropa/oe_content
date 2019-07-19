@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Timeline Field module.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_theme().
+ */
+function oe_content_timeline_field_theme() {
+  return [
+    'timeline' => [
+      'variables' => [
+        'limit' => 0,
+        'show_more' => t('Show all timeline'),
+        'items' => [],
+      ],
+    ],
+  ];
+}
