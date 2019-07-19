@@ -1,5 +1,5 @@
-# OpenEuropa Timeline field
+# OpenEuropa Timeline Field
 
-This module provides the Timeline field definition with a custom widget and formatter.
-It provides a basic twig template for rendering, but it is meant to be overridden by oe_theme that brings
-the Europa Component Library (ECL) and provides the front-end for the timeline component.
+This module provides the Timeline field type, as well as a default widget and formatter.
+It provides a basic twig template for rendering, but it is meant to be overridden by the OpenEuropa Theme which provides
+the Europa Component Library (ECL) timeline component.

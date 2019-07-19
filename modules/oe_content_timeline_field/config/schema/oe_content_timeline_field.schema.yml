@@ -1,5 +1,3 @@
-# Schema for the configuration files of the Timeline module.
-
 field.formatter.settings.timeline_formatter:
   type: mapping
   label: 'Timeline field formatter settings'
@@ -10,3 +8,20 @@ field.formatter.settings.timeline_formatter:
     show_more:
       type: string
       label: 'Show more button label'
+
+field.value.timeline_field:
+  type: mapping
+  label: 'Default value'
+  mapping:
+    label:
+      type: label
+      label: 'Timeline item label'
+    title:
+      type: label
+      label: 'Timeline item title'
+    body:
+      type: text
+      label: 'Timeline item body'
+    format:
+      type: string
+      label: 'Timeline item body format'

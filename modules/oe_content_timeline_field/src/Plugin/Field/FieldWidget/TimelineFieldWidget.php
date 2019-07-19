@@ -52,7 +52,7 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
       '#default_value' => $items[$delta]->body ?? NULL,
       '#rows' => 5,
       '#required' => FALSE,
-      '#format' => isset($items[$delta]->format) ? $items[$delta]->format : NULL,
+      '#format' => isset($items[$delta]->format) ? $items[$delta]->format : filter_fallback_format(),
       '#base_type' => 'textarea',
     ];
 
@@ -72,7 +72,7 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
   }
 
   /**
-   * Form element validation handler for timeline form element.
+   * Form element validation handler for the timeline form element.
    *
    * @param array $element
    *   The form element.
@@ -80,7 +80,7 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
    *   The form state.
    */
   public static function validateFormElement(array &$element, FormStateInterface $form_state) {
-    // Check for title field is empty when other values are there.
+    // Check if the title field is empty when other values are there.
     if ((!empty($element['label']['#value']) || !empty($element['body']['value']['#value'])) && empty($element['title']['#value'])) {
       $form_state->setError($element['title'], t("The title field can't be empty."));
     }

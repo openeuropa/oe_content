@@ -48,7 +48,7 @@ class TimelineFieldFormatter extends FormatterBase {
       'show_more' => [
         '#type' => 'textfield',
         '#title' => $this->t('Show more label'),
-        '#description' => $this->t('Set the label of the show more button when the limit is used. Default is "Show all timeline" when no value is given.'),
+        '#description' => $this->t('Set the label of the "show more" button when the limit is used. Defaults to "Show all timeline" when no value is given.'),
         '#default_value' => $this->getSetting('show_more'),
       ],
     ] + parent::settingsForm($form, $form_state);
@@ -62,11 +62,12 @@ class TimelineFieldFormatter extends FormatterBase {
       '#theme' => 'timeline',
       '#items' => [],
       '#limit' => $this->getSetting('limit'),
-      '#show_more' => $this->getSetting('show_more'),
     ];
 
-    // The ProcessedText element already handles cache context & tag bubbling.
-    // @see \Drupal\filter\Element\ProcessedText::preRenderText()
+    if ($this->getSetting('show_more')) {
+      $elements['#show_more'] = $this->getSetting('show_more');
+    }
+
     foreach ($items as $delta => $item) {
       $elements['#items'][$delta]['label'] = [
         '#plain_text' => $item->label,
@@ -74,6 +75,9 @@ class TimelineFieldFormatter extends FormatterBase {
       $elements['#items'][$delta]['title'] = [
         '#plain_text' => $item->title,
       ];
+
+      // The ProcessedText element already handles cache context & tag bubbling.
+      // @see \Drupal\filter\Element\ProcessedText::preRenderText()
       $elements['#items'][$delta]['body'] = [
         '#type' => 'processed_text',
         '#text' => $item->body,

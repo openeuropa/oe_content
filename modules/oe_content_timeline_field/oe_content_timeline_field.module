@@ -15,7 +15,7 @@ function oe_content_timeline_field_theme() {
     'timeline' => [
       'variables' => [
         'limit' => 0,
-        'show_more' => NULL,
+        'show_more' => t('Show all timeline'),
         'items' => [],
       ],
     ],

@@ -46,9 +46,7 @@ class TimelineFieldTest extends EntityKernelTestBase {
   ];
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   public static $modules = [
     'field',
@@ -85,7 +83,6 @@ class TimelineFieldTest extends EntityKernelTestBase {
       ],
     ])->save();
 
-    // Add text field to entity, to sort by.
     $this->fieldStorage = FieldStorageConfig::create([
       'field_name' => 'field_timeline',
       'entity_type' => 'node',
@@ -181,6 +178,7 @@ class TimelineFieldTest extends EntityKernelTestBase {
       'field_timeline' => [
         [
           'label' => '16/07/2019',
+          // The title needs to be filled in to not be considered empty.
           'title' => '',
           'body' => 'Item 1 body',
           'format' => 'my_text_format',
@@ -194,7 +192,7 @@ class TimelineFieldTest extends EntityKernelTestBase {
 
     // Assert the base field values.
     $this->assertEquals('My second node', $node->label());
-    $this->assertEmpty($node->get('field_timeline')->getValue());
+    $this->assertTrue($node->get('field_timeline')->isEmpty());
   }
 
   /**
@@ -230,16 +228,10 @@ class TimelineFieldTest extends EntityKernelTestBase {
     $node = Node::create($values);
     $node->save();
 
-    $entity_type_manager = \Drupal::entityTypeManager()->getStorage('node');
-    $entity_type_manager->resetCache();
-    /** @var \Drupal\node\NodeInterface $node */
-    $node = $entity_type_manager->load($node->id());
-
     // Verify the timeline uses the correct format settings.
     $display = EntityViewDisplay::collectRenderDisplay($node, 'default');
     $build = $display->build($node);
     $output = $this->container->get('renderer')->renderRoot($build);
-    $this->verbose($output);
 
     $this->assertContains('<div>Item 1</div>', (string) $output);
     $this->assertContains('<p>Item 1 body</p>', (string) $output);
@@ -248,15 +240,13 @@ class TimelineFieldTest extends EntityKernelTestBase {
     $this->assertContains('<div>Item 3</div>', (string) $output);
     $this->assertContains('<p>Item 3 body</p>', (string) $output);
     $this->assertContains('<button>Button label</button>', (string) $output);
-    $this->assertContains('<li class="over-limit">', (string) $output);
 
-    // Change the limit to show all item without show more button.
+    // Change the limit to show all items without the "show more" button.
     $this->displayOptions['settings']['limit'] = 0;
     $display->setComponent('field_timeline', $this->displayOptions)->save();
 
     $build = $display->build($node);
     $output = $this->container->get('renderer')->renderRoot($build);
-    $this->verbose($output);
     $this->assertNotContains('<button>Button label</button>', (string) $output);
   }
 

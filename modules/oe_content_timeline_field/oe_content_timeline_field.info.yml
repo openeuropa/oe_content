@@ -1,5 +1,5 @@
 name: OpenEuropa Content Timeline Field
-description: Contains field definition of Timeline field.
+description: Contains the Timeline field type.
 package: OpenEuropa
 
 type: module

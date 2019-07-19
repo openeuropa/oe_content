@@ -5,10 +5,10 @@
  */
 #}
 
-{% if items is not empty and items is iterable %}
+{% if items %}
   <ul>
     {% for item in items %}
-      <li{{ limit > 0 and loop.index > limit ? ' class="over-limit"' : '' }}>
+      <li>
         <div>{{ item.label }}</div>
         <div>{{ item.title }}</div>
         <div>{{ item.body }}</div>
@@ -16,6 +16,7 @@
     {% endfor %}
   </ul>
 {% endif %}
+
 {% if limit > 0 %}
   <button>{{ show_more }}</button>
 {% endif %}

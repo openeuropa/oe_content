@@ -16,7 +16,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   label = @Translation("Timeline"),
  *   module = "oe_content_timeline_field",
  *   category = @Translation("OpenEuropa"),
- *   description = @Translation("Stores timeline and its items."),
+ *   description = @Translation("Stores a timeline item."),
  *   default_formatter = "timeline_formatter",
  *   default_widget = "timeline_widget"
  * )
