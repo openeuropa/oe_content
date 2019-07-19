@@ -12,7 +12,7 @@ use Drupal\field\Entity\FieldConfig;
 /**
  * Update body and summary labels.
  */
-function oe_content_publication_post_update_field_labels(array &$sandbox): void {
+function oe_content_publication_post_update_8100_update_field_labels(array &$sandbox): void {
   $new_field_labels = [
     'node.oe_publication.oe_summary' => 'Introduction',
   ];
