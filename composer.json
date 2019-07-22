@@ -25,6 +25,7 @@
         "nikic/php-parser": "^3.1.5",
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/code-review": "~1.0@beta",
+        "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/task-runner": "~1.0@beta",
         "phpunit/phpunit": "~6.0",

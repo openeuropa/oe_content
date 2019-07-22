@@ -1,0 +1,5 @@
+msgid ""
+msgstr ""
+
+msgid "Show full timeline"
+msgstr "Vollständige Zeitschiene anzeigen"

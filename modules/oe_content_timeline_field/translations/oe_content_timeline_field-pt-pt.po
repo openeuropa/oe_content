@@ -1,0 +1,6 @@
+
+msgid ""
+msgstr ""
+
+msgid "Show full timeline"
+msgstr "Mostrar todo o calendário"

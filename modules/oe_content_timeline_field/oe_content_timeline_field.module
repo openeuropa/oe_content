@@ -21,3 +21,10 @@ function oe_content_timeline_field_theme() {
     ],
   ];
 }
+
+/**
+ * Implements hook_locale_translation_projects_alter().
+ */
+function oe_content_timeline_field_locale_translation_projects_alter(&$projects) {
+  $projects['oe_content_timeline_field']['info']['interface translation server pattern'] = drupal_get_path('module', 'oe_content_timeline_field') . '/translations/%project-%language.po';
+}

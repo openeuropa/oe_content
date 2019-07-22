@@ -1,9 +1,9 @@
 name: OpenEuropa Policy Content
 description: Contains the EC corporate Policy content type.
 package: OpenEuropa
-
 type: module
 core: 8.x
+
 dependencies:
   - oe_content:oe_content
   - oe_content_timeline_field:oe_content_timeline_field

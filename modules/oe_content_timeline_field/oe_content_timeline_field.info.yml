@@ -8,3 +8,7 @@ core: 8.x
 config_devel:
   install:
     - field.storage.node.oe_timeline
+
+'interface translation project': oe_content_timeline_field
+# The path to the actual translations is defined in
+# oe_content_timeline_field_locale_translation_projects_alter().
