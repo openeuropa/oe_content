@@ -48,7 +48,7 @@ class TimelineFieldFormatter extends FormatterBase {
       'show_more' => [
         '#type' => 'textfield',
         '#title' => $this->t('Show more label'),
-        '#description' => $this->t('Set the label of the "show more" button when the limit is used. Defaults to "Show all timeline" when no value is given.'),
+        '#description' => $this->t('Set the label of the "show more" button when the limit is used. Defaults to "Show full timeline" when no value is given.'),
         '#default_value' => $this->getSetting('show_more'),
       ],
     ] + parent::settingsForm($form, $form_state);

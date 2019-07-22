@@ -56,10 +56,12 @@ class TimelineFieldItem extends FieldItemBase {
    * {@inheritdoc}
    */
   public function isEmpty() {
-    // We consider the field empty if the title is left empty.
+    // We consider the field empty if all the fields are empty.
+    $label = $this->get('label')->getValue();
     $title = $this->get('title')->getValue();
+    $body = $this->get('body')->getValue();
 
-    return $title === NULL || $title === '';
+    return $label === NULL || $label === '' && $title === NULL || $title === '' && $body === NULL || $body === '';
   }
 
   /**
