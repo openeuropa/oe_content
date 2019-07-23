@@ -18,6 +18,7 @@ Feature: Policy content creation
     And I fill in "Legacy link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Short title" with "Shorter title"
+    And I fill in "Title" with "One" in the "first" "Timeline" field element
     When I press "Save"
     Then I should see "My Policy item"
     And I should see "Body text"
