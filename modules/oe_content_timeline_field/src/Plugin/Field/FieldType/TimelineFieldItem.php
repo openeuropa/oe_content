@@ -61,7 +61,7 @@ class TimelineFieldItem extends FieldItemBase {
     $title = $this->get('title')->getValue();
     $body = $this->get('body')->getValue();
 
-    return $label === NULL || $label === '' && $title === NULL || $title === '' && $body === NULL || $body === '';
+    return ($label === NULL || $label === '') && ($title === NULL || $title === '') && ($body === NULL || $body === '');
   }
 
   /**

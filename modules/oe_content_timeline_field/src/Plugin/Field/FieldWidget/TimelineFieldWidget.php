@@ -27,9 +27,6 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $element += [
-      '#element_validate' => [[get_class($this), 'validateFormElement']],
-    ];
     $element['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),
@@ -69,28 +66,6 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
     }
 
     return $values;
-  }
-
-  /**
-   * Form element validation handler for the timeline form element.
-   *
-   * @param array $element
-   *   The form element.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The form state.
-   */
-  public static function validateFormElement(array &$element, FormStateInterface $form_state) {
-    // Check if the title field is empty when other values are there.
-    if ((!empty($element['label']['#value']) || !empty($element['body']['value']['#value'])) && empty($element['title']['#value'])) {
-      $form_state->setError($element['title'], t("The title field can't be empty."));
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state) {
-    return $element['title'];
   }
 
 }
