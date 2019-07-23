@@ -7,6 +7,10 @@ Feature: Policy content creation
   @javascript
   Scenario: Creation of a Policy content through the UI.
     Given I am logged in as a user with the "create oe_policy content, access content, edit own oe_policy content, view published skos concept entities" permission
+    And the following languages are available:
+      | languages |
+      | en        |
+      | fr        |
     # Create a "Policy" content.
     And I visit "the Policy creation page"
     And I fill in "Title" with "My Policy item"
@@ -49,6 +53,8 @@ Feature: Policy content creation
     And I should not see "Teaser text"
     And I should not see the link "financing"
     And I should not see the link "European Patent Office"
+    When I click "français"
+    Then I should see "Voir l’historique complet"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
