@@ -6,7 +6,6 @@ namespace Drupal\Tests\oe_content\Behat;
 
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Mink\Element\NodeElement;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\node\NodeInterface;
@@ -253,6 +252,8 @@ class FeatureContext extends RawDrupalContext {
   }
 
   /**
+   * Step to fill in multi value fields with columns.
+   *
    * @Given I fill in :column with :value in the :row :field field element
    */
   public function iFillInWithInTheFieldElement($column, $value, $row, $field) {
@@ -260,6 +261,10 @@ class FeatureContext extends RawDrupalContext {
     $row_map = [
       'first' => '1',
       'second' => '2',
+      'third' => '3',
+      'fourth' => '4',
+      'fifth' => '5',
+      'sixth' => '6',
     ];
 
     $row = $table->find('xpath', "//tbody//tr[position()={$row_map[$row]}]");
