@@ -58,6 +58,10 @@ class TimelineFieldFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
+    if (count($items) === 0) {
+      return [];
+    }
+
     $elements = [
       '#theme' => 'timeline',
       '#items' => [],
