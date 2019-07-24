@@ -11,7 +11,7 @@ use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 
 /**
- * Add missing permission for Validator.
+ * Add timeline field to policy content type.
  */
 function oe_content_policy_post_update_00001_timeline_field(array &$sandbox): void {
   FieldStorageConfig::create([
