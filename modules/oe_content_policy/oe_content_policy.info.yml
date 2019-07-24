@@ -6,7 +6,7 @@ core: 8.x
 
 dependencies:
   - oe_content:oe_content
-  - oe_content_timeline_field:oe_content_timeline_field
+  - oe_content:oe_content_timeline_field
 
 config_devel:
   install:
