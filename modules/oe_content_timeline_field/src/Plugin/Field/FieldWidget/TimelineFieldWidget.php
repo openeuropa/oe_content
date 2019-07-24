@@ -44,7 +44,7 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
     ];
     $element['body'] = [
       '#type' => 'text_format',
-      '#title' => $this->t('Body'),
+      '#title' => $this->t('Content'),
       '#default_value' => $items[$delta]->body ?? NULL,
       '#rows' => 5,
       '#required' => FALSE,
