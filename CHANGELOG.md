@@ -1,10 +1,24 @@
 # Change Log
 
+## [1.1.0](https://github.com/openeuropa/oe_content/tree/1.1.0) (2019-07-25)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0...1.1.0)
+
+**Closed issues:**
+
+- Problems with the easyrdf installation [\#77](https://github.com/openeuropa/oe_content/issues/77)
+
+**Merged pull requests:**
+
+-  OPENEUROPA-2047: Add timeline field to policy content type. [\#90](https://github.com/openeuropa/oe_content/pull/90) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-2047: Create timeline field type definition. [\#88](https://github.com/openeuropa/oe_content/pull/88) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-2040: Add max length restriction to corporate content type titles. [\#85](https://github.com/openeuropa/oe_content/pull/85) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [1.0.0](https://github.com/openeuropa/oe_content/tree/1.0.0) (2019-06-26)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0-beta3...1.0.0)
 
 **Merged pull requests:**
 
+- RELEASE-1.0.0: Update change log for release 1.0.0. [\#83](https://github.com/openeuropa/oe_content/pull/83) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2014: Hide the documents field label. [\#82](https://github.com/openeuropa/oe_content/pull/82) ([upchuk](https://github.com/upchuk))
 
 ## [1.0.0-beta3](https://github.com/openeuropa/oe_content/tree/1.0.0-beta3) (2019-06-25)
