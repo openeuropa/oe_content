@@ -14,9 +14,6 @@ use Drupal\field\Entity\FieldStorageConfig;
  * Add timeline field to policy content type.
  */
 function oe_content_policy_post_update_00003_timeline_field(array &$sandbox): void {
-  // Clear field type definition cache.
-  \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
-
   if (!\Drupal::service('entity_type.manager')->getStorage('field_storage_config')->load('node.oe_timeline')) {
     FieldStorageConfig::create([
       'field_name' => 'oe_timeline',

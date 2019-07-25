@@ -256,7 +256,7 @@ class FeatureContext extends RawDrupalContext {
    *
    * @Given I fill in :column with :value in the :row :field field element
    */
-  public function iFillInWithInTheFieldElement($column, $value, $row, $field) {
+  public function fillInMultivalueField($column, $value, $row, $field) {
     $table = $this->getMultiColumnFieldTable($field);
     $row_map = [
       'first' => '1',
@@ -282,7 +282,7 @@ class FeatureContext extends RawDrupalContext {
    *   The field.
    *
    * @return \Behat\Mink\Element\NodeElement
-   *   The selector.
+   *   The table element.
    */
   protected function getMultiColumnFieldTable(string $field): ?NodeElement {
     $xpath = '//table[contains(concat(" ", normalize-space(@class), " "), " field-multiple-table ")]/descendant::h4[contains(text(), ' . $field . ')]';
