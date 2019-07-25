@@ -6,7 +6,7 @@ field.formatter.settings.timeline_formatter:
       type: string
       label: 'Timeline item limit'
     show_more:
-      type: string
+      type: label
       label: 'Show more button label'
 
 field.value.timeline_field:

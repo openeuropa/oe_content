@@ -177,11 +177,10 @@ class TimelineFieldTest extends EntityKernelTestBase {
       'title' => 'My second node',
       'field_timeline' => [
         [
-          'label' => '16/07/2019',
-          // The title needs to be filled in to not be considered empty.
+          'label' => '',
           'title' => '',
-          'body' => 'Item 1 body',
-          'format' => 'my_text_format',
+          'body' => '',
+          'format' => '',
         ],
       ],
     ];

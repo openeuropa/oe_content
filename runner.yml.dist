@@ -18,6 +18,7 @@ drupal:
     - "./vendor/bin/drush en toolbar -y"
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush en field_ui -y"
+    - "./vendor/bin/drush en language -y"
     - "./vendor/bin/drush theme:enable bartik -y"
     - "./vendor/bin/drush theme:enable seven -y"
     - "./vendor/bin/drush config-set system.theme default bartik -y"
@@ -26,7 +27,8 @@ drupal:
     - "./vendor/bin/drush -y config-set system.performance css.preprocess 0"
     - "./vendor/bin/drush -y config-set system.performance js.preprocess 0"
     # Enable the modules.
-    - "./vendor/bin/drush en oe_content oe_content_page oe_content_news oe_content_policy oe_content_publication oe_content_persistent oe_content_timeline_field -y"
+    - "./vendor/bin/drush en oe_multilingual oe_content oe_content_page oe_content_news oe_content_policy oe_content_publication oe_content_persistent -y"
+    - "./vendor/bin/drush oe-multilingual:import-local-translations"
     - "./vendor/bin/drush cr"
   settings:
     settings:
