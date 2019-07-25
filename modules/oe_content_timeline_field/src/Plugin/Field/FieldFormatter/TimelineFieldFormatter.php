@@ -27,7 +27,7 @@ class TimelineFieldFormatter extends FormatterBase {
   public static function defaultSettings() {
     return [
       'limit' => 0,
-      'show_more' => '',
+      'show_more' => t('Show full timeline'),
     ] + parent::defaultSettings();
   }
 
@@ -66,11 +66,8 @@ class TimelineFieldFormatter extends FormatterBase {
       '#theme' => 'timeline',
       '#items' => [],
       '#limit' => $this->getSetting('limit'),
+      '#show_more' => $this->getSetting('show_more'),
     ];
-
-    if ($this->getSetting('show_more')) {
-      $elements['#show_more'] = $this->getSetting('show_more');
-    }
 
     foreach ($items as $delta => $item) {
       $elements['#items'][$delta]['label'] = [

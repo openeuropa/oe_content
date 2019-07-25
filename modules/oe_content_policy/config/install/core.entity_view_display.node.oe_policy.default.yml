@@ -30,7 +30,7 @@ content:
     label: above
     settings:
       limit: '5'
-      show_more: ''
+      show_more: 'Show full timeline'
     third_party_settings: {  }
     type: timeline_formatter
     region: content
