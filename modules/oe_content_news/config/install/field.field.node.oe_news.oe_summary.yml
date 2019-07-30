@@ -10,7 +10,7 @@ id: node.oe_news.oe_summary
 field_name: oe_summary
 entity_type: node
 bundle: oe_news
-label: Summary
+label: Introduction
 description: ''
 required: true
 translatable: false

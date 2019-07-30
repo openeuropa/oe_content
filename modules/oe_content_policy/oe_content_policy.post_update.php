@@ -38,3 +38,18 @@ function oe_content_policy_post_update_00001_timeline_field(): void {
     ])->save();
   }
 }
+
+/**
+ * Update body and summary labels.
+ */
+function oe_content_policy_post_update_00002_field_labels(array &$sandbox): void {
+  $new_field_labels = [
+    'node.oe_policy.oe_summary' => 'Introduction',
+    'node.oe_policy.body' => 'Body text',
+  ];
+  foreach ($new_field_labels as $id => $new_label) {
+    $field_config = FieldConfig::load($id);
+    $field_config->setLabel($new_label);
+    $field_config->save();
+  }
+}

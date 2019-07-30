@@ -10,7 +10,7 @@ id: node.oe_page.body
 field_name: body
 entity_type: node
 bundle: oe_page
-label: Body
+label: Body text
 description: ''
 required: false
 translatable: true
