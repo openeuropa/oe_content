@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.2.0](https://github.com/openeuropa/oe_content/tree/1.2.0) (2019-08-19)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.1.0...1.2.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2039: Update summary and body labels. [\#89](https://github.com/openeuropa/oe_content/pull/89) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [1.1.0](https://github.com/openeuropa/oe_content/tree/1.1.0) (2019-07-25)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0...1.1.0)
 
@@ -9,6 +16,7 @@
 
 **Merged pull requests:**
 
+- Release-1.1.0: Update changelog. [\#91](https://github.com/openeuropa/oe_content/pull/91) ([nagyad](https://github.com/nagyad))
 -  OPENEUROPA-2047: Add timeline field to policy content type. [\#90](https://github.com/openeuropa/oe_content/pull/90) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2047: Create timeline field type definition. [\#88](https://github.com/openeuropa/oe_content/pull/88) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2040: Add max length restriction to corporate content type titles. [\#85](https://github.com/openeuropa/oe_content/pull/85) ([imanoleguskiza](https://github.com/imanoleguskiza))
