@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_media_legend
+    - node.type.oe_event
+id: node.oe_event.field_featured_media_legend
+field_name: field_featured_media_legend
+entity_type: node
+bundle: oe_event
+label: 'Featured media legend'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_registration_start_date
+    - node.type.oe_event
+  module:
+    - datetime
+id: node.oe_event.field_registration_start_date
+field_name: field_registration_start_date
+entity_type: node
+bundle: oe_event
+label: 'Registration start date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
