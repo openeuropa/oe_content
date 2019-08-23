@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_media
+    - media.type.av_portal_photo
+    - media.type.image
+    - node.type.oe_event
+id: node.oe_event.field_featured_media
+field_name: field_featured_media
+entity_type: node
+bundle: oe_event
+label: 'Featured media'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      av_portal_photo: av_portal_photo
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: av_portal_photo
+field_type: entity_reference
