@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_organiser_type
+    - node.type.oe_event
+  module:
+    - options
+id: node.oe_event.field_organiser_type
+field_name: field_organiser_type
+entity_type: node
+bundle: oe_event
+label: 'Organiser type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

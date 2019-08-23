@@ -1,0 +1,73 @@
+name: OpenEuropa Event Content
+description: Contains the EC corporate Event content type.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - oe_content:oe_content
+  - oe_content:oe_content_timeline_field
+
+config_devel:
+  install:
+    - core.entity_form_display.node.oe_event.default
+    - core.entity_view_display.node.oe_event.default
+    - field.field.node.oe_event.body
+    - field.field.node.oe_event.field_description_summary
+    - field.field.node.oe_event.field_description_title
+    - field.field.node.oe_event.field_end_date
+    - field.field.node.oe_event.field_entrance_fee
+    - field.field.node.oe_event.field_event_status
+    - field.field.node.oe_event.field_event_type
+    - field.field.node.oe_event.field_event_website
+    - field.field.node.oe_event.field_featured_media
+    - field.field.node.oe_event.field_featured_media_legend
+    - field.field.node.oe_event.field_online_description
+    - field.field.node.oe_event.field_online_link
+    - field.field.node.oe_event.field_online_time_end
+    - field.field.node.oe_event.field_online_time_start
+    - field.field.node.oe_event.field_online_type
+    - field.field.node.oe_event.field_organiser_internal
+    - field.field.node.oe_event.field_organiser_name
+    - field.field.node.oe_event.field_organiser_type
+    - field.field.node.oe_event.field_registration_capacity
+    - field.field.node.oe_event.field_registration_end_date
+    - field.field.node.oe_event.field_registration_start_date
+    - field.field.node.oe_event.field_registration_status
+    - field.field.node.oe_event.field_registration_url
+    - field.field.node.oe_event.field_report_text
+    - field.field.node.oe_event.field_report_title
+    - field.field.node.oe_event.field_start_date
+    - field.field.node.oe_event.field_summary_report
+    - field.field.node.oe_event.oe_author
+    - field.field.node.oe_event.oe_subject
+    - field.field.node.oe_event.oe_teaser
+    - field.storage.node.field_description_summary
+    - field.storage.node.field_description_title
+    - field.storage.node.field_end_date
+    - field.storage.node.field_entrance_fee
+    - field.storage.node.field_event_status
+    - field.storage.node.field_event_type
+    - field.storage.node.field_event_website
+    - field.storage.node.field_featured_media
+    - field.storage.node.field_featured_media_legend
+    - field.storage.node.field_online_description
+    - field.storage.node.field_online_link
+    - field.storage.node.field_online_time_end
+    - field.storage.node.field_online_time_start
+    - field.storage.node.field_online_type
+    - field.storage.node.field_organiser_internal
+    - field.storage.node.field_organiser_name
+    - field.storage.node.field_organiser_type
+    - field.storage.node.field_registration_capacity
+    - field.storage.node.field_registration_end_date
+    - field.storage.node.field_registration_start_date
+    - field.storage.node.field_registration_status
+    - field.storage.node.field_registration_url
+    - field.storage.node.field_report_text
+    - field.storage.node.field_report_title
+    - field.storage.node.field_start_date
+    - field.storage.node.field_summary_report
+    - node.type.oe_event
+  optional:
+    - language.content_settings.node.oe_event

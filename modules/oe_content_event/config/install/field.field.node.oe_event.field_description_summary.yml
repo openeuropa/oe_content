@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description_summary
+    - node.type.oe_event
+  module:
+    - text
+id: node.oe_event.field_description_summary
+field_name: field_description_summary
+entity_type: node
+bundle: oe_event
+label: 'Summary for description'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
