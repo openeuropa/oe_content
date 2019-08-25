@@ -4,17 +4,19 @@ dependencies:
   config:
     - field.storage.node.field_organiser_type
     - node.type.oe_event
-  module:
-    - options
 id: node.oe_event.field_organiser_type
 field_name: field_organiser_type
 entity_type: node
 bundle: oe_event
-label: 'Organiser type'
+label: Organiser is internal
 description: ''
-required: false
+required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: 0
 default_value_callback: ''
-settings: {  }
-field_type: list_string
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean
