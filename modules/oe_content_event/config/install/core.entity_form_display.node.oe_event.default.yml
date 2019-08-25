@@ -73,7 +73,7 @@ third_party_settings:
         id: ''
         classes: ''
         description: ''
-        open: true
+        open: false
         required_fields: true
       label: Organiser
       region: content

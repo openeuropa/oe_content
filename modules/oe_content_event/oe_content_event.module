@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Event module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function oe_content_event_entity_type_alter(array &$entity_types) {
+  // Add validation constraints to the node entity.
+  $entity_types['node']->addConstraint('EventFieldsRequired');
+}
+
+/**
+ * Field default value callback.
+ *
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ *   The entity being created.
+ * @param \Drupal\Core\Field\FieldDefinitionInterface $definition
+ *   The field definition.
+ *
+ * @return array
+ *   An array of default values, in the same format as the $default_value
+ *   property.
+ */
+function oe_event_field_default_value(FieldableEntityInterface $entity, FieldDefinitionInterface $definition): array {
+  $return = [];
+
+  if($definition->getName() === 'field_description_title') {
+    $return[] = t('Description');
+  }
+
+  if($definition->getName() === 'field_report_title') {
+    $return[] = t('Report');
+  }
+
+  return $return;
+}
