@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_entity_type_alter().
@@ -16,6 +17,35 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 function oe_content_event_entity_type_alter(array &$entity_types) {
   // Add validation constraints to the node entity.
   $entity_types['node']->addConstraint('EventFieldsRequired');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function oe_content_event_form_node_oe_event_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add a toggle switch for "Organiser" fields.
+  $form['is_organiser_internal'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Organiser is internal'),
+  ];
+  $form['field_organiser_internal']['#states'] = [
+    'visible' => [
+      ':input[name="is_organiser_internal"]' => ['checked' => TRUE],
+    ],
+  ];
+  $form['field_organiser_name']['#states'] = [
+    'visible' => [
+      ':input[name="is_organiser_internal"]' => ['checked' => FALSE],
+    ],
+  ];
+
+  // Make sure that the toggle field we have just created
+  // will be rendered under the "Organiser" field group.
+  $group_id = 'group_organiser';
+  $organiser_group = $form['#fieldgroups'][$group_id];
+  $organiser_group->children[] = 'is_organiser_internal';
+  $form['#fieldgroups'][$group_id] = $organiser_group;
+  $form['#group_children']['is_organiser_internal'] = $group_id;
 }
 
 /**
@@ -33,11 +63,11 @@ function oe_content_event_entity_type_alter(array &$entity_types) {
 function oe_event_field_default_value(FieldableEntityInterface $entity, FieldDefinitionInterface $definition): array {
   $return = [];
 
-  if($definition->getName() === 'field_description_title') {
+  if ($definition->getName() === 'field_description_title') {
     $return[] = t('Description');
   }
 
-  if($definition->getName() === 'field_report_title') {
+  if ($definition->getName() === 'field_report_title') {
     $return[] = t('Report');
   }
 
