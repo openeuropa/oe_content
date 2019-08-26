@@ -19,7 +19,6 @@ dependencies:
     - field.field.node.oe_event.field_online_type
     - field.field.node.oe_event.field_organiser_internal
     - field.field.node.oe_event.field_organiser_name
-    - field.field.node.oe_event.field_organiser_type
     - field.field.node.oe_event.field_registration_capacity
     - field.field.node.oe_event.field_registration_end_date
     - field.field.node.oe_event.field_registration_start_date
@@ -186,13 +185,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  field_organiser_type:
-    weight: 26
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
     region: content
   field_registration_capacity:
     weight: 25

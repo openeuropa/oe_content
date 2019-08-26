@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content_event\Plugin\Validation\Constraint;
 
 use Symfony\Component\Validator\ConstraintValidator;
@@ -12,6 +14,9 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
 
   /**
    * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function validate($items, Constraint $constraint) {
     /* @var \Drupal\node\NodeInterface $items */
