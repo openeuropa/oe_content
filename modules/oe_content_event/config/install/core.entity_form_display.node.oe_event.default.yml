@@ -19,7 +19,6 @@ dependencies:
     - field.field.node.oe_event.field_online_type
     - field.field.node.oe_event.field_organiser_internal
     - field.field.node.oe_event.field_organiser_name
-    - field.field.node.oe_event.field_organiser_type
     - field.field.node.oe_event.field_registration_capacity
     - field.field.node.oe_event.field_registration_end_date
     - field.field.node.oe_event.field_registration_start_date
@@ -63,7 +62,6 @@ third_party_settings:
       region: content
     group_organiser:
       children:
-        - field_organiser_type
         - field_organiser_name
         - field_organiser_internal
       parent_name: ''
@@ -280,12 +278,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_organiser_type:
-    weight: 33
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   field_registration_capacity:
     weight: 31
