@@ -66,6 +66,11 @@
             "build/profiles/contrib/{$name}": ["type:drupal-profile"],
             "build/modules/contrib/{$name}": ["type:drupal-module"],
             "build/themes/contrib/{$name}": ["type:drupal-theme"]
+        },
+        "patches": {
+            "drupal/field_group": {
+                "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2019-08-22/2787179-highlight-html5-validation-40.patch"
+            }
         }
     },
     "config": {
