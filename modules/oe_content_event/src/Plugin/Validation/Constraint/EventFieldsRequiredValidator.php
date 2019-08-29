@@ -22,13 +22,31 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
       return;
     }
 
+    // Validation of 'Organiser' fields.
+    if ($node->get('field_organiser_internal')->isEmpty() && $node->get('field_organiser_name')->isEmpty()) {
+      // Set message regarding empty organisation fields.
+      $violation = $this->context->buildViolation('You have to fill in at least one of fields @internal or @organiser_name', [
+        '@internal' => $node->getFieldDefinition('field_organiser_internal')->getLabel(),
+        '@organiser_name' => $node->getFieldDefinition('field_organiser_name')->getLabel(),
+      ]);
+      // Highlight empty 'Organiser name' field.
+      (clone $violation)
+        ->atPath('field_organiser_name')
+        ->addViolation();
+
+      // Highlight empty 'Internal organiser' field.
+      $violation
+        ->atPath('field_organiser_internal')
+        ->addViolation();
+    }
+
     $online_required_fields = [
       'field_online_type',
       'field_online_time_start',
       'field_online_link',
     ];
     // Check if any of these "Online" field group fields are filled in,
-    // then they are all required..
+    // then they are all required.
     $this->validateGroupFieldsEmpty($online_required_fields, $constraint, $node);
 
     $description_fields_required = [
