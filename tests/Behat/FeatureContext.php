@@ -22,7 +22,7 @@ class FeatureContext extends RawDrupalContext {
    * Fills a date or time field at a datetime widget.
    *
    * Example: When I fill in "Start date" with the date "29-08-2016".
-   * Example: When I fill in "Start date" with the time "26:59:00".
+   * Example: When I fill in "Start date" with the time "06:59:00AM".
    *
    * @param string $field_group
    *   The field component's label.

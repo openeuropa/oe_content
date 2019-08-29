@@ -4,8 +4,9 @@ default:
       paths:
         - %paths.base%/tests/features
       contexts:
-        - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
         - Drupal\Tests\oe_content\Behat\CleanupContext
         - Drupal\Tests\oe_content\Behat\WysiwygContext
@@ -42,5 +43,11 @@ default:
         subject form element: ".field--name-oe-subject"
         redirect link form element: ".field--name-oe-content-legacy-link"
         content owner form element: ".field--name-oe-content-content-owner"
+        online link: "#edit-field-online-link-0"
+      selectors:
+        message_selector: '.messages'
+        error_message_selector: '.messages.messages--error'
+        success_message_selector: '.messages.messages--status'
+        warning_message_selector: '.messages.messages--warning'
   formatters:
     progress: ~
