@@ -4,8 +4,9 @@ default:
       paths:
         - %paths.base%/tests/features
       contexts:
-        - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
         - Drupal\Tests\oe_content\Behat\CleanupContext
         - Drupal\Tests\oe_content\Behat\WysiwygContext
