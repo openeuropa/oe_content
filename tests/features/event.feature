@@ -144,7 +144,6 @@ Feature: Event content creation
     And I should see "Thu, 02/21/2019 - 14:21"
     And I should see "Info days"
     And I should see "As planned"
-    And I should see "As planned"
     And I should see the link "Website"
     And I should see "Facebook"
     And I should see "Online description text"
