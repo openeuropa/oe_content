@@ -29,7 +29,6 @@ config_devel:
     - field.field.node.oe_event.field_online_type
     - field.field.node.oe_event.field_organiser_internal
     - field.field.node.oe_event.field_organiser_name
-    - field.field.node.oe_event.field_organiser_type
     - field.field.node.oe_event.field_registration_capacity
     - field.field.node.oe_event.field_registration_end_date
     - field.field.node.oe_event.field_registration_start_date
