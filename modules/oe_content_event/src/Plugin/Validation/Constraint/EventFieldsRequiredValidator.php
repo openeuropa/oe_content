@@ -7,6 +7,7 @@ namespace Drupal\oe_content_event\Plugin\Validation\Constraint;
 use Drupal\node\NodeInterface;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 /**
  * Checks if the event fields are provided if required.
@@ -22,23 +23,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
       return;
     }
 
-    // Validation of 'Organiser' fields.
-    if ($node->get('field_organiser_internal')->isEmpty() && $node->get('field_organiser_name')->isEmpty()) {
-      // Set message regarding empty organisation fields.
-      $violation = $this->context->buildViolation('You have to fill in at least one of fields @internal or @organiser_name', [
-        '@internal' => $node->getFieldDefinition('field_organiser_internal')->getLabel(),
-        '@organiser_name' => $node->getFieldDefinition('field_organiser_name')->getLabel(),
-      ]);
-      // Highlight empty 'Organiser name' field.
-      (clone $violation)
-        ->atPath('field_organiser_name')
-        ->addViolation();
-
-      // Highlight empty 'Internal organiser' field.
-      $violation
-        ->atPath('field_organiser_internal')
-        ->addViolation();
-    }
+    $this->validateOrganiserGroupFields($constraint, $node);
 
     $online_required_fields = [
       'field_online_type',
@@ -96,6 +81,45 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
             ->addViolation();
         }
       }
+    }
+  }
+
+  /**
+   * Helper function to provide violation on a set of "Organiser" fields.
+   *
+   * @param \Symfony\Component\Validator\Constraint $constraint
+   *   The constraint object.
+   * @param \Drupal\node\NodeInterface $node
+   *   The node object.
+   */
+  protected function validateOrganiserGroupFields(Constraint $constraint, NodeInterface $node) {
+    $violation = NULL;
+    $fields_state = ($node->get('field_organiser_internal')->isEmpty() + $node->get('field_organiser_name')->isEmpty());
+    // Both fields is empty.
+    if ($fields_state === 2) {
+      $violation = $this->context->buildViolation('You have to fill in at least one of fields @internal or @organiser_name', [
+        '@internal' => $node->getFieldDefinition('field_organiser_internal')->getLabel(),
+        '@organiser_name' => $node->getFieldDefinition('field_organiser_name')->getLabel(),
+      ]);
+    }
+    // Both fields is filled in.
+    elseif ($fields_state === 0) {
+      $violation = $this->context->buildViolation('You have to fill in only one of fields @internal or @organiser_name, but not both.', [
+        '@internal' => $node->getFieldDefinition('field_organiser_internal')->getLabel(),
+        '@organiser_name' => $node->getFieldDefinition('field_organiser_name')->getLabel(),
+      ]);
+    }
+
+    if ($violation instanceof ConstraintViolationBuilderInterface) {
+      // Highlight empty 'Organiser name' field.
+      (clone $violation)
+        ->atPath('field_organiser_name')
+        ->addViolation();
+
+      // Highlight empty 'Internal organiser' field.
+      $violation
+        ->atPath('field_organiser_internal')
+        ->addViolation();
     }
   }
 
