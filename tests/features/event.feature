@@ -4,6 +4,59 @@ Feature: Event content creation
   As an editor
   I need to be able to create and see event items
 
+  @javascript
+  Scenario: Make sure that groups of the fields of Event content is configured correctly.
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
+    When I visit "the Event creation page"
+    Then I should see "Online"
+    And I should see "Organiser"
+    And I should see "Description"
+    And I should see "Report"
+    And I should see "Registration"
+    And I should not see "Online type"
+    And I should not see "Organiser name"
+    And I should not see "Summary for description"
+    And I should not see "Summary for report"
+    And I should not see "Registration URL"
+
+    When I press "Online"
+    Then I should see "Online type"
+    And I should see "Online time start"
+    And I should see "Online time end"
+    And I should see "Online description"
+    And I should see "Online link"
+    And I press "Online"
+
+    When I press "Organiser"
+    Then I should see "Organiser name"
+    And I should see "Internal organiser"
+    When I check "Organiser is internal"
+    Then I should see "Internal organiser"
+    And I should not see "Organiser name"
+    And I press "Organiser"
+
+    When I press "Description"
+    Then I should see "Summary for description"
+    And I should see "Description title"
+    And I should see "Featured media"
+    And I should see "Featured media legend"
+    And I should see "Full text"
+    And I press "Description"
+
+    When I press "Report"
+    Then I should see "Summary for report"
+    And I should see "Report title"
+    And I should see "Report text"
+    And I press "Report"
+
+    When I press "Registration"
+    Then I should see "Registration URL"
+    And I should see "Registration status"
+    And I should see "Registration start date"
+    And I should see "Registration end date"
+    And I should see "Entrance fee"
+    And I should see "Registration capacity"
+
   @cleanup:media @javascript
   Scenario: Creation of a Event content through the UI.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media" permission
@@ -206,4 +259,3 @@ Feature: Event content creation
     Then I should see the following success messages:
       | success messages                      |
       | Event My Event item has been updated. |
-
