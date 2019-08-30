@@ -53,3 +53,24 @@ function oe_content_policy_post_update_00002_field_labels(array &$sandbox): void
     $field_config->save();
   }
 }
+
+/**
+ * Make the timeline field translatable and RDF fields not translatable.
+ */
+function oe_content_policy_post_update_00003_update_translatable_fields(array &$sandbox): void {
+  // Make the timeline field translatable.
+  $field_config = FieldConfig::load('node.oe_policy.oe_timeline');
+  $field_config->setTranslatable(TRUE);
+  $field_config->save();
+
+  // Make RDF field not translatable.
+  $field_ids = [
+    'node.oe_policy.oe_author',
+    'node.oe_policy.oe_subject',
+  ];
+  foreach ($field_ids as $field_id) {
+    $field_config = FieldConfig::load($field_id);
+    $field_config->setTranslatable(FALSE);
+    $field_config->save();
+  }
+}
