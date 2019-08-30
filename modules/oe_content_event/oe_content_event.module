@@ -20,9 +20,13 @@ function oe_content_event_entity_type_alter(array &$entity_types) {
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_form_BASE_FORM_ID_alter().
  */
-function oe_content_event_form_node_oe_event_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function oe_content_event_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (!in_array($form_id, ['node_oe_event_form', 'node_oe_event_edit_form'])) {
+    return;
+  }
+
   // Add a toggle switch for "Organiser" fields.
   $form['is_organiser_internal'] = [
     '#type' => 'checkbox',
