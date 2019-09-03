@@ -93,25 +93,6 @@ class FeatureContext extends RawDrupalContext {
   }
 
   /**
-   * Checks that the AV Portal photo is rendered.
-   *
-   * @param string $title
-   *   The photo title.
-   * @param string $src
-   *   The final photo source.
-   *
-   * @Then I should see the AV Portal photo :title with source :src
-   */
-  public function assertAvPortalPhoto(string $title, string $src): void {
-    $media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties(['name' => $title]);
-    if (!$media) {
-      throw new \Exception(sprintf('The media named "%s" does not exist', $title));
-    }
-
-    $this->assertSession()->elementAttributeContains('css', 'img.avportal-photo', 'src', $src);
-  }
-
-  /**
    * Enables config and modules for PURL processing functionalities.
    *
    * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope

@@ -87,7 +87,7 @@ Feature: Event content creation
       | Open     |
       | Closed   |
 
-  @cleanup:media @javascript
+  @cleanup:media @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media" permission
     # Create a "Media AV portal photo".
@@ -171,7 +171,7 @@ Feature: Event content creation
     And I should see "Free of charge"
     And I should see "100 seats"
 
-  @javascript @cleanup:media
+  @javascript @cleanup:media @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media" permission
     # Create a "Media AV portal photo".
