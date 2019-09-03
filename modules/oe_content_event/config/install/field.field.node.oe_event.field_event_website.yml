@@ -10,10 +10,10 @@ id: node.oe_event.field_event_website
 field_name: field_event_website
 entity_type: node
 bundle: oe_event
-label: Website
+label: 'Event website'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
