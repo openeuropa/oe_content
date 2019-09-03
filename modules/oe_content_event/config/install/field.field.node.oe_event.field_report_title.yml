@@ -12,6 +12,9 @@ label: 'Report title'
 description: ''
 required: false
 translatable: true
-default_value_callback: 'oe_event_field_default_value'
+default_value:
+  -
+    value: Report
+default_value_callback: ''
 settings: {  }
 field_type: string
