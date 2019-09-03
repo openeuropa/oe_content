@@ -200,8 +200,8 @@ Feature: Event content creation
     And I fill in "Responsible department" with "Audit Board of the European Communities"
     And I press "Save"
     Then I should see the following error messages:
-      | error messages                                                                  |
-      | You have to fill in at least one of fields Internal organiser or Organiser name |
+      | error messages                                                                                 |
+      | You have to fill in at least one of the following fields: Internal organiser or Organiser name |
     # Make sure that errors related to the Organiser fields are fixed.
     When I press "Organiser"
     And I check "Organiser is internal"
