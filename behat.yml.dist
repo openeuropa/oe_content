@@ -10,6 +10,7 @@ default:
         - Drupal\Tests\oe_content\Behat\FeatureContext
         - Drupal\Tests\oe_content\Behat\CleanupContext
         - Drupal\Tests\oe_content\Behat\WysiwygContext
+        - Drupal\Tests\oe_media\Behat\AvPortalContext
         - OpenEuropa\Behat\TransformationContext:
             pages:
               Page creation: 'node/add/oe_page'
