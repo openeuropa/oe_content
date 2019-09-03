@@ -57,29 +57,17 @@ Feature: Event content creation
     And I should see "Entrance fee"
     And I should see "Registration capacity"
 
-  @cleanup:media @javascript
-  Scenario: Creation of a Event content through the UI.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media" permission
-    # Create a "Media AV portal photo".
-    And I visit "the AV Portal photo creation page"
-    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
-    And I press "Save"
-    # Create a "Event" content.
-    And I visit "the Event creation page"
-    And I fill in "Title" with "My Event item"
-    And I fill in "Start date" with the date "02/21/2019"
-    And I fill in "Start date" with the time "02:21:00AM"
-    And I fill in "End date" with the date "02/21/2019"
-    And I fill in "End date" with the time "02:21:00PM"
-    When I select "As planned" from "Status"
+  @javascript
+  Scenario: Make sure that the selectboxes contains correct options.
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
+    When I visit "the Event creation page"
     Then I should have the following options for the "Status" select:
       | - Select a value - |
       | As planned         |
       | Cancelled          |
       | Rescheduled        |
       | Postponed          |
-    When I select "Info days" from "Type"
-    Then I should have the following options for the "Type" select:
+    And I should have the following options for the "Type" select:
       | Training and workshops            |
       | Info days                         |
       | Competitions and award ceremonies |
@@ -88,16 +76,39 @@ Feature: Event content creation
       | Partner meetings                  |
       | Political meetings                |
       | Exhibitions                       |
+    When I press "Online"
+    Then I should have the following options for the "Online type" select:
+      | - None -   |
+      | Facebook   |
+      | Livestream |
+    When I press "Registration"
+    Then I should have the following options for the "Registration status" select:
+      | - None - |
+      | Open     |
+      | Closed   |
+
+  @cleanup:media @javascript
+  Scenario: Creation of a Event content through the UI.
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media" permission
+    # Create a "Media AV portal photo".
+    And I visit "the AV Portal photo creation page"
+    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
+    And I press "Save"
+    # Create a "Event" content.
+    When I visit "the Event creation page"
+    Then I fill in "Title" with "My Event item"
+    And I fill in "Start date" with the date "02/21/2019"
+    And I fill in "Start date" with the time "02:21:00AM"
+    And I fill in "End date" with the date "02/21/2019"
+    And I fill in "End date" with the time "02:21:00PM"
+    And I select "As planned" from "Status"
+    And I select "Info days" from "Type"
     And I fill in "Subject" with "financing"
     And I fill in "URL" with "http://ec.europa.eu"
     And I fill in "Link text" with "Website"
     # Online field group.
     When I press "Online"
-    And I select "Facebook" from "Online type"
-    Then I should have the following options for the "Online type" select:
-      | - None -   |
-      | Facebook   |
-      | Livestream |
+    Then I select "Facebook" from "Online type"
     And I fill in "Online time start" with the date "02/22/2019"
     And I fill in "Online time start" with the time "02:22:00AM"
     And I fill in "Online time end" with the date "02/22/2019"
@@ -107,7 +118,7 @@ Feature: Event content creation
     And I fill in "Link text" with "Online link" in the "online link"
     # Organiser field group.
     When I press "Organiser"
-    And I fill in "Organiser name" with "Organiser name"
+    Then I fill in "Organiser name" with "Organiser name"
     # Description field group.
     When I press "Description"
     And I fill in "Summary for description" with "Description summary text"
@@ -122,12 +133,8 @@ Feature: Event content creation
     And I fill in "Report text" with "Report text paragraph"
     # Registration field group.
     When I press "Registration"
-    And I fill in "Registration URL" with "http://example.com"
-    When I select "Open" from "Registration status"
-    Then I should have the following options for the "Registration status" select:
-      | - None - |
-      | Open     |
-      | Closed   |
+    Then I fill in "Registration URL" with "http://example.com"
+    And I select "Open" from "Registration status"
     And I fill in "Registration start date" with the date "02/23/2019"
     And I fill in "Registration start date" with the time "02:23:00AM"
     And I fill in "Registration end date" with the date "02/23/2019"
