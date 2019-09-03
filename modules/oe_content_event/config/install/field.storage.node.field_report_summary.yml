@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - text
-id: node.field_summary_report
-field_name: field_summary_report
+id: node.field_report_summary
+field_name: field_report_summary
 entity_type: node
 type: text_long
 settings: {  }

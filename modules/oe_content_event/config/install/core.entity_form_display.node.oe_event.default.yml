@@ -27,7 +27,7 @@ dependencies:
     - field.field.node.oe_event.field_report_text
     - field.field.node.oe_event.field_report_title
     - field.field.node.oe_event.field_start_date
-    - field.field.node.oe_event.field_summary_report
+    - field.field.node.oe_event.field_report_summary
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_subject
     - field.field.node.oe_event.oe_teaser
@@ -95,7 +95,7 @@ third_party_settings:
       region: content
     group_report:
       children:
-        - field_summary_report
+        - field_report_summary
         - field_report_title
         - field_report_text
       parent_name: ''
@@ -338,7 +338,7 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_summary_report:
+  field_report_summary:
     weight: 25
     settings:
       rows: 5
