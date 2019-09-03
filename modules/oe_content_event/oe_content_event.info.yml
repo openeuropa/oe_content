@@ -37,7 +37,7 @@ config_devel:
     - field.field.node.oe_event.field_report_text
     - field.field.node.oe_event.field_report_title
     - field.field.node.oe_event.field_start_date
-    - field.field.node.oe_event.field_summary_report
+    - field.field.node.oe_event.field_report_summary
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_subject
     - field.field.node.oe_event.oe_teaser
@@ -66,7 +66,7 @@ config_devel:
     - field.storage.node.field_report_text
     - field.storage.node.field_report_title
     - field.storage.node.field_start_date
-    - field.storage.node.field_summary_report
+    - field.storage.node.field_report_summary
     - node.type.oe_event
   optional:
     - language.content_settings.node.oe_event
