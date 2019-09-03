@@ -10,7 +10,7 @@ id: node.oe_event.field_description_summary
 field_name: field_description_summary
 entity_type: node
 bundle: oe_event
-label: 'Summary for description'
+label: 'Description summary'
 description: ''
 required: true
 translatable: true
