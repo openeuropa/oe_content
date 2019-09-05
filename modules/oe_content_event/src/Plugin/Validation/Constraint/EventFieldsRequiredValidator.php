@@ -28,6 +28,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     $online_required_fields = [
       'field_online_type',
       'field_online_time_start',
+      'field_online_time_end',
       'field_online_link',
     ];
     // Check if any of these "Online" field group fields are filled in,
@@ -35,6 +36,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     $this->validateGroupFieldsEmpty($online_required_fields, $constraint, $node);
 
     $description_fields_required = [
+      'field_description_summary',
       'field_featured_media',
       'field_featured_media_legend',
       'body',
