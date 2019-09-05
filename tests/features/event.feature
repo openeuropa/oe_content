@@ -21,14 +21,12 @@ Feature: Event content creation
 
     And I should see "Description"
     And I should not see "Description summary"
-    And I should not see "Description title"
     And I should not see "Featured media"
     And I should not see "Featured media legend"
     And I should not see "Full text"
 
     And I should see "Report"
     And I should not see "Summary for report"
-    And I should not see "Report title"
     And I should not see "Report text"
 
     And I should see "Registration"
@@ -62,7 +60,6 @@ Feature: Event content creation
     # Make sure that the Description field group contains expected fields.
     When I press "Description"
     Then I should see "Description summary"
-    And I should see "Description title"
     And I should see "Featured media"
     And I should see "Featured media legend"
     And I should see "Full text"
@@ -72,7 +69,6 @@ Feature: Event content creation
     # Make sure that the Report field group contains expected fields.
     When I press "Report"
     Then I should see "Summary for report"
-    And I should see "Report title"
     And I should see "Report text"
     # Collapse Report field group
     And I press "Report"
@@ -151,14 +147,12 @@ Feature: Event content creation
     # Description field group.
     When I press "Description"
     And I fill in "Description summary" with "Description summary text"
-    And I fill in "Description title" with "Description title"
     And I fill in "Use existing media" with "Euro with miniature figurines"
     And I fill in "Featured media legend" with "Euro with miniature figurines"
     And I fill in "Full text" with "Full text paragraph"
     # Report field group.
     When I press "Report"
     And I fill in "Summary for report" with "Report summary text"
-    And I fill in "Report title" with "Report title"
     And I fill in "Report text" with "Report text paragraph"
     # Registration field group.
     When I press "Registration"
@@ -188,10 +182,8 @@ Feature: Event content creation
     And I should see the link "Online link"
     And I should see "Organiser name"
     And I should see "Description summary text"
-    And I should see "Description title"
     And I should see "Euro with miniature figurines"
     And I should see "Report summary text"
-    And I should see "Report title"
     And I should see "Report text paragraph"
     And I should see the link "http://example.com"
     And I should see "Open"
@@ -265,7 +257,6 @@ Feature: Event content creation
     # Make sure that errors related to the Description fields are fixed.
     When I press "Description"
     And I fill in "Description summary" with "Description summary text"
-    And I fill in "Description title" with "Description title"
     And I fill in "Use existing media" with "Euro with miniature figurines"
     And I fill in "Featured media legend" with "Euro with miniature figurines"
     And I press "Save"
