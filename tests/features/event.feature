@@ -1,4 +1,4 @@
-@api @run
+@api
 Feature: Event content creation
   In order to have events on the site
   As an editor
@@ -9,15 +9,35 @@ Feature: Event content creation
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     When I visit "the Event creation page"
     Then I should see "Online"
-    And I should see "Organiser"
-    And I should see "Description"
-    And I should see "Report"
-    And I should see "Registration"
     And I should not see "Online type"
+    And I should not see "Online time start"
+    And I should not see "Online time end"
+    And I should not see "Online description"
+    And I should not see "Online link"
+
+    And I should see "Organiser"
     And I should not see "Organiser name"
+    And I should not see "Internal organiser"
+
+    And I should see "Description"
     And I should not see "Description summary"
+    And I should not see "Description title"
+    And I should not see "Featured media"
+    And I should not see "Featured media legend"
+    And I should not see "Full text"
+
+    And I should see "Report"
     And I should not see "Summary for report"
+    And I should not see "Report title"
+    And I should not see "Report text"
+
+    And I should see "Registration"
     And I should not see "Registration URL"
+    And I should not see "Registration status"
+    And I should not see "Registration start date"
+    And I should not see "Registration end date"
+    And I should not see "Entrance fee"
+    And I should not see "Registration capacity"
 
     # Make sure that the Online field group contains expected fields.
     When I press "Online"
@@ -194,8 +214,6 @@ Feature: Event content creation
     And I select "As planned" from "Status"
     And I select "Info days" from "Type"
     And I fill in "Subject" with "financing"
-    And I press "Description"
-    And I fill in "Description summary" with "Description summary text"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
     And I press "Save"
@@ -243,8 +261,10 @@ Feature: Event content creation
       | error messages                           |
       | Featured media field is required.        |
       | Featured media legend field is required. |
+      | Description summary field is required.   |
     # Make sure that errors related to the Description fields are fixed.
     When I press "Description"
+    And I fill in "Description summary" with "Description summary text"
     And I fill in "Description title" with "Description title"
     And I fill in "Use existing media" with "Euro with miniature figurines"
     And I fill in "Featured media legend" with "Euro with miniature figurines"
