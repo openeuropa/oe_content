@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.field.node.oe_event.body
     - field.field.node.oe_event.field_description_summary
-    - field.field.node.oe_event.field_description_title
     - field.field.node.oe_event.field_end_date
     - field.field.node.oe_event.field_entrance_fee
     - field.field.node.oe_event.field_event_status
@@ -25,7 +24,6 @@ dependencies:
     - field.field.node.oe_event.field_registration_status
     - field.field.node.oe_event.field_registration_url
     - field.field.node.oe_event.field_report_text
-    - field.field.node.oe_event.field_report_title
     - field.field.node.oe_event.field_start_date
     - field.field.node.oe_event.field_report_summary
     - field.field.node.oe_event.oe_author
@@ -78,7 +76,6 @@ third_party_settings:
     group_description:
       children:
         - field_description_summary
-        - field_description_title
         - field_featured_media
         - field_featured_media_legend
         - body
@@ -96,7 +93,6 @@ third_party_settings:
     group_report:
       children:
         - field_report_summary
-        - field_report_title
         - field_report_text
       parent_name: ''
       weight: 11
@@ -168,14 +164,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-    region: content
-  field_description_title:
-    weight: 26
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_end_date:
     weight: 2
@@ -323,14 +311,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-    region: content
-  field_report_title:
-    weight: 26
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_start_date:
     weight: 1
