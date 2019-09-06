@@ -53,6 +53,7 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    *   A redirect response to actual alias or system path.
    */
   public function index(string $uuid): RedirectResponse {
+    \Drupal::service('page_cache_kill_switch')->trigger();
     if ($entity = $this->contentUuidResolver->getEntityByUuid($uuid)) {
       // Unfortunately we cannot use
       // an instance of CacheableSecuredRedirectResponse because we get
