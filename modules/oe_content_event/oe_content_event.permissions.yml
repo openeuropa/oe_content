@@ -1,0 +1,30 @@
+add event venue entities:
+  title: 'Create new Event venue entities'
+
+administer event venue entities:
+  title: 'Administer Event venue entities'
+  description: 'Allow to access the administration form to configure Event venue entities.'
+  restrict access: true
+
+delete event venue entities:
+  title: 'Delete Event venue entities'
+
+edit event venue entities:
+  title: 'Edit Event venue entities'
+
+view published event venue entities:
+  title: 'View published Event venue entities'
+
+view unpublished event venue entities:
+  title: 'View unpublished Event venue entities'
+
+view all event venue revisions:
+  title: 'View all Event venue revisions'
+
+revert all event venue revisions:
+  title: 'Revert all Event venue revisions'
+  description: 'Role requires permission <em>view Event venue revisions</em> and <em>edit rights</em> for event venue entities in question or <em>administer event venue entities</em>.'
+
+delete all event venue revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Event venue revisions</em> and <em>delete rights</em> for event venue entities in question or <em>administer event venue entities</em>.'
