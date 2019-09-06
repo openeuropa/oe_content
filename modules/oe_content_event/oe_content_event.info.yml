@@ -6,6 +6,7 @@ core: 8.x
 
 dependencies:
   - oe_content:oe_content
+  - address:address
 
 config_devel:
   install:
