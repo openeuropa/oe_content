@@ -47,7 +47,6 @@ class PersistentUrlRedirectSubscriber implements EventSubscriberInterface {
     $response = $event->getResponse();
     if ($response instanceof LocalRedirectResponse && $response->headers->get('PURL', FALSE) === TRUE) {
       $entity = $this->contentUuidResolver->getEntityByUuid($event->getRequest()->get('uuid'));
-      $entity->addCacheTags(['route_match']);
       $response->addCacheableDependency($entity);
     }
 
