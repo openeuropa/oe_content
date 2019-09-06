@@ -6,6 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "drupal/address": "~1.7",
         "drupal/core": "^8.7",
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
