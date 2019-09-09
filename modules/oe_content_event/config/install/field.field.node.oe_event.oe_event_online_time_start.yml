@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_event_online_time_start
+    - node.type.oe_event
+  module:
+    - datetime
+id: node.oe_event.oe_event_online_time_start
+field_name: oe_event_online_time_start
+entity_type: node
+bundle: oe_event
+label: 'Online time start'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
