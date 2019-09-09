@@ -61,7 +61,7 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
       // More information you could find in this article:
       // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
       if ($entity instanceof TranslatableInterface) {
-        return new RedirectResponse($entity->toUrl()->toString(), 302, ['PURL' => TRUE]);
+        return new RedirectResponse($entity->toUrl()->toString(), 302, ['PURL' => '1']);
       }
     }
 
