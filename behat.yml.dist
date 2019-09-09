@@ -44,7 +44,7 @@ default:
         subject form element: ".field--name-oe-subject"
         redirect link form element: ".field--name-oe-content-legacy-link"
         content owner form element: ".field--name-oe-content-content-owner"
-        online link: "#edit-field-online-link-0"
+        Online link: "#edit-oe-event-online-link-0"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'

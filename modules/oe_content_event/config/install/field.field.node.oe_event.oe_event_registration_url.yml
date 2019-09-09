@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_event_registration_url
+    - node.type.oe_event
+  module:
+    - link
+id: node.oe_event.oe_event_registration_url
+field_name: oe_event_registration_url
+entity_type: node
+bundle: oe_event
+label: 'Registration URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link
