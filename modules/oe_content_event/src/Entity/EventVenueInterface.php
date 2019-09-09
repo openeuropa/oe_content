@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content_event\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -37,6 +39,44 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    *   The called Event venue entity.
    */
   public function setName($name);
+
+  /**
+   * Gets the Event venue capacity.
+   *
+   * @return string
+   *   Capacity of the Event venue.
+   */
+  public function getCapacity();
+
+  /**
+   * Sets the Event venue capacity.
+   *
+   * @param string $capacity
+   *   The Event venue capacity.
+   *
+   * @return \Drupal\oe_content_event\Entity\EventVenueInterface
+   *   The called Event venue entity.
+   */
+  public function setCapacity($capacity);
+
+  /**
+   * Gets the Event venue room.
+   *
+   * @return string
+   *   Room name of the Event venue.
+   */
+  public function getRoom();
+
+  /**
+   * Sets the Event venue room.
+   *
+   * @param string $room
+   *   The Event venue room name.
+   *
+   * @return \Drupal\oe_content_event\Entity\EventVenueInterface
+   *   The called Event venue entity.
+   */
+  public function setRoom($room);
 
   /**
    * Gets the Event venue creation timestamp.

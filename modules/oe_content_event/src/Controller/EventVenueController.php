@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content_event\Controller;
 
 use Drupal\Component\Utility\Xss;
@@ -15,6 +17,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Class EventVenueController.
  *
  *  Returns responses for Event venue routes.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 class EventVenueController extends ControllerBase implements ContainerInjectionInterface {
 
