@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content_event\Entity;
 
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -137,6 +139,36 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
+  public function getCapacity() {
+    return $this->get('capacity')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCapacity($capacity) {
+    $this->set('capacity', $capacity);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getRoom() {
+    return $this->get('room')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setRoom($room) {
+    $this->set('room', $room);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getCreatedTime() {
     return $this->get('created')->value;
   }
@@ -217,6 +249,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
       ->setLabel(t('Name'))
       ->setDescription(t('The name of the Event venue entity.'))
       ->setRevisionable(TRUE)
+      ->setTranslatable(TRUE)
       ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,
@@ -239,6 +272,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
       ->setLabel(t('Capacity'))
       ->setDescription(t('The capacity of the venue.'))
       ->setRevisionable(TRUE)
+      ->setTranslatable(TRUE)
       ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,
@@ -261,6 +295,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
       ->setLabel(t('Room'))
       ->setDescription(t('The name of the room.'))
       ->setRevisionable(TRUE)
+      ->setTranslatable(TRUE)
       ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,

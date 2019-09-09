@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content_event;
 
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
