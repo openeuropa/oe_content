@@ -38,9 +38,6 @@ class PersistentUrlControllerTest extends BrowserTestBase {
 
     $node_type = NodeType::create(['type' => 'page']);
     $node_type->save();
-
-    $user = $this->drupalCreateUser(['access content']);
-    $this->drupalLogin($user);
   }
 
   /**
