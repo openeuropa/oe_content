@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_content_event;
 
 use Drupal\Core\Entity\EntityAccessControlHandler;
@@ -18,7 +20,7 @@ class EventVenueAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
-    /** @var \Drupal\event\Entity\EventVenueInterface $entity */
+    /** @var \Drupal\oe_content_event\Entity\EventVenueInterface $entity */
     switch ($operation) {
       case 'view':
         if (!$entity->isPublished()) {
