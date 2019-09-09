@@ -26,19 +26,19 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     $this->validateOrganiserGroupFields($constraint, $node);
 
     $online_required_fields = [
-      'field_online_type',
-      'field_online_time_start',
-      'field_online_time_end',
-      'field_online_link',
+      'oe_event_online_type',
+      'oe_event_online_time_start',
+      'oe_event_online_time_end',
+      'oe_event_online_link',
     ];
     // Check if any of these "Online" field group fields are filled in,
     // then they are all required.
     $this->validateGroupFieldsEmpty($online_required_fields, $constraint, $node);
 
     $description_fields_required = [
-      'field_description_summary',
-      'field_featured_media',
-      'field_featured_media_legend',
+      'oe_event_description_summary',
+      'oe_event_featured_media',
+      'oe_event_featured_media_legend',
       'body',
     ];
     // Check if any of these "Description" field group fields are filled in,
@@ -46,10 +46,10 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     $this->validateGroupFieldsEmpty($description_fields_required, $constraint, $node);
 
     $registration_fields_required = [
-      'field_registration_url',
-      'field_registration_status',
-      'field_registration_start_date',
-      'field_registration_end_date',
+      'oe_event_registration_url',
+      'oe_event_registration_status',
+      'oe_event_registration_start_date',
+      'oe_event_registration_end_date',
     ];
     // Check if any of these "Registration" field group fields are filled in,
     // then they are all required.
@@ -96,31 +96,31 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
    */
   protected function validateOrganiserGroupFields(Constraint $constraint, NodeInterface $node) {
     $violation = NULL;
-    $fields_state = ($node->get('field_organiser_internal')->isEmpty() + $node->get('field_organiser_name')->isEmpty());
+    $fields_state = ($node->get('oe_event_organiser_internal')->isEmpty() + $node->get('oe_event_organiser_name')->isEmpty());
     // Both fields are empty.
     if ($fields_state === 2) {
       $violation = $this->context->buildViolation('You have to fill in at least one of the following fields: @internal or @organiser_name', [
-        '@internal' => $node->getFieldDefinition('field_organiser_internal')->getLabel(),
-        '@organiser_name' => $node->getFieldDefinition('field_organiser_name')->getLabel(),
+        '@internal' => $node->getFieldDefinition('oe_event_organiser_internal')->getLabel(),
+        '@organiser_name' => $node->getFieldDefinition('oe_event_organiser_name')->getLabel(),
       ]);
     }
     // Both fields are filled in.
     elseif ($fields_state === 0) {
       $violation = $this->context->buildViolation('You have to fill in only one of the following fields @internal or @organiser_name, not both', [
-        '@internal' => $node->getFieldDefinition('field_organiser_internal')->getLabel(),
-        '@organiser_name' => $node->getFieldDefinition('field_organiser_name')->getLabel(),
+        '@internal' => $node->getFieldDefinition('oe_event_organiser_internal')->getLabel(),
+        '@organiser_name' => $node->getFieldDefinition('oe_event_organiser_name')->getLabel(),
       ]);
     }
 
     if ($violation instanceof ConstraintViolationBuilderInterface) {
       // Highlight empty 'Organiser name' field.
       (clone $violation)
-        ->atPath('field_organiser_name')
+        ->atPath('oe_event_organiser_name')
         ->addViolation();
 
       // Highlight empty 'Internal organiser' field.
       $violation
-        ->atPath('field_organiser_internal')
+        ->atPath('oe_event_organiser_internal')
         ->addViolation();
     }
   }

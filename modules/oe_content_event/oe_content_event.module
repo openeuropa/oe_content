@@ -31,14 +31,14 @@ function oe_content_event_form_node_form_alter(&$form, FormStateInterface $form_
   $form['is_organiser_internal'] = [
     '#type' => 'checkbox',
     '#title' => t('Organiser is internal'),
-    '#default_value' => $form_state->getValue('field_organiser_internal') ? 1 : 0,
+    '#default_value' => $form_state->getValue('oe_event_organiser_internal') ? 1 : 0,
   ];
-  $form['field_organiser_internal']['#states'] = [
+  $form['oe_event_organiser_internal']['#states'] = [
     'visible' => [
       ':input[name="is_organiser_internal"]' => ['checked' => TRUE],
     ],
   ];
-  $form['field_organiser_name']['#states'] = [
+  $form['oe_event_organiser_name']['#states'] = [
     'visible' => [
       ':input[name="is_organiser_internal"]' => ['checked' => FALSE],
     ],
