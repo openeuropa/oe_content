@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Social media link template.
+ */
+#}
+
+{% if items %}
+  <ul>
+    {% for item in items %}
+      <li>
+        {{ item.type }}
+        {{ item.url }}
+        {{ item.title }}
+      </li>
+     {% endfor %}
+  </ul>
+{% endif %}
