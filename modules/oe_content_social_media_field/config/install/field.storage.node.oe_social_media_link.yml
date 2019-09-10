@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - oe_content_social_media_field
+id: node.oe_social_media_link
+field_name: oe_social_media_link
+entity_type: node
+type: social_media_link
+settings: {  }
+module: oe_content_social_media_field
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
