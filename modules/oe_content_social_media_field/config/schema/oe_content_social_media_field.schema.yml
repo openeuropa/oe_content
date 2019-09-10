@@ -1,0 +1,13 @@
+field.value.social_media_link:
+  type: mapping
+  label: 'Default value'
+  mapping:
+    type:
+      type: string
+      label: 'Social media link type'
+    url:
+      type: string
+      label: 'Social media link URL'
+    title:
+      type: label
+      label: 'Social media link title'
