@@ -18,10 +18,6 @@ use Drupal\user\EntityOwnerInterface;
 interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityPublishedInterface, EntityOwnerInterface {
 
   /**
-   * Add get/set methods for your configuration properties here.
-   */
-
-  /**
    * Gets the Event venue name.
    *
    * @return string

@@ -1,9 +1,4 @@
 # Event venue routing definition
-event_venue.settings_tab:
-  route_name: event_venue.settings
-  title: 'Settings'
-  base_route: event_venue.settings
-
 entity.event_venue.canonical:
   route_name: entity.event_venue.canonical
   base_route: entity.event_venue.canonical
@@ -13,11 +8,6 @@ entity.event_venue.edit_form:
   route_name: entity.event_venue.edit_form
   base_route: entity.event_venue.canonical
   title: 'Edit'
-
-entity.event_venue.version_history:
-  route_name: entity.event_venue.version_history
-  base_route: entity.event_venue.canonical
-  title: 'Revisions'
 
 entity.event_venue.delete_form:
   route_name:  entity.event_venue.delete_form
