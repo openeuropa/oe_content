@@ -213,8 +213,7 @@ Feature: Event content creation
       | error messages                                                                                 |
       | You have to fill in at least one of the following fields: Internal organiser or Organiser name |
     # Make sure that errors related to the Organiser fields are fixed.
-    When I press "Organiser"
-    And I check "Organiser is internal"
+    When I check "Organiser is internal"
     And I fill in "Internal organiser" with "Audit Board of the European Communities"
     And I press "Save"
     Then I should see the following success messages:
@@ -231,8 +230,7 @@ Feature: Event content creation
       | Online time start field is required. |
       | Online link field is required.       |
     # Make sure that errors related to the Online fields are fixed.
-    When I press "Online"
-    And I fill in "Online time start" with the date "02/22/2019"
+    When I fill in "Online time start" with the date "02/22/2019"
     And I fill in "Online time start" with the time "02:22:00AM"
     And I fill in "Online time end" with the date "02/22/2019"
     And I fill in "Online time end" with the time "02:22:00PM"
@@ -255,8 +253,7 @@ Feature: Event content creation
       | Featured media legend field is required. |
       | Description summary field is required.   |
     # Make sure that errors related to the Description fields are fixed.
-    When I press "Description"
-    And I fill in "Description summary" with "Description summary text"
+    When I fill in "Description summary" with "Description summary text"
     And I fill in "Use existing media" with "Euro with miniature figurines"
     And I fill in "Featured media legend" with "Euro with miniature figurines"
     And I press "Save"
@@ -275,8 +272,7 @@ Feature: Event content creation
       | Registration start date field is required. |
       | Registration end date field is required.   |
     # Make sure that errors related to the Registration fields are fixed.
-    When I press "Registration"
-    And I select "Open" from "Registration status"
+    When I select "Open" from "Registration status"
     And I fill in "Registration start date" with the date "02/23/2019"
     And I fill in "Registration start date" with the time "02:23:00AM"
     And I fill in "Registration end date" with the date "02/23/2019"
