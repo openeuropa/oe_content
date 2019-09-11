@@ -63,7 +63,7 @@ class EventVenueTest extends RdfKernelTestBase {
    * Tests event venue entity.
    */
   public function testEventVenueEntity() {
-    /** @var \Drupal\oe_content_event\Entity\EventVenueInterface $event_venue_storage */
+    /** @var \Drupal\oe_content_event\EventVenueStorageInterface $event_venue_storage */
     $event_venue_storage = $this->container->get('entity_type.manager')->getStorage('event_venue');
 
     // Create an event venue.
@@ -77,26 +77,25 @@ class EventVenueTest extends RdfKernelTestBase {
         'locality' => 'Brussels',
         'postal_code' => '1000',
         'address_line1' => 'Rue Belliard 28',
-        'organisation' => 'European Commission',
+        'organization' => 'European Commission',
       ],
       'status' => 1,
     ]);
     $event_venue_entity->save();
+
+    $event_venue_entity = $event_venue_storage->loadByProperties(['name' => 'Event venue']);
+    $event_venue_entity = reset($event_venue_entity);
 
     // Asserts that event venue was correctly saved.
     $this->assertEquals(1, $event_venue_entity->getRevisionId());
     $this->assertEqual($event_venue_entity->get('name')->value, 'Event venue');
     $this->assertEqual($event_venue_entity->get('capacity')->value, '100 seats');
     $this->assertEqual($event_venue_entity->get('room')->value, 'RM/05/001');
-    $this->assertEqual($event_venue_entity->get('postal_address')->getValue(), [
-      0 => [
-        'country_code' => 'BE',
-        'locality' => 'Brussels',
-        'postal_code' => '1000',
-        'address_line1' => 'Rue Belliard 28',
-        'organisation' => 'European Commission',
-      ],
-    ]);
+    $this->assertEqual($event_venue_entity->get('postal_address')->country_code, 'BE');
+    $this->assertEqual($event_venue_entity->get('postal_address')->locality, 'Brussels');
+    $this->assertEqual($event_venue_entity->get('postal_address')->postal_code, '1000');
+    $this->assertEqual($event_venue_entity->get('postal_address')->address_line1, 'Rue Belliard 28');
+    $this->assertEqual($event_venue_entity->get('postal_address')->organization, 'European Commission');
   }
 
 }
