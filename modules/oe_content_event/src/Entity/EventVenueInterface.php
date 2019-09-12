@@ -11,7 +11,7 @@ use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\user\EntityOwnerInterface;
 
 /**
- * Provides an interface for defining Event venue entities.
+ * Provides an interface for Event venue entities.
  *
  * @ingroup oe_content_event
  */
