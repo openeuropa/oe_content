@@ -15,7 +15,7 @@ use Drupal\node\Entity\NodeType;
 /**
  * Tests the timeline field type definition.
  */
-class TimelineFieldTest extends EntityKernelTestBase {
+class SocialMediaFieldTest extends EntityKernelTestBase {
 
   /**
    * A field storage to use in this test class.
@@ -37,12 +37,8 @@ class TimelineFieldTest extends EntityKernelTestBase {
    * @var array
    */
   protected $displayOptions = [
-    'type' => 'timeline_formatter',
+    'type' => 'social_media_link_formatter',
     'label' => 'hidden',
-    'settings' => [
-      'limit' => 2,
-      'show_more' => 'Button label',
-    ],
   ];
 
   /**
@@ -51,7 +47,7 @@ class TimelineFieldTest extends EntityKernelTestBase {
   public static $modules = [
     'field',
     'node',
-    'oe_content_timeline_field',
+    'oe_content_social_media_field',
     'system',
     'text',
     'user',
@@ -84,17 +80,17 @@ class TimelineFieldTest extends EntityKernelTestBase {
     ])->save();
 
     $this->fieldStorage = FieldStorageConfig::create([
-      'field_name' => 'field_timeline',
+      'field_name' => 'field_social_media_links',
       'entity_type' => 'node',
-      'type' => 'timeline_field',
+      'type' => 'social_media_link',
       'cardinality' => -1,
       'entity_types' => ['node'],
     ]);
     $this->fieldStorage->save();
 
     $this->field = FieldConfig::create([
-      'label' => 'Timeline field',
-      'field_name' => 'field_timeline',
+      'label' => 'Social media links',
+      'field_name' => 'field_social_media_links',
       'entity_type' => 'node',
       'bundle' => 'test_ct',
       'settings' => [],
@@ -112,28 +108,27 @@ class TimelineFieldTest extends EntityKernelTestBase {
   }
 
   /**
-   * Test the timeline field.
+   * Test the social media field.
    */
   public function testTimeline(): void {
     $values = [
       'type' => 'test_ct',
       'title' => 'My node title',
-      'field_timeline' => [
+      'field_social_media_links' => [
         [
-          'label' => '16/07/2019',
-          'title' => 'Item 1',
-          'body' => 'Item 1 body',
-          'format' => 'my_text_format',
+          'type' => 'facebook',
+          'url' => 'http://example.com/facebook',
+          'title' => 'Facebook link',
         ],
         [
-          'label' => '16/07/2019',
-          'title' => 'Item 2',
-          'body' => 'Item 2 body',
+          'type' => 'email',
+          'url' => 'mailto:test@example.com',
+          'title' => 'Email link',
         ],
         [
-          'label' => '16/07/2019',
-          'title' => 'Item 3',
-          'body' => 'Item 3 body',
+          'type' => 'twitter',
+          'url' => 'http://example.com/twitter',
+          'title' => 'Twitter link',
         ],
       ],
     ];
@@ -149,76 +144,48 @@ class TimelineFieldTest extends EntityKernelTestBase {
 
     $expected = [
       [
-        'label' => '16/07/2019',
-        'title' => 'Item 1',
-        'body' => 'Item 1 body',
-        'format' => 'my_text_format',
+        'type' => 'facebook',
+        'url' => 'http://example.com/facebook',
+        'title' => 'Facebook link',
       ],
       [
-        'label' => '16/07/2019',
-        'title' => 'Item 2',
-        'body' => 'Item 2 body',
-        'format' => NULL,
+        'type' => 'email',
+        'url' => 'mailto:test@example.com',
+        'title' => 'Email link',
       ],
       [
-        'label' => '16/07/2019',
-        'title' => 'Item 3',
-        'body' => 'Item 3 body',
-        'format' => NULL,
+        'type' => 'twitter',
+        'url' => 'http://example.com/twitter',
+        'title' => 'Twitter link',
       ],
     ];
     // Assert the base field values.
     $this->assertEquals('My node title', $node->label());
-    $this->assertEquals($expected, $node->get('field_timeline')->getValue());
-
-    // Test empty timeline.
-    $values = [
-      'type' => 'test_ct',
-      'title' => 'My second node',
-      'field_timeline' => [
-        [
-          'label' => '',
-          'title' => '',
-          'body' => '',
-          'format' => '',
-        ],
-      ],
-    ];
-
-    // Create node.
-    $node = Node::create($values);
-    $node->save();
-
-    // Assert the base field values.
-    $this->assertEquals('My second node', $node->label());
-    $this->assertTrue($node->get('field_timeline')->isEmpty());
+    $this->assertEquals($expected, $node->get('field_social_media_links')->getValue());
   }
 
   /**
-   * Test the timeline field rendering with formatter.
+   * Test the social media field rendering with formatter.
    */
   public function testTimelineRender(): void {
     $values = [
       'type' => 'test_ct',
       'title' => 'My node title',
-      'field_timeline' => [
+      'field_social_media_links' => [
         [
-          'label' => '16/07/2019',
-          'title' => 'Item 1',
-          'body' => 'Item 1 body',
-          'format' => 'my_text_format',
+          'type' => 'facebook',
+          'url' => 'http://example.com/facebook',
+          'title' => 'Facebook link',
         ],
         [
-          'label' => '16/07/2019',
-          'title' => 'Item 2',
-          'body' => 'Item 2 body',
-          'format' => 'my_text_format',
+          'type' => 'email',
+          'url' => 'mailto:test@example.com',
+          'title' => 'Email link',
         ],
         [
-          'label' => '16/07/2019',
-          'title' => 'Item 3',
-          'body' => 'Item 3 body',
-          'format' => 'my_text_format',
+          'type' => 'twitter',
+          'url' => 'http://example.com/twitter',
+          'title' => 'Twitter link',
         ],
       ],
     ];
@@ -232,21 +199,15 @@ class TimelineFieldTest extends EntityKernelTestBase {
     $build = $display->build($node);
     $output = $this->container->get('renderer')->renderRoot($build);
 
-    $this->assertContains('<div>Item 1</div>', (string) $output);
-    $this->assertContains('<p>Item 1 body</p>', (string) $output);
-    $this->assertContains('<div>Item 2</div>', (string) $output);
-    $this->assertContains('<p>Item 2 body</p>', (string) $output);
-    $this->assertContains('<div>Item 3</div>', (string) $output);
-    $this->assertContains('<p>Item 3 body</p>', (string) $output);
-    $this->assertContains('<button>Button label</button>', (string) $output);
-
-    // Change the limit to show all items without the "show more" button.
-    $this->displayOptions['settings']['limit'] = 0;
-    $display->setComponent('field_timeline', $this->displayOptions)->save();
-
-    $build = $display->build($node);
-    $output = $this->container->get('renderer')->renderRoot($build);
-    $this->assertNotContains('<button>Button label</button>', (string) $output);
+    $this->assertContains('<p>facebook</p>', (string) $output);
+    $this->assertContains('<p>http://example.com/facebook</p>', (string) $output);
+    $this->assertContains('<p>Facebook link</p>', (string) $output);
+    $this->assertContains('<p>email</p>', (string) $output);
+    $this->assertContains('<p>mailto:test@example.com</p>', (string) $output);
+    $this->assertContains('<p>Email link</p>', (string) $output);
+    $this->assertContains('<p>twitter</p>', (string) $output);
+    $this->assertContains('<p>http://example.com/twitter</p>', (string) $output);
+    $this->assertContains('<p>Twitter link</p>', (string) $output);
   }
 
 }
