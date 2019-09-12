@@ -22,7 +22,7 @@ class EventVenueStorage extends SqlContentEntityStorage implements EventVenueSto
   /**
    * {@inheritdoc}
    */
-  public function revisionIds(EventVenueInterface $entity): int {
+  public function revisionIds(EventVenueInterface $entity): array {
     return $this->database->query(
       'SELECT vid FROM {event_venue_revision} WHERE id=:id ORDER BY vid',
       [':id' => $entity->id()]
@@ -32,7 +32,7 @@ class EventVenueStorage extends SqlContentEntityStorage implements EventVenueSto
   /**
    * {@inheritdoc}
    */
-  public function userRevisionIds(AccountInterface $account): int {
+  public function userRevisionIds(AccountInterface $account): array {
     return $this->database->query(
       'SELECT vid FROM {event_venue_field_revision} WHERE uid = :uid ORDER BY vid',
       [':uid' => $account->id()]
@@ -50,7 +50,7 @@ class EventVenueStorage extends SqlContentEntityStorage implements EventVenueSto
   /**
    * {@inheritdoc}
    */
-  public function clearRevisionsLanguage(LanguageInterface $language): void {
+  public function clearRevisionsLanguage(LanguageInterface $language): EventVenueStorageInterface {
     return $this->database->update('event_venue_revision')
       ->fields(['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED])
       ->condition('langcode', $language->getId())
