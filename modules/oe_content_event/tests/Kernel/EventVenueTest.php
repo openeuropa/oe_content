@@ -83,8 +83,7 @@ class EventVenueTest extends RdfKernelTestBase {
     ]);
     $event_venue_entity->save();
 
-    $event_venue_entity = $event_venue_storage->loadByProperties(['name' => 'Event venue']);
-    $event_venue_entity = reset($event_venue_entity);
+    $event_venue_entity = $event_venue_storage->load($event_venue_entity->id());
 
     // Asserts that event venue was correctly saved.
     $this->assertEquals(1, $event_venue_entity->getRevisionId());
