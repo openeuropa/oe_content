@@ -44,8 +44,6 @@ use Drupal\user\EntityOwnerTrait;
  *     "revision" = "vid",
  *     "label" = "name",
  *     "uuid" = "uuid",
- *     "uid" = "uid",
- *     "owner" = "uid",
  *     "langcode" = "langcode",
  *     "published" = "status",
  *   },
@@ -133,27 +131,6 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
-    $fields += static::ownerBaseFieldDefinitions($entity_type);
-
-    $fields['uid']
-      ->setLabel(t('Authored by'))
-      ->setDescription(t('The username of the author.'))
-      ->setRevisionable(TRUE)
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'author',
-        'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 5,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'placeholder' => '',
-        ],
-      ])
-      ->setDisplayConfigurable('form', TRUE);
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
