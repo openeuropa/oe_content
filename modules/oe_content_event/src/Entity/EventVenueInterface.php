@@ -9,6 +9,7 @@ use Drupal\Core\Entity\RevisionLogInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\user\EntityOwnerInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Provides an interface for Event venue entities.
@@ -23,7 +24,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return string
    *   Name of the Event venue.
    */
-  public function getName();
+  public function getName(): string;
 
   /**
    * Sets the Event venue name.
@@ -34,7 +35,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setName($name);
+  public function setName($name): EventVenueInterface;
 
   /**
    * Gets the Event venue capacity.
@@ -42,7 +43,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return string
    *   Capacity of the Event venue.
    */
-  public function getCapacity();
+  public function getCapacity(): string;
 
   /**
    * Sets the Event venue capacity.
@@ -53,7 +54,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setCapacity($capacity);
+  public function setCapacity($capacity): EventVenueInterface;
 
   /**
    * Gets the Event venue room.
@@ -61,7 +62,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return string
    *   Room name of the Event venue.
    */
-  public function getRoom();
+  public function getRoom(): string;
 
   /**
    * Sets the Event venue room.
@@ -72,7 +73,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setRoom($room);
+  public function setRoom($room): EventVenueInterface;
 
   /**
    * Gets the Event venue creation timestamp.
@@ -80,7 +81,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return int
    *   Creation timestamp of the Event venue.
    */
-  public function getCreatedTime();
+  public function getCreatedTime(): int;
 
   /**
    * Sets the Event venue creation timestamp.
@@ -91,7 +92,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setCreatedTime($timestamp);
+  public function setCreatedTime($timestamp): EventVenueInterface;
 
   /**
    * Gets the Event venue revision creation timestamp.
@@ -99,7 +100,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return int
    *   The UNIX timestamp of when this revision was created.
    */
-  public function getRevisionCreationTime();
+  public function getRevisionCreationTime(): int;
 
   /**
    * Sets the Event venue revision creation timestamp.
@@ -110,7 +111,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setRevisionCreationTime($timestamp);
+  public function setRevisionCreationTime($timestamp): EventVenueInterface;
 
   /**
    * Gets the Event venue revision author.
@@ -118,7 +119,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\user\UserInterface
    *   The user entity for the revision author.
    */
-  public function getRevisionUser();
+  public function getRevisionUser(): UserInterface;
 
   /**
    * Sets the Event venue revision author.
@@ -129,6 +130,6 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setRevisionUserId($uid);
+  public function setRevisionUserId($uid): EventVenueInterface;
 
 }

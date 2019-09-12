@@ -69,14 +69,14 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public function getName() {
+  public function getName(): string {
     return $this->get('name')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setName($name) {
+  public function setName($name): EventVenueInterface{
     $this->set('name', $name);
     return $this;
   }
@@ -84,14 +84,14 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public function getCapacity() {
+  public function getCapacity(): string {
     return $this->get('capacity')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setCapacity($capacity) {
+  public function setCapacity($capacity): EventVenueInterface {
     $this->set('capacity', $capacity);
     return $this;
   }
@@ -99,14 +99,14 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public function getRoom() {
+  public function getRoom(): string {
     return $this->get('room')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setRoom($room) {
+  public function setRoom($room): EventVenueInterface {
     $this->set('room', $room);
     return $this;
   }
@@ -114,14 +114,14 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public function getCreatedTime() {
+  public function getCreatedTime(): int {
     return $this->get('created')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setCreatedTime($timestamp) {
+  public function setCreatedTime($timestamp): EventVenueInterface {
     $this->set('created', $timestamp);
     return $this;
   }
@@ -129,7 +129,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['name'] = BaseFieldDefinition::create('string')
