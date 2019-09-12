@@ -32,7 +32,7 @@ class SocialMediaLinkWidget extends WidgetBase implements WidgetInterface {
       '#title' => $this->t('Type'),
       '#default_value' => $items[$delta]->type ?? NULL,
       '#options' => $this->getSocialMediaOptions(),
-      '#required' => FALSE,
+      '#required' => $element['#required'],
     ];
     $element['url'] = [
       '#type' => 'textfield',
@@ -40,7 +40,7 @@ class SocialMediaLinkWidget extends WidgetBase implements WidgetInterface {
       '#default_value' => $items[$delta]->url ?? NULL,
       '#size' => 60,
       '#maxlength' => 255,
-      '#required' => FALSE,
+      '#required' => $element['#required'],
     ];
     $element['title'] = [
       '#type' => 'textfield',
@@ -48,7 +48,7 @@ class SocialMediaLinkWidget extends WidgetBase implements WidgetInterface {
       '#default_value' => $items[$delta]->title ?? NULL,
       '#size' => 60,
       '#maxlength' => 100,
-      '#required' => FALSE,
+      '#required' => $element['#required'],
     ];
 
     return $element;
@@ -58,10 +58,12 @@ class SocialMediaLinkWidget extends WidgetBase implements WidgetInterface {
    * {@inheritdoc}
    */
   public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state) {
-    return FALSE;
+    return $element[$violation->arrayPropertyPath[0]];
   }
 
   /**
+   * Returns the social media link type options.
+   *
    * @return array
    *   Array of social medias.
    */
