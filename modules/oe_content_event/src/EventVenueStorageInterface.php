@@ -28,7 +28,7 @@ interface EventVenueStorageInterface extends ContentEntityStorageInterface {
    * @return int[]
    *   Event venue revision IDs (in ascending order).
    */
-  public function revisionIds(EventVenueInterface $entity);
+  public function revisionIds(EventVenueInterface $entity): int;
 
   /**
    * Gets a list of revision IDs having a given user as Event venue author.
@@ -39,7 +39,7 @@ interface EventVenueStorageInterface extends ContentEntityStorageInterface {
    * @return int[]
    *   Event venue revision IDs (in ascending order).
    */
-  public function userRevisionIds(AccountInterface $account);
+  public function userRevisionIds(AccountInterface $account): int;
 
   /**
    * Counts the number of revisions in the default language.
@@ -50,7 +50,7 @@ interface EventVenueStorageInterface extends ContentEntityStorageInterface {
    * @return int
    *   The number of revisions in the default language.
    */
-  public function countDefaultLanguageRevisions(EventVenueInterface $entity);
+  public function countDefaultLanguageRevisions(EventVenueInterface $entity): int;
 
   /**
    * Unsets the language for all Event venue with the given language.
@@ -58,6 +58,6 @@ interface EventVenueStorageInterface extends ContentEntityStorageInterface {
    * @param \Drupal\Core\Language\LanguageInterface $language
    *   The language object.
    */
-  public function clearRevisionsLanguage(LanguageInterface $language);
+  public function clearRevisionsLanguage(LanguageInterface $language): void;
 
 }
