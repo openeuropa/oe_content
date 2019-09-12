@@ -7,6 +7,7 @@ namespace Drupal\oe_content_social_media_field\Plugin\Field\FieldType;
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\TypedData\DataDefinition;
+use Drupal\Core\TypedData\TypedDataTrait;
 
 /**
  * Plugin implementation of the 'social_media_link' field type.
@@ -18,10 +19,13 @@ use Drupal\Core\TypedData\DataDefinition;
  *   category = @Translation("OpenEuropa"),
  *   description = @Translation("Stores social media link."),
  *   default_formatter = "social_media_link_formatter",
- *   default_widget = "social_media_link_widget"
+ *   default_widget = "social_media_link_widget",
+ *   constraints = {"SocialMediaField" = {}}
  * )
  */
 class SocialMediaLinkItem extends FieldItemBase {
+
+  use TypedDataTrait;
 
   /**
    * {@inheritdoc}
@@ -50,11 +54,10 @@ class SocialMediaLinkItem extends FieldItemBase {
    */
   public function isEmpty() {
     // We consider the field empty if any the fields are empty.
-    $type = $this->get('type')->getValue();
     $url = $this->get('url')->getValue();
     $title = $this->get('title')->getValue();
 
-    return $type === NULL || $type === '' || $title === NULL || $title === '' || $url === NULL || $url === '';
+    return ($title === NULL || $title === '') && ($url === NULL || $url === '');
   }
 
   /**
@@ -78,21 +81,12 @@ class SocialMediaLinkItem extends FieldItemBase {
    */
   public function applyDefaultValue($notify = TRUE) {
     $this->setValue([
-        'type' => '',
-        'url' => '',
-        'title' => '',
-      ], $notify);
+      'type' => '',
+      'url' => '',
+      'title' => '',
+    ], $notify);
 
     return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getConstraints() {
-    $constraints = parent::getConstraints();
-
-    return $constraints;
   }
 
 }
