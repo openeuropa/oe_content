@@ -6,7 +6,6 @@ namespace Drupal\oe_content_social_media_field\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Plugin implementation of the 'social_media_link_formatter' formatter.
