@@ -94,42 +94,4 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    */
   public function setCreatedTime($timestamp): EventVenueInterface;
 
-  /**
-   * Gets the Event venue revision creation timestamp.
-   *
-   * @return int
-   *   The UNIX timestamp of when this revision was created.
-   */
-  public function getRevisionCreationTime(): int;
-
-  /**
-   * Sets the Event venue revision creation timestamp.
-   *
-   * @param int $timestamp
-   *   The UNIX timestamp of when this revision was created.
-   *
-   * @return \Drupal\oe_content_event\Entity\EventVenueInterface
-   *   The called Event venue entity.
-   */
-  public function setRevisionCreationTime($timestamp): EventVenueInterface;
-
-  /**
-   * Gets the Event venue revision author.
-   *
-   * @return \Drupal\user\UserInterface
-   *   The user entity for the revision author.
-   */
-  public function getRevisionUser(): UserInterface;
-
-  /**
-   * Sets the Event venue revision author.
-   *
-   * @param int $uid
-   *   The user ID of the revision author.
-   *
-   * @return \Drupal\oe_content_event\Entity\EventVenueInterface
-   *   The called Event venue entity.
-   */
-  public function setRevisionUserId($uid): EventVenueInterface;
-
 }
