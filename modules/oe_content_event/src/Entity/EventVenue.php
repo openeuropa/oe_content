@@ -76,7 +76,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public function setName($name): EventVenueInterface{
+  public function setName($name): EventVenueInterface {
     $this->set('name', $name);
     return $this;
   }
