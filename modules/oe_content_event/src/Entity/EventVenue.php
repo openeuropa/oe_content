@@ -58,8 +58,7 @@ use Drupal\user\EntityOwnerTrait;
  *     "edit-form" = "/admin/content/event_venue/{event_venue}/edit",
  *     "delete-form" = "/admin/content/event_venue/{event_venue}/delete",
  *     "collection" = "/admin/content/event_venue",
- *   },
- *   field_ui_base_route = "event_venue.settings"
+ *   }
  * )
  */
 class EventVenue extends EditorialContentEntityBase implements EventVenueInterface {
