@@ -7,7 +7,6 @@ namespace Drupal\Tests\oe_content\Kernel;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\filter\Entity\FilterFormat;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
@@ -151,6 +150,33 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
     // Assert the base field values.
     $this->assertEquals('My node title', $node->label());
     $this->assertEquals($expected, $node->get('field_social_media_links')->getValue());
+
+    // Test constraint validator.
+    $values = [
+      'type' => 'test_ct',
+      'title' => 'My node title2',
+      'field_social_media_links' => [
+        [
+          'type' => 'facebook',
+          'url' => 'http://example.com/facebook',
+          'title' => '',
+        ],
+        [
+          'type' => 'email',
+          'url' => '',
+          'title' => 'Email link',
+        ],
+      ],
+    ];
+    // Create node.
+    $node = Node::create($values);
+
+    $violations = $node->get('field_social_media_links')->validate();
+    $this->assertCount(2, $violations);
+    // We assert the first value has the title missing violation.
+    $this->assertEquals('0.title', $violations[0]->getPropertyPath());
+    // We assert the second value has the url missing violation.
+    $this->assertEquals('1.url', $violations[1]->getPropertyPath());
   }
 
   /**
