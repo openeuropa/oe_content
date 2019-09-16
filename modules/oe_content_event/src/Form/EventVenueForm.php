@@ -28,13 +28,6 @@ class EventVenueForm extends ContentEntityForm {
   protected $account;
 
   /**
-   * The messenger.
-   *
-   * @var \Drupal\Core\Messenger\MessengerInterface
-   */
-  protected $messenger;
-
-  /**
    * Constructs a new EventVenueForm.
    *
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
@@ -108,13 +101,13 @@ class EventVenueForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        $this->messenger()->addMessage($this->t('Created the %label Event venue.', [
+        $this->messenger->addMessage($this->t('Created the %label Event venue.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        $this->messenger()->addMessage($this->t('Saved the %label Event venue.', [
+        $this->messenger->addMessage($this->t('Saved the %label Event venue.', [
           '%label' => $entity->label(),
         ]));
     }
