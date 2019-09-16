@@ -13,7 +13,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 
 /**
- * Tests the timeline field type definition.
+ * Tests the social media field type definition.
  */
 class SocialMediaFieldTest extends EntityKernelTestBase {
 
@@ -68,17 +68,6 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
     $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
     $type->save();
 
-    FilterFormat::create([
-      'format' => 'my_text_format',
-      'name' => 'My text format',
-      'filters' => [
-        'filter_autop' => [
-          'module' => 'filter',
-          'status' => TRUE,
-        ],
-      ],
-    ])->save();
-
     $this->fieldStorage = FieldStorageConfig::create([
       'field_name' => 'field_social_media_links',
       'entity_type' => 'node',
@@ -110,7 +99,7 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
   /**
    * Test the social media field.
    */
-  public function testTimeline(): void {
+  public function testSocialMediaField(): void {
     $values = [
       'type' => 'test_ct',
       'title' => 'My node title',
@@ -167,7 +156,7 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
   /**
    * Test the social media field rendering with formatter.
    */
-  public function testTimelineRender(): void {
+  public function testSocialMediaFieldRender(): void {
     $values = [
       'type' => 'test_ct',
       'title' => 'My node title',
@@ -194,7 +183,7 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
     $node = Node::create($values);
     $node->save();
 
-    // Verify the timeline uses the correct format settings.
+    // Verify the social media field uses the correct format.
     $display = EntityViewDisplay::collectRenderDisplay($node, 'default');
     $build = $display->build($node);
     $output = $this->container->get('renderer')->renderRoot($build);
