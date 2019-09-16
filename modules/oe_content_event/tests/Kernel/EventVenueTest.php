@@ -62,7 +62,7 @@ class EventVenueTest extends RdfKernelTestBase {
   /**
    * Tests event venue entity.
    */
-  public function testEventVenueEntity() {
+  public function testEventVenueEntity(): void {
     /** @var \Drupal\oe_content_event\EventVenueStorageInterface $event_venue_storage */
     $event_venue_storage = $this->container->get('entity_type.manager')->getStorage('event_venue');
 
