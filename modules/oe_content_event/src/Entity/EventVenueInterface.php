@@ -34,7 +34,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setName($name): EventVenueInterface;
+  public function setName(string $name): EventVenueInterface;
 
   /**
    * Gets the Event venue capacity.
@@ -53,7 +53,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setCapacity($capacity): EventVenueInterface;
+  public function setCapacity(string $capacity): EventVenueInterface;
 
   /**
    * Gets the Event venue room.
@@ -72,7 +72,7 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setRoom($room): EventVenueInterface;
+  public function setRoom(string $room): EventVenueInterface;
 
   /**
    * Gets the Event venue creation timestamp.
@@ -91,6 +91,6 @@ interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterfa
    * @return \Drupal\oe_content_event\Entity\EventVenueInterface
    *   The called Event venue entity.
    */
-  public function setCreatedTime($timestamp): EventVenueInterface;
+  public function setCreatedTime(int $timestamp): EventVenueInterface;
 
 }

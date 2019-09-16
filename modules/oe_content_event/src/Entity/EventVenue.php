@@ -75,7 +75,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public function setName($name): EventVenueInterface {
+  public function setName(string $name): EventVenueInterface {
     $this->set('name', $name);
     return $this;
   }
@@ -90,7 +90,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public function setCapacity($capacity): EventVenueInterface {
+  public function setCapacity(string $capacity): EventVenueInterface {
     $this->set('capacity', $capacity);
     return $this;
   }
@@ -105,7 +105,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public function setRoom($room): EventVenueInterface {
+  public function setRoom(string $room): EventVenueInterface {
     $this->set('room', $room);
     return $this;
   }
@@ -120,7 +120,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
   /**
    * {@inheritdoc}
    */
-  public function setCreatedTime($timestamp): EventVenueInterface {
+  public function setCreatedTime(int $timestamp): EventVenueInterface {
     $this->set('created', $timestamp);
     return $this;
   }
