@@ -8,7 +8,6 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
-use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 
 /**
@@ -17,7 +16,7 @@ use Drupal\node\Entity\NodeType;
 class SocialMediaFieldTest extends EntityKernelTestBase {
 
   /**
-   * A field storage to use in this test class.
+   * The field storage to use in this test class.
    *
    * @var \Drupal\field\Entity\FieldStorageConfig
    */
@@ -122,13 +121,13 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
     ];
 
     // Create node.
-    $node = Node::create($values);
+    $entity_storage = \Drupal::entityTypeManager()->getStorage('node');
+    $node = $entity_storage->create($values);
     $node->save();
 
-    $entity_type_manager = \Drupal::entityTypeManager()->getStorage('node');
-    $entity_type_manager->resetCache();
+    $entity_storage->resetCache();
     /** @var \Drupal\node\NodeInterface $node */
-    $node = $entity_type_manager->load($node->id());
+    $node = $entity_storage->load($node->id());
 
     $expected = [
       [
@@ -147,7 +146,6 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
         'title' => 'Twitter link',
       ],
     ];
-    // Assert the base field values.
     $this->assertEquals('My node title', $node->label());
     $this->assertEquals($expected, $node->get('field_social_media_links')->getValue());
 
@@ -169,10 +167,10 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
       ],
     ];
     // Create node.
-    $node = Node::create($values);
+    $node = $entity_storage->create($values);
 
     $violations = $node->get('field_social_media_links')->validate();
-    $this->assertCount(2, $violations);
+    $this->assertCount(3, $violations);
     // We assert the first value has the title missing violation.
     $this->assertEquals('0.title', $violations[0]->getPropertyPath());
     // We assert the second value has the url missing violation.
@@ -206,7 +204,8 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
     ];
 
     // Create node.
-    $node = Node::create($values);
+    $entity_storage = \Drupal::entityTypeManager()->getStorage('node');
+    $node = $entity_storage->create($values);
     $node->save();
 
     // Verify the social media field uses the correct format.

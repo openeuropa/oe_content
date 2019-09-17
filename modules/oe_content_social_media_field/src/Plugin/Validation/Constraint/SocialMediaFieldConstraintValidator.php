@@ -9,7 +9,10 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
- * Validation constraint for required fields of social media field.
+ * Validation handler for required fields of social media field.
+ *
+ * We need to make sure that URL or Title does not get saved without
+ * one another.
  */
 class SocialMediaFieldConstraintValidator extends ConstraintValidator {
 
@@ -30,7 +33,6 @@ class SocialMediaFieldConstraintValidator extends ConstraintValidator {
     if (isset($values['type'])) {
       unset($values['type']);
     }
-
     foreach ($values as $property => $property_value) {
       if (empty($property_value)) {
         $this->context->buildViolation($constraint->message, ['@name' => $field->getFieldDefinition()->getLabel()])
