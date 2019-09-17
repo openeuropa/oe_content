@@ -10,7 +10,7 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\oe_content_event\Entity\EventVenueInterface;
 
 /**
- * Defines the storage handler class for Event venue entities.
+ * Defines an interface for Event venue entity storage classes.
  *
  * This extends the base storage class, adding required special handling for
  * Event venue entities.
