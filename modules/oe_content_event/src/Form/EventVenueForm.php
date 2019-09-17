@@ -71,7 +71,7 @@ class EventVenueForm extends ContentEntityForm {
       $form['new_revision'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Create new revision'),
-        '#default_value' => FALSE,
+        '#default_value' => TRUE,
         '#weight' => 10,
       ];
     }
@@ -86,15 +86,14 @@ class EventVenueForm extends ContentEntityForm {
     $entity = $this->entity;
 
     // Save as a new revision if requested to do so.
-    if (!$form_state->isValueEmpty('new_revision') && (bool) $form_state->getValue('new_revision') !== FALSE) {
+    if (!$form_state->isValueEmpty('new_revision') && (bool) $form_state->getValue('new_revision') === FALSE) {
+      $entity->setNewRevision(FALSE);
+    }
+    else {
       $entity->setNewRevision();
-
       // If a new revision is created, save also the revision metadata.
       $entity->setRevisionCreationTime($this->time->getRequestTime());
       $entity->setRevisionUserId($this->account->id());
-    }
-    else {
-      $entity->setNewRevision(TRUE);
     }
 
     $status = parent::save($form, $form_state);
