@@ -1,0 +1,7 @@
+# Event venue menu items definition
+entity.event_venue.collection:
+  title: 'Event venue list'
+  route_name: entity.event_venue.collection
+  description: 'List Event venue entities'
+  parent: system.admin_structure
+  weight: 100

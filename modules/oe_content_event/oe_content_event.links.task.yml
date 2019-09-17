@@ -1,0 +1,16 @@
+# Event venue routing definition
+entity.event_venue.canonical:
+  route_name: entity.event_venue.canonical
+  base_route: entity.event_venue.canonical
+  title: 'View'
+
+entity.event_venue.edit_form:
+  route_name: entity.event_venue.edit_form
+  base_route: entity.event_venue.canonical
+  title: 'Edit'
+
+entity.event_venue.delete_form:
+  route_name:  entity.event_venue.delete_form
+  base_route:  entity.event_venue.canonical
+  title: Delete
+  weight: 10
