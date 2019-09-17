@@ -38,8 +38,9 @@ class SocialMediaLinkWidget extends WidgetBase implements WidgetInterface {
       '#type' => 'textfield',
       '#title' => $this->t('URL'),
       '#default_value' => $items[$delta]->url ?? NULL,
+      '#description' => $this->t('This must be an external URL such as %url or %mailto.', ['%url' => 'http://example.com', '%mailto' => 'mailto:john@example.com']),
       '#size' => 60,
-      '#maxlength' => 255,
+      '#maxlength' => 2048,
       '#required' => $element['#required'],
     ];
     $element['title'] = [
@@ -67,7 +68,7 @@ class SocialMediaLinkWidget extends WidgetBase implements WidgetInterface {
    * @return array
    *   Array of social medias.
    */
-  public function getSocialMediaOptions() {
+  protected function getSocialMediaOptions(): array {
     return [
       'email' => 'Email',
       'facebook' => 'Facebook',
