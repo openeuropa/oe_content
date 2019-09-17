@@ -121,13 +121,13 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
     ];
 
     // Create node.
-    $entity_storage = \Drupal::entityTypeManager()->getStorage('node');
-    $node = $entity_storage->create($values);
+    $node_storage = $this->container->get('entity_type.manager')->getStorage('node');
+    $node = $node_storage->create($values);
     $node->save();
 
-    $entity_storage->resetCache();
+    $node_storage->resetCache();
     /** @var \Drupal\node\NodeInterface $node */
-    $node = $entity_storage->load($node->id());
+    $node = $node_storage->load($node->id());
 
     $expected = [
       [
@@ -167,7 +167,7 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
       ],
     ];
     // Create node.
-    $node = $entity_storage->create($values);
+    $node = $node_storage->create($values);
 
     $violations = $node->get('field_social_media_links')->validate();
     $this->assertCount(3, $violations);
@@ -204,8 +204,8 @@ class SocialMediaFieldTest extends EntityKernelTestBase {
     ];
 
     // Create node.
-    $entity_storage = \Drupal::entityTypeManager()->getStorage('node');
-    $node = $entity_storage->create($values);
+    $node_storage = $this->container->get('entity_type.manager')->getStorage('node');
+    $node = $node_storage->create($values);
     $node->save();
 
     // Verify the social media field uses the correct format.
