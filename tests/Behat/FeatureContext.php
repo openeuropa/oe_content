@@ -6,9 +6,12 @@ namespace Drupal\Tests\oe_content\Behat;
 
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\NodeElement;
+use Behat\Mink\Exception\ExpectationException;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\node\NodeInterface;
+use PHPUnit\Framework\Assert;
 
 /**
  * Defines step definitions that are generally useful in this project.
@@ -19,7 +22,7 @@ class FeatureContext extends RawDrupalContext {
    * Fills a date or time field at a datetime widget.
    *
    * Example: When I fill in "Start date" with the date "29-08-2016".
-   * Example: When I fill in "Start date" with the time "26:59:00".
+   * Example: When I fill in "Start date" with the time "06:59:00AM".
    *
    * @param string $field_group
    *   The field component's label.
@@ -87,25 +90,6 @@ class FeatureContext extends RawDrupalContext {
       throw new \Exception("The link '{$link}' points to '{$href}'");
     }
 
-  }
-
-  /**
-   * Checks that the AV Portal photo is rendered.
-   *
-   * @param string $title
-   *   The photo title.
-   * @param string $src
-   *   The final photo source.
-   *
-   * @Then I should see the AV Portal photo :title with source :src
-   */
-  public function assertAvPortalPhoto(string $title, string $src): void {
-    $media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties(['name' => $title]);
-    if (!$media) {
-      throw new \Exception(sprintf('The media named "%s" does not exist', $title));
-    }
-
-    $this->assertSession()->elementAttributeContains('css', 'img.avportal-photo', 'src', $src);
   }
 
   /**
@@ -293,6 +277,39 @@ class FeatureContext extends RawDrupalContext {
     }
 
     return $heading->getParent()->getParent()->getParent()->getParent();
+  }
+
+  /**
+   * Checks that the given select field has the options listed in the table.
+   *
+   * // phpcs:disable
+   * @Then I should have the following options for the :select select:
+   * | option 1 |
+   * | option 2 |
+   * |   ...    |
+   * // phpcs:enable
+   */
+  public function assertSelectOptions(string $select, TableNode $options): void {
+    // Retrieve the specified field.
+    if (!$field = $this->getSession()->getPage()->findField($select)) {
+      throw new ExpectationException("Field '$select' not found.", $this->getSession());
+    }
+
+    // Retrieve the options table from the test scenario and flatten it.
+    $expected_options = $options->getRows();
+    array_walk($expected_options, function (&$value) {
+      $value = reset($value);
+    });
+
+    // Retrieve the actual options that are shown in the select field.
+    $actual_options = $field->findAll('css', 'option');
+
+    // Convert into a flat list of option text strings.
+    array_walk($actual_options, function (&$value) {
+      $value = $value->getText();
+    });
+
+    Assert::assertEquals($expected_options, $actual_options);
   }
 
 }

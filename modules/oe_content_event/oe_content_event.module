@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Event module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function oe_content_event_entity_type_alter(array &$entity_types) {
+  // Add validation constraints to the node entity.
+  if (!empty($entity_types['node'])) {
+    $entity_types['node']->addConstraint('EventFieldsRequired');
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function oe_content_event_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (!in_array($form_id, ['node_oe_event_form', 'node_oe_event_edit_form'])) {
+    return;
+  }
+
+  // Add a toggle switch for "Organiser" fields.
+  $form['is_organiser_internal'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Organiser is internal'),
+    '#default_value' => $form_state->getValue('oe_event_organiser_internal') ? 1 : 0,
+  ];
+  $form['oe_event_organiser_internal']['#states'] = [
+    'visible' => [
+      ':input[name="is_organiser_internal"]' => ['checked' => TRUE],
+    ],
+  ];
+  $form['oe_event_organiser_name']['#states'] = [
+    'visible' => [
+      ':input[name="is_organiser_internal"]' => ['checked' => FALSE],
+    ],
+  ];
+
+  // Make sure that the toggle field we have just created
+  // will be rendered under the "Organiser" field group.
+  $group_id = 'group_organiser';
+  $organiser_group = $form['#fieldgroups'][$group_id];
+  $organiser_group->children[] = 'is_organiser_internal';
+  $form['#fieldgroups'][$group_id] = $organiser_group;
+  $form['#group_children']['is_organiser_internal'] = $group_id;
+}

@@ -5,6 +5,7 @@ package: OpenEuropa
 type: module
 core: 8.x
 dependencies:
+  - drupal:node
   - drupal:link
   - drupal:datetime
   - field_group:field_group
