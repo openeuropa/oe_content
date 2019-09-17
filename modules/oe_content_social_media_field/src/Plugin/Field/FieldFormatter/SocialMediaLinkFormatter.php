@@ -29,7 +29,7 @@ class SocialMediaLinkFormatter extends FormatterBase {
     }
 
     $elements = [
-      '#theme' => 'social_media_link',
+      '#theme' => 'social_media_links',
       '#items' => [],
     ];
 

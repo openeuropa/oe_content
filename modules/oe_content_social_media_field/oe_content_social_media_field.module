@@ -12,7 +12,7 @@ declare(strict_types = 1);
  */
 function oe_content_social_media_field_theme() {
   return [
-    'social_media_link' => [
+    'social_media_links' => [
       'variables' => [
         'items' => [],
       ],
