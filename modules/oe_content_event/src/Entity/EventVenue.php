@@ -7,7 +7,6 @@ namespace Drupal\oe_content_event\Entity;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EditorialContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\user\EntityOwnerTrait;
 
 /**
  * Defines the Event venue entity.
@@ -62,8 +61,6 @@ use Drupal\user\EntityOwnerTrait;
  * )
  */
 class EventVenue extends EditorialContentEntityBase implements EventVenueInterface {
-
-  use EntityOwnerTrait;
 
   /**
    * {@inheritdoc}
