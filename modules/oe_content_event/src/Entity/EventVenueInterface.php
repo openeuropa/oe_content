@@ -15,7 +15,7 @@ use Drupal\user\EntityOwnerInterface;
  *
  * @ingroup oe_content_event
  */
-interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityPublishedInterface, EntityOwnerInterface {
+interface EventVenueInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityPublishedInterface {
 
   /**
    * Gets the Event venue name.
