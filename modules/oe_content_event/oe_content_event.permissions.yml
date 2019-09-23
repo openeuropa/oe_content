@@ -1,0 +1,4 @@
+administer event venue entities:
+  title: 'Administer event venue entities'
+  description: 'Maintain the event venue entities.'
+  restrict access: true
