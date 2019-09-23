@@ -8,6 +8,8 @@ dependencies:
   - oe_content:oe_content
   - address:address
   - field_group:field_group
+  - inline_entity_form:inline_entity_form
+  - entity_reference_revisions:entity_reference_revisions
 
 config_devel:
   install:
