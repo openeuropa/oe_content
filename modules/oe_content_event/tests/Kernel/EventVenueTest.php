@@ -17,6 +17,8 @@ class EventVenueTest extends RdfKernelTestBase {
   public static $modules = [
     'oe_content',
     'oe_content_event',
+    'entity_reference_revisions',
+    'inline_entity_form',
     'node',
     'user',
     'maxlength',
