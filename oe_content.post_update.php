@@ -7,12 +7,22 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Utility\UpdateException;
 use Drupal\field\Entity\FieldConfig;
 
 /**
  * Update concept schema for skos concept field types.
  */
 function oe_content_post_update_00001_update_concept_schema(): void {
+  $storage = \Drupal::entityTypeManager()->getStorage('skos_concept_scheme');
+  $det = $storage->load('http://data.europa.eu/uxp/det');
+  if (empty($det)) {
+    $message = 'Digital Europa Thesaurus concept scheme not found. '
+      . 'Please make sure to run a triple store that contains the official and up-to-date DET vocabulary from the EC Publications Office. '
+      . 'If you are using the triple-store-dev image, update to version 1.1.0 or later.';
+    throw new UpdateException($message);
+  }
+
   $config_name_list = \Drupal::entityTypeManager()
     ->getStorage('field_config')
     ->getQuery()
