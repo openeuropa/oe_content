@@ -21,8 +21,9 @@ function oe_content_post_update_00001_update_concept_schema(): void {
   foreach ($config_name_list as $config_name) {
     $field = FieldConfig::load($config_name);
     $settings = $field->getSettings();
-    if (in_array('http://data.europa.eu/uxp', $settings['handler_settings']['concept_schemes'])) {
-      $settings['handler_settings']['concept_schemes'][array_search('http://data.europa.eu/uxp', $settings['handler_settings']['concept_schemes'])] = 'http://data.europa.eu/uxp/det';
+    $old_scheme_position = array_search('http://data.europa.eu/uxp', $settings['handler_settings']['concept_schemes']);
+    if ($old_scheme_position !== FALSE) {
+      $settings['handler_settings']['concept_schemes'][$old_scheme_position] = 'http://data.europa.eu/uxp/det';
       $field->setSettings($settings);
       $field->save();
     }
