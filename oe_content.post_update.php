@@ -24,6 +24,16 @@ function oe_content_post_update_00001_update_concept_schema(): void {
     $old_scheme_position = array_search('http://data.europa.eu/uxp', $settings['handler_settings']['concept_schemes']);
     if ($old_scheme_position !== FALSE) {
       $settings['handler_settings']['concept_schemes'][$old_scheme_position] = 'http://data.europa.eu/uxp/det';
+
+      // The default SKOS entity reference selection plugin stores the concept
+      // schemes also in the field array.
+      if (isset($settings['handler_settings']['field']['concept_schemes'])) {
+        $old_scheme_position = array_search('http://data.europa.eu/uxp', $settings['handler_settings']['field']['concept_schemes']);
+        if ($old_scheme_position !== FALSE) {
+          $settings['handler_settings']['field']['concept_schemes'][$old_scheme_position] = 'http://data.europa.eu/uxp/det';
+        }
+      }
+
       $field->setSettings($settings);
       $field->save();
     }
