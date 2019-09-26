@@ -13,7 +13,7 @@ use Drupal\field\Entity\FieldConfig;
 /**
  * Update concept schema for skos concept field types.
  */
-function oe_content_post_update_00001_update_concept_schema(): void {
+function oe_content_post_update_00001(): void {
   $storage = \Drupal::entityTypeManager()->getStorage('skos_concept_scheme');
   $det = $storage->load('http://data.europa.eu/uxp/det');
   if (empty($det)) {
