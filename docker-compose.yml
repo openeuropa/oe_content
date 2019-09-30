@@ -21,7 +21,7 @@ services:
 #    ports:
 #      - 3306:3306
   sparql:
-    image: openeuropa/triple-store-dev
+    image: openeuropa/triple-store-dev:1.1.0
     environment:
     - SPARQL_UPDATE=true
     - DBA_PASSWORD=dba
