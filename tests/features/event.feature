@@ -134,6 +134,9 @@ Feature: Event content creation
     And I fill in "Subject" with "EU financing"
     And I fill in "URL" with "http://ec.europa.eu"
     And I fill in "Link text" with "Website"
+    And I fill in "URL" with "http://twitter.com" in the "Social media links" region
+    And I fill in "Link text" with "Twitter" in the "Social media links" region
+    And I select "Twitter" from "Link type"
     # Venue reference by inline entity form.
     And I fill in "Name" with "Name of the venue"
     And I fill in "Capacity" with "Capacity of the venue"
@@ -190,6 +193,7 @@ Feature: Event content creation
     And I should see "Info days"
     And I should see "As planned"
     And I should see the link "Website"
+    And I should see the link "Twitter"
     And I should see "Facebook"
     And I should see "Online description text"
     And I should see "Fri, 02/22/2019 - 02:22"
