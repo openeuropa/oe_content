@@ -30,6 +30,7 @@ class EventVenueTest extends RdfKernelTestBase {
     'field_group',
     'image',
     'link',
+    'typed_link',
     'rdf_skos',
     'system',
   ];
@@ -50,6 +51,7 @@ class EventVenueTest extends RdfKernelTestBase {
       'field_group',
       'filter',
       'link',
+      'typed_link',
       'maxlength',
       'node',
       'system',
