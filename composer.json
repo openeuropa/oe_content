@@ -13,7 +13,7 @@
         "drupal/inline_entity_form": "~1.0-rc2",
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
-        "drupal/typed_link": "1.x-dev",
+        "drupal/typed_link": "~1.0",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "~0.3",
         "openeuropa/oe_media": "^1.0@beta",
@@ -74,6 +74,10 @@
             },
             "drupal/inline_entity_form": {
                 "https://www.drupal.org/project/inline_entity_form/issues/2367235": "https://www.drupal.org/files/issues/2019-10-07/inline_entity_form-2367235-131.patch"
+            },
+            "drupal/typed_link": {
+                "https://www.drupal.org/project/typed_link/issues/3085826": "https://www.drupal.org/files/issues/2019-10-04/typed_link-3085826-2.patch",
+                "https://www.drupal.org/project/typed_link/issues/3085817": "https://www.drupal.org/files/issues/2019-10-04/typed_link-3085817-2.patch"
             }
         }
     },
