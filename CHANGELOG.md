@@ -1,10 +1,27 @@
 # Change Log
 
-## [1.2.0](https://github.com/openeuropa/oe_content/tree/1.2.0) (2019-08-19)
+## [1.3.0](https://github.com/openeuropa/oe_content/tree/1.3.0) (2019-09-24)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.2.0...1.3.0)
+
+**Closed issues:**
+
+- Problems using the field\_group current version [\#95](https://github.com/openeuropa/oe_content/issues/95)
+
+**Merged pull requests:**
+
+- OPENEUROPA-0000: Remove pinned version of Mink related packages. [\#109](https://github.com/openeuropa/oe_content/pull/109) ([brummbar](https://github.com/brummbar))
+- OPENEUROPA-2282: \[oe\_content\] Caching issue on persistent urls. [\#102](https://github.com/openeuropa/oe_content/pull/102) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2259: Fix behat/mink-selenium2-driver missing branch. [\#101](https://github.com/openeuropa/oe_content/pull/101) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2229: Fix field translatability [\#100](https://github.com/openeuropa/oe_content/pull/100) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2188: Remove field\_group dependency. [\#97](https://github.com/openeuropa/oe_content/pull/97) ([nagyad](https://github.com/nagyad))
+
+## [1.2.0](https://github.com/openeuropa/oe_content/tree/1.2.0) (2019-08-20)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.1.0...1.2.0)
 
 **Merged pull requests:**
 
+- Fix code review error. [\#94](https://github.com/openeuropa/oe_content/pull/94) ([nagyad](https://github.com/nagyad))
+- Release-1.2.0: Update changelog. [\#93](https://github.com/openeuropa/oe_content/pull/93) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2039: Update summary and body labels. [\#89](https://github.com/openeuropa/oe_content/pull/89) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [1.1.0](https://github.com/openeuropa/oe_content/tree/1.1.0) (2019-07-25)
