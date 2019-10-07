@@ -128,7 +128,7 @@ Feature: Event content creation
     And I fill in "End date" with the time "02:21:00PM"
     And I select "As planned" from "Status"
     And I select "Info days" from "Type"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject" with "EU financing"
     And I fill in "URL" with "http://ec.europa.eu"
     And I fill in "Link text" with "Website"
     # Online field group.
@@ -205,7 +205,7 @@ Feature: Event content creation
     And I fill in "Title" with "My Event item"
     And I select "As planned" from "Status"
     And I select "Info days" from "Type"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject" with "EU financing"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
     And I press "Save"
