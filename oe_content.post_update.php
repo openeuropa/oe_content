@@ -49,3 +49,10 @@ function oe_content_post_update_00001(): void {
     }
   }
 }
+
+/**
+ * Add Country corporate vocabulary.
+ */
+function oe_content_post_update_00002(): void {
+  \Drupal::service('oe_content.op_skos_setup')->setup();
+}
