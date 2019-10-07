@@ -114,7 +114,7 @@ Feature: Event content creation
 
   @cleanup:media @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, administer event venue entities" permission
     # Create a "Media AV portal photo".
     And I visit "the AV Portal photo creation page"
     And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
@@ -131,6 +131,15 @@ Feature: Event content creation
     And I fill in "Subject" with "EU financing"
     And I fill in "URL" with "http://ec.europa.eu"
     And I fill in "Link text" with "Website"
+    # Venue reference by inline entity form.
+    And I fill in "Name" with "Name of the venue"
+    And I fill in "Capacity" with "Capacity of the venue"
+    And I fill in "Room" with "Room of the venue"
+    And I select "Belgium" from "Country"
+    And I wait for AJAX to finish
+    And I fill in "Street address" with "Rue belliard 28"
+    And I fill in "Postal code" with "1000"
+    And I fill in "City" with "Brussels"
     # Online field group.
     When I press "Online"
     Then I select "Facebook" from "Online type"
@@ -191,6 +200,13 @@ Feature: Event content creation
     And I should see "Sat, 02/23/2019 - 14:23"
     And I should see "Free of charge"
     And I should see "100 seats"
+    # Venue entity values.
+    And I should see the text "Name of the venue"
+    And I should see the text "Capacity of the venue"
+    And I should see the text "Room of the venue"
+    And I should see the text "Rue belliard 28"
+    And I should see the text "1000 Brussels"
+    And I should see the text "Belgium"
 
   @javascript @cleanup:media @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
