@@ -93,13 +93,12 @@ content:
     type: string
     region: content
   oe_event_gallery:
-    type: entity_reference_entity_view
+    type: entity_reference_label
     weight: 12
     region: content
     label: above
     settings:
       link: true
-      view_mode: default
     third_party_settings: {  }
   oe_event_online_description:
     weight: 7
