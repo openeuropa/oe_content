@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.oe_event.oe_event_entrance_fee
     - field.field.node.oe_event.oe_event_featured_media
     - field.field.node.oe_event.oe_event_featured_media_legend
+    - field.field.node.oe_event.oe_event_gallery
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
     - field.field.node.oe_event.oe_event_online_time_end
@@ -51,7 +52,7 @@ content:
     type: text_default
     region: content
   oe_event_description_summary:
-    weight: 12
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -67,7 +68,7 @@ content:
     type: datetime_default
     region: content
   oe_event_entrance_fee:
-    weight: 21
+    weight: 22
     label: above
     settings:
       link_to_entity: false
@@ -76,7 +77,7 @@ content:
     region: content
   oe_event_featured_media:
     type: entity_reference_entity_view
-    weight: 13
+    weight: 14
     label: above
     settings:
       view_mode: default
@@ -84,13 +85,22 @@ content:
     third_party_settings: {  }
     region: content
   oe_event_featured_media_legend:
-    weight: 14
+    weight: 15
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
+  oe_event_gallery:
+    type: entity_reference_entity_view
+    weight: 12
+    region: content
+    label: above
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
   oe_event_online_description:
     weight: 7
     label: above
@@ -144,7 +154,7 @@ content:
     type: string
     region: content
   oe_event_registration_capacity:
-    weight: 22
+    weight: 23
     label: above
     settings:
       link_to_entity: false
@@ -152,7 +162,7 @@ content:
     type: string
     region: content
   oe_event_registration_end_date:
-    weight: 20
+    weight: 21
     label: above
     settings:
       format_type: medium
@@ -161,7 +171,7 @@ content:
     type: datetime_default
     region: content
   oe_event_registration_start_date:
-    weight: 19
+    weight: 20
     label: above
     settings:
       format_type: medium
@@ -170,14 +180,14 @@ content:
     type: datetime_default
     region: content
   oe_event_registration_status:
-    weight: 18
+    weight: 19
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   oe_event_registration_url:
-    weight: 17
+    weight: 18
     label: above
     settings:
       trim_length: 80
@@ -189,14 +199,14 @@ content:
     type: link
     region: content
   oe_event_report_summary:
-    weight: 15
+    weight: 16
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   oe_event_report_text:
-    weight: 16
+    weight: 17
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -227,7 +237,7 @@ content:
     region: content
   oe_event_venue:
     type: entity_reference_revisions_entity_view
-    weight: 23
+    weight: 24
     region: content
     label: above
     settings:
