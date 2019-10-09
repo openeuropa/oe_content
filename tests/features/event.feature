@@ -119,6 +119,9 @@ Feature: Event content creation
     And I visit "the AV Portal photo creation page"
     And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
     And I press "Save"
+    And I visit "the AV Portal photo creation page"
+    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-039321~2F00-04"
+    And I press "Save"
     # Create a "Event" content.
     When I visit "the Event creation page"
     Then I fill in "Title" with "My Event item"
@@ -153,10 +156,13 @@ Feature: Event content creation
     # Organiser field group.
     When I press "Organiser"
     Then I fill in "Organiser name" with "Organiser name"
+    # Media field group.
+    When I press "Media"
+    Then I fill in "Use existing media" with "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania" in the "Gallery" region
     # Description field group.
     When I press "Description"
     And I fill in "Description summary" with "Description summary text"
-    And I fill in "Use existing media" with "Euro with miniature figurines"
+    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
     And I fill in "Featured media legend" with "Euro with miniature figurines"
     And I fill in "Full text" with "Full text paragraph"
     # Report field group.
@@ -190,6 +196,7 @@ Feature: Event content creation
     And I should see "Fri, 02/22/2019 - 14:22"
     And I should see the link "Online link"
     And I should see "Organiser name"
+    And I should see "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania"
     And I should see "Description summary text"
     And I should see "Euro with miniature figurines"
     And I should see "Report summary text"
@@ -270,7 +277,7 @@ Feature: Event content creation
       | Description summary field is required.   |
     # Make sure that errors related to the Description fields are fixed.
     When I fill in "Description summary" with "Description summary text"
-    And I fill in "Use existing media" with "Euro with miniature figurines"
+    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
     And I fill in "Featured media legend" with "Euro with miniature figurines"
     And I press "Save"
     Then I should see the following success messages:
