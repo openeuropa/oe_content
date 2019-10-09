@@ -141,8 +141,6 @@ third_party_settings:
         required_fields: true
       label: Media
       region: content
-_core:
-  default_config_hash: zVuSpFr8pHtE00YFr1WGGUagHhuy1nupDm9w0yL1b4U
 id: node.oe_event.default
 targetEntityType: node
 bundle: oe_event
