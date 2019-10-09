@@ -158,7 +158,7 @@ Feature: Event content creation
     Then I fill in "Organiser name" with "Organiser name"
     # Media field group.
     When I press "Media"
-    And I fill in "Use existing media" with "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania" in the "Gallery" region
+    Then I fill in "Use existing media" with "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania" in the "Gallery" region
     # Description field group.
     When I press "Description"
     And I fill in "Description summary" with "Description summary text"
