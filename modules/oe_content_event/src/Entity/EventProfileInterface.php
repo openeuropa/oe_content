@@ -23,7 +23,7 @@ interface EventProfileInterface {
    * Gets the event profile name.
    *
    * @return string
-   *   Title of the event profile.
+   *   Name of the event profile.
    */
   public function getName(): string;
 
