@@ -1,3 +1,15 @@
+entity.event_profile.add_page:
+  route_name: entity.event_profile.add_page
+  title: 'Add Event profile'
+  appears_on:
+    - entity.event_profile.collection
+
+entity.event_profile_type.add_form:
+  route_name: entity.event_profile_type.add_form
+  title: 'Add Event profile type (bundle)'
+  appears_on:
+    - entity.event_profile_type.collection
+
 entity.event_venue.add_form:
   route_name: entity.event_venue.add_form
   title: 'Add Event venue'
