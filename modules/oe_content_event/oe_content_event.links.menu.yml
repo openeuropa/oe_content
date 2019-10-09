@@ -1,4 +1,18 @@
-# Event venue menu items definition
+# Event profile menu items definition.
+entity.event_profile.collection:
+  title: 'Event profile'
+  route_name: entity.event_profile.collection
+  description: 'List of Event profiles'
+  parent: system.admin_content
+  weight: 100
+
+entity.event_profile_type.collection:
+  title: 'Event profile types'
+  route_name: entity.event_profile_type.collection
+  description: 'Create and manage types of Event profiles'
+  parent: system.admin_structure
+
+# Event venue menu items definition.
 entity.event_venue.collection:
   title: 'Event venue list'
   route_name: entity.event_venue.collection

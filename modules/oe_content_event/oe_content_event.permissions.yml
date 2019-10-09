@@ -1,3 +1,7 @@
+administer event profile entities:
+  title: 'Administer Event profiles'
+  restrict access: true
+
 administer event venue entities:
   title: 'Administer event venue entities'
   description: 'Maintain the event venue entities.'
