@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.event_profile.oe_event_partner.image
+    - field.field.event_profile.oe_event_partner.website
+    - oe_content_event.event_profile_type.oe_event_partner
+  module:
+    - link
+id: event_profile.oe_event_partner.default
+targetEntityType: event_profile
+bundle: oe_event_partner
+mode: default
+content:
+  image:
+    type: entity_reference_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  website:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  langcode: true
