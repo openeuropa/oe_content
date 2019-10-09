@@ -1,0 +1,5 @@
+services:
+  oe_content_event.event_subscriber:
+    class: Drupal\oe_content_event\EventSubscriber\AddressEventSubscriber
+    tags:
+      - { name: event_subscriber }
