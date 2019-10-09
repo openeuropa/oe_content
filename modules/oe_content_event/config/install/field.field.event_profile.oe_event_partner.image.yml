@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.event_profile.image
+    - media.type.av_portal_photo
+    - media.type.image
+    - oe_content_event.event_profile_type.oe_event_partner
+id: event_profile.oe_event_partner.image
+field_name: image
+entity_type: event_profile
+bundle: oe_event_partner
+label: Image
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      av_portal_photo: av_portal_photo
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: av_portal_photo
+field_type: entity_reference
