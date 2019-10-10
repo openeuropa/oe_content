@@ -63,7 +63,6 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     "collection" = "/admin/content/event_profiles",
  *     "edit-form" = "/event_profile/{event_profile}/edit",
  *     "delete-form" = "/event_profile/{event_profile}/delete",
- *     "delete-multiple-form" = "/admin/content/event_profile/delete",
  *   }
  * )
  */
