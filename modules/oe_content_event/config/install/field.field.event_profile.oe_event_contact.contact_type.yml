@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.event_profile.contact_type
+    - oe_content_event.event_profile_type.oe_event_contact
+  module:
+    - options
+id: event_profile.oe_event_contact.contact_type
+field_name: contact_type
+entity_type: event_profile
+bundle: oe_event_contact
+label: 'Contact type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
