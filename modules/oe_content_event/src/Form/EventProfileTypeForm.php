@@ -80,11 +80,11 @@ class EventProfileTypeForm extends BundleEntityFormBase {
 
     switch ($status) {
       case SAVED_NEW:
-        $this->messenger->addMessage($this->t('Created the %label %content_entity_id entity type.', $message_params));
+        $this->messenger()->addStatus($this->t('Created the %label %content_entity_id entity type.', $message_params));
         break;
 
       default:
-        $this->messenger->addMessage($this->t('Saved the %label %content_entity_id entity type.', $message_params));
+        $this->messenger()->addStatus($this->t('Saved the %label %content_entity_id entity type.', $message_params));
     }
 
     $form_state->setRedirectUrl($entity_type->toUrl('collection'));
