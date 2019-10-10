@@ -76,7 +76,7 @@ class EventProfileType extends ConfigEntityBundleBase implements EventProfileTyp
   /**
    * {@inheritdoc}
    */
-  public function setDescription(string $description): EventProfileType {
+  public function setDescription($description): EventProfileType {
     $this->description = $description;
     return $this;
   }
