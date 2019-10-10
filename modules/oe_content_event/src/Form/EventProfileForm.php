@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @ingroup oe_content_event
  */
 class EventProfileForm extends ContentEntityForm {
+
   /**
    * The current user account.
    *

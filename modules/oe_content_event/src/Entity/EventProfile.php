@@ -79,21 +79,6 @@ class EventProfile extends EditorialContentEntityBase implements EventProfileInt
   /**
    * {@inheritdoc}
    */
-  public function getConfiguration(): string {
-    return $this->get('configuration')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setConfiguration(string $settings): EventProfileInterface {
-    $this->set('configuration', $settings);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getName(): string {
     return $this->get('name')->value;
   }
@@ -153,12 +138,6 @@ class EventProfile extends EditorialContentEntityBase implements EventProfileInt
         'weight' => 120,
       ])
       ->setDisplayConfigurable('form', TRUE);
-
-    $fields['configuration'] = BaseFieldDefinition::create('string_long')
-      ->setLabel(t('Configuration'))
-      ->setDescription(t('The list settings.'))
-      ->setRevisionable(TRUE)
-      ->setDefaultValue(serialize([]));
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
