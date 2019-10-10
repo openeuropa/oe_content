@@ -39,25 +39,6 @@ interface EventProfileInterface {
   public function setName(string $name): EventProfileInterface;
 
   /**
-   * Gets the event profile configuration.
-   *
-   * @return string
-   *   Configuration of the event profile.
-   */
-  public function getConfiguration(): string;
-
-  /**
-   * Sets the event profile configuration.
-   *
-   * @param string $settings
-   *   The event profile configuration.
-   *
-   * @return \Drupal\oe_content_event\Entity\EventProfileInterface
-   *   The called event profile entity.
-   */
-  public function setConfiguration(string $settings): EventProfileInterface;
-
-  /**
    * Gets the event profile creation timestamp.
    *
    * @return int

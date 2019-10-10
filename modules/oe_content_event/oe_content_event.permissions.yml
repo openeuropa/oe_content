@@ -1,5 +1,5 @@
 administer event profile entities:
-  title: 'Administer Event profiles'
+  title: 'Administer event profiles entities'
   restrict access: true
 
 administer event venue entities:

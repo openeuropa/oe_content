@@ -24,7 +24,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *     "description",
  *   },
  *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\oe_content_event\EventProfileTypeListBuilder",
  *     "form" = {
  *       "default" = "Drupal\oe_content_event\Form\EventProfileTypeForm",
@@ -38,7 +37,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *   },
  *   admin_permission = "administer event profile types",
  *   links = {
- *     "canonical" = "/admin/structure/event_profile_type/{event_profile_type}",
  *     "add-form" = "/admin/structure/event_profile_type/add",
  *     "edit-form" = "/admin/structure/event_profile_type/{event_profile_type}/edit",
  *     "delete-form" = "/admin/structure/event_profile_type/{event_profile_type}/delete",
@@ -46,7 +44,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *   }
  * )
  */
-class EventProfileType extends ConfigEntityBundleBase {
+class EventProfileType extends ConfigEntityBundleBase implements EventProfileTypeInterface {
   /**
    * The machine name of the event profile type.
    *
