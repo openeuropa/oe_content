@@ -46,26 +46,21 @@ class EventProfileTypeDeleteForm extends EntityDeleteForm {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $num_lists = $this->queryFactory
       ->get('event_profile')
-      ->condition('bundle', $this->entity
-        ->id())
+      ->condition('bundle', $this->entity->id())
       ->count()
       ->execute();
     if ($num_lists) {
-      $caption = '<p>' . $this
-        ->formatPlural(
-          $num_lists,
-          '%type is used by 1 event profile on your site. You can not remove this event profile type until you have removed the %type event profile.',
-          '%type is used by @count event profile on your site. You may not remove %type until you have removed all of the %type event profiles.',
-          [
-            '%type' => $this->entity->label(),
-          ]) . '</p>';
-      $form['#title'] = $this
-        ->getQuestion();
-      $form['description'] = [
-        '#markup' => $caption,
-      ];
+      $caption = '<p>' . $this->formatPlural(
+        $num_lists,
+        '%type is used by 1 event profile on your site. You can not remove this event profile type until you have removed the %type event profile.',
+        '%type is used by @count event profile on your site. You may not remove %type until you have removed all of the %type event profiles.',
+        ['%type' => $this->entity->label()]) . '</p>';
+      $form['#title'] = $this->getQuestion();
+      $form['description'] = ['#markup' => $caption];
+
       return $form;
     }
+
     return parent::buildForm($form, $form_state);
   }
 
