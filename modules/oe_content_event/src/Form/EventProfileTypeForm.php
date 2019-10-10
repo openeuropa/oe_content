@@ -5,8 +5,10 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_event\Form;
 
 use Drupal\Core\Entity\BundleEntityFormBase;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\field_ui\FieldUI;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for Event profile type edit forms.
@@ -14,6 +16,32 @@ use Drupal\field_ui\FieldUI;
  * @ingroup oe_content_event
  */
 class EventProfileTypeForm extends BundleEntityFormBase {
+
+  /**
+   * The module handler.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * Constructs a EventProfileTypeForm object.
+   *
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module handler.
+   */
+  public function __construct(ModuleHandlerInterface $module_handler) {
+    $this->moduleHandler = $module_handler;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('module_handler')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -58,7 +86,7 @@ class EventProfileTypeForm extends BundleEntityFormBase {
   protected function actions(array $form, FormStateInterface $form_state) {
     $actions = parent::actions($form, $form_state);
 
-    if (\Drupal::moduleHandler()->moduleExists('field_ui') && $this->getEntity()->isNew()) {
+    if ($this->moduleHandler->moduleExists('field_ui') && $this->getEntity()->isNew()) {
       $actions['save_continue'] = $actions['submit'];
       $actions['save_continue']['#value'] = $this->t('Save and manage fields');
       $actions['save_continue']['#submit'][] = [$this, 'redirectToFieldUi'];
@@ -98,7 +126,7 @@ class EventProfileTypeForm extends BundleEntityFormBase {
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The form state.
    */
-  public function redirectToFieldUi(array $form, FormStateInterface $form_state) {
+  public function redirectToFieldUi(array $form, FormStateInterface $form_state): void {
     $route_info = FieldUI::getOverviewRouteInfo($this->entity->getEntityType()->getBundleOf(), $this->entity->id());
 
     if ($form_state->getTriggeringElement()['#parents'][0] === 'save_continue' && $route_info) {
