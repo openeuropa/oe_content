@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.event_profile.address
+    - oe_content_event.event_profile_type.oe_event_contact
+  module:
+    - address
+id: event_profile.oe_event_contact.address
+field_name: address
+entity_type: event_profile
+bundle: oe_event_contact
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+  fields: {  }
+field_type: address
