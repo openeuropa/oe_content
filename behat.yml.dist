@@ -12,6 +12,8 @@ default:
         - Drupal\Tests\oe_content\Behat\WysiwygContext
         - Drupal\Tests\oe_media\Behat\AvPortalContext
         - OpenEuropa\Behat\TransformationContext:
+            elements:
+              AV portal photo of the Event partner: ".field--name-oe-event-partner"
             pages:
               Page creation: 'node/add/oe_page'
               News creation: 'node/add/oe_news'
@@ -48,6 +50,7 @@ default:
         Social media links: "#oe-event-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
         Gallery: "#oe-event-gallery-values"
+        Event partner: "#edit-oe-event-partner-0"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
