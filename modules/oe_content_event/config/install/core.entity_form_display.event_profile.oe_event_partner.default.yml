@@ -12,12 +12,6 @@ targetEntityType: event_profile
 bundle: oe_event_partner
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   image:
     weight: 1
     settings:
@@ -42,13 +36,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 5
-    region: content
-    third_party_settings: {  }
   website:
     weight: 2
     settings:
@@ -57,4 +44,6 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-hidden: {  }
+hidden:
+  created: true
+  status: true
