@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - node.type.oe_event
+    - oe_content_event.event_profile_type.oe_event_contact
   module:
     - content_translation
 third_party_settings:
   content_translation:
     enabled: false
-id: node.oe_event
-target_entity_type_id: node
-target_bundle: oe_event
+id: event_profile.oe_event_contact
+target_entity_type_id: event_profile
+target_bundle: oe_event_contact
 default_langcode: site_default
 language_alterable: true
