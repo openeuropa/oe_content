@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.event_profile.website
+    - oe_content_event.event_profile_type.oe_event_partner
+  module:
+    - link
+id: event_profile.oe_event_partner.website
+field_name: website
+entity_type: event_profile
+bundle: oe_event_partner
+label: Website
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link
