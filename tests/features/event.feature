@@ -87,6 +87,12 @@ Feature: Event content creation
     And I should see "Image" in the "Event partner" region
     And I should see "Website" in the "Event partner" region
 
+    # Make sure that the Event contact field group contains expected fields.
+    Then I should see "Name" in the "Event contact" region
+    Then I should see "Contact type" in the "Event contact" region
+    Then I should see "Country" in the "Event contact" region
+    Then I should see "Email" in the "Event contact" region
+
   @javascript
   Scenario: Make sure that the selectboxes contains correct options.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
@@ -191,6 +197,15 @@ Feature: Event content creation
     Then I fill in "Name" with "Name of the event partner" in the "Event partner" region
     And I fill in "Use existing media" with "Euro with miniature figurines" in the "Event partner" region
     And I fill in "Website" with "http://eventpartner.com" in the "Event partner" region
+    # Event contact field group.
+    Then I fill in "Name" with "Name of the event contact" in the "Event contact" region
+    And I select the radio button "General contact"
+    And I select "Hungary" from "Country" in the "Event contact" region
+    And I wait for AJAX to finish
+    And I fill in "Street address" with "Back street 3" in the "Event contact" region
+    And I fill in "Postal code" with "9000" in the "Event contact" region
+    And I fill in "City" with "Budapest" in the "Event contact" region
+    And I fill in "Email" with "test@example.com" in the "Event contact" region
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
@@ -231,7 +246,14 @@ Feature: Event content creation
     And I should see the text "Name of the event partner"
     And I should see an "AV portal photo of the Event partner" element
     And I should see the text "http://eventpartner.com"
-
+    # Event contact values.
+    And I should see the text "Name of the event contact"
+    And I should see the text "General contact"
+    And I should see the text "Back street 3"
+    And I should see the text "Budapest"
+    And I should see the text "9000"
+    And I should see the text "Hungary"
+    And I should see the text "test@example.com"
 
   @javascript @cleanup:media @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
