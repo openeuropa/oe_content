@@ -13,12 +13,6 @@ targetEntityType: event_profile
 bundle: oe_event_contact
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 5
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   address:
     weight: 2
     settings: {  }
@@ -39,13 +33,6 @@ content:
     third_party_settings: {  }
     type: email_default
     region: content
-  langcode:
-    type: language_select
-    weight: 4
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -54,11 +41,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 6
-    region: content
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  created: true
+  langcode: true
+  status: true
