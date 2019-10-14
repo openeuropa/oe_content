@@ -45,6 +45,7 @@ class PublicationsOfficeSkosGraphSetup {
       'eurovoc' => 'http://publications.europa.eu/resource/dataset/eurovoc',
       'europa_digital_thesaurus' => 'http://data.europa.eu/uxp',
       'country' => 'http://publications.europa.eu/resource/authority/country',
+      'language' => 'http://publications.europa.eu/resource/authority/language',
     ];
   }
 
