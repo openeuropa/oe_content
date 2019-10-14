@@ -84,8 +84,8 @@ Feature: Event content creation
 
     # Make sure that the Event partner field group contains expected fields.
     Then I should see "Name" in the "Event partner" region
-    Then I should see "Image" in the "Event partner" region
-    Then I should see "Website" in the "Event partner" region
+    And I should see "Image" in the "Event partner" region
+    And I should see "Website" in the "Event partner" region
 
   @javascript
   Scenario: Make sure that the selectboxes contains correct options.
@@ -187,7 +187,6 @@ Feature: Event content creation
     And I fill in "Registration end date" with the time "02:23:00PM"
     And I fill in "Entrance fee" with "Free of charge"
     And I fill in "Registration capacity" with "100 seats"
-
     # Event partner field group.
     Then I fill in "Name" with "Name of the event partner" in the "Event partner" region
     And I fill in "Use existing media" with "Euro with miniature figurines" in the "Event partner" region
