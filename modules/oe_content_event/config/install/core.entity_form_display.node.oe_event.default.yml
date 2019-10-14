@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
-    - field.field.node.oe_event.oe_event_partner
+    - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_description_summary
     - field.field.node.oe_event.oe_event_end_date
@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.oe_event.oe_event_online_type
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_name
+    - field.field.node.oe_event.oe_event_partner
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_end_date
     - field.field.node.oe_event.oe_event_registration_start_date
@@ -134,7 +135,7 @@ third_party_settings:
       children:
         - oe_event_gallery
       parent_name: ''
-      weight: 27
+      weight: 28
       format_type: details
       format_settings:
         id: ''
@@ -164,7 +165,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_event_partner:
+  oe_event_contact:
     weight: 16
     settings:
       form_mode: default
@@ -328,6 +329,19 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  oe_event_partner:
+    weight: 15
+    settings:
+      form_mode: default
+      revision: true
+      label_singular: ''
+      label_plural: ''
+      collapsible: true
+      override_labels: false
+      collapsed: false
+    third_party_settings: {  }
+    type: inline_entity_form_simple
+    region: content
   oe_event_registration_capacity:
     weight: 31
     settings:
@@ -449,7 +463,7 @@ content:
     region: content
   path:
     type: path
-    weight: 28
+    weight: 29
     region: content
     settings: {  }
     third_party_settings: {  }
