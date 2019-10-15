@@ -50,8 +50,8 @@ default:
         Social media links: "#oe-event-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
         Gallery: "#oe-event-gallery-values"
-        Event partner: "#edit-oe-event-partner-0"
-        Event contact: "#oe-event-contact-values"
+        Event partner: "#edit-oe-event-partner-wrapper"
+        Event contact: "#edit-oe-event-contact-wrapper"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
