@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_event_contact
+    - node.type.oe_event
+    - oe_content_event.event_profile_type.oe_event_contact
+  module:
+    - entity_reference_revisions
+id: node.oe_event.oe_event_contact
+field_name: oe_event_contact
+entity_type: node
+bundle: oe_event
+label: 'Event contact'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:event_profile'
+  handler_settings:
+    target_bundles:
+      oe_event_contact: oe_event_contact
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions
