@@ -6,7 +6,7 @@ Feature: Event content creation
 
   @javascript
   Scenario: Fields on the event content creation forms should be grouped logically.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, administer event venue entities, administer event profile entities" permission
     When I visit "the Event creation page"
     Then I should see "Online"
     And I should not see "Online type"
@@ -82,6 +82,11 @@ Feature: Event content creation
     And I should see "Entrance fee"
     And I should see "Registration capacity"
 
+    # Make sure that the Event partner field group contains expected fields.
+    Then I should see "Name" in the "Event partner" region
+    And I should see "Image" in the "Event partner" region
+    And I should see "Website" in the "Event partner" region
+
   @javascript
   Scenario: Make sure that the selectboxes contains correct options.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
@@ -114,7 +119,7 @@ Feature: Event content creation
 
   @cleanup:media @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, administer event venue entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, administer event venue entities, administer event profile entities" permission
     # Create a "Media AV portal photo".
     And I visit "the AV Portal photo creation page"
     And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
@@ -182,6 +187,10 @@ Feature: Event content creation
     And I fill in "Registration end date" with the time "02:23:00PM"
     And I fill in "Entrance fee" with "Free of charge"
     And I fill in "Registration capacity" with "100 seats"
+    # Event partner field group.
+    Then I fill in "Name" with "Name of the event partner" in the "Event partner" region
+    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Event partner" region
+    And I fill in "Website" with "http://eventpartner.com" in the "Event partner" region
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
@@ -218,6 +227,11 @@ Feature: Event content creation
     And I should see the text "Rue belliard 28"
     And I should see the text "1000 Brussels"
     And I should see the text "Belgium"
+    # Event partner values.
+    And I should see the text "Name of the event partner"
+    And I should see an "AV portal photo of the Event partner" element
+    And I should see the text "http://eventpartner.com"
+
 
   @javascript @cleanup:media @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.

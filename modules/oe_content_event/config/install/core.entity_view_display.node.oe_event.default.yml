@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
+    - field.field.node.oe_event.oe_event_partner
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_description_summary
     - field.field.node.oe_event.oe_event_end_date
@@ -52,6 +53,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  oe_event_partner:
+    weight: 26
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
     region: content
   oe_event_description_summary:
     weight: 13
