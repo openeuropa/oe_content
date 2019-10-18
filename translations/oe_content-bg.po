@@ -1,0 +1,106 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "октомври"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "юли"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "март"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "февруари"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "декември"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "август"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "юни"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "май"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "април"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "ноември"
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "януари"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "септември"
+
+msgid "Jan"
+msgstr "Ян."
+
+msgid "Feb"
+msgstr "Февр."
+
+msgid "Mar"
+msgstr "Март"
+
+msgid "Apr"
+msgstr "Апр."
+
+msgid "Jun"
+msgstr "Юни"
+
+msgid "Jul"
+msgstr "Юли"
+
+msgid "Aug"
+msgstr "Авг."
+
+msgid "Sep"
+msgstr "Септ."
+
+msgid "Oct"
+msgstr "Окт."
+
+msgid "Nov"
+msgstr "Ноем."
+
+msgid "Dec"
+msgstr "Дек."
+
+msgid "Sunday"
+msgstr "неделя"
+
+msgid "Monday"
+msgstr "понеделник"
+
+msgid "Tuesday"
+msgstr "вторник"
+
+msgid "Wednesday"
+msgstr "сряда"
+
+msgid "Thursday"
+msgstr "четвъртък"
+
+msgid "Friday"
+msgstr "петък"
+
+msgid "Saturday"
+msgstr "събота"
+
+
