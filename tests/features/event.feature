@@ -1,4 +1,4 @@
-@api
+@api @run
 Feature: Event content creation
   In order to have events on the site
   As an editor
