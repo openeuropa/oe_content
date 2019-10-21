@@ -9,7 +9,7 @@ Feature: Content and interface translations.
     When I am on "the interface translation page"
     And I fill in "String contains" with "Sunday"
     And I press "Filter"
-    And I print last response
+    And print last response
     Then I should see "неделя"
     When I fill in "String contains" with "January"
     And I press "Filter"
