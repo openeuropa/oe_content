@@ -5,6 +5,7 @@ dependencies:
     - field.field.event_profile.oe_event_contact.address
     - field.field.event_profile.oe_event_contact.contact_type
     - field.field.event_profile.oe_event_contact.email
+    - field.field.event_profile.oe_event_contact.phone_number
     - oe_content_event.event_profile_type.oe_event_contact
   module:
     - address
@@ -32,6 +33,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: email_default
+    region: content
+  phone_number:
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   name:
     type: string_textfield

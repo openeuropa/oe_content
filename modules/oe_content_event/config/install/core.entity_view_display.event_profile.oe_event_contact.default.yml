@@ -5,6 +5,7 @@ dependencies:
     - field.field.event_profile.oe_event_contact.address
     - field.field.event_profile.oe_event_contact.contact_type
     - field.field.event_profile.oe_event_contact.email
+    - field.field.event_profile.oe_event_contact.phone_number
     - oe_content_event.event_profile_type.oe_event_contact
   module:
     - address
@@ -34,6 +35,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
+  phone_number:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
 hidden:
   langcode: true
