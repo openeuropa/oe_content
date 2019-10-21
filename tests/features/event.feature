@@ -96,6 +96,7 @@ Feature: Event content creation
     Then I should see "Contact type" in the "Event contact" region
     Then I should see "Country" in the "Event contact" region
     Then I should see "Email" in the "Event contact" region
+    Then I should see "Phone number" in the "Event contact" region
 
   @javascript
   Scenario: Make sure that the selectboxes contains correct options.
@@ -215,6 +216,7 @@ Feature: Event content creation
     And I fill in "Postal code" with "9000" in the "Event contact" region
     And I fill in "City" with "Budapest" in the "Event contact" region
     And I fill in "Email" with "test@example.com" in the "Event contact" region
+    And I fill in "Phone number" with "0488779033" in the "Event contact" region
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
@@ -265,6 +267,7 @@ Feature: Event content creation
     And I should see the text "9000"
     And I should see the text "Hungary"
     And I should see the text "test@example.com"
+    And I should see the text "0488779033"
 
   @javascript @cleanup:media @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
