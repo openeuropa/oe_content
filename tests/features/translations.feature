@@ -1,4 +1,4 @@
-@api
+@api @teste
 Feature: Content and interface translations.
   In order to visit the translated website
   As a visitor
