@@ -1,0 +1,199 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "Sausis"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "Vasaris"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "Kovas"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "Balandis"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "Birželis"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "Liepa"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "Rugpjūtis"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "Rugsėjis"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "Spalis"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "Lapkritis"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "Gruodis"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "Sau"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "Vas"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "Kov"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "Bal"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "Geg"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "Bir"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "Lie"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "Rgp"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "Rgs"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "Spl"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "Lap"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "Grd"
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "Sk"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "Pr"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "An"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "Tr"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "Kt"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "Pn"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "Št"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "Sk"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "Pr"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "An"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "Tr"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "Kt"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "Pn"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "Št"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "S"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "A"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "T"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "K"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "Š"
+
+msgid "Sunday"
+msgstr "Sekmadienis"
+
+msgid "Monday"
+msgstr "Pirmadienis"
+
+msgid "Tuesday"
+msgstr "Antradienis"
+
+msgid "Wednesday"
+msgstr "Trečiadienis"
+
+msgid "Thursday"
+msgstr "Ketvirtadienis"
+
+msgid "Friday"
+msgstr "Penktadienis"
+
+msgid "Saturday"
+msgstr "Šeštadienis"
