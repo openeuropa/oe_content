@@ -96,6 +96,7 @@ Feature: Event content creation
     Then I should see "Contact type" in the "Event contact" region
     Then I should see "Country" in the "Event contact" region
     Then I should see "Email" in the "Event contact" region
+    Then I should see "Phone number" in the "Event contact" region
 
   @javascript
   Scenario: Make sure that the selectboxes contains correct options.
@@ -145,6 +146,7 @@ Feature: Event content creation
     And I fill in "End date" with the date "02/21/2019"
     And I fill in "End date" with the time "02:21:00PM"
     And I select "As planned" from "Status"
+    And I fill in "Languages" with "Hungarian"
     And I select "Info days" from "Type"
     And I fill in "Subject" with "EU financing"
     And I fill in "URL" with "http://ec.europa.eu"
@@ -214,6 +216,7 @@ Feature: Event content creation
     And I fill in "Postal code" with "9000" in the "Event contact" region
     And I fill in "City" with "Budapest" in the "Event contact" region
     And I fill in "Email" with "test@example.com" in the "Event contact" region
+    And I fill in "Phone number" with "0488779033" in the "Event contact" region
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
@@ -224,6 +227,7 @@ Feature: Event content creation
     And I should see "Thu, 02/21/2019 - 02:21"
     And I should see "Thu, 02/21/2019 - 14:21"
     And I should see "Info days"
+    And I should see "Hungarian"
     And I should see "As planned"
     And I should see the link "Website"
     And I should see the link "Twitter"
@@ -263,6 +267,7 @@ Feature: Event content creation
     And I should see the text "9000"
     And I should see the text "Hungary"
     And I should see the text "test@example.com"
+    And I should see the text "0488779033"
 
   @javascript @cleanup:media @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
@@ -276,6 +281,7 @@ Feature: Event content creation
     When I visit "the Event creation page"
     And I fill in "Title" with "My Event item"
     And I select "As planned" from "Status"
+    And I fill in "Languages" with "Hungarian"
     And I select "Info days" from "Type"
     And I fill in "Subject" with "EU financing"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
