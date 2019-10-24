@@ -76,6 +76,13 @@ pipeline:
     commands:
       - ./vendor/bin/behat --strict
 
+  debug:
+    image: fpfis/httpd-php-ci:7.1
+    commands:
+      - ./vendor/bin/drush ws --count 500
+    when:
+      status: failure
+
 matrix:
   COMPOSER_BOUNDARY:
     - lowest

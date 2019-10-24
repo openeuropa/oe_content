@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "siječnja"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "veljače"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "ožujka"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "travnja"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "svibnja"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "lipnja"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "srpnja"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "kolovoza"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "rujna"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "listopada"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "studenog"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "prosinca"
+
+msgid "Sunday"
+msgstr "nedjelja"
+
+msgid "Monday"
+msgstr "ponedjeljak"
+
+msgid "Tuesday"
+msgstr "utorak"
+
+msgid "Wednesday"
+msgstr "srijeda"
+
+msgid "Thursday"
+msgstr "četvrtak"
+
+msgid "Friday"
+msgstr "petak"
+
+msgid "Saturday"
+msgstr "subota"

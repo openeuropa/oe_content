@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "január"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "február"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "marec"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "apríl"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "máj"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "jún"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "júl"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "august"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "september"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "október"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "november"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "december"
+
+msgid "Sunday"
+msgstr "nedeľa"
+
+msgid "Monday"
+msgstr "pondelok"
+
+msgid "Tuesday"
+msgstr "utorok"
+
+msgid "Wednesday"
+msgstr "streda"
+
+msgid "Thursday"
+msgstr "štvrtok"
+
+msgid "Friday"
+msgstr "piatok"
+
+msgid "Saturday"
+msgstr "sobota"

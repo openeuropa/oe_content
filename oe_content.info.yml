@@ -19,3 +19,7 @@ config_devel:
     - field.storage.node.oe_subject
     - field.storage.node.oe_summary
     - field.storage.node.oe_teaser
+
+'interface translation project': oe_content
+# The path to the actual translations is defined in
+# oe_content_locale_translation_projects_alter().

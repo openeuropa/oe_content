@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.4.0](https://github.com/openeuropa/oe_content/tree/1.4.0) (2019-10-16)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.3.0...1.4.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2101: Update selected skos concept in subject field. [\#92](https://github.com/openeuropa/oe_content/pull/92) ([sergepavle](https://github.com/sergepavle))
+
 ## [1.3.0](https://github.com/openeuropa/oe_content/tree/1.3.0) (2019-09-24)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.2.0...1.3.0)
 
@@ -10,6 +17,7 @@
 **Merged pull requests:**
 
 - OPENEUROPA-0000: Remove pinned version of Mink related packages. [\#109](https://github.com/openeuropa/oe_content/pull/109) ([brummbar](https://github.com/brummbar))
+- Release-1.3.0 [\#108](https://github.com/openeuropa/oe_content/pull/108) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2282: \[oe\_content\] Caching issue on persistent urls. [\#102](https://github.com/openeuropa/oe_content/pull/102) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2259: Fix behat/mink-selenium2-driver missing branch. [\#101](https://github.com/openeuropa/oe_content/pull/101) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2229: Fix field translatability [\#100](https://github.com/openeuropa/oe_content/pull/100) ([voidtek](https://github.com/voidtek))

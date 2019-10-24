@@ -1,0 +1,115 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "Eanáir"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "Feabhra"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "Márta"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "Aibreán"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "Bealtaine"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "Meitheamh"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "Iúil"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "Lúnasa"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "Meán Fómhair"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "Deireadh Fómhair"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "Samhain"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "Nollaig"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "Ean"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "Fea"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "Már"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "Aib"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "Mei"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "Iúil"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "Lún"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "MF"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "DF"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "Samh"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "Noll"
+
+msgid "Sunday"
+msgstr "Dé Domhnaigh"
+
+msgid "Monday"
+msgstr "Dé Luain"
+
+msgid "Tuesday"
+msgstr "Dé Máirt"
+
+msgid "Wednesday"
+msgstr "Dé Céadaoin"
+
+msgid "Thursday"
+msgstr "Déardaoin"
+
+msgid "Friday"
+msgstr "Dé hAoine"
+
+msgid "Saturday"
+msgstr "Dé Sathairn"

@@ -1,0 +1,199 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "Ιανουάριος"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "Φεβρουάριος"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "Μάρτιος"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "Απρίλιος"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "Μάιος"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "Ιούνιος"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "Ιούλιος"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "Αύγουστος"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "Σεπτέμβριος"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "Οκτώβριος"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "Νοέμβριος"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "Δεκέμβριος"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "Ιαν"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "Φεβ"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "Μαρ"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "Απρ"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "Μαι"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "Ιουν"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "Ιουλ"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "Αυγ"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "Σεπ"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "Οκτ"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "Νοε"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "Δεκ"
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "Κυρ"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "Δευ"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "Τρι"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "Τετ"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "Πεμ"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "Παρ"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "Σαβ"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "Κυ"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "Τρ"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "Τε"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "Πε"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "Πα"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "Σα"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "Κ"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "Δ"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "Τ"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "Τ"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "Π"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "Π"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "Σ"
+
+msgid "Sunday"
+msgstr "Κυριακή"
+
+msgid "Monday"
+msgstr "Δευτέρα"
+
+msgid "Tuesday"
+msgstr "Τρίτη"
+
+msgid "Wednesday"
+msgstr "Τετάρτη"
+
+msgid "Thursday"
+msgstr "Πέμπτη"
+
+msgid "Friday"
+msgstr "Παρασκευή"
+
+msgid "Saturday"
+msgstr "Σάββατο"
