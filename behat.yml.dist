@@ -22,6 +22,7 @@ default:
               Publication creation: 'node/add/oe_publication'
               AV Portal photo creation: 'media/add/av_portal_photo'
               document creation: 'media/add/document'
+              interface translation: 'admin/config/regional/translate'
   extensions:
     Drupal\MinkExtension:
       goutte: ~

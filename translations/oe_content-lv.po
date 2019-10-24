@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "Janvāris"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "Februāris"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "Marts"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "Aprīlis"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "Maijs"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "Jūnijs"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "Jūlijs"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "Augusts"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "Septembris"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "Oktobris"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "Novembris"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "Decembris"
+
+msgid "Sunday"
+msgstr "Svētdiena"
+
+msgid "Monday"
+msgstr "Pirmdiena"
+
+msgid "Tuesday"
+msgstr "Otrdiena"
+
+msgid "Wednesday"
+msgstr "Trešdiena"
+
+msgid "Thursday"
+msgstr "Ceturtdiena"
+
+msgid "Friday"
+msgstr "Piektdiena"
+
+msgid "Saturday"
+msgstr "Sestdiena"
