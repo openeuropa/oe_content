@@ -77,7 +77,7 @@ pipeline:
       - ./vendor/bin/behat --strict
 
   debug:
-    image: fpfis/httpd-php-ci:7.1
+    image: fpfis/httpd-php-ci:${PHP_VERSION=7.2}
     commands:
       - ./vendor/bin/drush ws --count 500
     when:
