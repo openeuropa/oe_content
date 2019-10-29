@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Uuid\Uuid;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Url;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
@@ -37,7 +38,14 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
    *
    * @var \Drupal\Core\Config\ImmutableConfig
    */
-  protected $config;
+  protected $purlConfig;
+
+  /**
+   * The config of the site.
+   *
+   * @var \Drupal\Core\Config\ImmutableConfig
+   */
+  protected $siteConfig;
 
   /**
    * Constructs a new FilterPurl object.
@@ -56,7 +64,8 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
   public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentUuidResolverInterface $uuid_resolver, ConfigFactoryInterface $config_factory) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->contentUuidResolver = $uuid_resolver;
-    $this->config = $config_factory->get('oe_content_persistent.settings');
+    $this->purlConfig = $config_factory->get('oe_content_persistent.settings');
+    $this->siteConfig = $config_factory->get('system.site');
   }
 
   /**
@@ -80,9 +89,9 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
 
     $dom = Html::load($text);
     $xpath = new \DOMXPath($dom);
-    $url_regexp = '/^' . preg_quote($this->config->get('base_url'), '/') . '(' . Uuid::VALID_PATTERN . ')/i';
+    $url_regexp = '/^' . preg_quote($this->purlConfig->get('base_url'), '/') . '(' . Uuid::VALID_PATTERN . ')/i';
 
-    $result->addCacheableDependency($this->config);
+    $result->addCacheableDependency($this->purlConfig);
 
     foreach ($xpath->query('//a') as $node) {
       try {
@@ -94,10 +103,24 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
           $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
           if ($entity) {
             $url = $entity->toUrl()->toString(TRUE);
-
             $node->setAttribute('href', $url->getGeneratedUrl());
             $result
               ->addCacheableDependency($entity)
+              ->addCacheableDependency($url);
+          }
+          // If we didn't find any entity with the provided UUID,
+          // set the address to the site's 404 page.
+          else {
+            $custom_404_path = $this->siteConfig->get('page.404');
+            if (!empty($custom_404_path)) {
+              $url = Url::fromUserInput($custom_404_path)->toString(TRUE)->getGeneratedUrl();
+            }
+            else {
+              $url = Url::fromRoute('system.404')->toString(TRUE)->getGeneratedUrl();
+            }
+            $node->setAttribute('href', $url);
+            $result
+              ->addCacheableDependency($this->siteConfig)
               ->addCacheableDependency($url);
           }
         }
