@@ -93,45 +93,61 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
 
     $result->addCacheableDependency($this->purlConfig);
 
+    /** @var \DOMElement $node */
     foreach ($xpath->query('//a') as $node) {
       try {
         $href = $node->getAttribute('href');
         // If there is a 'href' attribute that contains a UUID,
         // set it to the entity's current URL. This ensures that the URL works
         // even after a change of entity storage or import of data.
-        if (preg_match($url_regexp, $href, $matches) && Uuid::isValid($matches[1]) && $uuid = $matches[1]) {
-          $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
-          if ($entity) {
-            $url = $entity->toUrl()->toString(TRUE);
-            $node->setAttribute('href', $url->getGeneratedUrl());
-            $result
-              ->addCacheableDependency($entity)
-              ->addCacheableDependency($url);
-          }
-          // If we didn't find any entity with the provided UUID,
-          // set the address to the site's 404 page.
-          else {
-            $custom_404_path = $this->siteConfig->get('page.404');
-            if (!empty($custom_404_path)) {
-              $url = Url::fromUserInput($custom_404_path)->toString(TRUE)->getGeneratedUrl();
-            }
-            else {
-              $url = Url::fromRoute('system.404')->toString(TRUE)->getGeneratedUrl();
-            }
-            $node->setAttribute('href', $url);
-            $result
-              ->addCacheableDependency($this->siteConfig)
-              ->addCacheableDependency($url);
-          }
+        if (!preg_match($url_regexp, $href, $matches)) {
+          continue;
         }
+
+        $uuid = $matches[1];
+        if (!Uuid::isValid($uuid)) {
+          continue;
+        }
+
+        // We try to load the entity based on the UUID. If we fail, however,
+        // we link to the 404 page of the site so that it mirrors the default
+        // effect of the referenced entity being deleted from the system.
+        $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
+        $url = $entity ? $entity->toUrl()->toString(TRUE) : $this->getDefaultPageNotFoundUrl()->toString(TRUE);
+        $node->setAttribute('href', $url->getGeneratedUrl());
+
+        if ($entity) {
+          $result->addCacheableDependency($entity);
+        }
+        else {
+          $result->addCacheableDependency($this->siteConfig);
+        }
+
+        $result->addCacheableDependency($url);
       }
       catch (\Exception $e) {
         watchdog_exception('filter_purl', $e);
       }
     }
+
     $result->setProcessedText(Html::serialize($dom));
 
     return $result;
+  }
+
+  /**
+   * Returns the default URL for a 404 page.
+   *
+   * @return \Drupal\Core\Url
+   *   The URL.
+   */
+  protected function getDefaultPageNotFoundUrl(): Url {
+    $path = $this->siteConfig->get('page.404');
+    if (!empty($path)) {
+      return Url::fromUserInput($path);
+    }
+
+    return Url::fromRoute('system.404');
   }
 
 }
