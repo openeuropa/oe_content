@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Uuid\Uuid;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Url;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
@@ -37,7 +38,14 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
    *
    * @var \Drupal\Core\Config\ImmutableConfig
    */
-  protected $config;
+  protected $purlConfig;
+
+  /**
+   * The config of the site.
+   *
+   * @var \Drupal\Core\Config\ImmutableConfig
+   */
+  protected $siteConfig;
 
   /**
    * Constructs a new FilterPurl object.
@@ -56,7 +64,8 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
   public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentUuidResolverInterface $uuid_resolver, ConfigFactoryInterface $config_factory) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->contentUuidResolver = $uuid_resolver;
-    $this->config = $config_factory->get('oe_content_persistent.settings');
+    $this->purlConfig = $config_factory->get('oe_content_persistent.settings');
+    $this->siteConfig = $config_factory->get('system.site');
   }
 
   /**
@@ -80,35 +89,65 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
 
     $dom = Html::load($text);
     $xpath = new \DOMXPath($dom);
-    $url_regexp = '/^' . preg_quote($this->config->get('base_url'), '/') . '(' . Uuid::VALID_PATTERN . ')/i';
+    $url_regexp = '/^' . preg_quote($this->purlConfig->get('base_url'), '/') . '(' . Uuid::VALID_PATTERN . ')/i';
 
-    $result->addCacheableDependency($this->config);
+    $result->addCacheableDependency($this->purlConfig);
 
+    /** @var \DOMElement $node */
     foreach ($xpath->query('//a') as $node) {
       try {
         $href = $node->getAttribute('href');
         // If there is a 'href' attribute that contains a UUID,
         // set it to the entity's current URL. This ensures that the URL works
         // even after a change of entity storage or import of data.
-        if (preg_match($url_regexp, $href, $matches) && Uuid::isValid($matches[1]) && $uuid = $matches[1]) {
-          $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
-          if ($entity) {
-            $url = $entity->toUrl()->toString(TRUE);
-
-            $node->setAttribute('href', $url->getGeneratedUrl());
-            $result
-              ->addCacheableDependency($entity)
-              ->addCacheableDependency($url);
-          }
+        if (!preg_match($url_regexp, $href, $matches)) {
+          continue;
         }
+
+        $uuid = $matches[1];
+        if (!Uuid::isValid($uuid)) {
+          continue;
+        }
+
+        // We try to load the entity based on the UUID. If we fail, however,
+        // we link to the 404 page of the site so that it mirrors the default
+        // effect of the referenced entity being deleted from the system.
+        $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
+        $url = $entity ? $entity->toUrl()->toString(TRUE) : $this->getDefaultPageNotFoundUrl()->toString(TRUE);
+        $node->setAttribute('href', $url->getGeneratedUrl());
+
+        if ($entity) {
+          $result->addCacheableDependency($entity);
+        }
+        else {
+          $result->addCacheableDependency($this->siteConfig);
+        }
+
+        $result->addCacheableDependency($url);
       }
       catch (\Exception $e) {
         watchdog_exception('filter_purl', $e);
       }
     }
+
     $result->setProcessedText(Html::serialize($dom));
 
     return $result;
+  }
+
+  /**
+   * Returns the default URL for a 404 page.
+   *
+   * @return \Drupal\Core\Url
+   *   The URL.
+   */
+  protected function getDefaultPageNotFoundUrl(): Url {
+    $path = $this->siteConfig->get('page.404');
+    if (!empty($path)) {
+      return Url::fromUserInput($path);
+    }
+
+    return Url::fromRoute('system.404');
   }
 
 }
