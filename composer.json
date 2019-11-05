@@ -73,7 +73,8 @@
                 "https://www.drupal.org/project/field_group/issues/3072732": "https://www.drupal.org/files/issues/2019-08-06/3072732-6.patch"
             },
             "drupal/inline_entity_form": {
-                "https://www.drupal.org/project/inline_entity_form/issues/2367235": "https://www.drupal.org/files/issues/2019-10-07/inline_entity_form-2367235-131.patch"
+                "https://www.drupal.org/project/inline_entity_form/issues/2367235": "https://www.drupal.org/files/issues/2019-10-07/inline_entity_form-2367235-131.patch",
+                "https://www.drupal.org/project/inline_entity_form/issues/2927884": "https://www.drupal.org/files/issues/2019-07-16/inline_entity_form-remove_log_message-2927884-6.patch"
             },
             "drupal/typed_link": {
                 "https://www.drupal.org/project/typed_link/issues/3085826": "https://www.drupal.org/files/issues/2019-10-04/typed_link-3085826-2.patch",
