@@ -47,6 +47,7 @@ default:
         redirect link form element: ".field--name-oe-content-legacy-link"
         content owner form element: ".field--name-oe-content-content-owner"
         Online link: "#edit-oe-event-online-link-0"
+        Website: "#edit-oe-event-website-0"
         Social media links: "#oe-event-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
         Gallery: "#oe-event-gallery-values"
