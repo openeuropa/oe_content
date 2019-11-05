@@ -8,81 +8,86 @@ Feature: Event content creation
   Scenario: Fields on the event content creation forms should be grouped logically.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, administer event venue entities, administer event profile entities" permission
     When I visit "the Event creation page"
-    Then I should see "Online"
-    And I should not see "Online type"
-    And I should not see "Online time start"
-    And I should not see "Online time end"
-    And I should not see "Online description"
-    And I should not see "Online link"
 
-    And I should see "Organiser"
-    And I should not see "Organiser name"
-    And I should not see "Internal organiser"
+    # The text assertions are actually checking for fields.
+    # Proper steps will be introduced in OPENEUROPA-2160.
+    Then I should see the text "Type"
+    And I should see the text "Title"
+    And I should see the text "Description summary"
+    And I should see the text "Summary for report"
+    And I should see the text "Subject"
+    And I should see the text "Start date"
+    And I should see the text "End date"
+    And I should see the text "Status"
+    And I should see the text "Languages"
+    And I should see the text "Event website"
+    And I should see the text "Link type"
 
-    And I should see "Description"
-    And I should not see "Description summary"
-    And I should not see "Featured media"
-    And I should not see "Featured media legend"
-    And I should not see "Full text"
-
-    And I should see "Report"
-    And I should not see "Summary for report"
-    And I should not see "Report text"
-
-    And I should see "Registration"
-    And I should not see "Registration URL"
-    And I should not see "Registration status"
-    And I should not see "Registration start date"
-    And I should not see "Registration end date"
-    And I should not see "Entrance fee"
-    And I should not see "Registration capacity"
-
-    # Make sure that the Online field group contains expected fields.
-    When I press "Online"
-    Then I should see "Online type"
-    And I should see "Online time start"
-    And I should see "Online time end"
-    And I should see "Online description"
-    And I should see "Online link"
-    # Collapse Online field group
-    And I press "Online"
-
-    # Make sure that the Organiser field group contains expected fields.
-    When I press "Organiser"
-    Then I should see "Organiser name"
-    And I should see "Internal organiser"
-    When I check "Organiser is internal"
-    Then I should see "Internal organiser"
-    And I should not see "Organiser name"
-    # Collapse Organiser field group
-    And I press "Organiser"
-
-    # Make sure that the Description field group contains expected fields.
-    When I press "Description"
-    Then I should see "Description summary"
-    And I should see "Featured media"
-    And I should see "Featured media legend"
-    And I should see "Full text"
-    # Collapse Description field group
-    And I press "Description"
-
-    # Make sure that the Report field group contains expected fields.
-    When I press "Report"
-    Then I should see "Summary for report"
-    And I should see "Report text"
-    # Collapse Report field group
-    And I press "Report"
-
-    # Make sure that the Registration field group contains expected fields.
+    # The registration group is collapsed by default.
+    And I should see the text "Registration"
+    And I should not see the text "Registration URL"
+    And I should not see the text "Registration status"
+    And I should not see the text "Registration start date"
+    And I should not see the text "Registration end date"
+    And I should not see the text "Entrance fee"
+    And I should not see the text "Registration capacity"
     When I press "Registration"
-    Then I should see "Registration URL"
-    And I should see "Registration status"
-    And I should see "Registration start date"
-    And I should see "Registration end date"
-    And I should see "Entrance fee"
-    And I should see "Registration capacity"
+    Then I should see the text "Registration URL"
+    And I should see the text "Registration status"
+    And I should see the text "Registration start date"
+    And I should see the text "Registration end date"
+    And I should see the text "Entrance fee"
+    And I should see the text "Registration capacity"
+
+     # The venue group is open by default.
+    And I should see the text "Venue"
+    And I should see the text "Name"
+    And I should see the text "Capacity"
+    And I should see the text "Room"
+    And I should see the text "Country"
+
+    # The online group is collapsed by default.
+    And I should see the text "Online"
+    And I should not see the text "Online type"
+    And I should not see the text "Online time start"
+    And I should not see the text "Online time end"
+    And I should not see the text "Online description"
+    And I should not see the text "Online link"
+    When I press "Online"
+    Then I should see the text "Online type"
+    And I should see the text "Online time start"
+    And I should see the text "Online time end"
+    And I should see the text "Online description"
+    And I should see the text "Online link"
+
+    # The organiser group is opened by default.
+    And I should see the text "Organiser"
+    And I should see the text "Organiser is internal"
+    And I should see the text "Organiser name"
+    When I check "Organiser is internal"
+    Then I should see the text "Internal organiser"
+    And I should not see the text "Organiser name"
+
+    # The media group is collapsed by default.
+    And I should see the text "Media"
+    And I should not see the text "Gallery"
+    When I press "Media"
+    Then I should see the text "Gallery"
+
+    # The full description group is opened by default.
+    And I should see the text "Full description"
+    And I should see the text "Featured media"
+    And I should see the text "Featured media legend"
+    And I should see the text "Full text"
+
+    # The full report group is collapsed by default.
+    And I should see the text "Full Report"
+    And I should not see the text "Report text"
+    When I press "Full Report"
+    Then I should see the text "Report text"
 
     # Make sure that the Event partner field group contains expected fields.
+    And I should see the text "Event partner"
     When I press "Add new partner"
     And I wait for AJAX to finish
     Then I should see "Name" in the "Event partner" region
@@ -90,6 +95,7 @@ Feature: Event content creation
     And I should see "Website" in the "Event partner" region
 
     # Make sure that the Event contact field group contains expected fields.
+    And I should see the text "Event contact"
     When I press "Add new contact"
     And I wait for AJAX to finish
     Then I should see "Name" in the "Event contact" region
@@ -97,6 +103,17 @@ Feature: Event content creation
     Then I should see "Country" in the "Event contact" region
     Then I should see "Email" in the "Event contact" region
     Then I should see "Phone number" in the "Event contact" region
+
+    # The alternative titles and teaser group is open by default.
+    And I should see the text "Alternative titles and teaser"
+    And  I should see the text "Short title"
+    And I should see the text "Navigation title"
+    And I should see the text "Teaser"
+
+    # Metadata fields are visible
+    And I should see the text "Content owner"
+    And I should see the text "Responsible department"
+    And I should see the text "Language"
 
   @javascript
   Scenario: Make sure that the selectboxes contains correct options.
@@ -140,55 +157,9 @@ Feature: Event content creation
     And I press "Save"
     # Create a "Event" content.
     When I visit "the Event creation page"
-    Then I fill in "Title" with "My Event item"
-    And I fill in "Start date" with the date "02/21/2019"
-    And I fill in "Start date" with the time "02:21:00AM"
-    And I fill in "End date" with the date "02/21/2019"
-    And I fill in "End date" with the time "02:21:00PM"
-    And I select "As planned" from "Status"
-    And I fill in "Languages" with "Hungarian"
-    And I select "Info days" from "Type"
-    And I fill in "Subject" with "EU financing"
-    And I fill in "URL" with "http://ec.europa.eu"
-    And I fill in "Link text" with "Website"
-    And I fill in "URL" with "http://twitter.com" in the "Social media links" region
-    And I fill in "Link text" with "Twitter" in the "Social media links" region
-    And I select "Twitter" from "Link type"
-    # Venue reference by inline entity form.
-    And I fill in "Name" with "Name of the venue"
-    And I fill in "Capacity" with "Capacity of the venue"
-    And I fill in "Room" with "Room of the venue"
-    And I select "Belgium" from "Country"
-    And I wait for AJAX to finish
-    And I fill in "Street address" with "Rue belliard 28"
-    And I fill in "Postal code" with "1000"
-    And I fill in "City" with "Brussels"
-    # Online field group.
-    When I press "Online"
-    Then I select "Facebook" from "Online type"
-    And I fill in "Online time start" with the date "02/22/2019"
-    And I fill in "Online time start" with the time "02:22:00AM"
-    And I fill in "Online time end" with the date "02/22/2019"
-    And I fill in "Online time end" with the time "02:22:00PM"
-    And I fill in "Online description" with "Online description text"
-    And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
-    And I fill in "Link text" with "Online link" in the "Online link" region
-    # Organiser field group.
-    When I press "Organiser"
-    Then I fill in "Organiser name" with "Organiser name"
-    # Media field group.
-    When I press "Media"
-    Then I fill in "Use existing media" with "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania" in the "Gallery" region
-    # Description field group.
-    When I press "Description"
-    And I fill in "Description summary" with "Description summary text"
-    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
-    And I fill in "Featured media legend" with "Euro with miniature figurines"
-    And I fill in "Full text" with "Full text paragraph"
-    # Report field group.
-    When I press "Report"
-    And I fill in "Summary for report" with "Report summary text"
-    And I fill in "Report text" with "Report text paragraph"
+    Then I select "Info days" from "Type"
+    And I fill in "Title" with "My Event item"
+
     # Registration field group.
     When I press "Registration"
     Then I fill in "Registration URL" with "http://example.com"
@@ -199,12 +170,71 @@ Feature: Event content creation
     And I fill in "Registration end date" with the time "02:23:00PM"
     And I fill in "Entrance fee" with "Free of charge"
     And I fill in "Registration capacity" with "100 seats"
+
+    And I fill in "Description summary" with "Description summary text"
+    And I fill in "Summary for report" with "Report summary text"
+    And I fill in "Subject" with "EU financing"
+    And I fill in "Start date" with the date "02/21/2019"
+    And I fill in "Start date" with the time "02:21:00AM"
+    And I fill in "End date" with the date "02/21/2019"
+    And I fill in "End date" with the time "02:21:00PM"
+
+    # Venue reference by inline entity form.
+    And I fill in "Name" with "Name of the venue"
+    And I fill in "Capacity" with "Capacity of the venue"
+    And I fill in "Room" with "Room of the venue"
+    And I select "Belgium" from "Country"
+    And I wait for AJAX to finish
+    And I fill in "Street address" with "Rue belliard 28"
+    And I fill in "Postal code" with "1000"
+    And I fill in "City" with "Brussels"
+
+    # Online field group.
+    When I press "Online"
+    Then I select "Facebook" from "Online type"
+    And I fill in "Online time start" with the date "02/22/2019"
+    And I fill in "Online time start" with the time "02:22:00AM"
+    And I fill in "Online time end" with the date "02/22/2019"
+    And I fill in "Online time end" with the time "02:22:00PM"
+    And I fill in "Online description" with "Online description text"
+    And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
+    And I fill in "Link text" with "Online link" in the "Online link" region
+
+    And I select "As planned" from "Status"
+    And I fill in "Languages" with "Hungarian"
+
+    # Organiser field group.
+    Then I fill in "Organiser name" with "Organiser name"
+
+    # Event website field group.
+    And I fill in "URL" with "http://ec.europa.eu" in the "Website" region
+    And I fill in "Link text" with "Website" in the "Website" region
+
+    # Add a social media link
+    And I fill in "URL" with "http://twitter.com" in the "Social media links" region
+    And I fill in "Link text" with "Twitter" in the "Social media links" region
+    And I select "Twitter" from "Link type"
+
+    # Media field group.
+    When I press "Media"
+    Then I fill in "Use existing media" with "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania" in the "Gallery" region
+
+    # Description field group.
+    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
+    And I fill in "Featured media legend" with "Euro with miniature figurines"
+    And I fill in "Full text" with "Full text paragraph"
+
+    # Report field group.
+    When I press "Full Report"
+    And I fill in "Report text" with "Report text paragraph"
+
     # Event partner field group.
     When I press "Add new partner"
     And I wait for AJAX to finish
     Then I fill in "Name" with "Name of the event partner" in the "Event partner" region
     And I fill in "Use existing media" with "Euro with miniature figurines" in the "Event partner" region
     And I fill in "Website" with "http://eventpartner.com" in the "Event partner" region
+
     # Event contact field group.
     When I press "Add new contact"
     And I wait for AJAX to finish
@@ -322,7 +352,6 @@ Feature: Event content creation
 
     # Make sure that validation of the Description fields group works as expected.
     When I click "Edit"
-    And I press "Description"
     And I fill in "Full text" with "Full text paragraph"
     And I press "Save"
     Then I should see the following error messages:
