@@ -46,7 +46,7 @@ default:
         Website: "#edit-oe-event-website-0"
         Social media links: "#oe-event-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
-        Gallery: "#oe-event-gallery-values"
+        Event report: "#edit-group-report"
         Event partner: "#edit-oe-event-partner-wrapper"
         Event contact: "#edit-oe-event-contact-wrapper"
       selectors:
