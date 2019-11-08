@@ -1,4 +1,4 @@
-@api
+@api @event
 Feature: Event content creation
   In order to have events on the site
   As an editor
@@ -14,7 +14,6 @@ Feature: Event content creation
     Then I should see the text "Type"
     And I should see the text "Title"
     And I should see the text "Description summary"
-    And I should see the text "Summary for report"
     And I should see the text "Subject"
     And I should see the text "Start date"
     And I should see the text "End date"
@@ -68,12 +67,6 @@ Feature: Event content creation
     Then I should see the text "Internal organiser"
     And I should not see the text "Organiser name"
 
-    # The media group is collapsed by default.
-    And I should see the text "Media"
-    And I should not see the text "Gallery"
-    When I press "Media"
-    Then I should see the text "Gallery"
-
     # The full description group is opened by default.
     And I should see the text "Full description"
     And I should see the text "Featured media"
@@ -81,10 +74,14 @@ Feature: Event content creation
     And I should see the text "Full text"
 
     # The full report group is collapsed by default.
-    And I should see the text "Full Report"
+    And I should see the text "Event report"
     And I should not see the text "Report text"
-    When I press "Full Report"
+    And I should not see the text "Summary for report"
+    And I should not see the text "Gallery"
+    When I press "Event report"
     Then I should see the text "Report text"
+    And I should see the text "Summary for report"
+    And I should see the text "Gallery"
 
     # Make sure that the Event partner field group contains expected fields.
     And I should see the text "Event partner"
@@ -126,6 +123,7 @@ Feature: Event content creation
       | Rescheduled        |
       | Postponed          |
     And I should have the following options for the "Type" select:
+      | - Select a value -                |
       | Training and workshops            |
       | Info days                         |
       | Competitions and award ceremonies |
@@ -172,7 +170,6 @@ Feature: Event content creation
     And I fill in "Registration capacity" with "100 seats"
 
     And I fill in "Description summary" with "Description summary text"
-    And I fill in "Summary for report" with "Report summary text"
     And I fill in "Subject" with "EU financing"
     And I fill in "Start date" with the date "02/21/2019"
     And I fill in "Start date" with the time "02:21:00AM"
@@ -215,18 +212,17 @@ Feature: Event content creation
     And I fill in "Link text" with "Twitter" in the "Social media links" region
     And I select "Twitter" from "Link type"
 
-    # Media field group.
-    When I press "Media"
-    Then I fill in "Use existing media" with "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania" in the "Gallery" region
-
     # Description field group.
     And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
     And I fill in "Featured media legend" with "Euro with miniature figurines"
     And I fill in "Full text" with "Full text paragraph"
 
     # Report field group.
-    When I press "Full Report"
+    When I press "Event report"
     And I fill in "Report text" with "Report text paragraph"
+    And I fill in "Summary for report" with "Report summary text"
+    And I fill in "Use existing media" with "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania" in the "Event report" region
+
 
     # Event partner field group.
     When I press "Add new partner"
