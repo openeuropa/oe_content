@@ -28,3 +28,14 @@ function oe_content_timeline_field_theme() {
 function oe_content_timeline_field_locale_translation_projects_alter(&$projects) {
   $projects['oe_content_timeline_field']['info']['interface translation server pattern'] = drupal_get_path('module', 'oe_content_timeline_field') . '/translations/%project-%language.po';
 }
+
+/**
+ * Implements hook_field_info_alter().
+ */
+function oe_content_timeline_field_field_info_alter(&$info) {
+  if (isset($info['timeline_field'])) {
+    // For the timeline_field field we need to use our own processor. This is
+    // only used if TMGMT is installed.
+    $info['timeline_field']['tmgmt_field_processor'] = 'Drupal\oe_content_timeline_field\TmgmtTimelineFieldProcessor';
+  }
+}
