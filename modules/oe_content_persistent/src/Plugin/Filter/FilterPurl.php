@@ -109,11 +109,21 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
           continue;
         }
 
+        // If an anchor is set on the source url, we extract it here.
+        $anchor = '';
+        if (strpos($href, '#') !== FALSE) {
+          $explodedHref = explode('#', $href);
+          if (isset($explodedHref[1]) && !empty($explodedHref[1])) {
+            $anchor = '#' . $explodedHref[1];
+          }
+        }
+
         // We try to load the entity based on the UUID. If we fail, however,
         // we link to the 404 page of the site so that it mirrors the default
         // effect of the referenced entity being deleted from the system.
         $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
         $url = $entity ? $entity->toUrl()->toString(TRUE) : $this->getDefaultPageNotFoundUrl()->toString(TRUE);
+        $url = $url->setGeneratedUrl($url->getGeneratedUrl() . $anchor);
         $node->setAttribute('href', $url->getGeneratedUrl());
 
         if ($entity) {
