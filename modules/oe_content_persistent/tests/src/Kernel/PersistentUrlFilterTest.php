@@ -127,6 +127,22 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $expected = '<a href="/alias2">test</a>';
     $output = $test($input, 'en');
     $this->assertSame($expected, $output->getProcessedText());
+
+    $uuid_service = \Drupal::service('uuid');
+    $uuid = $uuid_service->generate();
+
+    $input = '<a href="' . $base_url . $uuid . '">test</a>';
+    $expected = '<a href="/system/404">test</a>';
+    $output = $test($input, 'fr');
+    $this->assertSame($expected, $output->getProcessedText());
+
+    $system_config = \Drupal::configFactory()->getEditable('system.site');
+    $system_config->set('page.404', '/custom/404');
+    $system_config->save();
+
+    $expected = '<a href="/custom/404">test</a>';
+    $output = $test($input, 'fr');
+    $this->assertSame($expected, $output->getProcessedText());
   }
 
 }

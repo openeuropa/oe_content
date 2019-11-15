@@ -15,8 +15,8 @@ services:
     image: openeuropa/triple-store-dev:latest
     pull: true
     environment:
-     - SPARQL_UPDATE=true
-     - DBA_PASSWORD=dba
+      - SPARQL_UPDATE=true
+      - DBA_PASSWORD=dba
   selenium:
     image: selenium/standalone-chrome:3.141.59-oxygen
     pull: true
