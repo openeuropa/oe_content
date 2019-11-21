@@ -49,6 +49,110 @@ msgctxt "Long month name"
 msgid "December"
 msgstr "prosinca"
 
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "sij"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "velj"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "ožu"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "tra"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "svi"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "lip"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "srp"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "kol"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "ruj"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "lis"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "stu"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "pro"
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "Ned"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "Pon"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "Uto"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "Sri"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "Čet"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "Pet"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "Sub"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "N"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "U"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "S"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "Č"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "S"
+
 msgid "Sunday"
 msgstr "nedjelja"
 
