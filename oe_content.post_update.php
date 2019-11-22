@@ -51,42 +51,44 @@ function oe_content_post_update_00001(): void {
 }
 
 /**
- * Add Country and Language corporate vocabulary.
+ * Add Country corporate vocabulary.
  */
 function oe_content_post_update_00002(): void {
   $config = \Drupal::configFactory()->getEditable('rdf_skos.graphs');
+
   $entity_types = $config->get('entity_types');
-  $vocabularies = [
-    [
-      'name' => 'country',
-      'uri' => 'http://publications.europa.eu/resource/authority/country',
-    ],
-    [
-      'name' => 'language',
-      'uri' => 'http://publications.europa.eu/resource/authority/language',
-    ],
+
+  $name = 'country';
+  $graph = 'http://publications.europa.eu/resource/authority/country';
+  $entity_types['skos_concept_scheme'][] = [
+    'name' => $name,
+    'uri' => $graph,
   ];
-  $original_config_size = count($entity_types['skos_concept']);
+  $entity_types['skos_concept'][] = [
+    'name' => $name,
+    'uri' => $graph,
+  ];
 
-  foreach ($vocabularies as $vocabulary) {
-    // Check if vocabulary already exists.
-    foreach ($entity_types['skos_concept_scheme'] as $scheme) {
-      if ($scheme['name'] === $vocabulary['name']) {
-        continue 2;
-      }
-    }
-    $entity_types['skos_concept_scheme'][] = [
-      'name' => $vocabulary['name'],
-      'uri' => $vocabulary['uri'],
-    ];
-    $entity_types['skos_concept'][] = [
-      'name' => $vocabulary['name'],
-      'uri' => $vocabulary['uri'],
-    ];
-  }
+  $config->set('entity_types', $entity_types)->save();
+}
 
-  // Avoid saving if the config is not changed.
-  if (count($entity_types['skos_concept']) !== $original_config_size) {
-    $config->set('entity_types', $entity_types)->save();
-  }
+/**
+ * Add Language corporate vocabulary.
+ */
+function oe_content_post_update_00003(): void {
+  $config = \Drupal::configFactory()->getEditable('rdf_skos.graphs');
+  $entity_types = $config->get('entity_types');
+  $name = 'language';
+  $graph = 'http://publications.europa.eu/resource/authority/language';
+
+  $entity_types['skos_concept_scheme'][] = [
+    'name' => $name,
+    'uri' => $graph,
+  ];
+  $entity_types['skos_concept'][] = [
+    'name' => $name,
+    'uri' => $graph,
+  ];
+
+  $config->set('entity_types', $entity_types)->save();
 }
