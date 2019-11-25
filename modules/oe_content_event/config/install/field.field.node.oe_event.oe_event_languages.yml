@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.node.oe_event_languages
     - node.type.oe_event
+  module:
+    - rdf_skos
 id: node.oe_event.oe_event_languages
 field_name: oe_event_languages
 entity_type: node
@@ -23,4 +25,10 @@ settings:
     auto_create: false
     concept_schemes:
       - 'http://publications.europa.eu/resource/authority/language'
-field_type: entity_reference
+    field:
+      field_name: oe_event_languages
+      entity_type: node
+      bundle: oe_event
+      concept_schemes:
+        - 'http://publications.europa.eu/resource/authority/language'
+field_type: skos_concept_entity_reference
