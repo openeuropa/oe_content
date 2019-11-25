@@ -11,12 +11,15 @@ use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ExpectationException;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\node\NodeInterface;
+use Drupal\Tests\oe_content\Traits\UtilityTrait;
 use PHPUnit\Framework\Assert;
 
 /**
  * Defines step definitions that are generally useful in this project.
  */
 class FeatureContext extends RawDrupalContext {
+
+  use UtilityTrait;
 
   /**
    * Fills a date or time field at a datetime widget.
@@ -324,6 +327,26 @@ class FeatureContext extends RawDrupalContext {
       throw new \Exception(sprintf('No region "%s" found on the page %s.', $region, $session->getCurrentUrl()));
     }
     $regionObj->selectFieldOption($select, $option);
+  }
+
+  /**
+   * Assert non visibility of given element.
+   *
+   * @Then the :element is not visible
+   */
+  public function assertNonVisibility($element): void {
+    $node = $this->getSession()->getPage()->find('css', $element);
+    $this->assertNotVisuallyVisible($node);
+  }
+
+  /**
+   * Assert visibility of given element.
+   *
+   * @Then the :element is visible
+   */
+  public function assertVisibility($element): void {
+    $node = $this->getSession()->getPage()->find('css', $element);
+    $this->assertVisuallyVisible($node);
   }
 
 }
