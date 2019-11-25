@@ -125,6 +125,34 @@ msgctxt "Abbreviated weekday"
 msgid "Sat"
 msgstr "Sub"
 
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "N"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "P"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "U"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "S"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "Č"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "P"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "S"
+
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
 msgstr "N"
