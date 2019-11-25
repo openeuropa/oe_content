@@ -14,6 +14,7 @@ default:
         - OpenEuropa\Behat\TransformationContext:
             elements:
               AV portal photo of the Event partner: ".field--name-oe-event-partner"
+              Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
             pages:
               Page creation: 'node/add/oe_page'
               News creation: 'node/add/oe_news'

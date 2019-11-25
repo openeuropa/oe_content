@@ -62,10 +62,10 @@ Feature: Event content creation
     # The organiser group is opened by default.
     And I should see the text "Organiser"
     And I should see the text "Organiser is internal"
-    And I should see the text "Internal organiser"
+    And the "Internal organiser field" is visible
     When I uncheck "Organiser is internal"
     Then I should see the text "Organiser name"
-    And I should not see the text "Internal organiser"
+    And the "Internal organiser field" is not visible
 
     # The full description group is opened by default.
     And I should see the text "Full description"
