@@ -4,7 +4,7 @@ Feature: Event content creation
   As an editor
   I need to be able to create and see event items
 
-  @javascript @run
+  @javascript
   Scenario: Fields on the event content creation forms should be grouped logically.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, administer event venue entities, administer event profile entities" permission
     When I visit "the Event creation page"
@@ -63,6 +63,7 @@ Feature: Event content creation
     And I should see the text "Organiser"
     And I should see the text "Organiser is internal"
     And the "Internal organiser field" is visible
+    And I should not see the text "Organiser name"
     When I uncheck "Organiser is internal"
     Then I should see the text "Organiser name"
     And the "Internal organiser field" is not visible
