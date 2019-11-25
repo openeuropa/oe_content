@@ -7,10 +7,10 @@ dependencies:
 id: node.oe_event_languages
 field_name: oe_event_languages
 entity_type: node
-type: entity_reference
+type: skos_concept_entity_reference
 settings:
   target_type: skos_concept
-module: core
+module: rdf_skos
 locked: false
 cardinality: -1
 translatable: true
