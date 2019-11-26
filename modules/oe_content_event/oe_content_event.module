@@ -31,7 +31,7 @@ function oe_content_event_form_node_form_alter(&$form, FormStateInterface $form_
   $form['is_organiser_internal'] = [
     '#type' => 'checkbox',
     '#title' => t('Organiser is internal'),
-    '#default_value' => !empty($form['oe_event_organiser_name']['widget'][0]['value']['#default_value']) ? 0 : 1,
+    '#default_value' => empty($form['oe_event_organiser_name']['widget'][0]['value']['#default_value']) ? 1 : 0,
   ];
   $form['oe_event_organiser_internal']['#states'] = [
     'visible' => [
