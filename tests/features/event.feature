@@ -62,10 +62,11 @@ Feature: Event content creation
     # The organiser group is opened by default.
     And I should see the text "Organiser"
     And I should see the text "Organiser is internal"
-    And I should see the text "Organiser name"
-    When I check "Organiser is internal"
-    Then I should see the text "Internal organiser"
+    And the "Internal organiser field" is visible
     And I should not see the text "Organiser name"
+    When I uncheck "Organiser is internal"
+    Then I should see the text "Organiser name"
+    And the "Internal organiser field" is not visible
 
     # The full description group is opened by default.
     And I should see the text "Full description"
@@ -117,7 +118,6 @@ Feature: Event content creation
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     When I visit "the Event creation page"
     Then I should have the following options for the "Status" select:
-      | - Select a value - |
       | As planned         |
       | Cancelled          |
       | Rescheduled        |
@@ -201,6 +201,7 @@ Feature: Event content creation
     And I fill in "Languages" with "Hungarian"
 
     # Organiser field group.
+    When I uncheck "Organiser is internal"
     Then I fill in "Organiser name" with "Organiser name"
 
     # Event website field group.
