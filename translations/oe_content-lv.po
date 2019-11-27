@@ -49,6 +49,138 @@ msgctxt "Long month name"
 msgid "December"
 msgstr "Decembris"
 
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "janv."
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "febr."
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "marts"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "apr."
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "maijs"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "jūn."
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "jūl."
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "aug."
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "sept."
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "okt."
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "nov."
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "dec."
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "Sv."
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "P."
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "O."
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "T."
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "C."
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "Pk."
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "S"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "Sv"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "P"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "O"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "T"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "C"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "Pk"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "S"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "S"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "O"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "T"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "C"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "S"
+
 msgid "Sunday"
 msgstr "Svētdiena"
 
