@@ -139,7 +139,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
-        'label' => 'above',
+        'label' => 'hidden',
         'type' => 'string',
         'weight' => -4,
       ])
@@ -162,7 +162,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
-        'label' => 'above',
+        'label' => 'hidden',
         'type' => 'string',
         'weight' => -4,
       ])
@@ -185,7 +185,7 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
-        'label' => 'above',
+        'label' => 'hidden',
         'type' => 'string',
         'weight' => -4,
       ])
@@ -218,8 +218,8 @@ class EventVenue extends EditorialContentEntityBase implements EventVenueInterfa
         'fields' => [],
       ])
       ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
+        'label' => 'hidden',
+        'type' => 'address_plain',
         'weight' => -4,
       ])
       ->setDisplayOptions('form', [
