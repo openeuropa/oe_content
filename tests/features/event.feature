@@ -280,7 +280,7 @@ Feature: Event content creation
     And I should see the text "Capacity of the venue"
     And I should see the text "Room of the venue"
     And I should see the text "Rue belliard 28"
-    And I should see the text "1000 Brussels"
+    And I should see the text "Brussels 1000"
     And I should see the text "Belgium"
     # Event partner values.
     And I should see the text "Name of the event partner"
