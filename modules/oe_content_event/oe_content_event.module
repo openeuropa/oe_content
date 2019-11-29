@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_entity_type_alter().
@@ -57,4 +58,28 @@ function oe_content_event_form_node_form_alter(&$form, FormStateInterface $form_
   $organiser_group->children[] = 'is_organiser_internal';
   $form['#fieldgroups'][$group_id] = $organiser_group;
   $form['#group_children']['is_organiser_internal'] = $group_id;
+  // Make sure that only one organiser field value is stored based on the
+  // the checkbox setting.
+  $form['#entity_builders'][] = '_oe_content_event_store_organiser_value';
+}
+
+/**
+ * Entity builder to make sure only one organiser value is stored.
+ *
+ * @param string $entity_type
+ *   The identifier of the entity type.
+ * @param \Drupal\node\Entity\Node $entity
+ *   The node entity.
+ * @param array $form
+ *   The submitted form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state object.
+ */
+function _oe_content_event_store_organiser_value(string $entity_type, Node $entity, array &$form, FormStateInterface $form_state): void {
+  if ($form_state->getValue('is_organiser_internal')) {
+    $entity->get('oe_event_organiser_name')->setValue(NULL);
+  }
+  elseif ($form_state->getValue('is_organiser_internal') === 0) {
+    $entity->get('oe_event_organiser_internal')->setValue(NULL);
+  }
 }
