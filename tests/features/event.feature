@@ -325,6 +325,18 @@ Feature: Event content creation
       | success messages                      |
       | Event My Event item has been created. |
 
+    # Make sure that only one organiser field value is stored depending on the "Organiser is internal" checkbox.
+    When I click "Edit"
+    And I uncheck "Organiser is internal"
+    And I fill in "Organiser name" with "VALUE NOT TO STORE"
+    And I check "Organiser is internal"
+    And I press "Save"
+    Then I should see the following success messages:
+      | success messages                      |
+      | Event My Event item has been updated. |
+    And I should not see the text "Organiser name"
+    And I should not see the text "VALUE NOT TO STORE"
+
     # Make sure that validation of the Online fields group works as expected.
     When I click "Edit"
     And I press "Online"
