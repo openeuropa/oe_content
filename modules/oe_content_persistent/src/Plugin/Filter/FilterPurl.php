@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\Uuid\Uuid;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\filter\FilterProcessResult;
@@ -116,18 +117,18 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
         // we link to the 404 page of the site so that it mirrors the default
         // effect of the referenced entity being deleted from the system.
         $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
-        $url = $entity ? $entity->toUrl('canonical', [
-          'query' => $parsed_href['query'],
-          'fragment' => $parsed_href['fragment'],
-        ])->toString(TRUE) : $this->getDefaultPageNotFoundUrl()->toString(TRUE);
-        $node->setAttribute('href', $url->getGeneratedUrl());
-
-        if ($entity) {
+        if ($entity instanceof EntityInterface) {
+          $url = $entity->toUrl('canonical', [
+            'query' => $parsed_href['query'],
+            'fragment' => $parsed_href['fragment'],
+          ])->toString(TRUE);
           $result->addCacheableDependency($entity);
         }
         else {
+          $url = $this->getDefaultPageNotFoundUrl()->toString(TRUE);
           $result->addCacheableDependency($this->siteConfig);
         }
+        $node->setAttribute('href', $url->getGeneratedUrl());
 
         $result->addCacheableDependency($url);
       }
