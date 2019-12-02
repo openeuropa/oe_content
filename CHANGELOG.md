@@ -1,10 +1,26 @@
 # Change Log
 
+## [1.5.0](https://github.com/openeuropa/oe_content/tree/1.5.0) (2019-12-02)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.4.0...1.5.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2534: Add translations for hr and mt. [\#137](https://github.com/openeuropa/oe_content/pull/137) ([dxvargas](https://github.com/dxvargas))
+- OPENEUROPA-2488: TMGMT field preprocessor for the Timeline field. [\#133](https://github.com/openeuropa/oe_content/pull/133) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-2487: Publication date field should not be translatable. [\#132](https://github.com/openeuropa/oe_content/pull/132) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-2258: Undo use of PHP 7.2. [\#130](https://github.com/openeuropa/oe_content/pull/130) ([dxvargas](https://github.com/dxvargas))
+- OPENEUROPA-2464: Use PHP 7.1 in docker-compose. [\#129](https://github.com/openeuropa/oe_content/pull/129) ([dxvargas](https://github.com/dxvargas))
+- OPENEUROPA-2318: Resort to 404 pages if no entity is found for a uuid on the persistent text filter. [\#128](https://github.com/openeuropa/oe_content/pull/128) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-2395: Add date translations. [\#125](https://github.com/openeuropa/oe_content/pull/125) ([nagyad](https://github.com/nagyad))
+- Update readme and rdf\_skos version. [\#120](https://github.com/openeuropa/oe_content/pull/120) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-2258: Use PHP 7.2 in drone and docker image. [\#106](https://github.com/openeuropa/oe_content/pull/106) ([dxvargas](https://github.com/dxvargas))
+
 ## [1.4.0](https://github.com/openeuropa/oe_content/tree/1.4.0) (2019-10-16)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.3.0...1.4.0)
 
 **Merged pull requests:**
 
+- OPENEUROPA-0000: Update changelog for release 1.4.0. [\#124](https://github.com/openeuropa/oe_content/pull/124) ([brummbar](https://github.com/brummbar))
 - OPENEUROPA-2101: Update selected skos concept in subject field. [\#92](https://github.com/openeuropa/oe_content/pull/92) ([sergepavle](https://github.com/sergepavle))
 
 ## [1.3.0](https://github.com/openeuropa/oe_content/tree/1.3.0) (2019-09-24)
