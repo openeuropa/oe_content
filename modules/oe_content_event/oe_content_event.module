@@ -10,15 +10,6 @@ declare(strict_types = 1);
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Implements hook_theme_suggestions_alter().
- */
-function oe_content_event_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
-  if ($hook === 'address_plain') {
-    $suggestions[] = $hook . '__oe_event';
-  }
-}
-
-/**
  * Implements hook_entity_type_alter().
  */
 function oe_content_event_entity_type_alter(array &$entity_types) {
