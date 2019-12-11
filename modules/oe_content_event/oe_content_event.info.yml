@@ -43,6 +43,7 @@ config_devel:
     - field.field.node.oe_event.oe_event_online_time_end
     - field.field.node.oe_event.oe_event_online_time_start
     - field.field.node.oe_event.oe_event_online_type
+    - field.field.node.oe_event.oe_event_organiser_is_internal
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_name
     - field.field.node.oe_event.oe_event_partner
@@ -80,6 +81,7 @@ config_devel:
     - field.storage.node.oe_event_online_time_end
     - field.storage.node.oe_event_online_time_start
     - field.storage.node.oe_event_online_type
+    - field.storage.node.oe_event_organiser_is_internal
     - field.storage.node.oe_event_organiser_internal
     - field.storage.node.oe_event_organiser_name
     - field.storage.node.oe_event_partner
