@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
+    - field.field.node.oe_event.oe_event_organiser_is_internal
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_description_summary
@@ -68,6 +69,7 @@ third_party_settings:
       region: content
     group_organiser:
       children:
+        - oe_event_organiser_is_internal
         - oe_event_organiser_name
         - oe_event_organiser_internal
       parent_name: ''
@@ -168,6 +170,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_event_organiser_is_internal:
+    weight: 36
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   langcode:
     type: language_select
     weight: 20
@@ -286,7 +295,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   oe_event_languages:
-    type: entity_reference_autocomplete
+    type: skos_concept_entity_reference_autocomplete
     weight: 10
     region: content
     settings:
@@ -329,7 +338,7 @@ content:
     type: options_select
     region: content
   oe_event_organiser_internal:
-    weight: 35
+    weight: 38
     settings:
       match_operator: CONTAINS
       size: 60
@@ -338,7 +347,7 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_event_organiser_name:
-    weight: 34
+    weight: 37
     settings:
       size: 60
       placeholder: ''
