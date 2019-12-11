@@ -28,36 +28,31 @@ function oe_content_event_form_node_form_alter(&$form, FormStateInterface $form_
     return;
   }
 
-  // Add a toggle switch for "Organiser" fields.
-  $form['is_organiser_internal'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Organiser is internal'),
-    '#default_value' => empty($form['oe_event_organiser_name']['widget'][0]['value']['#default_value']) ? 1 : 0,
-  ];
   $form['oe_event_organiser_internal']['#states'] = [
     'visible' => [
       [
-        ':input[name="is_organiser_internal"]' => ['checked' => TRUE],
-        ':input[name="oe_event_organiser_name"]' => ['filled' => FALSE],
+        ':input[name="oe_event_organiser_is_internal[value]"]' => ['checked' => TRUE],
+      ],
+    ],
+    'required' => [
+      [
+        ':input[name="oe_event_organiser_is_internal[value]"]' => ['checked' => TRUE],
       ],
     ],
   ];
   $form['oe_event_organiser_name']['#states'] = [
     'visible' => [
       [
-        ':input[name="is_organiser_internal"]' => ['checked' => FALSE],
-        ':input[name="oe_event_organiser_internal"]' => ['filled' => FALSE],
+        ':input[name="oe_event_organiser_is_internal[value]"]' => ['checked' => FALSE],
+      ],
+    ],
+    'required' => [
+      [
+        ':input[name="oe_event_organiser_is_internal[value]"]' => ['checked' => FALSE],
       ],
     ],
   ];
 
-  // Make sure that the toggle field we have just created
-  // will be rendered under the "Organiser" field group.
-  $group_id = 'group_organiser';
-  $organiser_group = $form['#fieldgroups'][$group_id];
-  $organiser_group->children[] = 'is_organiser_internal';
-  $form['#fieldgroups'][$group_id] = $organiser_group;
-  $form['#group_children']['is_organiser_internal'] = $group_id;
   // Make sure that only one organiser field value is stored based on the
   // the checkbox setting.
   $form['#entity_builders'][] = '_oe_content_event_store_organiser_value';
@@ -76,10 +71,12 @@ function oe_content_event_form_node_form_alter(&$form, FormStateInterface $form_
  *   The form state object.
  */
 function _oe_content_event_store_organiser_value(string $entity_type, Node $entity, array &$form, FormStateInterface $form_state): void {
-  if ($form_state->getValue('is_organiser_internal')) {
+  $value = $form_state->getValue('oe_event_organiser_is_internal');
+  $value = reset($value);
+  if ($value) {
     $entity->get('oe_event_organiser_name')->setValue(NULL);
   }
-  elseif ($form_state->getValue('is_organiser_internal') === 0) {
+  elseif ($value === 0) {
     $entity->get('oe_event_organiser_internal')->setValue(NULL);
   }
 }
