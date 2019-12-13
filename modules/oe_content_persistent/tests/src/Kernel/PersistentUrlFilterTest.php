@@ -143,6 +143,24 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $expected = '<a href="/custom/404">test</a>';
     $output = $test($input, 'fr');
     $this->assertSame($expected, $output->getProcessedText());
+
+    // Make sure that we don't loose query parameters and fragments.
+    $input = '<a href="' . $base_url . $node->uuid() . '?param1=value1&param2=value2#hashexampl">test</a>';
+    $expected = '<a href="/alias2?param1=value1&amp;param2=value2#hashexampl">test</a>';
+    $output = $test($input, 'en');
+    $this->assertSame($expected, $output->getProcessedText());
+
+    // Make sure that we don't loose query parameters.
+    $input = '<a href="' . $base_url . $node->uuid() . '?param1=value1&param2=value2">test</a>';
+    $expected = '<a href="/alias2?param1=value1&amp;param2=value2">test</a>';
+    $output = $test($input, 'en');
+    $this->assertSame($expected, $output->getProcessedText());
+
+    // Make sure that we don't loose fragments.
+    $input = '<a href="' . $base_url . $node->uuid() . '#hashexampl">test</a>';
+    $expected = '<a href="/alias2#hashexampl">test</a>';
+    $output = $test($input, 'en');
+    $this->assertSame($expected, $output->getProcessedText());
   }
 
 }

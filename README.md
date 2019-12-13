@@ -4,6 +4,9 @@ This is a Drupal module that contains the European Commission corporate entity t
 
 The module uses the RDF SKOS module to provide SKOS modelling for the Publications Office taxonomy vocabularies. These are directly made available in the dependent RDF triple store.
 
+All content types are organised into sub-modules. These content types can be set to be translatable by
+overriding the language.content_setting configuration.
+
 **Table of contents:**
 
 - [Requirements](#requirements)
