@@ -17,7 +17,6 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   id = "event_venue",
  *   label = @Translation("Event venue"),
  *   handlers = {
- *     "storage" = "Drupal\oe_content_event\EventVenueStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\oe_content_event\EventVenueListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
@@ -57,7 +56,8 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *     "edit-form" = "/admin/content/event_venue/{event_venue}/edit",
  *     "delete-form" = "/admin/content/event_venue/{event_venue}/delete",
  *     "collection" = "/admin/content/event_venue",
- *   }
+ *   },
+ *  type = {"entity"}
  * )
  */
 class EventVenue extends EditorialContentEntityBase implements EventVenueInterface {
