@@ -1,0 +1,11 @@
+entity.oe_venue.add_page:
+  route_name: entity.oe_venue.add_page
+  title: 'Add venue entity'
+  appears_on:
+    - entity.oe_venue.collection
+
+entity.oe_venue_type.add_form:
+  route_name: entity.oe_venue_type.add_form
+  title: 'Add venue entity type (bundle)'
+  appears_on:
+    - entity.oe_venue_type.collection

@@ -1,0 +1,7 @@
+# Custom content entity menu items definition.
+entity.oe_entity.collection:
+  title: 'Custom content entities'
+  route_name: entity.oe_entity.collection
+  description: 'List of custom content entities'
+  parent: system.admin_content
+  weight: 100
