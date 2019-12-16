@@ -1,0 +1,14 @@
+# Custom venue entity menu items definition.
+entity.oe_venue.collection:
+  title: 'List of venue entities'
+  route_name: entity.oe_venue.collection
+  description: 'List of venue entities'
+  parent: entity.oe_entity.collection
+  weight: 100
+
+entity.oe_venue_type.collection:
+  title: 'Venue entity types'
+  route_name: entity.oe_venue_type.collection
+  description: 'Create and manage types of venue entities'
+  parent: entity.oe_entity.collection
+
