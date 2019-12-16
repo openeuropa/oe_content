@@ -1,0 +1,13 @@
+oe_content_entity_venue.oe_venue_type.*:
+  type: config_entity
+  label: 'Venue Type settings'
+  mapping:
+    id:
+      type: string
+      label: 'Machine-readable name'
+    label:
+      type: label
+      label: 'Label'
+    description:
+      type: text
+      label: 'Description'
