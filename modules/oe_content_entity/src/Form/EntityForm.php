@@ -104,7 +104,7 @@ class EntityForm extends ContentEntityForm {
           '%label' => $entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.' . $entity->id() . '.canonical', [$this->entity->getEntityTypeId() => $entity->id()]);
+    $form_state->setRedirect('entity.' . $this->entity->getEntityTypeId() . '.canonical', [$this->entity->getEntityTypeId() => $entity->id()]);
   }
 
 }

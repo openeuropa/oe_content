@@ -44,19 +44,20 @@ class EntityTypeDeleteForm extends EntityDeleteForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $a='b';
     $num_lists = $this->queryFactory
-      ->get($this->entity->getEntityTypeId())
+      ->get($this->getEntity()->getEntityType()->getBundleOf())
       ->condition('bundle', $this->entity->id())
       ->count()
       ->execute();
     if ($num_lists) {
       $caption = '<p>' . $this->formatPlural(
         $num_lists,
-        '%type is used by 1 entity on your site. You can not remove this type until you have removed the %type of %entity.',
-        '%type is used by @count %entity entities on your site. You may not remove %type until you have removed all of the %type of %entity.',
+        '%type is used by 1 %entity content entity on your site. You can not remove this type until you have removed the %entity content entity.',
+        '%type is used by @count %entity content entities on your site. You may not remove %type until you have removed all of the %entity content entities.',
         [
           '%type' => $this->entity->label(),
-          '%entity' => $this->entity->getEntityTypeId(),
+          '%entity' => $this->getEntity()->getEntityType()->getBundleOf(),
         ]) . '</p>';
       $form['#title'] = $this->getQuestion();
       $form['description'] = ['#markup' => $caption];
