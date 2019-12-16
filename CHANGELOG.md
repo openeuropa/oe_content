@@ -1,5 +1,13 @@
 # Change Log
 
+## [1.5.1](https://github.com/openeuropa/oe_content/tree/1.5.1) (2019-12-16)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.5.0...1.5.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2584: Keep query parameters and fragments from PURL. [\#143](https://github.com/openeuropa/oe_content/pull/143) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2550: Make sure only the correct organiser value is stored. [\#141](https://github.com/openeuropa/oe_content/pull/141) ([nagyad](https://github.com/nagyad))
+
 ## [1.5.0](https://github.com/openeuropa/oe_content/tree/1.5.0) (2019-12-02)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.4.0...1.5.0)
 
