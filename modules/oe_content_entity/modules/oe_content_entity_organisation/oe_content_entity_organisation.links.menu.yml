@@ -11,4 +11,3 @@ entity.oe_organisation_type.collection:
   route_name: entity.oe_organisation_type.collection
   description: 'Create and manage types of organisation entities'
   parent: entity.oe_entity.collection
-
