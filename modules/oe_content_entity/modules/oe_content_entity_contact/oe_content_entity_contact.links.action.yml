@@ -1,0 +1,11 @@
+entity.oe_contact.add_page:
+  route_name: entity.oe_contact.add_page
+  title: 'Add contact entity'
+  appears_on:
+    - entity.oe_contact.collection
+
+entity.oe_contact_type.add_form:
+  route_name: entity.oe_contact_type.add_form
+  title: 'Add contact entity type (bundle)'
+  appears_on:
+    - entity.oe_contact_type.collection
