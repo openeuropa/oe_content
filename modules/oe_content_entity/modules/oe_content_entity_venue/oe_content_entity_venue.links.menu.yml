@@ -11,4 +11,3 @@ entity.oe_venue_type.collection:
   route_name: entity.oe_venue_type.collection
   description: 'Create and manage types of venue entities'
   parent: entity.oe_entity.collection
-
