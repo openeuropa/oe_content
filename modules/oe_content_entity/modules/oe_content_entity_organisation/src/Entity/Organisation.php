@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_entity_organisation\Entity;
 
-use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\oe_content_entity\Entity\EntityBase;
 
 /**
@@ -67,13 +66,4 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *  type = {"entity"}
  * )
  */
-class Organisation extends EntityBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
-    return parent::baseFieldDefinitions($entity_type);
-  }
-
-}
+class Organisation extends EntityBase {}

@@ -14,4 +14,3 @@ entity.oe_venue.delete_form:
   base_route:  entity.oe_venue.canonical
   title: 'Delete'
   weight: 10
-

@@ -3,4 +3,3 @@ entity.oe_entity.collection:
   route_name:  entity.oe_entity.collection
   base_route: system.admin_content
   weight: 10
-
