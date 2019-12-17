@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_venue.oe_venue_address
+    - oe_content_entity_venue.oe_venue_type.default
+  module:
+    - address
+id: oe_venue.default.oe_venue_address
+field_name: oe_venue_address
+entity_type: oe_venue
+bundle: default
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    dependentLocality:
+      override: hidden
+  fields: {  }
+field_type: address
