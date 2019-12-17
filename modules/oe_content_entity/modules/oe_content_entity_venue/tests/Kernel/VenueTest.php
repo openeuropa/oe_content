@@ -87,13 +87,13 @@ class VenueTest extends RdfKernelTestBase {
       'bundle' => $venue_type->id(),
       'name' => 'My venue',
     ];
-    /** @var \Drupal\oe_content_event\Entity\EventProfileInterface $event_profile */
-    $event_profile = $venue_storage->create($values);
-    $event_profile->save();
+    /** @var \Drupal\oe_content_entity_venue\Entity\Venue $venue_entity */
+    $venue_entity = $venue_storage->create($values);
+    $venue_entity->save();
 
-    $event_profile = $venue_storage->load($event_profile->id());
-    $this->assertEquals('My venue', $event_profile->getName());
-    $this->assertEquals($venue_type->id(), $event_profile->bundle());
+    $venue_entity = $venue_storage->load($venue_entity->id());
+    $this->assertEquals('My venue', $venue_entity->getName());
+    $this->assertEquals($venue_type->id(), $venue_entity->bundle());
   }
 
 }
