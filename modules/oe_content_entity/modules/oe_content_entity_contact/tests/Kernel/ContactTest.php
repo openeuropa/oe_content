@@ -87,13 +87,13 @@ class ContactTest extends RdfKernelTestBase {
       'bundle' => $contact_type->id(),
       'name' => 'My contact',
     ];
-    /** @var \Drupal\oe_content_event\Entity\EventProfileInterface $event_profile */
-    $event_profile = $contact_storage->create($values);
-    $event_profile->save();
+    /** @var \Drupal\oe_content_entity_contact\Entity\Contact $contact_entity */
+    $contact_entity = $contact_storage->create($values);
+    $contact_entity->save();
 
-    $event_profile = $contact_storage->load($event_profile->id());
-    $this->assertEquals('My contact', $event_profile->getName());
-    $this->assertEquals($contact_type->id(), $event_profile->bundle());
+    $contact_entity = $contact_storage->load($contact_entity->id());
+    $this->assertEquals('My contact', $contact_entity->getName());
+    $this->assertEquals($contact_type->id(), $contact_entity->bundle());
   }
 
 }
