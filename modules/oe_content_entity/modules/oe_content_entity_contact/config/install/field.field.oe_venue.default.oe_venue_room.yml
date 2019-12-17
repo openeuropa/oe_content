@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_venue.oe_venue_room
+    - oe_content_entity_venue.oe_venue_type.default
+id: oe_venue.default.oe_venue_room
+field_name: oe_venue_room
+entity_type: oe_venue
+bundle: default
+label: Room
+description: 'The name of the room.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
