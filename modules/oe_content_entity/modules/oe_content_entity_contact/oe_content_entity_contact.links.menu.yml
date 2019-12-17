@@ -11,4 +11,3 @@ entity.oe_contact_type.collection:
   route_name: entity.oe_contact_type.collection
   description: 'Create and manage types of contact entities'
   parent: entity.oe_entity.collection
-

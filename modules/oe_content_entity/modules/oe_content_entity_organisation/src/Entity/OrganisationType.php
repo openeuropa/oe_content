@@ -44,4 +44,4 @@ use Drupal\oe_content_entity\Entity\EntityTypeBase;
  *   }
  * )
  */
-class OrganisationType extends EntityTypeBase {  }
+class OrganisationType extends EntityTypeBase {}

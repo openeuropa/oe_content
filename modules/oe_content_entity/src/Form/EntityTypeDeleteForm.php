@@ -44,7 +44,6 @@ class EntityTypeDeleteForm extends EntityDeleteForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $a='b';
     $num_lists = $this->queryFactory
       ->get($this->getEntity()->getEntityType()->getBundleOf())
       ->condition('bundle', $this->entity->id())
