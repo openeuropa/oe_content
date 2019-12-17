@@ -1,4 +1,4 @@
-# Event contact routing definition.
+# Contact routing definition.
 entity.oe_contact.canonical:
   route_name: entity.oe_contact.canonical
   base_route: entity.oe_contact.canonical

@@ -1,0 +1,17 @@
+# Organisation routing definition.
+entity.oe_organisation.canonical:
+  route_name: entity.oe_organisation.canonical
+  base_route: entity.oe_organisation.canonical
+  title: 'View'
+
+entity.oe_organisation.edit_form:
+  route_name: entity.oe_organisation.edit_form
+  base_route: entity.oe_organisation.canonical
+  title: 'Edit'
+
+entity.oe_organisation.delete_form:
+  route_name:  entity.oe_organisation.delete_form
+  base_route:  entity.oe_organisation.canonical
+  title: 'Delete'
+  weight: 10
+

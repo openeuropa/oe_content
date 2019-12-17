@@ -1,4 +1,4 @@
-# Event venue routing definition.
+# Venue routing definition.
 entity.oe_venue.canonical:
   route_name: entity.oe_venue.canonical
   base_route: entity.oe_venue.canonical
