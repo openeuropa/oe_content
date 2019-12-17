@@ -87,13 +87,13 @@ class OrganisationTest extends RdfKernelTestBase {
       'bundle' => $organisation_type->id(),
       'name' => 'My organisation',
     ];
-    /** @var \Drupal\oe_content_event\Entity\EventProfileInterface $event_profile */
-    $event_profile = $organisation_storage->create($values);
-    $event_profile->save();
+    /** @var \Drupal\oe_content_entity_organisation\Entity\Organisation $organisation_entity */
+    $organisation_entity = $organisation_storage->create($values);
+    $organisation_entity->save();
 
-    $event_profile = $organisation_storage->load($event_profile->id());
-    $this->assertEquals('My organisation', $event_profile->getName());
-    $this->assertEquals($organisation_type->id(), $event_profile->bundle());
+    $organisation_entity = $organisation_storage->load($organisation_entity->id());
+    $this->assertEquals('My organisation', $organisation_entity->getName());
+    $this->assertEquals($organisation_type->id(), $organisation_entity->bundle());
   }
 
 }
