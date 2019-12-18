@@ -1,0 +1,49 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_organisation.partner.oe_organisation_partner_image
+    - field.field.oe_organisation.partner.oe_organisation_partner_web
+    - oe_content_entity_organisation.oe_organisation_type.partner
+  module:
+    - link
+id: oe_organisation.partner.default
+targetEntityType: oe_organisation
+bundle: partner
+mode: default
+content:
+  oe_organisation_partner_image:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  oe_organisation_partner_web:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

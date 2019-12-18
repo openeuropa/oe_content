@@ -6,3 +6,15 @@ core: 8.x
 
 dependencies:
   - oe_content:oe_content_entity
+
+config_devel:
+  install:
+    - core.entity_form_display.oe_organisation.partner.default
+    - core.entity_view_display.oe_organisation.partner.default
+    - field.storage.oe_organisation.oe_organisation_partner_image
+    - field.field.oe_organisation.partner.oe_organisation_partner_web
+    - field.storage.oe_organisation.oe_organisation_partner_web
+    - field.field.oe_organisation.partner.oe_organisation_partner_image
+    - oe_content_entity_organisation.oe_organisation_type.partner
+  optional:
+    - language.content_settings.oe_organisation.partner
