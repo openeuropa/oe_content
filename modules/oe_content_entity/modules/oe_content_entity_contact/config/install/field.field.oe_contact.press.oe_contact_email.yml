@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_contact.oe_contact_email
+    - oe_content_entity_contact.oe_contact_type.press
+id: oe_contact.press.oe_contact_email
+field_name: oe_contact_email
+entity_type: oe_contact
+bundle: press
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email
