@@ -6,3 +6,22 @@ core: 8.x
 
 dependencies:
   - oe_content:oe_content_entity
+  - address:address
+
+config_devel:
+  install:
+    - core.entity_form_display.oe_contact.general.default
+    - oe_content_entity_contact.oe_contact_type.general
+    - field.storage.oe_contact.oe_contact_email
+    - oe_content_entity_contact.oe_contact_type.press
+    - core.entity_view_display.oe_contact.general.default
+    - core.entity_form_display.oe_contact.press.default
+    - field.field.oe_contact.press.oe_contact_phone
+    - field.field.oe_contact.general.oe_contact_phone
+    - field.field.oe_contact.press.oe_contact_address
+    - field.storage.oe_contact.oe_contact_phone
+    - field.field.oe_contact.general.oe_contact_email
+    - core.entity_view_display.oe_contact.press.default
+    - field.field.oe_contact.press.oe_contact_email
+    - field.storage.oe_contact.oe_contact_address
+    - field.field.oe_contact.general.oe_contact_address

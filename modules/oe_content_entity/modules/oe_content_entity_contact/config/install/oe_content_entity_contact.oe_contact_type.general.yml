@@ -1,0 +1,6 @@
+langcode: en
+status: true
+dependencies: {  }
+id: general
+label: General
+description: 'Provides the general contact type bundle.'

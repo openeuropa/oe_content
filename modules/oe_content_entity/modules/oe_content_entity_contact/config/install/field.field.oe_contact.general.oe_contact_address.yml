@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_contact.oe_contact_address
+    - oe_content_entity_contact.oe_contact_type.general
+  module:
+    - address
+id: oe_contact.general.oe_contact_address
+field_name: oe_contact_address
+entity_type: oe_contact
+bundle: general
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    dependentLocality:
+      override: hidden
+  fields: {  }
+field_type: address
