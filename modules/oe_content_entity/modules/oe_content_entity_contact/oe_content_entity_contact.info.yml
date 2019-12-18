@@ -25,3 +25,6 @@ config_devel:
     - field.field.oe_contact.press.oe_contact_email
     - field.storage.oe_contact.oe_contact_address
     - field.field.oe_contact.general.oe_contact_address
+  optional:
+    - language.content_settings.oe_contact.general
+    - language.content_settings.oe_contact.press

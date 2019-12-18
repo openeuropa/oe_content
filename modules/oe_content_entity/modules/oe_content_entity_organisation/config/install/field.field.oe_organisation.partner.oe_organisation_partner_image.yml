@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_organisation.oe_organisation_partner_image
+    - media.type.image
+    - oe_content_entity_organisation.oe_organisation_type.partner
+id: oe_organisation.partner.oe_organisation_partner_image
+field_name: oe_organisation_partner_image
+entity_type: oe_organisation
+bundle: partner
+label: Image
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

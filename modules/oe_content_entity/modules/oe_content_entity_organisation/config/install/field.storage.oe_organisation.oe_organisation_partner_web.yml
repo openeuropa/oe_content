@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - oe_content_entity_organisation
+id: oe_organisation.oe_organisation_partner_web
+field_name: oe_organisation_partner_web
+entity_type: oe_organisation
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
