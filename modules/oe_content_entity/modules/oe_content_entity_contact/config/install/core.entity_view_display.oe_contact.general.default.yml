@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_contact.general.oe_contact_address
+    - field.field.oe_contact.general.oe_contact_email
+    - field.field.oe_contact.general.oe_contact_phone
+    - oe_content_entity_contact.oe_contact_type.general
+  module:
+    - address
+id: oe_contact.general.default
+targetEntityType: oe_contact
+bundle: general
+mode: default
+content:
+  oe_contact_address:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  oe_contact_email:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  oe_contact_phone:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  langcode: true
