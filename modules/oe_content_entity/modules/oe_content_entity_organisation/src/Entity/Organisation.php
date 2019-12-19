@@ -38,7 +38,7 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   admin_permission = "manage custom content entities",
  *   entity_keys = {
  *     "id" = "id",
- *     "revision" = "vid",
+ *     "revision" = "revision_id",
  *     "bundle" = "bundle",
  *     "uuid" = "uuid",
  *     "label" = "name",
@@ -56,12 +56,12 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   bundle_entity_type = "oe_organisation_type",
  *   field_ui_base_route = "entity.oe_organisation_type.edit_form",
  *   links = {
- *     "canonical" = "/admin/content/oe_organisation/{oe_organisation}",
- *     "add-page" = "/admin/content/oe_organisation/add",
- *     "add-form" = "/admin/content/oe_organisation/add/{oe_organisation_type}",
- *     "edit-form" = "/admin/content/oe_organisation/{oe_organisation}/edit",
- *     "delete-form" = "/admin/content/oe_organisation/{oe_organisation}/delete",
- *     "collection" = "/admin/content/oe_organisation",
+ *     "canonical" = "/admin/content/custom-entities/oe_organisation/{oe_organisation}",
+ *     "add-page" = "/admin/content/custom-entities/oe_organisation/add",
+ *     "add-form" = "/admin/content/custom-entities/oe_organisation/add/{oe_organisation_type}",
+ *     "edit-form" = "/admin/content/custom-entities/oe_organisation/{oe_organisation}/edit",
+ *     "delete-form" = "/admin/content/custom-entities/oe_organisation/{oe_organisation}/delete",
+ *     "collection" = "/admin/content/custom-entities/oe_organisation",
  *   },
  *  type = {"entity"}
  * )
