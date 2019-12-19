@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_entity\Form;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\Query\QueryFactory;
 use Drupal\Core\Entity\EntityDeleteForm;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,7 +26,7 @@ class EntityTypeDeleteForm extends EntityDeleteForm {
   /**
    * Constructs a new EntityTypeDeleteForm object.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager object.
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager) {
