@@ -84,7 +84,7 @@ class EntityListBuilder extends CoreEntityListBuilder {
     /** @var \Drupal\oe_content_entity\Entity\EntityTypeBase $entity */
     $type = EntityTypeBase::load($entity->bundle());
     $row['id'] = $entity->toLink($entity->label());
-    $row['bundle_id'] =  $type ? $type->label() : $entity->bundle();
+    $row['bundle_id'] = $type ? $type->label() : $entity->bundle();
     $row['created'] = $this->dateFormatter->format($entity->getCreatedTime(), 'short');
     $row['changed'] = $this->dateFormatter->format($entity->getChangedTime(), 'short');
 
