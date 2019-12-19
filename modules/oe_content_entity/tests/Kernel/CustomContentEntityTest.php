@@ -14,7 +14,7 @@ class CustomContentEntityTest extends RdfKernelTestBase {
   /**
    * The entity type manager object.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
 
