@@ -6,10 +6,11 @@ namespace Drupal\oe_content_entity;
 
 use Drupal\Core\Datetime\DateFormatter;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityListBuilder as DrupalEntityListBuilder;
+use Drupal\Core\Entity\EntityListBuilder as CoreEntityListBuilder;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\oe_content_entity\Entity\EntityTypeBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -17,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup oe_content_entity
  */
-class EntityListBuilder extends DrupalEntityListBuilder {
+class EntityListBuilder extends CoreEntityListBuilder {
 
   /**
    * The date formatter service.
@@ -81,8 +82,9 @@ class EntityListBuilder extends DrupalEntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /** @var \Drupal\oe_content_entity\Entity\EntityTypeBase $entity */
+    $type = EntityTypeBase::load($entity->bundle());
     $row['id'] = $entity->toLink($entity->label());
-    $row['bundle_id'] = $entity->bundle();
+    $row['bundle_id'] =  $type ? $type->label() : $entity->bundle();
     $row['created'] = $this->dateFormatter->format($entity->getCreatedTime(), 'short');
     $row['changed'] = $this->dateFormatter->format($entity->getChangedTime(), 'short');
 

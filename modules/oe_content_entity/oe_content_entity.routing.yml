@@ -1,8 +1,17 @@
-entity.oe_entity.collection:
+entity.oe_content_entity.collection:
   path: '/admin/content/custom-entities'
   defaults:
     _controller: '\Drupal\system\Controller\SystemController::overview'
     link_id: 'system.admin_content'
     _title: 'Custom entities'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'manage custom content entities'
+
+entity.oe_content_entity_types.collection:
+  path: '/admin/structure/custom-entity-types'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::overview'
+    link_id: 'system.admin_structure'
+    _title: 'Custom entity types'
+  requirements:
+    _permission: 'manage custom content entity types'

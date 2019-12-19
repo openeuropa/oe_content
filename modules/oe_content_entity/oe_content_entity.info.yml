@@ -6,10 +6,3 @@ core: 8.x
 
 dependencies:
   - oe_content:oe_content
-  - oe_media:oe_media
-  - oe_media_avportal:oe_media_avportal
-  - address:address
-  - typed_link:typed_link
-  - field_group:field_group
-  - inline_entity_form:inline_entity_form
-  - entity_reference_revisions:entity_reference_revisions
