@@ -1,7 +1,4 @@
 manage custom content entities:
   title: 'Manage custom content entities'
-  restrict access: true
-
 manage custom content entity types:
   title: 'Manage custom content entity types'
-  restrict access: true
