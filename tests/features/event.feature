@@ -6,7 +6,7 @@ Feature: Event content creation
 
   @javascript
   Scenario: Fields on the event content creation forms should be grouped logically.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, administer event venue entities, administer event profile entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage custom content entities" permission
     When I visit "the Event creation page"
 
     # The text assertions are actually checking for fields.
@@ -97,7 +97,6 @@ Feature: Event content creation
     When I press "Add new contact"
     And I wait for AJAX to finish
     Then I should see "Name" in the "Event contact" region
-    Then I should see "Contact type" in the "Event contact" region
     Then I should see "Country" in the "Event contact" region
     Then I should see "Email" in the "Event contact" region
     Then I should see "Phone number" in the "Event contact" region
@@ -145,7 +144,7 @@ Feature: Event content creation
 
   @cleanup:media @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, administer event venue entities, administer event profile entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, manage custom content entities" permission
     # Create a "Media AV portal photo".
     And I visit "the AV Portal photo creation page"
     And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
@@ -236,7 +235,6 @@ Feature: Event content creation
     When I press "Add new contact"
     And I wait for AJAX to finish
     Then I fill in "Name" with "Name of the event contact" in the "Event contact" region
-    And I select the radio button "General contact"
     And I select "Hungary" from "Country" in the "Event contact" region
     And I wait for AJAX to finish
     And I fill in "Street address" with "Back street 3" in the "Event contact" region
