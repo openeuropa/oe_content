@@ -14,6 +14,7 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  * @ContentEntityType(
  *   id = "oe_venue",
  *   label = @Translation("Venue"),
+ *   label_collection = @Translation("Venues"),
  *   bundle_label = @Translation("Venue type"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
@@ -35,6 +36,7 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   revision_table = "oe_venue_revision",
  *   revision_data_table = "oe_venue_field_revision",
  *   translatable = TRUE,
+ *   show_revision_ui = TRUE,
  *   admin_permission = "manage custom content entities",
  *   entity_keys = {
  *     "id" = "id",
