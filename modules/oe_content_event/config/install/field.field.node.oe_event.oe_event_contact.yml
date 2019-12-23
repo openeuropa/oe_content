@@ -18,12 +18,13 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:event_profile'
+  handler: 'default:oe_contact'
   handler_settings:
     target_bundles:
-      oe_event_contact: oe_event_contact
+      general: general
+      press: press
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: general
 field_type: entity_reference_revisions

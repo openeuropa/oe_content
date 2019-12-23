@@ -18,10 +18,10 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:event_profile'
+  handler: 'default:oe_organisation'
   handler_settings:
     target_bundles:
-      oe_event_partner: oe_event_partner
+      partner: partner
     sort:
       field: _none
     auto_create: false
