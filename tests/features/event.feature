@@ -286,7 +286,6 @@ Feature: Event content creation
     And I should see the text "http://eventpartner.com"
     # Event contact values.
     And I should see the text "Name of the event contact"
-    And I should see the text "General contact"
     And I should see the text "Back street 3"
     And I should see the text "Budapest"
     And I should see the text "9000"
