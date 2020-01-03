@@ -4,7 +4,8 @@ dependencies:
   config:
     - field.storage.node.oe_event_contact
     - node.type.oe_event
-    - oe_content_event.event_profile_type.oe_event_contact
+    - oe_content_entity_contact.oe_contact_type.general
+    - oe_content_entity_contact.oe_contact_type.press
   module:
     - entity_reference_revisions
 id: node.oe_event.oe_event_contact
