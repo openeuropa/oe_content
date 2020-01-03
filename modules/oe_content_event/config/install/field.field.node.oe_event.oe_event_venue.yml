@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.node.oe_event_venue
     - node.type.oe_event
+    - oe_content_entity_venue.oe_venue_type.default
   module:
     - entity_reference_revisions
 id: node.oe_event.oe_event_venue
