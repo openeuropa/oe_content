@@ -7,12 +7,12 @@ namespace Drupal\Tests\oe_content_entity\Kernel;
 use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
 
 /**
- * Tests the custom content entities.
+ * Test standard content entity behaviours, such as revisionability.
  */
-class CustomContentEntityTest extends RdfKernelTestBase {
+class ContentEntityTest extends RdfKernelTestBase {
 
   /**
-   * The entity type manager object.
+   * The entity type manager service.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
