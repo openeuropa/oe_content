@@ -24,21 +24,8 @@ class CustomContentEntityTest extends RdfKernelTestBase {
   public static $modules = [
     'oe_content',
     'oe_content_entity',
-    'oe_content_entity_contact',
-    'entity_reference_revisions',
-    'inline_entity_form',
     'node',
     'user',
-    'maxlength',
-    'menu_ui',
-    'media',
-    'options',
-    'address',
-    'field',
-    'field_group',
-    'image',
-    'link',
-    'typed_link',
     'rdf_skos',
     'system',
   ];
@@ -51,17 +38,7 @@ class CustomContentEntityTest extends RdfKernelTestBase {
 
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
-    $this->installEntitySchema('media');
-    $this->installEntitySchema('oe_contact');
-    $this->installSchema('node', 'node_access');
     $this->installConfig([
-      'address',
-      'field',
-      'field_group',
-      'filter',
-      'link',
-      'typed_link',
-      'maxlength',
       'node',
       'system',
       'rdf_skos',
@@ -75,16 +52,16 @@ class CustomContentEntityTest extends RdfKernelTestBase {
   }
 
   /**
-   * Tests custom content entities.
+   * Tests revisionability of content entities.
    *
    * @param string $module
    *   The module to install.
    * @param string $entity
    *   The entity ID to test.
    *
-   * @dataProvider testDataProvider
+   * @dataProvider moduleEntityTypeProvider
    */
-  public function testCustomContentEntities(string $module, string $entity): void {
+  public function testEntityRevisionability(string $module, string $entity): void {
     // Install module to test.
     $this->installModule($module);
     $this->installEntitySchema($entity);
@@ -130,12 +107,12 @@ class CustomContentEntityTest extends RdfKernelTestBase {
   }
 
   /**
-   * Data provider for custom content entity tests.
+   * Provide module / entity type paris to run content entity tests.
    *
    * @return array
-   *   A set of dump data for testing.
+   *   List of module / entity type paris.
    */
-  public function testDataProvider(): array {
+  public function moduleEntityTypeProvider(): array {
     return [
       ['oe_content_entity_contact', 'oe_contact'],
       ['oe_content_entity_organisation', 'oe_organisation'],
