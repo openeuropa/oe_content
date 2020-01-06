@@ -9,7 +9,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 
 /**
- * Provides the EntityBase class for custom content entities.
+ * Provides the EntityBase class for corporate content entities.
  *
  * @ingroup oe_content_entity
  */

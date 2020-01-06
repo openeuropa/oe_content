@@ -13,14 +13,14 @@ use Drupal\Core\Render\RendererInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Defines a class to build a listing of custom content entities.
+ * Defines a class to build a listing of corporate content entities.
  *
  * @ingroup oe_content_entity
  */
 class EntityListBuilder extends CoreEntityListBuilder {
 
   /**
-   * Storage for the current custom content entity type bundles.
+   * Storage for the current corporate content entity type bundles.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
@@ -46,9 +46,9 @@ class EntityListBuilder extends CoreEntityListBuilder {
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type definition.
    * @param \Drupal\Core\Entity\EntityStorageInterface $storage
-   *   Storage for the current custom content entity type.
+   *   Storage for the current corporate content entity type.
    * @param \Drupal\Core\Entity\EntityStorageInterface $bundle_storage
-   *   Storage for the current custom content entity type bundles.
+   *   Storage for the current corporate content entity type bundles.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    * @param \Drupal\Core\Render\RendererInterface $renderer

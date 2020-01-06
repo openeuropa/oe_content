@@ -11,7 +11,7 @@ use Drupal\field_ui\FieldUI;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form controller for custom content entity type edit forms.
+ * Form controller for corporate content entity type edit forms.
  *
  * @ingroup oe_content_entity
  */
@@ -122,7 +122,7 @@ class EntityTypeForm extends BundleEntityFormBase {
    * Form submission handler to redirect to Manage fields page of Field UI.
    *
    * @param array $form
-   *   The custom content entity type form.
+   *   The corporate content entity type form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The form state.
    */

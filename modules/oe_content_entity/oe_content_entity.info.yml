@@ -1,5 +1,5 @@
 name: OpenEuropa Content Entity
-description: This module provides generic entity base to serve the custom content entities in it's submodules.
+description: This module provides generic entity base to serve the corporate content entities in its submodules.
 package: OpenEuropa
 type: module
 core: 8.x
