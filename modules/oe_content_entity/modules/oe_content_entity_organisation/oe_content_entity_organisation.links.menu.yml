@@ -1,13 +1,5 @@
-# Custom organisation entity menu items definition.
-entity.oe_organisation.collection:
-  title: 'List of organisation entities'
-  route_name: entity.oe_organisation.collection
-  description: 'List of organisation entities'
-  parent: entity.oe_content_entity.collection
-  weight: 100
-
 entity.oe_organisation_type.collection:
-  title: 'Organisation entity types'
+  title: 'Organisation types'
   route_name: entity.oe_organisation_type.collection
   description: 'Create and manage types of organisation entities'
-  parent: entity.oe_content_entity_types.collection
+  parent: system.admin_structure
