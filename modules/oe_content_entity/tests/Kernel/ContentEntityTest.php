@@ -68,42 +68,52 @@ class ContentEntityTest extends RdfKernelTestBase {
     $this->installConfig([$module]);
 
     // Create a custom entity type.
-    $custom_entity_type_storage = $this->entityTypeManager->getStorage($entity . '_type');
-    $custom_entity_type = $custom_entity_type_storage->create(['label' => 'Test custom entity type', 'id' => 'test_custom_entity_type']);
-    $custom_entity_type->save();
-    // Assert the custom entity type is created.
-    $custom_entity_type = $custom_entity_type_storage->load($custom_entity_type->id());
-    $this->assertEquals('Test custom entity type', $custom_entity_type->label());
-    $this->assertEquals('test_custom_entity_type', $custom_entity_type->id());
+    $bundle_storage = $this->entityTypeManager->getStorage($entity . '_type');
+    $entity_type = $bundle_storage->create([
+      'label' => 'Test custom entity type',
+      'id' => 'test_custom_entity_type',
+    ]);
+    $entity_type->save();
+
+    // Assert that the custom entity type is created.
+    $entity_type = $bundle_storage->load($entity_type->id());
+    $this->assertEquals('Test custom entity type', $entity_type->label());
+    $this->assertEquals('test_custom_entity_type', $entity_type->id());
 
     // Create a custom entity of the type above.
-    $custom_entity_storage = $this->entityTypeManager->getStorage($entity);
+    $entity_storage = $this->entityTypeManager->getStorage($entity);
     $values = [
-      'bundle' => $custom_entity_type->id(),
+      'bundle' => $entity_type->id(),
       'name' => 'My test entity',
     ];
-    $custom_entity = $custom_entity_storage->create($values);
+    $custom_entity = $entity_storage->create($values);
     $custom_entity->save();
-    // Assert the created custom entity.
-    $custom_entity = $custom_entity_storage->load($custom_entity->id());
+
+    // Assert the creation of a custom entity.
+    $custom_entity = $entity_storage->load($custom_entity->id());
     $this->assertEquals('My test entity', $custom_entity->getName());
-    $this->assertEquals($custom_entity_type->id(), $custom_entity->bundle());
+    $this->assertEquals($entity_type->id(), $custom_entity->bundle());
 
     // Create the second revision.
-    $timestamp = 1576752888;
     $custom_entity->setNewRevision(TRUE);
-    $custom_entity->setRevisionCreationTime($timestamp);
+    $custom_entity->setRevisionCreationTime(1576752888);
     $custom_entity->setRevisionUserId(1);
     $custom_entity->setRevisionLogMessage('This is my log message');
+    $custom_entity->setName('My test entity 2');
     $custom_entity->save();
 
-    // Load the new revision.
-    $custom_entity = $custom_entity_storage->loadRevision($custom_entity->getRevisionId());
+    // Load the second revision.
+    $custom_entity = $entity_storage->loadRevision(2);
 
-    // Assert the revision values were correctly saved.
-    $this->assertEquals($timestamp, $custom_entity->getRevisionCreationTime());
+    // Assert that the revision was correctly created.
+    $this->assertEquals(1576752888, $custom_entity->getRevisionCreationTime());
     $this->assertEquals(1, $custom_entity->getRevisionUserId());
+    $this->assertEquals('My test entity 2', $custom_entity->getName());
     $this->assertEquals('This is my log message', $custom_entity->getRevisionLogMessage());
+
+    // Load the first revision.
+    $custom_entity = $entity_storage->loadRevision(1);
+    $this->assertEquals('My test entity', $custom_entity->getName());
   }
 
   /**
