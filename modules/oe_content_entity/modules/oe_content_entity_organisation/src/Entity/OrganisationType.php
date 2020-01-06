@@ -37,10 +37,10 @@ use Drupal\oe_content_entity\Entity\EntityTypeBase;
  *   },
  *   admin_permission = "manage custom content entities",
  *   links = {
- *     "add-form" = "/admin/structure/custom-entity-types/oe_organisation_type/add",
- *     "edit-form" = "/admin/structure/custom-entity-types/oe_organisation_type/{oe_organisation_type}/edit",
- *     "delete-form" = "/admin/structure/custom-entity-types/oe_organisation_type/{oe_organisation_type}/delete",
- *     "collection" = "/admin/structure/custom-entity-types/oe_organisation_type",
+ *     "add-form" = "/admin/structure/oe_organisation_type/add",
+ *     "edit-form" = "/admin/structure/oe_organisation_type/{oe_organisation_type}/edit",
+ *     "delete-form" = "/admin/structure/oe_organisation_type/{oe_organisation_type}/delete",
+ *     "collection" = "/admin/structure/oe_organisation_type",
  *   }
  * )
  */
