@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_entity;
 
-use Drupal\Core\Datetime\DateFormatter;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder as CoreEntityListBuilder;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -29,7 +29,7 @@ class EntityListBuilder extends CoreEntityListBuilder {
   /**
    * The date formatter service.
    *
-   * @var \Drupal\Core\Datetime\DateFormatter
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
    */
   protected $dateFormatter;
 
@@ -49,12 +49,12 @@ class EntityListBuilder extends CoreEntityListBuilder {
    *   Storage for the current custom content entity type.
    * @param \Drupal\Core\Entity\EntityStorageInterface $bundle_storage
    *   Storage for the current custom content entity type bundles.
-   * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
    */
-  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, EntityStorageInterface $bundle_storage, DateFormatter $date_formatter, RendererInterface $renderer) {
+  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, EntityStorageInterface $bundle_storage, DateFormatterInterface $date_formatter, RendererInterface $renderer) {
     parent::__construct($entity_type, $storage);
 
     $this->bundleStorage = $bundle_storage;
