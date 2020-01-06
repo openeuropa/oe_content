@@ -35,7 +35,7 @@ use Drupal\oe_content_entity\Entity\EntityTypeBase;
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     },
  *   },
- *   admin_permission = "manage custom content entities",
+ *   admin_permission = "manage corporate content entities",
  *   links = {
  *     "add-form" = "/admin/structure/oe_contact_type/add",
  *     "edit-form" = "/admin/structure/oe_contact_type/{oe_contact_type}/edit",
