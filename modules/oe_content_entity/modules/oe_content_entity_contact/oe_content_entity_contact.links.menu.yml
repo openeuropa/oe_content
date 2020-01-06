@@ -1,13 +1,5 @@
-# Custom contact entity menu items definition.
-entity.oe_contact.collection:
-  title: 'List of contact entities'
-  route_name: entity.oe_contact.collection
-  description: 'List of contact entities'
-  parent: entity.oe_content_entity.collection
-  weight: 100
-
 entity.oe_contact_type.collection:
-  title: 'Contact entity types'
+  title: 'Contact types'
   route_name: entity.oe_contact_type.collection
   description: 'Create and manage types of contact entities'
-  parent: entity.oe_content_entity_types.collection
+  parent: system.admin_structure
