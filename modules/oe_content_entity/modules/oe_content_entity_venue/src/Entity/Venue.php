@@ -37,7 +37,7 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   revision_data_table = "oe_venue_field_revision",
  *   translatable = TRUE,
  *   show_revision_ui = TRUE,
- *   admin_permission = "manage custom content entities",
+ *   admin_permission = "manage corporate content entities",
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "revision_id",

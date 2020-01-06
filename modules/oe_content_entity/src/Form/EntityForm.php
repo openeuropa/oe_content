@@ -14,7 +14,7 @@ use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form controller for custom content entity edit forms.
+ * Form controller for corporate content entity edit forms.
  *
  * @ingroup oe_content_entity
  */

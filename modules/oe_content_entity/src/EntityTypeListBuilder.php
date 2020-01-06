@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 
 /**
- * Defines a class to build a listing of custom content entity type entities.
+ * Defines a class to build a listing of corporate content entity type entities.
  *
  * @ingroup oe_content_entity
  */
