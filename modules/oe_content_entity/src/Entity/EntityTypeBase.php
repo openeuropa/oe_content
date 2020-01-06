@@ -7,28 +7,28 @@ namespace Drupal\oe_content_entity\Entity;
 use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
 
 /**
- * Provides the EntityTypeBase class for custom content entity types.
+ * Provides the EntityTypeBase class for corporate content entity types.
  *
  * @ingroup oe_content_entity
  */
 abstract class EntityTypeBase extends ConfigEntityBundleBase implements EntityTypeBaseInterface {
 
   /**
-   * The machine name of the custom content entity type.
+   * The machine name of the corporate content entity type.
    *
    * @var string
    */
   protected $id;
 
   /**
-   * The human-readable name of the custom content entity type.
+   * The human-readable name of the corporate content entity type.
    *
    * @var string
    */
   protected $label;
 
   /**
-   * A brief description of the custom content entity type.
+   * A brief description of the corporate content entity type.
    *
    * @var string
    */

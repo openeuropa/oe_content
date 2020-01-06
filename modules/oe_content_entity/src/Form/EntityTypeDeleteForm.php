@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for custom content entity type deletion.
+ * Provides a form for corporate content entity type deletion.
  *
  * @ingroup oe_content_entity
  */
