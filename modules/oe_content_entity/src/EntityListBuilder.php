@@ -10,7 +10,6 @@ use Drupal\Core\Entity\EntityListBuilder as CoreEntityListBuilder;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Render\RendererInterface;
-use Drupal\oe_content_entity\Entity\EntityTypeBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -19,6 +18,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @ingroup oe_content_entity
  */
 class EntityListBuilder extends CoreEntityListBuilder {
+
+  /**
+   * Storage for the current custom content entity type bundles.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $bundleStorage;
 
   /**
    * The date formatter service.
@@ -40,15 +46,18 @@ class EntityListBuilder extends CoreEntityListBuilder {
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type definition.
    * @param \Drupal\Core\Entity\EntityStorageInterface $storage
-   *   The entity storage class.
+   *   Storage for the current custom content entity type.
+   * @param \Drupal\Core\Entity\EntityStorageInterface $bundle_storage
+   *   Storage for the current custom content entity type bundles.
    * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
    *   The date formatter service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
    */
-  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, DateFormatter $date_formatter, RendererInterface $renderer) {
+  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, EntityStorageInterface $bundle_storage, DateFormatter $date_formatter, RendererInterface $renderer) {
     parent::__construct($entity_type, $storage);
 
+    $this->bundleStorage = $bundle_storage;
     $this->dateFormatter = $date_formatter;
     $this->renderer = $renderer;
   }
@@ -60,6 +69,7 @@ class EntityListBuilder extends CoreEntityListBuilder {
     return new static(
       $entity_type,
       $container->get('entity_type.manager')->getStorage($entity_type->id()),
+      $container->get('entity_type.manager')->getStorage($entity_type->getBundleEntityType()),
       $container->get('date.formatter'),
       $container->get('renderer')
     );
@@ -70,7 +80,7 @@ class EntityListBuilder extends CoreEntityListBuilder {
    */
   public function buildHeader() {
     $header['id'] = $this->t('Entity');
-    $header['bundle_id'] = $this->t('Type');
+    $header['bundle'] = $this->t('Type');
     $header['created'] = $this->t('Created');
     $header['changed'] = $this->t('Changed');
 
@@ -82,9 +92,8 @@ class EntityListBuilder extends CoreEntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /** @var \Drupal\oe_content_entity\Entity\EntityTypeBase $entity */
-    $type = EntityTypeBase::load($entity->bundle());
     $row['id'] = $entity->toLink($entity->label());
-    $row['bundle_id'] = $type ? $type->label() : $entity->bundle();
+    $row['bundle'] = $this->bundleStorage->load($entity->bundle())->label();
     $row['created'] = $this->dateFormatter->format($entity->getCreatedTime(), 'short');
     $row['changed'] = $this->dateFormatter->format($entity->getChangedTime(), 'short');
 
