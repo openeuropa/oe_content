@@ -4,12 +4,16 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_entity\Entity;
 
+use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\Core\Entity\EntityPublishedInterface;
+use Drupal\Core\Entity\RevisionLogInterface;
+
 /**
  * Provides an interface for EntityBase class.
  *
  * @ingroup oe_content_entity
  */
-interface EntityBaseInterface {
+interface EntityBaseInterface extends EntityChangedInterface, EntityPublishedInterface, RevisionLogInterface {
 
   /**
    * Gets the custom content entity type.
