@@ -2,25 +2,25 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_venue.default.oe_venue_address
-    - field.field.oe_venue.default.oe_venue_capacity
-    - field.field.oe_venue.default.oe_venue_room
-    - oe_content_entity_venue.oe_venue_type.default
+    - field.field.oe_venue.oe_default.oe_address
+    - field.field.oe_venue.oe_default.oe_capacity
+    - field.field.oe_venue.oe_default.oe_room
+    - oe_content_entity_venue.oe_venue_type.oe_default
   module:
     - address
-id: oe_venue.default.default
+id: oe_venue.oe_default.default
 targetEntityType: oe_venue
-bundle: default
+bundle: oe_default
 mode: default
 content:
-  oe_venue_address:
+  oe_address:
     weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: address_default
     region: content
-  oe_venue_capacity:
+  oe_capacity:
     weight: 1
     label: hidden
     settings:
@@ -28,7 +28,7 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  oe_venue_room:
+  oe_room:
     weight: 2
     label: hidden
     settings:
