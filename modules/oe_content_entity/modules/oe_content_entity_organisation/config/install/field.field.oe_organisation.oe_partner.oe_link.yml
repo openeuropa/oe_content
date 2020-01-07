@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.oe_organisation.oe_web
+    - field.storage.oe_organisation.oe_link
     - oe_content_entity_organisation.oe_organisation_type.oe_partner
   module:
     - link
-id: oe_organisation.oe_partner.oe_web
-field_name: oe_web
+id: oe_organisation.oe_partner.oe_link
+field_name: oe_link
 entity_type: oe_organisation
 bundle: oe_partner
 label: Website
