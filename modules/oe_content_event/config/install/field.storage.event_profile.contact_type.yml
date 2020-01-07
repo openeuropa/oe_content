@@ -11,10 +11,10 @@ type: list_string
 settings:
   allowed_values:
     -
-      value: general
+      value: oe_general
       label: 'General contact'
     -
-      value: press
+      value: oe_press
       label: 'Press contact'
   allowed_values_function: ''
 module: options
