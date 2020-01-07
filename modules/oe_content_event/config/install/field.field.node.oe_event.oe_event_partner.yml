@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.storage.node.oe_event_partner
     - node.type.oe_event
-    - oe_content_entity_organisation.oe_organisation_type.partner
+    - oe_content_entity_organisation.oe_organisation_type.oe_partner
   module:
     - entity_reference_revisions
 id: node.oe_event.oe_event_partner
@@ -21,7 +21,7 @@ settings:
   handler: 'default:oe_organisation'
   handler_settings:
     target_bundles:
-      partner: partner
+      oe_partner: oe_partner
     sort:
       field: _none
     auto_create: false
