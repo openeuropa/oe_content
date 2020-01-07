@@ -4,8 +4,8 @@ dependencies:
   module:
     - address
     - oe_content_entity_venue
-id: oe_venue.oe_venue_address
-field_name: oe_venue_address
+id: oe_venue.oe_address
+field_name: oe_address
 entity_type: oe_venue
 type: address
 settings: {  }
