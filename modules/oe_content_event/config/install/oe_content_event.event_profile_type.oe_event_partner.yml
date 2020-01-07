@@ -1,6 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: oe_event_partner
-label: 'Event partner'
-description: ''
