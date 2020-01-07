@@ -3,14 +3,11 @@ status: true
 dependencies:
   module:
     - oe_content_entity_contact
-id: oe_contact.oe_contact_phone
-field_name: oe_contact_phone
+id: oe_contact.oe_email
+field_name: oe_email
 entity_type: oe_contact
-type: string
-settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+type: email
+settings: {  }
 module: core
 locked: false
 cardinality: 1

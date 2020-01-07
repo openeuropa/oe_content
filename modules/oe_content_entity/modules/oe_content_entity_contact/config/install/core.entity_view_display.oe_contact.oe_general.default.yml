@@ -2,34 +2,34 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_contact.press.oe_contact_address
-    - field.field.oe_contact.press.oe_contact_email
-    - field.field.oe_contact.press.oe_contact_phone
-    - oe_content_entity_contact.oe_contact_type.press
+    - field.field.oe_contact.oe_general.oe_address
+    - field.field.oe_contact.oe_general.oe_email
+    - field.field.oe_contact.oe_general.oe_phone
+    - oe_content_entity_contact.oe_contact_type.oe_general
   module:
     - address
-id: oe_contact.press.default
+id: oe_contact.oe_general.default
 targetEntityType: oe_contact
-bundle: press
+bundle: oe_general
 mode: default
 content:
-  oe_contact_address:
+  oe_address:
     weight: 1
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: address_default
     region: content
-  oe_contact_email:
+  oe_email:
     weight: 2
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
-  oe_contact_phone:
+  oe_phone:
     weight: 3
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
