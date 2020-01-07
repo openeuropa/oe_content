@@ -20,18 +20,8 @@ dependencies:
 
 config_devel:
   install:
-    - core.entity_form_display.event_profile.oe_event_contact.default
-    - core.entity_form_display.event_profile.oe_event_partner.default
     - core.entity_form_display.node.oe_event.default
-    - core.entity_view_display.event_profile.oe_event_contact.default
-    - core.entity_view_display.event_profile.oe_event_partner.default
     - core.entity_view_display.node.oe_event.default
-    - field.field.event_profile.oe_event_contact.address
-    - field.field.event_profile.oe_event_contact.contact_type
-    - field.field.event_profile.oe_event_contact.email
-    - field.field.event_profile.oe_event_contact.phone_number
-    - field.field.event_profile.oe_event_partner.image
-    - field.field.event_profile.oe_event_partner.website
     - field.field.node.oe_event.body
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
@@ -66,12 +56,6 @@ config_devel:
     - field.field.node.oe_event.oe_event_website
     - field.field.node.oe_event.oe_subject
     - field.field.node.oe_event.oe_teaser
-    - field.storage.event_profile.address
-    - field.storage.event_profile.contact_type
-    - field.storage.event_profile.email
-    - field.storage.event_profile.image
-    - field.storage.event_profile.phone_number
-    - field.storage.event_profile.website
     - field.storage.node.oe_event_contact
     - field.storage.node.oe_event_description_summary
     - field.storage.node.oe_event_end_date
@@ -103,9 +87,5 @@ config_devel:
     - field.storage.node.oe_event_venue
     - field.storage.node.oe_event_website
     - node.type.oe_event
-    - oe_content_event.event_profile_type.oe_event_contact
-    - oe_content_event.event_profile_type.oe_event_partner
   optional:
     - language.content_settings.node.oe_event
-    - language.content_settings.event_profile.oe_event_partner
-    - language.content_settings.event_profile.oe_event_contact
