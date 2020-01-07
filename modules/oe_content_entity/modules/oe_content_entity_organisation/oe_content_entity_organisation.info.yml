@@ -12,10 +12,10 @@ config_devel:
   install:
     - core.entity_form_display.oe_organisation.oe_partner.default
     - core.entity_view_display.oe_organisation.oe_partner.default
-    - field.storage.oe_organisation.oe_image
-    - field.field.oe_organisation.oe_partner.oe_web
-    - field.storage.oe_organisation.oe_web
     - field.field.oe_organisation.oe_partner.oe_image
+    - field.field.oe_organisation.oe_partner.oe_web
+    - field.storage.oe_organisation.oe_image
+    - field.storage.oe_organisation.oe_web
     - oe_content_entity_organisation.oe_organisation_type.oe_partner
   optional:
     - language.content_settings.oe_organisation.oe_partner
