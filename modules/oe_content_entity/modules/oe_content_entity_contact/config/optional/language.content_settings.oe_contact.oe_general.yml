@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - oe_content_entity_contact.oe_contact_type.press
+    - oe_content_entity_contact.oe_contact_type.oe_general
   module:
     - content_translation
 third_party_settings:
@@ -10,8 +10,8 @@ third_party_settings:
     enabled: false
     bundle_settings:
       untranslatable_fields_hide: '0'
-id: oe_contact.press
+id: oe_contact.oe_general
 target_entity_type_id: oe_contact
-target_bundle: press
+target_bundle: oe_general
 default_langcode: site_default
 language_alterable: true

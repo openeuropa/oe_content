@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.oe_contact.oe_contact_phone
-    - oe_content_entity_contact.oe_contact_type.press
-id: oe_contact.press.oe_contact_phone
-field_name: oe_contact_phone
+    - field.storage.oe_contact.oe_phone
+    - oe_content_entity_contact.oe_contact_type.oe_press
+id: oe_contact.oe_press.oe_phone
+field_name: oe_phone
 entity_type: oe_contact
-bundle: press
+bundle: oe_press
 label: 'Phone number'
 description: ''
 required: false

@@ -1,6 +1,6 @@
 langcode: en
 status: true
 dependencies: {  }
-id: press
+id: oe_press
 label: Press
 description: 'Provides the press contact type bundle.'
