@@ -10,14 +10,14 @@ dependencies:
 
 config_devel:
   install:
-    - core.entity_form_display.oe_venue.default.default
-    - field.field.oe_venue.default.oe_venue_capacity
-    - field.storage.oe_venue.oe_venue_address
-    - field.field.oe_venue.default.oe_venue_room
-    - field.field.oe_venue.default.oe_venue_address
-    - core.entity_view_display.oe_venue.default.default
-    - field.storage.oe_venue.oe_venue_room
-    - oe_content_entity_venue.oe_venue_type.default
-    - field.storage.oe_venue.oe_venue_capacity
+    - core.entity_form_display.oe_venue.oe_default.default
+    - field.field.oe_venue.oe_default.oe_capacity
+    - field.storage.oe_venue.oe_address
+    - field.field.oe_venue.oe_default.oe_room
+    - field.field.oe_venue.oe_default.oe_address
+    - core.entity_view_display.oe_venue.oe_default.default
+    - field.storage.oe_venue.oe_room
+    - oe_content_entity_venue.oe_venue_type.oe_default
+    - field.storage.oe_venue.oe_capacity
   optional:
     - language.content_settings.oe_venue.default

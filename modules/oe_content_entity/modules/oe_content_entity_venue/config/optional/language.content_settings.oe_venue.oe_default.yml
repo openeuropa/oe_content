@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - oe_content_entity_venue.oe_venue_type.default
+    - oe_content_entity_venue.oe_venue_type.oe_default
   module:
     - content_translation
 third_party_settings:
@@ -10,8 +10,8 @@ third_party_settings:
     enabled: false
     bundle_settings:
       untranslatable_fields_hide: '0'
-id: oe_venue.default
+id: oe_venue.oe_default
 target_entity_type_id: oe_venue
-target_bundle: default
+target_bundle: oe_default
 default_langcode: site_default
 language_alterable: true
