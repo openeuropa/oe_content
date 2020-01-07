@@ -10,12 +10,12 @@ dependencies:
 
 config_devel:
   install:
-    - core.entity_form_display.oe_organisation.partner.default
-    - core.entity_view_display.oe_organisation.partner.default
-    - field.storage.oe_organisation.oe_organisation_partner_image
-    - field.field.oe_organisation.partner.oe_organisation_partner_web
-    - field.storage.oe_organisation.oe_organisation_partner_web
-    - field.field.oe_organisation.partner.oe_organisation_partner_image
-    - oe_content_entity_organisation.oe_organisation_type.partner
+    - core.entity_form_display.oe_organisation.oe_partner.default
+    - core.entity_view_display.oe_organisation.oe_partner.default
+    - field.storage.oe_organisation.oe_image
+    - field.field.oe_organisation.oe_partner.oe_web
+    - field.storage.oe_organisation.oe_web
+    - field.field.oe_organisation.oe_partner.oe_image
+    - oe_content_entity_organisation.oe_organisation_type.oe_partner
   optional:
-    - language.content_settings.oe_organisation.partner
+    - language.content_settings.oe_organisation.oe_partner
