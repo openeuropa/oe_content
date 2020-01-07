@@ -21,7 +21,7 @@ settings:
   handler: 'default:oe_venue'
   handler_settings:
     target_bundles:
-      default: default
+      oe_default: oe_default
     sort:
       field: _none
     auto_create: false
