@@ -6,7 +6,7 @@ Feature: Event content creation
 
   @javascript
   Scenario: Fields on the event content creation forms should be grouped logically.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage custom content entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
     When I visit "the Event creation page"
 
     # The text assertions are actually checking for fields.
@@ -144,7 +144,7 @@ Feature: Event content creation
 
   @cleanup:media @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, manage custom content entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, manage corporate content entities" permission
     # Create a "Media AV portal photo".
     And I visit "the AV Portal photo creation page"
     And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
