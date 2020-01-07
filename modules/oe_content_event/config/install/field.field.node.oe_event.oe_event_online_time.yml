@@ -2,19 +2,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_event_registration_end_date
+    - field.storage.node.oe_event_online_time
     - node.type.oe_event
   module:
-    - datetime
-id: node.oe_event.oe_event_registration_end_date
-field_name: oe_event_registration_end_date
+    - datetime_range
+id: node.oe_event.oe_event_online_time
+field_name: oe_event_online_time
 entity_type: node
 bundle: oe_event
-label: 'Registration end date'
+label: 'Online time'
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: datetime
+field_type: daterange

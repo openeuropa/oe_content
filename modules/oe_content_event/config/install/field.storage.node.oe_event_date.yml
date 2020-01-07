@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   module:
-    - datetime
+    - datetime_range
     - node
-id: node.oe_event_start_date
-field_name: oe_event_start_date
+id: node.oe_event_date
+field_name: oe_event_date
 entity_type: node
-type: datetime
+type: daterange
 settings:
   datetime_type: datetime
-module: datetime
+module: datetime_range
 locked: false
 cardinality: 1
 translatable: true
