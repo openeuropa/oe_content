@@ -52,6 +52,7 @@ class ContentEntityUiTest extends WebDriverTestBase {
 
     $this->container->get('module_installer')->install([$module], TRUE);
 
+    // Create a new bundle.
     $this->drupalGet("/admin/structure/{$entity_type_id}_type");
     $assert_session->pageTextContains("There are no {$label} type entities yet.");
 
@@ -68,9 +69,9 @@ class ContentEntityUiTest extends WebDriverTestBase {
 
     // Assert that the bundle has been created and it's listed correctly.
     $assert_session->pageTextContains("Created the {$label} type name {$entity_type_id} entity type.");
-    $assert_session->elementContains('css', 'div.region-content table tr td:nth-child(1)',"{$label} type name");
-    $assert_session->elementContains('css', 'div.region-content table tr td:nth-child(2)',"{$label} type description");
-    $assert_session->elementContains('css', 'div.region-content table tr td:nth-child(3)',"{$label}_type_name");
+    $assert_session->elementContains('css', 'div.region-content table tr td:nth-child(1)', "{$label} type name");
+    $assert_session->elementContains('css', 'div.region-content table tr td:nth-child(2)', "{$label} type description");
+    $assert_session->elementContains('css', 'div.region-content table tr td:nth-child(3)', "{$label}_type_name");
 
     // Assert that we have no entities.
     $this->drupalGet("/admin/content/{$entity_type_id}");
@@ -117,13 +118,33 @@ class ContentEntityUiTest extends WebDriverTestBase {
     $entity = $entity_storage->load(1);
     $this->assertEquals("{$label} entity name 3", $entity->getName());
     $this->assertNull($entity_storage->loadRevision(3));
+
+    // Edit the entity without creating a new revision.
+    $this->drupalGet("/admin/content/{$entity_type_id}/1/delete");
+    $page->pressButton('Delete');
+
+    $assert_session->pageTextContains("The {$label} {$label} entity name 3 has been deleted.");
+    $assert_session->pageTextContains("There are no {$label} entities yet.");
+
+    // Delete bundle.
+    $this->drupalGet("/admin/structure/{$entity_type_id}_type");
+    $this->clickLink('Edit');
+
+    $assert_session->pageTextContains("Edit {$label} type name");
+    $this->clickLink('Delete');
+
+    $assert_session->pageTextContains("Are you sure you want to delete the {$label} type {$label} type name?");
+    $page->pressButton('Delete');
+
+    $assert_session->pageTextContains("The {$label} type {$label} type name has been deleted.");
+    $assert_session->pageTextContains("There are no {$label} type entities yet.");
   }
 
   /**
    * Provide module, entity type and label to run content entity UIs tests.
    *
    * @return array
-   *   List of module / entity type paris.
+   *   List of corporate entity module, entity type and label triplets.
    */
   public function corporateEntityDataProvider(): array {
     return [
