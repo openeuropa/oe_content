@@ -4,8 +4,8 @@ dependencies:
   module:
     - media
     - oe_content_entity_organisation
-id: oe_organisation.oe_organisation_partner_image
-field_name: oe_organisation_partner_image
+id: oe_organisation.oe_image
+field_name: oe_image
 entity_type: oe_organisation
 type: entity_reference
 settings:
