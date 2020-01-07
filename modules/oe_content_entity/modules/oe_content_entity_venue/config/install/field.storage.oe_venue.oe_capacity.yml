@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - oe_content_entity_venue
-id: oe_venue.oe_venue_capacity
-field_name: oe_venue_capacity
+id: oe_venue.oe_capacity
+field_name: oe_capacity
 entity_type: oe_venue
 type: string
 settings:
