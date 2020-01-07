@@ -77,7 +77,7 @@ class ContentEntityUiTest extends WebDriverTestBase {
     $this->drupalGet("/admin/content/{$entity_type_id}");
     $assert_session->pageTextContains("There are no {$label} entities yet.");
 
-    // Create twi revisions of the same entity.
+    // Create two revisions of the same entity.
     $this->drupalGet("/admin/content/{$entity_type_id}/add/{$label}_type_name");
 
     $page->fillField('Name', "{$label} entity name 1");
