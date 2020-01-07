@@ -2,14 +2,16 @@ langcode: en
 status: true
 dependencies:
   module:
-    - address
     - oe_content_entity_contact
-id: oe_contact.oe_contact_address
-field_name: oe_contact_address
+id: oe_contact.oe_phone
+field_name: oe_phone
 entity_type: oe_contact
-type: address
-settings: {  }
-module: address
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true
