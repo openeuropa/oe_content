@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.oe_organisation.oe_organisation_partner_image
+    - field.storage.oe_organisation.oe_image
     - media.type.image
-    - oe_content_entity_organisation.oe_organisation_type.partner
-id: oe_organisation.partner.oe_organisation_partner_image
-field_name: oe_organisation_partner_image
+    - oe_content_entity_organisation.oe_organisation_type.oe_partner
+id: oe_organisation.oe_partner.oe_image
+field_name: oe_image
 entity_type: oe_organisation
-bundle: partner
+bundle: oe_partner
 label: Image
 description: ''
 required: false

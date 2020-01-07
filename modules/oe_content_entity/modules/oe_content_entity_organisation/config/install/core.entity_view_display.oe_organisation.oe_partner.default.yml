@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_organisation.partner.oe_organisation_partner_image
-    - field.field.oe_organisation.partner.oe_organisation_partner_web
-    - oe_content_entity_organisation.oe_organisation_type.partner
+    - field.field.oe_organisation.oe_partner.oe_image
+    - field.field.oe_organisation.oe_partner.oe_web
+    - oe_content_entity_organisation.oe_organisation_type.oe_partner
   module:
     - link
-id: oe_organisation.partner.default
+id: oe_organisation.oe_partner.default
 targetEntityType: oe_organisation
-bundle: partner
+bundle: oe_partner
 mode: default
 content:
-  oe_organisation_partner_image:
+  oe_image:
     type: entity_reference_entity_view
     weight: 1
     label: above
@@ -21,7 +21,7 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-  oe_organisation_partner_web:
+  oe_web:
     weight: 2
     label: above
     settings:
