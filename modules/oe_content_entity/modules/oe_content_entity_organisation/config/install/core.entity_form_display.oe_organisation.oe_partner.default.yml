@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.oe_organisation.oe_partner.oe_image
-    - field.field.oe_organisation.oe_partner.oe_web
+    - field.field.oe_organisation.oe_partner.oe_link
     - oe_content_entity_organisation.oe_organisation_type.oe_partner
   module:
     - link
@@ -21,7 +21,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  oe_web:
+  oe_link:
     weight: 3
     settings:
       placeholder_url: ''
