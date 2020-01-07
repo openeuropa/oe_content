@@ -1,6 +1,6 @@
 langcode: en
 status: true
 dependencies: {  }
-id: general
+id: oe_general
 label: General
 description: 'Provides the general contact type bundle.'
