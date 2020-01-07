@@ -11,20 +11,20 @@ dependencies:
 config_devel:
   install:
     - core.entity_form_display.oe_contact.oe_general.default
-    - oe_content_entity_contact.oe_contact_type.oe_general
-    - field.storage.oe_contact.oe_email
-    - oe_content_entity_contact.oe_contact_type.oe_press
-    - core.entity_view_display.oe_contact.oe_general.default
     - core.entity_form_display.oe_contact.oe_press.default
-    - field.field.oe_contact.oe_press.oe_phone
+    - core.entity_view_display.oe_contact.oe_general.default
+    - core.entity_view_display.oe_contact.oe_press.default
+    - field.field.oe_contact.oe_general.oe_address
+    - field.field.oe_contact.oe_general.oe_email
     - field.field.oe_contact.oe_general.oe_phone
     - field.field.oe_contact.oe_press.oe_address
-    - field.storage.oe_contact.oe_phone
-    - field.field.oe_contact.oe_general.oe_email
-    - core.entity_view_display.oe_contact.oe_press.default
     - field.field.oe_contact.oe_press.oe_email
+    - field.field.oe_contact.oe_press.oe_phone
     - field.storage.oe_contact.oe_address
-    - field.field.oe_contact.oe_general.oe_address
+    - field.storage.oe_contact.oe_email
+    - field.storage.oe_contact.oe_phone
+    - oe_content_entity_contact.oe_contact_type.oe_general
+    - oe_content_entity_contact.oe_contact_type.oe_press
   optional:
     - language.content_settings.oe_contact.oe_general
     - language.content_settings.oe_contact.oe_press
