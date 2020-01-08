@@ -50,14 +50,14 @@ class EntityTypeForm extends BundleEntityFormBase {
     $form = parent::form($form, $form_state);
 
     $entity_type = $this->entity;
-    $content_entity_id = $entity_type->getEntityType()->getBundleOf();
+    $entity_bundle_id = $entity_type->getEntityType()->getBundleOf();
 
     $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),
       '#maxlength' => 255,
       '#default_value' => $entity_type->label(),
-      '#description' => $this->t("Label for the %content_entity_id entity type (bundle).", ['%content_entity_id' => $content_entity_id]),
+      '#description' => $this->t("Label for the %content_entity_id entity type (bundle).", ['%entity_bundle_id' => $entity_bundle_id]),
       '#required' => TRUE,
     ];
 
@@ -74,7 +74,7 @@ class EntityTypeForm extends BundleEntityFormBase {
       '#title' => $this->t('Description'),
       '#type' => 'textarea',
       '#default_value' => $entity_type->getDescription(),
-      '#description' => $this->t('This text will be displayed on the "Add %content_entity_id" page.', ['%content_entity_id' => $content_entity_id]),
+      '#description' => $this->t('This text will be displayed on the "Add %content_entity_id" page.', ['%entity_bundle_id' => $entity_bundle_id]),
     ];
 
     return $this->protectBundleIdElement($form);
