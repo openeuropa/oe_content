@@ -2,11 +2,6 @@
 entity.oe_contact.canonical:
   route_name: entity.oe_contact.canonical
   base_route: entity.oe_contact.canonical
-  title: 'View'
-
-entity.oe_contact.edit_form:
-  route_name: entity.oe_contact.edit_form
-  base_route: entity.oe_contact.canonical
   title: 'Edit'
 
 entity.oe_contact.delete_form:
