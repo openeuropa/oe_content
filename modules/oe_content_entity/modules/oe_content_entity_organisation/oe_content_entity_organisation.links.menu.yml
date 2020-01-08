@@ -1,0 +1,5 @@
+entity.oe_organisation_type.collection:
+  title: 'Organisation types'
+  route_name: entity.oe_organisation_type.collection
+  description: 'Create and manage types of organisation entities'
+  parent: system.admin_structure

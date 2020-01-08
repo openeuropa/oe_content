@@ -1,0 +1,5 @@
+entity.oe_contact_type.collection:
+  title: 'Contact types'
+  route_name: entity.oe_contact_type.collection
+  description: 'Create and manage types of contact entities'
+  parent: system.admin_structure

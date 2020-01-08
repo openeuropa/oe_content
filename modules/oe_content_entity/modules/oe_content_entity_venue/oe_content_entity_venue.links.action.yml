@@ -1,0 +1,11 @@
+entity.oe_venue.add_page:
+  route_name: entity.oe_venue.add_page
+  title: 'Add venue'
+  appears_on:
+    - entity.oe_venue.collection
+
+entity.oe_venue_type.add_form:
+  route_name: entity.oe_venue_type.add_form
+  title: 'Add venue type'
+  appears_on:
+    - entity.oe_venue_type.collection
