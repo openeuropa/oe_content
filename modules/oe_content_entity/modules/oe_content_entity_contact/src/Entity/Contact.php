@@ -28,7 +28,7 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "html" = "Drupal\oe_content_entity\Routing\EntityRouteProvider",
  *     },
  *   },
  *   base_table = "oe_contact",
@@ -58,7 +58,7 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   bundle_entity_type = "oe_contact_type",
  *   field_ui_base_route = "entity.oe_contact_type.edit_form",
  *   links = {
- *     "canonical" = "/admin/content/oe_contact/{oe_contact}",
+ *     "canonical" = "/admin/content/oe_contact/{oe_contact}/edit",
  *     "add-page" = "/admin/content/oe_contact/add",
  *     "add-form" = "/admin/content/oe_contact/add/{oe_contact_type}",
  *     "edit-form" = "/admin/content/oe_contact/{oe_contact}/edit",

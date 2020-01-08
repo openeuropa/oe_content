@@ -28,7 +28,7 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "html" = "Drupal\oe_content_entity\Routing\EntityRouteProvider",
  *     },
  *   },
  *   base_table = "oe_venue",
