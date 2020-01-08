@@ -8,7 +8,7 @@ All content types are organised into sub-modules. These content types can be set
 overriding the language.content_setting configuration.
 
 This module provides a sub-module (oe_content_entity) with a set of Corporate content entities to be used.
-Check out the README of the module.
+Check out the [README](/modules/oe_content_entity/README.md) of the module.
 
 **Table of contents:**
 
