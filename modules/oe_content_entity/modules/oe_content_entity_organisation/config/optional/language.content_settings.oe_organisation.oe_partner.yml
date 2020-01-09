@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - oe_content_entity_organisation.oe_organisation_type.oe_partner
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: oe_organisation.oe_partner
+target_entity_type_id: oe_organisation
+target_bundle: oe_partner
+default_langcode: site_default
+language_alterable: true

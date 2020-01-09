@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_contact.oe_address
+    - oe_content_entity_contact.oe_contact_type.oe_press
+  module:
+    - address
+id: oe_contact.oe_press.oe_address
+field_name: oe_address
+entity_type: oe_contact
+bundle: oe_press
+label: Address
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    dependentLocality:
+      override: hidden
+  fields: {  }
+field_type: address

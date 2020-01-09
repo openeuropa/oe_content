@@ -54,7 +54,7 @@ class ContentEntityUiTest extends WebDriverTestBase {
 
     // Create a new bundle.
     $this->drupalGet("/admin/structure/{$entity_type_id}_type");
-    $assert_session->pageTextContains("There are no {$label} type entities yet.");
+    $assert_session->pageTextContains("{$label} type entities");
 
     $this->drupalGet("/admin/structure/{$entity_type_id}_type/add");
     $assert_session->pageTextContains("Add {$label} type");
@@ -69,9 +69,9 @@ class ContentEntityUiTest extends WebDriverTestBase {
 
     // Assert that the bundle has been created and it's listed correctly.
     $assert_session->pageTextContains("Created the {$label} type name {$entity_type_id} entity type.");
-    $assert_session->elementContains('css', 'div.region-content table tr td:nth-child(1)', "{$label} type name");
-    $assert_session->elementContains('css', 'div.region-content table tr td:nth-child(2)', "{$label} type description");
-    $assert_session->elementContains('css', 'div.region-content table tr td:nth-child(3)', "{$label}_type_name");
+    $assert_session->elementContains('css', 'div.region-content table', "{$label} type name");
+    $assert_session->elementContains('css', 'div.region-content table', "{$label} type description");
+    $assert_session->elementContains('css', 'div.region-content table', "{$label}_type_name");
 
     // Assert that we have no entities.
     $this->drupalGet("/admin/content/{$entity_type_id}");
@@ -127,9 +127,7 @@ class ContentEntityUiTest extends WebDriverTestBase {
     $assert_session->pageTextContains("There are no {$label} entities yet.");
 
     // Delete bundle.
-    $this->drupalGet("/admin/structure/{$entity_type_id}_type");
-    $this->clickLink('Edit');
-
+    $this->drupalGet("/admin/structure/{$entity_type_id}_type/{$label}_type_name/edit");
     $assert_session->pageTextContains("Edit {$label} type name");
     $this->clickLink('Delete');
 
@@ -137,7 +135,6 @@ class ContentEntityUiTest extends WebDriverTestBase {
     $page->pressButton('Delete');
 
     $assert_session->pageTextContains("The {$label} type {$label} type name has been deleted.");
-    $assert_session->pageTextContains("There are no {$label} type entities yet.");
   }
 
   /**

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_organisation.oe_image
+    - media.type.image
+    - oe_content_entity_organisation.oe_organisation_type.oe_partner
+id: oe_organisation.oe_partner.oe_image
+field_name: oe_image
+entity_type: oe_organisation
+bundle: oe_partner
+label: Image
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      av_portal_photo: av_portal_photo
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

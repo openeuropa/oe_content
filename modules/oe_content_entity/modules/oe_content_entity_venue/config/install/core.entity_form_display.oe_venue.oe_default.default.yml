@@ -1,0 +1,55 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_venue.oe_default.oe_address
+    - field.field.oe_venue.oe_default.oe_capacity
+    - field.field.oe_venue.oe_default.oe_room
+    - oe_content_entity_venue.oe_venue_type.oe_default
+  module:
+    - address
+id: oe_venue.oe_default.default
+targetEntityType: oe_venue
+bundle: oe_default
+mode: default
+content:
+  oe_address:
+    type: address_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_capacity:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  oe_room:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
