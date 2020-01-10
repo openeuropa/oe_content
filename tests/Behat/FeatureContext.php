@@ -64,7 +64,6 @@ class FeatureContext extends RawDrupalContext {
    * @param string $value
    *   The value of the field.
    *
-   * @throws \Behat\Mink\Exception\ElementNotFoundException
    * @When I fill in :field_item of :field_group with the :date_component :value
    */
   public function fillDateRangeField($field_item, $field_group, $date_component, $value) {
