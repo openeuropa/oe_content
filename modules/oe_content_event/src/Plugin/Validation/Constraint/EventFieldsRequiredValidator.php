@@ -27,7 +27,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
 
     $online_required_fields = [
       'oe_event_online_type',
-      'oe_event_online_time',
+      'oe_event_online_dates',
       'oe_event_online_link',
     ];
     // Check if any of these "Online" field group fields are filled in,
@@ -47,7 +47,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     $registration_fields_required = [
       'oe_event_registration_url',
       'oe_event_registration_status',
-      'oe_event_registration_date',
+      'oe_event_registration_dates',
     ];
     // Check if any of these "Registration" field group fields are filled in,
     // then they are all required.
