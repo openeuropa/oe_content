@@ -4,8 +4,8 @@ dependencies:
   module:
     - datetime_range
     - node
-id: node.oe_event_online_time
-field_name: oe_event_online_time
+id: node.oe_event_online_dates
+field_name: oe_event_online_dates
 entity_type: node
 type: daterange
 settings:
