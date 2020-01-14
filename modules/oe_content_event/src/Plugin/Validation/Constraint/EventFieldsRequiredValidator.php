@@ -104,13 +104,6 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
         '@organiser_name' => $node->getFieldDefinition('oe_event_organiser_name')->getLabel(),
       ]);
     }
-    // Both fields are filled in.
-    elseif ($fields_state === 0) {
-      $violation = $this->context->buildViolation('You have to fill in only one of the following fields @internal or @organiser_name, not both', [
-        '@internal' => $node->getFieldDefinition('oe_event_organiser_internal')->getLabel(),
-        '@organiser_name' => $node->getFieldDefinition('oe_event_organiser_name')->getLabel(),
-      ]);
-    }
 
     if ($violation instanceof ConstraintViolationBuilderInterface) {
       // Highlight empty 'Organiser name' field.
