@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_event\Repository;
 
 use Drupal\address\Repository\CountryRepository as AddressCountryRepository;
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -142,16 +143,10 @@ SPARQL;
    *   The alpha-3 codes, keyed by alpha-2.
    */
   protected function getIsoCodeMappings(): array {
-    $base_definitions = $this->getBaseDefinitions();
-    $code_mappings = [];
-    foreach ($base_definitions as $alpha2 => $data) {
-      if (isset($data[0])) {
-        $code_mappings[$alpha2] = $data[0];
-      }
-    }
-    $code_mappings = array_flip($code_mappings);
+    $filename = drupal_get_path('module', 'oe_content_event') . '/resources/country-code-mappings.json';
+    $code_mappings = Json::decode(file_get_contents($filename));
 
-    return $code_mappings;
+    return is_array($code_mappings) ? array_flip($code_mappings) : [];
   }
 
 }
