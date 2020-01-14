@@ -7,76 +7,44 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\Entity\Node;
+use Drupal\oe_content_event\EventUtilities;
 
 /**
  * Implements hook_entity_type_alter().
  */
 function oe_content_event_entity_type_alter(array &$entity_types) {
   // Add validation constraints to the node entity.
-  if (!empty($entity_types['node'])) {
-    $entity_types['node']->addConstraint('EventFieldsRequired');
+  $entity_types['node']->addConstraint('EventFieldsRequired');
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function oe_content_event_node_presave(EntityInterface $entity) {
+  // Make sure that we don't save both concurrent field values.
+  if ($entity->bundle() === 'oe_event') {
+    $value = $entity->get('oe_event_organiser_is_internal')->value;
+    if ($value) {
+      $entity->get('oe_event_organiser_name')->setValue(NULL);
+    }
+    elseif ($value === 0) {
+      $entity->get('oe_event_organiser_internal')->setValue(NULL);
+    }
   }
 }
 
 /**
- * Implements hook_form_BASE_FORM_ID_alter().
+ * Implements hook_form_node_BUNDLE_form_alter().
  */
-function oe_content_event_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if (!in_array($form_id, ['node_oe_event_form', 'node_oe_event_edit_form'])) {
-    return;
-  }
-
-  $form['oe_event_organiser_internal']['#states'] = [
-    'visible' => [
-      [
-        ':input[name="oe_event_organiser_is_internal[value]"]' => ['checked' => TRUE],
-      ],
-    ],
-    'required' => [
-      [
-        ':input[name="oe_event_organiser_is_internal[value]"]' => ['checked' => TRUE],
-      ],
-    ],
-  ];
-  $form['oe_event_organiser_name']['#states'] = [
-    'visible' => [
-      [
-        ':input[name="oe_event_organiser_is_internal[value]"]' => ['checked' => FALSE],
-      ],
-    ],
-    'required' => [
-      [
-        ':input[name="oe_event_organiser_is_internal[value]"]' => ['checked' => FALSE],
-      ],
-    ],
-  ];
-
-  // Make sure that only one organiser field value is stored based on the
-  // the checkbox setting.
-  $form['#entity_builders'][] = '_oe_content_event_store_organiser_value';
+function oe_content_event_form_node_oe_event_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  EventUtilities::applyToggleStatesToFormFields($form, 'oe_event_organiser_is_internal', 'oe_event_organiser_internal', 'oe_event_organiser_name');
 }
 
 /**
- * Entity builder to make sure only one organiser value is stored.
- *
- * @param string $entity_type
- *   The identifier of the entity type.
- * @param \Drupal\node\Entity\Node $entity
- *   The node entity.
- * @param array $form
- *   The submitted form.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The form state object.
+ * Implements hook_form_node_BUNDLE_edit_form_alter().
  */
-function _oe_content_event_store_organiser_value(string $entity_type, Node $entity, array &$form, FormStateInterface $form_state): void {
-  $value = $form_state->getValue('oe_event_organiser_is_internal');
-  $value = reset($value);
-  if ($value) {
-    $entity->get('oe_event_organiser_name')->setValue(NULL);
-  }
-  elseif ($value === 0) {
-    $entity->get('oe_event_organiser_internal')->setValue(NULL);
-  }
+function oe_content_event_form_node_oe_event_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  EventUtilities::applyToggleStatesToFormFields($form, 'oe_event_organiser_is_internal', 'oe_event_organiser_internal', 'oe_event_organiser_name');
 }
