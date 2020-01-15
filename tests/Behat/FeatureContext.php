@@ -349,4 +349,81 @@ class FeatureContext extends RawDrupalContext {
     $this->assertVisuallyVisible($node);
   }
 
+  /**
+   * Creates media documents with the specified file names.
+   *
+   * // phpcs:disable
+   * @Given the following documents:
+   * | file 1 |
+   * | file 2 |
+   * |  ...  |
+   * // phpcs:enable
+   */
+  public function createMediaDocuments(TableNode $file_table): void {
+    // Retrieve the url table from the test scenario and flatten it.
+    $file_names = $file_table->getRows();
+    array_walk($file_names, function (&$value) {
+      $value = reset($value);
+    });
+
+    foreach ($file_names as $file_name) {
+      $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_content') . '/tests/fixtures/' . $file_name), 'public://' . $file_name);
+      $file->setPermanent();
+      $file->save();
+
+      $media = \Drupal::service('entity_type.manager')
+        ->getStorage('media')->create([
+          'bundle' => 'document',
+          'name' => $file_name,
+          'oe_media_file' => [
+            'target_id' => (int) $file->id(),
+          ],
+          'uid' => 0,
+          'status' => 1,
+        ]);
+
+      $media->save();
+    }
+  }
+
+  /**
+   * Creates media AVPortal photos with the specified URLs.
+   *
+   * // phpcs:disable
+   * @Given the following AV Portal photos:
+   * | url 1 |
+   * | url 2 |
+   * |  ...  |
+   * // phpcs:enable
+   */
+  public function createMediaAvPortalPhotos(TableNode $url_table): void {
+    // Retrieve the url table from the test scenario and flatten it.
+    $urls = $url_table->getRows();
+    array_walk($urls, function (&$value) {
+      $value = reset($value);
+    });
+
+    $pattern = '@audiovisual\.ec\.europa\.eu/(.*)/photo/(P\-.*\~2F.*)@i';
+
+    foreach ($urls as $url) {
+      preg_match_all($pattern, $url, $matches);
+      if (empty($matches)) {
+        continue;
+      }
+
+      // Converts the slash in the photo id.
+      $photo_id = str_replace("~2F", "/", $matches[2][0]);
+
+      $media = \Drupal::service('entity_type.manager')
+        ->getStorage('media')->create([
+          'bundle' => 'av_portal_photo',
+          'oe_media_avportal_photo' => $photo_id,
+          'uid' => 0,
+          'status' => 1,
+        ]);
+
+      $media->save();
+    }
+  }
+
 }

@@ -6,13 +6,10 @@ Feature: Publication content creation
 
   @cleanup:media @cleanup:file
   Scenario: Creation of a Publication content through the UI.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities, create document media" permission
+    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
     # Create a "Document".
-    When I go to "the document creation page"
-    Then I should see the heading "Add Document"
-    When I fill in "Name" with "My Document 1"
-    And I attach the file "sample.pdf" to "File"
-    And I press "Save"
+    And the following documents:
+    | sample.pdf |
     # Create a "Publication" content.
     And I visit "the Publication creation page"
     And I fill in "Page title" with "My Publication item"
@@ -20,7 +17,7 @@ Feature: Publication content creation
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
     And I fill in "Publication date" with the date "2019-02-21"
-    And I fill in "Use existing media" with "My Document 1"
+    And I fill in "Use existing media" with "sample.pdf"
     And I fill in "Type" with "Acknowledgement receipt"
     And I fill in "Responsible department" with "European Patent Office"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
