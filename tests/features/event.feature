@@ -144,14 +144,11 @@ Feature: Event content creation
 
   @cleanup:media @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
     # Create a "Media AV portal photo".
-    And I visit "the AV Portal photo creation page"
-    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
-    And I press "Save"
-    And I visit "the AV Portal photo creation page"
-    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-039321~2F00-04"
-    And I press "Save"
+    And the following AV Portal photos:
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
+      | https://audiovisual.ec.europa.eu/en/photo/P-039321~2F00-04  |
     # Create a "Event" content.
     When I visit "the Event creation page"
     Then I select "Info days" from "Type"
@@ -295,11 +292,10 @@ Feature: Event content creation
 
   @javascript @cleanup:media @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     # Create a "Media AV portal photo".
-    And I visit "the AV Portal photo creation page"
-    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
-    And I press "Save"
+    And the following AV Portal photos:
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
 
     # Create a "Event" content.
     When I visit "the Event creation page"
