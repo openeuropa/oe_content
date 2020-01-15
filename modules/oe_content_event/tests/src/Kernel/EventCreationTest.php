@@ -2,15 +2,15 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content\Kernel;
+namespace Drupal\Tests\oe_content_event\Kernel;
 
 use Drupal\node\Entity\Node;
 use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
 
 /**
- * Tests the content type base field definitions.
+ * Tests event content type creation.
  */
-class EventTest extends RdfKernelTestBase {
+class EventCreationTest extends RdfKernelTestBase {
 
   /**
    * Modules to enable.
@@ -69,38 +69,37 @@ class EventTest extends RdfKernelTestBase {
     $values = [
       'type' => 'oe_event',
       'title' => 'My node title',
-      'oe_event_organiser_is_internal' => 0,
       'oe_event_organiser_name' => 'Organisation',
       'oe_event_organiser_internal' => 'http://publications.europa.eu/resource/authority/corporate-body/DIGIT',
     ];
 
-    // Create node.
+    // An un-checked checkbox inherits its default value, "TRUE" in this case.
     $node = Node::create($values);
     $node->save();
 
-    // Assert that the internal value has been cleared.
-    $this->assertNull($node->get('oe_event_organiser_internal')->value);
-    $this->assertEquals('Organisation', $node->get('oe_event_organiser_name')->value);
-
-    // Set all the 3 fields and set the internal organiser to checked.
-    $node->set('oe_event_organiser_is_internal', 1);
-    $node->set('oe_event_organiser_name', 'Organisation');
-    $node->set('oe_event_organiser_internal', 'http://publications.europa.eu/resource/authority/corporate-body/DIGIT');
-    $node->save();
-
-    // Assert that the internal organiser value has been kept.
-    $this->assertNull($node->get('oe_event_organiser_name')->value);
+    // Assert that only the internal organiser value has been kept.
+    $this->assertTrue($node->get('oe_event_organiser_name')->isEmpty());
     $this->assertEquals('Directorate-General for Informatics', $node->get('oe_event_organiser_internal')->entity->label());
 
-    // Set all the 3 fields and set the internal organiser to checked.
-    $node->set('oe_event_organiser_is_internal', NULL);
-    $node->set('oe_event_organiser_name', 'Organisation');
-    $node->set('oe_event_organiser_internal', 'http://publications.europa.eu/resource/authority/corporate-body/DIGIT');
+    // Test internal organiser to be checked.
+    $node = Node::create([
+      'oe_event_organiser_is_internal' => 1,
+    ] + $values);
     $node->save();
 
-    // Assert that on NULL, both values are kept.
-    $this->assertEquals('Organisation', $node->get('oe_event_organiser_name')->value);
+    // Assert that only the internal organiser value has been kept.
+    $this->assertTrue($node->get('oe_event_organiser_name')->isEmpty());
     $this->assertEquals('Directorate-General for Informatics', $node->get('oe_event_organiser_internal')->entity->label());
+
+    // Test internal organiser to be un-checked.
+    $node = Node::create([
+      'oe_event_organiser_is_internal' => 0,
+    ] + $values);
+    $node->save();
+
+    // Assert that only the external organiser value has been kept.
+    $this->assertTrue($node->get('oe_event_organiser_internal')->isEmpty());
+    $this->assertEquals('Organisation', $node->get('oe_event_organiser_name')->value);
   }
 
 }
