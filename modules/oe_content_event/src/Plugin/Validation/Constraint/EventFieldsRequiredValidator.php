@@ -94,9 +94,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
    */
   protected function validateOrganiserGroupFields(Constraint $constraint, NodeInterface $node) {
     $violation = NULL;
-    $fields_state = ($node->get('oe_event_organiser_internal')->isEmpty() + $node->get('oe_event_organiser_name')->isEmpty());
-    // Both fields are empty.
-    if ($fields_state === 2) {
+    if ($node->get('oe_event_organiser_internal')->isEmpty() && $node->get('oe_event_organiser_name')->isEmpty()) {
       $violation = $this->context->buildViolation('You have to fill in at least one of the following fields: @internal or @organiser_name', [
         '@internal' => $node->getFieldDefinition('oe_event_organiser_internal')->getLabel(),
         '@organiser_name' => $node->getFieldDefinition('oe_event_organiser_name')->getLabel(),
