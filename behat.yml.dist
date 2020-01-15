@@ -46,7 +46,7 @@ default:
         summary form element: ".field--name-oe-summary"
         Online link: "#edit-oe-event-online-link-0"
         Website: "#edit-oe-event-website-0"
-        Social media links: "#oe-event-social-media-links-values"
+        Social media links: "#oe-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
         Event report: "#edit-group-report"
         Event partner: "#edit-oe-event-partner-wrapper"
