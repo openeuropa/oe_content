@@ -24,7 +24,8 @@ function oe_content_event_entity_type_alter(array &$entity_types) {
  */
 function oe_content_event_node_presave(EntityInterface $entity) {
   // Make sure that we don't save both concurrent field values.
-  if ($entity->bundle() === 'oe_event') {
+  // @todo: Validate with business, if the checkbox value is empty.
+  if ($entity->bundle() === 'oe_event' && !$entity->get('oe_event_organiser_is_internal')->isEmpty()) {
     if ($entity->get('oe_event_organiser_is_internal')->value === 1) {
       $entity->get('oe_event_organiser_name')->setValue(NULL);
     }
