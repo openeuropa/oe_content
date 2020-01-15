@@ -24,7 +24,7 @@ dependencies:
     - field.field.node.oe_event.oe_event_registration_url
     - field.field.node.oe_event.oe_event_report_summary
     - field.field.node.oe_event.oe_event_report_text
-    - field.field.node.oe_event.oe_event_social_media_links
+    - field.field.node.oe_event.oe_social_media_links
     - field.field.node.oe_event.oe_event_dates
     - field.field.node.oe_event.oe_event_status
     - field.field.node.oe_event.oe_event_type
@@ -212,7 +212,7 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  oe_event_social_media_links:
+  oe_social_media_links:
     type: typed_link
     weight: 7
     region: content

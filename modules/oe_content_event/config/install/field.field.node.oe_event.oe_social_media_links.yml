@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_event_social_media_links
+    - field.storage.node.oe_social_media_links
     - node.type.oe_event
   module:
     - typed_link
-id: node.oe_event.oe_event_social_media_links
-field_name: oe_event_social_media_links
+id: node.oe_event.oe_social_media_links
+field_name: oe_social_media_links
 entity_type: node
 bundle: oe_event
 label: 'Social media links'

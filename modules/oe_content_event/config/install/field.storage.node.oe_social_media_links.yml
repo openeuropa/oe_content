@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - typed_link
-id: node.oe_event_social_media_links
-field_name: oe_event_social_media_links
+id: node.oe_social_media_links
+field_name: oe_social_media_links
 entity_type: node
 type: typed_link
 settings:
