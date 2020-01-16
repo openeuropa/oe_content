@@ -5,7 +5,7 @@ Feature: Publication content creation
   I need to be able to create and see publication items
 
   Scenario: Creation of a Publication content through the UI.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities, create document media" permission
+    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
     # Create a "Document".
     And the following documents:
     | My Document 1 | sample.pdf |
