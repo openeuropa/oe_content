@@ -6,7 +6,7 @@ Feature: Event content creation
 
   @javascript
   Scenario: Fields on the event content creation forms should be grouped logically.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, administer event venue entities, administer event profile entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
     When I visit "the Event creation page"
 
     # The text assertions are actually checking for fields.
@@ -26,15 +26,13 @@ Feature: Event content creation
     And I should see the text "Registration"
     And I should not see the text "Registration URL"
     And I should not see the text "Registration status"
-    And I should not see the text "Registration start date"
-    And I should not see the text "Registration end date"
+    And I should not see the text "Registration date"
     And I should not see the text "Entrance fee"
     And I should not see the text "Registration capacity"
     When I press "Registration"
     Then I should see the text "Registration URL"
     And I should see the text "Registration status"
-    And I should see the text "Registration start date"
-    And I should see the text "Registration end date"
+    And I should see the text "Registration date"
     And I should see the text "Entrance fee"
     And I should see the text "Registration capacity"
 
@@ -48,14 +46,12 @@ Feature: Event content creation
     # The online group is collapsed by default.
     And I should see the text "Online"
     And I should not see the text "Online type"
-    And I should not see the text "Online time start"
-    And I should not see the text "Online time end"
+    And I should not see the text "Online time"
     And I should not see the text "Online description"
     And I should not see the text "Online link"
     When I press "Online"
     Then I should see the text "Online type"
-    And I should see the text "Online time start"
-    And I should see the text "Online time end"
+    And I should see the text "Online time"
     And I should see the text "Online description"
     And I should see the text "Online link"
 
@@ -97,7 +93,6 @@ Feature: Event content creation
     When I press "Add new contact"
     And I wait for AJAX to finish
     Then I should see "Name" in the "Event contact" region
-    Then I should see "Contact type" in the "Event contact" region
     Then I should see "Country" in the "Event contact" region
     Then I should see "Email" in the "Event contact" region
     Then I should see "Phone number" in the "Event contact" region
@@ -143,16 +138,14 @@ Feature: Event content creation
       | Open     |
       | Closed   |
 
-  @cleanup:media @javascript @av_portal
+  @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, administer event venue entities, administer event profile entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
     # Create a "Media AV portal photo".
-    And I visit "the AV Portal photo creation page"
-    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
-    And I press "Save"
-    And I visit "the AV Portal photo creation page"
-    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-039321~2F00-04"
-    And I press "Save"
+    And the following AV Portal photos:
+      | url                                                         |
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
+      | https://audiovisual.ec.europa.eu/en/photo/P-039321~2F00-04  |
     # Create a "Event" content.
     When I visit "the Event creation page"
     Then I select "Info days" from "Type"
@@ -162,19 +155,19 @@ Feature: Event content creation
     When I press "Registration"
     Then I fill in "Registration URL" with "http://example.com"
     And I select "Open" from "Registration status"
-    And I fill in "Registration start date" with the date "02/23/2019"
-    And I fill in "Registration start date" with the time "02:23:00AM"
-    And I fill in "Registration end date" with the date "02/23/2019"
-    And I fill in "Registration end date" with the time "02:23:00PM"
+    And I fill in "Start date" of "Registration date" with the date "02/23/2019"
+    And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
+    And I fill in "End date" of "Registration date" with the date "02/23/2019"
+    And I fill in "End date" of "Registration date" with the time "02:23:00PM"
     And I fill in "Entrance fee" with "Free of charge"
     And I fill in "Registration capacity" with "100 seats"
 
     And I fill in "Description summary" with "Description summary text"
     And I fill in "Subject" with "EU financing"
-    And I fill in "Start date" with the date "02/21/2019"
-    And I fill in "Start date" with the time "02:21:00AM"
-    And I fill in "End date" with the date "02/21/2019"
-    And I fill in "End date" with the time "02:21:00PM"
+    And I fill in "Start date" of "Event date" with the date "02/21/2019"
+    And I fill in "Start date" of "Event date" with the time "02:21:00AM"
+    And I fill in "End date" of "Event date" with the date "02/21/2019"
+    And I fill in "End date" of "Event date" with the time "02:21:00PM"
 
     # Venue reference by inline entity form.
     And I fill in "Name" with "Name of the venue"
@@ -189,10 +182,10 @@ Feature: Event content creation
     # Online field group.
     When I press "Online"
     Then I select "Facebook" from "Online type"
-    And I fill in "Online time start" with the date "02/22/2019"
-    And I fill in "Online time start" with the time "02:22:00AM"
-    And I fill in "Online time end" with the date "02/22/2019"
-    And I fill in "Online time end" with the time "02:22:00PM"
+    And I fill in "Start date" of "Online time" with the date "02/22/2019"
+    And I fill in "Start date" of "Online time" with the time "02:22:00AM"
+    And I fill in "End date" of "Online time" with the date "02/22/2019"
+    And I fill in "End date" of "Online time" with the time "02:22:00PM"
     And I fill in "Online description" with "Online description text"
     And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
     And I fill in "Link text" with "Online link" in the "Online link" region
@@ -236,7 +229,6 @@ Feature: Event content creation
     When I press "Add new contact"
     And I wait for AJAX to finish
     Then I fill in "Name" with "Name of the event contact" in the "Event contact" region
-    And I select the radio button "General contact"
     And I select "Hungary" from "Country" in the "Event contact" region
     And I wait for AJAX to finish
     And I fill in "Street address" with "Back street 3" in the "Event contact" region
@@ -288,7 +280,6 @@ Feature: Event content creation
     And I should see the text "http://eventpartner.com"
     # Event contact values.
     And I should see the text "Name of the event contact"
-    And I should see the text "General contact"
     And I should see the text "Back street 3"
     And I should see the text "Budapest"
     And I should see the text "9000"
@@ -296,13 +287,13 @@ Feature: Event content creation
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
 
-  @javascript @cleanup:media @av_portal
+  @javascript @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     # Create a "Media AV portal photo".
-    And I visit "the AV Portal photo creation page"
-    And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
-    And I press "Save"
+    And the following AV Portal photos:
+      | url                                                         |
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
 
     # Create a "Event" content.
     When I visit "the Event creation page"
@@ -344,13 +335,13 @@ Feature: Event content creation
     And I press "Save"
     Then I should see the following error messages:
       | error messages                       |
-      | Online time start field is required. |
+      | Online time field is required. |
       | Online link field is required.       |
     # Make sure that errors related to the Online fields are fixed.
-    When I fill in "Online time start" with the date "02/22/2019"
-    And I fill in "Online time start" with the time "02:22:00AM"
-    And I fill in "Online time end" with the date "02/22/2019"
-    And I fill in "Online time end" with the time "02:22:00PM"
+    When I fill in "Start date" of "Online time" with the date "02/22/2019"
+    And I fill in "Start date" of "Online time" with the time "02:22:00AM"
+    And I fill in "End date" of "Online time" with the date "02/22/2019"
+    And I fill in "End date" of "Online time" with the time "02:22:00PM"
     And I fill in "Online description" with "Online description text"
     And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
     And I fill in "Link text" with "Online link" in the "Online link" region
@@ -385,14 +376,13 @@ Feature: Event content creation
     Then I should see the following error messages:
       | error messages                             |
       | Registration status field is required.     |
-      | Registration start date field is required. |
-      | Registration end date field is required.   |
+      | Registration date field is required.       |
     # Make sure that errors related to the Registration fields are fixed.
     When I select "Open" from "Registration status"
-    And I fill in "Registration start date" with the date "02/23/2019"
-    And I fill in "Registration start date" with the time "02:23:00AM"
-    And I fill in "Registration end date" with the date "02/23/2019"
-    And I fill in "Registration end date" with the time "02:23:00PM"
+    And I fill in "Start date" of "Registration date" with the date "02/23/2019"
+    And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
+    And I fill in "End date" of "Registration date" with the date "02/23/2019"
+    And I fill in "End date" of "Registration date" with the time "02:23:00PM"
     And I press "Save"
     Then I should see the following success messages:
       | success messages                      |

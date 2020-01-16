@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_description_summary
-    - field.field.node.oe_event.oe_event_end_date
     - field.field.node.oe_event.oe_event_entrance_fee
     - field.field.node.oe_event.oe_event_featured_media
     - field.field.node.oe_event.oe_event_featured_media_legend
@@ -15,21 +14,19 @@ dependencies:
     - field.field.node.oe_event.oe_event_languages
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
-    - field.field.node.oe_event.oe_event_online_time_end
-    - field.field.node.oe_event.oe_event_online_time_start
+    - field.field.node.oe_event.oe_event_online_dates
     - field.field.node.oe_event.oe_event_online_type
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_name
     - field.field.node.oe_event.oe_event_partner
     - field.field.node.oe_event.oe_event_registration_capacity
-    - field.field.node.oe_event.oe_event_registration_end_date
-    - field.field.node.oe_event.oe_event_registration_start_date
+    - field.field.node.oe_event.oe_event_registration_dates
     - field.field.node.oe_event.oe_event_registration_status
     - field.field.node.oe_event.oe_event_registration_url
     - field.field.node.oe_event.oe_event_report_summary
     - field.field.node.oe_event.oe_event_report_text
-    - field.field.node.oe_event.oe_event_social_media_links
-    - field.field.node.oe_event.oe_event_start_date
+    - field.field.node.oe_event.oe_social_media_links
+    - field.field.node.oe_event.oe_event_dates
     - field.field.node.oe_event.oe_event_status
     - field.field.node.oe_event.oe_event_type
     - field.field.node.oe_event.oe_event_venue
@@ -52,8 +49,7 @@ third_party_settings:
     group_online:
       children:
         - oe_event_online_type
-        - oe_event_online_time_start
-        - oe_event_online_time_end
+        - oe_event_online_dates
         - oe_event_online_description
         - oe_event_online_link
       parent_name: ''
@@ -119,8 +115,7 @@ third_party_settings:
       children:
         - oe_event_registration_url
         - oe_event_registration_status
-        - oe_event_registration_start_date
-        - oe_event_registration_end_date
+        - oe_event_registration_dates
         - oe_event_entrance_fee
         - oe_event_registration_capacity
       parent_name: ''
@@ -251,12 +246,6 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  oe_event_end_date:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   oe_event_entrance_fee:
     weight: 30
     settings:
@@ -319,13 +308,7 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  oe_event_online_time_end:
-    weight: 25
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  oe_event_online_time_start:
+  oe_event_online_dates:
     weight: 24
     settings: {  }
     third_party_settings: {  }
@@ -379,13 +362,7 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  oe_event_registration_end_date:
-    weight: 29
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  oe_event_registration_start_date:
+  oe_event_registration_dates:
     weight: 28
     settings: {  }
     third_party_settings: {  }
@@ -421,7 +398,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  oe_event_social_media_links:
+  oe_social_media_links:
     type: typed_link
     weight: 13
     region: content
@@ -429,7 +406,7 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-  oe_event_start_date:
+  oe_event_dates:
     weight: 6
     settings: {  }
     third_party_settings: {  }

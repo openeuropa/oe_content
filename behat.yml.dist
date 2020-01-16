@@ -8,6 +8,8 @@ default:
         - Drupal\DrupalExtension\Context\MessageContext
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
+        - Drupal\Tests\oe_content\Behat\DateFieldContext
+        - Drupal\Tests\oe_content\Behat\MediaCreationContext
         - Drupal\Tests\oe_content\Behat\CleanupContext
         - Drupal\Tests\oe_content\Behat\WysiwygContext
         - Drupal\Tests\oe_media\Behat\AvPortalContext
@@ -45,7 +47,7 @@ default:
         summary form element: ".field--name-oe-summary"
         Online link: "#edit-oe-event-online-link-0"
         Website: "#edit-oe-event-website-0"
-        Social media links: "#oe-event-social-media-links-values"
+        Social media links: "#oe-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
         Event report: "#edit-group-report"
         Event partner: "#edit-oe-event-partner-wrapper"

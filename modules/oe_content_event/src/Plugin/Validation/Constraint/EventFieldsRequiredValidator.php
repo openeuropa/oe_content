@@ -27,8 +27,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
 
     $online_required_fields = [
       'oe_event_online_type',
-      'oe_event_online_time_start',
-      'oe_event_online_time_end',
+      'oe_event_online_dates',
       'oe_event_online_link',
     ];
     // Check if any of these "Online" field group fields are filled in,
@@ -48,8 +47,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     $registration_fields_required = [
       'oe_event_registration_url',
       'oe_event_registration_status',
-      'oe_event_registration_start_date',
-      'oe_event_registration_end_date',
+      'oe_event_registration_dates',
     ];
     // Check if any of these "Registration" field group fields are filled in,
     // then they are all required.
@@ -96,17 +94,8 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
    */
   protected function validateOrganiserGroupFields(Constraint $constraint, NodeInterface $node) {
     $violation = NULL;
-    $fields_state = ($node->get('oe_event_organiser_internal')->isEmpty() + $node->get('oe_event_organiser_name')->isEmpty());
-    // Both fields are empty.
-    if ($fields_state === 2) {
+    if ($node->get('oe_event_organiser_internal')->isEmpty() && $node->get('oe_event_organiser_name')->isEmpty()) {
       $violation = $this->context->buildViolation('You have to fill in at least one of the following fields: @internal or @organiser_name', [
-        '@internal' => $node->getFieldDefinition('oe_event_organiser_internal')->getLabel(),
-        '@organiser_name' => $node->getFieldDefinition('oe_event_organiser_name')->getLabel(),
-      ]);
-    }
-    // Both fields are filled in.
-    elseif ($fields_state === 0) {
-      $violation = $this->context->buildViolation('You have to fill in only one of the following fields @internal or @organiser_name, not both', [
         '@internal' => $node->getFieldDefinition('oe_event_organiser_internal')->getLabel(),
         '@organiser_name' => $node->getFieldDefinition('oe_event_organiser_name')->getLabel(),
       ]);

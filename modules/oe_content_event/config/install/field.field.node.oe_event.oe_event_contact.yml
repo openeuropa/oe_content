@@ -4,7 +4,8 @@ dependencies:
   config:
     - field.storage.node.oe_event_contact
     - node.type.oe_event
-    - oe_content_event.event_profile_type.oe_event_contact
+    - oe_content_entity_contact.oe_contact_type.oe_general
+    - oe_content_entity_contact.oe_contact_type.oe_press
   module:
     - entity_reference_revisions
 id: node.oe_event.oe_event_contact
@@ -18,12 +19,13 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:event_profile'
+  handler: 'default:oe_contact'
   handler_settings:
     target_bundles:
-      oe_event_contact: oe_event_contact
+      oe_general: oe_general
+      oe_press: oe_press
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: general
 field_type: entity_reference_revisions

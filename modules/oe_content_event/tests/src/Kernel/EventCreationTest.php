@@ -1,0 +1,105 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace Drupal\Tests\oe_content_event\Kernel;
+
+use Drupal\node\Entity\Node;
+use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
+
+/**
+ * Tests event content type creation.
+ */
+class EventCreationTest extends RdfKernelTestBase {
+
+  /**
+   * Modules to enable.
+   *
+   * @var array
+   */
+  public static $modules = [
+    'field',
+    'field_group',
+    'datetime_range',
+    'entity_reference_revisions',
+    'link',
+    'image',
+    'inline_entity_form',
+    'node',
+    'maxlength',
+    'media',
+    'oe_media',
+    'oe_content',
+    'oe_content_entity',
+    'oe_content_entity_contact',
+    'oe_content_entity_organisation',
+    'oe_content_entity_venue',
+    'oe_content_event',
+    'options',
+    'rdf_skos',
+    'system',
+    'text',
+    'typed_link',
+    'user',
+  ];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->installSchema('user', 'users_data');
+    $this->installSchema('node', 'node_access');
+    $this->installEntitySchema('user');
+    $this->installEntitySchema('node');
+    $this->installEntitySchema('media');
+    $this->installEntitySchema('oe_contact');
+    $this->installEntitySchema('oe_organisation');
+    $this->installEntitySchema('oe_venue');
+    $this->installConfig(['field', 'node', 'oe_content', 'oe_content_event']);
+    module_load_include('install', 'oe_content');
+    oe_content_install();
+  }
+
+  /**
+   * Test the Organisation fields.
+   */
+  public function testOrganisationFields(): void {
+    $values = [
+      'type' => 'oe_event',
+      'title' => 'My node title',
+      'oe_event_organiser_name' => 'Organisation',
+      'oe_event_organiser_internal' => 'http://publications.europa.eu/resource/authority/corporate-body/DIGIT',
+    ];
+
+    // An un-checked checkbox inherits its default value, "TRUE" in this case.
+    $node = Node::create($values);
+    $node->save();
+
+    // Assert that only the internal organiser value has been kept.
+    $this->assertTrue($node->get('oe_event_organiser_name')->isEmpty());
+    $this->assertEquals('Directorate-General for Informatics', $node->get('oe_event_organiser_internal')->entity->label());
+
+    // Test internal organiser to be checked.
+    $node = Node::create([
+      'oe_event_organiser_is_internal' => 1,
+    ] + $values);
+    $node->save();
+
+    // Assert that only the internal organiser value has been kept.
+    $this->assertTrue($node->get('oe_event_organiser_name')->isEmpty());
+    $this->assertEquals('Directorate-General for Informatics', $node->get('oe_event_organiser_internal')->entity->label());
+
+    // Test internal organiser to be un-checked.
+    $node = Node::create([
+      'oe_event_organiser_is_internal' => 0,
+    ] + $values);
+    $node->save();
+
+    // Assert that only the external organiser value has been kept.
+    $this->assertTrue($node->get('oe_event_organiser_internal')->isEmpty());
+    $this->assertEquals('Organisation', $node->get('oe_event_organiser_name')->value);
+  }
+
+}

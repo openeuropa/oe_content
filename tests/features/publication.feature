@@ -4,15 +4,12 @@ Feature: Publication content creation
   As an editor
   I need to be able to create and see publication items
 
-  @cleanup:media @cleanup:file
   Scenario: Creation of a Publication content through the UI.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities, create document media" permission
+    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
     # Create a "Document".
-    When I go to "the document creation page"
-    Then I should see the heading "Add Document"
-    When I fill in "Name" with "My Document 1"
-    And I attach the file "sample.pdf" to "File"
-    And I press "Save"
+    And the following documents:
+    | name          | file       |
+    | My Document 1 | sample.pdf |
     # Create a "Publication" content.
     And I visit "the Publication creation page"
     And I fill in "Title" with "My Publication item"
