@@ -303,27 +303,24 @@ class FeatureContext extends RawDrupalContext {
    *
    * // phpcs:disable
    * @Given the following documents:
-   * | file 1 |
-   * | file 2 |
-   * |  ...  |
+   * | name 1 | file 1 |
+   * | name 2 | file 1 |
+   * |   ...  |   ...  |
    * // phpcs:enable
    */
   public function createMediaDocuments(TableNode $file_table): void {
-    // Retrieve the url table from the test scenario and flatten it.
-    $file_names = $file_table->getRows();
-    array_walk($file_names, function (&$value) {
-      $value = reset($value);
-    });
+    // Retrieve the url table from the test scenario.
+    $files = $file_table->getRows();
 
-    foreach ($file_names as $file_name) {
-      $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_content') . '/tests/fixtures/' . $file_name), 'public://' . $file_name);
+    foreach ($files as $file_properties) {
+      $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_content') . '/tests/fixtures/' . $file_properties[1]), 'public://' . $file_properties[1]);
       $file->setPermanent();
       $file->save();
 
       $media = \Drupal::service('entity_type.manager')
         ->getStorage('media')->create([
           'bundle' => 'document',
-          'name' => $file_name,
+          'name' => $file_properties[0],
           'oe_media_file' => [
             'target_id' => (int) $file->id(),
           ],
