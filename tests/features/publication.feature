@@ -8,6 +8,7 @@ Feature: Publication content creation
     Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
     # Create a "Document".
     And the following documents:
+    | name          | file       |
     | My Document 1 | sample.pdf |
     # Create a "Publication" content.
     And I visit "the Publication creation page"
