@@ -34,17 +34,17 @@ class MediaCreationContext extends RawDrupalContext {
    *
    * // phpcs:disable
    * @Given the following documents:
+   * | name   | file   |
    * | name 1 | file 1 |
-   * | name 2 | file 1 |
    * |   ...  |   ...  |
    * // phpcs:enable
    */
   public function createMediaDocuments(TableNode $file_table): void {
     // Retrieve the url table from the test scenario.
-    $files = $file_table->getRows();
+    $files = $file_table->getColumnsHash();
 
     foreach ($files as $file_properties) {
-      $file = file_save_data(file_get_contents($this->getMinkParameter('files_path') . $file_properties[1]), 'public://' . $file_properties[1]);
+      $file = file_save_data(file_get_contents($this->getMinkParameter('files_path') . $file_properties['file']), 'public://' . $file_properties['file']);
       $file->setPermanent();
       $file->save();
 
@@ -54,7 +54,7 @@ class MediaCreationContext extends RawDrupalContext {
       $media = \Drupal::service('entity_type.manager')
         ->getStorage('media')->create([
           'bundle' => 'document',
-          'name' => $file_properties[0],
+          'name' => $file_properties['name'],
           'oe_media_file' => [
             'target_id' => (int) $file->id(),
           ],
@@ -74,21 +74,20 @@ class MediaCreationContext extends RawDrupalContext {
    *
    * // phpcs:disable
    * @Given the following AV Portal photos:
+   * | url   |
    * | url 1 |
-   * | url 2 |
    * |  ...  |
    * // phpcs:enable
    */
   public function createMediaAvPortalPhotos(TableNode $url_table): void {
-    // Retrieve the url table from the test scenario and flatten it.
-    $urls = $url_table->getRows();
-    array_walk($urls, function (&$value) {
-      $value = reset($value);
-    });
+    // Retrieve the url table from the test scenario.
+    $urls = $url_table->getColumnsHash();
 
     $pattern = '@audiovisual\.ec\.europa\.eu/(.*)/photo/(P\-.*\~2F.*)@i';
 
     foreach ($urls as $url) {
+      $url = reset($url);
+
       preg_match_all($pattern, $url, $matches);
       if (empty($matches)) {
         continue;

@@ -143,6 +143,7 @@ Feature: Event content creation
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
     # Create a "Media AV portal photo".
     And the following AV Portal photos:
+      | url                                                         |
       | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
       | https://audiovisual.ec.europa.eu/en/photo/P-039321~2F00-04  |
     # Create a "Event" content.
@@ -291,6 +292,7 @@ Feature: Event content creation
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     # Create a "Media AV portal photo".
     And the following AV Portal photos:
+      | url                                                         |
       | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
 
     # Create a "Event" content.
