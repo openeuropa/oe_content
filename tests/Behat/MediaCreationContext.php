@@ -58,7 +58,7 @@ class MediaCreationContext extends RawDrupalContext {
           'oe_media_file' => [
             'target_id' => (int) $file->id(),
           ],
-          'uid' => 0,
+          'uid' => $this->userManager->getCurrentUser()->uid,
           'status' => 1,
         ]);
 
@@ -101,7 +101,7 @@ class MediaCreationContext extends RawDrupalContext {
         ->getStorage('media')->create([
           'bundle' => 'av_portal_photo',
           'oe_media_avportal_photo' => $photo_id,
-          'uid' => 0,
+          'uid' => $this->userManager->getCurrentUser()->uid,
           'status' => 1,
         ]);
 
