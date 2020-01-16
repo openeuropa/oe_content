@@ -44,7 +44,7 @@ class MediaCreationContext extends RawDrupalContext {
     $files = $file_table->getRows();
 
     foreach ($files as $file_properties) {
-      $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_content') . '/tests/fixtures/' . $file_properties[1]), 'public://' . $file_properties[1]);
+      $file = file_save_data(file_get_contents($this->getMinkParameter('files_path') . $file_properties[1]), 'public://' . $file_properties[1]);
       $file->setPermanent();
       $file->save();
 
