@@ -138,7 +138,7 @@ Feature: Event content creation
       | Open     |
       | Closed   |
 
-  @cleanup:media @javascript @av_portal
+  @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
     # Create a "Media AV portal photo".
@@ -286,7 +286,7 @@ Feature: Event content creation
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
 
-  @javascript @cleanup:media @av_portal
+  @javascript @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     # Create a "Media AV portal photo".
