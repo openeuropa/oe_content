@@ -28,7 +28,6 @@ function oe_content_publication_post_update_00001_update_field_labels(array &$sa
  */
 function oe_content_publication_post_update_00002(array &$sandbox): void {
   $fields_description = [
-    'node.oe_publication.title' => 'The ideal length is 50 to 60 characters including spaces. If it must be longer, make sure you fill in a shorter version in the Alternative title field.',
     'node.oe_publication.oe_subject' => 'The topics mentioned on this page. These will be used by search engines and dynamic lists to determine their relevance to a user.',
     'node.oe_publication.oe_summary' => 'A short text that will be displayed in the blue header, below the page title. This should be a brief summary of the content on the page that tells the user what information they will find on this page.',
     'node.oe_publication.oe_teaser' => 'A short overview of the information on this page. The teaser will be displayed in list views and search engine results, not on the page itself. Limited to 150 characters for SEO purposes.',
@@ -36,9 +35,6 @@ function oe_content_publication_post_update_00002(array &$sandbox): void {
 
   foreach ($fields_description as $id => $description) {
     $field_config = FieldConfig::load($id);
-    if ($id == 'node.oe_publication.title') {
-      $field_config->setLabel('Page title');
-    }
     $field_config->setDescription($description);
     $field_config->save();
   }

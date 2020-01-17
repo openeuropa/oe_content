@@ -59,7 +59,6 @@ function oe_content_policy_post_update_00002_field_labels(array &$sandbox): void
  */
 function oe_content_policy_post_update_00003(array &$sandbox): void {
   $fields_description = [
-    'node.oe_policy.title' => 'The ideal length is 50 to 60 characters including spaces. If it must be longer, make sure you fill in a shorter version in the Alternative title field',
     'node.oe_policy.oe_subject' => 'The topics mentioned on this page. These will be used by search engines and dynamic lists to determine their relevance to a user.',
     'node.oe_policy.oe_summary' => 'A short text that will be displayed in the blue header, below the page title. This should be a brief summary of the content on the page that tells the user what information they will find on this page.',
     'node.oe_policy.oe_teaser' => 'A short overview of the information on this page. The teaser will be displayed in list views and search engine results, not on the page itself. Limited to 150 characters for SEO purposes.',
@@ -67,9 +66,6 @@ function oe_content_policy_post_update_00003(array &$sandbox): void {
 
   foreach ($fields_description as $id => $description) {
     $field_config = FieldConfig::load($id);
-    if ($id == 'node.oe_policy.title') {
-      $field_config->setLabel('Page title');
-    }
     $field_config->setDescription($description);
     $field_config->save();
   }
