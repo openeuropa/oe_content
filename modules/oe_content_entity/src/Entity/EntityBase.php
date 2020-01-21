@@ -73,7 +73,8 @@ abstract class EntityBase extends EditorialContentEntityBase implements EntityBa
         'type' => 'string_textfield',
         'weight' => -5,
       ])
-      ->setDisplayConfigurable('form', TRUE);
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['status']
       ->setDisplayOptions('form', [
@@ -83,7 +84,8 @@ abstract class EntityBase extends EditorialContentEntityBase implements EntityBa
         ],
         'weight' => 120,
       ])
-      ->setDisplayConfigurable('form', TRUE);
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
@@ -98,7 +100,8 @@ abstract class EntityBase extends EditorialContentEntityBase implements EntityBa
         'type' => 'datetime_timestamp',
         'weight' => 10,
       ])
-      ->setDisplayConfigurable('form', TRUE);
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
