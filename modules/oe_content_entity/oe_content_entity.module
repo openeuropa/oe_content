@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * The module file.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Render\Element;
+
+/**
+ * Default preprocess function to be ran for all corporate entities.
+ *
+ * This preprocess sets default values to be passed to the main entity
+ * render template. Add this to 'preprocess functions' in
+ * oe_content_entity_NAME_theme() when defining a new corporate content
+ * entity type.
+ *
+ * For an example of its usage check:
+ *
+ * @see oe_content_entity_contact_theme()
+ * @see oe_content_entity_organisation_theme()
+ * @see oe_content_entity_venue_theme()
+ *
+ * @param array $variables
+ *   Render variables.
+ * @param $hook
+ *   Hook name, in this case the entity type ID itself.
+ */
+function oe_content_entity_default_preprocess(array &$variables, $hook) {
+  $variables['entity'] = $variables['elements']["#{$hook}"];
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  $variables['label'] = $variables['entity']->label();
+
+  // Helpful $content variable for templates.
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
