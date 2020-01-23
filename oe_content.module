@@ -28,7 +28,7 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setRequired(FALSE)
     ->setTranslatable(TRUE)
     ->setRevisionable(TRUE)
-    ->setSetting('max_length', 170)
+    ->setSetting('max_length', 255)
     ->setDisplayOptions('form', [
       'type' => 'string_textfield',
       'weight' => 0,
