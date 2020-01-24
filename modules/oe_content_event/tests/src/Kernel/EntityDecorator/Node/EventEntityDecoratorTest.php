@@ -24,6 +24,37 @@ class EventEntityDecoratorTest extends EventKernelTestBase {
   }
 
   /**
+   * Test event ending.
+   */
+  public function testEventIsOver(): void {
+    $decorator = $this->createDecorator([
+      'oe_event_dates' => [
+        'value' => '2016-05-10T12:00:00',
+        'end_value' => '2016-05-15T12:00:00',
+      ],
+    ]);
+
+    // Event is not over.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-09 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(FALSE, $decorator->isOver($now));
+
+    // Event is over.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-30 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(TRUE, $decorator->isOver($now));
+
+    // Event is not over but it's cancelled, so it's considered to be over.
+    $decorator = $this->createDecorator([
+      'oe_event_status' => 'cancelled',
+      'oe_event_dates' => [
+        'value' => '2016-05-10T12:00:00',
+        'end_value' => '2016-05-15T12:00:00',
+      ],
+    ]);
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-12 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(TRUE, $decorator->isOver($now));
+  }
+
+  /**
    * Test registration period methods.
    */
   public function testRegistrationPeriodMethods(): void {
