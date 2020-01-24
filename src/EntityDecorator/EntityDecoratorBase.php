@@ -8,6 +8,9 @@ use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
  * Base class for content entity decorators.
+ *
+ * To simplify magic method accessibility checks (see below) extending classes
+ * must be set as 'final'.
  */
 abstract class EntityDecoratorBase {
 
@@ -48,6 +51,24 @@ abstract class EntityDecoratorBase {
   abstract protected function getDecoratedEntityBundle(): string;
 
   /**
+   * Passes through all unknown properties onto the decorated object.
+   *
+   * @param string $property
+   *   The property to call on the decorated object.
+   *
+   * @return mixed
+   *   The property value.
+   */
+  public function __get($property) {
+    $reflection = new \ReflectionProperty($this->entity, $property);
+    if (!$reflection->isPublic()) {
+      $class_name = get_class($this->entity);
+      throw new \BadMethodCallException("Property {$class_name}->{$property} is not public. You can only access public properties on decorated objects.");
+    }
+    return $this->entity->{$property};
+  }
+
+  /**
    * Passes through all unknown calls onto the decorated object.
    *
    * @param string $method
@@ -59,6 +80,11 @@ abstract class EntityDecoratorBase {
    *   The method result.
    */
   public function __call($method, array $args) {
+    $reflection = new \ReflectionMethod($this->entity, $method);
+    if (!$reflection->isPublic()) {
+      $class_name = get_class($this->entity);
+      throw new \BadMethodCallException("Method {$class_name}::{$method} is not public. You can only access public methods on decorated objects.");
+    }
     return call_user_func_array([$this->entity, $method], $args);
   }
 

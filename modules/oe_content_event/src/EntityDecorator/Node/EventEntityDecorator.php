@@ -10,7 +10,7 @@ use Drupal\oe_content\EntityDecorator\EntityDecoratorBase;
 /**
  * Decorate the event entity object by adding business specific methods.
  */
-class EventEntityDecorator extends EntityDecoratorBase {
+final class EventEntityDecorator extends EntityDecoratorBase {
 
   /**
    * Check whereas the event status is 'as_planned'.
