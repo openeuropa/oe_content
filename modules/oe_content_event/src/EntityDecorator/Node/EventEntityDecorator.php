@@ -5,32 +5,12 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_event\EntityDecorator\Node;
 
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\node\NodeInterface;
+use Drupal\oe_content\EntityDecorator\EntityDecoratorBase;
 
 /**
  * Decorate the event entity object by adding business specific methods.
  */
-class EventEntityDecorator {
-
-  /**
-   * Original entity object.
-   *
-   * @var \Drupal\node\NodeInterface
-   */
-  protected $entity;
-
-  /**
-   * EventEntityDecorator constructor.
-   *
-   * @param \Drupal\node\NodeInterface $entity
-   *   Original entity object.
-   */
-  public function __construct(NodeInterface $entity) {
-    if ($entity->bundle() !== 'oe_event') {
-      throw new \InvalidArgumentException("The current decorator only accepts nodes of type 'oe_event'.");
-    }
-    $this->entity = $entity;
-  }
+class EventEntityDecorator extends EntityDecoratorBase {
 
   /**
    * Check whereas the event status is 'as_planned'.
@@ -179,6 +159,20 @@ class EventEntityDecorator {
    */
   public function isRegistrationPeriodOver(\DateTime $datetime): bool {
     return $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getDecoratedEntityId(): string {
+    return 'node';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getDecoratedEntityBundle(): string {
+    return 'oe_event';
   }
 
 }
