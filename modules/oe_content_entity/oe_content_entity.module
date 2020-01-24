@@ -17,12 +17,6 @@ use Drupal\Core\Render\Element;
  * oe_content_entity_NAME_theme() when defining a new corporate content
  * entity type.
  *
- * For an example of its usage check:
- *
- * @see oe_content_entity_contact_theme()
- * @see oe_content_entity_organisation_theme()
- * @see oe_content_entity_venue_theme()
- *
  * @param array $variables
  *   Render variables.
  * @param $hook
