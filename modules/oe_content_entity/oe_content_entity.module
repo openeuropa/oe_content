@@ -19,7 +19,7 @@ use Drupal\Core\Render\Element;
  *
  * @param array $variables
  *   Render variables.
- * @param $hook
+ * @param string $hook
  *   Hook name, in this case the entity type ID itself.
  */
 function oe_content_entity_default_preprocess(array &$variables, $hook) {
