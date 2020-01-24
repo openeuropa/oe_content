@@ -15,7 +15,7 @@ Feature: Publication content creation
     And I press "Save"
     # Create a "Publication" content.
     And I visit "the Publication creation page"
-    And I fill in "Title" with "My Publication item"
+    And I fill in "Page title" with "My Publication item"
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
@@ -24,9 +24,9 @@ Feature: Publication content creation
     And I fill in "Type" with "Acknowledgement receipt"
     And I fill in "Responsible department" with "European Patent Office"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I fill in "Legacy link" with "http://example.com"
+    And I fill in "Redirect link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
-    And I fill in "Short title" with "Shorter title"
+    And I fill in "Alternative title" with "Shorter title"
     When I press "Save"
     Then I should see "My Publication item"
     And I should see "sample.pdf"
@@ -44,7 +44,7 @@ Feature: Publication content creation
     When I visit "the Publication creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
-    When I fill in "Title" with "My Publication"
+    When I fill in "Page title" with "My Publication"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
@@ -53,3 +53,4 @@ Feature: Publication content creation
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."
+

@@ -7,11 +7,11 @@ Feature: Page content creation
   Scenario: Creation of a Page content through the UI.
     Given I am logged in as a user with the "create oe_page content, access content, edit own oe_page content, view published skos concept entities" permission
     And I visit "the Page creation page"
-    And I fill in "Title" with "My page"
+    And I fill in "Page title" with "My page"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I fill in "Legacy link" with "http://example.com"
+    And I fill in "Redirect link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
-    And I fill in "Short title" with "Shorter title"
+    And I fill in "Alternative title" with "Shorter title"
     And I fill in "Introduction" with "Summary text"
     And I fill in "Body text" with "Body text"
     And I fill in "URL" with "http://example.com"
@@ -34,7 +34,7 @@ Feature: Page content creation
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
-    When I fill in "Title" with "My page"
+    When I fill in "Page title" with "My page"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
