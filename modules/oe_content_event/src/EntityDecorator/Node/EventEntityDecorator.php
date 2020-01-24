@@ -86,10 +86,10 @@ class EventEntityDecorator {
    * Check whereas the event registration is open.
    *
    * @return bool
-   *   Whereas the event registration is open.
+   *   TRUE if registration is open and event is not cancelled nor postponed.
    */
   public function isRegistrationOpen(): bool {
-    return $this->entity->get('oe_event_registration_status')->value === 'open';
+    return $this->entity->get('oe_event_registration_status')->value === 'open' && !$this->isCancelled() && !$this->isPostponed();
   }
 
   /**
@@ -99,7 +99,7 @@ class EventEntityDecorator {
    *   Whereas the event registration is closed.
    */
   public function isRegistrationClosed(): bool {
-    return $this->entity->get('oe_event_registration_status')->value === 'closed';
+    return !$this->isRegistrationOpen();
   }
 
   /**
@@ -140,6 +140,45 @@ class EventEntityDecorator {
    */
   public function getRegistrationEndDate(): ?DrupalDateTime {
     return !$this->entity->get('oe_event_registration_dates')->isEmpty() ? $this->entity->get('oe_event_registration_dates')->end_date : NULL;
+  }
+
+  /**
+   * Check whereas the registration period is yet to come.
+   *
+   * @param \DateTime $datetime
+   *   Datetime object to check the registration period against.
+   *
+   * @return bool
+   *   Whereas the registration period is yet to come.
+   */
+  public function isRegistrationPeriodYetToCome(\DateTime $datetime): bool {
+    return $datetime < $this->getRegistrationStartDate()->getPhpDateTime();
+  }
+
+  /**
+   * Check whereas the registration period is active.
+   *
+   * @param \DateTime $datetime
+   *   Datetime object to check the registration period against.
+   *
+   * @return bool
+   *   Whereas the registration period is active.
+   */
+  public function isRegistrationPeriodActive(\DateTime $datetime): bool {
+    return $datetime >= $this->getRegistrationStartDate()->getPhpDateTime() && $datetime < $this->getRegistrationEndDate()->getPhpDateTime();
+  }
+
+  /**
+   * Check whereas the registration period is over.
+   *
+   * @param \DateTime $datetime
+   *   Datetime object to check the registration period against.
+   *
+   * @return bool
+   *   Whereas the registration period is over.
+   */
+  public function isRegistrationPeriodOver(\DateTime $datetime): bool {
+    return $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
   }
 
 }
