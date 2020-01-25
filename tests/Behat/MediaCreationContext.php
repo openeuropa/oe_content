@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_content\Behat;
 
 use Behat\Gherkin\Node\TableNode;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\file\FileInterface;
 use Drupal\Tests\oe_content\Traits\UtilityTrait;
 
 /**
@@ -32,24 +33,21 @@ class MediaCreationContext extends RawDrupalContext {
   /**
    * Creates media documents with the specified file names.
    *
-   * // phpcs:disable
+   * Usage example:
+   *
+   * Given the following documents:
+   *   | name   | file   |
+   *   | name 1 | file 1 |
+   *   |   ...  |   ...  |
+   *
    * @Given the following documents:
-   * | name   | file   |
-   * | name 1 | file 1 |
-   * |   ...  |   ...  |
-   * // phpcs:enable
    */
   public function createMediaDocuments(TableNode $file_table): void {
     // Retrieve the url table from the test scenario.
     $files = $file_table->getColumnsHash();
 
     foreach ($files as $file_properties) {
-      $file = file_save_data(file_get_contents($this->getMinkParameter('files_path') . $file_properties['file']), 'public://' . $file_properties['file']);
-      $file->setPermanent();
-      $file->save();
-
-      // Store for cleanup.
-      $this->files[] = $file;
+      $file = $this->createFileEntity($file_properties['file']);
 
       $media = \Drupal::service('entity_type.manager')
         ->getStorage('media')->create([
@@ -70,14 +68,55 @@ class MediaCreationContext extends RawDrupalContext {
   }
 
   /**
+   * Creates media documents with the specified file names.
+   *
+   * Usage example:
+   *
+   * Given the following images:
+   *   | name   | file   |
+   *   | name 1 | file 1 |
+   *   |   ...  |   ...  |
+   *
+   * @Given the following images:
+   */
+  public function createMediaImages(TableNode $file_table): void {
+    // Retrieve the url table from the test scenario.
+    $files = $file_table->getColumnsHash();
+
+    foreach ($files as $file_properties) {
+      $file = $this->createFileEntity($file_properties['file']);
+
+      $media = \Drupal::service('entity_type.manager')
+        ->getStorage('media')->create([
+          'bundle' => 'image',
+          'name' => $file_properties['name'],
+          'oe_media_image' => [
+            'target_id' => (int) $file->id(),
+            'alt' => $file_properties['name'],
+            'title' => $file_properties['name'],
+          ],
+          'uid' => $this->userManager->getCurrentUser()->uid,
+          'status' => 1,
+        ]);
+
+      $media->save();
+
+      // Store for cleanup.
+      $this->medias[] = $media;
+    }
+  }
+
+  /**
    * Creates media AVPortal photos with the specified URLs.
    *
-   * // phpcs:disable
+   * Usage example:
+   *
+   * Given the following AV Portal photos:
+   *   | url   |
+   *   | url 1 |
+   *   |  ...  |
+   *
    * @Given the following AV Portal photos:
-   * | url   |
-   * | url 1 |
-   * |  ...  |
-   * // phpcs:enable
    */
   public function createMediaAvPortalPhotos(TableNode $url_table): void {
     // Retrieve the url table from the test scenario.
@@ -133,6 +172,26 @@ class MediaCreationContext extends RawDrupalContext {
     $storage->delete($this->files);
 
     $this->files = [];
+  }
+
+  /**
+   * Create a file entity from given file and return its object.
+   *
+   * @param string $file_name
+   *   File name, relative to Mink 'files_path' location.
+   *
+   * @return \Drupal\file\FileInterface
+   *   File entity object.
+   */
+  protected function createFileEntity(string $file_name): FileInterface {
+    $file = file_save_data(file_get_contents($this->getMinkParameter('files_path') . $file_name), 'public://' . $file_name);
+    $file->setPermanent();
+    $file->save();
+
+    // Store for cleanup.
+    $this->files[] = $file;
+
+    return $file;
   }
 
 }
