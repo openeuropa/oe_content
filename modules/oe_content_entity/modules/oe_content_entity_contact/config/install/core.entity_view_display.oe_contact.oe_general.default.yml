@@ -35,5 +35,17 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  oe_social_media:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: typed_link
+    region: content
 hidden:
   langcode: true

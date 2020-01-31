@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_contact.oe_social_media
+    - oe_content_entity_contact.oe_contact_type.oe_press
+  module:
+    - typed_link
+id: oe_contact.oe_press.oe_social_media
+field_name: oe_social_media
+entity_type: oe_contact
+bundle: oe_press
+label: 'Social media links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 2
+field_type: typed_link

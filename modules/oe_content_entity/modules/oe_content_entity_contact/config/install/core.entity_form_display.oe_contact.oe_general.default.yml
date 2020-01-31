@@ -35,6 +35,14 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  oe_social_media:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: typed_link
+    region: content
   langcode:
     type: language_select
     weight: 0
