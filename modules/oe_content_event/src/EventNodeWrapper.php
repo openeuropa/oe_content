@@ -125,52 +125,52 @@ class EventNodeWrapper extends EntityWrapperBase {
   /**
    * Check whereas the registration period is yet to come.
    *
-   * @param \DateTime $datetime
+   * @param \DateTimeInterface $datetime
    *   Datetime object to check the registration period against.
    *
    * @return bool
    *   Whereas the registration period is yet to come.
    */
-  public function isRegistrationPeriodYetToCome(\DateTime $datetime): bool {
+  public function isRegistrationPeriodYetToCome(\DateTimeInterface $datetime): bool {
     return $datetime < $this->getRegistrationStartDate()->getPhpDateTime();
   }
 
   /**
    * Check whereas the event is over, i.e. either expired or cancelled.
    *
-   * @param \DateTime $datetime
+   * @param \DateTimeInterface $datetime
    *   Datetime object to check against.
    *
    * @return bool
    *   Whereas the event is considered to be over.
    */
-  public function isOver(\DateTime $datetime): bool {
+  public function isOver(\DateTimeInterface $datetime): bool {
     return $datetime > $this->getEndDate()->getPhpDateTime() || $this->isCancelled();
   }
 
   /**
    * Check whereas the registration period is active.
    *
-   * @param \DateTime $datetime
+   * @param \DateTimeInterface $datetime
    *   Datetime object to check the registration period against.
    *
    * @return bool
    *   Whereas the registration period is active.
    */
-  public function isRegistrationPeriodActive(\DateTime $datetime): bool {
+  public function isRegistrationPeriodActive(\DateTimeInterface $datetime): bool {
     return $datetime >= $this->getRegistrationStartDate()->getPhpDateTime() && $datetime < $this->getRegistrationEndDate()->getPhpDateTime();
   }
 
   /**
    * Check whereas the registration period is over.
    *
-   * @param \DateTime $datetime
+   * @param \DateTimeInterface $datetime
    *   Datetime object to check the registration period against.
    *
    * @return bool
    *   Whereas the registration period is over.
    */
-  public function isRegistrationPeriodOver(\DateTime $datetime): bool {
+  public function isRegistrationPeriodOver(\DateTimeInterface $datetime): bool {
     return $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
   }
 
