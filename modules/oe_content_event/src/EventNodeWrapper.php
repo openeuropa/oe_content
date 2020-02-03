@@ -2,15 +2,15 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_event\EntityDecorator\Node;
+namespace Drupal\oe_content_event;
 
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\oe_content\EntityDecorator\EntityDecoratorBase;
+use Drupal\oe_content\EntityWrapperBase;
 
 /**
- * Decorate the event entity object by adding business specific methods.
+ * Wrap the event entity object by adding business specific methods.
  */
-final class EventEntityDecorator extends EntityDecoratorBase {
+class EventNodeWrapper extends EntityWrapperBase {
 
   /**
    * Check whereas the event status is 'as_planned'.
@@ -177,14 +177,14 @@ final class EventEntityDecorator extends EntityDecoratorBase {
   /**
    * {@inheritdoc}
    */
-  protected function getDecoratedEntityId(): string {
+  protected function getWrappedEntityId(): string {
     return 'node';
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function getDecoratedEntityBundle(): string {
+  protected function getWrappedEntityBundle(): string {
     return 'oe_event';
   }
 

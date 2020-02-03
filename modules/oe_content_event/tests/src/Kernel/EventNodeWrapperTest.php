@@ -2,24 +2,23 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_event\Kernel\EntityDecorator\Node;
+namespace Drupal\Tests\oe_content_event\Kernel;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\node\Entity\Node;
-use Drupal\oe_content_event\EntityDecorator\Node\EventEntityDecorator;
-use Drupal\Tests\oe_content_event\Kernel\EventKernelTestBase;
+use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
- * Tests event decorator class.
+ * Tests event wrapper class.
  */
-class EventEntityDecoratorTest extends EventKernelTestBase {
+class EventNodeWrapperTest extends EventKernelTestBase {
 
   /**
-   * Test decorator methods.
+   * Test wrapper methods.
    */
-  public function testDecoratorMethods(): void {
-    foreach ($this->decoratorGettersAssertions() as $assertion) {
-      $this->assertDecoratorMethods($assertion['case'], $assertion['values'], $assertion['assertions']);
+  public function testWrapperMethods(): void {
+    foreach ($this->wrapperGettersAssertions() as $assertion) {
+      $this->assertWrapperMethods($assertion['case'], $assertion['values'], $assertion['assertions']);
     }
   }
 
@@ -27,7 +26,7 @@ class EventEntityDecoratorTest extends EventKernelTestBase {
    * Test event ending.
    */
   public function testEventIsOver(): void {
-    $decorator = $this->createDecorator([
+    $wrapper = $this->createWrapper([
       'oe_event_dates' => [
         'value' => '2016-05-10T12:00:00',
         'end_value' => '2016-05-15T12:00:00',
@@ -36,14 +35,14 @@ class EventEntityDecoratorTest extends EventKernelTestBase {
 
     // Event is not over.
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-09 12:00:00', new \DateTimeZone('UTC'));
-    $this->assertEquals(FALSE, $decorator->isOver($now));
+    $this->assertEquals(FALSE, $wrapper->isOver($now));
 
     // Event is over.
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-30 12:00:00', new \DateTimeZone('UTC'));
-    $this->assertEquals(TRUE, $decorator->isOver($now));
+    $this->assertEquals(TRUE, $wrapper->isOver($now));
 
     // Event is not over but it's cancelled, so it's considered to be over.
-    $decorator = $this->createDecorator([
+    $wrapper = $this->createWrapper([
       'oe_event_status' => 'cancelled',
       'oe_event_dates' => [
         'value' => '2016-05-10T12:00:00',
@@ -51,14 +50,14 @@ class EventEntityDecoratorTest extends EventKernelTestBase {
       ],
     ]);
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-12 12:00:00', new \DateTimeZone('UTC'));
-    $this->assertEquals(TRUE, $decorator->isOver($now));
+    $this->assertEquals(TRUE, $wrapper->isOver($now));
   }
 
   /**
    * Test registration period methods.
    */
   public function testRegistrationPeriodMethods(): void {
-    $decorator = $this->createDecorator([
+    $wrapper = $this->createWrapper([
       'oe_event_registration_dates' => [
         'value' => '2016-05-10T12:00:00',
         'end_value' => '2016-05-15T12:00:00',
@@ -67,52 +66,52 @@ class EventEntityDecoratorTest extends EventKernelTestBase {
 
     // Registration yet to come.
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-09 12:00:00', new \DateTimeZone('UTC'));
-    $this->assertEquals(TRUE, $decorator->isRegistrationPeriodYetToCome($now));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodActive($now));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodOver($now));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodOver($now));
 
     // Registration just started.
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-10 12:00:00', new \DateTimeZone('UTC'));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodYetToCome($now));
-    $this->assertEquals(TRUE, $decorator->isRegistrationPeriodActive($now));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodOver($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodOver($now));
 
     // Registration in progress.
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-12 12:00:00', new \DateTimeZone('UTC'));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodYetToCome($now));
-    $this->assertEquals(TRUE, $decorator->isRegistrationPeriodActive($now));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodOver($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodOver($now));
 
     // Registration just ended.
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-15 12:00:00', new \DateTimeZone('UTC'));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodYetToCome($now));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodActive($now));
-    $this->assertEquals(TRUE, $decorator->isRegistrationPeriodOver($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodOver($now));
 
     // Registration is over.
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-20 12:00:00', new \DateTimeZone('UTC'));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodYetToCome($now));
-    $this->assertEquals(FALSE, $decorator->isRegistrationPeriodActive($now));
-    $this->assertEquals(TRUE, $decorator->isRegistrationPeriodOver($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodOver($now));
   }
 
   /**
-   * Assert decorator methods.
+   * Assert wrapper methods.
    *
    * @param string $case
    *   Test case description.
    * @param array $values
-   *   Entity values to initialize the decorator with.
+   *   Entity values to initialize the wrapper with.
    * @param array $assertions
    *   Assertions to be ran over it.
    */
-  protected function assertDecoratorMethods(string $case, array $values, array $assertions): void {
-    // Create decorator.
-    $decorator = $this->createDecorator($values);
+  protected function assertWrapperMethods(string $case, array $values, array $assertions): void {
+    // Create wrapper.
+    $wrapper = $this->createWrapper($values);
 
     // Run assertions.
     foreach ($assertions as $method => $expected) {
-      $actual = $decorator->{$method}();
+      $actual = $wrapper->{$method}();
       if ($actual instanceof DrupalDateTime) {
         $actual = $actual->format(DrupalDateTime::FORMAT);
       }
@@ -121,37 +120,37 @@ class EventEntityDecoratorTest extends EventKernelTestBase {
   }
 
   /**
-   * Create a decorator object given its node entity values.
+   * Create a wrapper object given its node entity values.
    *
    * @param array $values
    *   Entity values.
    *
-   * @return \Drupal\oe_content_event\EntityDecorator\Node\EventEntityDecorator
-   *   Decorator object.
+   * @return \Drupal\oe_content_event\EventNodeWrapper
+   *   Wrapper object.
    */
-  protected function createDecorator(array $values): EventEntityDecorator {
-    // Create decorator.
+  protected function createWrapper(array $values): EventNodeWrapper {
+    // Create wrapper.
     $node = Node::create($values + [
       'type' => 'oe_event',
       'title' => 'My event',
     ]);
     $node->save();
-    return new EventEntityDecorator($node);
+    return new EventNodeWrapper($node);
   }
 
   /**
-   * Assertion for decorator getters.
+   * Assertion for wrapper getters.
    *
    * This would normally be a data provider but it would require a full test
    * bootstrap for each test case, which will add minutes to test runs.
    *
-   * Since we are testing a simple entity decorator we will instead run it in
+   * Since we are testing a simple entity wrapper we will instead run it in
    * the same test.
    *
    * @return array
-   *   List of assertion for decorator test.
+   *   List of assertion for wrapper test.
    */
-  public function decoratorGettersAssertions(): array {
+  public function wrapperGettersAssertions(): array {
     return [
       [
         'case' => 'Test default getters behaviour when no fields are set',
