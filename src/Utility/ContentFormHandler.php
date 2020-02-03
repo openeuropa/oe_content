@@ -2,24 +2,24 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_event\Utilities;
+namespace Drupal\oe_content\Utility;
 
 /**
  * Provides helper methods to manipulate content forms.
  */
-class ContentFormUtilities {
+class ContentFormHandler {
 
   /**
-   * Helper method to apply the toggle states on two form fields.
+   * Toggle visibility of two fields, depending on the state or a third one.
    *
    * @param array $form
-   *   The drupal form array.
+   *   The form array.
    * @param string $checkbox_field
    *   The toggle field name.
    * @param string $field1
-   *   The dependent field name.
+   *   The first dependent field name.
    * @param string $field2
-   *   The dependent field name.
+   *   The second dependent field name.
    */
   public static function toggleFieldsWithCheckbox(array &$form, string $checkbox_field, string $field1, string $field2): void {
     $form[$field1]['#states'] = [
