@@ -14,11 +14,20 @@ use Drupal\oe_content_event\EventNodeWrapper;
 class EventNodeWrapperTest extends EventKernelTestBase {
 
   /**
-   * Test wrapper methods.
+   * Test getter methods.
    */
-  public function testWrapperMethods(): void {
-    foreach ($this->wrapperGettersAssertions() as $assertion) {
-      $this->assertWrapperMethods($assertion['case'], $assertion['values'], $assertion['assertions']);
+  public function testGetters(): void {
+    foreach ($this->getterAssertions() as $assertion) {
+      $this->assertGetters($assertion['case'], $assertion['values'], $assertion['assertions']);
+    }
+  }
+
+  /**
+   * Test registration status.
+   */
+  public function testRegistrationStatus(): void {
+    foreach ($this->registrationStatusAssertions() as $assertion) {
+      $this->assertRegistrationStatus($assertion['case'], $assertion['values'], $assertion['now'], $assertion['assertions']);
     }
   }
 
@@ -39,17 +48,6 @@ class EventNodeWrapperTest extends EventKernelTestBase {
 
     // Event is over.
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-30 12:00:00', new \DateTimeZone('UTC'));
-    $this->assertEquals(TRUE, $wrapper->isOver($now));
-
-    // Event is not over but it's cancelled, so it's considered to be over.
-    $wrapper = $this->createWrapper([
-      'oe_event_status' => 'cancelled',
-      'oe_event_dates' => [
-        'value' => '2016-05-10T12:00:00',
-        'end_value' => '2016-05-15T12:00:00',
-      ],
-    ]);
-    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-12 12:00:00', new \DateTimeZone('UTC'));
     $this->assertEquals(TRUE, $wrapper->isOver($now));
   }
 
@@ -96,7 +94,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
   }
 
   /**
-   * Assert wrapper methods.
+   * Assert getter methods.
    *
    * @param string $case
    *   Test case description.
@@ -105,13 +103,40 @@ class EventNodeWrapperTest extends EventKernelTestBase {
    * @param array $assertions
    *   Assertions to be ran over it.
    */
-  protected function assertWrapperMethods(string $case, array $values, array $assertions): void {
+  protected function assertGetters(string $case, array $values, array $assertions): void {
     // Create wrapper.
     $wrapper = $this->createWrapper($values);
 
     // Run assertions.
     foreach ($assertions as $method => $expected) {
       $actual = $wrapper->{$method}();
+      if ($actual instanceof DrupalDateTime) {
+        $actual = $actual->format(DrupalDateTime::FORMAT);
+      }
+      $this->assertEquals($expected, $actual, "Test case '{$case}' failed: method {$method} did not return what was expected.");
+    }
+  }
+
+  /**
+   * Assert registration status related methods.
+   *
+   * @param string $case
+   *   Test case description.
+   * @param array $values
+   *   Entity values to initialize the wrapper with.
+   * @param string $now
+   *   Current time in \DrupalDateTime::FORMAT.
+   * @param array $assertions
+   *   Assertions to be ran over it.
+   */
+  protected function assertRegistrationStatus(string $case, array $values, string $now, array $assertions): void {
+    // Create wrapper.
+    $wrapper = $this->createWrapper($values);
+
+    // Run assertions.
+    foreach ($assertions as $method => $expected) {
+      $datetime = \DateTime::createFromFormat(DrupalDateTime::FORMAT, $now, new \DateTimeZone('UTC'));
+      $actual = $wrapper->{$method}($datetime);
       if ($actual instanceof DrupalDateTime) {
         $actual = $actual->format(DrupalDateTime::FORMAT);
       }
@@ -150,7 +175,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
    * @return array
    *   List of assertion for wrapper test.
    */
-  public function wrapperGettersAssertions(): array {
+  public function getterAssertions(): array {
     return [
       [
         'case' => 'Test default getters behaviour when no fields are set',
@@ -161,6 +186,23 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'isRescheduled' => FALSE,
           'isPostponed' => FALSE,
           'hasRegistration' => FALSE,
+          'getRegistrationStartDate' => NULL,
+          'getRegistrationEndDate' => NULL,
+        ],
+      ],
+      [
+        'case' => 'Test hasRegistration behaviour',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+        ],
+        'assertions' => [
+          'isAsPlanned' => TRUE,
+          'isCancelled' => FALSE,
+          'isRescheduled' => FALSE,
+          'isPostponed' => FALSE,
+          'hasRegistration' => TRUE,
           'getRegistrationStartDate' => NULL,
           'getRegistrationEndDate' => NULL,
         ],
@@ -202,48 +244,6 @@ class EventNodeWrapperTest extends EventKernelTestBase {
         ],
       ],
       [
-        'case' => 'Test open registration',
-        'values' => [
-          'oe_event_registration_status' => 'open',
-        ],
-        'assertions' => [
-          'isRegistrationOpen' => TRUE,
-          'isRegistrationClosed' => FALSE,
-        ],
-      ],
-      [
-        'case' => 'Test closed registration',
-        'values' => [
-          'oe_event_registration_status' => 'closed',
-        ],
-        'assertions' => [
-          'isRegistrationOpen' => FALSE,
-          'isRegistrationClosed' => TRUE,
-        ],
-      ],
-      [
-        'case' => 'Test open registration with cancelled event',
-        'values' => [
-          'oe_event_registration_status' => 'open',
-          'oe_event_status' => 'cancelled',
-        ],
-        'assertions' => [
-          'isRegistrationOpen' => FALSE,
-          'isRegistrationClosed' => TRUE,
-        ],
-      ],
-      [
-        'case' => 'Test open registration with postponed event',
-        'values' => [
-          'oe_event_registration_status' => 'open',
-          'oe_event_status' => 'postponed',
-        ],
-        'assertions' => [
-          'isRegistrationOpen' => FALSE,
-          'isRegistrationClosed' => TRUE,
-        ],
-      ],
-      [
         'case' => 'Test date getters',
         'values' => [
           'oe_event_dates' => [
@@ -260,6 +260,107 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'getEndDate' => '2016-09-21 12:00:00',
           'getRegistrationStartDate' => '2016-05-10 12:00:00',
           'getRegistrationEndDate' => '2016-05-15 12:00:00',
+        ],
+      ],
+    ];
+  }
+
+  /**
+   * Assertion for registration status.
+   *
+   * This would normally be a data provider but it would require a full test
+   * bootstrap for each test case, which will add minutes to test runs.
+   *
+   * Since we are testing a simple entity wrapper we will instead run it in
+   * the same test.
+   *
+   * @return array
+   *   List of assertion for wrapper test.
+   */
+  protected function registrationStatusAssertions() {
+    return [
+      [
+        'case' => 'Test open registration',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+        ],
+        'now' => '2016-09-20 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => TRUE,
+          'isRegistrationClosed' => FALSE,
+        ],
+      ],
+      [
+        'case' => 'Test closed registration',
+        'values' => [],
+        'now' => '2016-09-20 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => FALSE,
+          'isRegistrationClosed' => TRUE,
+        ],
+      ],
+      [
+        'case' => 'Test open registration with cancelled event',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+          'oe_event_status' => 'cancelled',
+        ],
+        'now' => '2016-09-20 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => FALSE,
+          'isRegistrationClosed' => TRUE,
+        ],
+      ],
+      [
+        'case' => 'Test open registration with postponed event',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+          'oe_event_status' => 'postponed',
+        ],
+        'now' => '2016-09-20 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => FALSE,
+          'isRegistrationClosed' => TRUE,
+        ],
+      ],
+      [
+        'case' => 'Test registration is considered opened when inside the active period',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+          'oe_event_registration_dates' => [
+            'value' => '2016-05-10T12:00:00',
+            'end_value' => '2016-05-15T12:00:00',
+          ],
+        ],
+        'now' => '2016-05-12 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => TRUE,
+          'isRegistrationClosed' => FALSE,
+        ],
+      ],
+      [
+        'case' => 'Test registration is considered closed when outside the active period',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+          'oe_event_registration_dates' => [
+            'value' => '2016-05-10T12:00:00',
+            'end_value' => '2016-05-15T12:00:00',
+          ],
+        ],
+        'now' => '2016-05-01 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => FALSE,
+          'isRegistrationClosed' => TRUE,
         ],
       ],
     ];

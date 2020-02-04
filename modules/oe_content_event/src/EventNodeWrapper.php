@@ -44,21 +44,27 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    * {@inheritdoc}
    */
   public function hasRegistration(): bool {
-    return !$this->entity->get('oe_event_registration_status')->isEmpty();
+    return !$this->entity->get('oe_event_registration_url')->isEmpty();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function isRegistrationOpen(): bool {
-    return $this->entity->get('oe_event_registration_status')->value === 'open' && !$this->isCancelled() && !$this->isPostponed();
+  public function isRegistrationOpen(\DateTimeInterface $datetime): bool {
+    $result = $this->hasRegistration() && !$this->isCancelled() && !$this->isPostponed();
+
+    // If registration dates are set then it also has to be in the right period.
+    if ($this->hasRegistrationDates()) {
+      return $result && $this->isRegistrationPeriodActive($datetime);
+    }
+    return $result;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function isRegistrationClosed(): bool {
-    return !$this->isRegistrationOpen();
+  public function isRegistrationClosed(\DateTimeInterface $datetime): bool {
+    return !$this->isRegistrationOpen($datetime);
   }
 
   /**
@@ -78,15 +84,22 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
   /**
    * {@inheritdoc}
    */
+  public function hasRegistrationDates(): bool {
+    return !$this->entity->get('oe_event_registration_dates')->isEmpty();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getRegistrationStartDate(): ?DrupalDateTime {
-    return !$this->entity->get('oe_event_registration_dates')->isEmpty() ? $this->entity->get('oe_event_registration_dates')->start_date : NULL;
+    return $this->hasRegistrationDates() ? $this->entity->get('oe_event_registration_dates')->start_date : NULL;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getRegistrationEndDate(): ?DrupalDateTime {
-    return !$this->entity->get('oe_event_registration_dates')->isEmpty() ? $this->entity->get('oe_event_registration_dates')->end_date : NULL;
+    return $this->hasRegistrationDates() ? $this->entity->get('oe_event_registration_dates')->end_date : NULL;
   }
 
   /**
@@ -100,7 +113,7 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    * {@inheritdoc}
    */
   public function isOver(\DateTimeInterface $datetime): bool {
-    return $datetime > $this->getEndDate()->getPhpDateTime() || $this->isCancelled();
+    return $datetime > $this->getEndDate()->getPhpDateTime();
   }
 
   /**

@@ -54,18 +54,31 @@ interface EventNodeWrapperInterface {
   /**
    * Check whereas the event registration is open.
    *
+   * We consider the registration open if the event:
+   *
+   * 1. has a registration URL set;
+   * 2. and the event is not postponed;
+   * 3. and the event is not cancelled;
+   * 4. is withing the active registration period, only if dates are set.
+   *
+   * @param \DateTimeInterface $datetime
+   *   Datetime object to check the registration period against.
+   *
    * @return bool
    *   TRUE if registration is open and event is not cancelled nor postponed.
    */
-  public function isRegistrationOpen(): bool;
+  public function isRegistrationOpen(\DateTimeInterface $datetime): bool;
 
   /**
    * Check whereas the event registration is closed.
    *
+   * @param \DateTimeInterface $datetime
+   *   Datetime object to check the registration period against.
+   *
    * @return bool
    *   Whereas the event registration is closed.
    */
-  public function isRegistrationClosed(): bool;
+  public function isRegistrationClosed(\DateTimeInterface $datetime): bool;
 
   /**
    * Get event start date.
@@ -82,6 +95,14 @@ interface EventNodeWrapperInterface {
    *   End date as Drupal datetime object.
    */
   public function getEndDate(): DrupalDateTime;
+
+  /**
+   * Check whereas the event has registration dates.
+   *
+   * @return bool
+   *   Whereas the event has registration dates.
+   */
+  public function hasRegistrationDates(): bool;
 
   /**
    * Get registration start date.
