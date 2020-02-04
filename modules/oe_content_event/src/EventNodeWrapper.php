@@ -8,167 +8,110 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\oe_content\EntityWrapperBase;
 
 /**
- * Wrap the event entity object by adding business specific methods.
+ * Wrap the event entity by adding business specific methods.
  */
-class EventNodeWrapper extends EntityWrapperBase {
+class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInterface {
 
   /**
-   * Check whereas the event status is 'as_planned'.
-   *
-   * @return bool
-   *   Whereas the event status is 'as_planned'.
+   * {@inheritdoc}
    */
   public function isAsPlanned(): bool {
     return $this->entity->get('oe_event_status')->value === 'as_planned';
   }
 
   /**
-   * Check whereas the event status is 'cancelled'.
-   *
-   * @return bool
-   *   Whereas the event status is 'cancelled'.
+   * {@inheritdoc}
    */
   public function isCancelled(): bool {
     return $this->entity->get('oe_event_status')->value === 'cancelled';
   }
 
   /**
-   * Check whereas the event status is 'rescheduled'.
-   *
-   * @return bool
-   *   Whereas the event status is 'rescheduled'.
+   * {@inheritdoc}
    */
   public function isRescheduled(): bool {
     return $this->entity->get('oe_event_status')->value === 'rescheduled';
   }
 
   /**
-   * Check whereas the event status is 'postponed'.
-   *
-   * @return bool
-   *   Whereas the event status is 'postponed'.
+   * {@inheritdoc}
    */
   public function isPostponed(): bool {
     return $this->entity->get('oe_event_status')->value === 'postponed';
   }
 
   /**
-   * Check whereas the event has registration.
-   *
-   * @return bool
-   *   Whereas the event has registration.
+   * {@inheritdoc}
    */
   public function hasRegistration(): bool {
     return !$this->entity->get('oe_event_registration_status')->isEmpty();
   }
 
   /**
-   * Check whereas the event registration is open.
-   *
-   * @return bool
-   *   TRUE if registration is open and event is not cancelled nor postponed.
+   * {@inheritdoc}
    */
   public function isRegistrationOpen(): bool {
     return $this->entity->get('oe_event_registration_status')->value === 'open' && !$this->isCancelled() && !$this->isPostponed();
   }
 
   /**
-   * Check whereas the event registration is closed.
-   *
-   * @return bool
-   *   Whereas the event registration is closed.
+   * {@inheritdoc}
    */
   public function isRegistrationClosed(): bool {
     return !$this->isRegistrationOpen();
   }
 
   /**
-   * Get event start date.
-   *
-   * @return \Drupal\Core\Datetime\DrupalDateTime
-   *   Start date as Drupal datetime object.
+   * {@inheritdoc}
    */
   public function getStartDate(): DrupalDateTime {
     return $this->entity->get('oe_event_dates')->start_date;
   }
 
   /**
-   * Get event end date.
-   *
-   * @return \Drupal\Core\Datetime\DrupalDateTime
-   *   End date as Drupal datetime object.
+   * {@inheritdoc}
    */
   public function getEndDate(): DrupalDateTime {
     return $this->entity->get('oe_event_dates')->end_date;
   }
 
   /**
-   * Get registration start date.
-   *
-   * @return \Drupal\Core\Datetime\DrupalDateTime|null
-   *   Registration start date as Drupal datetime object, NULL if none set.
+   * {@inheritdoc}
    */
   public function getRegistrationStartDate(): ?DrupalDateTime {
     return !$this->entity->get('oe_event_registration_dates')->isEmpty() ? $this->entity->get('oe_event_registration_dates')->start_date : NULL;
   }
 
   /**
-   * Get registration end date.
-   *
-   * @return \Drupal\Core\Datetime\DrupalDateTime|null
-   *   Registration end date as Drupal datetime object, NULL if none set.
+   * {@inheritdoc}
    */
   public function getRegistrationEndDate(): ?DrupalDateTime {
     return !$this->entity->get('oe_event_registration_dates')->isEmpty() ? $this->entity->get('oe_event_registration_dates')->end_date : NULL;
   }
 
   /**
-   * Check whereas the registration period is yet to come.
-   *
-   * @param \DateTimeInterface $datetime
-   *   Datetime object to check the registration period against.
-   *
-   * @return bool
-   *   Whereas the registration period is yet to come.
+   * {@inheritdoc}
    */
   public function isRegistrationPeriodYetToCome(\DateTimeInterface $datetime): bool {
     return $datetime < $this->getRegistrationStartDate()->getPhpDateTime();
   }
 
   /**
-   * Check whereas the event is over, i.e. either expired or cancelled.
-   *
-   * @param \DateTimeInterface $datetime
-   *   Datetime object to check against.
-   *
-   * @return bool
-   *   Whereas the event is considered to be over.
+   * {@inheritdoc}
    */
   public function isOver(\DateTimeInterface $datetime): bool {
     return $datetime > $this->getEndDate()->getPhpDateTime() || $this->isCancelled();
   }
 
   /**
-   * Check whereas the registration period is active.
-   *
-   * @param \DateTimeInterface $datetime
-   *   Datetime object to check the registration period against.
-   *
-   * @return bool
-   *   Whereas the registration period is active.
+   * {@inheritdoc}
    */
   public function isRegistrationPeriodActive(\DateTimeInterface $datetime): bool {
     return $datetime >= $this->getRegistrationStartDate()->getPhpDateTime() && $datetime < $this->getRegistrationEndDate()->getPhpDateTime();
   }
 
   /**
-   * Check whereas the registration period is over.
-   *
-   * @param \DateTimeInterface $datetime
-   *   Datetime object to check the registration period against.
-   *
-   * @return bool
-   *   Whereas the registration period is over.
+   * {@inheritdoc}
    */
   public function isRegistrationPeriodOver(\DateTimeInterface $datetime): bool {
     return $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
