@@ -25,13 +25,11 @@ Feature: Event content creation
     # The registration group is collapsed by default.
     And I should see the text "Registration"
     And I should not see the text "Registration URL"
-    And I should not see the text "Registration status"
     And I should not see the text "Registration date"
     And I should not see the text "Entrance fee"
     And I should not see the text "Registration capacity"
     When I press "Registration"
     Then I should see the text "Registration URL"
-    And I should see the text "Registration status"
     And I should see the text "Registration date"
     And I should see the text "Entrance fee"
     And I should see the text "Registration capacity"
@@ -132,11 +130,6 @@ Feature: Event content creation
       | - None -   |
       | Facebook   |
       | Livestream |
-    When I press "Registration"
-    Then I should have the following options for the "Registration status" select:
-      | - None - |
-      | Open     |
-      | Closed   |
 
   @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
@@ -154,7 +147,6 @@ Feature: Event content creation
     # Registration field group.
     When I press "Registration"
     Then I fill in "Registration URL" with "http://example.com"
-    And I select "Open" from "Registration status"
     And I fill in "Start date" of "Registration date" with the date "02/23/2019"
     And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
     And I fill in "End date" of "Registration date" with the date "02/23/2019"
@@ -371,18 +363,17 @@ Feature: Event content creation
     # Make sure that validation of the Registration fields group works as expected.
     When I click "Edit"
     And I press "Registration"
-    And I fill in "Registration URL" with "http://example.com"
-    And I press "Save"
-    Then I should see the following error messages:
-      | error messages                             |
-      | Registration status field is required.     |
-      | Registration date field is required.       |
-    # Make sure that errors related to the Registration fields are fixed.
-    When I select "Open" from "Registration status"
     And I fill in "Start date" of "Registration date" with the date "02/23/2019"
     And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
     And I fill in "End date" of "Registration date" with the date "02/23/2019"
     And I fill in "End date" of "Registration date" with the time "02:23:00PM"
+    And I fill in "Registration capacity" with "100"
+    And I press "Save"
+    Then I should see the following error messages:
+      | error messages                      |
+      | Registration URL field is required. |
+    # Make sure that errors related to the Registration fields are fixed.
+    And I fill in "Registration URL" with "http://example.com"
     And I press "Save"
     Then I should see the following success messages:
       | success messages                      |

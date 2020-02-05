@@ -42,7 +42,6 @@ config_devel:
     - field.field.node.oe_event.oe_event_partner
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_dates
-    - field.field.node.oe_event.oe_event_registration_status
     - field.field.node.oe_event.oe_event_registration_url
     - field.field.node.oe_event.oe_event_report_summary
     - field.field.node.oe_event.oe_event_report_text
@@ -71,7 +70,6 @@ config_devel:
     - field.storage.node.oe_event_partner
     - field.storage.node.oe_event_registration_capacity
     - field.storage.node.oe_event_registration_dates
-    - field.storage.node.oe_event_registration_status
     - field.storage.node.oe_event_registration_url
     - field.storage.node.oe_event_report_summary
     - field.storage.node.oe_event_report_text

@@ -24,6 +24,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     }
 
     $this->validateOrganiserGroupFields($constraint, $node);
+    $this->validateRegistrationGroupFields($constraint, $node);
 
     $online_required_fields = [
       'oe_event_online_type',
@@ -43,15 +44,6 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     // Check if any of these "Description" field group fields are filled in,
     // then they are all required.
     $this->validateGroupFieldsEmpty($description_fields_required, $constraint, $node);
-
-    $registration_fields_required = [
-      'oe_event_registration_url',
-      'oe_event_registration_status',
-      'oe_event_registration_dates',
-    ];
-    // Check if any of these "Registration" field group fields are filled in,
-    // then they are all required.
-    $this->validateGroupFieldsEmpty($registration_fields_required, $constraint, $node);
   }
 
   /**
@@ -110,6 +102,38 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
       // Highlight empty 'Internal organiser' field.
       $violation
         ->atPath('oe_event_organiser_internal')
+        ->addViolation();
+    }
+  }
+
+  /**
+   * Helper function to provide violation on a set of "Registration" fields.
+   *
+   * @param \Symfony\Component\Validator\Constraint $constraint
+   *   The constraint object.
+   * @param \Drupal\node\NodeInterface $node
+   *   The node object.
+   */
+  protected function validateRegistrationGroupFields(Constraint $constraint, NodeInterface $node) {
+    $violation = NULL;
+    $field_values = [];
+    $required_field = 'oe_event_registration_url';
+    $fields_to_check = [
+      'oe_event_entrance_fee',
+      'oe_event_registration_dates',
+      'oe_event_registration_capacity',
+    ];
+
+    // Check for values in each field.
+    foreach ($fields_to_check as $field_name) {
+      $field_values[$field_name] = $node->get($field_name)->isEmpty();
+    }
+
+    // If any of these fields are NOT empty, then the required field
+    // must be filled in.
+    if (in_array(FALSE, $field_values) && $node->get($required_field)->isEmpty()) {
+      $this->context->buildViolation($constraint->message, ['@name' => $node->getFieldDefinition($required_field)->getLabel()])
+        ->atPath($required_field)
         ->addViolation();
     }
   }
