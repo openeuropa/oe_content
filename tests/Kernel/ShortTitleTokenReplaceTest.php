@@ -138,25 +138,29 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
 
     // Generate and test tokens.
     $tests = [];
+    // Test the original language of the node that has defined short title.
     $tests[] = [
       'node' => $node_short_titled,
       'expected' => $node_short_titled->get('oe_content_short_title')->value,
       'langcode' => $this->currentLanguage->getId(),
     ];
+    // Test the original language of the node that has no short title defined.
     $tests[] = [
       'node' => $node_titled,
       'expected' => $node_titled->label(),
       'langcode' => $this->currentLanguage->getId(),
     ];
+    // Test the french translation of the node that has defined short title.
     $tests[] = [
       'node' => $node_short_titled,
-      'expected' => $node_short_titled->get('oe_content_short_title')->value,
+      'expected' => $node_short_titled->getTranslation('fr')->get('oe_content_short_title')->value,
       // The source short title should be used even in another language.
       'langcode' => 'fr',
     ];
+    // Test the french translation of the node that has no short title defined.
     $tests[] = [
       'node' => $node_titled,
-      'expected' => $node_titled->label(),
+      'expected' => $node_titled->getTranslation('fr')->label(),
       // The source title should be used even in another language.
       'langcode' => 'fr',
     ];
