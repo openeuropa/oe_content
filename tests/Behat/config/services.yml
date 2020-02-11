@@ -1,0 +1,7 @@
+services:
+  oe_content.context.loader.annotated:
+    class: Drupal\Tests\oe_content\Behat\Context\Annotation\EntityAwareAnnotationReader
+    arguments:
+    tags:
+      - { name: context.annotation_reader }
+
