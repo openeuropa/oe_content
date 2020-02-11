@@ -13,6 +13,7 @@ default:
         - Drupal\Tests\oe_content\Behat\WysiwygContext
         - Drupal\Tests\oe_media\Behat\AvPortalContext
         - Drupal\Tests\oe_media\Behat\MediaContext
+        - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               AV portal photo of the Event partner: ".field--name-oe-event-partner"
@@ -61,5 +62,8 @@ default:
         error_message_selector: '.messages.messages--error'
         success_message_selector: '.messages.messages--status'
         warning_message_selector: '.messages.messages--warning'
+    FriendsOfBehat\ServiceContainerExtension:
+      imports:
+        - 'tests/Behat/config/services.yml'
   formatters:
     progress: ~
