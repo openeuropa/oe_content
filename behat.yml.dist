@@ -14,6 +14,7 @@ default:
         - Drupal\Tests\oe_media\Behat\AvPortalContext
         - Drupal\Tests\oe_media\Behat\MediaContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
+        - Drupal\Tests\oe_content\Behat\Content\EventContentContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               AV portal photo of the Event partner: ".field--name-oe-event-partner"
