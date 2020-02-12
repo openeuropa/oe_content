@@ -10,7 +10,7 @@ use Drupal\Tests\oe_content\Behat\Hook\Traits\EntityAwareTrait;
 /**
  * Scope class for CorporateFieldsAlter tags.
  */
-class CorporateFieldsAlterScope implements EntityAwareHookScopeInterface {
+class BeforeParseEntityFieldsScope implements EntityAwareHookScopeInterface {
 
   use EntityAwareTrait;
 

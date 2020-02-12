@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\Tests\oe_content\Behat\Hook\Scope\CorporateFieldsAlterScope;
+use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 
 /**
  * Context to create event corporate entities.
@@ -15,9 +15,9 @@ class EventContentContext extends RawDrupalContext {
   /**
    * Alter Behat fields.
    *
-   * @CorporateFieldsAlter(node,oe_event)
+   * @BeforeParseEntityFields(node,oe_event)
    */
-  public function alterEventFields(CorporateFieldsAlterScope $scope): array {
+  public function alterEventFields(BeforeParseEntityFieldsScope $scope): array {
     $fields = [];
 
     // Maps human readable field names to their Behat parsable machine names.

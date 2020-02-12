@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Context\Annotation;
 
 use Behat\Behat\Context\Annotation\AnnotationReader;
-use Drupal\Tests\oe_content\Behat\Hook\Call\CorporateFieldsAlterCall;
+use Drupal\Tests\oe_content\Behat\Hook\Call\BeforeParseEntityFields;
 
 /**
  * Entity aware annotation readers.
@@ -22,8 +22,8 @@ class EntityAwareAnnotationReader implements AnnotationReader {
    * @var array
    */
   protected $matchers = [
-    // Matches @CorporateFieldsAlter(node,article).
-    '/^\@(CorporateFieldsAlter\((\w+), ?(\w+)\))(?:\s+(.+))?$/i' => CorporateFieldsAlterCall::class,
+    // Matches @BeforeParseEntityFields(node,article).
+    '/^\@(BeforeParseEntityFields\((\w+), ?(\w+)\))(?:\s+(.+))?$/i' => BeforeParseEntityFields::class,
   ];
 
   /**
