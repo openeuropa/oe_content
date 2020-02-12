@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Traits;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
 
 /**
  * Helper trait to load entities by different criteria.
@@ -43,6 +44,25 @@ trait EntityLoadingTrait {
     }
 
     return reset($entities);
+  }
+
+  /**
+   * Load an entity type definition by its label, if any.
+   *
+   * @param string $label
+   *   Entity definition label.
+   *
+   * @return \Drupal\Core\Entity\EntityTypeInterface
+   *   Entity definition object.
+   */
+  protected function loadDefinitionByLabel(string $label): EntityTypeInterface {
+    foreach (\Drupal::entityTypeManager()->getDefinitions() as $definition) {
+      if ($label === (string) $definition->getLabel()) {
+        return $definition;
+      }
+    }
+
+    throw new \InvalidArgumentException("No entity_type with label '$label' has been found.");
   }
 
 }
