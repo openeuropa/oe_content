@@ -9,6 +9,7 @@ use Behat\Testwork\Call\CallResults;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
+use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeSaveEntityScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\EntityAwareHookScopeInterface;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 
@@ -32,7 +33,14 @@ class CorporateContentContext extends RawDrupalContext {
     $fields = $this->parseFields('node', $bundle, $fields);
 
     // Create node.
-    $this->nodes[] = \Drupal::entityTypeManager()->getStorage('node')->create($fields);
+    $entity = \Drupal::entityTypeManager()->getStorage('node')->create($fields);
+
+    // Dispatch before save hook.
+    $scope = new BeforeSaveEntityScope('node', $bundle, $this->getDrupal()->getEnvironment(), $entity);
+    $this->dispatchEntityAwareHook($scope);
+
+    $entity->save();
+    $this->nodes[] = $entity;
   }
 
   /**
@@ -47,11 +55,16 @@ class CorporateContentContext extends RawDrupalContext {
     $fields = $this->parseFields('node', $bundle, $fields);
 
     // Set field value and save node.
-    $node = $this->loadEntityByLabel('node', $title, $bundle);
+    $entity = $this->loadEntityByLabel('node', $title, $bundle);
     foreach ($fields as $name => $value) {
-      $node->set($name, $value);
+      $entity->set($name, $value);
     }
-    $node->save();
+
+    // Dispatch before save hook.
+    $scope = new BeforeSaveEntityScope('node', $bundle, $this->getDrupal()->getEnvironment(), $entity);
+    $this->dispatchEntityAwareHook($scope);
+
+    $entity->save();
   }
 
   /**

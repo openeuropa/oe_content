@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_content\Behat\Context\Annotation;
 use Behat\Behat\Context\Annotation\AnnotationReader;
 use Drupal\Tests\oe_content\Behat\Hook\Call\AfterParseEntityFields;
 use Drupal\Tests\oe_content\Behat\Hook\Call\BeforeParseEntityFields;
+use Drupal\Tests\oe_content\Behat\Hook\Call\BeforeSaveEntity;
 
 /**
  * Entity aware annotation readers.
@@ -27,6 +28,8 @@ class EntityAwareAnnotationReader implements AnnotationReader {
     '/^\@(BeforeParseEntityFields\((\w+), ?(\w+)\))(?:\s+(.+))?$/i' => BeforeParseEntityFields::class,
     // Matches @AfterParseEntityFields(node,article).
     '/^\@(AfterParseEntityFields\((\w+), ?(\w+)\))(?:\s+(.+))?$/i' => AfterParseEntityFields::class,
+    // Matches @BeforeSaveEntity(node,article).
+    '/^\@(BeforeSaveEntity\((\w+), ?(\w+)\))(?:\s+(.+))?$/i' => BeforeSaveEntity::class,
   ];
 
   /**
