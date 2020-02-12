@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_content\Behat\Content;
 use Behat\Gherkin\Node\TableNode;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\CorporateFieldsAlterScope;
+use Drupal\Tests\oe_content\Behat\Hook\Scope\EntityAwareHookScopeInterface;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 
 /**
@@ -56,22 +57,44 @@ class CorporateContentContext extends RawDrupalContext {
   }
 
   /**
-   * Alter Behat entity fields.
+   * Alter fields.
+   *
+   * @param string $entity_type
+   *   Entity type.
+   * @param string $bundle
+   *   Entity bundle.
+   * @param array $fields
+   *   Fields to be altered.
    */
   protected function alterFields(string $entity_type, string $bundle, array &$fields) {
-    $altered = [];
     $scope = new CorporateFieldsAlterScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $fields);
+    $fields = $this->dispatchEntityAwareHook($scope);
+  }
+
+  /**
+   * Dispatch entity aware hooks.
+   *
+   * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\EntityAwareHookScopeInterface $scope
+   *   Hook scope to dispatch.
+   *
+   * @return array
+   *   Merged dispatch results.
+   */
+  protected function dispatchEntityAwareHook(EntityAwareHookScopeInterface $scope) {
+    $return = [];
     /** @var \Behat\Testwork\Call\CallResults $results */
     $call_results = $this->dispatcher->dispatchScopeHooks($scope);
+
     foreach ($call_results as $result) {
       // The dispatcher suppresses exceptions, throw them here if there are any.
       if ($result->hasException()) {
         $exception = $result->getException();
         throw $exception;
       }
-      $altered = array_merge($altered, $result->getReturn());
+      $return = array_merge($return, $result->getReturn());
     }
-    $fields = $altered;
+
+    return $return;
   }
 
 }
