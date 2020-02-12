@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat\Content;
 
+use Behat\Behat\Hook\Scope\AfterFeatureScope;
+use Behat\Behat\Hook\Scope\BeforeFeatureScope;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Testwork\Call\CallResults;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
@@ -122,6 +124,30 @@ class CorporateContentContext extends RawDrupalContext {
     }
 
     return $results;
+  }
+
+  /**
+   * Enables the datetime_testing module.
+   *
+   * @param \Behat\Behat\Hook\Scope\BeforeFeatureScope $scope
+   *   The scope.
+   *
+   * @BeforeFeature @datetime_testing
+   */
+  public static function enableDatetimeTesting(BeforeFeatureScope $scope): void {
+    \Drupal::service('module_installer')->install(['datetime_testing']);
+  }
+
+  /**
+   * Disables  the datetime_testing module.
+   *
+   * @param \Behat\Behat\Hook\Scope\AfterFeatureScope $scope
+   *   The scope.
+   *
+   * @AfterFeature @datetime_testing
+   */
+  public static function disableDatetimeTesting(AfterFeatureScope $scope): void {
+    \Drupal::service('module_installer')->uninstall(['datetime_testing']);
   }
 
 }
