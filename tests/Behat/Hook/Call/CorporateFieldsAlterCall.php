@@ -4,15 +4,12 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat\Hook\Call;
 
-use Behat\Testwork\Hook\Scope\HookScope;
-use Drupal\DrupalExtension\Hook\Call\EntityHook;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\CorporateFieldsAlterScope;
-use Drupal\Tests\oe_content\Behat\Hook\Scope\EntityAwareHookScopeInterface;
 
 /**
  * Runtime hook that allows to alter entity fields.
  */
-class CorporateFieldsAlterCall extends EntityHook {
+class CorporateFieldsAlterCall extends EntityAwareHookBase {
 
   /**
    * CorporateFieldsAlterCall constructor.
@@ -27,17 +24,7 @@ class CorporateFieldsAlterCall extends EntityHook {
    *   Call description.
    */
   public function __construct(string $entity_type, string $bundle, array $callable, string $description = '') {
-    $filter_string = $entity_type . '.' . $bundle;
-    parent::__construct(CorporateFieldsAlterScope::NAME, $filter_string, $callable, $description);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function filterMatches(HookScope $scope) {
-    if ($scope instanceof EntityAwareHookScopeInterface) {
-      return $scope->getEntityType() . '.' . $scope->getBundle() === $this->getFilterString();
-    }
+    parent::__construct(CorporateFieldsAlterScope::NAME, $this->getFilterSting($entity_type, $bundle), $callable, $description);
   }
 
   /**
