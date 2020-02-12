@@ -21,22 +21,25 @@ class CorporateContentContext extends RawDrupalContext {
   use EntityLoadingTrait;
 
   /**
-   * Create a node.
+   * Create an entity.
    *
-   * @Given the following :bundle_label content:
+   * @Given the following :bundle_label :entity_type_label:
    */
-  public function createNode(string $bundle_label, TableNode $table): void {
+  public function createEntity(string $bundle_label, string $entity_type_label, TableNode $table): void {
+    $definition = $this->loadDefinitionByLabel($entity_type_label);
+    $entity_type = $definition->id();
+
     // Get and alter fields.
     $fields = $table->getRowsHash();
-    $bundle = $this->loadEntityByLabel('node_type', $bundle_label)->id();
-    $fields['type'] = $bundle;
-    $fields = $this->parseFields('node', $bundle, $fields);
+    $bundle = $this->loadEntityByLabel($definition->getBundleEntityType(), $bundle_label)->id();
+    $fields[$definition->getKey('bundle')] = $bundle;
+    $fields = $this->parseFields($entity_type, $bundle, $fields);
 
-    // Create node.
-    $entity = \Drupal::entityTypeManager()->getStorage('node')->create($fields);
+    // Create entity.
+    $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create($fields);
 
     // Dispatch before save hook.
-    $scope = new BeforeSaveEntityScope('node', $bundle, $this->getDrupal()->getEnvironment(), $entity);
+    $scope = new BeforeSaveEntityScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $entity);
     $this->dispatchEntityAwareHook($scope);
 
     $entity->save();
@@ -44,24 +47,27 @@ class CorporateContentContext extends RawDrupalContext {
   }
 
   /**
-   * Update a node.
+   * Update an entity.
    *
-   * @Given the ":bundle_label" content titled ":title" is updated as follow:
+   * @Given the :bundle_label :entity_type_label :title is updated as follows:
    */
-  public function updateNode(string $bundle_label, string $title, TableNode $table): void {
+  public function updateEntity(string $bundle_label, string $entity_type_label, string $title, TableNode $table): void {
+    $definition = $this->loadDefinitionByLabel($entity_type_label);
+    $entity_type = $definition->id();
+
     // Get and alter fields.
     $fields = $table->getRowsHash();
-    $bundle = $this->loadEntityByLabel('node_type', $bundle_label)->id();
-    $fields = $this->parseFields('node', $bundle, $fields);
+    $bundle = $this->loadEntityByLabel($definition->getBundleEntityType(), $bundle_label)->id();
+    $fields = $this->parseFields($entity_type, $bundle, $fields);
 
-    // Set field value and save node.
-    $entity = $this->loadEntityByLabel('node', $title, $bundle);
+    // Set field value and save the entity.
+    $entity = $this->loadEntityByLabel($entity_type, $title, $bundle);
     foreach ($fields as $name => $value) {
       $entity->set($name, $value);
     }
 
     // Dispatch before save hook.
-    $scope = new BeforeSaveEntityScope('node', $bundle, $this->getDrupal()->getEnvironment(), $entity);
+    $scope = new BeforeSaveEntityScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $entity);
     $this->dispatchEntityAwareHook($scope);
 
     $entity->save();
