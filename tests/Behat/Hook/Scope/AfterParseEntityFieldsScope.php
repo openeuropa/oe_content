@@ -7,12 +7,12 @@ namespace Drupal\Tests\oe_content\Behat\Hook\Scope;
 /**
  * Scope for hook running after RawDrupalContext::parseEntityFields().
  */
-class BeforeParseEntityFieldsScope extends ParseEntityFieldsScopeBase {
+class AfterParseEntityFieldsScope extends ParseEntityFieldsScopeBase {
 
   /**
    * Scope name.
    */
-  const NAME = 'before.parse.entity.field';
+  const NAME = 'after.parse.entity.field';
 
   /**
    * {@inheritdoc}
