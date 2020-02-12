@@ -6,7 +6,7 @@ namespace Drupal\Tests\oe_content\Behat\Content;
 
 use Behat\Gherkin\Node\TableNode;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\Tests\oe_content\Behat\Hook\Scope\CorporateFieldsAlterScope;
+use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\EntityAwareHookScopeInterface;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 
@@ -27,10 +27,10 @@ class CorporateContentContext extends RawDrupalContext {
     $fields = $table->getRowsHash();
     $bundle = $this->loadEntityByLabel('node_type', $bundle_label)->id();
     $fields['type'] = $bundle;
-    $this->alterFields('node', $bundle, $fields);
+    $fields = $this->parseFields('node', $bundle, $fields);
 
     // Create node.
-    $this->nodeCreate((object) $fields);
+    $this->nodes[] = \Drupal::entityTypeManager()->getStorage('node')->create($fields);
   }
 
   /**
@@ -42,11 +42,7 @@ class CorporateContentContext extends RawDrupalContext {
     // Get and alter fields.
     $fields = $table->getRowsHash();
     $bundle = $this->loadEntityByLabel('node_type', $bundle_label)->id();
-    $this->alterFields('node', $bundle, $fields);
-
-    // We have to cast as parseEntityFields() expects an object passed by ref.
-    $fields = (object) $fields;
-    $this->parseEntityFields('node', (object) $fields);
+    $fields = $this->parseFields('node', $bundle, $fields);
 
     // Set field value and save node.
     $node = $this->loadEntityByLabel('node', $title, $bundle);
@@ -57,7 +53,12 @@ class CorporateContentContext extends RawDrupalContext {
   }
 
   /**
-   * Alter fields.
+   * Parse entity fields.
+   *
+   * Also fires the following two Behat hooks:
+   *
+   * - BeforeParseEntityFieldsScope(entity_type,bundle)
+   * - AfterParseEntityFields(entity_type,bundle)
    *
    * @param string $entity_type
    *   Entity type.
@@ -65,10 +66,19 @@ class CorporateContentContext extends RawDrupalContext {
    *   Entity bundle.
    * @param array $fields
    *   Fields to be altered.
+   *
+   * @return array
+   *   Parsed fields.
    */
-  protected function alterFields(string $entity_type, string $bundle, array &$fields) {
-    $scope = new CorporateFieldsAlterScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $fields);
+  protected function parseFields(string $entity_type, string $bundle, array $fields) {
+    $scope = new BeforeParseEntityFieldsScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $fields);
     $fields = $this->dispatchEntityAwareHook($scope);
+
+    // We have to cast as parseEntityFields() expects an object passed by ref.
+    $fields = (object) $fields;
+    $this->parseEntityFields($entity_type, $fields);
+
+    return (array) $fields;
   }
 
   /**
