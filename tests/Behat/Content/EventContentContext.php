@@ -27,6 +27,8 @@ class EventContentContext extends RawDrupalContext {
       'Description summary' => 'oe_event_description_summary',
       'Start date' => 'oe_event_dates:value',
       'End date' => 'oe_event_dates:end_value',
+      'Registration start date' => 'oe_event_registration_dates:value',
+      'Registration end date' => 'oe_event_registration_dates:end_value',
     ];
     foreach ($scope->getFields() as $key => $value) {
       $key = $mapping[$key] ?? $key;
