@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat\Content;
 
+use Behat\Behat\Hook\Scope\AfterFeatureScope;
+use Behat\Behat\Hook\Scope\BeforeFeatureScope;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 
@@ -46,6 +48,30 @@ class EventContentContext extends RawDrupalContext {
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
     ];
     $scope->setFields($fields);
+  }
+
+  /**
+   * Enables the datetime_testing module.
+   *
+   * @param \Behat\Behat\Hook\Scope\BeforeFeatureScope $scope
+   *   The scope.
+   *
+   * @BeforeFeature @datetime_testing
+   */
+  public static function enableDatetimeTesting(BeforeFeatureScope $scope): void {
+    \Drupal::service('module_installer')->install(['datetime_testing']);
+  }
+
+  /**
+   * Disables the datetime_testing module.
+   *
+   * @param \Behat\Behat\Hook\Scope\AfterFeatureScope $scope
+   *   The scope.
+   *
+   * @AfterFeature @datetime_testing
+   */
+  public static function disableDatetimeTesting(AfterFeatureScope $scope): void {
+    \Drupal::service('module_installer')->uninstall(['datetime_testing']);
   }
 
 }
