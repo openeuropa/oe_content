@@ -13,11 +13,11 @@ use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 class EventContentContext extends RawDrupalContext {
 
   /**
-   * Alter Behat fields.
+   * Run before fields are parsed by Drupal Behat extension.
    *
    * @BeforeParseEntityFields(node,oe_event)
    */
-  public function alterEventFields(BeforeParseEntityFieldsScope $scope): array {
+  public function alterEventFields(BeforeParseEntityFieldsScope $scope): void {
     $fields = [];
 
     // Maps human readable field names to their Behat parsable machine names.
@@ -34,11 +34,12 @@ class EventContentContext extends RawDrupalContext {
     }
 
     // Set default fields and return.
-    return $fields + [
+    $fields += [
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
     ];
+    $scope->setFields($fields);
   }
 
 }

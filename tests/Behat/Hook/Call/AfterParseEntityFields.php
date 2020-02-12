@@ -4,15 +4,15 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat\Hook\Call;
 
-use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
+use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterParseEntityFieldsScope;
 
 /**
- * Hook running before RawDrupalContext::parseEntityFields().
+ * Hook running after RawDrupalContext::parseEntityFields().
  */
-class BeforeParseEntityFields extends EntityAwareHookBase {
+class AfterParseEntityFields extends EntityAwareHookBase {
 
   /**
-   * BeforeParseEntityFields constructor.
+   * AfterParseEntityFields constructor.
    *
    * @param string $entity_type
    *   Entity type.
@@ -24,14 +24,14 @@ class BeforeParseEntityFields extends EntityAwareHookBase {
    *   Call description.
    */
   public function __construct(string $entity_type, string $bundle, array $callable, string $description = '') {
-    parent::__construct(BeforeParseEntityFieldsScope::NAME, $this->getFilterSting($entity_type, $bundle), $callable, $description);
+    parent::__construct(AfterParseEntityFieldsScope::NAME, $this->getFilterSting($entity_type, $bundle), $callable, $description);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getName() {
-    return 'BeforeParseEntityFields';
+    return 'AfterParseEntityFields';
   }
 
 }

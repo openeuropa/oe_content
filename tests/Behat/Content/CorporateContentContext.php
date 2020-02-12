@@ -5,7 +5,9 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content;
 
 use Behat\Gherkin\Node\TableNode;
+use Behat\Testwork\Call\CallResults;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\EntityAwareHookScopeInterface;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
@@ -72,13 +74,18 @@ class CorporateContentContext extends RawDrupalContext {
    */
   protected function parseFields(string $entity_type, string $bundle, array $fields) {
     $scope = new BeforeParseEntityFieldsScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $fields);
-    $fields = $this->dispatchEntityAwareHook($scope);
+    $this->dispatchEntityAwareHook($scope);
 
     // We have to cast as parseEntityFields() expects an object passed by ref.
-    $fields = (object) $fields;
+    $fields = (object) $scope->getFields();
     $this->parseEntityFields($entity_type, $fields);
 
-    return (array) $fields;
+    // We cast it back so we keep dealing with arrays.
+    $fields = (array) $fields;
+    $scope = new AfterParseEntityFieldsScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $fields);
+    $this->dispatchEntityAwareHook($scope);
+
+    return $scope->getFields();
   }
 
   /**
@@ -87,24 +94,21 @@ class CorporateContentContext extends RawDrupalContext {
    * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\EntityAwareHookScopeInterface $scope
    *   Hook scope to dispatch.
    *
-   * @return array
-   *   Merged dispatch results.
+   * @return \Behat\Testwork\Call\CallResults
+   *   Results of hook dispatch.
    */
-  protected function dispatchEntityAwareHook(EntityAwareHookScopeInterface $scope) {
-    $return = [];
-    /** @var \Behat\Testwork\Call\CallResults $results */
-    $call_results = $this->dispatcher->dispatchScopeHooks($scope);
+  protected function dispatchEntityAwareHook(EntityAwareHookScopeInterface $scope): CallResults {
+    $results = $this->dispatcher->dispatchScopeHooks($scope);
 
-    foreach ($call_results as $result) {
+    foreach ($results as $result) {
       // The dispatcher suppresses exceptions, throw them here if there are any.
       if ($result->hasException()) {
         $exception = $result->getException();
         throw $exception;
       }
-      $return = array_merge($return, $result->getReturn());
     }
 
-    return $return;
+    return $results;
   }
 
 }
