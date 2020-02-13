@@ -29,7 +29,7 @@ class EntityRouteProvider extends AdminHtmlRouteProvider {
    */
   protected function getCollectionRoute(EntityTypeInterface $entity_type) {
     if ($route = parent::getCollectionRoute($entity_type)) {
-      $route->setRequirement('_permission', 'access ' . $entity_type->id() . 'overview');
+      $route->setRequirement('_permission', 'access ' . $entity_type->id() . ' overview');
       return $route;
     }
   }
