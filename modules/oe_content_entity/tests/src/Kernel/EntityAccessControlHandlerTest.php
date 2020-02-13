@@ -62,20 +62,21 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
   /**
    * Ensures corporate entity access is properly working.
    */
-  public function testAccess() {
+  public function testAccess(): void {
     $scenarios = $this->accessDataProvider();
-    $contact_storage = $this->container->get('entity_type.manager')->getStorage('oe_corporate');
+    $corporate_storage = $this->container->get('entity_type.manager')->getStorage('oe_corporate');
     $values = [
       'bundle' => 'test_bundle',
       'name' => 'My corporate entity',
     ];
+    // Create an entity.
+    /** @var \Drupal\oe_content_entity\Entity\EntityTypeBaseInterface $entity */
+    $entity = $corporate_storage->create($values);
+    $entity->save();
     foreach ($scenarios as $scenario => $test_data) {
-      $values['status'] = $test_data['status'];
-      /** @var \Drupal\oe_content_entity\Entity\EntityTypeBaseInterface $entity */
-      // Create an entity.
-      $entity = $contact_storage->create($values);
+      // Update the published status based on the scenario.
+      $entity->setPublished($test_data['status']);
       $entity->save();
-
       $user = $this->drupalCreateUser($test_data['permissions']);
       $this->assertAccessResult(
         $test_data['expected_result'],
@@ -88,7 +89,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
   /**
    * Ensures corporate entity create access is properly working.
    */
-  public function testCreateAccess() {
+  public function testCreateAccess(): void {
     $scenarios = $this->createAccessDataProvider();
     foreach ($scenarios as $scenario => $test_data) {
       $user = $this->drupalCreateUser($test_data['permissions']);
@@ -109,30 +110,30 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * @return array
    *   The data sets to test.
    */
-  protected function accessDataProvider() {
+  protected function accessDataProvider(): array {
     return [
       'user without permissions / published entity' => [
         'permissions' => [],
         'operation' => 'view',
-        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate:1']),
         'status' => 1,
       ],
       'user without permissions / unpublished entity' => [
         'permissions' => [],
         'operation' => 'view',
-        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate:1']),
         'status' => 0,
       ],
       'admin view / published entity' => [
         'permissions' => ['manage corporate content entities'],
         'operation' => 'view',
-        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate:1']),
         'status' => 1,
       ],
       'admin view / unpublished entity' => [
         'permissions' => ['manage corporate content entities'],
         'operation' => 'view',
-        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate:1']),
         'status' => 0,
       ],
       'admin update' => [
@@ -249,7 +250,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * @return array
    *   The data sets to test.
    */
-  protected function createAccessDataProvider() {
+  protected function createAccessDataProvider(): array {
     return [
       'user without permissions' => [
         'permissions' => [],
@@ -293,7 +294,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * @param string $message
    *   Failure message.
    */
-  protected function assertAccessResult(AccessResultInterface $expected, AccessResultInterface $actual, string $message = '') {
+  protected function assertAccessResult(AccessResultInterface $expected, AccessResultInterface $actual, string $message = ''): void {
     $this->assertEquals($expected->isAllowed(), $actual->isAllowed(), $message);
     $this->assertEquals($expected->isForbidden(), $actual->isForbidden(), $message);
     $this->assertEquals($expected->isNeutral(), $actual->isNeutral(), $message);
