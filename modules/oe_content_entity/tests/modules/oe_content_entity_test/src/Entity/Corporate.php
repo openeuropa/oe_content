@@ -17,14 +17,14 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   label_collection = @Translation("Corporates"),
  *   bundle_label = @Translation("Corporate type"),
  *   handlers = {
+ *     "list_builder" = "Drupal\oe_content_entity\EntityListBuilder",
  *     "access" = "Drupal\oe_content_entity\EntityAccessControlHandler",
+ *     "route_provider" = {
+ *       "html" = "Drupal\oe_content_entity\Routing\EntityRouteProvider",
+ *     },
  *   },
  *   base_table = "oe_corporate",
  *   data_table = "oe_corporate_field_data",
- *   revision_table = "oe_corporate_revision",
- *   revision_data_table = "oe_test_field_revision",
- *   translatable = TRUE,
- *   show_revision_ui = TRUE,
  *   admin_permission = "manage corporate content entities",
  *   entity_keys = {
  *     "id" = "id",
@@ -38,13 +38,15 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *     "created" = "created",
  *     "changed" = "changed",
  *   },
- *   revision_metadata_keys = {
- *     "revision_user" = "revision_uid",
- *     "revision_created" = "revision_timestamp",
- *     "revision_log_message" = "revision_log"
- *   },
  *   bundle_entity_type = "oe_corporate_type",
- *   field_ui_base_route = "entity.oe_corporate_type.edit_form",
+ *   links = {
+ *     "canonical" = "/admin/content/oe_corporate/{oe_corporate}/edit",
+ *     "add-page" = "/admin/content/oe_corporate/add",
+ *     "add-form" = "/admin/content/oe_corporate/add/{oe_corporate_type}",
+ *     "edit-form" = "/admin/content/oe_corporate/{oe_corporate}/edit",
+ *     "delete-form" = "/admin/content/oe_corporate/{oe_corporate}/delete",
+ *     "collection" = "/admin/content/oe_corporate",
+ *   },
  *  type = {"entity"}
  * )
  */

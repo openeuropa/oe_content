@@ -32,15 +32,47 @@ abstract class PermissionCallbacksBase {
   /**
    * Returns an array of entity permissions.
    */
-  public function entityTypePermissions() {
+  public function buildPermissions() {
     $perms = [];
+    $entity_type_id = $this->getEntityTypeId();
+    $entity_type_label = $this->getEntityTypeLabel();
+    // Generate entity permissions.
+    $perms += $this->entityPermissions($entity_type_id);
+
     $bundles = $this->getBundles();
-    // Generate link list permissions for all link list types.
+    // Generate permissions for all entity types.
     foreach ($bundles as $type) {
-      $perms += $this->entityPermissions($type);
+      $perms += $this->entityTypePermissions($type);
     }
 
     return $perms;
+  }
+
+  /**
+   * Returns a list of access permissions for a given entity.
+   *
+   * @param string $entity_type_id
+   *   The entity type id.
+   *
+   * @return array
+   *   An associative array of permission names and descriptions.
+   */
+  protected function entityPermissions(string $entity_type_id) {
+    $params = ['%entity_type_name' => $this->getEntityTypeLabel()];
+    return [
+      "access $entity_type_id overview" => [
+        'title' => $this->t('%entity_type_name: Access overview page', $params),
+      ],
+      "access $entity_type_id canonical page" => [
+        'title' => $this->t('%entity_type_name: Access canonical page', $params),
+      ],
+      "view published $entity_type_id" => [
+        'title' => $this->t('%entity_type_name: View any published entity', $params),
+      ],
+      "view unpublished $entity_type_id" => [
+        'title' => $this->t('%entity_type_name: View any unpublished entity', $params),
+      ],
+    ];
   }
 
   /**
@@ -52,28 +84,14 @@ abstract class PermissionCallbacksBase {
    * @return array
    *   An associative array of permission names and descriptions.
    */
-  public function entityPermissions(EntityTypeBase $type) {
-    $entity_type_id = $this->getEntityTypeId();
+  protected function entityTypePermissions(EntityTypeBase $type) {
     $type_id = $type->id();
     $params = [
       '%entity_type_name' => $this->getEntityTypeLabel(),
       '%type_name' => $type->label(),
     ];
-    $entity_params = ['%entity_type_name' => $this->getEntityTypeLabel()];
 
     return [
-      "access $entity_type_id overview" => [
-        'title' => $this->t('%entity_type_name: Access overview page', $entity_params),
-      ],
-      "access $entity_type_id canonical page" => [
-        'title' => $this->t('%entity_type_name: Access canonical page', $entity_params),
-      ],
-      "view published $entity_type_id" => [
-        'title' => $this->t('%entity_type_name: View any published entity', $entity_params),
-      ],
-      "view unpublished $entity_type_id" => [
-        'title' => $this->t('%entity_type_name: View any unpublished entity', $entity_params),
-      ],
       "create $type_id corporate entity" => [
         'title' => $this->t('%entity_type_name: Create new %type_name entity', $params),
       ],

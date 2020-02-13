@@ -1,2 +1,2 @@
 permission_callbacks:
-  - \Drupal\oe_content_entity_organisation\PermissionCallbacks::entityTypePermissions
+  - \Drupal\oe_content_entity_organisation\PermissionCallbacks::buildPermissions

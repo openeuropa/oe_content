@@ -63,7 +63,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * Ensures corporate entity access is properly working.
    */
   public function testAccess() {
-    $scenarios = $this->accessProvider();
+    $scenarios = $this->accessDataProvider();
     $contact_storage = $this->container->get('entity_type.manager')->getStorage('oe_corporate');
     $values = [
       'bundle' => 'test_bundle',
@@ -72,12 +72,12 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
     foreach ($scenarios as $scenario => $test_data) {
       $values['status'] = $test_data['status'];
       /** @var \Drupal\oe_content_entity\Entity\EntityTypeBaseInterface $entity */
-      // Create a link list.
+      // Create an entity.
       $entity = $contact_storage->create($values);
       $entity->save();
 
       $user = $this->drupalCreateUser($test_data['permissions']);
-      $this->assertAccess(
+      $this->assertAccessResult(
         $test_data['expected_result'],
         $this->accessControlHandler->access($entity, $test_data['operation'], $user, TRUE),
         sprintf('Failed asserting access for "%s" scenario.', $scenario)
@@ -89,12 +89,12 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * Ensures corporate entity create access is properly working.
    */
   public function testCreateAccess() {
-    $scenarios = $this->createAccessProvider();
+    $scenarios = $this->createAccessDataProvider();
     foreach ($scenarios as $scenario => $test_data) {
       $user = $this->drupalCreateUser($test_data['permissions']);
-      $this->assertAccess(
+      $this->assertAccessResult(
         $test_data['expected_result'],
-        $this->accessControlHandler->createAccess('test', $user, [], TRUE),
+        $this->accessControlHandler->createAccess('test_bundle', $user, [], TRUE),
         sprintf('Failed asserting access for "%s" scenario.', $scenario)
       );
     }
@@ -103,10 +103,13 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
   /**
    * Data provider for testAccess().
    *
+   * This method is not declared as a real PHPUnit data provider to speed up
+   * test execution.
+   *
    * @return array
    *   The data sets to test.
    */
-  public function accessProvider() {
+  protected function accessDataProvider() {
     return [
       'user without permissions / published entity' => [
         'permissions' => [],
@@ -168,6 +171,26 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
         'status' => 1,
       ],
+      'user with create, update, delete access / published entity' => [
+        'permissions' => [
+          'create test_bundle corporate entity',
+          'edit test_bundle corporate entity',
+          'delete test_bundle corporate entity',
+        ],
+        'operation' => 'view',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+        'status' => 1,
+      ],
+      'user with create, update, delete access / unpublished entity' => [
+        'permissions' => [
+          'create test_bundle corporate entity',
+          'edit test_bundle corporate entity',
+          'delete test_bundle corporate entity',
+        ],
+        'operation' => 'view',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+        'status' => 0,
+      ],
       'user with update access' => [
         'permissions' => ['edit test_bundle corporate entity'],
         'operation' => 'update',
@@ -176,6 +199,17 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
       ],
       'user with update access on different bundle' => [
         'permissions' => ['edit test corporate entity'],
+        'operation' => 'update',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+        'status' => 1,
+      ],
+      'user with create, view, delete access' => [
+        'permissions' => [
+          'create test_bundle corporate entity',
+          'view published oe_corporate',
+          'view unpublished oe_corporate',
+          'delete test_bundle corporate entity',
+        ],
         'operation' => 'update',
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
         'status' => 1,
@@ -192,16 +226,30 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
         'status' => 1,
       ],
+      'user with create, view, update access' => [
+        'permissions' => [
+          'create test_bundle corporate entity',
+          'view published oe_corporate',
+          'view unpublished oe_corporate',
+          'edit test_bundle corporate entity',
+        ],
+        'operation' => 'delete',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+        'status' => 1,
+      ],
     ];
   }
 
   /**
    * Data provider for testCreateAccess().
    *
+   * This method is not declared as a real PHPUnit data provider to speed up
+   * test execution.
+   *
    * @return array
    *   The data sets to test.
    */
-  public function createAccessProvider() {
+  protected function createAccessDataProvider() {
     return [
       'user without permissions' => [
         'permissions' => [],
@@ -236,7 +284,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
   }
 
   /**
-   * Asserts link list access correctly grants or denies access.
+   * Asserts corporate entity access correctly grants or denies access.
    *
    * @param \Drupal\Core\Access\AccessResultInterface $expected
    *   The expected result.
@@ -245,7 +293,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * @param string $message
    *   Failure message.
    */
-  protected function assertAccess(AccessResultInterface $expected, AccessResultInterface $actual, string $message = '') {
+  protected function assertAccessResult(AccessResultInterface $expected, AccessResultInterface $actual, string $message = '') {
     $this->assertEquals($expected->isAllowed(), $actual->isAllowed(), $message);
     $this->assertEquals($expected->isForbidden(), $actual->isForbidden(), $message);
     $this->assertEquals($expected->isNeutral(), $actual->isNeutral(), $message);
