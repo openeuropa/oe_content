@@ -50,28 +50,4 @@ class EventContentContext extends RawDrupalContext {
     $scope->setFields($fields);
   }
 
-  /**
-   * Enables the datetime_testing module.
-   *
-   * @param \Behat\Behat\Hook\Scope\BeforeFeatureScope $scope
-   *   The scope.
-   *
-   * @BeforeFeature @datetime_testing
-   */
-  public static function enableDatetimeTesting(BeforeFeatureScope $scope): void {
-    \Drupal::service('module_installer')->install(['datetime_testing']);
-  }
-
-  /**
-   * Disables the datetime_testing module.
-   *
-   * @param \Behat\Behat\Hook\Scope\AfterFeatureScope $scope
-   *   The scope.
-   *
-   * @AfterFeature @datetime_testing
-   */
-  public static function disableDatetimeTesting(AfterFeatureScope $scope): void {
-    \Drupal::service('module_installer')->uninstall(['datetime_testing']);
-  }
-
 }
