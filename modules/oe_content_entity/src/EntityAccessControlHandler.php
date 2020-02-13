@@ -27,10 +27,8 @@ class EntityAccessControlHandler extends CoreEntityAccessControlHandler {
     $entity_bundle = $entity->bundle();
     switch ($operation) {
       case 'view':
-        if ($entity->isPublished()) {
-          return AccessResult::allowedIfHasPermission($account, 'view published ' . $entity_id);
-        }
-        return AccessResult::allowedIfHasPermission($account, 'view unpublished ' . $entity_id);
+        $permission = $entity->isPublished() ? 'view published ' . $entity_id : 'view unpublished ' . $entity_id;
+        return AccessResult::allowedIfHasPermission($account, $permission);
 
       case 'update':
         return AccessResult::allowedIfHasPermission($account, 'edit ' . $entity_bundle . ' corporate entity');
