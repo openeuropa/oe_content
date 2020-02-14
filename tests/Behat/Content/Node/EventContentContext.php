@@ -38,8 +38,8 @@ class EventContentContext extends RawCorporateContentContext {
       'Registration start date' => 'oe_event_registration_dates:value',
       'Registration end date' => 'oe_event_registration_dates:end_value',
       'Registration URL' => 'oe_event_registration_url:uri',
-      'Registration entrance fee' => 'oe_event_entrance_fee',
       'Registration capacity' => 'oe_event_registration_capacity',
+      'Entrance fee' => 'oe_event_entrance_fee',
       'Online type' => 'oe_event_online_type',
       'Online time start' => 'oe_event_online_dates:value',
       'Online time end' => 'oe_event_online_dates:end_value',
@@ -47,6 +47,7 @@ class EventContentContext extends RawCorporateContentContext {
       'Online link' => 'oe_event_online_link',
       'Languages' => 'oe_event_languages',
       'Status' => 'oe_event_status',
+      'Organiser is internal' => 'oe_event_organiser_is_internal',
       'Organiser name' => 'oe_event_organiser_name',
       'Event website' => 'oe_event_website',
       'Venue' => 'oe_event_venue:target_id',
@@ -63,8 +64,8 @@ class EventContentContext extends RawCorporateContentContext {
           $value = $venue->id();
           // For revision reference fields we have give the target_revision_id.
           $fields['oe_event_venue:target_revision_id'] = $venue->getRevisionId();
-
           break;
+
         case 'Contact':
           // Transform titles to ids and maintain the format of comma separated.
           $items = strpos($value, ', ') ? $items = explode(', ', $value) : $value;
@@ -72,16 +73,15 @@ class EventContentContext extends RawCorporateContentContext {
           foreach ($items as $item) {
             $contact = $this->loadEntityByLabel('oe_contact', $item);
             $value[] = $contact->id();
-            // For revision reference fields we have give the target_revision_id.
+            // For revision reference field we have give the target_revision_id.
             $revision_ids[] = $contact->getRevisionId();
           }
           $value = implode(', ', $value);
           $fields['oe_event_contact:target_revision_id'] = implode(', ', $revision_ids);
-
           break;
+
         case 'Featured media':
           $value = $this->loadEntityByLabel('media', $value)->id();
-
           break;
       }
 

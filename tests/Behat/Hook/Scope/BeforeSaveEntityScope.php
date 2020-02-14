@@ -61,14 +61,14 @@ class BeforeSaveEntityScope implements EntityAwareHookScopeInterface {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public function getEnvironment() {
     return $this->environment;
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public function getSuite() {
     return $this->environment->getSuite();
