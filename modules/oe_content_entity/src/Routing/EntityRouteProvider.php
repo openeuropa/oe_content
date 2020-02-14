@@ -18,7 +18,7 @@ class EntityRouteProvider extends AdminHtmlRouteProvider {
    * {@inheritdoc}
    */
   protected function getCanonicalRoute(EntityTypeInterface $entity_type) {
-    if ($route = parent::getCanonicalRoute($entity_type)) {
+    if ($route = parent::getEditFormRoute($entity_type)) {
       $route->setRequirement('_permission', 'access ' . $entity_type->id() . ' canonical page');
       return $route;
     }

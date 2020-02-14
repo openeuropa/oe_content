@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_entity;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_content_entity\Entity\EntityTypeBase;
+use Drupal\oe_content_entity\Entity\EntityTypeBaseInterface;
 
 /**
  * Provides dynamic permissions for corporate entities.
@@ -15,34 +15,30 @@ abstract class PermissionCallbacksBase {
   use StringTranslationTrait;
 
   /**
-   * {@inheritdoc}
+   * Returns the entity type id.
+   *
+   * @return string
+   *   The entity type id.
    */
   abstract protected function getEntityTypeId(): string;
 
   /**
-   * {@inheritdoc}
-   */
-  abstract protected function getEntityTypeLabel(): string;
-
-  /**
-   * {@inheritdoc}
-   */
-  abstract protected function getBundles(): array;
-
-  /**
    * Returns an array of entity permissions.
    */
-  public function buildPermissions() {
+  public function buildPermissions(): array {
     $perms = [];
     $entity_type_id = $this->getEntityTypeId();
-    $entity_type_label = $this->getEntityTypeLabel();
+    $entity_type_definition = \Drupal::entityTypeManager()->getDefinition($entity_type_id);
+    $entity_type_storage = \Drupal::entityTypeManager()->getStorage($entity_type_id);
+    $entity_bundle_storage = \Drupal::entityTypeManager()->getStorage($entity_type_definition->getBundleEntityType());
+    $entity_type_label = $entity_type_storage->getEntityType()->getLabel()->getUntranslatedString();
     // Generate entity permissions.
-    $perms += $this->entityPermissions($entity_type_id);
+    $perms += $this->entityPermissions($entity_type_id, $entity_type_label);
 
-    $bundles = $this->getBundles();
+    $bundles = $entity_bundle_storage->loadMultiple();
     // Generate permissions for all entity types.
     foreach ($bundles as $type) {
-      $perms += $this->entityTypePermissions($type);
+      $perms += $this->entityTypePermissions($type, $entity_type_label);
     }
 
     return $perms;
@@ -53,12 +49,14 @@ abstract class PermissionCallbacksBase {
    *
    * @param string $entity_type_id
    *   The entity type id.
+   * @param string $entity_type_label
+   *   The entity type label.
    *
    * @return array
    *   An associative array of permission names and descriptions.
    */
-  protected function entityPermissions(string $entity_type_id) {
-    $params = ['%entity_type_name' => $this->getEntityTypeLabel()];
+  protected function entityPermissions(string $entity_type_id, string $entity_type_label): array {
+    $params = ['%entity_type_name' => $entity_type_label];
     return [
       "access $entity_type_id overview" => [
         'title' => $this->t('%entity_type_name: Access overview page', $params),
@@ -78,16 +76,18 @@ abstract class PermissionCallbacksBase {
   /**
    * Returns a list of CRUD permissions for a given corporate entity type.
    *
-   * @param \Drupal\oe_content_entity\Entity\EntityTypeBase $type
+   * @param \Drupal\oe_content_entity\Entity\EntityTypeBaseInterface $type
    *   The entity type.
+   * @param string $entity_type_label
+   *   The entity type label.
    *
    * @return array
    *   An associative array of permission names and descriptions.
    */
-  protected function entityTypePermissions(EntityTypeBase $type) {
+  protected function entityTypePermissions(EntityTypeBaseInterface $type, string $entity_type_label): array {
     $type_id = $type->id();
     $params = [
-      '%entity_type_name' => $this->getEntityTypeLabel(),
+      '%entity_type_name' => $entity_type_label,
       '%type_name' => $type->label(),
     ];
 
