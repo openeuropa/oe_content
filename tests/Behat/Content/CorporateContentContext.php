@@ -6,7 +6,7 @@ namespace Drupal\Tests\oe_content\Behat\Content;
 
 use Behat\Gherkin\Node\TableNode;
 use Behat\Testwork\Call\CallResults;
-use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\oe_content_entity\Entity\EntityBaseInterface;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeSaveEntityScope;
@@ -16,7 +16,7 @@ use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 /**
  * Context to create corporate entities.
  */
-class CorporateContentContext extends RawDrupalContext {
+class CorporateContentContext extends RawCorporateContentContext {
 
   use EntityLoadingTrait;
 
@@ -43,7 +43,14 @@ class CorporateContentContext extends RawDrupalContext {
     $this->dispatchEntityAwareHook($scope);
 
     $entity->save();
-    $this->nodes[] = $entity;
+
+    // Make sure that the created entities are tracked and can be cleaned up.
+    if ($entity instanceof EntityBaseInterface) {
+      $this->entities[] = $entity;
+    }
+    else {
+      $this->nodes[] = $entity;
+    }
   }
 
   /**
