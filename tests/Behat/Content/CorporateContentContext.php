@@ -23,7 +23,7 @@ class CorporateContentContext extends RawCorporateContentContext {
   /**
    * Create an entity.
    *
-   * @Given the following :bundle_label :entity_type_label:
+   * @Given the following :bundle_label :entity_type_label entity:
    */
   public function createEntity(string $bundle_label, string $entity_type_label, TableNode $table): void {
     $definition = $this->loadDefinitionByLabel($entity_type_label);
