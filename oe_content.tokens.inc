@@ -35,7 +35,7 @@ function oe_content_tokens($type, $tokens, array $data, array $options, Bubbleab
     return [];
   }
   /** @var \Drupal\node\NodeInterface $node */
-  $node = $data['node']->getUntranslated();
+  $node = $data['node'];
 
   foreach ($tokens as $name => $original) {
     switch ($name) {
