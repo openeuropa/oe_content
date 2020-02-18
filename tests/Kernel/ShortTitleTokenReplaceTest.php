@@ -136,43 +136,35 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
     /** @var \Drupal\node\NodeInterface $node */
     $node_titled = $this->nodeStorage->load($node_titled->id());
 
-    // Generate and test tokens.
     $tests = [];
-    // Test the original language of the node that has defined short title.
-    $tests[] = [
+    $tests['short title available in original language'] = [
       'node' => $node_short_titled,
+      'langcode' => $this->currentLanguage->getId(),
       'expected' => $node_short_titled->get('oe_content_short_title')->value,
-      'langcode' => $this->currentLanguage->getId(),
     ];
-    // Test the original language of the node that has no short title defined.
-    $tests[] = [
+    $tests['short title not available in original language'] = [
       'node' => $node_titled,
+      'langcode' => $this->currentLanguage->getId(),
       'expected' => $node_titled->label(),
-      'langcode' => $this->currentLanguage->getId(),
     ];
-    // Test the french translation of the node that has defined short title.
-    $tests[] = [
+    $tests['short title available in French translation'] = [
       'node' => $node_short_titled,
+      'langcode' => 'fr',
       'expected' => $node_short_titled->getTranslation('fr')->get('oe_content_short_title')->value,
-      // The source short title should be used even in another language.
-      'langcode' => 'fr',
     ];
-    // Test the french translation of the node that has no short title defined.
-    $tests[] = [
+    $tests['short title not available in French translation'] = [
       'node' => $node_titled,
-      'expected' => $node_titled->getTranslation('fr')->label(),
-      // The source title should be used even in another language.
       'langcode' => 'fr',
+      'expected' => $node_titled->getTranslation('fr')->label(),
     ];
 
-    // Test to make sure that we generated something for each token.
-    foreach ($tests as $test) {
+    foreach ($tests as $scenario => $test) {
       // Load the translation of the node to simulate a token replacement using
       // a node in a certain language. This ensures that we are always using
       // the source language when generating the token.
       $node = $test['node']->getTranslation($test['langcode']);
       $output = $this->tokenService->replace($this->token, ['node' => $node], ['langcode' => $test['langcode']]);
-      $this->assertEquals($output, $test['expected'], sprintf('Token %s was not correctly replaced.', $this->token));
+      $this->assertEquals($output, $test['expected'], sprintf('Token was not correctly replaced for test case "%s".', $scenario));
     }
   }
 
