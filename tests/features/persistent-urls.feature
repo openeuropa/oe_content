@@ -12,7 +12,7 @@ Feature: Persistent URLs
       | en        |
       | fr        |
     When I visit "the News creation page"
-    And I fill in "Title" with "News 1"
+    And I fill in "Page title" with "News 1"
     And I enter "Teaser text" in the "Teaser" wysiwyg editor
     And I enter "Summary text" in the "Introduction" wysiwyg editor
     And I enter "Body text" in the "Body text" wysiwyg editor
@@ -23,7 +23,7 @@ Feature: Persistent URLs
     Then I should see "News 1"
     # Create a second node.
     When I visit "the News creation page"
-    And I fill in "Title" with "News 2"
+    And I fill in "Page title" with "News 2"
     And I enter "Teaser text" in the "Teaser" wysiwyg editor
     And I enter "Summary text" in the "Introduction" wysiwyg editor
     And I insert a link to "News 1" in the "Body text" field through the WYSIWYG editor

@@ -79,7 +79,10 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
+    third_party_settings:
+      maxlength:
+        maxlength_js: 170
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_news_featured_media:
     weight: 8
     settings:

@@ -11,7 +11,7 @@ field_name: oe_subject
 entity_type: node
 bundle: oe_page
 label: Subject
-description: ''
+description: 'The topics mentioned on this page. These will be used by search engines and dynamic lists to determine their relevance to a user.'
 required: false
 translatable: false
 default_value: {  }
