@@ -99,7 +99,7 @@ Feature: Event content creation
 
     # The alternative titles and teaser group is open by default.
     And I should see the text "Alternative titles and teaser"
-    And  I should see the text "Short title"
+    And I should see the text "Alternative title"
     And I should see the text "Navigation title"
     And I should see the text "Teaser"
 
