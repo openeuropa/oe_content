@@ -1,10 +1,27 @@
 # Change Log
 
+## [1.6.0](https://github.com/openeuropa/oe_content/tree/1.6.0) (2020-02-05)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.5.1...1.6.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2801: Set subject field optional for Page content type. [\#153](https://github.com/openeuropa/oe_content/pull/153) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-2730: Update common fields label and description. [\#151](https://github.com/openeuropa/oe_content/pull/151) ([22Alexandra](https://github.com/22Alexandra))
+
+## [1.5.1](https://github.com/openeuropa/oe_content/tree/1.5.1) (2019-12-16)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.5.0...1.5.1)
+
+**Merged pull requests:**
+
+- Update CHANGELOG.md for release 1.5.1. [\#146](https://github.com/openeuropa/oe_content/pull/146) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2584: Keep query parameters and fragments from PURL. [\#143](https://github.com/openeuropa/oe_content/pull/143) ([sergepavle](https://github.com/sergepavle))
+
 ## [1.5.0](https://github.com/openeuropa/oe_content/tree/1.5.0) (2019-12-02)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.4.0...1.5.0)
 
 **Merged pull requests:**
 
+- Release-1.5.0: Update changelog. [\#142](https://github.com/openeuropa/oe_content/pull/142) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2534: Add translations for hr and mt. [\#137](https://github.com/openeuropa/oe_content/pull/137) ([dxvargas](https://github.com/dxvargas))
 - OPENEUROPA-2488: TMGMT field preprocessor for the Timeline field. [\#133](https://github.com/openeuropa/oe_content/pull/133) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-2487: Publication date field should not be translatable. [\#132](https://github.com/openeuropa/oe_content/pull/132) ([upchuk](https://github.com/upchuk))

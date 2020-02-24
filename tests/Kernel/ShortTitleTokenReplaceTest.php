@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Kernel;
 
 use Drupal\language\Entity\ConfigurableLanguage;
-use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
 use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
@@ -18,34 +17,6 @@ use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
 class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
 
   use RdfDatabaseConnectionTrait;
-
-  /**
-   * The current language.
-   *
-   * @var \Drupal\Core\Language\Language
-   */
-  protected $currentLanguage;
-
-  /**
-   * The token service.
-   *
-   * @var \Drupal\Core\Utility\Token
-   */
-  protected $tokenService;
-
-  /**
-   * The Node storage handler.
-   *
-   * @var \Drupal\node\NodeStorageInterface
-   */
-  protected $nodeStorage;
-
-  /**
-   * The token we are testing.
-   *
-   * @var string
-   */
-  protected $token = '[node:short-title-fallback]';
 
   /**
    * Modules to enable.
@@ -78,10 +49,6 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
     module_load_include('install', 'oe_content');
     oe_content_install();
 
-    $this->currentLanguage = \Drupal::languageManager()->getCurrentLanguage();
-    $this->tokenService = \Drupal::token();
-    $this->nodeStorage = \Drupal::entityTypeManager()->getStorage('node');
-
     ConfigurableLanguage::createFromLangcode('fr')->save();
 
     // Create a node type for the test.
@@ -93,10 +60,13 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
    * Creates a node, then tests the tokens generated from it.
    */
   public function testShortTitleTokenReplacement() {
+    $node_storage = $this->container->get('entity_type.manager')->getStorage('node');
+    $current_language = $this->container->get('language_manager')->getCurrentLanguage();
+
     // Create a user and a node with short title.
     $account = $this->createUser();
     /* @var $node \Drupal\node\NodeInterface */
-    $node_short_titled = Node::create([
+    $node_short_titled = $node_storage->create([
       'type' => 'oe_content_token_test',
       'tnid' => 0,
       'uid' => $account->id(),
@@ -114,7 +84,7 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
     $node_short_titled->save();
 
     // Creates a node without short title.
-    $node_titled = Node::create([
+    $node_titled = $node_storage->create([
       'type' => 'oe_content_token_test',
       'tnid' => 0,
       'uid' => $account->id(),
@@ -129,46 +99,43 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
     ]);
     $node_titled->save();
 
-    $this->nodeStorage->resetCache();
+    $node_storage->resetCache();
 
     /** @var \Drupal\node\NodeInterface $node */
-    $node_short_titled = $this->nodeStorage->load($node_short_titled->id());
+    $node_short_titled = $node_storage->load($node_short_titled->id());
     /** @var \Drupal\node\NodeInterface $node */
-    $node_titled = $this->nodeStorage->load($node_titled->id());
+    $node_titled = $node_storage->load($node_titled->id());
 
-    // Generate and test tokens.
     $tests = [];
-    $tests[] = [
+    $tests['short title available in original language'] = [
       'node' => $node_short_titled,
+      'langcode' => $current_language->getId(),
       'expected' => $node_short_titled->get('oe_content_short_title')->value,
-      'langcode' => $this->currentLanguage->getId(),
     ];
-    $tests[] = [
+    $tests['short title not available in original language'] = [
       'node' => $node_titled,
+      'langcode' => $current_language->getId(),
       'expected' => $node_titled->label(),
-      'langcode' => $this->currentLanguage->getId(),
     ];
-    $tests[] = [
+    $tests['short title available in French translation'] = [
       'node' => $node_short_titled,
-      'expected' => $node_short_titled->get('oe_content_short_title')->value,
-      // The source short title should be used even in another language.
       'langcode' => 'fr',
+      'expected' => $node_short_titled->getTranslation('fr')->get('oe_content_short_title')->value,
     ];
-    $tests[] = [
+    $tests['short title not available in French translation'] = [
       'node' => $node_titled,
-      'expected' => $node_titled->label(),
-      // The source title should be used even in another language.
       'langcode' => 'fr',
+      'expected' => $node_titled->getTranslation('fr')->label(),
     ];
 
-    // Test to make sure that we generated something for each token.
-    foreach ($tests as $test) {
+    $token_service = $this->container->get('token');
+    foreach ($tests as $scenario => $test) {
       // Load the translation of the node to simulate a token replacement using
       // a node in a certain language. This ensures that we are always using
       // the source language when generating the token.
       $node = $test['node']->getTranslation($test['langcode']);
-      $output = $this->tokenService->replace($this->token, ['node' => $node], ['langcode' => $test['langcode']]);
-      $this->assertEquals($output, $test['expected'], sprintf('Token %s was not correctly replaced.', $this->token));
+      $output = $token_service->replace('[node:short-title-fallback]', ['node' => $node], ['langcode' => $test['langcode']]);
+      $this->assertEquals($output, $test['expected'], sprintf('Token was not correctly replaced for test case "%s".', $scenario));
     }
   }
 

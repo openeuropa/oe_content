@@ -23,7 +23,8 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
   }
 
   $fields['oe_content_short_title'] = BaseFieldDefinition::create('string')
-    ->setLabel(t('Short title'))
+    ->setLabel(t('Alternative title'))
+    ->setDescription(t('Use this field to create an alternative title for use in the URL and in list views. If the page title is longer than 60 characters, you can add a shorter title here.'))
     ->setRequired(FALSE)
     ->setTranslatable(TRUE)
     ->setRevisionable(TRUE)
@@ -50,6 +51,7 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
 
   $fields['oe_content_content_owner'] = BaseFieldDefinition::create('skos_concept_entity_reference')
     ->setLabel(t('Content owner'))
+    ->setDescription(t('This is not the writer of the content, but the subject matter expert responsible for keeping this content up to date.'))
     ->setRequired(TRUE)
     ->setTranslatable(FALSE)
     ->setRevisionable(TRUE)
@@ -79,7 +81,8 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
     ->setDisplayConfigurable('form', TRUE);
 
   $fields['oe_content_legacy_link'] = BaseFieldDefinition::create('link')
-    ->setLabel(t('Legacy link'))
+    ->setLabel(t('Redirect link'))
+    ->setDescription(t('Add a link to this field to automatically redirect the user to a different page. Use this to prevent duplication of content.'))
     ->setRequired(FALSE)
     ->setTranslatable(TRUE)
     ->setRevisionable(TRUE)
