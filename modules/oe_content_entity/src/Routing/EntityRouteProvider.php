@@ -32,6 +32,7 @@ class EntityRouteProvider extends AdminHtmlRouteProvider {
       $route->setRequirement('_permission', 'access ' . $entity_type->id() . ' overview');
       return $route;
     }
+    return parent::getEditFormRoute($entity_type);
   }
 
 }

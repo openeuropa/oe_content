@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\oe_content_event\Utilities\ContentFormUtilities;
+use Drupal\oe_content\Utility\ContentFormHandler;
 
 /**
  * Implements hook_entity_type_alter().

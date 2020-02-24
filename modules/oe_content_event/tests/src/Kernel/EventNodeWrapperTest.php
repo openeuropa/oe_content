@@ -1,0 +1,369 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace Drupal\Tests\oe_content_event\Kernel;
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\node\Entity\Node;
+use Drupal\oe_content_event\EventNodeWrapper;
+
+/**
+ * Tests event wrapper class.
+ */
+class EventNodeWrapperTest extends EventKernelTestBase {
+
+  /**
+   * Test getter methods.
+   */
+  public function testGetters(): void {
+    foreach ($this->getterAssertions() as $assertion) {
+      $this->assertGetters($assertion['case'], $assertion['values'], $assertion['assertions']);
+    }
+  }
+
+  /**
+   * Test registration status.
+   */
+  public function testRegistrationStatus(): void {
+    foreach ($this->registrationStatusAssertions() as $assertion) {
+      $this->assertRegistrationStatus($assertion['case'], $assertion['values'], $assertion['now'], $assertion['assertions']);
+    }
+  }
+
+  /**
+   * Test event ending.
+   */
+  public function testEventIsOver(): void {
+    $wrapper = $this->createWrapper([
+      'oe_event_dates' => [
+        'value' => '2016-05-10T12:00:00',
+        'end_value' => '2016-05-15T12:00:00',
+      ],
+    ]);
+
+    // Event is not over.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-09 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(FALSE, $wrapper->isOver($now));
+
+    // Event is over.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-30 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(TRUE, $wrapper->isOver($now));
+  }
+
+  /**
+   * Test registration period methods.
+   */
+  public function testRegistrationPeriodMethods(): void {
+    $wrapper = $this->createWrapper([
+      'oe_event_registration_dates' => [
+        'value' => '2016-05-10T12:00:00',
+        'end_value' => '2016-05-15T12:00:00',
+      ],
+    ]);
+
+    // Registration yet to come.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-09 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodOver($now));
+
+    // Registration just started.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-10 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodOver($now));
+
+    // Registration in progress.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-12 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodOver($now));
+
+    // Registration just ended.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-15 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodOver($now));
+
+    // Registration is over.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-20 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodYetToCome($now));
+    $this->assertEquals(FALSE, $wrapper->isRegistrationPeriodActive($now));
+    $this->assertEquals(TRUE, $wrapper->isRegistrationPeriodOver($now));
+  }
+
+  /**
+   * Assert getter methods.
+   *
+   * @param string $case
+   *   Test case description.
+   * @param array $values
+   *   Entity values to initialize the wrapper with.
+   * @param array $assertions
+   *   Assertions to be ran over it.
+   */
+  protected function assertGetters(string $case, array $values, array $assertions): void {
+    // Create wrapper.
+    $wrapper = $this->createWrapper($values);
+
+    // Run assertions.
+    foreach ($assertions as $method => $expected) {
+      $actual = $wrapper->{$method}();
+      if ($actual instanceof DrupalDateTime) {
+        $actual = $actual->format(DrupalDateTime::FORMAT);
+      }
+      $this->assertEquals($expected, $actual, "Test case '{$case}' failed: method {$method} did not return what was expected.");
+    }
+  }
+
+  /**
+   * Assert registration status related methods.
+   *
+   * @param string $case
+   *   Test case description.
+   * @param array $values
+   *   Entity values to initialize the wrapper with.
+   * @param string $now
+   *   Current time in \DrupalDateTime::FORMAT.
+   * @param array $assertions
+   *   Assertions to be ran over it.
+   */
+  protected function assertRegistrationStatus(string $case, array $values, string $now, array $assertions): void {
+    // Create wrapper.
+    $wrapper = $this->createWrapper($values);
+
+    // Run assertions.
+    foreach ($assertions as $method => $expected) {
+      $datetime = \DateTime::createFromFormat(DrupalDateTime::FORMAT, $now, new \DateTimeZone('UTC'));
+      $actual = $wrapper->{$method}($datetime);
+      if ($actual instanceof DrupalDateTime) {
+        $actual = $actual->format(DrupalDateTime::FORMAT);
+      }
+      $this->assertEquals($expected, $actual, "Test case '{$case}' failed: method {$method} did not return what was expected.");
+    }
+  }
+
+  /**
+   * Create a wrapper object given its node entity values.
+   *
+   * @param array $values
+   *   Entity values.
+   *
+   * @return \Drupal\oe_content_event\EventNodeWrapper
+   *   Wrapper object.
+   */
+  protected function createWrapper(array $values): EventNodeWrapper {
+    // Create wrapper.
+    $node = Node::create($values + [
+      'type' => 'oe_event',
+      'title' => 'My event',
+    ]);
+    $node->save();
+    return new EventNodeWrapper($node);
+  }
+
+  /**
+   * Assertion for wrapper getters.
+   *
+   * This would normally be a data provider but it would require a full test
+   * bootstrap for each test case, which will add minutes to test runs.
+   *
+   * Since we are testing a simple entity wrapper we will instead run it in
+   * the same test.
+   *
+   * @return array
+   *   List of assertion for wrapper test.
+   */
+  public function getterAssertions(): array {
+    return [
+      [
+        'case' => 'Test default getters behaviour when no fields are set',
+        'values' => [],
+        'assertions' => [
+          'isAsPlanned' => TRUE,
+          'isCancelled' => FALSE,
+          'isRescheduled' => FALSE,
+          'isPostponed' => FALSE,
+          'hasRegistration' => FALSE,
+          'getRegistrationStartDate' => NULL,
+          'getRegistrationEndDate' => NULL,
+        ],
+      ],
+      [
+        'case' => 'Test hasRegistration behaviour',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+        ],
+        'assertions' => [
+          'isAsPlanned' => TRUE,
+          'isCancelled' => FALSE,
+          'isRescheduled' => FALSE,
+          'isPostponed' => FALSE,
+          'hasRegistration' => TRUE,
+          'getRegistrationStartDate' => NULL,
+          'getRegistrationEndDate' => NULL,
+        ],
+      ],
+      [
+        'case' => 'Test cancelled event',
+        'values' => [
+          'oe_event_status' => 'cancelled',
+        ],
+        'assertions' => [
+          'isAsPlanned' => FALSE,
+          'isCancelled' => TRUE,
+          'isRescheduled' => FALSE,
+          'isPostponed' => FALSE,
+        ],
+      ],
+      [
+        'case' => 'Test rescheduled event',
+        'values' => [
+          'oe_event_status' => 'rescheduled',
+        ],
+        'assertions' => [
+          'isAsPlanned' => FALSE,
+          'isCancelled' => FALSE,
+          'isRescheduled' => TRUE,
+          'isPostponed' => FALSE,
+        ],
+      ],
+      [
+        'case' => 'Test postponed event',
+        'values' => [
+          'oe_event_status' => 'postponed',
+        ],
+        'assertions' => [
+          'isAsPlanned' => FALSE,
+          'isCancelled' => FALSE,
+          'isRescheduled' => FALSE,
+          'isPostponed' => TRUE,
+        ],
+      ],
+      [
+        'case' => 'Test date getters',
+        'values' => [
+          'oe_event_dates' => [
+            'value' => '2016-09-20T12:00:00',
+            'end_value' => '2016-09-21T12:00:00',
+          ],
+          'oe_event_registration_dates' => [
+            'value' => '2016-05-10T12:00:00',
+            'end_value' => '2016-05-15T12:00:00',
+          ],
+        ],
+        'assertions' => [
+          'getStartDate' => '2016-09-20 12:00:00',
+          'getEndDate' => '2016-09-21 12:00:00',
+          'getRegistrationStartDate' => '2016-05-10 12:00:00',
+          'getRegistrationEndDate' => '2016-05-15 12:00:00',
+        ],
+      ],
+    ];
+  }
+
+  /**
+   * Assertion for registration status.
+   *
+   * This would normally be a data provider but it would require a full test
+   * bootstrap for each test case, which will add minutes to test runs.
+   *
+   * Since we are testing a simple entity wrapper we will instead run it in
+   * the same test.
+   *
+   * @return array
+   *   List of assertion for wrapper test.
+   */
+  protected function registrationStatusAssertions() {
+    return [
+      [
+        'case' => 'Test open registration',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+        ],
+        'now' => '2016-09-20 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => TRUE,
+          'isRegistrationClosed' => FALSE,
+        ],
+      ],
+      [
+        'case' => 'Test closed registration',
+        'values' => [],
+        'now' => '2016-09-20 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => FALSE,
+          'isRegistrationClosed' => TRUE,
+        ],
+      ],
+      [
+        'case' => 'Test open registration with cancelled event',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+          'oe_event_status' => 'cancelled',
+        ],
+        'now' => '2016-09-20 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => FALSE,
+          'isRegistrationClosed' => TRUE,
+        ],
+      ],
+      [
+        'case' => 'Test open registration with postponed event',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+          'oe_event_status' => 'postponed',
+        ],
+        'now' => '2016-09-20 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => FALSE,
+          'isRegistrationClosed' => TRUE,
+        ],
+      ],
+      [
+        'case' => 'Test registration is considered opened when inside the active period',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+          'oe_event_registration_dates' => [
+            'value' => '2016-05-10T12:00:00',
+            'end_value' => '2016-05-15T12:00:00',
+          ],
+        ],
+        'now' => '2016-05-12 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => TRUE,
+          'isRegistrationClosed' => FALSE,
+        ],
+      ],
+      [
+        'case' => 'Test registration is considered closed when outside the active period',
+        'values' => [
+          'oe_event_registration_url' => [
+            'uri' => 'http://example.com',
+          ],
+          'oe_event_registration_dates' => [
+            'value' => '2016-05-10T12:00:00',
+            'end_value' => '2016-05-15T12:00:00',
+          ],
+        ],
+        'now' => '2016-05-01 12:00:00',
+        'assertions' => [
+          'isRegistrationOpen' => FALSE,
+          'isRegistrationClosed' => TRUE,
+        ],
+      ],
+    ];
+  }
+
+}

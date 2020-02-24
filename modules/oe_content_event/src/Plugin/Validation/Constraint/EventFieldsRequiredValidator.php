@@ -114,4 +114,36 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     }
   }
 
+  /**
+   * Helper function to provide violation on a set of "Registration" fields.
+   *
+   * @param \Symfony\Component\Validator\Constraint $constraint
+   *   The constraint object.
+   * @param \Drupal\node\NodeInterface $node
+   *   The node object.
+   */
+  protected function validateRegistrationGroupFields(Constraint $constraint, NodeInterface $node) {
+    $violation = NULL;
+    $field_values = [];
+    $required_field = 'oe_event_registration_url';
+    $fields_to_check = [
+      'oe_event_entrance_fee',
+      'oe_event_registration_dates',
+      'oe_event_registration_capacity',
+    ];
+
+    // Check for values in each field.
+    foreach ($fields_to_check as $field_name) {
+      $field_values[$field_name] = $node->get($field_name)->isEmpty();
+    }
+
+    // If any of these fields are NOT empty, then the required field
+    // must be filled in.
+    if (in_array(FALSE, $field_values) && $node->get($required_field)->isEmpty()) {
+      $this->context->buildViolation($constraint->message, ['@name' => $node->getFieldDefinition($required_field)->getLabel()])
+        ->atPath($required_field)
+        ->addViolation();
+    }
+  }
+
 }

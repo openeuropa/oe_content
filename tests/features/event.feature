@@ -99,7 +99,7 @@ Feature: Event content creation
 
     # The alternative titles and teaser group is open by default.
     And I should see the text "Alternative titles and teaser"
-    And  I should see the text "Short title"
+    And I should see the text "Alternative title"
     And I should see the text "Navigation title"
     And I should see the text "Teaser"
 
@@ -383,6 +383,13 @@ Feature: Event content creation
     And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
     And I fill in "End date" of "Registration date" with the date "02/23/2019"
     And I fill in "End date" of "Registration date" with the time "02:23:00PM"
+    And I fill in "Registration capacity" with "100"
+    And I press "Save"
+    Then I should see the following error messages:
+      | error messages                      |
+      | Registration URL field is required. |
+    # Make sure that errors related to the Registration fields are fixed.
+    And I fill in "Registration URL" with "http://example.com"
     And I press "Save"
     Then I should see the following success messages:
       | success messages                      |
