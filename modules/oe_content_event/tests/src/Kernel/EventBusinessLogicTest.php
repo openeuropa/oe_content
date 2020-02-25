@@ -7,14 +7,20 @@ namespace Drupal\Tests\oe_content_event\Kernel;
 use Drupal\node\Entity\Node;
 
 /**
- * Tests event content type creation.
+ * Test event creation business logic.
  */
-class EventCreationTest extends EventKernelTestBase {
+class EventBusinessLogicTest extends EventKernelTestBase {
 
   /**
-   * Test the Organisation fields.
+   * Test that organiser fields are correctly saved.
+   *
+   * An organiser can either be a custom string or a reference to a corporate
+   * vocabulary, depending from the value of `oe_event_organiser_is_internal`.
+   *
+   * This tests that, if one is set, the other is always not, depending
+   * whereas the organiser is marked as internal or not.
    */
-  public function testOrganisationFields(): void {
+  public function testOrganiserFields(): void {
     $values = [
       'type' => 'oe_event',
       'title' => 'My node title',
