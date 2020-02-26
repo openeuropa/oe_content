@@ -15,6 +15,20 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
   /**
    * {@inheritdoc}
    */
+  public function getEntityId(): string {
+    return 'node';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getEntityBundle(): string {
+    return 'oe_event';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isAsPlanned(): bool {
     return $this->entity->get('oe_event_status')->value === 'as_planned';
   }
@@ -128,20 +142,6 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    */
   public function isRegistrationPeriodOver(\DateTimeInterface $datetime): bool {
     return $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function getWrappedEntityId(): string {
-    return 'node';
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function getWrappedEntityBundle(): string {
-    return 'oe_event';
   }
 
 }

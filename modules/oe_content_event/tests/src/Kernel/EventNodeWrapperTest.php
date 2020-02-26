@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_content_event\Kernel;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\node\Entity\Node;
+use Drupal\oe_content\EntityWrapperInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
@@ -153,14 +154,14 @@ class EventNodeWrapperTest extends EventKernelTestBase {
    * @return \Drupal\oe_content_event\EventNodeWrapper
    *   Wrapper object.
    */
-  protected function createWrapper(array $values): EventNodeWrapper {
+  protected function createWrapper(array $values): EntityWrapperInterface {
     // Create wrapper.
     $node = Node::create($values + [
       'type' => 'oe_event',
       'title' => 'My event',
     ]);
     $node->save();
-    return new EventNodeWrapper($node);
+    return EventNodeWrapper::getInstance($node);
   }
 
   /**
