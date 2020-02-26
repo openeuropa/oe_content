@@ -149,8 +149,8 @@ Feature: Event content creation
     Then I fill in "Registration URL" with "http://example.com"
     And I select "Open" from "Registration status"
 
-    And I select in "Start date" of "Registration date" with the datetime "23-02-2019 02:30"
-    And I select in "End date" of "Registration date" with the datetime "23-02-2019 14:30"
+    And I select date and time "23-02-2019 02:30" from "Start date" of "Registration date"
+    And I select date and time "23-02-2019 14:30" from "End date" of "Registration date"
 
     And I fill in "Entrance fee" with "Free of charge"
     And I fill in "Registration capacity" with "100 seats"
@@ -158,8 +158,8 @@ Feature: Event content creation
     And I fill in "Description summary" with "Description summary text"
     And I fill in "Subject" with "EU financing"
 
-    And I select in "Start date" of "Event date" with the datetime "21-02-2019 02:15"
-    And I select in "End date" of "Event date" with the datetime "21-02-2019 14:15"
+    And I select date and time "21-02-2019 02:15" from "Start date" of "Event date"
+    And I select date and time "21-02-2019 14:15" from "End date" of "Event date"
 
     # Venue reference by inline entity form.
     And I fill in "Name" with "Name of the venue"
@@ -175,8 +175,8 @@ Feature: Event content creation
     When I press "Online"
     Then I select "Facebook" from "Online type"
 
-    And I select in "Start date" of "Online time" with the datetime "22-02-2019 02:30"
-    And I select in "End date" of "Online time" with the datetime "22-02-2019 14:30"
+    And I select date and time "22-02-2019 02:30" from "Start date" of "Online time"
+    And I select date and time "22-02-2019 14:30" from "End date" of "Online time"
 
     And I fill in "Online description" with "Online description text"
     And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
@@ -330,8 +330,8 @@ Feature: Event content creation
       | Online time field is required. |
       | Online link field is required.       |
     # Make sure that errors related to the Online fields are fixed.
-    And I select in "Start date" of "Online time" with the datetime "22-02-2019 02:30"
-    And I select in "End date" of "Online time" with the datetime "22-02-2019 14:30"
+    And I select date and time "22-02-2019 02:30" from "Start date" of "Online time"
+    And I select date and time "22-02-2019 14:30" from "End date" of "Online time"
     And I fill in "Online description" with "Online description text"
     And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
     And I fill in "Link text" with "Online link" in the "Online link" region
@@ -361,8 +361,8 @@ Feature: Event content creation
     # Make sure that validation of the Registration fields group works as expected.
     When I click "Edit"
     And I press "Registration"
-    And I select in "Start date" of "Registration date" with the datetime "23-02-2019 02:15"
-    And I select in "End date" of "Registration date" with the datetime "23-02-2019 14:15"
+    And I select date and time "23-02-2019 02:15" from "Start date" of "Registration date"
+    And I select date and time "23-02-2019 14:15" from "End date" of "Registration date"
     And I fill in "Registration capacity" with "100"
     And I press "Save"
     Then I should see the following error messages:

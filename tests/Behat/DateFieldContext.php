@@ -76,10 +76,10 @@ class DateFieldContext extends RawDrupalContext {
   }
 
   /**
-   * Fills a date and time field at a daterange datelist widget.
+   * Select a date and time field at a daterange datelist widget.
    *
-   * When I select in "Start date" of "Event date"
-   * with the datetime "29-08-2016 06:59".
+   * When I select date and time "29-08-2016 06:59"
+   * from "Start date" of "Event date".
    *
    * @param string $field_item
    *   The date field item inside the field component.
@@ -88,7 +88,7 @@ class DateFieldContext extends RawDrupalContext {
    * @param string $value
    *   The value of the field.
    *
-   * @When I select in :field_item of :field_group with the datetime :value
+   * @When I select date and time :value from :field_item of :field_group
    */
   public function fillDateRangeSelectListField($field_item, $field_group, $value) {
     $field_selectors = $this->findDateListRangeFields($field_group);
