@@ -10,7 +10,7 @@ namespace Drupal\oe_content\Utility;
 class ContentFormUtilities {
 
   /**
-   * Toggle visibility of two fields, depending on the state or a third one.
+   * Toggle visibility of two fields, depending on the state of a checkbox.
    *
    * @param array $form
    *   The form array.

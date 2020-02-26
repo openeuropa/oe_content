@@ -47,7 +47,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
   }
 
   /**
-   * Helper function to provide violation on a set of fields that are required.
+   * Validate that if one field is not empty then all the rest are required too.
    *
    * @param array $fields
    *   List of fields to check.
@@ -77,7 +77,13 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
   }
 
   /**
-   * Helper function to provide violation on a set of "Organiser" fields.
+   * Validate organiser information consistency.
+   *
+   * An organiser can either be a custom string or a reference to a corporate
+   * vocabulary, depending from the value of `oe_event_organiser_is_internal`.
+   *
+   * This tests that, if one is set, the other is always not, depending
+   * whether the organiser is marked as internal or not.
    *
    * @param \Symfony\Component\Validator\Constraint $constraint
    *   The constraint object.
@@ -107,7 +113,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
   }
 
   /**
-   * Helper function to provide violation on a set of "Registration" fields.
+   * Validate event registration consistency.
    *
    * @param \Symfony\Component\Validator\Constraint $constraint
    *   The constraint object.

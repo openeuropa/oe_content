@@ -13,12 +13,6 @@ class EventBusinessLogicTest extends EventKernelTestBase {
 
   /**
    * Test that organiser fields are correctly saved.
-   *
-   * An organiser can either be a custom string or a reference to a corporate
-   * vocabulary, depending from the value of `oe_event_organiser_is_internal`.
-   *
-   * This tests that, if one is set, the other is always not, depending
-   * whereas the organiser is marked as internal or not.
    */
   public function testOrganiserFields(): void {
     $values = [

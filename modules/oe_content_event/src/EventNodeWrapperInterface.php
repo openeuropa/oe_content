@@ -12,7 +12,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 interface EventNodeWrapperInterface {
 
   /**
-   * Check whereas the event status is 'as_planned'.
+   * Check whether the event status is 'as_planned'.
    *
    * @return bool
    *   Whereas the event status is 'as_planned'.
@@ -20,7 +20,7 @@ interface EventNodeWrapperInterface {
   public function isAsPlanned(): bool;
 
   /**
-   * Check whereas the event status is 'cancelled'.
+   * Check whether the event status is 'cancelled'.
    *
    * @return bool
    *   Whereas the event status is 'cancelled'.
@@ -28,7 +28,7 @@ interface EventNodeWrapperInterface {
   public function isCancelled(): bool;
 
   /**
-   * Check whereas the event status is 'rescheduled'.
+   * Check whether the event status is 'rescheduled'.
    *
    * @return bool
    *   Whereas the event status is 'rescheduled'.
@@ -36,7 +36,7 @@ interface EventNodeWrapperInterface {
   public function isRescheduled(): bool;
 
   /**
-   * Check whereas the event status is 'postponed'.
+   * Check whether the event status is 'postponed'.
    *
    * @return bool
    *   Whereas the event status is 'postponed'.
@@ -44,7 +44,7 @@ interface EventNodeWrapperInterface {
   public function isPostponed(): bool;
 
   /**
-   * Check whereas the event has registration.
+   * Check whether the event has registration.
    *
    * @return bool
    *   Whereas the event has registration.
@@ -52,7 +52,7 @@ interface EventNodeWrapperInterface {
   public function hasRegistration(): bool;
 
   /**
-   * Check whereas the event registration is open.
+   * Check whether the event registration is open.
    *
    * We consider the registration open if the event:
    *
@@ -70,7 +70,7 @@ interface EventNodeWrapperInterface {
   public function isRegistrationOpen(\DateTimeInterface $datetime): bool;
 
   /**
-   * Check whereas the event registration is closed.
+   * Check whether the event registration is closed.
    *
    * @param \DateTimeInterface $datetime
    *   Datetime object to check the registration period against.
@@ -97,7 +97,7 @@ interface EventNodeWrapperInterface {
   public function getEndDate(): DrupalDateTime;
 
   /**
-   * Check whereas the event has registration dates.
+   * Check whether the event has registration dates.
    *
    * @return bool
    *   Whereas the event has registration dates.
@@ -121,7 +121,7 @@ interface EventNodeWrapperInterface {
   public function getRegistrationEndDate(): ?DrupalDateTime;
 
   /**
-   * Check whereas the registration period is yet to come.
+   * Check whether the registration period is yet to come.
    *
    * @param \DateTimeInterface $datetime
    *   Datetime object to check the registration period against.
@@ -132,7 +132,7 @@ interface EventNodeWrapperInterface {
   public function isRegistrationPeriodYetToCome(\DateTimeInterface $datetime): bool;
 
   /**
-   * Check whereas the event is over, i.e. either expired or cancelled.
+   * Check whether the event is over, i.e. either expired or cancelled.
    *
    * @param \DateTimeInterface $datetime
    *   Datetime object to check against.
@@ -143,7 +143,7 @@ interface EventNodeWrapperInterface {
   public function isOver(\DateTimeInterface $datetime): bool;
 
   /**
-   * Check whereas the registration period is active.
+   * Check whether the registration period is active.
    *
    * @param \DateTimeInterface $datetime
    *   Datetime object to check the registration period against.
@@ -154,7 +154,7 @@ interface EventNodeWrapperInterface {
   public function isRegistrationPeriodActive(\DateTimeInterface $datetime): bool;
 
   /**
-   * Check whereas the registration period is over.
+   * Check whether the registration period is over.
    *
    * @param \DateTimeInterface $datetime
    *   Datetime object to check the registration period against.

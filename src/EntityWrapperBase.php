@@ -14,7 +14,7 @@ abstract class EntityWrapperBase {
   /**
    * Wrapped entity object.
    *
-   * @var \Drupal\node\NodeInterface
+   * @var \Drupal\Core\Entity\ContentEntityInterface
    */
   protected $entity;
 
