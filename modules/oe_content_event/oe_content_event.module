@@ -9,7 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\oe_content\Utility\ContentFormHandler;
+use Drupal\oe_content\Utility\ContentFormUtilities;
 
 /**
  * Implements hook_entity_type_alter().
@@ -38,12 +38,12 @@ function oe_content_event_node_presave(EntityInterface $entity) {
  * Implements hook_form_FORM_ID_alter().
  */
 function oe_content_event_form_node_oe_event_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  ContentFormHandler::toggleFieldsWithCheckbox($form, 'oe_event_organiser_is_internal', 'oe_event_organiser_internal', 'oe_event_organiser_name');
+  ContentFormUtilities::toggleFieldsWithCheckbox($form, 'oe_event_organiser_is_internal', 'oe_event_organiser_internal', 'oe_event_organiser_name');
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
 function oe_content_event_form_node_oe_event_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  ContentFormHandler::toggleFieldsWithCheckbox($form, 'oe_event_organiser_is_internal', 'oe_event_organiser_internal', 'oe_event_organiser_name');
+  ContentFormUtilities::toggleFieldsWithCheckbox($form, 'oe_event_organiser_is_internal', 'oe_event_organiser_internal', 'oe_event_organiser_name');
 }

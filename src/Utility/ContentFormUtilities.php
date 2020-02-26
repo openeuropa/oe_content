@@ -7,7 +7,7 @@ namespace Drupal\oe_content\Utility;
 /**
  * Provides helper methods to manipulate content forms.
  */
-class ContentFormHandler {
+class ContentFormUtilities {
 
   /**
    * Toggle visibility of two fields, depending on the state or a third one.
