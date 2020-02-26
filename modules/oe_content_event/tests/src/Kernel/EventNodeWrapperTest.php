@@ -5,7 +5,9 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_event\Kernel;
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\entity_test\Entity\EntityTest;
 use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
 use Drupal\oe_content\EntityWrapperInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
 
@@ -13,6 +15,33 @@ use Drupal\oe_content_event\EventNodeWrapper;
  * Tests event wrapper class.
  */
 class EventNodeWrapperTest extends EventKernelTestBase {
+
+  /**
+   * Test exception thrown if an unsupported entity type is passed.
+   */
+  public function testUnsupportedEntityType() {
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage("The current wrapper only accepts 'node' entities.");
+    $entity = EntityTest::create();
+    EventNodeWrapper::getInstance($entity);
+  }
+
+  /**
+   * Test exception thrown if an unsupported entity bundle is passed.
+   */
+  public function testUnsupportedEntityBundle() {
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage("The current wrapper only accepts 'node' entities of type 'oe_event'.");
+    $node_type = NodeType::create([
+      'type' => 'test',
+      'name' => 'Test bundle',
+    ]);
+    $node_type->save();
+    $entity = Node::create([
+      'type' => 'test',
+    ]);
+    EventNodeWrapper::getInstance($entity);
+  }
 
   /**
    * Test getter methods.
