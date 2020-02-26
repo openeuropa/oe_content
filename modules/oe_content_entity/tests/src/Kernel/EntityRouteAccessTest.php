@@ -29,17 +29,17 @@ class EntityRouteAccessTest extends EntityKernelTestBase {
 
     // Administrator.
     $user = $this->drupalCreateUser(['manage corporate content entities']);
-    $actual = $access_manager->checkNamedRoute('entity.oe_corporate.collection', [], $user, TRUE);
+    $actual = $access_manager->checkNamedRoute('entity.oe_corporate_entity_test.collection', [], $user, TRUE);
     $this->assertTrue($actual->isAllowed());
 
     // User with access link list overview permission.
-    $user = $this->drupalCreateUser(['access oe_corporate overview']);
-    $actual = $access_manager->checkNamedRoute('entity.oe_corporate.collection', [], $user, TRUE);
+    $user = $this->drupalCreateUser(['access oe_corporate_entity_test overview']);
+    $actual = $access_manager->checkNamedRoute('entity.oe_corporate_entity_test.collection', [], $user, TRUE);
     $this->assertTrue($actual->isAllowed());
 
     // User without permissions.
     $user = $this->drupalCreateUser([]);
-    $actual = $access_manager->checkNamedRoute('entity.oe_corporate.collection', [], $user, TRUE);
+    $actual = $access_manager->checkNamedRoute('entity.oe_corporate_entity_test.collection', [], $user, TRUE);
     $this->assertTrue($actual->isNeutral());
   }
 

@@ -1,6 +1,6 @@
-oe_content_entity_test.oe_corporate_type.*:
+oe_content_entity_test.oe_corporate_type_entity_test.*:
   type: config_entity
-  label: 'Corporate Type settings'
+  label: 'Corporate Type Entity Test settings'
   mapping:
     id:
       type: string

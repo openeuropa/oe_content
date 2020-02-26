@@ -7,7 +7,7 @@ namespace Drupal\oe_content_entity_test;
 use Drupal\oe_content_entity\PermissionCallbacksBase;
 
 /**
- * Provides dynamic permissions for Contact entity.
+ * Provides dynamic permissions for Corporate Test entity.
  */
 class PermissionCallbacks extends PermissionCallbacksBase {
 
@@ -15,7 +15,7 @@ class PermissionCallbacks extends PermissionCallbacksBase {
    * {@inheritdoc}
    */
   protected function getEntityTypeId(): string {
-    return 'oe_corporate';
+    return 'oe_corporate_entity_test';
   }
 
 }
