@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Traits\UtilityTrait;
 
@@ -75,6 +76,47 @@ class DateFieldContext extends RawDrupalContext {
   }
 
   /**
+   * Fills a date and time field at a daterange datelist widget.
+   *
+   * When I select in "Start date" of "Event date"
+   * with the datetime "29-08-2016 06:59".
+   *
+   * @param string $field_item
+   *   The date field item inside the field component.
+   * @param string $field_group
+   *   The field component's label.
+   * @param string $value
+   *   The value of the field.
+   *
+   * @When I select in :field_item of :field_group with the datetime :value
+   */
+  public function fillDateRangeSelectListField($field_item, $field_group, $value) {
+    $field_selectors = $this->findDateListRangeFields($field_group);
+    if (count($field_selectors) > 1) {
+      throw new \Exception("More than one elements were found.");
+    }
+
+    $field_selector = reset($field_selectors);
+    if ($field_item === 'End date') {
+      $field_selector = $field_selector->findAll('css', 'div[id*="end-value"]');
+      $field_selector = reset($field_selector);
+    }
+
+    $date = DrupalDateTime::createFromFormat('d-m-Y H:i', $value, 'UTC');
+    foreach ([
+      'Day' => 'd',
+      'Month' => 'n',
+      'Year' => 'Y',
+      'Hour' => 'G',
+      'Minute' => 'i',
+    ] as $date_component => $date_component_format) {
+      // For avoiding usage of minutes with leading zero sign,
+      // we use casting to integer.
+      $field_selector->selectFieldOption($date_component, (integer) $date->format($date_component_format));
+    }
+  }
+
+  /**
    * Finds a datetime field.
    *
    * @param string $field
@@ -111,6 +153,29 @@ class DateFieldContext extends RawDrupalContext {
    */
   public function findDateRangeFields($field) {
     $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-daterange-default');
+    $field_selectors = array_filter($field_selectors, function ($field_selector) use ($field) {
+      return $field_selector->has('named', ['content', $field]);
+    });
+    if (empty($field_selectors)) {
+      throw new \Exception("Date range field {$field} was not found.");
+    }
+    return $field_selectors;
+  }
+
+  /**
+   * Finds a daterange datelist field.
+   *
+   * @param string $field
+   *   The field name.
+   *
+   * @return \Behat\Mink\Element\NodeElement[]
+   *   The elements found.
+   *
+   * @throws \Exception
+   *   Thrown when the field was not found.
+   */
+  public function findDateListRangeFields($field) {
+    $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-daterange-datelist');
     $field_selectors = array_filter($field_selectors, function ($field_selector) use ($field) {
       return $field_selector->has('named', ['content', $field]);
     });
