@@ -7,7 +7,7 @@ namespace Drupal\oe_content_entity_contact;
 use Drupal\oe_content_entity\PermissionCallbacksBase;
 
 /**
- * Provides dynamic permissions for Contact entity.
+ * Provides dynamic permissions for the Contact entity.
  */
 class PermissionCallbacks extends PermissionCallbacksBase {
 

@@ -11,7 +11,7 @@ use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 /**
  * Test the corporate entity access control handler.
  */
-class EntityAccessControlHandlerTest extends EntityKernelTestBase {
+class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
 
   /**
    * {@inheritdoc}
@@ -26,7 +26,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
   /**
    * The access control handler.
    *
-   * @var \Drupal\oe_content_entity\EntityAccessControlHandler
+   * @var \Drupal\oe_content_entity\CorporateEntityAccessControlHandler
    */
   protected $accessControlHandler;
 
@@ -46,16 +46,15 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
     // permissions in the tests.
     $this->drupalCreateUser();
 
-    // Create a test bundles.
+    // Create a couple of test bundles.
     $type_storage = $this->container->get('entity_type.manager')->getStorage('oe_corporate_type_entity_test');
     $type_storage->create([
       'id' => 'test_bundle',
       'label' => 'Test bundle',
     ])->save();
-    $type_storage = $this->container->get('entity_type.manager')->getStorage('oe_corporate_type_entity_test');
     $type_storage->create([
-      'id' => 'test',
-      'label' => 'Contact test',
+      'id' => 'another_test_bundle',
+      'label' => 'Another test bundle',
     ])->save();
   }
 
@@ -63,16 +62,19 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * Ensures corporate entity access is properly working.
    */
   public function testAccess(): void {
-    $scenarios = $this->accessDataProvider();
-    $corporate_storage = $this->container->get('entity_type.manager')->getStorage('oe_corporate_entity_test');
+    $scenarios = $this->accessTestScenarios();
+    $storage = $this->container->get('entity_type.manager')->getStorage('oe_corporate_entity_test');
     $values = [
       'bundle' => 'test_bundle',
       'name' => 'My corporate entity',
     ];
+
     // Create an entity.
     /** @var \Drupal\oe_content_entity\Entity\EntityTypeBaseInterface $entity */
-    $entity = $corporate_storage->create($values);
+    $entity = $storage->create($values);
     $entity->save();
+
+    // Run through the scenarios and assert the expectations.
     foreach ($scenarios as $scenario => $test_data) {
       // Update the published status based on the scenario.
       $entity->setPublished($test_data['status']);
@@ -90,7 +92,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * Ensures corporate entity create access is properly working.
    */
   public function testCreateAccess(): void {
-    $scenarios = $this->createAccessDataProvider();
+    $scenarios = $this->createAccessTestScenarios();
     foreach ($scenarios as $scenario => $test_data) {
       $user = $this->drupalCreateUser($test_data['permissions']);
       $this->assertAccessResult(
@@ -102,7 +104,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
   }
 
   /**
-   * Data provider for testAccess().
+   * Provides test scenarios for testAccess().
    *
    * This method is not declared as a real PHPUnit data provider to speed up
    * test execution.
@@ -110,7 +112,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * @return array
    *   The data sets to test.
    */
-  protected function accessDataProvider(): array {
+  protected function accessTestScenarios(): array {
     return [
       'user without permissions / published entity' => [
         'permissions' => [],
@@ -199,7 +201,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
         'status' => 1,
       ],
       'user with update access on different bundle' => [
-        'permissions' => ['edit test corporate entity'],
+        'permissions' => ['edit another_test_bundle corporate entity'],
         'operation' => 'update',
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
         'status' => 1,
@@ -222,7 +224,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
         'status' => 1,
       ],
       'user with delete access on different bundle' => [
-        'permissions' => ['delete test corporate entity'],
+        'permissions' => ['delete another_test_bundle corporate entity'],
         'operation' => 'delete',
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
         'status' => 1,
@@ -242,7 +244,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
   }
 
   /**
-   * Data provider for testCreateAccess().
+   * Provides test scenarios for testCreateAccess().
    *
    * This method is not declared as a real PHPUnit data provider to speed up
    * test execution.
@@ -250,7 +252,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
    * @return array
    *   The data sets to test.
    */
-  protected function createAccessDataProvider(): array {
+  protected function createAccessTestScenarios(): array {
     return [
       'user without permissions' => [
         'permissions' => [],
@@ -278,7 +280,7 @@ class EntityAccessControlHandlerTest extends EntityKernelTestBase {
         'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
       ],
       'user with create access on different bundle' => [
-        'permissions' => ['create test corporate entity'],
+        'permissions' => ['create another_test_bundle corporate entity'],
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
       ],
     ];

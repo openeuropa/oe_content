@@ -19,7 +19,7 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\oe_content_entity\EntityListBuilder",
- *     "access" = "Drupal\oe_content_entity\EntityAccessControlHandler",
+ *     "access" = "Drupal\oe_content_entity\CorporateEntityAccessControlHandler",
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "translation" = "Drupal\content_translation\ContentTranslationHandler",
  *     "form" = {

@@ -4,19 +4,22 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_entity\FunctionalJavascript;
 
-use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * Test corporate content entity UIs.
  */
-class ContentEntityUiTest extends WebDriverTestBase {
+class ContentEntityUiTest extends BrowserTestBase {
 
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_content',
     'oe_content_entity',
+    'oe_content_entity_contact',
+    'oe_content_entity_organisation',
+    'oe_content_entity_venue',
   ];
 
   /**
@@ -28,12 +31,11 @@ class ContentEntityUiTest extends WebDriverTestBase {
       'manage corporate content entity types',
       'access administration pages',
     ]);
+
     $this->drupalLogin($user);
 
-    foreach ($this->corporateEntityDataProvider() as $info) {
-      list($module, $entity_type_id, $label) = $info;
-
-      $this->container->get('module_installer')->install([$module], TRUE);
+    foreach ($this->corporateEntityDataTestCases() as $info) {
+      list($entity_type_id, $label) = $info;
 
       // Create a new bundle.
       $this->drupalGet("/admin/structure/{$entity_type_id}_type");
@@ -42,11 +44,9 @@ class ContentEntityUiTest extends WebDriverTestBase {
       $this->drupalGet("/admin/structure/{$entity_type_id}_type/add");
       $this->assertSession()->pageTextContains("Add {$label} type");
 
-      // Set the value for the field, triggering the machine name update.
+      // Set the label.
       $this->getSession()->getPage()->findField('Label')->setValue("{$label} type name");
-
-      // Wait the set timeout for fetching the machine name.
-      $this->assertJsCondition('jQuery("#edit-label-machine-name-suffix .machine-name-value").html() == "' . "{$label}_type_name" . '"');
+      $this->getSession()->getPage()->findField('Machine-readable name')->setValue("{$label}_type_name");
       $this->getSession()->getPage()->fillField('Description', "{$label} type description");
       $this->getSession()->getPage()->pressButton('Save');
 
@@ -134,16 +134,21 @@ class ContentEntityUiTest extends WebDriverTestBase {
   }
 
   /**
-   * Provide module, entity type and label to run content entity UIs tests.
+   * Provides a set of test cases to be used by self::testCorporateEntityUi().
+   *
+   * - entity type.
+   * - label.
+   *
+   * We do not use a dataProvider because it slows down the speed greatly.
    *
    * @return array
-   *   List of corporate entity module, entity type and label triplets.
+   *   List of test cases.
    */
-  public function corporateEntityDataProvider(): array {
+  public function corporateEntityDataTestCases(): array {
     return [
-      ['oe_content_entity_contact', 'oe_contact', 'contact'],
-      ['oe_content_entity_organisation', 'oe_organisation', 'organisation'],
-      ['oe_content_entity_venue', 'oe_venue', 'venue'],
+      ['oe_contact', 'contact'],
+      ['oe_organisation', 'organisation'],
+      ['oe_venue', 'venue'],
     ];
   }
 

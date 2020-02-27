@@ -7,7 +7,7 @@ namespace Drupal\oe_content_entity_organisation;
 use Drupal\oe_content_entity\PermissionCallbacksBase;
 
 /**
- * Provides dynamic permissions for Organisation entity.
+ * Provides dynamic permissions for the Organisation entity.
  */
 class PermissionCallbacks extends PermissionCallbacksBase {
 

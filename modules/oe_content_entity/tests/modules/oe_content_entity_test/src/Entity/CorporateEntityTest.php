@@ -18,7 +18,7 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   bundle_label = @Translation("Corporate Type Entity Test"),
  *   handlers = {
  *     "list_builder" = "Drupal\oe_content_entity\EntityListBuilder",
- *     "access" = "Drupal\oe_content_entity\EntityAccessControlHandler",
+ *     "access" = "Drupal\oe_content_entity\CorporateEntityAccessControlHandler",
  *     "route_provider" = {
  *       "html" = "Drupal\oe_content_entity\Routing\EntityRouteProvider",
  *     },

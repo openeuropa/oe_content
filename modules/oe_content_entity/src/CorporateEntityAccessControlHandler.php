@@ -7,12 +7,12 @@ namespace Drupal\oe_content_entity;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Entity\EntityAccessControlHandler as CoreEntityAccessControlHandler;
+use Drupal\Core\Entity\EntityAccessControlHandler;
 
 /**
  * Defines the access control handler for the corporate entities.
  */
-class EntityAccessControlHandler extends CoreEntityAccessControlHandler {
+class CorporateEntityAccessControlHandler extends EntityAccessControlHandler {
 
   /**
    * {@inheritdoc}

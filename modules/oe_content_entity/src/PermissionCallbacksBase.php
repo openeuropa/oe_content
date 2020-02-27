@@ -4,15 +4,47 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_entity;
 
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content_entity\Entity\EntityTypeBaseInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides dynamic permissions for corporate entities.
+ * Base class for providing dynamic permissions for corporate entities.
+ *
+ * Extending classes are responsible for providing permissions for the
+ * corporate entities.
  */
-abstract class PermissionCallbacksBase {
+abstract class PermissionCallbacksBase implements ContainerInjectionInterface {
 
   use StringTranslationTrait;
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * Constructs a PermissionCallbacksBase instance.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
+   */
+  public function __construct(EntityTypeManagerInterface $entityTypeManager) {
+    $this->entityTypeManager = $entityTypeManager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('entity_type.manager')
+    );
+  }
 
   /**
    * Returns the entity type id.
@@ -28,10 +60,11 @@ abstract class PermissionCallbacksBase {
   public function buildPermissions(): array {
     $perms = [];
     $entity_type_id = $this->getEntityTypeId();
-    $entity_type_definition = \Drupal::entityTypeManager()->getDefinition($entity_type_id);
-    $entity_type_storage = \Drupal::entityTypeManager()->getStorage($entity_type_id);
-    $entity_bundle_storage = \Drupal::entityTypeManager()->getStorage($entity_type_definition->getBundleEntityType());
+    $entity_type_definition = $this->entityTypeManager->getDefinition($entity_type_id);
+    $entity_type_storage = $this->entityTypeManager->getStorage($entity_type_id);
+    $entity_bundle_storage = $this->entityTypeManager->getStorage($entity_type_definition->getBundleEntityType());
     $entity_type_label = $entity_type_storage->getEntityType()->getLabel()->getUntranslatedString();
+
     // Generate entity permissions.
     $perms += $this->entityPermissions($entity_type_id, $entity_type_label);
 

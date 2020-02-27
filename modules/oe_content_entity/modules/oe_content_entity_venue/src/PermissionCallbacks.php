@@ -7,7 +7,7 @@ namespace Drupal\oe_content_entity_venue;
 use Drupal\oe_content_entity\PermissionCallbacksBase;
 
 /**
- * Provides dynamic permissions for Venue entity.
+ * Provides dynamic permissions for the Venue entity.
  */
 class PermissionCallbacks extends PermissionCallbacksBase {
 

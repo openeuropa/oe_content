@@ -9,7 +9,7 @@ use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 /**
  * Test corporate entity routes access.
  */
-class EntityRouteAccessTest extends EntityKernelTestBase {
+class CorporateEntityRouteAccessTest extends EntityKernelTestBase {
 
   /**
    * {@inheritdoc}
@@ -32,7 +32,7 @@ class EntityRouteAccessTest extends EntityKernelTestBase {
     $actual = $access_manager->checkNamedRoute('entity.oe_corporate_entity_test.collection', [], $user, TRUE);
     $this->assertTrue($actual->isAllowed());
 
-    // User with access link list overview permission.
+    // User with access overview permission.
     $user = $this->drupalCreateUser(['access oe_corporate_entity_test overview']);
     $actual = $access_manager->checkNamedRoute('entity.oe_corporate_entity_test.collection', [], $user, TRUE);
     $this->assertTrue($actual->isAllowed());
