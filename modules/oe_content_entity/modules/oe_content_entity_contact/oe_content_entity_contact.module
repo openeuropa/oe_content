@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * The module file.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_theme().
+ */
+function oe_content_entity_contact_theme() {
+  return [
+    'oe_contact' => [
+      'render element' => 'elements',
+      'preprocess functions' => [
+        'oe_content_entity_default_preprocess',
+      ],
+    ],
+  ];
+}

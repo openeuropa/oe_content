@@ -9,10 +9,10 @@ default:
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\Tests\oe_content\Behat\FeatureContext
         - Drupal\Tests\oe_content\Behat\DateFieldContext
-        - Drupal\Tests\oe_content\Behat\MediaCreationContext
         - Drupal\Tests\oe_content\Behat\CleanupContext
         - Drupal\Tests\oe_content\Behat\WysiwygContext
         - Drupal\Tests\oe_media\Behat\AvPortalContext
+        - Drupal\Tests\oe_media\Behat\MediaContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               AV portal photo of the Event partner: ".field--name-oe-event-partner"

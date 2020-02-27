@@ -5,67 +5,16 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_event\Kernel;
 
 use Drupal\node\Entity\Node;
-use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
 
 /**
- * Tests event content type creation.
+ * Test event creation business logic.
  */
-class EventCreationTest extends RdfKernelTestBase {
+class EventBusinessLogicTest extends EventKernelTestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * Test that organiser fields are correctly saved.
    */
-  public static $modules = [
-    'field',
-    'field_group',
-    'datetime_range',
-    'entity_reference_revisions',
-    'link',
-    'image',
-    'inline_entity_form',
-    'node',
-    'maxlength',
-    'media',
-    'oe_media',
-    'oe_content',
-    'oe_content_entity',
-    'oe_content_entity_contact',
-    'oe_content_entity_organisation',
-    'oe_content_entity_venue',
-    'oe_content_event',
-    'options',
-    'rdf_skos',
-    'system',
-    'text',
-    'typed_link',
-    'user',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-
-    $this->installSchema('user', 'users_data');
-    $this->installSchema('node', 'node_access');
-    $this->installEntitySchema('user');
-    $this->installEntitySchema('node');
-    $this->installEntitySchema('media');
-    $this->installEntitySchema('oe_contact');
-    $this->installEntitySchema('oe_organisation');
-    $this->installEntitySchema('oe_venue');
-    $this->installConfig(['field', 'node', 'oe_content', 'oe_content_event']);
-    module_load_include('install', 'oe_content');
-    oe_content_install();
-  }
-
-  /**
-   * Test the Organisation fields.
-   */
-  public function testOrganisationFields(): void {
+  public function testOrganiserFields(): void {
     $values = [
       'type' => 'oe_event',
       'title' => 'My node title',

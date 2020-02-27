@@ -21,7 +21,6 @@ dependencies:
     - field.field.node.oe_event.oe_event_partner
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_dates
-    - field.field.node.oe_event.oe_event_registration_status
     - field.field.node.oe_event.oe_event_registration_url
     - field.field.node.oe_event.oe_event_report_summary
     - field.field.node.oe_event.oe_event_report_text
@@ -114,7 +113,6 @@ third_party_settings:
     group_registration:
       children:
         - oe_event_registration_url
-        - oe_event_registration_status
         - oe_event_registration_dates
         - oe_event_entrance_fee
         - oe_event_registration_capacity
@@ -367,12 +365,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-    region: content
-  oe_event_registration_status:
-    weight: 27
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   oe_event_registration_url:
     weight: 26

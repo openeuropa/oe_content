@@ -20,7 +20,6 @@ dependencies:
     - field.field.node.oe_event.oe_event_partner
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_dates
-    - field.field.node.oe_event.oe_event_registration_status
     - field.field.node.oe_event.oe_event_registration_url
     - field.field.node.oe_event.oe_event_report_summary
     - field.field.node.oe_event.oe_event_report_text
@@ -178,13 +177,6 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
-    region: content
-  oe_event_registration_status:
-    weight: 21
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
     region: content
   oe_event_registration_url:
     weight: 20
