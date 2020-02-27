@@ -34,7 +34,7 @@ class DateFieldContext extends RawDrupalContext {
    *
    * @When I fill in :field_group with the :date_component :value
    */
-  public function fillDateField($field_group, $date_component, $value) {
+  public function fillDateField(string $field_group, string $date_component, string $value): void {
     $field_selectors = $this->findDateFields($field_group);
     if (count($field_selectors) > 1) {
       throw new \Exception("More than one elements were found.");
@@ -60,7 +60,7 @@ class DateFieldContext extends RawDrupalContext {
    *
    * @When I fill in :field_item of :field_group with the :date_component :value
    */
-  public function fillDateRangeField($field_item, $field_group, $date_component, $value) {
+  public function fillDateRangeField(string $field_item, string $field_group, string $date_component, string $value): void {
     $field_selectors = $this->findDateRangeFields($field_group);
     if (count($field_selectors) > 1) {
       throw new \Exception("More than one elements were found.");
@@ -90,7 +90,7 @@ class DateFieldContext extends RawDrupalContext {
    *
    * @When I select date and time :value from :field_item of :field_group
    */
-  public function fillDateRangeSelectListField($field_item, $field_group, $value) {
+  public function fillDateRangeSelectListField(string $field_item, string $field_group, string $value): void {
     $field_selectors = $this->findDateListRangeFields($field_group);
     if (count($field_selectors) > 1) {
       throw new \Exception("More than one elements were found.");
@@ -128,7 +128,7 @@ class DateFieldContext extends RawDrupalContext {
    * @throws \Exception
    *   Thrown when the field was not found.
    */
-  public function findDateFields($field) {
+  public function findDateFields(string $field): array {
     $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-datetime-default');
     $field_selectors = array_filter($field_selectors, function ($field_selector) use ($field) {
       return $field_selector->has('named', ['content', $field]);
@@ -151,7 +151,7 @@ class DateFieldContext extends RawDrupalContext {
    * @throws \Exception
    *   Thrown when the field was not found.
    */
-  public function findDateRangeFields($field) {
+  public function findDateRangeFields(string $field): array {
     $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-daterange-default');
     $field_selectors = array_filter($field_selectors, function ($field_selector) use ($field) {
       return $field_selector->has('named', ['content', $field]);
@@ -174,7 +174,7 @@ class DateFieldContext extends RawDrupalContext {
    * @throws \Exception
    *   Thrown when the field was not found.
    */
-  public function findDateListRangeFields($field) {
+  public function findDateListRangeFields(string $field): array {
     $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-daterange-datelist');
     $field_selectors = array_filter($field_selectors, function ($field_selector) use ($field) {
       return $field_selector->has('named', ['content', $field]);
