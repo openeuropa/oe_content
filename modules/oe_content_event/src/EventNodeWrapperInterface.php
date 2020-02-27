@@ -59,7 +59,7 @@ interface EventNodeWrapperInterface {
    * 1. has a registration URL set;
    * 2. and the event is not postponed;
    * 3. and the event is not cancelled;
-   * 4. is withing the active registration period, only if dates are set.
+   * 4. is within the active registration period, only if dates are set.
    *
    * @param \DateTimeInterface $datetime
    *   Datetime object to check the registration period against.
