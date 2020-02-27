@@ -12,7 +12,7 @@ use Drupal\Core\Entity\Routing\AdminHtmlRouteProvider;
  *
  * These entities are not meant to have accessible canonical urls.
  */
-class EntityRouteProvider extends AdminHtmlRouteProvider {
+class CorporateEntityRouteProvider extends AdminHtmlRouteProvider {
 
   /**
    * {@inheritdoc}

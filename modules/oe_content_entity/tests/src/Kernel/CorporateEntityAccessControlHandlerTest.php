@@ -70,7 +70,7 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
     ];
 
     // Create an entity.
-    /** @var \Drupal\oe_content_entity\Entity\EntityTypeBaseInterface $entity */
+    /** @var \Drupal\oe_content_entity\Entity\CorporateEntityTypeInterface $entity */
     $entity = $storage->create($values);
     $entity->save();
 

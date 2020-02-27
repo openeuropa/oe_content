@@ -11,7 +11,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *
  * @ingroup oe_content_entity
  */
-abstract class EntityTypeBase extends ConfigEntityBundleBase implements EntityTypeBaseInterface {
+abstract class CorporateEntityTypeBase extends ConfigEntityBundleBase implements CorporateEntityTypeInterface {
 
   /**
    * The machine name of the corporate content entity type.
@@ -44,7 +44,7 @@ abstract class EntityTypeBase extends ConfigEntityBundleBase implements EntityTy
   /**
    * {@inheritdoc}
    */
-  public function setDescription($description): EntityTypeBase {
+  public function setDescription($description): CorporateEntityTypeBase {
     $this->description = $description;
     return $this;
   }

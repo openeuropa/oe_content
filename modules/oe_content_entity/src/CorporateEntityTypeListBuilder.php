@@ -12,7 +12,7 @@ use Drupal\Core\Entity\EntityListBuilder;
  *
  * @ingroup oe_content_entity
  */
-class EntityTypeListBuilder extends EntityListBuilder {
+class CorporateEntityTypeListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
@@ -29,6 +29,7 @@ class EntityTypeListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
+    /** @var \Drupal\oe_content_entity\Entity\CorporateEntityTypeInterface $entity */
     $row['label'] = $entity->label();
     $row['description'] = $entity->getDescription();
     $row['id'] = $entity->id();

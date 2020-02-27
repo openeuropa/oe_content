@@ -12,4 +12,4 @@ use Drupal\Core\Entity\EntityDescriptionInterface;
  *
  * @ingroup oe_content_entity
  */
-interface EntityTypeBaseInterface extends ConfigEntityInterface, EntityDescriptionInterface {}
+interface CorporateEntityTypeInterface extends ConfigEntityInterface, EntityDescriptionInterface {}

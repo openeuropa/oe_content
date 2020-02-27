@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup oe_content_entity
  */
-class EntityTypeDeleteForm extends EntityDeleteForm {
+class CorporateEntityTypeDeleteForm extends EntityDeleteForm {
 
   /**
    * The entity type manager.

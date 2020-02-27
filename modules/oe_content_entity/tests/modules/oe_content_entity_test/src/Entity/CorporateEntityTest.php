@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_entity_test\Entity;
 
-use Drupal\oe_content_entity\Entity\EntityBase;
+use Drupal\oe_content_entity\Entity\CorporateEntityBase;
 
 /**
  * Defines the Corporate entity.
@@ -17,10 +17,10 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   label_collection = @Translation("Corporate Entities Test"),
  *   bundle_label = @Translation("Corporate Type Entity Test"),
  *   handlers = {
- *     "list_builder" = "Drupal\oe_content_entity\EntityListBuilder",
+ *     "list_builder" = "Drupal\oe_content_entity\CorporateEntityListBuilder",
  *     "access" = "Drupal\oe_content_entity\CorporateEntityAccessControlHandler",
  *     "route_provider" = {
- *       "html" = "Drupal\oe_content_entity\Routing\EntityRouteProvider",
+ *       "html" = "Drupal\oe_content_entity\Routing\CorporateEntityRouteProvider",
  *     },
  *   },
  *   base_table = "oe_corporate_entity_test",
@@ -50,4 +50,4 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *  type = {"entity"}
  * )
  */
-class CorporateEntityTest extends EntityBase {}
+class CorporateEntityTest extends CorporateEntityBase {}

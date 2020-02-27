@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_entity_test\Entity;
 
-use Drupal\oe_content_entity\Entity\EntityTypeBase;
+use Drupal\oe_content_entity\Entity\CorporateEntityTypeBase;
 
 /**
  * Defines the corporate type entity.
@@ -26,4 +26,4 @@ use Drupal\oe_content_entity\Entity\EntityTypeBase;
  *   admin_permission = "manage corporate content entity types",
  * )
  */
-class CorporateTypeEntityTest extends EntityTypeBase {}
+class CorporateEntityTypeTest extends CorporateEntityTypeBase {}

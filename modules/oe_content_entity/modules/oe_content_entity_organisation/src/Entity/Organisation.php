@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_entity_organisation\Entity;
 
-use Drupal\oe_content_entity\Entity\EntityBase;
+use Drupal\oe_content_entity\Entity\CorporateEntityBase;
 
 /**
  * Defines the Organisation entity.
@@ -18,18 +18,18 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *   bundle_label = @Translation("Organisation type"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\oe_content_entity\EntityListBuilder",
+ *     "list_builder" = "Drupal\oe_content_entity\CorporateEntityListBuilder",
  *     "access" = "Drupal\oe_content_entity\CorporateEntityAccessControlHandler",
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "translation" = "Drupal\content_translation\ContentTranslationHandler",
  *     "form" = {
- *       "default" = "Drupal\oe_content_entity\Form\EntityForm",
- *       "add" = "Drupal\oe_content_entity\Form\EntityForm",
- *       "edit" = "Drupal\oe_content_entity\Form\EntityForm",
+ *       "default" = "Drupal\oe_content_entity\Form\CorporateEntityForm",
+ *       "add" = "Drupal\oe_content_entity\Form\CorporateEntityForm",
+ *       "edit" = "Drupal\oe_content_entity\Form\CorporateEntityForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\oe_content_entity\Routing\EntityRouteProvider",
+ *       "html" = "Drupal\oe_content_entity\Routing\CorporateEntityRouteProvider",
  *     },
  *   },
  *   base_table = "oe_organisation",
@@ -69,4 +69,4 @@ use Drupal\oe_content_entity\Entity\EntityBase;
  *  type = {"entity"}
  * )
  */
-class Organisation extends EntityBase {}
+class Organisation extends CorporateEntityBase {}

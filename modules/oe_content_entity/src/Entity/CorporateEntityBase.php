@@ -13,7 +13,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *
  * @ingroup oe_content_entity
  */
-abstract class EntityBase extends EditorialContentEntityBase implements EntityBaseInterface {
+abstract class CorporateEntityBase extends EditorialContentEntityBase implements CorporateEntityInterface {
 
   /**
    * {@inheritdoc}
@@ -32,7 +32,7 @@ abstract class EntityBase extends EditorialContentEntityBase implements EntityBa
   /**
    * {@inheritdoc}
    */
-  public function setName(string $title): EntityBaseInterface {
+  public function setName(string $title): CorporateEntityInterface {
     $this->set('name', $title);
     return $this;
   }
@@ -47,7 +47,7 @@ abstract class EntityBase extends EditorialContentEntityBase implements EntityBa
   /**
    * {@inheritdoc}
    */
-  public function setCreatedTime(int $timestamp): EntityBaseInterface {
+  public function setCreatedTime(int $timestamp): CorporateEntityInterface {
     $this->set('created', $timestamp);
     return $this;
   }

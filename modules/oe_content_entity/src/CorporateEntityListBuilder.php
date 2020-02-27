@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup oe_content_entity
  */
-class EntityListBuilder extends CoreEntityListBuilder {
+class CorporateEntityListBuilder extends CoreEntityListBuilder {
 
   /**
    * Storage for the current corporate content entity type bundles.
@@ -91,7 +91,7 @@ class EntityListBuilder extends CoreEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /** @var \Drupal\oe_content_entity\Entity\EntityTypeBase $entity */
+    /** @var \Drupal\oe_content_entity\Entity\CorporateEntityInterface $entity */
     $row['id'] = $entity->toLink($entity->label());
     $row['bundle'] = $this->bundleStorage->load($entity->bundle())->label();
     $row['created'] = $this->dateFormatter->format($entity->getCreatedTime(), 'short');
