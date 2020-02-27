@@ -1,16 +1,29 @@
 # OpenEuropa corporate content entities
 
 This module and its sub-modules ship a set of corporate content entity types that are used to collect information
-of different classes on corporate content types.
+about different types corporate content types.
 
-The following corporate content entities and bundles are currently provided:
+Below you can find a list of the the provided corporate content entities and bundles. In order to use a specific one, enable the corresponding module.
 
-- **Contact**: contact information, such as press contacts, etc.
-    - General bundle: general contact information like: name, email, phone, social media.
-    - Press bundle: press contact information like: name, email, phone, social media.
-- **Organisation**: information about organisation, such as: NGOs, project partners, etc.
-    - Partner bundle: Collecting the project partner's organisation name, image, web link.
-- **Venue**: venue information, such as a building or a conference room.
-    - Default bundle: Collects the default venue information such as: name, address, capacity, room.
+## Contact entity type
 
-In order to use a specific corporate content entity type enable the related module. 
+The Contact entity type is used when collecting information about different types of contacts, 
+such as a press contact. 
+
+You can read more about it the relevant [submodule](modules/oe_content_entity_contact/README.md).
+
+
+## Organisation entity type
+
+The organisation entity type is used when collecting information about different types of organisations, 
+such as a project partners. 
+
+You can read more about it in the relevant [submodule](modules/oe_content_entity_organisation/README.md).
+
+
+## Venue entity type
+
+The venue entity type is to be used when collecting information about different types of venues, 
+such as a building or a conference room. 
+
+You can read more about it in the relevant [submodule](modules/oe_content_entity_venue/README.md).

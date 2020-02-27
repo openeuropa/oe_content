@@ -18,7 +18,20 @@ class EntityRouteProvider extends AdminHtmlRouteProvider {
    * {@inheritdoc}
    */
   protected function getCanonicalRoute(EntityTypeInterface $entity_type) {
-    return parent::getEditFormRoute($entity_type);
+    if ($route = parent::getEditFormRoute($entity_type)) {
+      $route->setRequirement('_permission', 'access ' . $entity_type->id() . ' canonical page');
+      return $route;
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getCollectionRoute(EntityTypeInterface $entity_type) {
+    if ($route = parent::getCollectionRoute($entity_type)) {
+      $route->setRequirement('_permission', 'access ' . $entity_type->id() . ' overview');
+      return $route;
+    }
   }
 
 }
