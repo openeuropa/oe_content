@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_entity_venue\Entity;
 
-use Drupal\oe_content_entity\Entity\EntityTypeBase;
+use Drupal\oe_content_entity\Entity\CorporateEntityTypeBase;
 
 /**
  * Defines the venue type entity.
@@ -24,12 +24,12 @@ use Drupal\oe_content_entity\Entity\EntityTypeBase;
  *     "description",
  *   },
  *   handlers = {
- *     "list_builder" = "Drupal\oe_content_entity\EntityTypeListBuilder",
+ *     "list_builder" = "Drupal\oe_content_entity\CorporateEntityTypeListBuilder",
  *     "form" = {
- *       "default" = "Drupal\oe_content_entity\Form\EntityTypeForm",
- *       "add" = "Drupal\oe_content_entity\Form\EntityTypeForm",
- *       "edit" = "Drupal\oe_content_entity\Form\EntityTypeForm",
- *       "delete" = "Drupal\oe_content_entity\Form\EntityTypeDeleteForm",
+ *       "default" = "Drupal\oe_content_entity\Form\CorporateEntityTypeForm",
+ *       "add" = "Drupal\oe_content_entity\Form\CorporateEntityTypeForm",
+ *       "edit" = "Drupal\oe_content_entity\Form\CorporateEntityTypeForm",
+ *       "delete" = "Drupal\oe_content_entity\Form\CorporateEntityTypeDeleteForm",
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
@@ -44,4 +44,4 @@ use Drupal\oe_content_entity\Entity\EntityTypeBase;
  *   }
  * )
  */
-class VenueType extends EntityTypeBase {}
+class VenueType extends CorporateEntityTypeBase {}

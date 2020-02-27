@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup oe_content_entity
  */
-class EntityTypeForm extends BundleEntityFormBase {
+class CorporateEntityTypeForm extends BundleEntityFormBase {
 
   /**
    * The module handler.

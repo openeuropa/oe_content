@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup oe_content_entity
  */
-class EntityForm extends ContentEntityForm {
+class CorporateEntityForm extends ContentEntityForm {
 
   /**
    * The current user account.

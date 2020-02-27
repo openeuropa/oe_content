@@ -13,7 +13,7 @@ use Drupal\Core\Entity\RevisionLogInterface;
  *
  * @ingroup oe_content_entity
  */
-interface EntityBaseInterface extends EntityChangedInterface, EntityPublishedInterface, RevisionLogInterface {
+interface CorporateEntityInterface extends EntityChangedInterface, EntityPublishedInterface, RevisionLogInterface {
 
   /**
    * Gets the corporate content entity type.
@@ -37,10 +37,10 @@ interface EntityBaseInterface extends EntityChangedInterface, EntityPublishedInt
    * @param string $name
    *   The name.
    *
-   * @return \Drupal\oe_content_entity\Entity\EntityBaseInterface
+   * @return \Drupal\oe_content_entity\Entity\CorporateEntityInterface
    *   The called corporate content entity.
    */
-  public function setName(string $name): EntityBaseInterface;
+  public function setName(string $name): CorporateEntityInterface;
 
   /**
    * Gets the corporate content entity creation timestamp.
@@ -56,10 +56,10 @@ interface EntityBaseInterface extends EntityChangedInterface, EntityPublishedInt
    * @param int $timestamp
    *   The ecorporate content entity creation timestamp.
    *
-   * @return \Drupal\oe_content_entity\Entity\EntityBaseInterface
+   * @return \Drupal\oe_content_entity\Entity\CorporateEntityInterface
    *   The called corporate content entity.
    */
-  public function setCreatedTime(int $timestamp): EntityBaseInterface;
+  public function setCreatedTime(int $timestamp): CorporateEntityInterface;
 
   /**
    * Gets the corporate content entity revision creation timestamp.
@@ -75,7 +75,7 @@ interface EntityBaseInterface extends EntityChangedInterface, EntityPublishedInt
    * @param int $timestamp
    *   The UNIX timestamp of when this revision was created.
    *
-   * @return \Drupal\oe_content_entity\Entity\EntityBaseInterface
+   * @return \Drupal\oe_content_entity\Entity\CorporateEntityInterface
    *   The called corporate content entity.
    */
   public function setRevisionCreationTime($timestamp);

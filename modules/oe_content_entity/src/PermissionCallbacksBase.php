@@ -7,7 +7,7 @@ namespace Drupal\oe_content_entity;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_content_entity\Entity\EntityTypeBaseInterface;
+use Drupal\oe_content_entity\Entity\CorporateEntityTypeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -109,7 +109,7 @@ abstract class PermissionCallbacksBase implements ContainerInjectionInterface {
   /**
    * Returns a list of CRUD permissions for a given corporate entity type.
    *
-   * @param \Drupal\oe_content_entity\Entity\EntityTypeBaseInterface $type
+   * @param \Drupal\oe_content_entity\Entity\CorporateEntityTypeInterface $type
    *   The entity type.
    * @param string $entity_type_label
    *   The entity type label.
@@ -117,7 +117,7 @@ abstract class PermissionCallbacksBase implements ContainerInjectionInterface {
    * @return array
    *   An associative array of permission names and descriptions.
    */
-  protected function entityTypePermissions(EntityTypeBaseInterface $type, string $entity_type_label): array {
+  protected function entityTypePermissions(CorporateEntityTypeInterface $type, string $entity_type_label): array {
     $type_id = $type->id();
     $params = [
       '%entity_type_name' => $entity_type_label,
