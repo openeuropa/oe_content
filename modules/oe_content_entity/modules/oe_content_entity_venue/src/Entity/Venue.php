@@ -69,4 +69,4 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  *  type = {"entity"}
  * )
  */
-class Venue extends CorporateEntityBase {}
+class Venue extends CorporateEntityBase implements VenueInterface {}
