@@ -9,6 +9,8 @@ use Drupal\oe_content\EntityWrapperBase;
 
 /**
  * Wrap the event entity by adding business specific methods.
+ *
+ * @method static EventNodeWrapperInterface getInstance(\Drupal\Core\Entity\ContentEntityInterface $entity)
  */
 class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInterface {
 
@@ -120,7 +122,7 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    * {@inheritdoc}
    */
   public function isRegistrationPeriodYetToCome(\DateTimeInterface $datetime): bool {
-    return $datetime < $this->getRegistrationStartDate()->getPhpDateTime();
+    return $this->hasRegistrationDates() && $datetime < $this->getRegistrationStartDate()->getPhpDateTime();
   }
 
   /**
@@ -134,14 +136,14 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    * {@inheritdoc}
    */
   public function isRegistrationPeriodActive(\DateTimeInterface $datetime): bool {
-    return $datetime >= $this->getRegistrationStartDate()->getPhpDateTime() && $datetime < $this->getRegistrationEndDate()->getPhpDateTime();
+    return $this->hasRegistrationDates() && $datetime >= $this->getRegistrationStartDate()->getPhpDateTime() && $datetime < $this->getRegistrationEndDate()->getPhpDateTime();
   }
 
   /**
    * {@inheritdoc}
    */
   public function isRegistrationPeriodOver(\DateTimeInterface $datetime): bool {
-    return $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
+    return $this->hasRegistrationDates() && $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
   }
 
 }

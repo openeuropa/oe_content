@@ -69,4 +69,4 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  *  type = {"entity"}
  * )
  */
-class Contact extends CorporateEntityBase {}
+class Contact extends CorporateEntityBase implements ContactInterface {}
