@@ -1,10 +1,22 @@
 # Change Log
 
+## [1.6.1](https://github.com/openeuropa/oe_content/tree/1.6.1) (2020-03-02)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.6.0...1.6.1)
+
+**Closed issues:**
+
+- Downgrade "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1" to not use an alias? [\#158](https://github.com/openeuropa/oe_content/issues/158)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2746: Short title with fallback token is hardcoded to original node language. [\#157](https://github.com/openeuropa/oe_content/pull/157) ([nagyad](https://github.com/nagyad))
+
 ## [1.6.0](https://github.com/openeuropa/oe_content/tree/1.6.0) (2020-02-05)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.5.1...1.6.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 1.6.0. [\#156](https://github.com/openeuropa/oe_content/pull/156) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2801: Set subject field optional for Page content type. [\#153](https://github.com/openeuropa/oe_content/pull/153) ([22Alexandra](https://github.com/22Alexandra))
 - OPENEUROPA-2730: Update common fields label and description. [\#151](https://github.com/openeuropa/oe_content/pull/151) ([22Alexandra](https://github.com/22Alexandra))
 
