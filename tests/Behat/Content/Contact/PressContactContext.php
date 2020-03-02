@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat\Content\Contact;
 
-use Drupal\Tests\oe_content\Behat\Content\RawCorporateContentContext;
+use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 
 /**
  * Context to create press contact corporate entities.
  */
-class PressContactContext extends RawCorporateContentContext {
+class PressContactContext extends RawDrupalContext {
 
   /**
    * Run before fields are parsed by Drupal Behat extension.

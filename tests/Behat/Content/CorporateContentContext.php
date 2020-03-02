@@ -6,7 +6,7 @@ namespace Drupal\Tests\oe_content\Behat\Content;
 
 use Behat\Gherkin\Node\TableNode;
 use Behat\Testwork\Call\CallResults;
-use Drupal\oe_content_entity\Entity\EntityBaseInterface;
+use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeSaveEntityScope;
@@ -16,9 +16,16 @@ use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 /**
  * Context to create corporate entities.
  */
-class CorporateContentContext extends RawCorporateContentContext {
+class CorporateContentContext extends RawDrupalContext {
 
   use EntityLoadingTrait;
+
+  /**
+   * Keep track of created corporate entities so they can be cleaned up.
+   *
+   * @var array
+   */
+  protected $entities = [];
 
   /**
    * Create an entity.
@@ -45,12 +52,7 @@ class CorporateContentContext extends RawCorporateContentContext {
     $entity->save();
 
     // Make sure that the created entities are tracked and can be cleaned up.
-    if ($entity instanceof EntityBaseInterface) {
-      $this->entities[] = $entity;
-    }
-    else {
-      $this->nodes[] = $entity;
-    }
+    $this->entities[] = $entity;
   }
 
   /**
@@ -78,6 +80,18 @@ class CorporateContentContext extends RawCorporateContentContext {
     $this->dispatchEntityAwareHook($scope);
 
     $entity->save();
+  }
+
+  /**
+   * Remove any created corporate entities.
+   *
+   * @AfterScenario
+   */
+  public function cleanEntities() {
+    foreach ($this->entities as $entity) {
+      $this->getDriver()->getCore()->entityDelete($entity->id(), $entity);
+    }
+    $this->entities = [];
   }
 
   /**

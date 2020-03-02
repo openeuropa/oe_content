@@ -4,14 +4,14 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat\Content\Node;
 
-use Drupal\Tests\oe_content\Behat\Content\RawCorporateContentContext;
+use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 
 /**
  * Context to create event corporate entities.
  */
-class EventContentContext extends RawCorporateContentContext {
+class EventContentContext extends RawDrupalContext {
 
   use EntityLoadingTrait;
 
