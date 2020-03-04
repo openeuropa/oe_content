@@ -47,7 +47,6 @@ class EventContentContext extends RawDrupalContext {
       'Online link' => 'oe_event_online_link',
       'Languages' => 'oe_event_languages',
       'Status' => 'oe_event_status',
-      'Organiser is internal' => 'oe_event_organiser_is_internal',
       'Organiser name' => 'oe_event_organiser_name',
       'Event website' => 'oe_event_website',
       'Social media links' => 'oe_social_media_links',
@@ -90,6 +89,15 @@ class EventContentContext extends RawDrupalContext {
         case 'Featured media':
           $entity = $this->loadEntityByLabel('media', $value);
           $fields['oe_event_featured_media:target_id'] = $entity->id();
+          break;
+
+        case 'Organiser is internal':
+          $fields['oe_event_organiser_is_internal'] = $value === 'Yes' ? 1 : 0;
+          break;
+
+        case 'Internal organiser':
+          $entity = $this->loadEntityByLabel('skos_concept', $value);
+          $fields['oe_event_organiser_internal'] = $entity->id();
           break;
 
         default:
