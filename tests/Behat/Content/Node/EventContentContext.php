@@ -27,9 +27,9 @@ class EventContentContext extends RawDrupalContext {
     $mapping = [
       'Title' => 'title',
       'Type' => 'oe_event_type',
+      'Introduction' => 'oe_summary',
       'Description summary' => 'oe_event_description_summary',
       'Description' => 'body',
-      'Featured media' => 'oe_event_featured_media:target_id',
       'Featured media legend' => 'oe_event_featured_media_legend',
       'Summary for report' => 'oe_event_report_summary',
       'Report text' => 'oe_event_report_text',
@@ -50,9 +50,6 @@ class EventContentContext extends RawDrupalContext {
       'Organiser is internal' => 'oe_event_organiser_is_internal',
       'Organiser name' => 'oe_event_organiser_name',
       'Event website' => 'oe_event_website',
-      'Venue' => 'oe_event_venue:target_id',
-      'Contact' => 'oe_event_contact:target_id',
-      'Partner' => 'oe_event_partner:target_id',
       'Social media links' => 'oe_social_media_links',
     ];
     foreach ($scope->getFields() as $key => $value) {
@@ -60,37 +57,48 @@ class EventContentContext extends RawDrupalContext {
       // Handle entity references.
       switch ($key) {
         case 'Venue':
-          $venue = $this->loadEntityByLabel('oe_venue', $value, 'oe_default');
-          $value = $venue->id();
           // For revision reference fields we have give the target_revision_id.
-          $fields['oe_event_venue:target_revision_id'] = $venue->getRevisionId();
+          $entity = $this->loadEntityByLabel('oe_venue', $value, 'oe_default');
+          $fields['oe_event_venue:target_id'] = $entity->id();
+          $fields['oe_event_venue:target_revision_id'] = $entity->getRevisionId();
+          break;
+
+        case 'Partner':
+          // For revision reference fields we have give the target_revision_id.
+          $entity = $this->loadEntityByLabel('oe_organisation', $value, 'oe_default');
+          $fields['oe_event_partner:target_id'] = $entity->id();
+          $fields['oe_event_partner:target_revision_id'] = $entity->getRevisionId();
           break;
 
         case 'Contact':
-          // Transform titles to ids and maintain the format of comma separated.
-          $items = strpos($value, ', ') ? $items = explode(', ', $value) : $value;
-          $value = [];
+          // Transform titles to ids and maintain the comma separated format.
+          $items = explode(',', $value);
+          $items = array_map('trim', $items);
+          $ids = [];
+          $revision_ids = [];
           foreach ($items as $item) {
-            $contact = $this->loadEntityByLabel('oe_contact', $item);
-            $value[] = $contact->id();
-            // For revision reference field we have give the target_revision_id.
-            $revision_ids[] = $contact->getRevisionId();
+            $entity = $this->loadEntityByLabel('oe_contact', $item);
+            $ids[] = $entity->id();
+            $revision_ids[] = $entity->getRevisionId();
           }
-          $value = implode(', ', $value);
-          $fields['oe_event_contact:target_revision_id'] = implode(', ', $revision_ids);
+
+          // For revision reference field we have give the target_revision_id.
+          $fields['oe_event_contact:target_id'] = implode(',', $ids);
+          $fields['oe_event_contact:target_revision_id'] = implode(',', $revision_ids);
           break;
 
         case 'Featured media':
-          $value = $this->loadEntityByLabel('media', $value)->id();
+          $entity = $this->loadEntityByLabel('media', $value);
+          $fields['oe_event_featured_media:target_id'] = $entity->id();
           break;
+
+        default:
+          $key = $mapping[$key] ?? $key;
+          $fields[$key] = $value;
       }
-
-      $key = $mapping[$key] ?? $key;
-
-      $fields[$key] = $value;
     }
 
-    // Set default fields and return.
+    // Set default fields.
     $fields += [
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
