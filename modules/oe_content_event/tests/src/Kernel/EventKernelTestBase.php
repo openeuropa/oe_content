@@ -29,6 +29,7 @@ abstract class EventKernelTestBase extends RdfKernelTestBase {
     'media',
     'oe_media',
     'oe_content',
+    'oe_content_social_media_links_field',
     'oe_content_entity',
     'oe_content_entity_contact',
     'oe_content_entity_organisation',
@@ -56,7 +57,13 @@ abstract class EventKernelTestBase extends RdfKernelTestBase {
     $this->installEntitySchema('oe_contact');
     $this->installEntitySchema('oe_organisation');
     $this->installEntitySchema('oe_venue');
-    $this->installConfig(['field', 'node', 'oe_content', 'oe_content_event']);
+    $this->installConfig([
+      'field',
+      'node',
+      'oe_content',
+      'oe_content_social_media_links_field',
+      'oe_content_event',
+    ]);
     module_load_include('install', 'oe_content');
     oe_content_install();
   }
