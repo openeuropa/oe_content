@@ -10,6 +10,7 @@ dependencies:
   - oe_content:oe_content_entity_contact
   - oe_content:oe_content_entity_organisation
   - oe_content:oe_content_entity_venue
+  - oe_content:oe_content_social_media_links_field
   - oe_media:oe_media
   - oe_media_avportal:oe_media_avportal
   - address:address
