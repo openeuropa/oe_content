@@ -53,6 +53,9 @@ class CorporateContentContext extends RawDrupalContext {
 
     // Make sure that the created entities are tracked and can be cleaned up.
     $this->entities[] = $entity;
+
+    // Clears the static cache of DatabaseCacheTagsChecksum.
+    \Drupal::service('cache_tags.invalidator')->resetCheckSums();
   }
 
   /**
@@ -80,6 +83,9 @@ class CorporateContentContext extends RawDrupalContext {
     $this->dispatchEntityAwareHook($scope);
 
     $entity->save();
+
+    // Clears the static cache of DatabaseCacheTagsChecksum.
+    \Drupal::service('cache_tags.invalidator')->resetCheckSums();
   }
 
   /**
