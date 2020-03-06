@@ -58,15 +58,13 @@ class EventContentContext extends RawDrupalContext {
         case 'Venue':
           // For revision reference fields we have give the target_revision_id.
           $entity = $this->loadEntityByLabel('oe_venue', $value, 'oe_default');
-          $fields['oe_event_venue:target_id'] = $entity->id();
-          $fields['oe_event_venue:target_revision_id'] = $entity->getRevisionId();
+          $this->addReferenceRevisionField($fields, 'oe_event_venue', $entity->id(), $entity->getRevisionId());
           break;
 
         case 'Partner':
           // For revision reference fields we have give the target_revision_id.
           $entity = $this->loadEntityByLabel('oe_organisation', $value, 'oe_default');
-          $fields['oe_event_partner:target_id'] = $entity->id();
-          $fields['oe_event_partner:target_revision_id'] = $entity->getRevisionId();
+          $this->addReferenceRevisionField($fields, 'oe_event_partner', $entity->id(), $entity->getRevisionId());
           break;
 
         case 'Contact':
@@ -82,8 +80,7 @@ class EventContentContext extends RawDrupalContext {
           }
 
           // For revision reference field we have give the target_revision_id.
-          $fields['oe_event_contact:target_id'] = implode(',', $ids);
-          $fields['oe_event_contact:target_revision_id'] = implode(',', $revision_ids);
+          $this->addReferenceRevisionField($fields, 'oe_event_contact', implode(',', $ids), implode(',', $revision_ids));
           break;
 
         case 'Featured media':
@@ -92,7 +89,7 @@ class EventContentContext extends RawDrupalContext {
           break;
 
         case 'Organiser is internal':
-          $fields['oe_event_organiser_is_internal'] = $value === 'Yes' ? 1 : 0;
+          $fields['oe_event_organiser_is_internal'] = (int) ($value === 'Yes');
           break;
 
         case 'Internal organiser':
@@ -113,6 +110,23 @@ class EventContentContext extends RawDrupalContext {
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
     ];
     $scope->setFields($fields);
+  }
+
+  /**
+   * Add reference revision field in a format parsable by the Drupal Extension.
+   *
+   * @param array $fields
+   *   Field array to add the field to.
+   * @param string $field_name
+   *   Reference revision field name.
+   * @param string|int $ids
+   *   IDs to be assigned to.
+   * @param string|int $revision_ids
+   *   Revision IDs to be assigned to.
+   */
+  protected function addReferenceRevisionField(array &$fields, string $field_name, $ids, $revision_ids): void {
+    $fields["{$field_name}:target_id"] = $ids;
+    $fields["{$field_name}:target_revision_id"] = $revision_ids;
   }
 
 }
