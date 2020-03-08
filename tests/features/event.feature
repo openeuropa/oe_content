@@ -12,7 +12,7 @@ Feature: Event content creation
     # The text assertions are actually checking for fields.
     # Proper steps will be introduced in OPENEUROPA-2160.
     Then I should see the text "Type"
-    And I should see the text "Title"
+    And I should see the text "Page title"
     And I should see the text "Description summary"
     And I should see the text "Subject"
     And I should see the text "Start date"
@@ -142,7 +142,7 @@ Feature: Event content creation
     # Create a "Event" content.
     When I visit "the Event creation page"
     Then I select "Info days" from "Type"
-    And I fill in "Title" with "My Event item"
+    And I fill in "Page title" with "My Event item"
 
     # Registration field group.
     When I press "Registration"
@@ -224,6 +224,7 @@ Feature: Event content creation
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
+    And I fill in "Teaser" with "Event teaser"
     When I press "Save"
 
     Then I should see "My Event item"
@@ -282,13 +283,14 @@ Feature: Event content creation
 
     # Create a "Event" content.
     When I visit "the Event creation page"
-    And I fill in "Title" with "My Event item"
+    And I fill in "Page title" with "My Event item"
     And I select "As planned" from "Status"
     And I fill in "Languages" with "Hungarian"
     And I select "Info days" from "Type"
     And I fill in "Subject" with "EU financing"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
+    And I fill in "Teaser" with "Event teaser"
     And I press "Save"
     Then I should see the following error messages:
       | error messages                                                                                 |
