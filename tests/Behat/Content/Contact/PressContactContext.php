@@ -18,8 +18,6 @@ class PressContactContext extends RawDrupalContext {
    * @BeforeParseEntityFields(oe_contact,oe_press)
    */
   public function alterPressContactFields(BeforeParseEntityFieldsScope $scope): void {
-    $fields = [];
-
     // Maps human readable field names to their Behat parsable machine names.
     $mapping = [
       'Name' => 'name',
@@ -27,12 +25,12 @@ class PressContactContext extends RawDrupalContext {
       'Email' => 'oe_email',
       'Phone number' => 'oe_phone',
     ];
-    foreach ($scope->getFields() as $key => $value) {
-      $key = $mapping[$key] ?? $key;
-      $fields[$key] = $value;
-    }
 
-    $scope->setFields($fields);
+    foreach ($scope->getFields() as $key => $value) {
+      if (isset($mapping[$key])) {
+        $scope->rename($key, $mapping[$key]);
+      }
+    }
   }
 
 }

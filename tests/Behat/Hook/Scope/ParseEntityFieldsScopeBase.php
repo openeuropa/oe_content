@@ -72,13 +72,48 @@ abstract class ParseEntityFieldsScopeBase implements EntityAwareHookScopeInterfa
   }
 
   /**
-   * Set fields.
+   * Add given fields.
    *
    * @param array $fields
-   *   Fields array.
+   *   List of fields to be added.
+   *
+   * @return \Drupal\Tests\oe_content\Behat\Hook\Scope\ParseEntityFieldsScopeBase
+   *   Scope object.
    */
-  public function setFields(array $fields): void {
-    $this->fields = $fields;
+  public function add(array $fields): self {
+    $this->fields += $fields;
+    return $this;
+  }
+
+  /**
+   * Rename field.
+   *
+   * @param string $current_name
+   *   Current field name.
+   * @param string $new_name
+   *   New field name.
+   *
+   * @return \Drupal\Tests\oe_content\Behat\Hook\Scope\ParseEntityFieldsScopeBase
+   *   Scope object.
+   */
+  public function rename(string $current_name, string $new_name): self {
+    $this->fields[$new_name] = $this->fields[$current_name];
+    $this->remove($current_name);
+    return $this;
+  }
+
+  /**
+   * Remove field.
+   *
+   * @param string $name
+   *   Field name.
+   *
+   * @return \Drupal\Tests\oe_content\Behat\Hook\Scope\ParseEntityFieldsScopeBase
+   *   Scope object.
+   */
+  public function remove(string $name): self {
+    unset($this->fields[$name]);
+    return $this;
   }
 
 }

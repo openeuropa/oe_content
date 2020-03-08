@@ -9,7 +9,6 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
-use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 
 /**
@@ -19,7 +18,6 @@ use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
  */
 class EventContentContext extends RawDrupalContext {
 
-  use EntityLoadingTrait;
   use EntityReferenceRevisionTrait;
 
   /**
@@ -60,33 +58,41 @@ class EventContentContext extends RawDrupalContext {
       'Social media links' => 'oe_social_media_links',
     ];
 
-    $fields = $scope->getFields();
-    foreach ($fields as $key => $value) {
+    foreach ($scope->getFields() as $key => $value) {
 
       // Handle entity references.
       switch ($key) {
         case 'Venue':
-          $fields += $this->getReferenceRevisionField('oe_event_venue', 'oe_venue', $value);
+          $fields = $this->getReferenceRevisionField('oe_event_venue', 'oe_venue', $value);
+          $scope->add($fields)->remove($key);
           break;
 
         case 'Partner':
-          $fields += $this->getReferenceRevisionField('oe_event_partner', 'oe_organisation', $value);
+          $fields = $this->getReferenceRevisionField('oe_event_partner', 'oe_organisation', $value);
+          $scope->add($fields)->remove($key);
           break;
 
         case 'Contact':
-          $fields += $this->getReferenceRevisionField('oe_event_contact', 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField('oe_event_contact', 'oe_contact', $value);
+          $scope->add($fields)->remove($key);
           break;
 
         case 'Featured media':
-          $fields['oe_event_featured_media:target_id'] = $this->loadEntityByLabel('media', $value)->id();
+          $scope->add([
+            'oe_event_featured_media:target_id' => $this->loadEntityByLabel('media', $value)->id(),
+          ])->remove($key);
           break;
 
         case 'Organiser is internal':
-          $fields['oe_event_organiser_is_internal'] = (int) ($value === 'Yes');
+          $scope->add([
+            'oe_event_organiser_is_internal' => (int) ($value === 'Yes'),
+          ])->remove($key);
           break;
 
         case 'Internal organiser':
-          $fields['oe_event_organiser_internal'] = $this->loadEntityByLabel('skos_concept', $value)->id();
+          $scope->add([
+            'oe_event_organiser_internal' => $this->loadEntityByLabel('skos_concept', $value)->id(),
+          ])->remove($key);
           break;
 
         // Convert dates to UTC so that they can be expressed in site timezone.
@@ -96,25 +102,26 @@ class EventContentContext extends RawDrupalContext {
         case 'Registration end date':
         case 'Online time start':
         case 'Online time end':
-          $date = DrupalDateTime::createFromFormat(DateTimePlus::FORMAT, $value);
-          $fields[$mapping[$key]] = $date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, [
-            'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
-          ]);
+          $date = DrupalDateTime::createFromFormat(DateTimePlus::FORMAT, $value)
+            ->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, [
+              'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
+            ]);
+          $scope->add([$mapping[$key] => $date])->remove($key);
           break;
 
         default:
-          $key = $mapping[$key] ?? $key;
-          $fields[$key] = $value;
+          if (isset($mapping[$key])) {
+            $scope->rename($key, $mapping[$key]);
+          }
       }
     }
 
     // Set default fields.
-    $fields += [
+    $scope->add([
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
-    ];
-    $scope->setFields($fields);
+    ]);
   }
 
 }

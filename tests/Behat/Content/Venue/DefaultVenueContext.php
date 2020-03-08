@@ -18,8 +18,6 @@ class DefaultVenueContext extends RawDrupalContext {
    * @BeforeParseEntityFields(oe_venue,oe_default)
    */
   public function alterVenueFields(BeforeParseEntityFieldsScope $scope): void {
-    $fields = [];
-
     // Maps human readable field names to their Behat parsable machine names.
     $mapping = [
       'Name' => 'name',
@@ -27,12 +25,12 @@ class DefaultVenueContext extends RawDrupalContext {
       'Capacity' => 'oe_capacity',
       'Room' => 'oe_room',
     ];
-    foreach ($scope->getFields() as $key => $value) {
-      $key = $mapping[$key] ?? $key;
-      $fields[$key] = $value;
-    }
 
-    $scope->setFields($fields);
+    foreach ($scope->getFields() as $key => $value) {
+      if (isset($mapping[$key])) {
+        $scope->rename($key, $mapping[$key]);
+      }
+    }
   }
 
 }
