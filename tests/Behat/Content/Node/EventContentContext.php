@@ -4,26 +4,34 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat\Content\Node;
 
+use Drupal\Component\Datetime\DateTimePlus;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
+use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 
 /**
  * Context to create event corporate entities.
+ *
+ * @SuppressWarnings(PHPMD)
  */
 class EventContentContext extends RawDrupalContext {
 
   use EntityLoadingTrait;
+  use EntityReferenceRevisionTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
    *
+   * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope $scope
+   *   Behat hook scope.
+   *
    * @BeforeParseEntityFields(node,oe_event)
    */
   public function alterEventFields(BeforeParseEntityFieldsScope $scope): void {
-    $fields = [];
-
-    // Maps human readable field names to their Behat parsable machine names.
+    // Map human readable field names to their Behat parsable machine names.
     $mapping = [
       'Title' => 'title',
       'Type' => 'oe_event_type',
@@ -51,41 +59,26 @@ class EventContentContext extends RawDrupalContext {
       'Event website' => 'oe_event_website',
       'Social media links' => 'oe_social_media_links',
     ];
-    foreach ($scope->getFields() as $key => $value) {
+
+    $fields = $scope->getFields();
+    foreach ($fields as $key => $value) {
 
       // Handle entity references.
       switch ($key) {
         case 'Venue':
-          // For revision reference fields we have give the target_revision_id.
-          $entity = $this->loadEntityByLabel('oe_venue', $value, 'oe_default');
-          $this->addReferenceRevisionField($fields, 'oe_event_venue', $entity->id(), $entity->getRevisionId());
+          $fields += $this->getReferenceRevisionField('oe_event_venue', 'oe_venue', $value);
           break;
 
         case 'Partner':
-          // For revision reference fields we have give the target_revision_id.
-          $entity = $this->loadEntityByLabel('oe_organisation', $value, 'oe_default');
-          $this->addReferenceRevisionField($fields, 'oe_event_partner', $entity->id(), $entity->getRevisionId());
+          $fields += $this->getReferenceRevisionField('oe_event_partner', 'oe_organisation', $value);
           break;
 
         case 'Contact':
-          // Transform titles to ids and maintain the comma separated format.
-          $items = explode(',', $value);
-          $items = array_map('trim', $items);
-          $ids = [];
-          $revision_ids = [];
-          foreach ($items as $item) {
-            $entity = $this->loadEntityByLabel('oe_contact', $item);
-            $ids[] = $entity->id();
-            $revision_ids[] = $entity->getRevisionId();
-          }
-
-          // For revision reference field we have give the target_revision_id.
-          $this->addReferenceRevisionField($fields, 'oe_event_contact', implode(',', $ids), implode(',', $revision_ids));
+          $fields += $this->getReferenceRevisionField('oe_event_contact', 'oe_contact', $value);
           break;
 
         case 'Featured media':
-          $entity = $this->loadEntityByLabel('media', $value);
-          $fields['oe_event_featured_media:target_id'] = $entity->id();
+          $fields['oe_event_featured_media:target_id'] = $this->loadEntityByLabel('media', $value)->id();
           break;
 
         case 'Organiser is internal':
@@ -93,8 +86,20 @@ class EventContentContext extends RawDrupalContext {
           break;
 
         case 'Internal organiser':
-          $entity = $this->loadEntityByLabel('skos_concept', $value);
-          $fields['oe_event_organiser_internal'] = $entity->id();
+          $fields['oe_event_organiser_internal'] = $this->loadEntityByLabel('skos_concept', $value)->id();
+          break;
+
+        // Convert dates to UTC so that they can be expressed in site timezone.
+        case 'Start date':
+        case 'End date':
+        case 'Registration start date':
+        case 'Registration end date':
+        case 'Online time start':
+        case 'Online time end':
+          $date = DrupalDateTime::createFromFormat(DateTimePlus::FORMAT, $value);
+          $fields[$mapping[$key]] = $date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, [
+            'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
+          ]);
           break;
 
         default:
@@ -110,23 +115,6 @@ class EventContentContext extends RawDrupalContext {
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
     ];
     $scope->setFields($fields);
-  }
-
-  /**
-   * Add reference revision field in a format parsable by the Drupal Extension.
-   *
-   * @param array $fields
-   *   Field array to add the field to.
-   * @param string $field_name
-   *   Reference revision field name.
-   * @param string|int $ids
-   *   IDs to be assigned to.
-   * @param string|int $revision_ids
-   *   Revision IDs to be assigned to.
-   */
-  protected function addReferenceRevisionField(array &$fields, string $field_name, $ids, $revision_ids): void {
-    $fields["{$field_name}:target_id"] = $ids;
-    $fields["{$field_name}:target_revision_id"] = $revision_ids;
   }
 
 }
