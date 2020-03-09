@@ -9,7 +9,9 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
+use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
+use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 
 /**
  * Context to create event corporate entities.
@@ -19,6 +21,8 @@ use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 class EventContentContext extends RawDrupalContext {
 
   use EntityReferenceRevisionTrait;
+  use EntityReferenceTrait;
+  use EntityLoadingTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -52,7 +56,10 @@ class EventContentContext extends RawDrupalContext {
       'Online description' => 'oe_event_online_description',
       'Online link' => 'oe_event_online_link',
       'Languages' => 'oe_event_languages',
+      'Internal organiser' => 'oe_event_organiser_internal',
+      'Featured media' => 'oe_event_featured_media',
       'Status' => 'oe_event_status',
+      'Organiser is internal' => 'oe_event_organiser_is_internal',
       'Organiser name' => 'oe_event_organiser_name',
       'Event website' => 'oe_event_website',
       'Social media links' => 'oe_social_media_links',
@@ -78,21 +85,20 @@ class EventContentContext extends RawDrupalContext {
           break;
 
         case 'Featured media':
-          $scope->addFields([
-            'oe_event_featured_media:target_id' => $this->loadEntityByLabel('media', $value)->id(),
-          ])->removeField($key);
+          $fields = $this->getRevisionField($mapping[$key], 'media', $value);
+          $scope->addFields($fields)->removeField($key);
           break;
 
         case 'Organiser is internal':
           $scope->addFields([
-            'oe_event_organiser_is_internal' => (int) ($value === 'Yes'),
+            $mapping[$key] => (int) ($value === 'Yes'),
           ])->removeField($key);
           break;
 
+        case 'Languages':
         case 'Internal organiser':
-          $scope->addFields([
-            'oe_event_organiser_internal' => $this->loadEntityByLabel('skos_concept', $value)->id(),
-          ])->removeField($key);
+          $fields = $this->getRevisionField($mapping[$key], 'skos_concept', $value);
+          $scope->addFields($fields)->removeField($key);
           break;
 
         // Convert dates to UTC so that they can be expressed in site timezone.

@@ -9,8 +9,6 @@ namespace Drupal\Tests\oe_content\Traits;
  */
 trait EntityReferenceRevisionTrait {
 
-  use EntityLoadingTrait;
-
   /**
    * Get reference revision field in a multi-value, parsable format.
    *
