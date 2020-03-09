@@ -80,7 +80,7 @@ abstract class ParseEntityFieldsScopeBase implements EntityAwareHookScopeInterfa
    * @return \Drupal\Tests\oe_content\Behat\Hook\Scope\ParseEntityFieldsScopeBase
    *   Scope object.
    */
-  public function add(array $fields): self {
+  public function addFields(array $fields): self {
     $this->fields += $fields;
     return $this;
   }
@@ -96,9 +96,9 @@ abstract class ParseEntityFieldsScopeBase implements EntityAwareHookScopeInterfa
    * @return \Drupal\Tests\oe_content\Behat\Hook\Scope\ParseEntityFieldsScopeBase
    *   Scope object.
    */
-  public function rename(string $current_name, string $new_name): self {
+  public function renameField(string $current_name, string $new_name): self {
     $this->fields[$new_name] = $this->fields[$current_name];
-    $this->remove($current_name);
+    $this->removeField($current_name);
     return $this;
   }
 
@@ -111,7 +111,7 @@ abstract class ParseEntityFieldsScopeBase implements EntityAwareHookScopeInterfa
    * @return \Drupal\Tests\oe_content\Behat\Hook\Scope\ParseEntityFieldsScopeBase
    *   Scope object.
    */
-  public function remove(string $name): self {
+  public function removeField(string $name): self {
     unset($this->fields[$name]);
     return $this;
   }

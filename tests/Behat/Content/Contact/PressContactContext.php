@@ -28,7 +28,7 @@ class PressContactContext extends RawDrupalContext {
 
     foreach ($scope->getFields() as $key => $value) {
       if (isset($mapping[$key])) {
-        $scope->rename($key, $mapping[$key]);
+        $scope->renameField($key, $mapping[$key]);
       }
     }
   }

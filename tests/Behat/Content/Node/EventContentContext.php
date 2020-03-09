@@ -64,35 +64,35 @@ class EventContentContext extends RawDrupalContext {
       switch ($key) {
         case 'Venue':
           $fields = $this->getReferenceRevisionField('oe_event_venue', 'oe_venue', $value);
-          $scope->add($fields)->remove($key);
+          $scope->addFields($fields)->removeField($key);
           break;
 
         case 'Partner':
           $fields = $this->getReferenceRevisionField('oe_event_partner', 'oe_organisation', $value);
-          $scope->add($fields)->remove($key);
+          $scope->addFields($fields)->removeField($key);
           break;
 
         case 'Contact':
           $fields = $this->getReferenceRevisionField('oe_event_contact', 'oe_contact', $value);
-          $scope->add($fields)->remove($key);
+          $scope->addFields($fields)->removeField($key);
           break;
 
         case 'Featured media':
-          $scope->add([
+          $scope->addFields([
             'oe_event_featured_media:target_id' => $this->loadEntityByLabel('media', $value)->id(),
-          ])->remove($key);
+          ])->removeField($key);
           break;
 
         case 'Organiser is internal':
-          $scope->add([
+          $scope->addFields([
             'oe_event_organiser_is_internal' => (int) ($value === 'Yes'),
-          ])->remove($key);
+          ])->removeField($key);
           break;
 
         case 'Internal organiser':
-          $scope->add([
+          $scope->addFields([
             'oe_event_organiser_internal' => $this->loadEntityByLabel('skos_concept', $value)->id(),
-          ])->remove($key);
+          ])->removeField($key);
           break;
 
         // Convert dates to UTC so that they can be expressed in site timezone.
@@ -106,18 +106,18 @@ class EventContentContext extends RawDrupalContext {
             ->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, [
               'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
             ]);
-          $scope->add([$mapping[$key] => $date])->remove($key);
+          $scope->addFields([$mapping[$key] => $date])->removeField($key);
           break;
 
         default:
           if (isset($mapping[$key])) {
-            $scope->rename($key, $mapping[$key]);
+            $scope->renameField($key, $mapping[$key]);
           }
       }
     }
 
     // Set default fields.
-    $scope->add([
+    $scope->addFields([
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
