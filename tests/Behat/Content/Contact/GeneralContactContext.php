@@ -15,6 +15,9 @@ class GeneralContactContext extends RawDrupalContext {
   /**
    * Run before fields are parsed by Drupal Behat extension.
    *
+   * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope $scope
+   *   Behat scope.
+   *
    * @BeforeParseEntityFields(oe_contact,oe_general)
    */
   public function alterGeneralContactFields(BeforeParseEntityFieldsScope $scope): void {

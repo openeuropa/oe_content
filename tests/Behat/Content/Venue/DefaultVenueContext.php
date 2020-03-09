@@ -15,6 +15,9 @@ class DefaultVenueContext extends RawDrupalContext {
   /**
    * Run before fields are parsed by Drupal Behat extension.
    *
+   * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope $scope
+   *   Behat scope.
+   *
    * @BeforeParseEntityFields(oe_venue,oe_default)
    */
   public function alterVenueFields(BeforeParseEntityFieldsScope $scope): void {

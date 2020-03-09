@@ -51,11 +51,18 @@ class CorporateContentContext extends RawDrupalContext {
    *
    * For an example of field transformations refer to:
    *
-   * @see \Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext::alterEventFields()
-   * @see \Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext::alterVenueFields()
+   * - @see \Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext::alterEventFields()
+   * - @see \Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext::alterVenueFields()
    *
    * This step also fires a @BeforeSaveEntity(ENTITY_TYPE, ENTITY_BUNDLE) right
    * before saving the entity.
+   *
+   * @param string $bundle_label
+   *   Entity bundle label.
+   * @param string $entity_type_label
+   *   Entity type label.
+   * @param \Behat\Gherkin\Node\TableNode $table
+   *   List of fields.
    *
    * @Given the following :bundle_label :entity_type_label entity:
    */
@@ -82,6 +89,19 @@ class CorporateContentContext extends RawDrupalContext {
     $this->entities[] = $entity;
 
     // Clears the static cache of DatabaseCacheTagsChecksum.
+    // Static caches are typically cleared at the end of the request since a
+    // typical web request is short lived and the process disappears when the
+    // page is delivered. But if a Behat test is using DrupalContext then Drupal
+    // will be bootstrapped early on (in the BeforeSuiteScope step). This starts
+    // a request which is not short lived, but can live for several minutes
+    // while the tests run. During the lifetime of this request there will be
+    // steps executed that do requests of their own, changing the state of the
+    // Drupal site. This does not however update any of the statically cached
+    // data of the parent request, so this is totally unaware of the changes.
+    // This causes unexpected behaviour like the failure to invalidate some
+    // caches because DatabaseCacheTagsChecksum::invalidateTags() keeps a local
+    // storage of which cache tags were invalidated, and this is not reset in
+    // time.
     \Drupal::service('cache_tags.invalidator')->resetCheckSums();
   }
 
@@ -103,15 +123,24 @@ class CorporateContentContext extends RawDrupalContext {
    *
    * For an example of field transformations refer to:
    *
-   * @see \Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext::alterEventFields()
-   * @see \Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext::alterVenueFields()
+   * - @see \Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext::alterEventFields()
+   * - @see \Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext::alterVenueFields()
    *
    * This step also fires a @BeforeSaveEntity(ENTITY_TYPE, ENTITY_BUNDLE) right
    * before saving the entity.
    *
-   * @Given the :bundle_label :entity_type_label :title is updated as follows:
+   * @param string $bundle_label
+   *   Entity bundle label.
+   * @param string $entity_type_label
+   *   Entity type label.
+   * @param string $label
+   *   Entity label.
+   * @param \Behat\Gherkin\Node\TableNode $table
+   *   List of fields.
+   *
+   * @Given the :bundle_label :entity_type_label :label is updated as follows:
    */
-  public function updateEntity(string $bundle_label, string $entity_type_label, string $title, TableNode $table): void {
+  public function updateEntity(string $bundle_label, string $entity_type_label, string $label, TableNode $table): void {
     $definition = $this->loadDefinitionByLabel($entity_type_label);
     $entity_type = $definition->id();
 
@@ -121,7 +150,7 @@ class CorporateContentContext extends RawDrupalContext {
     $fields = $this->parseFields($entity_type, $bundle, $fields);
 
     // Set field value and save the entity.
-    $entity = $this->loadEntityByLabel($entity_type, $title, $bundle);
+    $entity = $this->loadEntityByLabel($entity_type, $label, $bundle);
     foreach ($fields as $name => $value) {
       $entity->set($name, $value);
     }
@@ -133,6 +162,19 @@ class CorporateContentContext extends RawDrupalContext {
     $entity->save();
 
     // Clears the static cache of DatabaseCacheTagsChecksum.
+    // Static caches are typically cleared at the end of the request since a
+    // typical web request is short lived and the process disappears when the
+    // page is delivered. But if a Behat test is using DrupalContext then Drupal
+    // will be bootstrapped early on (in the BeforeSuiteScope step). This starts
+    // a request which is not short lived, but can live for several minutes
+    // while the tests run. During the lifetime of this request there will be
+    // steps executed that do requests of their own, changing the state of the
+    // Drupal site. This does not however update any of the statically cached
+    // data of the parent request, so this is totally unaware of the changes.
+    // This causes unexpected behaviour like the failure to invalidate some
+    // caches because DatabaseCacheTagsChecksum::invalidateTags() keeps a local
+    // storage of which cache tags were invalidated, and this is not reset in
+    // time.
     \Drupal::service('cache_tags.invalidator')->resetCheckSums();
   }
 
@@ -141,7 +183,7 @@ class CorporateContentContext extends RawDrupalContext {
    *
    * @AfterScenario
    */
-  public function cleanEntities() {
+  public function cleanEntities(): void {
     foreach ($this->entities as $entity) {
       $this->getDriver()->getCore()->entityDelete($entity->id(), $entity);
     }
@@ -166,11 +208,11 @@ class CorporateContentContext extends RawDrupalContext {
    * @return array
    *   Parsed fields.
    */
-  protected function parseFields(string $entity_type, string $bundle, array $fields) {
+  protected function parseFields(string $entity_type, string $bundle, array $fields): array {
     $scope = new BeforeParseEntityFieldsScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $fields);
     $this->dispatchEntityAwareHook($scope);
 
-    // We have to cast as parseEntityFields() expects an object passed by ref.
+    // We have to cast as parseEntityFields() expects a reference to an object.
     $fields = (object) $scope->getFields();
     $this->parseEntityFields($entity_type, $fields);
 

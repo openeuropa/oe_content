@@ -14,7 +14,7 @@ use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 
 /**
- * Context to create event corporate entities.
+ * Context to create event content entities.
  *
  * @SuppressWarnings(PHPMD)
  */
