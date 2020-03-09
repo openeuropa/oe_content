@@ -11,7 +11,7 @@ bundle: oe_default
 label: Capacity
 description: 'The capacity of the venue.'
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }

@@ -31,8 +31,7 @@ The `field_group` and `typed_link` modules requires the following patches to be 
 }
 ```
 
-The patches above are provided by this projects's main `composer.json` file and they will be applied as long as you add
-the following to your project's `composer.json` file:
+In order to apply the patches above add the following to your project's `composer.json` file:
 
 ```json
 "require": {
@@ -42,3 +41,5 @@ the following to your project's `composer.json` file:
     "enable-patching": true
 }
 ```
+
+For more information check `cweagans/composer-patches` documentation [here](https://github.com/cweagans/composer-patches).
