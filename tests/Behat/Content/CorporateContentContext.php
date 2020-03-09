@@ -30,6 +30,33 @@ class CorporateContentContext extends RawDrupalContext {
   /**
    * Create an entity.
    *
+   * Example:
+   *
+   * Given the following Event Content entity:
+   *   | Title                   | Event demo page          |
+   *   | Type                    | exhibitions              |
+   *   | Introduction            | Event introduction text  |
+   *   | Description summary     | Description summary text |
+   *   | Description             | Event description        |
+   *   | Start date              | 2019-02-21 10:30:00      |
+   *   | End date                | 2019-02-21 18:30:00      |
+   *   | Languages               | Valencian                |
+   *
+   * Use entity type and bundle labels to refer to the entity.
+   *
+   * Field names and/or values can be transformed by using the following hooks:
+   *
+   *  - @BeforeParseEntityFields(ENTITY_TYPE, ENTITY_BUNDLE)
+   *  - @AfterParseEntityFields(ENTITY_TYPE, ENTITY_BUNDLE)
+   *
+   * For an example of field transformations refer to:
+   *
+   * @see \Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext::alterEventFields()
+   * @see \Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext::alterVenueFields()
+   *
+   * This step also fires a @BeforeSaveEntity(ENTITY_TYPE, ENTITY_BUNDLE) right
+   * before saving the entity.
+   *
    * @Given the following :bundle_label :entity_type_label entity:
    */
   public function createEntity(string $bundle_label, string $entity_type_label, TableNode $table): void {
@@ -59,7 +86,28 @@ class CorporateContentContext extends RawDrupalContext {
   }
 
   /**
-   * Update an entity.
+   * Update an existing entity, given its bundle, entity type and title.
+   *
+   * Example:
+   *
+   * Given the Event Content "Event demo page" is updated as follows:
+   *   | Start date | 2019-02-21 12:30:00 |
+   *   | End date   | 2019-02-21 20:30:00 |
+   *
+   * Use entity type and bundle labels to refer to the entity.
+   *
+   * Field names and/or values can be transformed by using the following hooks:
+   *
+   *  - @BeforeParseEntityFields(ENTITY_TYPE, ENTITY_BUNDLE)
+   *  - @AfterParseEntityFields(ENTITY_TYPE, ENTITY_BUNDLE)
+   *
+   * For an example of field transformations refer to:
+   *
+   * @see \Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext::alterEventFields()
+   * @see \Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext::alterVenueFields()
+   *
+   * This step also fires a @BeforeSaveEntity(ENTITY_TYPE, ENTITY_BUNDLE) right
+   * before saving the entity.
    *
    * @Given the :bundle_label :entity_type_label :title is updated as follows:
    */
