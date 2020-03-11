@@ -89,19 +89,9 @@ Feature: Event content creation
     And I should see the text "Event report"
     And I should not see the text "Report text"
     And I should not see the text "Summary for report"
-    And I should not see the text "Gallery"
     When I press "Event report"
     Then I should see the text "Report text"
     And I should see the text "Summary for report"
-    And I should see the text "Gallery"
-
-    # Make sure that the Event partner field group contains expected fields.
-    And I should see the text "Event partner"
-    When I press "Add new partner"
-    And I wait for AJAX to finish
-    Then I should see "Name" in the "Event partner" region
-    And I should see "Image" in the "Event partner" region
-    And I should see "Website" in the "Event partner" region
 
     # Make sure that the Event contact field group contains expected fields.
     And I should see the text "Event contact"
@@ -217,15 +207,6 @@ Feature: Event content creation
     When I press "Event report"
     And I fill in "Report text" with "Report text paragraph"
     And I fill in "Summary for report" with "Report summary text"
-    And I fill in "Use existing media" with "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania" in the "Event report" region
-
-
-    # Event partner field group.
-    When I press "Add new partner"
-    And I wait for AJAX to finish
-    Then I fill in "Name" with "Name of the event partner" in the "Event partner" region
-    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Event partner" region
-    And I fill in "Website" with "http://eventpartner.com" in the "Event partner" region
 
     # Event contact field group.
     When I press "Add new contact"
@@ -259,7 +240,6 @@ Feature: Event content creation
     And I should see "Fri, 02/22/2019 - 14:30"
     And I should see the link "Online link"
     And I should see "Organiser name"
-    And I should see "Visit by Federica Mogherini, Vice-President of the EC, and Johannes Hahn, Member of the EC, to Romania"
     And I should see "Description summary text"
     And I should see "Euro with miniature figurines"
     And I should see "Report summary text"
@@ -277,10 +257,6 @@ Feature: Event content creation
     And I should see the text "Rue belliard 28"
     And I should see the text "1000 Brussels"
     And I should see the text "Belgium"
-    # Event partner values.
-    And I should see the text "Name of the event partner"
-    And I should see an "AV portal photo of the Event partner" element
-    And I should see the text "http://eventpartner.com"
     # Event contact values.
     And I should see the text "Name of the event contact"
     And I should see the text "Back street 3"

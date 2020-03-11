@@ -10,7 +10,6 @@ dependencies:
     - field.field.node.oe_event.oe_event_entrance_fee
     - field.field.node.oe_event.oe_event_featured_media
     - field.field.node.oe_event.oe_event_featured_media_legend
-    - field.field.node.oe_event.oe_event_gallery
     - field.field.node.oe_event.oe_event_languages
     - field.field.node.oe_event.oe_event_online_dates
     - field.field.node.oe_event.oe_event_online_description
@@ -19,7 +18,6 @@ dependencies:
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_is_internal
     - field.field.node.oe_event.oe_event_organiser_name
-    - field.field.node.oe_event.oe_event_partner
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_dates
     - field.field.node.oe_event.oe_event_registration_url
@@ -99,7 +97,6 @@ third_party_settings:
       children:
         - oe_event_report_summary
         - oe_event_report_text
-        - oe_event_gallery
       parent_name: ''
       weight: 15
       format_type: details
@@ -278,15 +275,6 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
     type: string_textfield
     region: content
-  oe_event_gallery:
-    type: entity_reference_autocomplete
-    weight: 30
-    region: content
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   oe_event_languages:
     type: skos_concept_entity_reference_autocomplete
     weight: 10
@@ -350,23 +338,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  oe_event_partner:
-    weight: 16
-    settings:
-      form_mode: default
-      revision: true
-      override_labels: true
-      label_singular: partner
-      label_plural: partners
-      collapsible: true
-      allow_new: true
-      match_operator: CONTAINS
-      collapsed: false
-      allow_existing: false
-      allow_duplicate: false
-    third_party_settings: {  }
-    type: inline_entity_form_complex
     region: content
   oe_event_registration_capacity:
     weight: 32
