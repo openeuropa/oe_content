@@ -27,6 +27,7 @@ class GeneralContactContext extends RawDrupalContext {
       'Address' => 'oe_address',
       'Email' => 'oe_email',
       'Phone number' => 'oe_phone',
+      'Social media links' => 'oe_social_media',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
