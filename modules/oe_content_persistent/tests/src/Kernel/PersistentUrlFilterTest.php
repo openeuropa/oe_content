@@ -27,6 +27,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
     'field',
     'text',
     'path',
+    'path_alias',
     'node',
     'user',
     'language',
@@ -49,6 +50,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
 
     $this->installEntitySchema('node');
     $this->installEntitySchema('user');
+    $this->installEntitySchema('path_alias');
     $this->installEntitySchema('configurable_language');
     $this->installConfig([
       'filter',
@@ -77,7 +79,6 @@ class PersistentUrlFilterTest extends KernelTestBase {
    * Test return of ContentUuidResolver service.
    */
   public function testPersistentUrlFilter(): void {
-
     /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
     $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
 
@@ -87,6 +88,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
       return $filter->process($input, $langcode);
     };
 
+    /** @var \Drupal\node\NodeInterface $node */
     $node = Node::create([
       'title' => $this->randomString(),
       'type' => 'page',

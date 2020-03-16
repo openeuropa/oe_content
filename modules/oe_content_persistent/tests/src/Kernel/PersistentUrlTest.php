@@ -23,6 +23,7 @@ class PersistentUrlTest extends KernelTestBase {
    */
   protected static $modules = [
     'path',
+    'path_alias',
     'node',
     'user',
     'system',
@@ -38,6 +39,7 @@ class PersistentUrlTest extends KernelTestBase {
     parent::setUp();
 
     $this->installEntitySchema('node');
+    $this->installEntitySchema('path_alias');
     $this->installEntitySchema('user');
     $this->installEntitySchema('configurable_language');
     $this->installSchema('node', ['node_access']);
