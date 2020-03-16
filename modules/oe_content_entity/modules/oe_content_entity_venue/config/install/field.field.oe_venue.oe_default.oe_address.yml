@@ -26,6 +26,8 @@ settings:
       override: hidden
     familyName:
       override: hidden
+    organization:
+      override: hidden
     dependentLocality:
       override: hidden
   fields: {  }
