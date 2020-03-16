@@ -60,6 +60,13 @@ class PersistentUrlFilterTest extends KernelTestBase {
     ]);
     $this->installSchema('node', ['node_access']);
 
+    // In Drupal 8.8, paths have been moved to an entity type.
+    // @todo remove this when the component will depend on 8.8.
+    if (version_compare(\Drupal::VERSION, '8.8.0', '>=')) {
+      $this->container->get('module_installer')->install(['path_alias']);
+      $this->installEntitySchema('path_alias');
+    }
+
     ConfigurableLanguage::create(['id' => 'fr'])->save();
 
     $manager = $this->container->get('plugin.manager.filter');
@@ -77,7 +84,6 @@ class PersistentUrlFilterTest extends KernelTestBase {
    * Test return of ContentUuidResolver service.
    */
   public function testPersistentUrlFilter(): void {
-
     /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
     $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
 
@@ -87,6 +93,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
       return $filter->process($input, $langcode);
     };
 
+    /** @var \Drupal\node\NodeInterface $node */
     $node = Node::create([
       'title' => $this->randomString(),
       'type' => 'page',

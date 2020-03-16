@@ -36,6 +36,12 @@ class PersistentUrlControllerTest extends BrowserTestBase {
   protected function setUp() {
     parent::setUp();
 
+    // In Drupal 8.8, paths have been moved to an entity type.
+    // @todo remove this when the component will depend on 8.8.
+    if (version_compare(\Drupal::VERSION, '8.8.0', '>=')) {
+      $this->container->get('module_installer')->install(['path_alias']);
+    }
+
     $node_type = NodeType::create(['type' => 'page']);
     $node_type->save();
   }
