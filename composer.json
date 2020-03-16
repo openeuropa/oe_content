@@ -19,21 +19,17 @@
         "drupal-composer/drupal-scaffold": "~2.5.2",
         "drupal/config_devel": "~1.2",
         "drupal/drupal-extension": "~4.0",
-        "drupal/pathauto": "^1.6",
         "drush/drush": "~9.0",
         "nikic/php-parser": "^3.1.5",
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/code-review": "~1.0@beta",
-        "openeuropa/oe_multilingual": "^1.1.1",
+        "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/task-runner": "~1.0@beta",
         "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.4",
         "drupaltest/behat-traits": "dev-8.x-1.x"
     },
-    "_readme": [
-        "We use a minimum version of Pathauto 1.6 until a new release of oe_multilingual includes it. Then it can be removed."
-    ],
     "autoload": {
         "psr-4": {
             "Drupal\\oe_content\\": "./src/"
