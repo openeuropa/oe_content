@@ -7,6 +7,7 @@ core: 8.x
 dependencies:
   - oe_content:oe_content_entity
   - address:address
+  - typed_link:typed_link
 
 config_devel:
   install:
@@ -17,9 +18,11 @@ config_devel:
     - field.field.oe_contact.oe_general.oe_address
     - field.field.oe_contact.oe_general.oe_email
     - field.field.oe_contact.oe_general.oe_phone
+    - field.field.oe_contact.oe_general.oe_social_media
     - field.field.oe_contact.oe_press.oe_address
     - field.field.oe_contact.oe_press.oe_email
     - field.field.oe_contact.oe_press.oe_phone
+    - field.field.oe_contact.oe_press.oe_social_media
     - field.storage.oe_contact.oe_address
     - field.storage.oe_contact.oe_email
     - field.storage.oe_contact.oe_phone
