@@ -56,6 +56,7 @@ default:
         Description: "#edit-oe-event-featured-media"
         Event report: "#edit-group-report"
         Event contact: "#edit-oe-event-contact-wrapper"
+        Event contact social media links: ".field--name-oe-social-media"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
