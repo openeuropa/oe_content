@@ -23,7 +23,6 @@ class PersistentUrlTest extends KernelTestBase {
    */
   protected static $modules = [
     'path',
-    'path_alias',
     'node',
     'user',
     'system',
@@ -39,13 +38,19 @@ class PersistentUrlTest extends KernelTestBase {
     parent::setUp();
 
     $this->installEntitySchema('node');
-    $this->installEntitySchema('path_alias');
     $this->installEntitySchema('user');
     $this->installEntitySchema('configurable_language');
     $this->installSchema('node', ['node_access']);
 
     $this->installConfig(['language']);
     $this->installConfig(['user']);
+
+    // In Drupal 8.8, paths have been moved to an entity type.
+    // @todo remove this when the component will depend on 8.8.
+    if (version_compare(\Drupal::VERSION, '8.8.0', '>=')) {
+      $this->container->get('module_installer')->install(['path_alias']);
+      $this->installEntitySchema('path_alias');
+    }
 
     ConfigurableLanguage::create(['id' => 'fr'])->save();
 

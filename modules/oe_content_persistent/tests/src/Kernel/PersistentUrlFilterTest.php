@@ -27,7 +27,6 @@ class PersistentUrlFilterTest extends KernelTestBase {
     'field',
     'text',
     'path',
-    'path_alias',
     'node',
     'user',
     'language',
@@ -50,7 +49,6 @@ class PersistentUrlFilterTest extends KernelTestBase {
 
     $this->installEntitySchema('node');
     $this->installEntitySchema('user');
-    $this->installEntitySchema('path_alias');
     $this->installEntitySchema('configurable_language');
     $this->installConfig([
       'filter',
@@ -61,6 +59,13 @@ class PersistentUrlFilterTest extends KernelTestBase {
       'oe_content_persistent',
     ]);
     $this->installSchema('node', ['node_access']);
+
+    // In Drupal 8.8, paths have been moved to an entity type.
+    // @todo remove this when the component will depend on 8.8.
+    if (version_compare(\Drupal::VERSION, '8.8.0', '>=')) {
+      $this->container->get('module_installer')->install(['path_alias']);
+      $this->installEntitySchema('path_alias');
+    }
 
     ConfigurableLanguage::create(['id' => 'fr'])->save();
 
