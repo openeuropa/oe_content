@@ -74,11 +74,6 @@ class EventContentContext extends RawDrupalContext {
           $scope->addFields($fields)->removeField($key);
           break;
 
-        case 'Partner':
-          $fields = $this->getReferenceRevisionField('oe_event_partner', 'oe_organisation', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
         case 'Contact':
           $fields = $this->getReferenceRevisionField('oe_event_contact', 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
