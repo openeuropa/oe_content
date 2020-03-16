@@ -17,7 +17,6 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
-              AV portal photo of the Event partner: ".field--name-oe-event-partner"
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
             pages:
               Page creation: 'node/add/oe_page'
@@ -56,7 +55,6 @@ default:
         Social media links: "#oe-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
         Event report: "#edit-group-report"
-        Event partner: "#edit-oe-event-partner-wrapper"
         Event contact: "#edit-oe-event-contact-wrapper"
       selectors:
         message_selector: '.messages'

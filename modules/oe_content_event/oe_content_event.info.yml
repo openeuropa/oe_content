@@ -31,7 +31,6 @@ config_devel:
     - field.field.node.oe_event.oe_event_entrance_fee
     - field.field.node.oe_event.oe_event_featured_media
     - field.field.node.oe_event.oe_event_featured_media_legend
-    - field.field.node.oe_event.oe_event_gallery
     - field.field.node.oe_event.oe_event_languages
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
@@ -40,7 +39,6 @@ config_devel:
     - field.field.node.oe_event.oe_event_organiser_is_internal
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_name
-    - field.field.node.oe_event.oe_event_partner
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_dates
     - field.field.node.oe_event.oe_event_registration_url
@@ -60,7 +58,6 @@ config_devel:
     - field.storage.node.oe_event_entrance_fee
     - field.storage.node.oe_event_featured_media
     - field.storage.node.oe_event_featured_media_legend
-    - field.storage.node.oe_event_gallery
     - field.storage.node.oe_event_languages
     - field.storage.node.oe_event_online_description
     - field.storage.node.oe_event_online_link
@@ -69,7 +66,6 @@ config_devel:
     - field.storage.node.oe_event_organiser_is_internal
     - field.storage.node.oe_event_organiser_internal
     - field.storage.node.oe_event_organiser_name
-    - field.storage.node.oe_event_partner
     - field.storage.node.oe_event_registration_capacity
     - field.storage.node.oe_event_registration_dates
     - field.storage.node.oe_event_registration_url
