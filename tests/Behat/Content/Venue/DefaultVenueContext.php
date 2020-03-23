@@ -27,10 +27,17 @@ class DefaultVenueContext extends RawDrupalContext {
       'Address' => 'oe_address',
       'Capacity' => 'oe_capacity',
       'Room' => 'oe_room',
+      'Published' => 'status',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
       if (isset($mapping[$key])) {
+        if ($key === 'Published') {
+          $scope->addFields([
+            $mapping[$key] => (int) ($value === 'Yes'),
+          ])->removeField($key);
+          continue;
+        }
         $scope->renameField($key, $mapping[$key]);
       }
     }
