@@ -28,11 +28,21 @@ class GeneralContactContext extends RawDrupalContext {
       'Email' => 'oe_email',
       'Phone number' => 'oe_phone',
       'Social media links' => 'oe_social_media',
+      'Published' => 'status',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
-      if (isset($mapping[$key])) {
-        $scope->renameField($key, $mapping[$key]);
+      switch ($key) {
+        case 'Published':
+          $scope->addFields([
+            $mapping[$key] => (int) ($value === 'Yes'),
+          ])->removeField($key);
+          break;
+
+        default:
+          if (isset($mapping[$key])) {
+            $scope->renameField($key, $mapping[$key]);
+          }
       }
     }
   }
