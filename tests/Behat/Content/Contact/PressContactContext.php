@@ -32,14 +32,17 @@ class PressContactContext extends RawDrupalContext {
     ];
 
     foreach ($scope->getFields() as $key => $value) {
-      if (isset($mapping[$key])) {
-        if ($key === 'Published') {
+      switch ($key) {
+        case 'Published':
           $scope->addFields([
             $mapping[$key] => (int) ($value === 'Yes'),
           ])->removeField($key);
-          continue;
-        }
-        $scope->renameField($key, $mapping[$key]);
+          break;
+
+        default:
+          if (isset($mapping[$key])) {
+            $scope->renameField($key, $mapping[$key]);
+          }
       }
     }
   }
