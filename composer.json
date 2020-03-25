@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "drupal/core-recommended": "^8.7",
+        "drupal/core": "^8.7",
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
