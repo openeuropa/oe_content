@@ -1,0 +1,7 @@
+name: Taxonomy types
+type: module
+description: 'Provides a taxonomy type configuration entity.'
+package: Custom
+core: 8.x
+core_version_requirement: ^8 || ^9
+configure: entity.oe_taxonomy_type.collection

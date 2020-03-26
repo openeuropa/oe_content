@@ -1,0 +1,31 @@
+entity.oe_taxonomy_type.collection:
+  path: '/admin/structure/oe-taxonomy-type'
+  defaults:
+    _entity_list: 'oe_taxonomy_type'
+    _title: 'Taxonomy type configuration'
+  requirements:
+    _permission: 'administer oe_taxonomy_type'
+
+entity.oe_taxonomy_type.add_form:
+  path: '/admin/structure/oe_taxonomy_type/add'
+  defaults:
+    _entity_form: 'oe_taxonomy_type.add'
+    _title: 'Add a taxonomy type'
+  requirements:
+    _permission: 'administer oe_taxonomy_type'
+
+entity.oe_taxonomy_type.edit_form:
+  path: '/admin/structure/oe-taxonomy-type/{oe_taxonomy_type}'
+  defaults:
+    _entity_form: 'oe_taxonomy_type.edit'
+    _title: 'Edit a taxonomy type'
+  requirements:
+    _permission: 'administer oe_taxonomy_type'
+
+entity.oe_taxonomy_type.delete_form:
+  path: '/admin/structure/oe-taxonomy-type/{oe_taxonomy_type}/delete'
+  defaults:
+    _entity_form: 'oe_taxonomy_type.delete'
+    _title: 'Delete a taxonomy type'
+  requirements:
+    _permission: 'administer oe_taxonomy_type'

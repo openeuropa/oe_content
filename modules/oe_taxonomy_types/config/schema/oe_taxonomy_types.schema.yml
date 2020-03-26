@@ -1,0 +1,30 @@
+oe_taxonomy_types.oe_taxonomy_type.*:
+  type: config_entity
+  label: 'Taxonomy type'
+  mapping:
+    id:
+      type: string
+      label: ID
+    label:
+      type: label
+      label: Label
+    uuid:
+      type: string
+      label: UUID
+    description:
+      type: string
+      label: Description
+    vocabulary_type:
+      type: string
+      label: 'Vocabulary type'
+
+field.value.oe_taxonomy_type_field:
+  type: mapping
+  label: 'Default value'
+  mapping:
+    target_id:
+      type: string
+      label: 'Vocabulary term ID'
+    target_association:
+      type: string
+      label: 'Association config entity ID'

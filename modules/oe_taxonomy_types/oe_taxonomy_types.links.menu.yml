@@ -1,0 +1,5 @@
+entity.oe_taxonomy_type.overview:
+  title: Taxonomy types
+  parent: system.admin_structure
+  description: 'List of taxonomy types to extend site functionality.'
+  route_name: entity.oe_taxonomy_type.collection
