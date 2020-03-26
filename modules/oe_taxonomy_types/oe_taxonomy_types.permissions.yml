@@ -1,2 +1,5 @@
 administer oe_taxonomy_type:
   title: 'Administer taxonomy type'
+
+administer oe_taxonomy_type_association:
+  title: 'Administer taxonomy type association'

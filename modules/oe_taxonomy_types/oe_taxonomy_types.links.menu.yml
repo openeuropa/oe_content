@@ -3,3 +3,9 @@ entity.oe_taxonomy_type.overview:
   parent: system.admin_structure
   description: 'List of taxonomy types to extend site functionality.'
   route_name: entity.oe_taxonomy_type.collection
+
+entity.oe_taxonomy_type_association.overview:
+  title: Taxonomy type associations
+  parent: system.admin_structure
+  description: 'List of taxonomy type associations to extend site functionality.'
+  route_name: entity.oe_taxonomy_type_association.collection

@@ -18,6 +18,38 @@ oe_taxonomy_types.oe_taxonomy_type.*:
       type: string
       label: 'Vocabulary type'
 
+oe_taxonomy_type_association.oe_taxonomy_type_association.*:
+  type: config_entity
+  label: 'Taxonomy type association'
+  mapping:
+    id:
+      type: string
+      label: ID
+    label:
+      type: label
+      label: Label
+    uuid:
+      type: string
+      label: UUID
+    widget_type:
+      type: string
+      label: 'Widget type'
+    taxonomy_type:
+      type: string
+      label: 'Taxonomy type config ID'
+    cardinality:
+      type: integer
+      label: 'Maximum number of values users can enter'
+    required:
+      type: boolean
+      label: 'Required association'
+    predicate:
+      type: string
+      label: 'Predicate'
+    help_text:
+      type: string
+      label: 'Help text'
+
 field.value.oe_taxonomy_type_field:
   type: mapping
   label: 'Default value'

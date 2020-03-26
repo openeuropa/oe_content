@@ -3,3 +3,9 @@ entity.oe_taxonomy_type.add_form:
   title: 'Add taxonomy type'
   appears_on:
     - entity.oe_taxonomy_type.collection
+    -
+entity.oe_taxonomy_type_association.add_form:
+  route_name: 'entity.oe_taxonomy_type_association.add_form'
+  title: 'Add taxonomy type association'
+  appears_on:
+    - entity.oe_taxonomy_type_association.collection

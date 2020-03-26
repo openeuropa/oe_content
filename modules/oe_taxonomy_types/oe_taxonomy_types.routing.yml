@@ -29,3 +29,35 @@ entity.oe_taxonomy_type.delete_form:
     _title: 'Delete a taxonomy type'
   requirements:
     _permission: 'administer oe_taxonomy_type'
+
+entity.oe_taxonomy_type_association.collection:
+  path: '/admin/structure/oe-taxonomy-type-association'
+  defaults:
+    _entity_list: 'oe_taxonomy_type_association'
+    _title: 'Taxonomy type association configuration'
+  requirements:
+    _permission: 'administer oe_taxonomy_type_association'
+
+entity.oe_taxonomy_type_association.add_form:
+  path: '/admin/structure/oe_taxonomy_type_association/add'
+  defaults:
+    _entity_form: 'oe_taxonomy_type_association.add'
+    _title: 'Add a taxonomy type association'
+  requirements:
+    _permission: 'administer oe_taxonomy_type_association'
+
+entity.oe_taxonomy_type_association.edit_form:
+  path: '/admin/structure/oe-taxonomy-type-association/{oe_taxonomy_type_association}'
+  defaults:
+    _entity_form: 'oe_taxonomy_type_association.edit'
+    _title: 'Edit a taxonomy type association'
+  requirements:
+    _permission: 'administer oe_taxonomy_type_association'
+
+entity.oe_taxonomy_type_association.delete_form:
+  path: '/admin/structure/oe-taxonomy-type-association/{oe_taxonomy_type_association}/delete'
+  defaults:
+    _entity_form: 'oe_taxonomy_type_association.delete'
+    _title: 'Delete a taxonomy type association'
+  requirements:
+    _permission: 'administer oe_taxonomy_type_association'
