@@ -3,39 +3,14 @@ status: true
 dependencies:
   module:
     - node
-    - options
+    - rdf_skos
 id: node.oe_event_type
 field_name: oe_event_type
 entity_type: node
-type: list_string
+type: skos_concept_entity_reference
 settings:
-  allowed_values:
-    -
-      value: training_and_workshops
-      label: 'Training and workshops'
-    -
-      value: info_days
-      label: 'Info days'
-    -
-      value: competitions_and_award_ceremonies
-      label: 'Competitions and award ceremonies'
-    -
-      value: conferences_and_summits
-      label: 'Conferences and summits'
-    -
-      value: public_debates
-      label: 'Public debates'
-    -
-      value: partner_meetings
-      label: 'Partner meetings'
-    -
-      value: political_meetings
-      label: 'Political meetings'
-    -
-      value: exhibitions
-      label: Exhibitions
-  allowed_values_function: ''
-module: options
+  target_type: skos_concept
+module: rdf_skos
 locked: false
 cardinality: 1
 translatable: true

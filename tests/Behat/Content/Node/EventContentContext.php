@@ -90,6 +90,7 @@ class EventContentContext extends RawDrupalContext {
           ])->removeField($key);
           break;
 
+        case 'Type':
         case 'Languages':
         case 'Internal organiser':
           $fields = $this->getRevisionField($mapping[$key], 'skos_concept', $value);
