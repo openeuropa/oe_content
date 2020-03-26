@@ -20,7 +20,7 @@ overriding the language.content_setting configuration.
 
 This depends on the following software:
 
-* [PHP 7.1](http://php.net/)
+* [PHP >=7.2](http://php.net/)
 * Virtuoso (or equivalent) triple store which contains the RDF representations of the following Publications Office (OP) vocabularies: Corporate Bodies, Target Audiences, Organisation Types, Resource Types, Eurovoc
 
 ## Installation
