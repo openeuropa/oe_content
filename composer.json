@@ -6,13 +6,13 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "drupal/core-recommended": "^8.7",
+        "drupal/core": "^8.7",
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "~0.5",
         "openeuropa/oe_media": "dev-master",
-        "php": "~7.2.0 || ~7.3.0"
+        "php": ">=7.2"
     },
     "require-dev": {
         "composer/installers": "~1.5",
@@ -26,6 +26,7 @@
         "drupal/drupal-extension": "~4.0",
         "drupal/entity_embed": "~1.0",
         "drush/drush": "~9.0",
+        "guzzlehttp/guzzle": "~6.3",
         "friends-of-behat/service-container-extension": "^1.0",
         "nikic/php-parser": "^3.1.5",
         "openeuropa/behat-transformation-context" : "~0.1",

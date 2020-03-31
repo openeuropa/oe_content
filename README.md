@@ -23,7 +23,7 @@ Check out the [README](/modules/oe_content_entity/README.md) of the module.
 
 This depends on the following software:
 
-* [PHP 7.1](http://php.net/)
+* [PHP >=7.2](http://php.net/)
 * Virtuoso (or equivalent) triple store which contains the RDF representations of the following Publications Office (OP) vocabularies: Corporate Bodies, Target Audiences, Organisation Types, Resource Types, Eurovoc
 
 ## Installation
