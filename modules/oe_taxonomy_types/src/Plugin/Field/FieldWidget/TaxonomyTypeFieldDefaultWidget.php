@@ -13,6 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   id = "oe_taxonomy_type_field_default",
  *   label = @Translation("Taxonomy type field widget"),
  *   field_types = {"oe_taxonomy_type_field"},
+ *   multiple_values = TRUE
  * )
  */
 class TaxonomyTypeFieldDefaultWidget extends WidgetBase {
