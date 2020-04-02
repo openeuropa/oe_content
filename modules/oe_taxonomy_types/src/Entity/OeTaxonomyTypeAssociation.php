@@ -43,6 +43,7 @@ use Drupal\oe_taxonomy_types\OeTaxonomyTypeAssociationInterface;
  *   config_export = {
  *     "id",
  *     "label",
+ *     "name",
  *     "field",
  *     "widget_type",
  *     "taxonomy_type",
@@ -68,6 +69,13 @@ class OeTaxonomyTypeAssociation extends ConfigEntityBase implements OeTaxonomyTy
    * @var string
    */
   protected $label;
+
+  /**
+   * The taxonomy type machine name.
+   *
+   * @var string
+   */
+  protected $name;
 
   /**
    * The field instance ID to which this association is made.
@@ -122,14 +130,14 @@ class OeTaxonomyTypeAssociation extends ConfigEntityBase implements OeTaxonomyTy
    * {@inheritdoc}
    */
   public function id() {
-    return $this->getTaxonomyType() . '.' . $this->getField() . '.' . $this->getPredicate();
+    return $this->getTaxonomyType() . '.' . $this->getField() . '.' . $this->getName();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getLabel(): ?string {
-    return $this->label;
+  public function getName(): ?string {
+    return $this->name;
   }
 
   /**

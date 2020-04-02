@@ -7,8 +7,6 @@ use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Taxonomy type form.
- *
- * @property \Drupal\oe_taxonomy_types\OeTaxonomyTypeInterface $entity
  */
 class OeTaxonomyTypeForm extends EntityForm {
 

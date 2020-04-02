@@ -15,22 +15,22 @@ interface OeTaxonomyTypeAssociationInterface extends ConfigEntityInterface {
   const CARDINALITY_UNLIMITED = -1;
 
   /**
-   * @return string
+   * @return string|null
    */
-  public function getLabel(): ?string;
+  public function getName(): ?string;
 
   /**
-   * @return string
+   * @return string|null
    */
   public function getField(): ?string;
 
   /**
-   * @return string
+   * @return string|null
    */
   public function getWidgetType(): ?string;
 
   /**
-   * @return string
+   * @return string|null
    */
   public function getTaxonomyType(): ?string;
 
@@ -40,17 +40,17 @@ interface OeTaxonomyTypeAssociationInterface extends ConfigEntityInterface {
   public function getCardinality(): ?int;
 
   /**
-   * @return bool
+   * @return bool|null
    */
   public function isRequired(): ?bool;
 
   /**
-   * @return string
+   * @return string|null
    */
   public function getPredicate(): ?string;
 
   /**
-   * @return string
+   * @return string|null
    */
   public function getHelpText(): ?string;
 

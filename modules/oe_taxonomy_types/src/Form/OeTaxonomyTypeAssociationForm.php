@@ -29,6 +29,15 @@ class OeTaxonomyTypeAssociationForm extends EntityForm {
       '#required' => TRUE,
     ];
 
+    $form['name'] = [
+      '#type' => 'machine_name',
+      '#default_value' => $entity->getName(),
+      '#machine_name' => [
+        'exists' => [$this, 'nameExists'],
+      ],
+      '#disabled' => !$entity->isNew(),
+    ];
+
     $form['field'] = [
       '#type' => 'select',
       '#title' => $this->t('Field'),
@@ -36,6 +45,7 @@ class OeTaxonomyTypeAssociationForm extends EntityForm {
       '#description' => $this->t('Select the field target of this association.'),
       '#default_value' => $entity->getField(),
       '#required' => TRUE,
+      '#disabled' => !$entity->isNew(),
     ];
 
     $form['widget_type'] = [
@@ -63,10 +73,8 @@ class OeTaxonomyTypeAssociationForm extends EntityForm {
       '#type' => 'select',
       '#title' => $this->t('Predicate'),
       '#options' => [
-        //'http://example.com/#contain' => $this->t('Contain'),
-        //'http://example.com/#about' => $this->t('About'),
-        'contain' => $this->t('Contain'),
-        'about' => $this->t('About'),
+        'http://example.com/#contain' => $this->t('Contain'),
+        'http://example.com/#about' => $this->t('About'),
       ],
       '#default_value' => $entity->getPredicate(),
       '#required' => TRUE,
@@ -141,6 +149,13 @@ class OeTaxonomyTypeAssociationForm extends EntityForm {
     }
 
     return $fields;
+  }
+
+  public function nameExists($value, array $element, FormStateInterface $form_state): bool {
+    $storage = \Drupal::entityTypeManager()->getStorage('oe_taxonomy_type_association');
+    $entity = $storage->load($this->entity->id());
+
+    return isset($entity);
   }
 
 }
