@@ -1,6 +1,16 @@
 # Change Log
 
-## [1.6.1](https://github.com/openeuropa/oe_content/tree/1.6.1) (2020-03-02)
+## [1.7.0](https://github.com/openeuropa/oe_content/tree/1.7.0) (2020-04-08)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.6.1...1.7.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2943: Update composer.json. [\#184](https://github.com/openeuropa/oe_content/pull/184) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-0000: Use drupal/core instead of drupal/core-recommended. [\#182](https://github.com/openeuropa/oe_content/pull/182) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-2943: Upgrade to PHP 7.3. [\#177](https://github.com/openeuropa/oe_content/pull/177) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2604: Drupal 8 recommended project. [\#176](https://github.com/openeuropa/oe_content/pull/176) ([upchuk](https://github.com/upchuk))
+
+## [1.6.1](https://github.com/openeuropa/oe_content/tree/1.6.1) (2020-03-03)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.6.0...1.6.1)
 
 **Closed issues:**
@@ -9,6 +19,7 @@
 
 **Merged pull requests:**
 
+- Release-1.6.1: Update changelog. [\#170](https://github.com/openeuropa/oe_content/pull/170) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2746: Short title with fallback token is hardcoded to original node language. [\#157](https://github.com/openeuropa/oe_content/pull/157) ([nagyad](https://github.com/nagyad))
 
 ## [1.6.0](https://github.com/openeuropa/oe_content/tree/1.6.0) (2020-02-05)
