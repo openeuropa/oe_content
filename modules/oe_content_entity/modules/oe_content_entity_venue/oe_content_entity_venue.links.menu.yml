@@ -1,0 +1,5 @@
+entity.oe_venue_type.collection:
+  title: 'Venue types'
+  route_name: entity.oe_venue_type.collection
+  description: 'Create and manage types of venue entities'
+  parent: system.admin_structure

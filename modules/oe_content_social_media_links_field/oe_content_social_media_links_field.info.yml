@@ -1,0 +1,10 @@
+name: OpenEuropa Content Social Media Links Field
+description: Contains the Social Media Links storage field.
+package: OpenEuropa
+
+type: module
+core: 8.x
+
+config_devel:
+  install:
+    - field.storage.node.oe_social_media_links

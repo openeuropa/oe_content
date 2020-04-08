@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Event module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\oe_content\Utility\ContentFormUtilities;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function oe_content_event_entity_type_alter(array &$entity_types) {
+  // Add validation constraints to the node entity.
+  $entity_types['node']->addConstraint('EventFieldsRequired');
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function oe_content_event_node_presave(EntityInterface $entity) {
+  // Make sure that we don't save both concurrent field values.
+  if ($entity->bundle() === 'oe_event') {
+    if ((bool) $entity->get('oe_event_organiser_is_internal')->value) {
+      $entity->get('oe_event_organiser_name')->setValue(NULL);
+    }
+    else {
+      $entity->get('oe_event_organiser_internal')->setValue(NULL);
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function oe_content_event_form_node_oe_event_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  ContentFormUtilities::toggleFieldsWithCheckbox($form, 'oe_event_organiser_is_internal', 'oe_event_organiser_internal', 'oe_event_organiser_name');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function oe_content_event_form_node_oe_event_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  ContentFormUtilities::toggleFieldsWithCheckbox($form, 'oe_event_organiser_is_internal', 'oe_event_organiser_internal', 'oe_event_organiser_name');
+}

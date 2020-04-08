@@ -1,0 +1,7 @@
+name: OpenEuropa Corporate Entity Test
+description: Test module for the OpenEuropa Corporate Entities.
+package: Testing
+
+type: module
+core: 8.x
+hidden: true

@@ -1,0 +1,71 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_contact.oe_press.oe_address
+    - field.field.oe_contact.oe_press.oe_email
+    - field.field.oe_contact.oe_press.oe_phone
+    - field.field.oe_contact.oe_press.oe_social_media
+    - oe_content_entity_contact.oe_contact_type.oe_press
+  module:
+    - address
+    - typed_link
+id: oe_contact.oe_press.default
+targetEntityType: oe_contact
+bundle: oe_press
+mode: default
+content:
+  oe_address:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  oe_email:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  oe_phone:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  oe_social_media:
+    type: typed_link
+    weight: 5
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 5
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true

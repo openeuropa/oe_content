@@ -1,0 +1,17 @@
+# Venue routing definition.
+entity.oe_venue.canonical:
+  route_name: entity.oe_venue.canonical
+  base_route: entity.oe_venue.canonical
+  title: 'Edit'
+
+entity.oe_venue.delete_form:
+  route_name:  entity.oe_venue.delete_form
+  base_route:  entity.oe_venue.canonical
+  title: 'Delete'
+  weight: 10
+
+entity.oe_venue.collection:
+  title: 'Venues'
+  route_name:  entity.oe_venue.collection
+  base_route: system.admin_content
+  weight: 10

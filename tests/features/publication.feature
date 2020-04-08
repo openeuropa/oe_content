@@ -4,15 +4,12 @@ Feature: Publication content creation
   As an editor
   I need to be able to create and see publication items
 
-  @cleanup:media @cleanup:file
   Scenario: Creation of a Publication content through the UI.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities, create document media" permission
+    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
     # Create a "Document".
-    When I go to "the document creation page"
-    Then I should see the heading "Add Document"
-    When I fill in "Name" with "My Document 1"
-    And I attach the file "sample.pdf" to "File"
-    And I press "Save"
+    And the following documents:
+    | name          | file       |
+    | My Document 1 | sample.pdf |
     # Create a "Publication" content.
     And I visit "the Publication creation page"
     And I fill in "Page title" with "My Publication item"
@@ -44,6 +41,7 @@ Feature: Publication content creation
     When I visit "the Publication creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
+    And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
     When I fill in "Page title" with "My Publication"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"

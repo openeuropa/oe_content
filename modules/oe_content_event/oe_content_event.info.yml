@@ -1,0 +1,81 @@
+name: OpenEuropa Event Content
+description: Contains the EC corporate Event content type.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - oe_content:oe_content
+  - oe_content:oe_content_entity_contact
+  - oe_content:oe_content_entity_contact
+  - oe_content:oe_content_entity_organisation
+  - oe_content:oe_content_entity_venue
+  - oe_content:oe_content_social_media_links_field
+  - oe_media:oe_media
+  - oe_media_avportal:oe_media_avportal
+  - address:address
+  - drupal:datetime_range
+  - typed_link:typed_link
+  - field_group:field_group
+  - inline_entity_form:inline_entity_form
+  - entity_reference_revisions:entity_reference_revisions
+
+config_devel:
+  install:
+    - core.entity_form_display.node.oe_event.default
+    - core.entity_view_display.node.oe_event.default
+    - field.field.node.oe_event.body
+    - field.field.node.oe_event.oe_author
+    - field.field.node.oe_event.oe_event_contact
+    - field.field.node.oe_event.oe_event_description_summary
+    - field.field.node.oe_event.oe_event_entrance_fee
+    - field.field.node.oe_event.oe_event_featured_media
+    - field.field.node.oe_event.oe_event_featured_media_legend
+    - field.field.node.oe_event.oe_event_languages
+    - field.field.node.oe_event.oe_event_online_description
+    - field.field.node.oe_event.oe_event_online_link
+    - field.field.node.oe_event.oe_event_online_dates
+    - field.field.node.oe_event.oe_event_online_type
+    - field.field.node.oe_event.oe_event_organiser_is_internal
+    - field.field.node.oe_event.oe_event_organiser_internal
+    - field.field.node.oe_event.oe_event_organiser_name
+    - field.field.node.oe_event.oe_event_registration_capacity
+    - field.field.node.oe_event.oe_event_registration_dates
+    - field.field.node.oe_event.oe_event_registration_url
+    - field.field.node.oe_event.oe_event_report_summary
+    - field.field.node.oe_event.oe_event_report_text
+    - field.field.node.oe_event.oe_social_media_links
+    - field.field.node.oe_event.oe_event_dates
+    - field.field.node.oe_event.oe_event_status
+    - field.field.node.oe_event.oe_event_type
+    - field.field.node.oe_event.oe_event_venue
+    - field.field.node.oe_event.oe_event_website
+    - field.field.node.oe_event.oe_subject
+    - field.field.node.oe_event.oe_teaser
+    - field.field.node.oe_event.oe_summary
+    - field.storage.node.oe_event_contact
+    - field.storage.node.oe_event_description_summary
+    - field.storage.node.oe_event_entrance_fee
+    - field.storage.node.oe_event_featured_media
+    - field.storage.node.oe_event_featured_media_legend
+    - field.storage.node.oe_event_languages
+    - field.storage.node.oe_event_online_description
+    - field.storage.node.oe_event_online_link
+    - field.storage.node.oe_event_online_dates
+    - field.storage.node.oe_event_online_type
+    - field.storage.node.oe_event_organiser_is_internal
+    - field.storage.node.oe_event_organiser_internal
+    - field.storage.node.oe_event_organiser_name
+    - field.storage.node.oe_event_registration_capacity
+    - field.storage.node.oe_event_registration_dates
+    - field.storage.node.oe_event_registration_url
+    - field.storage.node.oe_event_report_summary
+    - field.storage.node.oe_event_report_text
+    - field.storage.node.oe_event_dates
+    - field.storage.node.oe_event_status
+    - field.storage.node.oe_event_type
+    - field.storage.node.oe_event_venue
+    - field.storage.node.oe_event_website
+    - node.type.oe_event
+  optional:
+    - language.content_settings.node.oe_event

@@ -5,10 +5,12 @@ package: OpenEuropa
 type: module
 core: 8.x
 dependencies:
+  - drupal:node
   - drupal:link
   - drupal:datetime
   - rdf_skos:rdf_skos
   - maxlength:maxlength
+  - typed_link:typed_link
 
 config_devel:
   install:
@@ -18,6 +20,8 @@ config_devel:
     - field.storage.node.oe_subject
     - field.storage.node.oe_summary
     - field.storage.node.oe_teaser
+  optional:
+    - field.storage.node.oe_social_media_links
 
 'interface translation project': oe_content
 # The path to the actual translations is defined in

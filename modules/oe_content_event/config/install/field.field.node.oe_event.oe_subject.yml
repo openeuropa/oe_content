@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_subject
+    - node.type.oe_event
+  module:
+    - rdf_skos
+id: node.oe_event.oe_subject
+field_name: oe_subject
+entity_type: node
+bundle: oe_event
+label: Subject
+description: 'The topics mentioned on this page. These will be used by search engines and dynamic lists to determine their relevance to a user.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:skos_concept'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+    concept_schemes:
+      - 'http://data.europa.eu/uxp/det'
+    field:
+      field_name: oe_subject
+      entity_type: node
+      bundle: oe_event
+      concept_schemes:
+        - 'http://data.europa.eu/uxp/det'
+field_type: skos_concept_entity_reference

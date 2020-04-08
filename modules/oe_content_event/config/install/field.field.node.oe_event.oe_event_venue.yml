@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_event_venue
+    - node.type.oe_event
+    - oe_content_entity_venue.oe_venue_type.oe_default
+  module:
+    - entity_reference_revisions
+id: node.oe_event.oe_event_venue
+field_name: oe_event_venue
+entity_type: node
+bundle: oe_event
+label: Venue
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:oe_venue'
+  handler_settings:
+    target_bundles:
+      oe_default: oe_default
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions

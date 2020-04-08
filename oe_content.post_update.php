@@ -49,3 +49,46 @@ function oe_content_post_update_00001(): void {
     }
   }
 }
+
+/**
+ * Add Country corporate vocabulary.
+ */
+function oe_content_post_update_00002(): void {
+  $config = \Drupal::configFactory()->getEditable('rdf_skos.graphs');
+
+  $entity_types = $config->get('entity_types');
+
+  $name = 'country';
+  $graph = 'http://publications.europa.eu/resource/authority/country';
+  $entity_types['skos_concept_scheme'][] = [
+    'name' => $name,
+    'uri' => $graph,
+  ];
+  $entity_types['skos_concept'][] = [
+    'name' => $name,
+    'uri' => $graph,
+  ];
+
+  $config->set('entity_types', $entity_types)->save();
+}
+
+/**
+ * Add Language corporate vocabulary.
+ */
+function oe_content_post_update_00003(): void {
+  $config = \Drupal::configFactory()->getEditable('rdf_skos.graphs');
+  $entity_types = $config->get('entity_types');
+  $name = 'language';
+  $graph = 'http://publications.europa.eu/resource/authority/language';
+
+  $entity_types['skos_concept_scheme'][] = [
+    'name' => $name,
+    'uri' => $graph,
+  ];
+  $entity_types['skos_concept'][] = [
+    'name' => $name,
+    'uri' => $graph,
+  ];
+
+  $config->set('entity_types', $entity_types)->save();
+}

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_venue.oe_capacity
+    - oe_content_entity_venue.oe_venue_type.oe_default
+id: oe_venue.oe_default.oe_capacity
+field_name: oe_capacity
+entity_type: oe_venue
+bundle: oe_default
+label: Capacity
+description: 'The capacity of the venue.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,33 @@
+name: OpenEuropa Content Entity Contact
+description: This module provides the Contact content entity and it's bundles.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - oe_content:oe_content_entity
+  - address:address
+  - typed_link:typed_link
+
+config_devel:
+  install:
+    - core.entity_form_display.oe_contact.oe_general.default
+    - core.entity_form_display.oe_contact.oe_press.default
+    - core.entity_view_display.oe_contact.oe_general.default
+    - core.entity_view_display.oe_contact.oe_press.default
+    - field.field.oe_contact.oe_general.oe_address
+    - field.field.oe_contact.oe_general.oe_email
+    - field.field.oe_contact.oe_general.oe_phone
+    - field.field.oe_contact.oe_general.oe_social_media
+    - field.field.oe_contact.oe_press.oe_address
+    - field.field.oe_contact.oe_press.oe_email
+    - field.field.oe_contact.oe_press.oe_phone
+    - field.field.oe_contact.oe_press.oe_social_media
+    - field.storage.oe_contact.oe_address
+    - field.storage.oe_contact.oe_email
+    - field.storage.oe_contact.oe_phone
+    - oe_content_entity_contact.oe_contact_type.oe_general
+    - oe_content_entity_contact.oe_contact_type.oe_press
+  optional:
+    - language.content_settings.oe_contact.oe_general
+    - language.content_settings.oe_contact.oe_press
