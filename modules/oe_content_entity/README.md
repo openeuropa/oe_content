@@ -15,8 +15,7 @@ You can read more about it the relevant [submodule](modules/oe_content_entity_co
 
 ## Organisation entity type
 
-The organisation entity type is used when collecting information about different types of organisations, 
-such as a project partners. 
+The organisation entity type is used when collecting information about different types of organisations.
 
 You can read more about it in the relevant [submodule](modules/oe_content_entity_organisation/README.md).
 
