@@ -10,7 +10,7 @@
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
-        "openeuropa/rdf_skos": "~0.5",
+        "openeuropa/rdf_skos": "~0.6",
         "openeuropa/oe_media": "^1.4",
         "php": ">=7.2"
     },
@@ -78,6 +78,9 @@
             "drupal/typed_link": {
                 "https://www.drupal.org/project/typed_link/issues/3085826": "https://www.drupal.org/files/issues/2019-10-04/typed_link-3085826-2.patch",
                 "https://www.drupal.org/project/typed_link/issues/3085817": "https://www.drupal.org/files/issues/2019-10-07/typed_link-3085817-3.patch"
+            },
+            "openeuropa/rdf_skos": {
+                "latest-master": "https://github.com/openeuropa/rdf_skos/compare/0.6.0...master.diff"
             }
         }
     },

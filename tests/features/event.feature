@@ -138,7 +138,7 @@ Feature: Event content creation
       | https://audiovisual.ec.europa.eu/en/photo/P-039321~2F00-04  |
     # Create a "Event" content.
     When I visit "the Event creation page"
-    Then I fill in "Type" with "Info days"
+    Then I select "Info days" from "Type"
     And I fill in "Page title" with "My Event item"
 
     # Registration field group.
@@ -272,7 +272,7 @@ Feature: Event content creation
     And I fill in "Page title" with "My Event item"
     And I select "As planned" from "Status"
     And I fill in "Languages" with "Hungarian"
-    And I fill in "Type" with "Info days"
+    And I select "Info days" from "Type"
     And I fill in "Subject" with "EU financing"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
