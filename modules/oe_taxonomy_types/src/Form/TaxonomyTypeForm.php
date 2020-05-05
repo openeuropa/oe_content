@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_taxonomy_types\Form;
 
 use Drupal\Core\Entity\EntityForm;
@@ -42,19 +44,14 @@ class TaxonomyTypeForm extends EntityForm {
       '#description' => $this->t('Description of the taxonomy type.'),
     ];
 
+    $options = \Drupal::service('plugin.manager.oe_taxonomy_types.vocabulary_reference_handler')->getDefinitionsAsOptions();
     $form['vocabulary_type'] = [
       '#type' => 'radios',
       '#required' => TRUE,
       '#title' => $this->t('Vocabulary type'),
-      // @todo this should retrieve possible entity types automatically, maybe.
-      '#options' => [
-        'skos_concept' => $this->t('Corporate vocabulary'),
-        'taxonomy_vocabulary' => $this->t('Local vocabulary'),
-      ],
+      '#options' => $options,
       '#default_value' => $entity->isNew() ? 'skos_concept' : $entity->get('vocabulary_type'),
     ];
-
-    // @todo missing extra settings for voc type.
 
     return $form;
   }

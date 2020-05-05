@@ -1,0 +1,4 @@
+services:
+  plugin.manager.oe_taxonomy_types.vocabulary_reference_handler:
+    class: Drupal\oe_taxonomy_types\VocabularyReferenceHandlerPluginManager
+    parent: default_plugin_manager

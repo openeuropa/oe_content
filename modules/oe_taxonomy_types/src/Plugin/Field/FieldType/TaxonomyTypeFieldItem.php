@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_taxonomy_types\Plugin\Field\FieldType;
 
 use Drupal\Core\Field\FieldItemBase;
