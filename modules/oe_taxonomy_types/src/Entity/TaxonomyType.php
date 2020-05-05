@@ -3,7 +3,7 @@
 namespace Drupal\oe_taxonomy_types\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
-use Drupal\oe_taxonomy_types\OeTaxonomyTypeInterface;
+use Drupal\oe_taxonomy_types\TaxonomyTypeInterface;
 
 /**
  * Defines the taxonomy type entity type.
@@ -19,10 +19,10 @@ use Drupal\oe_taxonomy_types\OeTaxonomyTypeInterface;
  *     plural = "@count taxonomy types",
  *   ),
  *   handlers = {
- *     "list_builder" = "Drupal\oe_taxonomy_types\OeTaxonomyTypeListBuilder",
+ *     "list_builder" = "Drupal\oe_taxonomy_types\TaxonomyTypeListBuilder",
  *     "form" = {
- *       "add" = "Drupal\oe_taxonomy_types\Form\OeTaxonomyTypeForm",
- *       "edit" = "Drupal\oe_taxonomy_types\Form\OeTaxonomyTypeForm",
+ *       "add" = "Drupal\oe_taxonomy_types\Form\TaxonomyTypeForm",
+ *       "edit" = "Drupal\oe_taxonomy_types\Form\TaxonomyTypeForm",
  *       "delete" = "Drupal\Core\Entity\EntityDeleteForm"
  *     }
  *   },
@@ -47,7 +47,7 @@ use Drupal\oe_taxonomy_types\OeTaxonomyTypeInterface;
  *   }
  * )
  */
-class OeTaxonomyType extends ConfigEntityBase implements OeTaxonomyTypeInterface {
+class TaxonomyType extends ConfigEntityBase implements TaxonomyTypeInterface {
 
   /**
    * The taxonomy type ID.

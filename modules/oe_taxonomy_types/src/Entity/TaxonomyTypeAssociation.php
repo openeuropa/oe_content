@@ -4,7 +4,7 @@ namespace Drupal\oe_taxonomy_types\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\oe_taxonomy_types\OeTaxonomyTypeAssociationInterface;
+use Drupal\oe_taxonomy_types\TaxonomyTypeAssociationInterface;
 
 /**
  * Defines the taxonomy type association entity type.
@@ -20,10 +20,10 @@ use Drupal\oe_taxonomy_types\OeTaxonomyTypeAssociationInterface;
  *     plural = "@count taxonomy type associations",
  *   ),
  *   handlers = {
- *     "list_builder" = "Drupal\oe_taxonomy_types\OeTaxonomyTypeAssociationListBuilder",
+ *     "list_builder" = "Drupal\oe_taxonomy_types\TaxonomyTypeAssociationListBuilder",
  *     "form" = {
- *       "add" = "Drupal\oe_taxonomy_types\Form\OeTaxonomyTypeAssociationForm",
- *       "edit" = "Drupal\oe_taxonomy_types\Form\OeTaxonomyTypeAssociationForm",
+ *       "add" = "Drupal\oe_taxonomy_types\Form\TaxonomyTypeAssociationForm",
+ *       "edit" = "Drupal\oe_taxonomy_types\Form\TaxonomyTypeAssociationForm",
  *       "delete" = "Drupal\Core\Entity\EntityDeleteForm"
  *     }
  *   },
@@ -54,7 +54,7 @@ use Drupal\oe_taxonomy_types\OeTaxonomyTypeAssociationInterface;
  *   }
  * )
  */
-class OeTaxonomyTypeAssociation extends ConfigEntityBase implements OeTaxonomyTypeAssociationInterface {
+class TaxonomyTypeAssociation extends ConfigEntityBase implements TaxonomyTypeAssociationInterface {
 
   /**
    * The taxonomy type association ID.

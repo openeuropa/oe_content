@@ -7,7 +7,7 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
 /**
  * Provides an interface defining a taxonomy type association entity type.
  */
-interface OeTaxonomyTypeAssociationInterface extends ConfigEntityInterface {
+interface TaxonomyTypeAssociationInterface extends ConfigEntityInterface {
 
   /**
    * Value indicating an association accepts an unlimited number of values.

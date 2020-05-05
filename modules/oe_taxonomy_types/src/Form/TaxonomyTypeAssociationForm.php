@@ -4,14 +4,14 @@ namespace Drupal\oe_taxonomy_types\Form;
 
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\oe_taxonomy_types\OeTaxonomyTypeAssociationInterface;
+use Drupal\oe_taxonomy_types\TaxonomyTypeAssociationInterface;
 
 /**
  * Taxonomy type association form.
  *
- * @property \Drupal\oe_taxonomy_types\OeTaxonomyTypeAssociationInterface $entity
+ * @property \Drupal\oe_taxonomy_types\TaxonomyTypeAssociationInterface $entity
  */
-class OeTaxonomyTypeAssociationForm extends EntityForm {
+class TaxonomyTypeAssociationForm extends EntityForm {
 
   /**
    * {@inheritdoc}
@@ -83,12 +83,12 @@ class OeTaxonomyTypeAssociationForm extends EntityForm {
     // @todo This should be done like core.
     $range = range(1, 10);
     $options = array_combine($range, $range);
-    $options[OeTaxonomyTypeAssociationInterface::CARDINALITY_UNLIMITED] = $this->t('Unlimited');
+    $options[TaxonomyTypeAssociationInterface::CARDINALITY_UNLIMITED] = $this->t('Unlimited');
     $form['cardinality'] = [
       '#type' => 'select',
       '#title' => $this->t('Allowed number of values'),
       '#options' =>  $options,
-      '#default_value' => $entity->getCardinality() ?? OeTaxonomyTypeAssociationInterface::CARDINALITY_UNLIMITED,
+      '#default_value' => $entity->getCardinality() ?? TaxonomyTypeAssociationInterface::CARDINALITY_UNLIMITED,
       '#required' => TRUE,
       '#disabled' => !$entity->isNew(),
     ];

@@ -8,7 +8,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\oe_taxonomy_types\OeTaxonomyTypeAssociationInterface;
+use Drupal\oe_taxonomy_types\TaxonomyTypeAssociationInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\Plugin\views\wizard\TaxonomyTerm;
 
@@ -42,7 +42,7 @@ class TaxonomyTypeFieldDefaultWidget extends WidgetBase {
     return $element;
   }
 
-  protected function getAssociationFormElement(OeTaxonomyTypeAssociationInterface $association, array $values, array &$form, FormStateInterface $form_state): array {
+  protected function getAssociationFormElement(TaxonomyTypeAssociationInterface $association, array $values, array &$form, FormStateInterface $form_state): array {
     $element = [
       '#theme' => 'field_multiple_value_form',
       '#field_name' => $association->getName(),
@@ -56,7 +56,7 @@ class TaxonomyTypeFieldDefaultWidget extends WidgetBase {
 
     // Determine the number of widgets to display.
     switch ($association->getCardinality()) {
-      case OeTaxonomyTypeAssociationInterface::CARDINALITY_UNLIMITED:
+      case TaxonomyTypeAssociationInterface::CARDINALITY_UNLIMITED:
         $max = count($values);
         break;
 
@@ -141,7 +141,7 @@ class TaxonomyTypeFieldDefaultWidget extends WidgetBase {
   /**
    * @param string $field_id
    *
-   * @return \Drupal\oe_taxonomy_types\Entity\OeTaxonomyTypeAssociation[]
+   * @return \Drupal\oe_taxonomy_types\Entity\TaxonomyTypeAssociation[]
    */
   protected function getAssociations(string $field_id): array {
     $storage = \Drupal::entityTypeManager()->getStorage('oe_taxonomy_type_association');

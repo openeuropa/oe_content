@@ -8,7 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Taxonomy type form.
  */
-class OeTaxonomyTypeForm extends EntityForm {
+class TaxonomyTypeForm extends EntityForm {
 
   /**
    * {@inheritdoc}

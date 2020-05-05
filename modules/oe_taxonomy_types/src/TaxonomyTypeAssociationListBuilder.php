@@ -6,9 +6,9 @@ use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
 use Drupal\Core\Entity\EntityInterface;
 
 /**
- * Provides a listing of taxonomy types.
+ * Provides a listing of taxonomy type associations.
  */
-class OeTaxonomyTypeListBuilder extends ConfigEntityListBuilder {
+class TaxonomyTypeAssociationListBuilder extends ConfigEntityListBuilder {
 
   /**
    * {@inheritdoc}
@@ -24,7 +24,7 @@ class OeTaxonomyTypeListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /** @var \Drupal\oe_taxonomy_types\OeTaxonomyTypeInterface $entity */
+    /** @var \Drupal\oe_taxonomy_types\TaxonomyTypeAssociationInterface $entity */
     $row['label'] = $entity->label();
     $row['id'] = $entity->id();
     $row['status'] = $entity->status() ? $this->t('Enabled') : $this->t('Disabled');
