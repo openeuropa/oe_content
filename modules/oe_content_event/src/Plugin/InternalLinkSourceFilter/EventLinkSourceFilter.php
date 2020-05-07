@@ -29,11 +29,21 @@ use Drupal\oe_link_lists_internal_source\InternalLinkSourceFilterPluginBase;
 class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implements InternalLinkSourceFilterInterface {
 
   /**
+   * Option for upcoming events.
+   */
+  const UPCOMING = 1;
+
+  /**
+   * Option for past events.
+   */
+  const PAST = -1;
+
+  /**
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
     return [
-      'time' => 'upcoming',
+      'time' => self::UPCOMING,
     ];
   }
 
@@ -41,12 +51,8 @@ class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implement
    * {@inheritdoc}
    */
   public function isApplicable(string $entity_type, string $bundle): bool {
-    $applicable_entity_types = $this->pluginDefinition['entity_types'];
-    if (isset($applicable_entity_types[$entity_type])) {
-      $applicable_bundles = $applicable_entity_types[$entity_type];
-      if (in_array($bundle, $applicable_bundles)) {
-        return TRUE;
-      }
+    if (isset($this->pluginDefinition['entity_types'][$entity_type]) && in_array($bundle, $this->pluginDefinition['entity_types'][$entity_type])) {
+      return TRUE;
     }
     return FALSE;
   }
@@ -58,13 +64,13 @@ class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implement
     $now = new DrupalDateTime('now');
     $now->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
     switch ($this->getConfiguration()['time']) {
-      case 'past':
-        $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), "<=");
+      case self::PAST:
+        $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), "<");
         $query->sort('oe_event_dates.end_value', 'DESC');
         break;
 
-      case 'upcoming':
-        $query->condition('oe_event_dates.value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">=");
+      case self::UPCOMING:
+        $query->condition('oe_event_dates.value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">");
         $query->sort('oe_event_dates.value', 'ASC');
         break;
     }
@@ -77,7 +83,7 @@ class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implement
     $form['time'] = [
       '#type' => 'select',
       '#title' => $this->t('Choose whether to show past or upcoming events.'),
-      '#default_value' => $this->getConfiguration()['time'] ?? 'upcoming',
+      '#default_value' => $this->getConfiguration()['time'] ?? self::UPCOMING,
       '#empty_value' => 'all',
       '#empty_option' => $this->t('Show all'),
       '#options' => [

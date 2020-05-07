@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_content_event\Kernel;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\node\Entity\Node;
+use Drupal\oe_content_event\Plugin\InternalLinkSourceFilter\EventLinkSourceFilter;
 
 /**
  * Tests the internal link source filters related to Events.
@@ -81,9 +82,9 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $plugin = $plugin_manager->createInstance('event_link_source_filter', []);
 
     // Plugin applies to events.
-    $this->assertTrue(TRUE, $plugin->isApplicable('node', 'oe_event'));
+    $this->assertTrue($plugin->isApplicable('node', 'oe_event'));
     // Plugin does not apply to news.
-    $this->assertTrue(TRUE, $plugin->isApplicable('node', 'oe_news'));
+    $this->assertFalse($plugin->isApplicable('node', 'oe_news'));
 
     $cache = new CacheableMetadata();
     /** @var \Drupal\node\NodeStorage $storage */
@@ -101,7 +102,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
 
     // Configuring the filter for past events will only return finished events.
     $query = $storage->getQuery();
-    $plugin->setConfiguration(['time' => 'past']);
+    $plugin->setConfiguration(['time' => EventLinkSourceFilter::PAST]);
     $plugin->apply($query, [], $cache);
     $query_results = $query->execute();
     $past_events = [
