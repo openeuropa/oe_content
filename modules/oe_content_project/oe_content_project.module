@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Project module.
+ */
+
+declare(strict_types = 1);

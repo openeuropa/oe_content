@@ -1,0 +1,14 @@
+name: OpenEuropa Project Content
+description: Contains the EC corporate Project content type.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - oe_content:oe_content
+
+config_devel:
+  install:
+    - core.entity_form_display.node.oe_project.default
+    - core.entity_form_display.node.oe_project.default
+    - node.type.oe_project
