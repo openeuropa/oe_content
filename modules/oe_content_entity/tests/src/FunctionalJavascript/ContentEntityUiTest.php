@@ -62,9 +62,9 @@ class ContentEntityUiTest extends BrowserTestBase {
         'access ' . $entity_type_id . ' canonical page',
         'view published ' . $entity_type_id,
         'view unpublished ' . $entity_type_id,
-        'create ' . $label . '_type_name corporate entity',
-        'edit ' . $label . '_type_name corporate entity',
-        'delete ' . $label . '_type_name corporate entity',
+        'create ' . $entity_type_id . ' ' . $label . '_type_name corporate entity',
+        'edit ' . $entity_type_id . ' ' . $label . '_type_name corporate entity',
+        'delete ' . $entity_type_id . ' ' . $label . '_type_name corporate entity',
         'access administration pages',
       ]);
       $this->drupalLogin($user);

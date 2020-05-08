@@ -23,18 +23,18 @@ class CorporateEntityAccessControlHandler extends EntityAccessControlHandler {
       return $access;
     }
 
-    $entity_id = $entity->getEntityType()->id();
+    $entity_type_id = $entity->getEntityType()->id();
     $entity_bundle = $entity->bundle();
     switch ($operation) {
       case 'view':
-        $permission = $entity->isPublished() ? 'view published ' . $entity_id : 'view unpublished ' . $entity_id;
+        $permission = $entity->isPublished() ? 'view published ' . $entity_type_id : 'view unpublished ' . $entity_type_id;
         return AccessResult::allowedIfHasPermission($account, $permission)->addCacheableDependency($entity);
 
       case 'update':
-        return AccessResult::allowedIfHasPermission($account, 'edit ' . $entity_bundle . ' corporate entity');
+        return AccessResult::allowedIfHasPermission($account, 'edit ' . $entity_type_id . ' ' . $entity_bundle . ' corporate entity');
 
       case 'delete':
-        return AccessResult::allowedIfHasPermission($account, 'delete ' . $entity_bundle . ' corporate entity');
+        return AccessResult::allowedIfHasPermission($account, 'delete ' . $entity_type_id . ' ' . $entity_bundle . ' corporate entity');
 
       default:
         return AccessResult::neutral();
@@ -47,7 +47,7 @@ class CorporateEntityAccessControlHandler extends EntityAccessControlHandler {
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
     $permissions = [
       $this->entityType->getAdminPermission(),
-      'create ' . $entity_bundle . ' corporate entity',
+      'create ' . $this->entityTypeId . ' ' . $entity_bundle . ' corporate entity',
     ];
     return AccessResult::allowedIfHasPermissions($account, $permissions, 'OR');
   }

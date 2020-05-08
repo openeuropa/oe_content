@@ -109,30 +109,31 @@ abstract class PermissionCallbacksBase implements ContainerInjectionInterface {
   /**
    * Returns a list of CRUD permissions for a given corporate entity type.
    *
-   * @param \Drupal\oe_content_entity\Entity\CorporateEntityTypeInterface $type
-   *   The entity type.
+   * @param \Drupal\oe_content_entity\Entity\CorporateEntityTypeInterface $bundle
+   *   The bundle entity type.
    * @param string $entity_type_label
    *   The entity type label.
    *
    * @return array
    *   An associative array of permission names and descriptions.
    */
-  protected function entityTypePermissions(CorporateEntityTypeInterface $type, string $entity_type_label): array {
-    $type_id = $type->id();
+  protected function entityTypePermissions(CorporateEntityTypeInterface $bundle, string $entity_type_label): array {
+    $bundle_id = $bundle->id();
+    $entity_type_id = $bundle->getEntityType()->getBundleOf();
     $params = [
       '%entity_type_name' => $entity_type_label,
-      '%type_name' => $type->label(),
+      '%bundle_name' => $bundle->label(),
     ];
 
     return [
-      "create $type_id corporate entity" => [
-        'title' => $this->t('%entity_type_name: Create new %type_name entity', $params),
+      "create $entity_type_id $bundle_id corporate entity" => [
+        'title' => $this->t('%entity_type_name: Create new %bundle_name entity', $params),
       ],
-      "edit $type_id corporate entity" => [
-        'title' => $this->t('%entity_type_name: Edit any %type_name entity', $params),
+      "edit $entity_type_id $bundle_id corporate entity" => [
+        'title' => $this->t('%entity_type_name: Edit any %bundle_name entity', $params),
       ],
-      "delete $type_id corporate entity" => [
-        'title' => $this->t('%entity_type_name: Delete any %type_name entity', $params),
+      "delete $entity_type_id $bundle_id corporate entity" => [
+        'title' => $this->t('%entity_type_name: Delete any %bundle_name entity', $params),
       ],
     ];
   }
