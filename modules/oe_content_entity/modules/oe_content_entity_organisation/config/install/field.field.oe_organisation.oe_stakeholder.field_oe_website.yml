@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_organisation.field_oe_website
+    - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
+  module:
+    - link
+id: oe_organisation.oe_stakeholder.field_oe_website
+field_name: field_oe_website
+entity_type: oe_organisation
+bundle: oe_stakeholder
+label: Website
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

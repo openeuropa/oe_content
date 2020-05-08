@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
+id: oe_organisation.oe_stakeholder.name
+field_name: name
+entity_type: oe_organisation
+bundle: oe_stakeholder
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
