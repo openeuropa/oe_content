@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_taxonomy_types\Plugin\VocabularyReferenceHandler;
 
+use Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface;
 use Drupal\oe_taxonomy_types\VocabularyReferenceHandlerPluginBase;
 
 /**
@@ -16,5 +17,11 @@ use Drupal\oe_taxonomy_types\VocabularyReferenceHandlerPluginBase;
  * )
  */
 class TaxonomyHandler extends VocabularyReferenceHandlerPluginBase {
+
+  public function getHandler(array $configuration = []): SelectionInterface {
+    $configuration['target_type'] = 'taxonomy_term';
+
+    return $this->selectionManager->getInstance($configuration);
+  }
 
 }

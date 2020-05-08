@@ -19,16 +19,17 @@
         "drupal-composer/drupal-scaffold": "~2.5.2",
         "drupal/config_devel": "~1.2",
         "drupal/drupal-extension": "~4.0",
+        "drupal/dynamic_entity_reference": "^1.9",
+        "drupaltest/behat-traits": "dev-8.x-1.x",
         "drush/drush": "~9.0",
         "nikic/php-parser": "^3.1.5",
-        "openeuropa/behat-transformation-context" : "~0.1",
+        "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.0@beta",
-        "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/drupal-core-require-dev": "^8.7",
+        "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/task-runner": "~1.0@beta",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4",
-        "drupaltest/behat-traits": "dev-8.x-1.x"
+        "symfony/dom-crawler": "~3.4"
     },
     "autoload": {
         "psr-4": {

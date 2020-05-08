@@ -45,7 +45,8 @@ use Drupal\oe_taxonomy_types\TaxonomyTypeInterface;
  *     "id",
  *     "label",
  *     "description",
- *     "vocabulary_type"
+ *     "handler",
+ *     "handler_settings"
  *   }
  * )
  */
@@ -73,10 +74,17 @@ class TaxonomyType extends ConfigEntityBase implements TaxonomyTypeInterface {
   protected $description;
 
   /**
-   * The type of the vocabulary being referenced.
+   * The vocabulary reference handler ID.
    *
    * @var string
    */
-  protected $vocabulary_type;
+  protected $handler;
+
+  /**
+   * The vocabulary reference handler settings.
+   *
+   * @var array
+   */
+  protected $handler_settings = [];
 
 }
