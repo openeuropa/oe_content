@@ -1,10 +1,19 @@
-# Change Log
+# Changelog
+
+## [1.8.1](https://github.com/openeuropa/oe_content/tree/1.8.1) (2020-05-08)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.8.0...1.8.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3185: Fix invalid corporate entity permissions. [\#193](https://github.com/openeuropa/oe_content/pull/193) ([nagyad](https://github.com/nagyad))
 
 ## [1.8.0](https://github.com/openeuropa/oe_content/tree/1.8.0) (2020-05-07)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.7.0...1.8.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 1.8.0. [\#192](https://github.com/openeuropa/oe_content/pull/192) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2288: Add corporate countries dependency on event submodule. [\#191](https://github.com/openeuropa/oe_content/pull/191) ([brummbar](https://github.com/brummbar))
 - OPENEUROPA-3141: Remove Partner bundle from Organization entity. [\#189](https://github.com/openeuropa/oe_content/pull/189) ([22Alexandra](https://github.com/22Alexandra))
 - OPENEUROPA-2193: Merge event epic onto master [\#183](https://github.com/openeuropa/oe_content/pull/183) ([ademarco](https://github.com/ademarco))
