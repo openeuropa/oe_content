@@ -87,8 +87,8 @@ class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implement
       '#empty_value' => 'all',
       '#empty_option' => $this->t('Show all'),
       '#options' => [
-        'past' => $this->t('Past events'),
-        'upcoming' => $this->t('Upcoming events'),
+        self::PAST => $this->t('Past events'),
+        self::UPCOMING => $this->t('Upcoming events'),
       ],
     ];
     return $form;
