@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Utility\UpdateException;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\user\Entity\Role;
@@ -128,4 +129,25 @@ function oe_content_post_update_00004(): void {
       $role->save();
     }
   }
+}
+
+/**
+ * Change widget for "Event type" field to skos select in form display.
+ */
+function oe_content_post_update_00005() {
+  if (!\Drupal::moduleHandler()->moduleExists('oe_content_event')) {
+    return 'Module oe_content_event is not enabled.';
+  }
+
+  $display = EntityFormDisplay::load('node.oe_event.default');
+  $content = $display->get('content');
+
+  if (empty($content['oe_event_type'])) {
+    return 'Event type field is not exposed on the form display.';
+  }
+
+  $content['oe_event_type']['type'] = 'skos_concept_entity_reference_options_select';
+  $content['oe_event_type']['settings'] = [];
+  $display->set('content', $content);
+  $display->save();
 }
