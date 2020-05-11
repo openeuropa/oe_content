@@ -6,12 +6,12 @@ namespace Drupal\Tests\oe_content_event\Kernel;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\node\Entity\Node;
-use Drupal\oe_content_event\Plugin\InternalLinkSourceFilter\EventLinkSourceFilter;
+use Drupal\oe_content_event\Plugin\InternalLinkSourceFilter\EventPeriodFilter;
 
 /**
  * Tests the internal link source filters related to Events.
  *
- * @covers \Drupal\oe_content_event\Plugin\InternalLinkSourceFilter\EventLinkSourceFilter
+ * @covers \Drupal\oe_content_event\Plugin\InternalLinkSourceFilter\EventPeriodFilter
  */
 class EventLinkSourceFilterTest extends EventKernelTestBase {
 
@@ -79,7 +79,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     /** @var \Drupal\oe_link_lists_internal_source\InternalLinkSourceFilterPluginManager $plugin_manager */
     $plugin_manager = $this->container->get('plugin.manager.oe_link_lists.internal_source_filter');
     /** @var \Drupal\oe_link_lists_internal_source\InternalLinkSourceFilterInterface $plugin */
-    $plugin = $plugin_manager->createInstance('event_link_source_filter', []);
+    $plugin = $plugin_manager->createInstance('oe_content_event_period', []);
 
     // Plugin applies to events.
     $this->assertTrue($plugin->isApplicable('node', 'oe_event'));
@@ -102,7 +102,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
 
     // Configuring the filter for past events will only return finished events.
     $query = $storage->getQuery();
-    $plugin->setConfiguration(['time' => EventLinkSourceFilter::PAST]);
+    $plugin->setConfiguration(['period' => EventPeriodFilter::PAST]);
     $plugin->apply($query, [], $cache);
     $query_results = $query->execute();
     $past_events = [

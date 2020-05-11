@@ -16,9 +16,9 @@ use Drupal\oe_link_lists_internal_source\InternalLinkSourceFilterPluginBase;
  * Event link source filter class.
  *
  * @InternalLinkSourceFilter(
- *   id = "event_link_source_filter",
- *   label = @Translation("Event Link Source Filter"),
- *   description = @Translation("Filters for link lists using events as the internal source."),
+ *   id = "oe_content_event_period",
+ *   label = @Translation("Event period link source filter"),
+ *   description = @Translation("Filters events by the period they are in: past or upcoming."),
  *   entity_types = {
  *     "node" = {
  *       "oe_event",
@@ -26,7 +26,7 @@ use Drupal\oe_link_lists_internal_source\InternalLinkSourceFilterPluginBase;
  *   },
  * )
  */
-class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implements InternalLinkSourceFilterInterface {
+class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements InternalLinkSourceFilterInterface {
 
   /**
    * Option for upcoming events.
@@ -43,7 +43,7 @@ class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implement
    */
   public function defaultConfiguration() {
     return [
-      'time' => self::UPCOMING,
+      'period' => self::UPCOMING,
     ];
   }
 
@@ -63,7 +63,7 @@ class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implement
   public function apply(QueryInterface $query, array $context, RefinableCacheableDependencyInterface $cacheability): void {
     $now = new DrupalDateTime('now');
     $now->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
-    switch ($this->getConfiguration()['time']) {
+    switch ($this->getConfiguration()['period']) {
       case self::PAST:
         $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), "<");
         $query->sort('oe_event_dates.end_value', 'DESC');
@@ -80,10 +80,10 @@ class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implement
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['time'] = [
+    $form['period'] = [
       '#type' => 'select',
       '#title' => $this->t('Choose whether to show past or upcoming events.'),
-      '#default_value' => $this->getConfiguration()['time'] ?? self::UPCOMING,
+      '#default_value' => $this->getConfiguration()['period'] ?? self::UPCOMING,
       '#empty_value' => 'all',
       '#empty_option' => $this->t('Show all'),
       '#options' => [
@@ -98,7 +98,7 @@ class EventLinkSourceFilter extends InternalLinkSourceFilterPluginBase implement
    * {@inheritdoc}
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    $this->configuration['time'] = $form_state->getValue('time');
+    $this->configuration['period'] = $form_state->getValue('period');
   }
 
 }
