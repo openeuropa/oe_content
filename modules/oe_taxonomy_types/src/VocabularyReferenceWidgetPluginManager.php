@@ -8,13 +8,10 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
 
-/**
- * Plugin manager for vocabulary reference handler plugins.
- */
-class VocabularyReferenceHandlerPluginManager extends DefaultPluginManager implements VocabularyReferenceHandlerPluginManagerInterface {
+class VocabularyReferenceWidgetPluginManager extends DefaultPluginManager implements VocabularyReferenceWidgetPluginManagerInterface {
 
   /**
-   * Constructs a VocabularyReferenceHandlerPluginManager object.
+   * Constructs a VocabularyReferenceWidgetPluginManager object.
    *
    * @param \Traversable $namespaces
    *   An object that implements \Traversable which contains the root paths
@@ -26,14 +23,14 @@ class VocabularyReferenceHandlerPluginManager extends DefaultPluginManager imple
    */
   public function __construct(\Traversable $namespaces, CacheBackendInterface $cache_backend, ModuleHandlerInterface $module_handler) {
     parent::__construct(
-      'Plugin/VocabularyReferenceHandler',
+      'Plugin/VocabularyReferenceWidget',
       $namespaces,
       $module_handler,
-      'Drupal\oe_taxonomy_types\VocabularyReferenceHandlerInterface',
-      'Drupal\oe_taxonomy_types\Annotation\VocabularyReferenceHandler'
+      'Drupal\oe_taxonomy_types\VocabularyReferenceWidgetInterface',
+      'Drupal\oe_taxonomy_types\Annotation\VocabularyReferenceWidget'
     );
-    $this->alterInfo('vocabulary_reference_handler_info');
-    $this->setCacheBackend($cache_backend, 'vocabulary_reference_handler_plugins');
+    $this->alterInfo('vocabulary_reference_widget_info');
+    $this->setCacheBackend($cache_backend, 'vocabulary_reference_widget_plugins');
   }
 
   /**

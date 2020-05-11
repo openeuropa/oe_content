@@ -6,6 +6,7 @@ namespace Drupal\oe_taxonomy_types\Form;
 
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\oe_taxonomy_types\Entity\TaxonomyTypeAssociation;
 use Drupal\oe_taxonomy_types\TaxonomyTypeAssociationInterface;
 
 /**
@@ -35,30 +36,28 @@ class TaxonomyTypeAssociationForm extends EntityForm {
       '#type' => 'machine_name',
       '#default_value' => $entity->getName(),
       '#machine_name' => [
-        'exists' => [$this, 'nameExists'],
+        'exists' => [TaxonomyTypeAssociation::class, 'load'],
       ],
       '#disabled' => !$entity->isNew(),
     ];
 
-    $form['field'] = [
+    $form['fields'] = [
       '#type' => 'select',
-      '#title' => $this->t('Field'),
-      '#options' => $this->getAvailableFields(),
+      '#title' => $this->t('Fields'),
       '#description' => $this->t('Select the field target of this association.'),
-      '#default_value' => $entity->getField(),
+      '#multiple' => TRUE,
+      '#options' => $this->getAvailableFields(),
+      '#default_value' => $entity->getFields(),
       '#required' => TRUE,
       '#disabled' => !$entity->isNew(),
     ];
 
+    $widgets = \Drupal::service('plugin.manager.oe_taxonomy_types.vocabulary_reference_widget')->getDefinitionsAsOptions();
     $form['widget_type'] = [
       '#type' => 'select',
       '#title' => $this->t('Widget type'),
-      '#options' => [
-        'autocomplete' => $this->t('Autocomplete'),
-        'checkboxes' => $this->t('Checkboxes / radio buttons'),
-        'select' => $this->t('Select list'),
-      ],
-      '#default_value' => $entity->getWidgetType() ?? 'autocomplete',
+      '#options' => $widgets,
+      '#default_value' => $entity->getWidgetType(),
       '#required' => TRUE,
     ];
 
@@ -114,6 +113,16 @@ class TaxonomyTypeAssociationForm extends EntityForm {
   /**
    * {@inheritdoc}
    */
+  public function buildEntity(array $form, FormStateInterface $form_state) {
+    $fields = $form_state->getValue('fields', []);
+    $form_state->setValue('fields', array_values($fields));
+
+    return parent::buildEntity($form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function save(array $form, FormStateInterface $form_state) {
     $result = parent::save($form, $form_state);
     $message_args = ['%label' => $this->entity->label()];
@@ -142,10 +151,11 @@ class TaxonomyTypeAssociationForm extends EntityForm {
 
     $fields = [];
     foreach ($storage->loadMultiple($results) as $field) {
+      $a = 5;
       $label = $this->t('Field @field on entity @entity, bundle @bundle', [
         '@field' => $field->label(),
-        '@entity' => 'a',
-        '@bundle' => 'a',
+        '@entity' => $field->getTargetEntityTypeId(),
+        '@bundle' => $field->getTargetBundle(),
       ]);
       $fields[$field->id()] = $label;
     }

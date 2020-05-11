@@ -18,7 +18,7 @@ oe_taxonomy_types.oe_taxonomy_type.*:
       type: string
       label: 'Vocabulary type'
 
-oe_taxonomy_type_association.oe_taxonomy_type_association.*:
+oe_taxonomy_types.oe_taxonomy_type_association.*:
   type: config_entity
   label: 'Taxonomy type association'
   mapping:
@@ -31,6 +31,11 @@ oe_taxonomy_type_association.oe_taxonomy_type_association.*:
     uuid:
       type: string
       label: UUID
+    fields:
+      type: sequence
+      label: Fields
+      sequence:
+        type: string
     widget_type:
       type: string
       label: 'Widget type'

@@ -46,7 +46,7 @@ use Drupal\oe_taxonomy_types\TaxonomyTypeAssociationInterface;
  *     "id",
  *     "label",
  *     "name",
- *     "field",
+ *     "fields",
  *     "widget_type",
  *     "taxonomy_type",
  *     "cardinality",
@@ -82,9 +82,9 @@ class TaxonomyTypeAssociation extends ConfigEntityBase implements TaxonomyTypeAs
   /**
    * The field instance ID to which this association is made.
    *
-   * @var string
+   * @var string[]
    */
-  protected $field;
+  protected $fields = [];
 
   /**
    * The widget type to use.
@@ -132,7 +132,7 @@ class TaxonomyTypeAssociation extends ConfigEntityBase implements TaxonomyTypeAs
    * {@inheritdoc}
    */
   public function id() {
-    return $this->getTaxonomyType() . '.' . $this->getField() . '.' . $this->getName();
+    return $this->getTaxonomyType() . '.' . $this->getName();
   }
 
   /**
@@ -145,8 +145,8 @@ class TaxonomyTypeAssociation extends ConfigEntityBase implements TaxonomyTypeAs
   /**
    * {@inheritdoc}
    */
-  public function getField(): ?string {
-    return $this->field;
+  public function getFields(): array {
+    return $this->fields;
   }
 
   /**

@@ -22,9 +22,9 @@ interface TaxonomyTypeAssociationInterface extends ConfigEntityInterface {
   public function getName(): ?string;
 
   /**
-   * @return string|null
+   * @return string
    */
-  public function getField(): ?string;
+  public function getFields(): array;
 
   /**
    * @return string|null
