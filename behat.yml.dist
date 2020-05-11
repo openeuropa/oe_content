@@ -15,6 +15,7 @@ default:
         - Drupal\Tests\oe_media\Behat\MediaContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
@@ -53,6 +54,8 @@ default:
         content owner form element: ".field--name-oe-content-content-owner"
         Online link: "#edit-oe-event-online-link-0"
         Website: "#edit-oe-event-website-0"
+        Project Website: "#edit-oe-project-website-0"
+        Call for proposals: "#oe-project-calls-values"
         Social media links: "#oe-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
         Event report: "#edit-group-report"

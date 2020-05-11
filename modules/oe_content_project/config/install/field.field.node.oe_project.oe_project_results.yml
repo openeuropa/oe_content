@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_project_results
+    - node.type.oe_project
+  module:
+    - text
+id: node.oe_project.oe_project_results
+field_name: oe_project_results
+entity_type: node
+bundle: oe_project
+label: Results
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

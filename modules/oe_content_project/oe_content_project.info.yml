@@ -6,9 +6,32 @@ core: 8.x
 
 dependencies:
   - oe_content:oe_content
+  - oe_media:oe_media
 
 config_devel:
   install:
     - core.entity_form_display.node.oe_project.default
-    - core.entity_form_display.node.oe_project.default
+    - core.entity_view_display.node.oe_project.default
+    - field.field.node.oe_project.oe_reference
+    - field.field.node.oe_project.oe_subject
+    - field.field.node.oe_project.oe_author
+    - field.field.node.oe_project.oe_summary
+    - field.field.node.oe_project.oe_teaser
+    - field.field.node.oe_project.oe_project_budget
+    - field.field.node.oe_project.oe_project_dates
+    - field.field.node.oe_project.oe_project_website
+    - field.field.node.oe_project.oe_project_results
+    - field.field.node.oe_project.oe_project_result_files
+    - field.field.node.oe_project.oe_project_budget_eu
+    - field.field.node.oe_project.oe_project_departments
+    - field.field.node.oe_project.oe_project_calls
+    - field.field.node.oe_project.body
+    - field.storage.node.oe_project_budget
+    - field.storage.node.oe_project_dates
+    - field.storage.node.oe_project_website
+    - field.storage.node.oe_project_results
+    - field.storage.node.oe_project_result_files
+    - field.storage.node.oe_project_budget_eu
+    - field.storage.node.oe_project_departments
+    - field.storage.node.oe_project_calls
     - node.type.oe_project

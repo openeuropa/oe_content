@@ -111,6 +111,9 @@ class DateFieldContext extends RawDrupalContext {
       'Minute' => 'i',
     ];
     foreach ($date_components as $date_component => $date_component_format) {
+      if (!$field_selector->hasSelect($date_component)) {
+        continue;
+      }
       // For avoiding usage of minutes with leading zero sign,
       // we use casting to integer.
       $field_selector->selectFieldOption($date_component, (integer) $date->format($date_component_format));
