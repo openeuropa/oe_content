@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_organisation.oe_stakeholder.field_oe_acronym
-    - field.field.oe_organisation.oe_stakeholder.field_oe_address
-    - field.field.oe_organisation.oe_stakeholder.field_oe_contact_url
-    - field.field.oe_organisation.oe_stakeholder.field_oe_logo
-    - field.field.oe_organisation.oe_stakeholder.field_oe_website
+    - field.field.oe_organisation.oe_stakeholder.oe_acronym
+    - field.field.oe_organisation.oe_stakeholder.oe_address
+    - field.field.oe_organisation.oe_stakeholder.oe_contact_url
+    - field.field.oe_organisation.oe_stakeholder.oe_logo
+    - field.field.oe_organisation.oe_stakeholder.oe_website
     - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
   module:
     - address
@@ -26,7 +26,7 @@ content:
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
-  field_oe_acronym:
+  oe_acronym:
     weight: 1
     label: above
     settings:
@@ -34,14 +34,14 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_oe_address:
+  oe_address:
     weight: 3
     label: above
     settings: {  }
     third_party_settings: {  }
     type: address_default
     region: content
-  field_oe_contact_url:
+  oe_contact_url:
     weight: 5
     label: above
     settings:
@@ -53,7 +53,7 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  field_oe_logo:
+  oe_logo:
     type: entity_reference_entity_view
     weight: 2
     label: above
@@ -62,7 +62,7 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-  field_oe_website:
+  oe_website:
     weight: 4
     label: above
     settings:

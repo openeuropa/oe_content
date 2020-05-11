@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.oe_organisation.field_oe_logo
+    - field.storage.oe_organisation.oe_logo
     - media.type.image
     - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
-id: oe_organisation.oe_stakeholder.field_oe_logo
-field_name: field_oe_logo
+id: oe_organisation.oe_stakeholder.oe_logo
+field_name: oe_logo
 entity_type: oe_organisation
 bundle: oe_stakeholder
 label: Logo

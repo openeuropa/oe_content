@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.oe_organisation.field_oe_address
+    - field.storage.oe_organisation.oe_address
     - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
   module:
     - address
-id: oe_organisation.oe_stakeholder.field_oe_address
-field_name: field_oe_address
+id: oe_organisation.oe_stakeholder.oe_address
+field_name: oe_address
 entity_type: oe_organisation
 bundle: oe_stakeholder
 label: Address

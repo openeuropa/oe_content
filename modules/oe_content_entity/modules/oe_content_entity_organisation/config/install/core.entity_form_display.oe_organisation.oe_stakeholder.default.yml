@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_organisation.oe_stakeholder.field_oe_acronym
-    - field.field.oe_organisation.oe_stakeholder.field_oe_address
-    - field.field.oe_organisation.oe_stakeholder.field_oe_contact_url
-    - field.field.oe_organisation.oe_stakeholder.field_oe_logo
-    - field.field.oe_organisation.oe_stakeholder.field_oe_website
+    - field.field.oe_organisation.oe_stakeholder.oe_acronym
+    - field.field.oe_organisation.oe_stakeholder.oe_address
+    - field.field.oe_organisation.oe_stakeholder.oe_contact_url
+    - field.field.oe_organisation.oe_stakeholder.oe_logo
+    - field.field.oe_organisation.oe_stakeholder.oe_website
     - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
   module:
     - address
@@ -22,7 +22,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_oe_acronym:
+  oe_acronym:
     weight: 121
     settings:
       size: 60
@@ -30,13 +30,13 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_oe_address:
+  oe_address:
     weight: 123
     settings: {  }
     third_party_settings: {  }
     type: address_default
     region: content
-  field_oe_contact_url:
+  oe_contact_url:
     weight: 125
     settings:
       placeholder_url: ''
@@ -44,7 +44,7 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_oe_logo:
+  oe_logo:
     weight: 122
     settings:
       match_operator: CONTAINS
@@ -54,7 +54,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_oe_website:
+  oe_website:
     weight: 124
     settings:
       placeholder_url: ''

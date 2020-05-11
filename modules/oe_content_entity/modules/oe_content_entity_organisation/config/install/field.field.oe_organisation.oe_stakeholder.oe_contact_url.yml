@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.oe_organisation.field_oe_contact_url
+    - field.storage.oe_organisation.oe_contact_url
     - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
   module:
     - link
-id: oe_organisation.oe_stakeholder.field_oe_contact_url
-field_name: field_oe_contact_url
+id: oe_organisation.oe_stakeholder.oe_contact_url
+field_name: oe_contact_url
 entity_type: oe_organisation
 bundle: oe_stakeholder
 label: 'Contact page URL'

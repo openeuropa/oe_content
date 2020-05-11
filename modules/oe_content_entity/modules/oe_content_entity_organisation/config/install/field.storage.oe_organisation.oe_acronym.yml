@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - oe_content_entity_organisation
-id: oe_organisation.field_oe_acronym
-field_name: field_oe_acronym
+id: oe_organisation.oe_acronym
+field_name: oe_acronym
 entity_type: oe_organisation
 type: string
 settings:

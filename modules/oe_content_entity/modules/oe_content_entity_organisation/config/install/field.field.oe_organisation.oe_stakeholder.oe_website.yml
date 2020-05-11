@@ -2,17 +2,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.oe_organisation.field_oe_acronym
+    - field.storage.oe_organisation.oe_website
     - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
-id: oe_organisation.oe_stakeholder.field_oe_acronym
-field_name: field_oe_acronym
+  module:
+    - link
+id: oe_organisation.oe_stakeholder.oe_website
+field_name: oe_website
 entity_type: oe_organisation
 bundle: oe_stakeholder
-label: Acronym
+label: Website
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  link_type: 17
+  title: 0
+field_type: link
