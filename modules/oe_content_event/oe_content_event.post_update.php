@@ -24,4 +24,6 @@ function oe_content_event_post_update_00001() {
   $content['oe_event_type']['settings'] = [];
   $display->set('content', $content);
   $display->save();
+
+  return 'Event type field widget is successfully set to skos select.';
 }
