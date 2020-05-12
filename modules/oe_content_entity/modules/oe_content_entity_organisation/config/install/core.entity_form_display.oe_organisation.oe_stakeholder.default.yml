@@ -18,12 +18,27 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   oe_acronym:
-    weight: 121
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -31,13 +46,13 @@ content:
     type: string_textfield
     region: content
   oe_address:
-    weight: 123
+    weight: 6
     settings: {  }
     third_party_settings: {  }
     type: address_default
     region: content
   oe_contact_url:
-    weight: 125
+    weight: 8
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -45,7 +60,7 @@ content:
     type: link_default
     region: content
   oe_logo:
-    weight: 122
+    weight: 5
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -55,38 +70,23 @@ content:
     type: entity_reference_autocomplete
     region: content
   oe_website:
-    weight: 124
+    weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  langcode:
-    type: language_select
-    weight: 2
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
-  name:
-    type: string_textfield
-    weight: -5
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 120
+    weight: 3
     region: content
     third_party_settings: {  }
   translation:
-    weight: 10
+    weight: 9
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }
