@@ -9,11 +9,9 @@ Before enabling this module, make sure that the following modules are present in
 
 ```json
 "require": {
-    "drupal/address": "~1.7",
     "drupal/entity_reference_revisions": "~1.3",
     "drupal/field_group": "~3.0",
     "drupal/inline_entity_form": "~1.0-rc3",
-    "drupal/typed_link": "~1.0",
 }
 ```
 
