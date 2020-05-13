@@ -38,13 +38,13 @@ class TaxonomyTypeFieldDefaultWidget extends WidgetBase {
     }
 
     foreach ($associations as $association) {
-      $element[] = $this->getAssociationFormElement($association, $values_by_association[$association->id()] ?? [], $form, $form_state);
+      $element[] = $this->associationFormElement($association, $values_by_association[$association->id()] ?? [], $form, $form_state);
     }
 
     return $element;
   }
 
-  protected function getAssociationFormElement(TaxonomyTypeAssociationInterface $association, array $values, array &$form, FormStateInterface $form_state): array {
+  protected function associationFormElement(TaxonomyTypeAssociationInterface $association, array $values, array &$form, FormStateInterface $form_state): array {
     $element = [
       '#theme' => 'field_multiple_value_form',
       '#field_name' => $association->getName(),
@@ -75,6 +75,8 @@ class TaxonomyTypeFieldDefaultWidget extends WidgetBase {
 
     foreach ($values as $delta => $value) {
       $row = [];
+      // @todo This should be improved, no need to put it inside each row.
+      //       Rework inside massage values.
       $row['target_association'] = [
         '#type' => 'value',
         '#value' => $association->id(),

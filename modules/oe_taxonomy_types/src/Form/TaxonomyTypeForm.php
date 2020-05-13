@@ -65,6 +65,7 @@ class TaxonomyTypeForm extends EntityForm {
         'callback' => [$this, 'updateHandlerSettings'],
         'wrapper' => 'taxonomy-handler-settings-wrapper',
       ],
+      '#disabled' => $this->entityHasTargettingAssociations(),
     ];
 
     $form['handler_settings'] = [
@@ -75,6 +76,7 @@ class TaxonomyTypeForm extends EntityForm {
       '#process' => [[EntityReferenceItem::class, 'fieldSettingsAjaxProcess']],
       '#element_validate' => [[$this, 'validateSelectionPluginHandlerConfiguration']],
       '#parents' => ['settings', 'handler_settings'],
+      '#disabled' => $this->entityHasTargettingAssociations(),
     ];
 
     if ($handler_id) {
@@ -147,6 +149,14 @@ class TaxonomyTypeForm extends EntityForm {
 
     $plugin = \Drupal::service('plugin.manager.oe_taxonomy_types.vocabulary_reference_handler')->createInstance($handler);
     $plugin->getHandler()->validateConfigurationForm($form, $form_state);
+  }
+
+  protected function entityHasTargettingAssociations(): bool {
+    $storage = \Drupal::entityTypeManager()->getStorage('oe_taxonomy_type_association');
+    $query = $storage->getQuery();
+    $query->condition('taxonomy_type', $this->entity->id());
+
+    return !empty($query->execute());
   }
 
 }
