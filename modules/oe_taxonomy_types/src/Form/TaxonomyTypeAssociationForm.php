@@ -36,7 +36,7 @@ class TaxonomyTypeAssociationForm extends EntityForm {
       '#type' => 'machine_name',
       '#default_value' => $entity->getName(),
       '#machine_name' => [
-        'exists' => [TaxonomyTypeAssociation::class, 'load'],
+        'exists' => [$this, 'nameExists'],
       ],
       '#disabled' => !$entity->isNew(),
     ];
@@ -114,6 +114,7 @@ class TaxonomyTypeAssociationForm extends EntityForm {
    * {@inheritdoc}
    */
   public function buildEntity(array $form, FormStateInterface $form_state) {
+    // Save only the values of the fields, without keys.
     $fields = $form_state->getValue('fields', []);
     $form_state->setValue('fields', array_values($fields));
 
@@ -151,7 +152,6 @@ class TaxonomyTypeAssociationForm extends EntityForm {
 
     $fields = [];
     foreach ($storage->loadMultiple($results) as $field) {
-      $a = 5;
       $label = $this->t('Field @field on entity @entity, bundle @bundle', [
         '@field' => $field->label(),
         '@entity' => $field->getTargetEntityTypeId(),

@@ -87,4 +87,25 @@ class TaxonomyType extends ConfigEntityBase implements TaxonomyTypeInterface {
    */
   protected $handler_settings = [];
 
+  /**
+   * @return string
+   */
+  public function getDescription(): ?string {
+    return $this->description;
+  }
+
+  /**
+   * @return string
+   */
+  public function getHandler(): ?string {
+    return $this->handler;
+  }
+
+  /**
+   * @return array
+   */
+  public function getHandlerSettings(): array {
+    return $this->handler_settings;
+  }
+
 }

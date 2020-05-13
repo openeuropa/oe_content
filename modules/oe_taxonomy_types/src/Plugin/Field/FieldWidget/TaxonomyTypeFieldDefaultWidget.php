@@ -71,6 +71,8 @@ class TaxonomyTypeFieldDefaultWidget extends WidgetBase {
       $values[] = NULL;
     }
 
+    $widget_manager = \Drupal::getContainer()->get('plugin.manager.oe_taxonomy_types.vocabulary_reference_widget');
+
     foreach ($values as $delta => $value) {
       $row = [];
       $row['target_association'] = [
@@ -78,18 +80,10 @@ class TaxonomyTypeFieldDefaultWidget extends WidgetBase {
         '#value' => $association->id(),
       ];
 
-      $value = isset($value) ? Term::load($value) : NULL;
-      $row['target_id'] = [
-        '#type' => 'entity_autocomplete',
-        '#target_type' => 'taxonomy_term',
-        '#selection_handler' => 'default:taxonomy_term',
-        '#selection_settings' => [],
-        // Entity reference field items are handling validation themselves via
-        // the 'ValidReference' constraint.
-        '#validate_reference' => FALSE,
-        '#maxlength' => 1024,
-        '#default_value' => $value,
-      ];
+      /** @var \Drupal\oe_taxonomy_types\VocabularyReferenceWidgetInterface $widget */
+      $widget = $widget_manager->createInstance($association->getWidgetType());
+      $row += $widget->form($association, $value, $form, $form_state);
+
       $row['_weight'] = [
         '#type' => 'weight',
         '#title' => $this->t('Weight for row @number', ['@number' => $delta + 1]),
@@ -148,7 +142,7 @@ class TaxonomyTypeFieldDefaultWidget extends WidgetBase {
   protected function getAssociations(string $field_id): array {
     $storage = \Drupal::entityTypeManager()->getStorage('oe_taxonomy_type_association');
     $query = $storage->getQuery();
-    $query->condition('field', $field_id);
+    $query->condition('fields.*', $field_id);
     $results = $query->execute();
 
     if (empty($results)) {

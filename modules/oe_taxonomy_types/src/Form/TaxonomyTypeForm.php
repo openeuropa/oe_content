@@ -11,6 +11,8 @@ use Drupal\oe_taxonomy_types\Entity\TaxonomyType;
 
 /**
  * Taxonomy type form.
+ *
+ * @property \Drupal\oe_taxonomy_types\TaxonomyTypeInterface $entity
  */
 class TaxonomyTypeForm extends EntityForm {
 
@@ -42,11 +44,13 @@ class TaxonomyTypeForm extends EntityForm {
     $form['description'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Description'),
-      '#default_value' => $entity->get('description'),
+      '#default_value' => $entity->getDescription(),
       '#description' => $this->t('Description of the taxonomy type.'),
     ];
 
-    $handler_id = $entity->isNew() ? NULL : $entity->get('handler');
+    // Retrieve the handler value from the entity.
+    $handler_id = $entity->isNew() ? NULL : $entity->getHandler();
+    // USe the submitted value if the form is being rebuilt.
     $handler_id = $form_state->getValue('handler', $handler_id);
 
     /** @var \Drupal\oe_taxonomy_types\VocabularyReferenceHandlerPluginManager $vocabulary_reference_manager */
@@ -74,9 +78,9 @@ class TaxonomyTypeForm extends EntityForm {
     ];
 
     if ($handler_id) {
-      /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface $handler */
+      /** @var \Drupal\oe_taxonomy_types\VocabularyReferenceHandlerInterface $plugin */
       $plugin = $vocabulary_reference_manager->createInstance($handler_id);
-      $form['handler_settings'] += $plugin->getHandler($entity->get('handler_settings'))->buildConfigurationForm([], $form_state);
+      $form['handler_settings'] += $plugin->getHandler($entity->getHandlerSettings())->buildConfigurationForm([], $form_state);
 
       // Handle this in a wrapper plugin maybe?
       $form['handler_settings']['auto_create']['#access'] = FALSE;
