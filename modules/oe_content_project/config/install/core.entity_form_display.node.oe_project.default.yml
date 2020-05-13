@@ -20,17 +20,66 @@ dependencies:
   module:
     - datetime_range
     - entity_reference_revisions
+    - field_group
     - link
     - path
     - rdf_skos
     - text
+third_party_settings:
+  field_group:
+    group_result:
+      children:
+        - oe_project_results
+        - oe_project_result_files
+      parent_name: ''
+      weight: 14
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: true
+        required_fields: true
+      label: Result
+    group_alternative_titles_teaser:
+      children:
+        - oe_content_short_title
+        - oe_content_navigation_title
+        - oe_teaser
+      parent_name: ''
+      weight: 15
+      format_type: tab
+      region: content
+      format_settings:
+        description: ''
+        formatter: open
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Alternative titles and teaser'
+    group_budget:
+      children:
+        - oe_project_budget
+        - oe_project_budget_eu
+      parent_name: ''
+      weight: 8
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+        required_fields: true
+      label: Budget
 id: node.oe_project.default
 targetEntityType: node
 bundle: oe_project
 mode: default
 content:
   body:
-    weight: 22
+    weight: 12
     settings:
       rows: 9
       summary_rows: 3
@@ -41,19 +90,19 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 7
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 5
+    weight: 16
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   oe_author:
-    weight: 15
+    weight: 5
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -64,7 +113,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 3
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -74,7 +123,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 4
+    weight: 20
     region: content
     settings:
       placeholder_url: ''
@@ -82,7 +131,7 @@ content:
     third_party_settings: {  }
   oe_content_navigation_title:
     type: string_textfield
-    weight: 2
+    weight: 3
     region: content
     settings:
       size: 60
@@ -90,28 +139,28 @@ content:
     third_party_settings: {  }
   oe_content_short_title:
     type: string_textfield
-    weight: 1
+    weight: 2
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   oe_project_budget:
-    weight: 18
+    weight: 9
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   oe_project_budget_eu:
-    weight: 19
+    weight: 10
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   oe_project_calls:
-    weight: 25
+    weight: 13
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -119,7 +168,7 @@ content:
     type: link_default
     region: content
   oe_project_dates:
-    weight: 17
+    weight: 7
     settings:
       increment: 15
       date_order: YMD
@@ -128,7 +177,7 @@ content:
     type: daterange_datelist
     region: content
   oe_project_departments:
-    weight: 21
+    weight: 18
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -138,7 +187,7 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_project_result_files:
-    weight: 24
+    weight: 21
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -148,7 +197,7 @@ content:
     type: entity_reference_revisions_autocomplete
     region: content
   oe_project_results:
-    weight: 23
+    weight: 20
     settings:
       rows: 5
       placeholder: ''
@@ -156,7 +205,7 @@ content:
     type: text_textarea
     region: content
   oe_project_website:
-    weight: 20
+    weight: 11
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -164,7 +213,7 @@ content:
     type: link_default
     region: content
   oe_reference:
-    weight: 16
+    weight: 6
     settings:
       size: 60
       placeholder: ''
@@ -172,7 +221,7 @@ content:
     type: string_textfield
     region: content
   oe_subject:
-    weight: 12
+    weight: 1
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -182,7 +231,7 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_summary:
-    weight: 14
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -190,7 +239,7 @@ content:
     type: text_textarea
     region: content
   oe_teaser:
-    weight: 13
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -199,7 +248,7 @@ content:
     region: content
   path:
     type: path
-    weight: 10
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -207,21 +256,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 3
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 23
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 9
+    weight: 4
     region: content
     third_party_settings: {  }
   title:
@@ -239,7 +288,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 21
     settings:
       match_operator: CONTAINS
       size: 60

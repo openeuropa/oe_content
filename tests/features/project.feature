@@ -31,10 +31,11 @@ Feature: Project content creation
     When I press "Save"
 
     Then I should see "My Project"
-    And I should see "EU financing"
+    And I should not see "EU financing"
+    And I should not see "Committee on Agriculture and Rural Development"
     And I should see "European Patent Office"
     And I should see "Audit Board of the European Communities"
-    And I should see "Project teaser"
+    And I should not see "Project teaser"
     And I should see "Summary text"
     And I should see "Body text"
     And I should see "2019-02-23"
