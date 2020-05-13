@@ -35,3 +35,5 @@ config_devel:
     - field.storage.node.oe_project_departments
     - field.storage.node.oe_project_calls
     - node.type.oe_project
+  optional:
+    - language.content_settings.node.oe_project
