@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_entity\FunctionalJavascript;
 
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\media\Entity\Media;
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -17,15 +19,27 @@ class StakeholderUiTest extends BrowserTestBase {
   protected static $modules = [
     'oe_content',
     'oe_content_entity',
-    'oe_content_entity_contact',
     'oe_content_entity_organisation',
-    'oe_content_entity_venue',
   ];
 
   /**
    * Tests Stakeholder creation.
    */
   public function testStakeholderBundleUi(): void {
+    // Create dummy media entity image.
+    $file_data = file_get_contents('https://upload.wikimedia.org/wikipedia/commons/4/45/Eopsaltria_australis_-_Mogo_Campground.jpg');
+    $file = file_save_data($file_data);
+    $media = Media::create([
+      'bundle' => 'image',
+      'uid' => 1,
+      'oe_media_image' => [
+        'target_id' => (int) $file->id(),
+        'alt' => 'A nice bird',
+        'title' => 'A nice bird',
+      ],
+    ]);
+    $media->setName('Bird')->setPublished()->save();
+
     $user = $this->drupalCreateUser([
       'manage corporate content entities',
       'access administration pages',
@@ -40,6 +54,7 @@ class StakeholderUiTest extends BrowserTestBase {
 
     $this->getSession()->getPage()->fillField('Name', "My stakeholder");
     $acronym_value = "My Acronym";
+    $logo_value = "Bird";
     $company_value = "Best company";
     $country = "HU";
     $street_address_value = "My street 20.";
@@ -47,6 +62,7 @@ class StakeholderUiTest extends BrowserTestBase {
     $postal_code_value = "1171";
     $website_value = "https://test.com";
     $contact_value = "https://test2.com";
+    $this->getSession()->getPage()->fillField('oe_logo[0][target_id]', $logo_value);
     $this->getSession()->getPage()->fillField('Acronym', $acronym_value);
     $this->getSession()->getPage()->fillField('Country', $country);
     $this->getSession()->getPage()->fillField('Company', $company_value);
@@ -61,6 +77,7 @@ class StakeholderUiTest extends BrowserTestBase {
     $this->drupalGet("/admin/content/oe_organisation/1/edit");
     $this->assertSession()->pageTextContains("My stakeholder");
     $acronym = $this->assertSession()->fieldExists('oe_acronym[0][value]')->getValue();
+    $logo = $this->assertSession()->fieldExists('oe_logo[0][target_id]')->getValue();
     $company = $this->assertSession()->fieldExists('oe_address[0][address][organization]')->getValue();
     $street_address = $this->assertSession()->fieldExists('oe_address[0][address][address_line1]')->getValue();
     $city = $this->assertSession()->fieldExists('oe_address[0][address][locality]')->getValue();
@@ -68,6 +85,7 @@ class StakeholderUiTest extends BrowserTestBase {
     $website = $this->assertSession()->fieldExists('oe_website[0][uri]')->getValue();
     $contact = $this->assertSession()->fieldExists('oe_contact_url[0][uri]')->getValue();
     $this->assertTrue($acronym == $acronym_value);
+    $this->assertTrue($logo == $logo_value . ' (1)');
     $this->assertTrue($company == $company_value);
     $this->assertTrue($street_address == $street_address_value);
     $this->assertTrue($city == $city_value);
