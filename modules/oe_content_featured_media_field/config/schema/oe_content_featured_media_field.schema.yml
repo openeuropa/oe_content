@@ -1,0 +1,41 @@
+field.field_settings.oe_featured_media:
+  type: mapping
+  label: 'Featured media field settings'
+  mapping:
+    handler:
+      type: string
+      label: 'Reference method'
+    handler_settings:
+      type: entity_reference_selection.[%parent.handler]
+      label: 'Entity reference selection plugin settings'
+
+field.storage_settings.oe_featured_media:
+  type: mapping
+  label: 'Featured media field storage settings'
+  mapping:
+    target_type:
+      type: string
+      label: 'Type of media item to reference'
+
+field.value.oe_featured_media:
+  type: mapping
+  label: 'Default value'
+  mapping:
+    target_id:
+      type: integer
+      label: 'Target entity ID'
+    target_uuid:
+      type: uuid
+    caption:
+      type: text
+      label: 'Caption value'
+
+field.formatter.settings.oe_featured_media_label:
+  type: mapping
+  mapping:
+    link:
+      type: boolean
+      label: 'Link to the entity'
+
+field.widget.settings.oe_featured_media_widget:
+  type: field.widget.settings.entity_reference_autocomplete

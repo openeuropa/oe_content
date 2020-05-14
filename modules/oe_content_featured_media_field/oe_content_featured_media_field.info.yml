@@ -1,0 +1,12 @@
+name: OpenEuropa Content Featured Media Field
+description: Contains the Featured media field type and storage.
+package: OpenEuropa
+
+type: module
+core: 8.x
+dependencies:
+  - oe_content:oe_content
+
+config_devel:
+  install:
+    - field.storage.node.oe_featured_media_field
