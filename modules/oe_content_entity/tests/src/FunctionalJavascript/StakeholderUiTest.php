@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_entity\FunctionalJavascript;
 
-use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\media\Entity\Media;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * Test Stakeholder bundle.
  */
-class StakeholderUiTest extends WebDriverTestBase {
+class StakeholderUiTest extends BrowserTestBase {
 
   /**
    * {@inheritdoc}
