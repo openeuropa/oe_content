@@ -7,3 +7,23 @@ core: 8.x
 dependencies:
   - oe_content:oe_content_entity
   - oe_media:oe_media
+
+config_devel:
+  install:
+    - core.base_field_override.oe_organisation.oe_stakeholder.name
+    - core.base_field_override.oe_organisation.oe_stakeholder.status
+    - core.entity_form_display.oe_organisation.oe_stakeholder.default
+    - core.entity_view_display.oe_organisation.oe_stakeholder.default
+    - field.field.oe_organisation.oe_stakeholder.oe_acronym
+    - field.field.oe_organisation.oe_stakeholder.oe_address
+    - field.field.oe_organisation.oe_stakeholder.oe_contact_url
+    - field.field.oe_organisation.oe_stakeholder.oe_logo
+    - field.field.oe_organisation.oe_stakeholder.oe_website
+    - field.storage.oe_organisation.oe_acronym
+    - field.storage.oe_organisation.oe_address
+    - field.storage.oe_organisation.oe_contact_url
+    - field.storage.oe_organisation.oe_logo
+    - field.storage.oe_organisation.oe_website
+    - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
+  optional:
+    - language.content_settings.oe_organisation.oe_stakeholder
