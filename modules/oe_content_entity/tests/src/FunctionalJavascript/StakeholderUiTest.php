@@ -38,7 +38,7 @@ class StakeholderUiTest extends BrowserTestBase {
     $this->getSession()->getPage()->fillField('Name', "My stakeholder");
     $this->getSession()->getPage()->fillField('Acronym', "My Acronym");
     $this->getSession()->getPage()->fillField('Street address', "Kossuth u. 120.");
-    $this->getSession()->getPage()->fillField('Country', "Hungary");
+    $this->getSession()->getPage()->fillField('Country', "HU");
     $this->getSession()->getPage()->fillField('City', "Budapest");
     $this->getSession()->getPage()->fillField('Company', "Best company");
     $this->getSession()->getPage()->fillField('Website', "https://test.com");
