@@ -10,8 +10,6 @@ dependencies:
 
 config_devel:
   install:
-    - core.base_field_override.oe_organisation.oe_stakeholder.name
-    - core.base_field_override.oe_organisation.oe_stakeholder.status
     - core.entity_form_display.oe_organisation.oe_stakeholder.default
     - core.entity_view_display.oe_organisation.oe_stakeholder.default
     - field.field.oe_organisation.oe_stakeholder.oe_acronym
