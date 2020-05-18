@@ -6,15 +6,19 @@ Feature: Event content creation
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
-    When I visit "the Publication creation page"
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
+    When I visit "the Event creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
+    And I should see the text "Content limited to 150 characters, remaining: 150" in the "featured media legend form element"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
-    When I fill in "Page title" with "My Publication"
+    And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
+    When I fill in "Page title" with "My Event"
+    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non nibh vitae diam hendrerit porta eu a mi. Nam porta tortor sed ante efficitur, ac suscipit metus tincidunt. Donec a nisi condimentum, iaculis nunc ac, bibendum tortor. Curabitur feugiat. Text to remove"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
+    And I fill in "Featured media legend" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
-    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
+    And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Nam eleifend ipsum. Text to remove"
     And I fill in "Subject" with "financing"
     And I fill in "Responsible department" with "European Patent Office"
     And I press "Save"
