@@ -10,7 +10,7 @@ id: node.oe_project.oe_project_funding_programme
 field_name: oe_project_funding_programme
 entity_type: node
 bundle: oe_project
-label: 'Funding Programme'
+label: 'Funding programme'
 description: ''
 required: false
 translatable: false

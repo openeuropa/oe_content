@@ -28,6 +28,7 @@ Feature: Project content creation
     And I set "23-02-2019" as the "End date" of "Project period"
     And I fill in "Overall budget" with "1000" in the "Budget" region
     And I fill in "EU contribution" with "200" in the "Budget" region
+    And I fill in "Funding programme" with "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
     And I fill in "URL" with "http://ec.europa.eu" in the "Project Website" region
     And I fill in "Link text" with "Website" in the "Project Website" region
     And I fill in "URL" with "http://example.com" in the "Call for proposals" region
@@ -45,6 +46,7 @@ Feature: Project content creation
     And I should not see "Committee on Agriculture and Rural Development"
     And I should see "European Patent Office"
     And I should see "Audit Board of the European Communities"
+    And I should see "Anti Fraud Information System (AFIS)"
     And I should not see "Project teaser"
     And I should see "Summary text"
     And I should see "Body text"
