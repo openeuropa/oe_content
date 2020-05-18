@@ -43,9 +43,9 @@ class CompositeFieldsTest extends RdfKernelTestBase {
   }
 
   /**
-   * Test the defined fields.
+   * Test the composite option of entity reference fields.
    */
-  public function testBaseStorage(): void {
+  public function testCompositeOption(): void {
     $entity_type_manager = \Drupal::entityTypeManager();
     // Create a content type.
     $type = $entity_type_manager->getStorage('node_type')->create(['name' => 'Test content type', 'type' => 'test_ct']);
