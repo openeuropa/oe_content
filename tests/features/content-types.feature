@@ -25,4 +25,5 @@ Feature: Common fields across the content types
       | Page         |
       | News         |
       | Policy       |
+      | Project      |
       | Publication  |

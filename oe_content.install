@@ -7,8 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Config\FileStorage;
-
 /**
  * Implements hook_install().
  */
@@ -38,18 +36,4 @@ function oe_content_update_8001() {
     $field_definition->setDisplayOptions('view', []);
     $entity_definition_update_manager->updateFieldStorageDefinition($field_definition);
   }
-}
-
-/**
- * Update field storage with oe_reference.
- */
-function oe_content_update_8002() {
-  // Obtain configuration from yaml files.
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content') . '/config/install');
-
-  // Obtain the storage manager for field storage bases,
-  // Create a new field from the yaml configuration and save.
-  \Drupal::entityManager()->getStorage('field_storage_config')
-    ->create($storage->read('field.storage.node.oe_reference'))
-    ->save();
 }

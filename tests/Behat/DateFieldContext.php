@@ -111,6 +111,12 @@ class DateFieldContext extends RawDrupalContext {
       'Minute' => 'i',
     ];
     foreach ($date_components as $date_component => $date_component_format) {
+      // This function receive datetime text input like "23-02-2019 14:15".
+      // It set each element list date format (One HTML <select> for one element
+      // like : Year, Month, Day..)
+      // Sometimes, as in the actual case, we don't have Hour and Minutes so the
+      // IF statement is to manage cases that the <select> of Hour and Minute
+      // does not exist.
       if (!$field_selector->hasSelect($date_component)) {
         continue;
       }
