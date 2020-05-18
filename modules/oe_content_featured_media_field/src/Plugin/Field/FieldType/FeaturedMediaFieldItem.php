@@ -6,10 +6,8 @@ namespace Drupal\oe_content_featured_media_field\Plugin\Field\FieldType;
 
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
-use Drupal\Core\Field\PreconfiguredFieldUiOptionsInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\TypedData\DataDefinition;
-use Drupal\Core\TypedData\OptionsProviderInterface;
 
 /**
  * Plugin implementation of the 'oe_featured_media' field type.
@@ -35,7 +33,7 @@ use Drupal\Core\TypedData\OptionsProviderInterface;
  *   list_class = "\Drupal\Core\Field\EntityReferenceFieldItemList"
  * )
  */
-class FeaturedMediaFieldItem extends EntityReferenceItem implements OptionsProviderInterface, PreconfiguredFieldUiOptionsInterface {
+class FeaturedMediaFieldItem extends EntityReferenceItem {
 
   /**
    * {@inheritdoc}
@@ -50,12 +48,7 @@ class FeaturedMediaFieldItem extends EntityReferenceItem implements OptionsProvi
    * {@inheritdoc}
    */
   public function storageSettingsForm(array &$form, FormStateInterface $form_state, $has_data) {
-    $element = parent::storageSettingsForm($form, $form_state, $has_data);
-    // Don't allow any other entity type than media to be referenced.
-    $element['target_type']['#default_value'] = 'media';
-    $element['target_type']['#disabled'] = TRUE;
-
-    return $element;
+    return [];
   }
 
   /**
@@ -78,7 +71,7 @@ class FeaturedMediaFieldItem extends EntityReferenceItem implements OptionsProvi
 
     $schema['columns']['caption'] = [
       'description' => 'The caption for the featured media.',
-      'type' => 'varchar_ascii',
+      'type' => 'varchar',
       'length' => 255,
     ];
 

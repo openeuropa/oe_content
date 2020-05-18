@@ -54,6 +54,11 @@ class FeaturedMediaFieldWidget extends EntityReferenceAutocompleteWidget {
       '#default_value' => isset($referenced_entities[$delta]) ? $referenced_entities[$delta] : NULL,
       '#size' => $this->getSetting('size'),
       '#placeholder' => $this->getSetting('placeholder'),
+      '#states' => [
+        'required' => [
+          ':input[name="' . $this->fieldDefinition->getName() . '[' . $delta . '][featured_media][caption]"]' => ['filled' => TRUE],
+        ],
+      ],
     ];
     $element['featured_media']['caption'] = [
       '#title' => $this->t('Caption'),

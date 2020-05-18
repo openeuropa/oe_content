@@ -9,6 +9,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\media\Entity\Media;
+use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
 
@@ -21,6 +22,7 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
 
   use ContentTypeCreationTrait;
   use NodeCreationTrait;
+  use MediaTypeCreationTrait;
 
   /**
    * A field storage to use in this test class.
@@ -37,23 +39,29 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
   protected $field;
 
   /**
-   * The media entity used in this test class.
-   *
-   * @var \Drupal\media\Entity\Media
-   */
-  protected $mediaEntity;
-
-  /**
    * The display options to use for the widget.
    *
    * @var array
    */
-  protected $displayOptions = [
+  protected $formDisplayOptions = [
     'type' => 'oe_featured_media_widget',
     'settings' => [
       'match_operator' => 'CONTAINS',
       'match_limit' => 10,
       'size' => 60,
+    ],
+  ];
+
+  /**
+   * The display options to use for the formatter.
+   *
+   * @var array
+   */
+  protected $viewDisplayOptions = [
+    'type' => 'oe_featured_media_label',
+    'label' => 'above',
+    'settings' => [
+      'link' => TRUE,
     ],
   ];
 
@@ -65,6 +73,7 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     'field',
     'field_ui',
     'media',
+    'media_test_source',
     'oe_media',
     'oe_content_featured_media_field',
   ];
@@ -82,6 +91,34 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
       'create page content',
     ]);
     $this->drupalLogin($user);
+
+    // Create an image file.
+    \Drupal::service('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
+    $image = File::create(['uri' => 'public://example.jpg']);
+    $image->save();
+
+    // Create a media entity of image media type.
+    $image_media_type = $this->container->get('entity_type.manager')->getStorage('media_type')->load('image');
+    $media_entity = Media::create([
+      'bundle' => $image_media_type->id(),
+      'name' => 'Test image',
+      'field_media_image' => [
+        [
+          'target_id' => $image->id(),
+          'alt' => 'default alt',
+          'title' => 'default title',
+        ],
+      ],
+    ]);
+    $media_entity->save();
+
+    // Create another media type and a media entity with it.
+    $test_media_type = $this->createMediaType('test');
+    $media_entity = Media::create([
+      'bundle' => $test_media_type->id(),
+      'name' => 'Test media',
+    ]);
+    $media_entity->save();
 
     $this->fieldStorage = FieldStorageConfig::create([
       'field_name' => 'featured_media_field',
@@ -101,7 +138,8 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
         'handler' => 'default:media',
         'handler_settings' => [
           'target_bundles' => [
-            'image' => 'image',
+            $image_media_type->id() => $image_media_type->id(),
+            $test_media_type->id() => $test_media_type->id(),
           ],
         ],
         'sort' => [
@@ -113,30 +151,16 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     ]);
     $this->field->save();
 
-    // Create an image file.
-    \Drupal::service('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
-    $image = File::create(['uri' => 'public://example.jpg']);
-    $image->save();
-
-    // Create a media entity of image media type.
-    $media_type = $this->container->get('entity_type.manager')->getStorage('media_type')->load('image');
-    $this->mediaEntity = Media::create([
-      'bundle' => $media_type->id(),
-      'name' => 'Test image',
-      'field_media_image' => [
-        [
-          'target_id' => $image->id(),
-          'alt' => 'default alt',
-          'title' => 'default title',
-        ],
-      ],
-    ]);
-    $this->mediaEntity->save();
+    // Prepare the default form display for rendering.
+    $display = \Drupal::service('entity_display.repository')
+      ->getFormDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
+      ->setComponent($this->fieldStorage->getName(), $this->formDisplayOptions);
+    $display->save();
 
     // Prepare the default view display for rendering.
     $display = \Drupal::service('entity_display.repository')
-      ->getFormDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
-      ->setComponent($this->fieldStorage->getName(), $this->displayOptions);
+      ->getViewDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
+      ->setComponent($this->fieldStorage->getName(), $this->viewDisplayOptions);
     $display->save();
   }
 
@@ -173,13 +197,27 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     $assert_session->pageTextContains('See the media list (opens a new window) to help locate media.');
     $assert_session->pageTextContains('Allowed media types: Image');
 
-    // Test the autocomplete functionality returns the image media.
+    // Test that the Media item field turns required once the Caption is filled.
+    $this->assertFalse($page->findField('Media item')->hasAttribute('required'));
+    $page->fillField('Caption', 'Caption text');
+    $this->assertTrue($page->findField('Media item')->hasAttribute('required'));
+
+    // Test the autocomplete functionality returns the created media items.
     $this->doAutocomplete($this->fieldStorage->getName());
-
     $results = $page->findAll('css', '.ui-autocomplete li');
-
-    $this->assertCount(1, $results);
+    $this->assertCount(2, $results);
     $assert_session->pageTextContains('Test image');
+    $assert_session->pageTextContains('Test media');
+
+    // Assign the image media and save the node.
+    $page->fillField('Media item', 'Test image');
+    $page->fillField('Title', 'My test node');
+    $page->pressButton('Save');
+
+    // Assert the label and values are visible on the node page.
+    $assert_session->pageTextContains('Featured media field');
+    $assert_session->pageTextContains('Test image');
+    $assert_session->pageTextContains('Caption text');
   }
 
   /**
