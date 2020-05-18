@@ -8,6 +8,10 @@ dependencies:
     - oe_content_entity_contact.oe_contact_type.oe_press
   module:
     - entity_reference_revisions
+    - oe_content
+third_party_settings:
+  oe_content:
+    composite: true
 id: node.oe_event.oe_event_contact
 field_name: oe_event_contact
 entity_type: node
