@@ -1,4 +1,6 @@
 services:
+  # @deprecated in oe_content 1.8.2 and will be removed in 2.0.0. Use
+  #   rdf_skos.op_skos_setup instead.
   oe_content.op_skos_setup:
     class: Drupal\oe_content\PublicationsOfficeSkosGraphSetup
     arguments: ['@config.factory']

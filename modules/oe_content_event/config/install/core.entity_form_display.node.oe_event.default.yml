@@ -152,6 +152,7 @@ content:
       rows: 9
       summary_rows: 3
       placeholder: ''
+      show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
@@ -174,6 +175,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
@@ -185,6 +187,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
@@ -261,6 +264,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
@@ -283,6 +287,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
   oe_event_online_dates:
     weight: 24
@@ -321,6 +326,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
@@ -390,7 +396,7 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: skos_concept_entity_reference_options_select
     region: content
   oe_event_venue:
     weight: 8
@@ -427,6 +433,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
@@ -506,6 +513,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
 hidden: {  }

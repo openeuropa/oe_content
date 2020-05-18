@@ -8,6 +8,9 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 
 /**
  * Service used to set up the SKOS graphs of the Publications Office.
+ *
+ * @deprecated in oe_content 1.8.2 and will be removed in 2.0.0. Use
+ *   rdf_skos.op_skos_setup instead.
  */
 class PublicationsOfficeSkosGraphSetup {
 
@@ -54,20 +57,9 @@ class PublicationsOfficeSkosGraphSetup {
    */
   public function setup(): void {
     $graphs = $this->getGraphInfo();
-    $config = [];
-    foreach ($graphs as $name => $graph) {
-      $config['skos_concept_scheme'][] = [
-        'name' => $name,
-        'uri' => $graph,
-      ];
 
-      $config['skos_concept'][] = [
-        'name' => $name,
-        'uri' => $graph,
-      ];
-    }
-
-    $this->configFactory->getEditable('rdf_skos.graphs')->set('entity_types', $config)->save();
+    // Use the new Skos Graph Service.
+    \Drupal::service('rdf_skos.skos_graph_configurator')->addGraphs($graphs);
   }
 
 }
