@@ -144,24 +144,26 @@ function oe_content_form_field_config_edit_form_alter(&$form, FormStateInterface
  *
  * @param string $entity_type
  *   The name of the entity type.
- * @param \Drupal\field\FieldConfigInterface $type
+ * @param \Drupal\field\FieldConfigInterface $field_config
  *   The field config.
  * @param array $form
  *   The form array.
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The form state.
  */
-function oe_content_form_field_config_form_builder(string $entity_type, FieldConfigInterface $type, array &$form, FormStateInterface $form_state): void {
+function oe_content_form_field_config_form_builder(string $entity_type, FieldConfigInterface $field_config, array &$form, FormStateInterface $form_state): void {
   if ($form_state->getValue('composite')) {
-    $type->setThirdPartySetting('oe_content', 'composite', TRUE);
+    $field_config->setThirdPartySetting('oe_content', 'composite', TRUE);
   }
   else {
-    $type->setThirdPartySetting('oe_content', 'composite', FALSE);
+    $field_config->setThirdPartySetting('oe_content', 'composite', FALSE);
   }
 }
 
 /**
  * Implements hook_entity_delete().
+ *
+ * Delete any composite referenced entities when deleting an entity.
  */
 function oe_content_entity_delete(EntityInterface $entity): void {
   if (!$entity instanceof \Drupal\Core\Entity\FieldableEntityInterface) {
