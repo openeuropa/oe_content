@@ -78,6 +78,9 @@
             "drupal/typed_link": {
                 "https://www.drupal.org/project/typed_link/issues/3085826": "https://www.drupal.org/files/issues/2019-10-04/typed_link-3085826-2.patch",
                 "https://www.drupal.org/project/typed_link/issues/3085817": "https://www.drupal.org/files/issues/2019-10-07/typed_link-3085817-3.patch"
+            },
+            "openeuropa/rdf_skos": {
+                "latest-master": "https://github.com/openeuropa/rdf_skos/compare/0.7.0...master.diff"
             }
         }
     },
