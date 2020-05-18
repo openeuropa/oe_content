@@ -1,0 +1,7 @@
+field.field.*.*.*.third_party.oe_content:
+  type: mapping
+  label: 'Composite reference settings'
+  mapping:
+    composite:
+      type: boolean
+      label: 'Whether the field is a composite reference or not.'

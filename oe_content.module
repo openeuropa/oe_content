@@ -7,9 +7,12 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\field\FieldConfigInterface;
 use Drupal\link\LinkItemInterface;
 
 /**
@@ -106,3 +109,126 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
 function oe_content_locale_translation_projects_alter(&$projects) {
   $projects['oe_content']['info']['interface translation server pattern'] = drupal_get_path('module', 'oe_content') . '/translations/%project-%language.po';
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add the composite field option to entity reference fields
+ */
+function oe_content_form_field_config_edit_form_alter(&$form, FormStateInterface $form_state): void {
+  /** @var \Drupal\field\FieldConfigInterface $field_config */
+  $field_config = $form_state->getFormObject()->getEntity();
+  $applicable_field_types = ['entity_reference', 'entity_reference_revisions'];
+  if (!in_array($field_config->getType(), $applicable_field_types)) {
+    return;
+  }
+  $form['composite'] = [
+    '#type' => 'radios',
+    '#title' => t('Composite field'),
+    '#description' => t('Making this field a composite field will delete any referenced entity if the referencing entity is deleted (only if the referenced entity is not referenced by some other entity).'),
+    '#default_value' => $field_config->getThirdPartySetting('oe_content', 'composite') ? 1 : 0,
+    '#options' => [
+      1 => t('Enabled'),
+      0 => t('Disabled'),
+    ],
+  ];
+
+  $form['#entity_builders'][] = 'oe_content_form_field_config_form_builder';
+
+}
+
+/**
+ * Entity form builder for the field_config form.
+ *
+ * Saves the composite field settings into the field config settings.
+ *
+ * @param string $entity_type
+ *   The name of the entity type.
+ * @param \Drupal\field\FieldConfigInterface $type
+ *   The field config.
+ * @param array $form
+ *   The form array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function oe_content_form_field_config_form_builder(string $entity_type, FieldConfigInterface $type, array &$form, FormStateInterface $form_state): void {
+  if ($form_state->getValue('composite')) {
+    $type->setThirdPartySetting('oe_content', 'composite', TRUE);
+  }
+  else {
+    $type->setThirdPartySetting('oe_content', 'composite', FALSE);
+  }
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function oe_content_entity_delete(EntityInterface $entity): void {
+  if (!$entity instanceof \Drupal\Core\Entity\FieldableEntityInterface) {
+    return;
+  }
+  /** @var \Drupal\Core\Field\FieldDefinitionInterface[] $field_definitions */
+  $field_definitions = \Drupal::service('entity_field.manager')->getFieldDefinitions($entity->getEntityTypeId(), $entity->bundle());
+  $applicable_field_types = ['entity_reference', 'entity_reference_revisions'];
+  foreach ($field_definitions as $key => $definition) {
+    if (!in_array($definition->getType(), $applicable_field_types)) {
+      continue;
+    }
+    if ($definition instanceof FieldConfigInterface && $definition->getThirdPartySetting('oe_content', 'composite', FALSE)) {
+      $referenced_entities = $entity->get($key)->referencedEntities();
+      /** @var \Drupal\Core\Entity\EntityInterface $referenced_entity */
+      foreach ($referenced_entities as $referenced_entity) {
+        if ($referenced_entity->id() !== $entity->id() && oe_content_referenced_entity_deletable($referenced_entity)) {
+          $referenced_entity->delete();
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Checks whether we can delete a referenced entity or not.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity being checked.
+ *
+ * @return bool
+ *   TRUE if the entity is not referneced anywhere else, FALSE otherwise.
+ */
+function oe_content_referenced_entity_deletable(EntityInterface $entity): bool {
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  // Getting fields which could have references to the entity
+  // we are trying to delete.
+  $fields = $entity_type_manager->getStorage('field_config')->loadByProperties([
+    'field_type' => 'entity_reference',
+  ]);
+  $fields = array_merge($fields, $entity_type_manager->getStorage('field_config')->loadByProperties([
+    'field_type' => 'entity_reference_revisions',
+  ]));
+  $field_referenced_to_entity = [];
+  /** @var \Drupal\field\FieldConfigInterface $field */
+  foreach ($fields as $field) {
+    $field_settings = $field->getSettings();
+    if ($field_settings['handler'] === 'default:' . $entity->getEntityTypeId()) {
+      $field_referenced_to_entity[$field->getTargetEntityTypeId()][] = $field->getName();
+    }
+  }
+
+  // If any other entity is referencing our entity, return FALSE;
+  foreach ($field_referenced_to_entity as $entity_type_id => $field_names) {
+    $query = $entity_type_manager->getStorage($entity_type_id)->getQuery('OR');
+    foreach ($field_names as $field_name) {
+      $query->condition($field_name, $entity->id());
+    }
+    $ids = $query->execute();
+    if ($ids) {
+      return FALSE;
+    }
+  }
+
+  // If we didn't find any entity referencing our entity, return TRUE.
+  return TRUE;
+}
+
+
