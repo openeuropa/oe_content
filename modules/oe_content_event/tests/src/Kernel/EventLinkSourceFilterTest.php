@@ -27,7 +27,6 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
    * Test that the event filter works as intended.
    */
   public function testEventLinkSourceFilter(): void {
-
     // Create an event that ended in the far past.
     $values = [
       'type' => 'oe_event',

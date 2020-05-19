@@ -13,7 +13,7 @@ use Drupal\oe_link_lists_internal_source\InternalLinkSourceFilterInterface;
 use Drupal\oe_link_lists_internal_source\InternalLinkSourceFilterPluginBase;
 
 /**
- * Event link source filter class.
+ * Event period link source filter class.
  *
  * @InternalLinkSourceFilter(
  *   id = "oe_content_event_period",
@@ -45,16 +45,6 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
     return [
       'period' => self::UPCOMING,
     ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isApplicable(string $entity_type, string $bundle): bool {
-    if (isset($this->pluginDefinition['entity_types'][$entity_type]) && in_array($bundle, $this->pluginDefinition['entity_types'][$entity_type])) {
-      return TRUE;
-    }
-    return FALSE;
   }
 
   /**
