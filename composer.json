@@ -12,6 +12,7 @@
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "~0.7",
         "openeuropa/oe_media": "^1.4",
+        "openeuropa/oe_time_caching": "^1.0.0",
         "php": ">=7.2"
     },
     "require-dev": {
@@ -19,6 +20,7 @@
         "drupal-composer/drupal-scaffold": "~2.5.2",
         "drupal/address": "~1.7",
         "drupal/config_devel": "~1.2",
+        "drupal/datetime_testing": "1.x-dev",
         "drupal/drupal-extension": "~4.0",
         "drupal/entity_embed": "~1.0",
         "drupal/entity_reference_revisions": "~1.3",

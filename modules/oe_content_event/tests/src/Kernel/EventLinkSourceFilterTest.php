@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_event\Kernel;
 
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\oe_content_event\Plugin\InternalLinkSourceFilter\EventPeriodFilter;
 
@@ -21,12 +23,21 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
   public static $modules = [
     'oe_link_lists',
     'oe_link_lists_internal_source',
+    'datetime_testing',
+    'oe_time_caching',
   ];
 
   /**
    * Test that the event filter works as intended.
    */
   public function testEventLinkSourceFilter(): void {
+    // Freeze the time at a specific point.
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
+    $time = $this->container->get('datetime.time');
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
+
     // Create an event that ended in the far past.
     $values = [
       'type' => 'oe_event',
@@ -81,9 +92,11 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $plugin = $plugin_manager->createInstance('oe_content_event_period', []);
 
     // Plugin applies to events.
-    $this->assertTrue($plugin->isApplicable('node', 'oe_event'));
+    $plugins = $plugin_manager->getApplicablePlugins('node', 'oe_event');
+    $this->assertTrue(reset($plugins) instanceof EventPeriodFilter);
     // Plugin does not apply to news.
-    $this->assertFalse($plugin->isApplicable('node', 'oe_news'));
+    $plugins = $plugin_manager->getApplicablePlugins('node', 'oe_news');
+    $this->assertEmpty($plugins);
 
     $cache = new CacheableMetadata();
     /** @var \Drupal\node\NodeStorage $storage */
@@ -98,6 +111,14 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       $future_event->id() => $future_event->id(),
     ];
     $this->assertEqual($query_results, $future_events);
+    // Time based caches have been added.
+    $date_cache_tags = [
+      'oe_time_caching_date:2020',
+      'oe_time_caching_date:2020-02',
+      'oe_time_caching_date:2020-02-17',
+      'oe_time_caching_date:2020-02-17-14',
+    ];
+    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
 
     // Configuring the filter for past events will only return finished events.
     $query = $storage->getQuery();
@@ -109,6 +130,26 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       $ancient_event->id() => $ancient_event->id(),
     ];
     $this->assertEqual($query_results, $past_events);
+
+    // If we move back in time, the query updates its results.
+    $static_time = new DrupalDateTime('2015-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $time->setTime($static_time->getTimestamp());
+    $cache = new CacheableMetadata();
+    $query = $storage->getQuery();
+    $plugin->apply($query, [], $cache);
+    $query_results = $query->execute();
+    $past_events = [
+      $ancient_event->id() => $ancient_event->id(),
+    ];
+    $this->assertEqual($query_results, $past_events);
+    $date_cache_tags = [
+      'oe_time_caching_date:2015',
+      'oe_time_caching_date:2015-02',
+      'oe_time_caching_date:2015-02-17',
+      'oe_time_caching_date:2015-02-17-14',
+    ];
+    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
+
   }
 
 }
