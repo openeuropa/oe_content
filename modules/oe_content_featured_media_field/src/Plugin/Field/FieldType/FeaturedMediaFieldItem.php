@@ -19,7 +19,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   category = @Translation("OpenEuropa"),
  *   description = @Translation("Stores a featured media item and caption."),
  *   default_formatter = "oe_featured_media_label",
- *   default_widget = "oe_featured_media_widget",
+ *   default_widget = "oe_featured_media_autocomplete",
  *   column_groups = {
  *     "target_id" = {
  *       "label" = @Translation("Media item"),

@@ -39,36 +39,9 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
   protected $field;
 
   /**
-   * The display options to use for the widget.
-   *
-   * @var array
-   */
-  protected $formDisplayOptions = [
-    'type' => 'oe_featured_media_widget',
-    'settings' => [
-      'match_operator' => 'CONTAINS',
-      'match_limit' => 10,
-      'size' => 60,
-    ],
-  ];
-
-  /**
-   * The display options to use for the formatter.
-   *
-   * @var array
-   */
-  protected $viewDisplayOptions = [
-    'type' => 'oe_featured_media_label',
-    'label' => 'above',
-    'settings' => [
-      'link' => TRUE,
-    ],
-  ];
-
-  /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'node',
     'field',
     'field_ui',
@@ -98,9 +71,8 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     $image->save();
 
     // Create a media entity of image media type.
-    $image_media_type = $this->container->get('entity_type.manager')->getStorage('media_type')->load('image');
     $media_entity = Media::create([
-      'bundle' => $image_media_type->id(),
+      'bundle' => 'image',
       'name' => 'Test image',
       'field_media_image' => [
         [
@@ -112,10 +84,9 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     ]);
     $media_entity->save();
 
-    // Create another media type and a media entity with it.
-    $test_media_type = $this->createMediaType('test');
+    // Create another media entity.
     $media_entity = Media::create([
-      'bundle' => $test_media_type->id(),
+      'bundle' => 'document',
       'name' => 'Test media',
     ]);
     $media_entity->save();
@@ -138,8 +109,8 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
         'handler' => 'default:media',
         'handler_settings' => [
           'target_bundles' => [
-            $image_media_type->id() => $image_media_type->id(),
-            $test_media_type->id() => $test_media_type->id(),
+            'image' => 'image',
+            'document' => 'document',
           ],
         ],
         'sort' => [
@@ -151,16 +122,33 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     ]);
     $this->field->save();
 
+    // Setup the display options for form and view.
+    $form_display_options = [
+      'type' => 'oe_featured_media_autocomplete',
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+        'match_limit' => 10,
+        'size' => 60,
+      ],
+    ];
+    $view_display_options = [
+      'type' => 'oe_featured_media_label',
+      'label' => 'above',
+      'settings' => [
+        'link' => TRUE,
+      ],
+    ];
+
     // Prepare the default form display for rendering.
     $display = \Drupal::service('entity_display.repository')
       ->getFormDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
-      ->setComponent($this->fieldStorage->getName(), $this->formDisplayOptions);
+      ->setComponent($this->fieldStorage->getName(), $form_display_options);
     $display->save();
 
     // Prepare the default view display for rendering.
     $display = \Drupal::service('entity_display.repository')
       ->getViewDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
-      ->setComponent($this->fieldStorage->getName(), $this->viewDisplayOptions);
+      ->setComponent($this->fieldStorage->getName(), $view_display_options);
     $display->save();
   }
 
@@ -179,9 +167,9 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     $assert_session->fieldExists('Caption');
 
     // Assert the help texts without media overview permission.
-    $assert_session->pageTextContains('Type part of the media name.');
-    $assert_session->pageTextNotContains('See the media list (opens a new window) to help locate media.');
-    $assert_session->pageTextContains('Allowed media types: Image');
+    $assert_session->pageTextContains('Start typing the name of the Media.');
+    $assert_session->pageTextNotContains('You can manage all the media items on this page.');
+    $assert_session->pageTextContains('Allowed media types: Image, Document');
 
     // Login with a user with extended permissions.
     $this->drupalLogin($this->drupalCreateUser([
@@ -193,9 +181,9 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     $this->drupalGet('node/add/page');
 
     // Assert the help texts with media overview permission.
-    $assert_session->pageTextContains('Type part of the media name.');
-    $assert_session->pageTextContains('See the media list (opens a new window) to help locate media.');
-    $assert_session->pageTextContains('Allowed media types: Image');
+    $assert_session->pageTextContains('Start typing the name of the Media.');
+    $assert_session->pageTextContains('You can manage all the media items on this page.');
+    $assert_session->pageTextContains('Allowed media types: Image, Document');
 
     // Test that the Media item field turns required once the Caption is filled.
     $this->assertFalse($page->findField('Media item')->hasAttribute('required'));
@@ -203,7 +191,7 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     $this->assertTrue($page->findField('Media item')->hasAttribute('required'));
 
     // Test the autocomplete functionality returns the created media items.
-    $this->doAutocomplete($this->fieldStorage->getName());
+    $this->doAutocomplete($this->fieldStorage->getName(), 'Test');
     $results = $page->findAll('css', '.ui-autocomplete li');
     $this->assertCount(2, $results);
     $assert_session->pageTextContains('Test image');
@@ -215,7 +203,7 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     $page->pressButton('Save');
 
     // Assert the label and values are visible on the node page.
-    $assert_session->pageTextContains('Featured media field');
+    $assert_session->pageTextContains('Featured media');
     $assert_session->pageTextContains('Test image');
     $assert_session->pageTextContains('Caption text');
   }
@@ -225,10 +213,12 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
    *
    * @param string $field_name
    *   The field name.
+   * @param string $value
+   *   The value to look for.
    */
-  protected function doAutocomplete(string $field_name): void {
+  protected function doAutocomplete(string $field_name, string $value): void {
     $autocomplete_field = $this->getSession()->getPage()->findField($field_name . '[0][featured_media][target_id]');
-    $autocomplete_field->setValue('Test');
+    $autocomplete_field->setValue($value);
     $this->getSession()->getDriver()->keyDown($autocomplete_field->getXpath(), ' ');
     $this->assertSession()->waitOnAutocomplete();
   }

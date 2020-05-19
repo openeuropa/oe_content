@@ -10,10 +10,6 @@ use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceLabelFormatter;
 /**
  * Plugin implementation of the 'Featured media as label' formatter.
  *
- * This is a default formatter for 'oe_featured_media' field type.
- * In oe_theme the formatter won't be used, we take care of the rendering
- * through preprocess hooks in a content type companion module.
- *
  * @FieldFormatter(
  *   id = "oe_featured_media_label",
  *   label = @Translation("Label"),
@@ -23,7 +19,7 @@ use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceLabelFormatter;
  *   }
  * )
  */
-class FeaturedMediaFieldFormatter extends EntityReferenceLabelFormatter {
+class FeaturedMediaFieldLabelFormatter extends EntityReferenceLabelFormatter {
 
   /**
    * {@inheritdoc}

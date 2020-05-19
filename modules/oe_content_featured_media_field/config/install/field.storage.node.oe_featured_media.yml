@@ -3,10 +3,9 @@ status: true
 dependencies:
   module:
     - media
-    - node
     - oe_content_featured_media_field
-id: node.oe_featured_media_field
-field_name: oe_featured_media_field
+id: node.oe_featured_media
+field_name: oe_featured_media
 entity_type: node
 type: oe_featured_media
 settings:
