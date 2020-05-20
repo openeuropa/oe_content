@@ -83,9 +83,18 @@ class FeaturedMediaAutocompleteWidget extends EntityReferenceAutocompleteWidget 
     unset($element['featured_media']['target_id']['#title_display']);
     $element['featured_media']['target_id']['#title'] = $this->t('Media item');
     $element['featured_media']['target_id']['#description'] = $this->getMediaReferenceHelpText($element['featured_media']['target_id']['#selection_settings']);
+
+    $parents = $form['#parents'];
+    if ($parents) {
+      $first_parent = array_shift($parents);
+      $name = $first_parent . '[' . implode('][', $parents) . '][' . $this->fieldDefinition->getName() . '][' . $delta . '][featured_media][caption]';
+    }
+    else {
+      $name = $this->fieldDefinition->getName() . '[' . $delta . '][featured_media][caption]';
+    }
     $element['featured_media']['target_id']['#states'] = [
       'required' => [
-        ':input[name="' . $this->fieldDefinition->getName() . '[' . $delta . '][featured_media][caption]"]' => ['filled' => TRUE],
+        ':input[name="' . $name . '"]' => ['filled' => TRUE],
       ],
     ];
 
