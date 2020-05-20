@@ -19,7 +19,7 @@ use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceLabelFormatter;
  *   }
  * )
  */
-class FeaturedMediaFieldLabelFormatter extends EntityReferenceLabelFormatter {
+class FeaturedMediaLabelFormatter extends EntityReferenceLabelFormatter {
 
   /**
    * {@inheritdoc}
@@ -32,7 +32,7 @@ class FeaturedMediaFieldLabelFormatter extends EntityReferenceLabelFormatter {
     foreach ($parent_elements as $delta => $parent_element) {
       $elements[$delta]['featured_media'] = $parent_element;
       // Simply add the caption as the next element after the media link.
-      $elements[]['caption'] = [
+      $elements[$delta]['featured_media']['caption'] = [
         '#plain_text' => $items[$delta]->caption,
       ];
     }

@@ -41,13 +41,6 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
   protected $mediaEntity;
 
   /**
-   * The entity view display used for test.
-   *
-   * @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface
-   */
-  protected $display;
-
-  /**
    * {@inheritdoc}
    */
   public static $modules = [
@@ -139,19 +132,6 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
       'required' => FALSE,
     ]);
     $this->field->save();
-
-    // Prepare the default view display for rendering.
-    $display_options = [
-      'type' => 'oe_featured_media_label',
-      'label' => 'above',
-      'settings' => [
-        'link' => TRUE,
-      ],
-    ];
-    $this->display = $this->container->get('entity_display.repository')
-      ->getViewDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
-      ->setComponent($this->fieldStorage->getName(), $display_options);
-    $this->display->save();
   }
 
   /**
@@ -189,11 +169,22 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
     $this->assertEquals($expected, $node->get('featured_media_field')->getValue());
 
     // Test the rendering of the formatter with the test node.
-    $build = $this->display->build($node);
+    // Prepare the default view display for rendering.
+    $display_options = [
+      'type' => 'oe_featured_media_label',
+      'label' => 'above',
+      'settings' => [
+        'link' => TRUE,
+      ],
+    ];
+    $display = $this->container->get('entity_display.repository')
+      ->getViewDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
+      ->setComponent($this->fieldStorage->getName(), $display_options);
+    $display->save();
+    $build = $display->build($node);
     $output = $this->container->get('renderer')->renderRoot($build);
     $this->assertContains('<div>Featured media field</div>', (string) $output);
-    $this->assertContains('<div><a href="/media/' . $this->mediaEntity->id() . '/edit" hreflang="en">Test image</a></div>', (string) $output);
-    $this->assertContains('<div>Image caption text</div>', (string) $output);
+    $this->assertContains('<div><a href="/media/' . $this->mediaEntity->id() . '/edit" hreflang="en">Test image</a>Image caption text</div>', (string) $output);
 
     // Test empty featured media.
     $values = [

@@ -32,7 +32,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   list_class = "\Drupal\Core\Field\EntityReferenceFieldItemList"
  * )
  */
-class FeaturedMediaFieldItem extends EntityReferenceItem {
+class FeaturedMediaItem extends EntityReferenceItem {
 
   /**
    * {@inheritdoc}

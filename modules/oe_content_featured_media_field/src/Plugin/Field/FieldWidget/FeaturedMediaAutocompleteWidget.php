@@ -104,7 +104,6 @@ class FeaturedMediaAutocompleteWidget extends EntityReferenceAutocompleteWidget 
       '#type' => 'textarea',
       '#default_value' => $items[$delta]->caption,
       '#rows' => 2,
-      '#weight' => $delta,
     ];
 
     return $element;
