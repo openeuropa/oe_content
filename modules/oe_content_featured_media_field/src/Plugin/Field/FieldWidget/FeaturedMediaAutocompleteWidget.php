@@ -75,10 +75,10 @@ class FeaturedMediaAutocompleteWidget extends EntityReferenceAutocompleteWidget 
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $element['featured_media'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Featured media'),
     ];
 
     $element['featured_media'] += parent::formElement($items, $delta, $element, $form, $form_state);
+    $element['featured_media']['#title'] = $element['featured_media']['target_id']['#title'];
     // Unset title_display to ensure the element title is always visible.
     unset($element['featured_media']['target_id']['#title_display']);
     $element['featured_media']['target_id']['#title'] = $this->t('Media item');
