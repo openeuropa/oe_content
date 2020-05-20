@@ -125,11 +125,11 @@ function oe_content_form_field_config_edit_form_alter(&$form, FormStateInterface
   $form['composite'] = [
     '#type' => 'radios',
     '#title' => t('Composite field'),
-    '#description' => t('Making this field a composite field will delete any referenced entity if the referencing entity is deleted (only if the referenced entity is not referenced by some other entity).'),
-    '#default_value' => $field_config->getThirdPartySetting('oe_content', 'composite') ? 1 : 0,
+    '#description' => t('Composite reference fields ensure that referenced entities get deleted when the referencing entity is deleted..'),
+    '#default_value' => $field_config->getThirdPartySetting('oe_content', 'composite') ?? FALSE,
     '#options' => [
-      1 => t('Enabled'),
-      0 => t('Disabled'),
+      TRUE => t('Enabled'),
+      FALSE => t('Disabled'),
     ],
   ];
 
@@ -152,12 +152,7 @@ function oe_content_form_field_config_edit_form_alter(&$form, FormStateInterface
  *   The form state.
  */
 function oe_content_form_field_config_form_builder(string $entity_type, FieldConfigInterface $field_config, array &$form, FormStateInterface $form_state): void {
-  if ($form_state->getValue('composite')) {
-    $field_config->setThirdPartySetting('oe_content', 'composite', TRUE);
-  }
-  else {
-    $field_config->setThirdPartySetting('oe_content', 'composite', FALSE);
-  }
+  $field_config->setThirdPartySetting('oe_content', 'composite', (bool) $form_state->getValue('composite'));
 }
 
 /**
