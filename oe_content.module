@@ -126,10 +126,10 @@ function oe_content_form_field_config_edit_form_alter(&$form, FormStateInterface
     '#type' => 'radios',
     '#title' => t('Composite field'),
     '#description' => t('Composite reference fields ensure that referenced entities get deleted when the referencing entity is deleted..'),
-    '#default_value' => $field_config->getThirdPartySetting('oe_content', 'composite') ?? FALSE,
+    '#default_value' => $field_config->getThirdPartySetting('oe_content', 'composite') ?? 0,
     '#options' => [
-      TRUE => t('Enabled'),
-      FALSE => t('Disabled'),
+      1 => t('Enabled'),
+      0 => t('Disabled'),
     ],
   ];
 
