@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_content\Functional;
 
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\oe_content\Traits\CompositeReferenceTestTrait;
 
 /**
  * Functional tests for composite reference configuration forms.
@@ -14,6 +15,7 @@ use Drupal\Tests\BrowserTestBase;
  */
 class CompositeReferenceConfigurationTest extends BrowserTestBase {
 
+  use CompositeReferenceTestTrait;
   /**
    * {@inheritdoc}
    */
@@ -24,6 +26,7 @@ class CompositeReferenceConfigurationTest extends BrowserTestBase {
     'field',
     'user',
     'oe_content',
+    'entity_reference_revisions',
   ];
 
   /**
@@ -39,40 +42,23 @@ class CompositeReferenceConfigurationTest extends BrowserTestBase {
 
   /**
    * Asserts that field forms have the composite option if applicable.
+   *
+   * @dataProvider compositeFieldDefinitions
    */
-  public function testCompositeReferenceConfiguration(): void {
+  public function testCompositeReferenceConfiguration(string $field_name, string $field_label, bool $revisions): void {
     $entity_type_manager = \Drupal::entityTypeManager();
     // Create a content type.
     $node_type = $entity_type_manager->getStorage('node_type')->create(['name' => 'Test content type', 'type' => 'test_ct']);
     $node_type->save();
 
     // Create an entity reference field.
-    $entity_type_manager->getStorage('field_storage_config')->create([
-      'entity_type' => 'node',
-      'field_name' => 'entity_reference_field',
-      'type' => 'entity_reference',
-      'cardinality' => 1,
-    ])->save();
-    /** @var \Drupal\field\FieldConfigInterface $entity_reference_field */
-    $entity_reference_field = $entity_type_manager->getStorage('field_config')->create([
-      'entity_type' => 'node',
-      'field_name' => 'entity_reference_field',
-      'bundle' => $node_type->id(),
-      'label' => 'Entity reference field',
-      'translatable' => FALSE,
-      'settings' => [
-        'handler' => 'default:node',
-        'handler_settings' => [
-          'target_bundles' => [
-            'test_ct' => 'test_ct',
-          ],
-        ],
+    $entity_reference_field = $this->createEntityReferenceField('node', $node_type->id(), $field_name, $field_label, 'node', 'default', [
+      'target_bundles' => [
+        $node_type->id() => $node_type->id(),
       ],
-    ]);
-    $entity_reference_field->save();
+    ], 1, $revisions);
 
     // Create a text field.
-    // Create an entity reference field.
     $entity_type_manager->getStorage('field_storage_config')->create([
       'entity_type' => 'node',
       'field_name' => 'text_field',
@@ -99,7 +85,7 @@ class CompositeReferenceConfigurationTest extends BrowserTestBase {
     // option is available.
     $url = Url::fromRoute("entity.field_config.node_field_edit_form", ['node_type' => $node_type->id(), 'field_config' => $entity_reference_field->id()]);
     $this->drupalGet($url);
-    $this->assertSession()->pageTextContains('Entity reference field settings for Test content type');
+    $this->assertSession()->pageTextContains($field_label . ' settings for Test content type');
     $this->assertSession()->pageTextContains('Composite field');
     // The configuration is disabled by default.
     $this->assertSession()->checkboxChecked('Disabled');
@@ -108,9 +94,12 @@ class CompositeReferenceConfigurationTest extends BrowserTestBase {
     $this->getSession()->getPage()->selectFieldOption('composite', '1');
     $this->getSession()->getPage()->pressButton('Save settings');
 
-    // Reload the page and assert the changes where saved.
+    // Load the field configuration and assert the changes where saved.
+    $entity_reference_field = $entity_type_manager->getStorage('field_config')->load($entity_reference_field->id());
+    $this->assertEqual($entity_reference_field->getThirdPartySetting('oe_content', 'composite'), TRUE);
+    // Reload the page and assert the changes are reflected.
     $this->drupalGet($url);
-    $this->assertSession()->pageTextContains('Entity reference field settings for Test content type');
+    $this->assertSession()->pageTextContains($field_label . ' settings for Test content type');
     $this->assertSession()->pageTextContains('Composite field');
     // The configuration is enabled.
     $this->assertSession()->checkboxNotChecked('Disabled');
