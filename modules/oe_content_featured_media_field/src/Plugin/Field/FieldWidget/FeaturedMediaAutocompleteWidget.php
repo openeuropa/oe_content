@@ -79,7 +79,11 @@ class FeaturedMediaAutocompleteWidget extends EntityReferenceAutocompleteWidget 
 
     $element['featured_media'] += parent::formElement($items, $delta, $element, $form, $form_state);
     $element['featured_media']['#title'] = $element['featured_media']['target_id']['#title'];
-    // Unset title_display to ensure the element title is always visible.
+    $element['featured_media']['#title_display'] = $element['#title_display'];
+    $element['featured_media']['#description'] = $element['#description'];
+    // We don't want the title of the inner element inherit the #title_display
+    // property of the parent entity reference so it doesn't get hidden on
+    // multi-value fields.
     unset($element['featured_media']['target_id']['#title_display']);
     $element['featured_media']['target_id']['#title'] = $this->t('Media item');
     $element['featured_media']['target_id']['#description'] = $this->getMediaReferenceHelpText($element['featured_media']['target_id']['#selection_settings']);
@@ -92,11 +96,16 @@ class FeaturedMediaAutocompleteWidget extends EntityReferenceAutocompleteWidget 
     else {
       $name = $this->fieldDefinition->getName() . '[' . $delta . '][featured_media][caption]';
     }
-    $element['featured_media']['target_id']['#states'] = [
-      'required' => [
-        ':input[name="' . $name . '"]' => ['filled' => TRUE],
-      ],
-    ];
+
+    // If the field is not marked as required, we mark the reference field as
+    // required if the user starts typing in the caption.
+    if (!$element['#required']) {
+      $element['featured_media']['target_id']['#states'] = [
+        'required' => [
+          ':input[name="' . $name . '"]' => ['filled' => TRUE],
+        ],
+      ];
+    }
 
     $element['featured_media']['caption'] = [
       '#title' => $this->t('Caption'),
@@ -104,6 +113,7 @@ class FeaturedMediaAutocompleteWidget extends EntityReferenceAutocompleteWidget 
       '#type' => 'textarea',
       '#default_value' => $items[$delta]->caption,
       '#rows' => 2,
+      '#required' => $element['#required'],
     ];
 
     return $element;
