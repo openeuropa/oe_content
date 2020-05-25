@@ -86,12 +86,10 @@ class CompositeReferenceConfigurationTest extends BrowserTestBase {
     $url = Url::fromRoute("entity.field_config.node_field_edit_form", ['node_type' => $node_type->id(), 'field_config' => $entity_reference_field->id()]);
     $this->drupalGet($url);
     $this->assertSession()->pageTextContains($field_label . ' settings for Test content type');
-    $this->assertSession()->pageTextContains('Composite field');
     // The configuration is disabled by default.
-    $this->assertSession()->checkboxChecked('Disabled');
-    $this->assertSession()->checkboxNotChecked('Enabled');
+    $this->assertSession()->checkboxNotChecked('Composite field');
     // Enable the composite reference and save it.
-    $this->getSession()->getPage()->selectFieldOption('composite', '1');
+    $this->getSession()->getPage()->checkField('Composite field');
     $this->getSession()->getPage()->pressButton('Save settings');
 
     // Load the field configuration and assert the changes where saved.
@@ -100,10 +98,8 @@ class CompositeReferenceConfigurationTest extends BrowserTestBase {
     // Reload the page and assert the changes are reflected.
     $this->drupalGet($url);
     $this->assertSession()->pageTextContains($field_label . ' settings for Test content type');
-    $this->assertSession()->pageTextContains('Composite field');
     // The configuration is enabled.
-    $this->assertSession()->checkboxNotChecked('Disabled');
-    $this->assertSession()->checkboxChecked('Enabled');
+    $this->assertSession()->checkboxChecked('Composite field');
   }
 
 }
