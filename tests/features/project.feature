@@ -24,8 +24,8 @@ Feature: Project content creation
     # Optional fields.
     And I fill in "Summary" with "Summary text"
     And I fill in "Reference" with "Reference text"
-    And I set "23-02-2019 02:15" as the "Start date" of "Project period"
-    And I set "23-02-2019 14:15" as the "End date" of "Project period"
+    And I set "23-02-2019" as the "Start date" of "Project period"
+    And I set "23-02-2019" as the "End date" of "Project period"
     And I fill in "Overall budget" with "1000" in the "Budget" region
     And I fill in "EU contribution" with "200" in the "Budget" region
     And I fill in "URL" with "http://ec.europa.eu" in the "Project Website" region

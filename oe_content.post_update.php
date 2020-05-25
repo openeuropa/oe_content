@@ -140,7 +140,7 @@ function oe_content_post_update_00005(): void {
 
   // Obtain the storage manager for field storage bases,
   // Create a new field from the yaml configuration and save.
-  \Drupal::entityManager()->getStorage('field_storage_config')
+  \Drupal::entityTypeManager()->getStorage('field_storage_config')
     ->create($storage->read('field.storage.node.oe_reference'))
     ->save();
 }

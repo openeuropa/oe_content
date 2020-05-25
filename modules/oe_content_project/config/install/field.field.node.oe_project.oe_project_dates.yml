@@ -11,7 +11,7 @@ field_name: oe_project_dates
 entity_type: node
 bundle: oe_project
 label: 'Project period'
-description: 'If project has no end date leave it empty or use the same start date value'
+description: 'If the project has no end date enter the same value as the start date.'
 required: false
 translatable: false
 default_value: {  }

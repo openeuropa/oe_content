@@ -80,6 +80,7 @@ class DateFieldContext extends RawDrupalContext {
    * Set the date and time value of a datelist date range widget.
    *
    * When I set "22-02-2019 02:30" as the "Start date" of "My date field"
+   * When I set "22-02-2019" as the "Start date" of "My date field"
    *
    * @param string $field_item
    *   The date field item inside the field component.
@@ -102,24 +103,24 @@ class DateFieldContext extends RawDrupalContext {
       $field_selector = reset($field_selector);
     }
 
-    $date = DrupalDateTime::createFromFormat('d-m-Y H:i', $value, 'UTC');
+    // Make sure that the step supports "Date only" and "Date and time" inputs.
     $date_components = [
       'Day' => 'd',
       'Month' => 'n',
       'Year' => 'Y',
-      'Hour' => 'G',
-      'Minute' => 'i',
     ];
+    try {
+      $date = DrupalDateTime::createFromFormat('d-m-Y', $value, 'UTC');
+    }
+    catch (\InvalidArgumentException $e) {
+      $date_components += [
+        'Hour' => 'G',
+        'Minute' => 'i',
+      ];
+      $date = DrupalDateTime::createFromFormat('d-m-Y H:i', $value, 'UTC');
+    }
+
     foreach ($date_components as $date_component => $date_component_format) {
-      // This function receive datetime text input like "23-02-2019 14:15".
-      // It set each element list date format (One HTML <select> for one element
-      // like : Year, Month, Day..)
-      // Sometimes, as in the actual case, we don't have Hour and Minutes so the
-      // IF statement is to manage cases that the <select> of Hour and Minute
-      // does not exist.
-      if (!$field_selector->hasSelect($date_component)) {
-        continue;
-      }
       // For avoiding usage of minutes with leading zero sign,
       // we use casting to integer.
       $field_selector->selectFieldOption($date_component, (integer) $date->format($date_component_format));
