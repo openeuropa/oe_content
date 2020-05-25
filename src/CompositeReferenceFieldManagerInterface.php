@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 
 /**
- * Interface for CompositeReferenceFieldManager classes.
+ * Defines composite reference field managers.
  *
  * @package Drupal\oe_content
  */
@@ -26,13 +26,13 @@ interface CompositeReferenceFieldManagerInterface {
   public function getReferencingEntities(EntityInterface $entity): array;
 
   /**
-   * Deletes the entities referenced in a field for a given entity.
+   * Reacts to the deletion of an entity and deletes its composite references.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The referencing entity.
    * @param \Drupal\Core\Field\FieldDefinitionInterface $field_definition
    *   The definition of the field to remove references from.
    */
-  public function deleteCompositeReferences(EntityInterface $entity, FieldDefinitionInterface $field_definition): void;
+  public function onDelete(EntityInterface $entity, FieldDefinitionInterface $field_definition): void;
 
 }

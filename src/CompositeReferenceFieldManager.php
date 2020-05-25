@@ -38,33 +38,33 @@ class CompositeReferenceFieldManager implements CompositeReferenceFieldManagerIn
    */
   public function getReferencingEntities(EntityInterface $entity): array {
     $referencing_entities = [];
-    // Getting all fields which could have references to the given entity.
-    $fields = $this->entityTypeManager->getStorage('field_config')->loadByProperties([
-      'field_type' => 'entity_reference',
-    ]);
-    $fields = array_merge($fields, $this->entityTypeManager->getStorage('field_config')->loadByProperties([
-      'field_type' => 'entity_reference_revisions',
-    ]));
+    // Get all entity reference fields.
+    $field_config_storage = $this->entityTypeManager->getStorage('field_config');
+    $entity_reference_field_ids = $field_config_storage->getQuery()
+      ->condition('field_type', ['entity_reference', 'entity_reference_revisions'], 'IN')
+      ->execute();
+    $entity_reference_fields = $field_config_storage->loadMultiple($entity_reference_field_ids);
 
-    // Only check fields that handle the given entity type.
-    $field_referenced_to_entity = [];
+    // Only use fields that reference the given entity's type.
+    $fields_referencing_entity_type = [];
     /** @var \Drupal\field\FieldConfigInterface $field */
-    foreach ($fields as $field) {
+    foreach ($entity_reference_fields as $field) {
       $field_settings = $field->getSettings();
       if ($field_settings['handler'] === 'default:' . $entity->getEntityTypeId()) {
-        $field_referenced_to_entity[$field->getTargetEntityTypeId()][] = $field->getName();
+        $fields_referencing_entity_type[$field->getTargetEntityTypeId()][] = $field->getName();
       }
     }
 
     // Load all entities that have a reference to the given entity.
-    foreach ($field_referenced_to_entity as $entity_type_id => $field_names) {
-      $query = $this->entityTypeManager->getStorage($entity_type_id)->getQuery('OR');
+    foreach ($fields_referencing_entity_type as $field_entity_type_id => $field_names) {
+      $entity_type_storage = $this->entityTypeManager->getStorage($field_entity_type_id);
+      $query = $entity_type_storage->getQuery('OR');
       foreach ($field_names as $field_name) {
         $query->condition($field_name, $entity->id());
       }
       $ids = $query->execute();
       if ($ids) {
-        $referencing_entities = array_merge($referencing_entities, $ids);
+        $referencing_entities = array_merge($referencing_entities, $entity_type_storage->loadMultiple($ids));
       }
     }
     return $referencing_entities;
@@ -73,7 +73,7 @@ class CompositeReferenceFieldManager implements CompositeReferenceFieldManagerIn
   /**
    * {@inheritdoc}
    */
-  public function deleteCompositeReferences(EntityInterface $entity, FieldDefinitionInterface $field_definition): void {
+  public function onDelete(EntityInterface $entity, FieldDefinitionInterface $field_definition): void {
     if ($field_definition instanceof FieldConfigInterface && $field_definition->getThirdPartySetting('oe_content', 'composite', FALSE)) {
       $referenced_entities = $entity->get($field_definition->getName())->referencedEntities();
       /** @var \Drupal\Core\Entity\EntityInterface $referenced_entity */

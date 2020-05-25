@@ -125,7 +125,7 @@ function oe_content_form_field_config_edit_form_alter(&$form, FormStateInterface
   $form['composite'] = [
     '#type' => 'radios',
     '#title' => t('Composite field'),
-    '#description' => t('Composite reference fields ensure that referenced entities get deleted when the referencing entity is deleted..'),
+    '#description' => t('Composite reference fields ensure that referenced entities get deleted when the referencing entity is deleted.'),
     '#default_value' => $field_config->getThirdPartySetting('oe_content', 'composite') ?? 0,
     '#options' => [
       1 => t('Enabled'),
@@ -173,6 +173,6 @@ function oe_content_entity_delete(EntityInterface $entity): void {
     if (!in_array($definition->getType(), $applicable_field_types)) {
       continue;
     }
-    $composite_reference_field_manager->deleteCompositeReferences($entity, $definition);
+    $composite_reference_field_manager->onDelete($entity, $definition);
   }
 }
