@@ -72,28 +72,8 @@ trait CompositeReferenceTestTrait {
       ],
     ]);
     $reference_field->save();
-    return $reference_field;
-  }
 
-  /**
-   * Entity reference field definition provider.
-   *
-   * @return array
-   *   An array of entity reference definitions.
-   */
-  public function compositeFieldDefinitions(): array {
-    return [
-      [
-        'entity_reference_field',
-        'Entity reference field',
-        FALSE,
-      ],
-      [
-        'entity_reference_revisions_field',
-        'Entity reference revisions field',
-        TRUE,
-      ],
-    ];
+    return $reference_field;
   }
 
 }
