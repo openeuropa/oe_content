@@ -111,18 +111,20 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       $future_event->id() => $future_event->id(),
     ];
     $this->assertEqual($query_results, $future_events);
-    // Time based caches have been added.
+    // Time based caches have been added and they correspond to the closest
+    // upcoming event start date.
     $date_cache_tags = [
-      'oe_time_caching_date:2020',
-      'oe_time_caching_date:2020-02',
-      'oe_time_caching_date:2020-02-17',
-      'oe_time_caching_date:2020-02-17-14',
+      'oe_time_caching_date:2050',
+      'oe_time_caching_date:2050-05',
+      'oe_time_caching_date:2050-05-10',
+      'oe_time_caching_date:2050-05-10-12',
     ];
     $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
 
     // Configuring the filter for past events will only return finished events.
     $query = $storage->getQuery();
     $plugin->setConfiguration(['period' => EventPeriodFilter::PAST]);
+    $cache = new CacheableMetadata();
     $plugin->apply($query, [], $cache);
     $query_results = $query->execute();
     $past_events = [
@@ -130,6 +132,15 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       $ancient_event->id() => $ancient_event->id(),
     ];
     $this->assertEqual($query_results, $past_events);
+    // Time based caches have been added and they correspond to the closest
+    // event end date.
+    $date_cache_tags = [
+      'oe_time_caching_date:2050',
+      'oe_time_caching_date:2050-05',
+      'oe_time_caching_date:2050-05-15',
+      'oe_time_caching_date:2050-05-15-12',
+    ];
+    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
 
     // If we move back in time, the query updates its results.
     $static_time = new DrupalDateTime('2015-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
@@ -142,14 +153,15 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       $ancient_event->id() => $ancient_event->id(),
     ];
     $this->assertEqual($query_results, $past_events);
+    // Time based caches have been added and they correspond to the closest
+    // event end date.
     $date_cache_tags = [
-      'oe_time_caching_date:2015',
-      'oe_time_caching_date:2015-02',
-      'oe_time_caching_date:2015-02-17',
-      'oe_time_caching_date:2015-02-17-14',
+      'oe_time_caching_date:2016',
+      'oe_time_caching_date:2016-05',
+      'oe_time_caching_date:2016-05-15',
+      'oe_time_caching_date:2016-05-15-12',
     ];
     $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
-
   }
 
 }

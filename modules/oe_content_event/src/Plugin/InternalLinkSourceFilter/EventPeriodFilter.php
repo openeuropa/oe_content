@@ -7,6 +7,7 @@ namespace Drupal\oe_content_event\Plugin\InternalLinkSourceFilter;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -57,6 +58,13 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
   protected $time;
 
   /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
@@ -78,11 +86,14 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
    *   The time based cache generator.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   The system time.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeBasedCacheTagGeneratorInterface $time_based_cache_tag_generator, TimeInterface $time) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeBasedCacheTagGeneratorInterface $time_based_cache_tag_generator, TimeInterface $time, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->timeBasedCacheTagGenerator = $time_based_cache_tag_generator;
     $this->time = $time;
+    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -94,7 +105,8 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
       $plugin_id,
       $plugin_definition,
       $container->get('oe_time_caching.time_based_cache_tag_generator'),
-      $container->get('datetime.time')
+      $container->get('datetime.time'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -106,16 +118,32 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
     $current_time = $this->time->getCurrentTime();
     $now->setTimestamp($current_time);
     $now->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
-    $cacheability->addCacheTags($this->timeBasedCacheTagGenerator->generateTags($now->getPhpDateTime()));
     switch ($this->getConfiguration()['period']) {
       case self::PAST:
         $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), "<");
         $query->sort('oe_event_dates.end_value', 'DESC');
+        // Time based cache tags need to be invalidated when a new event
+        // ends so find out which event is going to end next and extract
+        // its end date.
+        $results = $this->entityTypeManager->getStorage('node')->getQuery()
+          ->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">")
+          ->sort('oe_event_dates.end_value', 'ASC')
+          ->execute();
+        $next_ending_event = $this->entityTypeManager->getStorage('node')->load(reset($results));
+        $next_ending_event_datetime = new DrupalDateTime($next_ending_event->oe_event_dates->end_value, new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
+        $cacheability->addCacheTags($this->timeBasedCacheTagGenerator->generateTags($next_ending_event_datetime->getPhpDateTime()));
         break;
 
       case self::UPCOMING:
         $query->condition('oe_event_dates.value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">");
         $query->sort('oe_event_dates.value', 'ASC');
+        // Time based cache tags need to be invalidated when the next
+        // upcoming event starts so execute the query and extract the
+        // starting date of the first event in the list.
+        $results = $query->execute();
+        $next_starting_event = $this->entityTypeManager->getStorage('node')->load(reset($results));
+        $next_starting_event_datetime = new DrupalDateTime($next_starting_event->oe_event_dates->value, new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
+        $cacheability->addCacheTags($this->timeBasedCacheTagGenerator->generateTags($next_starting_event_datetime->getPhpDateTime()));
         break;
     }
   }
