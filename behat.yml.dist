@@ -23,6 +23,7 @@ default:
               News creation: 'node/add/oe_news'
               Event creation: 'node/add/oe_event'
               Policy creation: 'node/add/oe_policy'
+              Project creation: 'node/add/oe_project'
               Publication creation: 'node/add/oe_publication'
               AV Portal photo creation: 'media/add/av_portal_photo'
               document creation: 'media/add/document'
@@ -53,6 +54,11 @@ default:
         content owner form element: ".field--name-oe-content-content-owner"
         Online link: "#edit-oe-event-online-link-0"
         Website: "#edit-oe-event-website-0"
+        Project Website: "#edit-oe-project-website-0"
+        Alternative titles and teaser : "#edit-group-alternative-titles-teaser"
+        Budget : "#edit-group-budget"
+        Result : "#edit-group-result"
+        Call for proposals: "#oe-project-calls-values"
         Social media links: "#oe-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
         Event report: "#edit-group-report"

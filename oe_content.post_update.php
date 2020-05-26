@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Utility\UpdateException;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\user\Entity\Role;
@@ -128,4 +129,18 @@ function oe_content_post_update_00004(): void {
       $role->save();
     }
   }
+}
+
+/**
+ * Update field storage with oe_reference.
+ */
+function oe_content_post_update_00005(): void {
+  // Obtain configuration from yaml files.
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content') . '/config/post_updates/00005_add_oe_reference_storage_field');
+
+  // Obtain the storage manager for field storage bases,
+  // Create a new field from the yaml configuration and save.
+  \Drupal::entityTypeManager()->getStorage('field_storage_config')
+    ->create($storage->read('field.storage.node.oe_reference'))
+    ->save();
 }
