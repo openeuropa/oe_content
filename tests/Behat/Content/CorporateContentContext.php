@@ -8,6 +8,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Testwork\Call\CallResults;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterParseEntityFieldsScope;
+use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterSaveEntityScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeSaveEntityScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\EntityAwareHookScopeInterface;
@@ -85,6 +86,10 @@ class CorporateContentContext extends RawDrupalContext {
 
     $entity->save();
 
+    // Dispatch after save hook.
+    $scope = new AfterSaveEntityScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $entity);
+    $this->dispatchEntityAwareHook($scope);
+
     // Make sure that the created entities are tracked and can be cleaned up.
     $this->entities[] = $entity;
 
@@ -160,6 +165,10 @@ class CorporateContentContext extends RawDrupalContext {
     $this->dispatchEntityAwareHook($scope);
 
     $entity->save();
+
+    // Dispatch after save hook.
+    $scope = new AfterSaveEntityScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $entity);
+    $this->dispatchEntityAwareHook($scope);
 
     // Clears the static cache of DatabaseCacheTagsChecksum.
     // Static caches are typically cleared at the end of the request since a
