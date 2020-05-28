@@ -6,4 +6,4 @@ services:
     arguments: ['@config.factory']
   oe_content.composite_reference_field_manager:
     class: Drupal\oe_content\CompositeReferenceFieldManager
-    arguments: ['@entity_type.manager']
+    arguments: ['@entity_type.manager', '@entity_field.manager']
