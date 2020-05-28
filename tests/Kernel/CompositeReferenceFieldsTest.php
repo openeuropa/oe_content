@@ -10,7 +10,7 @@ use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
 /**
  * Tests composite reference fields.
  */
-class CompositeFieldsTest extends RdfKernelTestBase {
+class CompositeReferenceFieldsTest extends RdfKernelTestBase {
 
   use CompositeReferenceTestTrait;
 
@@ -46,7 +46,7 @@ class CompositeFieldsTest extends RdfKernelTestBase {
   /**
    * Test the composite option of entity reference fields.
    */
-  public function testCompositeOption(): void {
+  public function testCompositeReferenceFields(): void {
     $entity_type_manager = $this->container->get('entity_type.manager');
     // Create a test content type.
     $type = $entity_type_manager->getStorage('node_type')->create(['name' => 'Test content type', 'type' => 'test_ct']);
@@ -86,11 +86,9 @@ class CompositeFieldsTest extends RdfKernelTestBase {
       $referenced_node = $node_storage->create($values);
       $referenced_node->save();
 
-      // Assert that while an entity reference field is not composite,
-      // deleting a node will not delete any entities that it may be
-      // referencing.
-      // Create a node that references the first node
-      // and delete it right after.
+      // Assert that while an entity reference field is not composite, deleting
+      // a node will not delete any entities that it may be referencing.
+      // Create a node that references the first node and delete it right after.
       $values = [
         'type' => $type->id(),
         'title' => 'Referencing node',
@@ -105,15 +103,15 @@ class CompositeFieldsTest extends RdfKernelTestBase {
       $referencing_node->save();
       $referencing_node->delete();
 
-      // Reload the referenced node and assert it was not deleted because
-      // the entity reference field is not composite yet.
+      // Reload the referenced node and assert it was not deleted because the
+      // entity reference field is not composite yet.
       $node_storage->resetCache();
       $referenced_node = $node_storage->load($referenced_node->id());
       $this->assertNotEmpty($referenced_node);
 
-      // Assert that while an entity reference field is composite,
-      // deleting a node will not delete an entity it is referencing
-      // if another entity also references the same entity.
+      // Assert that while an entity reference field is composite, deleting a
+      // node will not delete an entity it is referencing if another entity also
+      // references the same entity.
       // Update the entity reference field configuration to be composite.
       $entity_reference_field->setThirdPartySetting('oe_content', 'composite', TRUE);
       $entity_reference_field->save();
@@ -132,8 +130,8 @@ class CompositeFieldsTest extends RdfKernelTestBase {
       $referencing_node_one = $node_storage->create($values);
       $referencing_node_one->save();
 
-      // Create a second node that that also references the first one
-      // and delete it right after.
+      // Create a second node that that also references the first one and delete
+      // it right after.
       $values = [
         'type' => $type->id(),
         'title' => 'Referencing node two',
@@ -148,15 +146,15 @@ class CompositeFieldsTest extends RdfKernelTestBase {
       $referencing_node_two->save();
       $referencing_node_two->delete();
 
-      // Reload the referenced node and assert it was not deleted because
-      // it is still being referenced by the first referencing node.
+      // Reload the referenced node and assert it was not deleted because it is
+      // still being referenced by the first referencing node.
       $node_storage->resetCache();
       $referenced_node = $node_storage->load($referenced_node->id());
       $this->assertNotEmpty($referenced_node);
 
-      // Assert that while an entity reference field is composite,
-      // deleting a node will delete an entity it is referencing
-      // if it is not referenced by any other entity.
+      // Assert that while an entity reference field is composite, deleting a
+      // node will delete an entity it is referencing if it is not referenced by
+      // any other entity.
       // Update the first referencing node to stop referencing the first node.
       $referencing_node_one->{$field_definition['field_name']}->target_id = '';
       if ($field_definition['revisions']) {
@@ -164,8 +162,8 @@ class CompositeFieldsTest extends RdfKernelTestBase {
       }
       $referencing_node_one->save();
 
-      // Create a third referencing node that that references the first one
-      // and delete it right after.
+      // Create a third referencing node that that references the first one and
+      // delete it right after.
       $values = [
         'type' => $type->id(),
         'title' => 'Referencing node three',
@@ -180,8 +178,8 @@ class CompositeFieldsTest extends RdfKernelTestBase {
       $referencing_node_two_three->save();
       $referencing_node_two_three->delete();
 
-      // Reload the referenced node and assert it has been deleted because
-      // there are no more nodes referencing it.
+      // Reload the referenced node and assert it has been deleted because there
+      // are no more nodes referencing it.
       $node_storage->resetCache();
       $referenced_node = $node_storage->load($referenced_node->id());
       $this->assertEmpty($referenced_node);

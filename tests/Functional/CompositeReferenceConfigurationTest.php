@@ -46,17 +46,19 @@ class CompositeReferenceConfigurationTest extends BrowserTestBase {
    */
   public function testCompositeReferenceConfiguration(): void {
     $entity_type_manager = \Drupal::entityTypeManager();
+
     // Create a content type.
     $node_type = $entity_type_manager->getStorage('node_type')->create(['name' => 'Test content type', 'type' => 'test_ct']);
     $node_type->save();
 
-    // Create a text field.
+    // Create a text field to be used as a dummy, non-composite field example.
     $entity_type_manager->getStorage('field_storage_config')->create([
       'entity_type' => 'node',
       'field_name' => 'text_field',
       'type' => 'text_long',
       'cardinality' => 1,
     ])->save();
+
     $text_field = $entity_type_manager->getStorage('field_config')->create([
       'entity_type' => 'node',
       'field_name' => 'text_field',
@@ -65,6 +67,16 @@ class CompositeReferenceConfigurationTest extends BrowserTestBase {
       'translatable' => TRUE,
     ]);
     $text_field->save();
+
+    // Access the text field edit form and assert that the composite option is
+    // not available.
+    $url = Url::fromRoute("entity.field_config.node_field_edit_form", [
+      'node_type' => $node_type->id(),
+      'field_config' => $text_field->id(),
+    ]);
+    $this->drupalGet($url);
+    $this->assertSession()->pageTextContains('Text field settings for Test content type');
+    $this->assertSession()->pageTextNotContains('Composite field');
 
     $reference_field_definitions = [
       [
@@ -87,16 +99,12 @@ class CompositeReferenceConfigurationTest extends BrowserTestBase {
         ],
       ], 1, $field_definition['revisions']);
 
-      // Access the text field edit form and assert that the composite
-      // option is not available.
-      $url = Url::fromRoute("entity.field_config.node_field_edit_form", ['node_type' => $node_type->id(), 'field_config' => $text_field->id()]);
-      $this->drupalGet($url);
-      $this->assertSession()->pageTextContains('Text field settings for Test content type');
-      $this->assertSession()->pageTextNotContains('Composite field');
-
       // Access the text entity reference edit form
       // and assert that the composite option is available.
-      $url = Url::fromRoute("entity.field_config.node_field_edit_form", ['node_type' => $node_type->id(), 'field_config' => $entity_reference_field->id()]);
+      $url = Url::fromRoute("entity.field_config.node_field_edit_form", [
+        'node_type' => $node_type->id(),
+        'field_config' => $entity_reference_field->id(),
+      ]);
       $this->drupalGet($url);
       $this->assertSession()->pageTextContains($field_definition['field_label'] . ' settings for Test content type');
       // The configuration is disabled by default.

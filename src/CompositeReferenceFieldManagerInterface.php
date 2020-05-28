@@ -15,7 +15,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 interface CompositeReferenceFieldManagerInterface {
 
   /**
-   * Returns a list of possible entities that reference the given entity.
+   * Returns a list of possible entities that reference a given entity.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The referenced entity.

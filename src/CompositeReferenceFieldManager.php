@@ -38,35 +38,35 @@ class CompositeReferenceFieldManager implements CompositeReferenceFieldManagerIn
    */
   public function getReferencingEntities(EntityInterface $entity): array {
     $referencing_entities = [];
-    // Get all entity reference fields.
+    // Get all entity reference fields that reference this entity type.
     $field_config_storage = $this->entityTypeManager->getStorage('field_config');
     $entity_reference_field_ids = $field_config_storage->getQuery()
       ->condition('field_type', ['entity_reference', 'entity_reference_revisions'], 'IN')
+      ->condition('settings.handler', 'default:' . $entity->getEntityTypeId())
       ->execute();
+
     $entity_reference_fields = $field_config_storage->loadMultiple($entity_reference_field_ids);
 
-    // Only use fields that reference the given entity's type.
-    $fields_referencing_entity_type = [];
-    /** @var \Drupal\field\FieldConfigInterface $field */
-    foreach ($entity_reference_fields as $field) {
-      $field_settings = $field->getSettings();
-      if ($field_settings['handler'] === 'default:' . $entity->getEntityTypeId()) {
-        $fields_referencing_entity_type[$field->getTargetEntityTypeId()][] = $field->getName();
-      }
+    // Group the fields by their target entity type.
+    $grouped_fields = [];
+    foreach ($entity_reference_fields as $field_name => $field) {
+      $grouped_fields[$field->getTargetEntityTypeId()][] = $field->getName();
     }
 
     // Load all entities that have a reference to the given entity.
-    foreach ($fields_referencing_entity_type as $field_entity_type_id => $field_names) {
+    foreach ($grouped_fields as $field_entity_type_id => $field_names) {
       $entity_type_storage = $this->entityTypeManager->getStorage($field_entity_type_id);
       $query = $entity_type_storage->getQuery('OR');
       foreach ($field_names as $field_name) {
         $query->condition($field_name, $entity->id());
       }
+
       $ids = $query->execute();
       if ($ids) {
         $referencing_entities = array_merge($referencing_entities, $entity_type_storage->loadMultiple($ids));
       }
     }
+
     return $referencing_entities;
   }
 
