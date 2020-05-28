@@ -8,6 +8,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 
 /**
  * Plugin implementation of the 'timeline_widget' widget.
@@ -65,6 +66,19 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
     }
 
     return $values;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state) {
+    $element = parent::errorElement($element, $violation, $form, $form_state);
+    if ($violation) {
+      if (empty($violation->arrayPropertyPath)) {
+        return ($element === FALSE) ? FALSE : $element;
+      }
+    }
+    return ($element === FALSE) ? FALSE : $element[$violation->arrayPropertyPath[0]];
   }
 
 }
