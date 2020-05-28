@@ -69,13 +69,13 @@ class TimelineFieldItem extends FieldItemBase {
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $properties['label'] = DataDefinition::create('string')
-      ->setLabel(t('Timeline label'));
+      ->setLabel(t('Label'));
 
     $properties['title'] = DataDefinition::create('string')
-      ->setLabel(t('Timeline title'));
+      ->setLabel(t('Title'));
 
     $properties['body'] = DataDefinition::create('string')
-      ->setLabel(t('Timeline body'));
+      ->setLabel(t('Body'));
 
     $properties['format'] = DataDefinition::create('filter_format')
       ->setLabel(t('Text format'));
