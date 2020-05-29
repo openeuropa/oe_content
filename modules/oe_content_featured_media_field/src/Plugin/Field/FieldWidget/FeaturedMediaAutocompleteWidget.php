@@ -91,7 +91,9 @@ class FeaturedMediaAutocompleteWidget extends EntityReferenceAutocompleteWidget 
     $parents = $form['#parents'];
     if ($parents) {
       $first_parent = array_shift($parents);
-      $name = $first_parent . '[' . implode('][', $parents) . '][' . $this->fieldDefinition->getName() . '][' . $delta . '][featured_media][caption]';
+      $parents[] = $this->fieldDefinition->getName();
+      $parents[] = $delta;
+      $name = $first_parent . '[' . implode('][', $parents) . '][featured_media][caption]';
     }
     else {
       $name = $this->fieldDefinition->getName() . '[' . $delta . '][featured_media][caption]';
@@ -110,9 +112,11 @@ class FeaturedMediaAutocompleteWidget extends EntityReferenceAutocompleteWidget 
     $element['featured_media']['caption'] = [
       '#title' => $this->t('Caption'),
       '#description' => $this->t('The caption that goes with the referenced media.'),
-      '#type' => 'textarea',
+      '#type' => 'textfield',
       '#default_value' => $items[$delta]->caption,
-      '#rows' => 2,
+      // We need to make sure that caption field remains the second after the
+      // target_id field.
+      '#weight' => $delta,
       '#required' => $element['#required'],
     ];
 

@@ -25,20 +25,6 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
   use MediaTypeCreationTrait;
 
   /**
-   * A field storage to use in this test class.
-   *
-   * @var \Drupal\field\Entity\FieldStorageConfig
-   */
-  protected $fieldStorage;
-
-  /**
-   * The field used in this test class.
-   *
-   * @var \Drupal\field\Entity\FieldConfig
-   */
-  protected $field;
-
-  /**
    * {@inheritdoc}
    */
   protected static $modules = [
@@ -58,12 +44,6 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     parent::setUp();
 
     $this->createContentType(['type' => 'page']);
-
-    $user = $this->drupalCreateUser([
-      'access content',
-      'create page content',
-    ]);
-    $this->drupalLogin($user);
 
     // Create an image file.
     \Drupal::service('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
@@ -91,16 +71,15 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     ]);
     $media_entity->save();
 
-    $this->fieldStorage = FieldStorageConfig::create([
+    FieldStorageConfig::create([
       'field_name' => 'featured_media_field',
       'entity_type' => 'node',
       'type' => 'oe_featured_media',
       'cardinality' => 1,
       'entity_types' => ['node'],
-    ]);
-    $this->fieldStorage->save();
+    ])->save();
 
-    $this->field = FieldConfig::create([
+    FieldConfig::create([
       'label' => 'Featured media field',
       'field_name' => 'featured_media_field',
       'entity_type' => 'node',
@@ -119,8 +98,7 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
         'auto_create' => '0',
       ],
       'required' => FALSE,
-    ]);
-    $this->field->save();
+    ])->save();
 
     // Setup the display options for form and view.
     $form_display_options = [
@@ -141,14 +119,14 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
 
     // Prepare the default form display for rendering.
     $display = \Drupal::service('entity_display.repository')
-      ->getFormDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
-      ->setComponent($this->fieldStorage->getName(), $form_display_options);
+      ->getFormDisplay('node', 'page')
+      ->setComponent('featured_media_field', $form_display_options);
     $display->save();
 
     // Prepare the default view display for rendering.
     $display = \Drupal::service('entity_display.repository')
-      ->getViewDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
-      ->setComponent($this->fieldStorage->getName(), $view_display_options);
+      ->getViewDisplay('node', 'page')
+      ->setComponent('featured_media_field', $view_display_options);
     $display->save();
   }
 
@@ -156,6 +134,13 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
    * Tests the featured media widget.
    */
   public function testFeaturedMediaWidget(): void {
+    // Login with a user with minimum permissions.
+    $user = $this->drupalCreateUser([
+      'access content',
+      'create page content',
+    ]);
+    $this->drupalLogin($user);
+
     // Visit the node add page.
     $this->drupalGet('node/add/page');
     $page = $this->getSession()->getPage();
@@ -186,12 +171,12 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
     $assert_session->pageTextContains('Allowed media types: Image, Document');
 
     // Test that the Media item field turns required once the Caption is filled.
-    $this->assertFalse($page->findField('Media item')->hasAttribute('required'));
+    $this->assertFalse($assert_session->fieldExists('Media item')->hasAttribute('required'));
     $page->fillField('Caption', 'Caption text');
-    $this->assertTrue($page->findField('Media item')->hasAttribute('required'));
+    $this->assertTrue($assert_session->fieldExists('Media item')->hasAttribute('required'));
 
     // Test the autocomplete functionality returns the created media items.
-    $this->doAutocomplete($this->fieldStorage->getName(), 'Test');
+    $this->doFeaturedMediaFieldAutocomplete('featured_media_field', 'Test');
     $results = $page->findAll('css', '.ui-autocomplete li');
     $this->assertCount(2, $results);
     $assert_session->pageTextContains('Test image');
@@ -216,7 +201,7 @@ class FeaturedMediaFieldWidgetTest extends WebDriverTestBase {
    * @param string $value
    *   The value to look for.
    */
-  protected function doAutocomplete(string $field_name, string $value): void {
+  protected function doFeaturedMediaFieldAutocomplete(string $field_name, string $value): void {
     $autocomplete_field = $this->getSession()->getPage()->findField($field_name . '[0][featured_media][target_id]');
     $autocomplete_field->setValue($value);
     $this->getSession()->getDriver()->keyDown($autocomplete_field->getXpath(), ' ');

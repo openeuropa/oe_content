@@ -20,20 +20,6 @@ use Drupal\node\Entity\NodeType;
 class FeaturedMediaFieldTest extends EntityKernelTestBase {
 
   /**
-   * A field storage to use in this test class.
-   *
-   * @var \Drupal\field\Entity\FieldStorageConfig
-   */
-  protected $fieldStorage;
-
-  /**
-   * The field used in this test class.
-   *
-   * @var \Drupal\field\Entity\FieldConfig
-   */
-  protected $field;
-
-  /**
    * The media entity used in this test class.
    *
    * @var \Drupal\media\Entity\Media
@@ -103,16 +89,15 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
     $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
     $type->save();
 
-    $this->fieldStorage = FieldStorageConfig::create([
+    FieldStorageConfig::create([
       'field_name' => 'featured_media_field',
       'entity_type' => 'node',
       'type' => 'oe_featured_media',
       'cardinality' => 1,
       'entity_types' => ['node'],
-    ]);
-    $this->fieldStorage->save();
+    ])->save();
 
-    $this->field = FieldConfig::create([
+    FieldConfig::create([
       'label' => 'Featured media field',
       'field_name' => 'featured_media_field',
       'entity_type' => 'node',
@@ -130,8 +115,7 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
         'auto_create' => '0',
       ],
       'required' => FALSE,
-    ]);
-    $this->field->save();
+    ])->save();
   }
 
   /**
@@ -164,27 +148,9 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
         'caption' => 'Image caption text',
       ],
     ];
-    // Assert the base field values.
+    // Assert the field values.
     $this->assertEquals('My node title', $node->label());
     $this->assertEquals($expected, $node->get('featured_media_field')->getValue());
-
-    // Test the rendering of the formatter with the test node.
-    // Prepare the default view display for rendering.
-    $display_options = [
-      'type' => 'oe_featured_media_label',
-      'label' => 'above',
-      'settings' => [
-        'link' => TRUE,
-      ],
-    ];
-    $display = $this->container->get('entity_display.repository')
-      ->getViewDisplay($this->field->getTargetEntityTypeId(), $this->field->getTargetBundle())
-      ->setComponent($this->fieldStorage->getName(), $display_options);
-    $display->save();
-    $build = $display->build($node);
-    $output = $this->container->get('renderer')->renderRoot($build);
-    $this->assertContains('<div>Featured media field</div>', (string) $output);
-    $this->assertContains('<div><a href="/media/' . $this->mediaEntity->id() . '/edit" hreflang="en">Test image</a>Image caption text</div>', (string) $output);
 
     // Test empty featured media.
     $values = [
@@ -209,13 +175,14 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
     $this->assertEmpty($node->get('featured_media_field')->caption);
 
     // Change the field config to have default value.
-    $this->field->setDefaultValue([
+    $field = FieldConfig::load('node.test_ct.featured_media_field');
+    $field->setDefaultValue([
       [
         'caption' => 'Default caption.',
         'target_uuid' => $this->mediaEntity->uuid(),
       ],
     ]);
-    $this->field->save();
+    $field->save();
 
     // Create a node with empty featured media field.
     $values = [
@@ -232,7 +199,8 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
         'caption' => 'Default caption.',
       ],
     ];
-    // Assert the base field values.
+    // Assert the field values.
+    $node = $this->container->get('entity_type.manager')->getStorage('node')->load($node->id());
     $this->assertEquals('My empty node', $node->label());
     $this->assertEquals($expected, $node->get('featured_media_field')->getValue());
   }
