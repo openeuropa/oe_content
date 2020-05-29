@@ -20,6 +20,11 @@ class TestConstraintValidator extends ConstraintValidator {
       return;
     }
 
+    $parameters = [
+      '%label' => 'label',
+      '%title' => 'title',
+      '%body' => 'body',
+    ];
     foreach ($value as $delta => $item) {
       /** @var \Drupal\oe_content_timeline_field\Plugin\Field\FieldType\TimelineFieldItem $item */
       $value = $item->getValue();
@@ -28,6 +33,7 @@ class TestConstraintValidator extends ConstraintValidator {
           if ($value['body'] !== '' || $value['body'] !== NULL) {
             $this->context->buildViolation($constraint->message)
               ->atPath($delta)
+              ->setParameters($parameters)
               ->addViolation();
           }
         }

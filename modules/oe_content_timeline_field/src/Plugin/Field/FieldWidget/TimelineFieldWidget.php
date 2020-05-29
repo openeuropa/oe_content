@@ -8,7 +8,9 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationInterface;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Plugin implementation of the 'timeline_widget' widget.
@@ -79,6 +81,38 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
       }
     }
     return ($element === FALSE) ? FALSE : $element[$violation->arrayPropertyPath[0]];
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * Override the parameters to use the form element labels.
+   */
+  public function flagErrors(FieldItemListInterface $items, ConstraintViolationListInterface $violations, array $form, FormStateInterface $form_state) {
+    /** @var \Symfony\Component\Validator\ConstraintViolationInterface $violation */
+    foreach ($violations as $offset => $violation) {
+      $parameters = $violation->getParameters();
+      if (isset($parameters['%label'])) {
+        $parameters['%label'] = t('Label');
+      }
+      if (isset($parameters['%title'])) {
+        $parameters['%title'] = t('Title');
+      }
+      if (isset($parameters['%body'])) {
+        $parameters['%body'] = t('Content');
+      }
+      $violations->set($offset, new ConstraintViolation(
+        $this->t($violation->getMessageTemplate(), $parameters),
+        $violation->getMessageTemplate(),
+        $parameters,
+        $violation->getRoot(),
+        $violation->getPropertyPath(),
+        $violation->getInvalidValue(),
+        $violation->getPlural(),
+        $violation->getCode()
+      ));
+    }
+    parent::flagErrors($items, $violations, $form, $form_state);
   }
 
 }

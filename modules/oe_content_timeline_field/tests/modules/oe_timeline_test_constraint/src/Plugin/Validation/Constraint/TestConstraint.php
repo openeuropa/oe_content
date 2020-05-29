@@ -22,6 +22,6 @@ class TestConstraint extends Constraint {
    *
    * @var string
    */
-  public $message = 'Label and Title fields cannot be empty when Content is specified.';
+  public $message = '%label and %title fields cannot be empty when %body is specified.';
 
 }
