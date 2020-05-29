@@ -102,7 +102,9 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
         $parameters['%body'] = t('Content');
       }
       $violations->set($offset, new ConstraintViolation(
+        // @codingStandardsIgnoreStart
         $this->t($violation->getMessageTemplate(), $parameters),
+        // @codingStandardsIgnoreEnd
         $violation->getMessageTemplate(),
         $parameters,
         $violation->getRoot(),
