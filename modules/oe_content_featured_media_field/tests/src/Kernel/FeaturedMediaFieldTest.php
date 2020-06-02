@@ -134,6 +134,7 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
     ];
 
     // Create a node.
+    /** @var \Drupal\node\NodeInterface $node */
     $node = Node::create($values);
     $node->save();
 
@@ -142,15 +143,9 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $entity_type_manager->load($node->id());
 
-    $expected = [
-      [
-        'target_id' => $this->mediaEntity->id(),
-        'caption' => 'Image caption text',
-      ],
-    ];
     // Assert the field values.
     $this->assertEquals('My node title', $node->label());
-    $this->assertEquals($expected, $node->get('featured_media_field')->getValue());
+    $this->assertEquals($values['featured_media_field'], $node->get('featured_media_field')->getValue());
 
     // Test empty featured media.
     $values = [
@@ -167,6 +162,10 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
     // Create a node.
     $node = Node::create($values);
     $node->save();
+
+    // Reset cache and reload the node.
+    $entity_type_manager->resetCache();
+    $node = $entity_type_manager->load($node->id());
 
     // Assert the field values.
     $this->assertEquals('My second node', $node->label());
@@ -193,6 +192,10 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
     $node = Node::create($values);
     $node->save();
 
+    // Reset cache and reload the node.
+    $entity_type_manager->resetCache();
+    $node = $entity_type_manager->load($node->id());
+
     $expected = [
       [
         'target_id' => $this->mediaEntity->id(),
@@ -200,7 +203,6 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
       ],
     ];
     // Assert the field values.
-    $node = $this->container->get('entity_type.manager')->getStorage('node')->load($node->id());
     $this->assertEquals('My empty node', $node->label());
     $this->assertEquals($expected, $node->get('featured_media_field')->getValue());
   }
