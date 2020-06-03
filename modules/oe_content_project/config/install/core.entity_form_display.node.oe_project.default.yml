@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_project.body
+    - field.field.node.oe_project.oe_project_funding_programme
     - field.field.node.oe_project.oe_author
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_budget_eu
@@ -94,6 +95,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_project_funding_programme:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
   langcode:
     type: language_select
     weight: 16

@@ -20,6 +20,7 @@ config_devel:
     - field.field.node.oe_project.oe_author
     - field.field.node.oe_project.oe_summary
     - field.field.node.oe_project.oe_teaser
+    - field.field.node.oe_project.oe_project_funding_programme
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_dates
     - field.field.node.oe_project.oe_project_website
@@ -29,6 +30,7 @@ config_devel:
     - field.field.node.oe_project.oe_project_departments
     - field.field.node.oe_project.oe_project_calls
     - field.field.node.oe_project.body
+    - field.storage.node.oe_project_funding_programme
     - field.storage.node.oe_project_budget
     - field.storage.node.oe_project_dates
     - field.storage.node.oe_project_website
