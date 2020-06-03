@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * The OpenEuropa Timeline Test Constraint module.
+ */
+
 declare(strict_types = 1);
 
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -9,9 +14,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  */
 function oe_timeline_test_constraint_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
   // Add constraint to the paragraphs field of the Timeline paragraph.
-  if ($entity_type->id() === 'node') {
-    if (isset($fields['timeline'])) {
-      $fields['timeline']->addConstraint('oe_timeline_test_constraint', []);
-    }
+  if ($entity_type->id() === 'node' && isset($fields['timeline'])) {
+    $fields['timeline']->addConstraint('oe_timeline_test_constraint', []);
   }
 }

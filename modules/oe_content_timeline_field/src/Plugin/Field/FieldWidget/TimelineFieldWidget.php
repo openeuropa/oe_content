@@ -93,13 +93,13 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
     foreach ($violations as $offset => $violation) {
       $parameters = $violation->getParameters();
       if (isset($parameters['%label'])) {
-        $parameters['%label'] = t('Label');
+        $parameters['%label'] = $this->t('Label');
       }
       if (isset($parameters['%title'])) {
-        $parameters['%title'] = t('Title');
+        $parameters['%title'] = $this->t('Title');
       }
       if (isset($parameters['%body'])) {
-        $parameters['%body'] = t('Content');
+        $parameters['%body'] = $this->t('Content');
       }
       $violations->set($offset, new ConstraintViolation(
         // @codingStandardsIgnoreStart
