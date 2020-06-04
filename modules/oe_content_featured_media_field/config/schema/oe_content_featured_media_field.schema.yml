@@ -24,3 +24,31 @@ field.formatter.settings.oe_featured_media_label:
 
 field.widget.settings.oe_featured_media_autocomplete:
   type: field.widget.settings.entity_reference_autocomplete
+
+field.widget.settings.oe_featured_media_entity_browser:
+  type: mapping
+  label: 'Featured media entity browser widget'
+  mapping:
+    entity_browser:
+      type: string
+      label: 'Entity Browser'
+    field_widget_display:
+      type: string
+      label: 'Field widget display'
+    field_widget_edit:
+      type: boolean
+      label: 'Field widget edit'
+    field_widget_remove:
+      type: boolean
+      label: 'Field widget remove'
+    field_widget_replace:
+      type: boolean
+      label: 'Field widget replace'
+    open:
+      type: boolean
+      label: 'Open'
+    field_widget_display_settings:
+      type: entity_browser.field_widget_display.[%parent.field_widget_display]
+    selection_mode:
+      type: string
+      label: 'Selection mode'
