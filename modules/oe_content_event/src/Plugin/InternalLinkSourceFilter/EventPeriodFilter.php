@@ -157,8 +157,8 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
       ->sort('oe_event_dates.' . $date_field_value_id, 'ASC')
       ->execute();
     if (!empty($results)) {
-      $nex_event = $this->entityTypeManager->getStorage('node')->load(reset($results));
-      $next_event_datetime = new DrupalDateTime($nex_event->oe_event_dates->{$date_field_value_id}, new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
+      $next_event = $this->entityTypeManager->getStorage('node')->load(reset($results));
+      $next_event_datetime = new DrupalDateTime($next_event->oe_event_dates->{$date_field_value_id}, new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
       $cache->addCacheTags($this->timeBasedCacheTagGenerator->generateTags($next_event_datetime->getPhpDateTime()));
     }
   }
