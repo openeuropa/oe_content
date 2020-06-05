@@ -3,6 +3,8 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_project.body
+    - field.field.node.oe_project.oe_project_coordinators
+    - field.field.node.oe_project.oe_project_participants
     - field.field.node.oe_project.oe_project_funding_programme
     - field.field.node.oe_project.oe_author
     - field.field.node.oe_project.oe_project_budget
@@ -95,6 +97,26 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_project_coordinators:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_autocomplete
+    region: content
+  oe_project_participants:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_autocomplete
+    region: content
   oe_project_funding_programme:
     weight: 26
     settings:

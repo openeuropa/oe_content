@@ -7,10 +7,15 @@ Feature: Project content creation
   @javascript
   Scenario: Creation of a Project content through the UI.
     Given I am logged in as a user with the "create oe_project content, access content, edit own oe_project content, view published skos concept entities, manage corporate content entities" permission
+    # Create Stakeholders.
+    And the following stakeholders:
+      | name                      |
+      | Coordinators stakeholder  |
+      | Participants stakeholder  |
     # Create a "Document".
     And the following documents:
-    | name          | file       |
-    | My Document 1 | sample.pdf |
+      | name          | file       |
+      | My Document 1 | sample.pdf |
 
     When I visit "the Project creation page"
     # Mandatory fields.
@@ -18,6 +23,8 @@ Feature: Project content creation
     And I fill in "Subject" with "EU financing"
     And I fill in "Author" with "European Patent Office"
     And I fill in "Body text" with "Body text"
+    And I fill in "Coordinators" with "Coordinators stakeholder"
+    And I fill in "Participants" with "Participants stakeholder"
     And I fill in "Teaser" with "Project teaser text" in the "Alternative titles and teaser" region
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
 
@@ -45,6 +52,8 @@ Feature: Project content creation
     And I should not see "EU financing"
     And I should not see "Committee on Agriculture and Rural Development"
     And I should see "European Patent Office"
+    And I should see "Coordinators stakeholder"
+    And I should see "Participants stakeholder"
     And I should see "Audit Board of the European Communities"
     And I should see "Anti Fraud Information System (AFIS)"
     And I should not see "Project teaser"
