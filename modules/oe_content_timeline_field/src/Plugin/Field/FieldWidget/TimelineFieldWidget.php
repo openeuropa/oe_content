@@ -90,24 +90,27 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
     /** @var \Symfony\Component\Validator\ConstraintViolationInterface $violation */
     foreach ($violations as $offset => $violation) {
       $initial_parameters = $violation->getParameters();
-      $new_parameters = $initial_parameters;
-      if (isset($initial_parameters['%label']) && $initial_parameters['%label'] !== 'Label') {
-        $new_parameters['%label'] = $this->t('Label');
+      $parameters = $initial_parameters;
+      if (isset($initial_parameters['%label'])) {
+        $parameters['%label'] = $this->t('Label');
       }
-      if (isset($initial_parameters['%title']) && $initial_parameters['%title'] !== 'Title') {
-        $new_parameters['%title'] = $this->t('Title');
+      if (isset($initial_parameters['%title'])) {
+        $parameters['%title'] = $this->t('Title');
       }
-      if (isset($initial_parameters['%body']) && $initial_parameters['%body'] !== 'Body') {
-        $new_parameters['%body'] = $this->t('Content');
+      if (isset($initial_parameters['%body'])) {
+        $parameters['%body'] = $this->t('Content');
       }
-      if ($initial_parameters === $new_parameters) {
+
+      // If no parameters were replaced, do not replace the existing violation.
+      if ($initial_parameters === $parameters) {
         continue;
       }
+
       $violations->set($offset, new ConstraintViolation(
         // phpcs:ignore
-        $this->t($violation->getMessageTemplate(), $new_parameters),
+        $this->t($violation->getMessageTemplate(), $parameters),
         $violation->getMessageTemplate(),
-        $new_parameters,
+        $parameters,
         $violation->getRoot(),
         $violation->getPropertyPath(),
         $violation->getInvalidValue(),
@@ -115,6 +118,7 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
         $violation->getCode()
       ));
     }
+
     parent::flagErrors($items, $violations, $form, $form_state);
   }
 
