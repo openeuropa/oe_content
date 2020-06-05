@@ -12,7 +12,6 @@
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "~0.7",
         "openeuropa/oe_media": "^1.4",
-        "openeuropa/oe_time_caching": "^1.0.0",
         "php": ">=7.2"
     },
     "require-dev": {
@@ -38,6 +37,7 @@
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
         "openeuropa/oe_link_lists": "~0.5.0",
         "openeuropa/oe_multilingual": "dev-master",
+        "openeuropa/oe_time_caching": "^1.0.0",
         "openeuropa/task-runner": "~1.0@beta",
         "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.4"

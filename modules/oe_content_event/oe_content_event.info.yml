@@ -19,7 +19,6 @@ dependencies:
   - field_group:field_group
   - inline_entity_form:inline_entity_form
   - entity_reference_revisions:entity_reference_revisions
-  - oe_time_caching:oe_time_caching
 
 config_devel:
   install:
