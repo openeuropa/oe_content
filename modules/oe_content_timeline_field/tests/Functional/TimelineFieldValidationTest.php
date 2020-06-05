@@ -73,6 +73,8 @@ class TimelineFieldValidationTest extends BrowserTestBase {
     ];
     $this->drupalPostForm('/node/add/page', $values, 'Save');
     $this->assertSession()->pageTextContains('Label and Title fields cannot be empty when Content is specified.');
+    $this->assertSession()->elementAttributeContains('css', '#edit-timeline-0-label', 'class', 'form-text error');
+    $this->assertSession()->elementAttributeContains('css', '#edit-timeline-0-title', 'class', 'form-text error');
   }
 
 }

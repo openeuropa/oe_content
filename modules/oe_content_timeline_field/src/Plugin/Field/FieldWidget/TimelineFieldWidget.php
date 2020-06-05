@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_timeline_field\Plugin\Field\FieldWidget;
 
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Field\WidgetInterface;
@@ -74,13 +75,10 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
    * {@inheritdoc}
    */
   public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state) {
-    $element = parent::errorElement($element, $violation, $form, $form_state);
-    if ($violation) {
-      if (empty($violation->arrayPropertyPath)) {
-        return ($element === FALSE) ? FALSE : $element;
-      }
+    if (!empty($violation->arrayPropertyPath) && $sub_element = NestedArray::getValue($element, $violation->arrayPropertyPath)) {
+      return $sub_element;
     }
-    return ($element === FALSE) ? FALSE : $element[$violation->arrayPropertyPath[0]];
+    return $element;
   }
 
   /**
@@ -91,22 +89,25 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
   public function flagErrors(FieldItemListInterface $items, ConstraintViolationListInterface $violations, array $form, FormStateInterface $form_state) {
     /** @var \Symfony\Component\Validator\ConstraintViolationInterface $violation */
     foreach ($violations as $offset => $violation) {
-      $parameters = $violation->getParameters();
-      if (isset($parameters['%label'])) {
-        $parameters['%label'] = $this->t('Label');
+      $initial_parameters = $violation->getParameters();
+      $new_parameters = $initial_parameters;
+      if (isset($initial_parameters['%label']) && $initial_parameters['%label'] !== 'Label') {
+        $new_parameters['%label'] = $this->t('Label');
       }
-      if (isset($parameters['%title'])) {
-        $parameters['%title'] = $this->t('Title');
+      if (isset($initial_parameters['%title']) && $initial_parameters['%title'] !== 'Title') {
+        $new_parameters['%title'] = $this->t('Title');
       }
-      if (isset($parameters['%body'])) {
-        $parameters['%body'] = $this->t('Content');
+      if (isset($initial_parameters['%body']) && $initial_parameters['%body'] !== 'Body') {
+        $new_parameters['%body'] = $this->t('Content');
+      }
+      if ($initial_parameters === $new_parameters) {
+        continue;
       }
       $violations->set($offset, new ConstraintViolation(
-        // @codingStandardsIgnoreStart
-        $this->t($violation->getMessageTemplate(), $parameters),
-        // @codingStandardsIgnoreEnd
+        // phpcs:ignore
+        $this->t($violation->getMessageTemplate(), $new_parameters),
         $violation->getMessageTemplate(),
-        $parameters,
+        $new_parameters,
         $violation->getRoot(),
         $violation->getPropertyPath(),
         $violation->getInvalidValue(),

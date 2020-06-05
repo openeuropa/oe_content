@@ -1,5 +1,5 @@
 name: OpenEuropa Timeline Test Constraint
 type: module
-description: Test the timeline widget when there are constraints set.
+description: Provides a test constraint applied to a node timeline field.
 package: OpenEuropa
 core: 8.x
