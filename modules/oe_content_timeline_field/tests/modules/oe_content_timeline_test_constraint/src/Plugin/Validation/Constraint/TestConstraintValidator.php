@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_timeline_test_constraint\Plugin\Validation\Constraint;
+namespace Drupal\oe_content_timeline_test_constraint\Plugin\Validation\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

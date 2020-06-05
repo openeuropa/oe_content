@@ -18,8 +18,8 @@ class TimelineFieldValidationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
-    'oe_timeline_test_constraint',
+  protected static $modules = [
+    'oe_content_timeline_test_constraint',
     'oe_content_timeline_field',
     'node',
   ];

@@ -12,9 +12,9 @@ use Drupal\Core\Entity\EntityTypeInterface;
 /**
  * Implements hook_entity_bundle_field_info_alter().
  */
-function oe_timeline_test_constraint_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
+function oe_content_timeline_test_constraint_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
   // Add constraint to node timeline field.
   if ($entity_type->id() === 'node' && isset($fields['timeline'])) {
-    $fields['timeline']->addConstraint('oe_timeline_test_constraint', []);
+    $fields['timeline']->addConstraint('oe_content_timeline_test_constraint', []);
   }
 }
