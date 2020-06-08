@@ -8,6 +8,7 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -30,9 +31,7 @@ class TimelineFieldValidationTest extends BrowserTestBase {
   protected function setUp() {
     parent::setUp();
 
-    $this->entityTypeManager = $this->container->get('entity_type.manager');
-
-    $this->entityTypeManager->getStorage('node_type')->create([
+    NodeType::create([
       'name' => 'Page',
       'type' => 'page',
     ])->save();
@@ -49,7 +48,8 @@ class TimelineFieldValidationTest extends BrowserTestBase {
       'bundle' => 'page',
     ])->save();
 
-    $entity_form_display = EntityFormDisplay::collectRenderDisplay(Node::create(['type' => 'page']), 'default');
+    $node = Node::create(['type' => 'page']);
+    $entity_form_display = EntityFormDisplay::collectRenderDisplay($node, 'default');
     $entity_form_display->setComponent('timeline', [
       'weight' => 1,
       'region' => 'content',
@@ -67,14 +67,30 @@ class TimelineFieldValidationTest extends BrowserTestBase {
     $user = $this->drupalCreateUser([], NULL, TRUE);
     $this->drupalLogin($user);
 
+    $state = \Drupal::state();
+    $state->set('oe_content_timeline_test_constraint.error_paths', [0 => 0]);
+
     $values = [
       'title[0][value]' => 'My page',
-      'timeline[0][body][value]' => 'Body',
+      'timeline[0][body][value]' => 'Body text',
     ];
     $this->drupalPostForm('/node/add/page', $values, 'Save');
     $this->assertSession()->pageTextContains('Label and Title fields cannot be empty when Content is specified.');
-    $this->assertSession()->elementAttributeContains('css', '#edit-timeline-0-label', 'class', 'form-text error');
-    $this->assertSession()->elementAttributeContains('css', '#edit-timeline-0-title', 'class', 'form-text error');
+    $this->assertTrue($this->assertSession()->fieldExists('edit-timeline-0-label')->hasClass('error'));
+    $this->assertTrue($this->assertSession()->fieldExists('edit-timeline-0-title')->hasClass('error'));
+    $this->assertTrue($this->assertSession()->fieldExists('edit-timeline-0-body-value')->hasClass('error'));
+
+    $state->set('oe_content_timeline_test_constraint.error_paths', [0 => '0.label']);
+    $this->drupalPostForm('/node/add/page', $values, 'Save');
+    $this->assertTrue($this->assertSession()->fieldExists('edit-timeline-0-label')->hasClass('error'));
+    $this->assertFalse($this->assertSession()->fieldExists('edit-timeline-0-title')->hasClass('error'));
+    $this->assertFalse($this->assertSession()->fieldExists('edit-timeline-0-body-value')->hasClass('error'));
+
+    $state->set('oe_content_timeline_test_constraint.error_paths', [0 => '0.nonexistant']);
+    $this->drupalPostForm('/node/add/page', $values, 'Save');
+    $this->assertTrue($this->assertSession()->fieldExists('edit-timeline-0-label')->hasClass('error'));
+    $this->assertTrue($this->assertSession()->fieldExists('edit-timeline-0-title')->hasClass('error'));
+    $this->assertTrue($this->assertSession()->fieldExists('edit-timeline-0-body-value')->hasClass('error'));
   }
 
 }

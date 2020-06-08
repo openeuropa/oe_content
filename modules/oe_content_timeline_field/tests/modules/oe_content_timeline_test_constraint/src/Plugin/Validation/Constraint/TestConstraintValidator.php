@@ -4,13 +4,42 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_timeline_test_constraint\Plugin\Validation\Constraint;
 
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\State\StateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
  * Validates required fields for Timeline paragraph.
  */
-class TestConstraintValidator extends ConstraintValidator {
+class TestConstraintValidator extends ConstraintValidator implements ContainerInjectionInterface {
+
+  /**
+   * The state service.
+   *
+   * @var \Drupal\Core\State\StateInterface
+   */
+  protected $state;
+
+  /**
+   * TestConstraintValidator constructor.
+   *
+   * @param \Drupal\Core\State\StateInterface $state
+   *   The state service.
+   */
+  public function __construct(StateInterface $state) {
+    $this->state = $state;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('state')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -21,21 +50,21 @@ class TestConstraintValidator extends ConstraintValidator {
     }
 
     $parameters = [
-      '%label' => 'label',
-      '%title' => 'title',
-      '%body' => 'body',
+      '%label' => 'a label',
+      '%title' => 'a title',
+      '%body' => 'a body',
     ];
+    $error_paths = $this->state->get('oe_content_timeline_test_constraint.error_paths', []);
+
     foreach ($value as $delta => $item) {
-      /** @var \Drupal\oe_content_timeline_field\Plugin\Field\FieldType\TimelineFieldItem $item */
-      $value = $item->getValue();
-      if (($value['body'] !== '' || $value['body'] !== NULL) &&
-        ($value['label'] === '' || $value['label'] === NULL) &&
-        ($value['title'] === '' || $value['title'] === NULL)) {
-        $this->context->buildViolation($constraint->message)
-          ->atPath($delta)
-          ->setParameters($parameters)
-          ->addViolation();
+      if (!isset($error_paths[$delta])) {
+        continue;
       }
+
+      $this->context->buildViolation($constraint->message)
+        ->atPath($error_paths[$delta])
+        ->setParameters($parameters)
+        ->addViolation();
     }
   }
 
