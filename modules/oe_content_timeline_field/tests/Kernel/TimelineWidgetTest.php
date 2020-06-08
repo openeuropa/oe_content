@@ -42,6 +42,7 @@ class TimelineWidgetTest extends EntityKernelTestBase {
       'entity_type' => 'entity_test',
       'field_name' => 'timeline',
       'bundle' => 'entity_test',
+      'required' => TRUE,
     ])->save();
 
     FilterFormat::create([
@@ -126,6 +127,18 @@ class TimelineWidgetTest extends EntityKernelTestBase {
     $state->set('oe_content_timeline_test_constraint.error_paths', [0 => '0.nonexistent']);
     $form = $this->buildForm($form_object, $values);
     $this->assertEquals($expected_message, (string) $form['timeline']['widget'][0]['#errors']);
+
+    // Test that no violation replacement is done when no parameters are
+    // replaced.
+    // The timeline field instance is required. If left empty, a Symfony
+    // validation will be triggered, which contains a non-Drupal placeholder
+    // "{{ value }}". The constraint validator of Drupal will handle this case,
+    // but if we replace this violation this will trigger a fatal error.
+    // @see \Drupal\oe_content_timeline_field\Plugin\Field\FieldWidget\TimelineFieldWidget::flagErrors()
+    // @see \Drupal\Core\Validation\DrupalTranslator::processParameters()
+    // @see \Drupal\Component\Render\FormattableMarkup::placeholderFormat()
+    unset($values['timeline']);
+    $this->buildForm($form_object, $values);
   }
 
   /**
