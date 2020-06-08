@@ -122,18 +122,12 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
       case self::PAST:
         $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), "<");
         $query->sort('oe_event_dates.end_value', 'DESC');
-        // Time based cache tags need to be invalidated when a new event
-        // ends so find out which event is going to end next and extract
-        // its end date.
         $this->addTimeCacheTags($cacheability, 'end_value');
         break;
 
       case self::UPCOMING:
         $query->condition('oe_event_dates.value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">");
         $query->sort('oe_event_dates.value', 'ASC');
-        // Time based cache tags need to be invalidated when the next
-        // upcoming event starts so execute the query and extract the
-        // starting date of the first event in the list.
         $this->addTimeCacheTags($cacheability);
         break;
     }
@@ -144,21 +138,24 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
    *
    * @param \Drupal\Core\Cache\RefinableCacheableDependencyInterface $cache
    *   The refinable cacheability metadata for the current plugin.
-   * @param string $date_field_value_id
-   *   The id of the value to use on the datefield. It defaults to 'value'.
+   * @param string $date_value
+   *   The date field column: "value" for start or "end_value" for end date.
    */
-  protected function addTimeCacheTags(RefinableCacheableDependencyInterface &$cache, string $date_field_value_id = 'value') {
+  protected function addTimeCacheTags(RefinableCacheableDependencyInterface $cache, string $date_value = 'value') {
     $now = new DrupalDateTime();
     $current_time = $this->time->getCurrentTime();
     $now->setTimestamp($current_time);
     $now->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
+    // Time based cache tags need to be invalidated either when the next event
+    // starts or ends, so use the provided date field value id to find
+    // the next event and use the value from that event to generate the tags.
     $results = $this->entityTypeManager->getStorage('node')->getQuery()
-      ->condition('oe_event_dates.' . $date_field_value_id, $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">")
-      ->sort('oe_event_dates.' . $date_field_value_id, 'ASC')
+      ->condition('oe_event_dates.' . $date_value, $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">")
+      ->sort('oe_event_dates.' . $date_value, 'ASC')
       ->execute();
     if (!empty($results)) {
       $next_event = $this->entityTypeManager->getStorage('node')->load(reset($results));
-      $next_event_datetime = new DrupalDateTime($next_event->oe_event_dates->{$date_field_value_id}, new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
+      $next_event_datetime = new DrupalDateTime($next_event->oe_event_dates->{$date_value}, new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
       $cache->addCacheTags($this->timeBasedCacheTagGenerator->generateTags($next_event_datetime->getPhpDateTime()));
     }
   }

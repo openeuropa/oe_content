@@ -62,7 +62,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $past_event = Node::create($values);
     $past_event->save();
 
-    // Create an event starts on the near future.
+    // Create an event that starts on the near future.
     $values = [
       'type' => 'oe_event',
       'title' => 'My node title',
@@ -74,7 +74,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $upcoming_event = Node::create($values);
     $upcoming_event->save();
 
-    // Create an event starts on the far future.
+    // Create an event that starts on the far future.
     $values = [
       'type' => 'oe_event',
       'title' => 'My node title',

@@ -46,9 +46,10 @@ For more information check `cweagans/composer-patches` documentation [here](http
 
 ## Link List integration
 
-This module provides integration with the OpenEuropa Link List component in the form of a custom Link Source Filter plugin.
-This plugin allows to filter Event link lists based on their start and end dates. The plugin needs the OpenEuropa Time Caching
-component to work so make sure to add the dependency to your `composer.json` and by running `composer update`:
+This module provides integration with the OpenEuropa Link List component in the form of a custom Link Source Filter
+plugin that allows to filter Event link lists based on their start and end dates.
+To ensure proper cacheability, this plugin depends on the `openeuropa/oe_time_caching` component so make sure you
+require it in your composer.json file.
 
 ```json
 "require": {
