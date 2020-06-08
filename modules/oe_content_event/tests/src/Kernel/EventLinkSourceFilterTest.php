@@ -31,12 +31,6 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
    * Test that the event filter works as intended.
    */
   public function testEventLinkSourceFilter(): void {
-    // Freeze the time at a specific point.
-    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
-    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
-    $time = $this->container->get('datetime.time');
-    $time->freezeTime();
-    $time->setTime($static_time->getTimestamp());
 
     // Create an event that ended in the far past.
     $values = [
@@ -97,6 +91,13 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     // Plugin does not apply to news.
     $plugins = $plugin_manager->getApplicablePlugins('node', 'oe_news');
     $this->assertEmpty($plugins);
+
+    // Freeze the time at a specific point.
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
+    $time = $this->container->get('datetime.time');
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
 
     $cache = new CacheableMetadata();
     /** @var \Drupal\node\NodeStorage $storage */
