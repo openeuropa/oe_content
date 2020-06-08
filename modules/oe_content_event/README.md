@@ -50,9 +50,3 @@ This module provides integration with the OpenEuropa Link List component in the 
 plugin that allows to filter Event link lists based on their start and end dates.
 To ensure proper cacheability, this plugin depends on the `openeuropa/oe_time_caching` component so make sure you
 require it in your composer.json file.
-
-```json
-"require": {
-    "openeuropa/oe_time_caching": "^1.0.0"
-}
-```
