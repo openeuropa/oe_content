@@ -16,6 +16,7 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Organisation\StakeholderOrganisationContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
@@ -65,6 +66,8 @@ default:
         Event report: "#edit-group-report"
         Event contact: "#edit-oe-event-contact-wrapper"
         Event contact social media links: ".field--name-oe-social-media"
+        Project coordinators: ".field--name-oe-project-coordinators"
+        Project participants: ".field--name-oe-project-participants"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
