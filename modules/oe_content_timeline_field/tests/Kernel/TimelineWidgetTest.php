@@ -7,33 +7,23 @@ namespace Drupal\Tests\oe_content\Kernel;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormState;
+use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\filter\Entity\FilterFormat;
-use Drupal\KernelTests\KernelTestBase;
-use Drupal\node\Entity\Node;
-use Drupal\node\Entity\NodeType;
-use Drupal\Tests\user\Traits\UserCreationTrait;
+use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 
 /**
  * Tests the timeline field widget.
  */
-class TimelineWidgetTest extends KernelTestBase {
-
-  use UserCreationTrait;
+class TimelineWidgetTest extends EntityKernelTestBase {
 
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
-    'field',
-    'node',
+  public static $modules = [
     'oe_content_timeline_field',
     'oe_content_timeline_test_constraint',
-    'system',
-    'text',
-    'user',
-    'filter',
   ];
 
   /**
@@ -42,27 +32,16 @@ class TimelineWidgetTest extends KernelTestBase {
   protected function setUp() {
     parent::setUp();
 
-    $this->installSchema('system', 'sequences');
-    $this->installSchema('user', 'users_data');
-    $this->installEntitySchema('user');
-    $this->installEntitySchema('node');
-    $this->installConfig(['field', 'node', 'system']);
-
-    NodeType::create([
-      'name' => 'Page',
-      'type' => 'page',
-    ])->save();
-
     FieldStorageConfig::create([
       'field_name' => 'timeline',
-      'entity_type' => 'node',
+      'entity_type' => 'entity_test',
       'type' => 'timeline_field',
     ])->save();
 
     FieldConfig::create([
-      'entity_type' => 'node',
+      'entity_type' => 'entity_test',
       'field_name' => 'timeline',
-      'bundle' => 'page',
+      'bundle' => 'entity_test',
     ])->save();
 
     FilterFormat::create([
@@ -70,8 +49,9 @@ class TimelineWidgetTest extends KernelTestBase {
       'name' => 'Plain text',
     ])->save();
 
-    $node = Node::create(['type' => 'page']);
-    $entity_form_display = EntityFormDisplay::collectRenderDisplay($node, 'default');
+    $entity = EntityTest::create();
+
+    $entity_form_display = EntityFormDisplay::collectRenderDisplay($entity, 'default');
     $entity_form_display->setComponent('timeline', [
       'weight' => 1,
       'region' => 'content',
@@ -94,10 +74,10 @@ class TimelineWidgetTest extends KernelTestBase {
    * @see \Drupal\oe_content_timeline_field\Plugin\Field\FieldWidget\TimelineFieldWidget::flagErrors()
    */
   public function testWidgetErrors(): void {
-    // Retrieve the node default entity form.
-    $node = Node::create(['type' => 'page']);
-    $form_object = $this->container->get('entity_type.manager')->getFormObject('node', 'default');
-    $form_object->setEntity($node);
+    // Retrieve the entity default entity form.
+    $entity = EntityTest::create();
+    $form_object = $this->container->get('entity_type.manager')->getFormObject('entity_test', 'default');
+    $form_object->setEntity($entity);
 
     // Prepare the values to be submitted, structured as they would be in a
     // form.
