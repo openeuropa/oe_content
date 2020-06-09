@@ -164,7 +164,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     ];
     $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
 
-    // Configuring the filter to show all events shows all events..
+    // Configuring the filter to show all events shows all events.
     $query = $storage->getQuery();
     $plugin->setConfiguration(['period' => '']);
     $cache = new CacheableMetadata();
