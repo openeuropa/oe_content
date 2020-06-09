@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_featured_media_field\Plugin\Field\FieldWidget;
 
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -29,7 +31,75 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $element = parent::formElement($items, $delta, $element, $form, $form_state);
+    $entities = $this->formElementItemsEntities($items, $delta, $element, $form_state);
+
+    // Get correct ordered list of entity IDs.
+    $ids = array_map(
+      function (EntityInterface $entity) {
+        return $entity->id();
+      },
+      $entities
+    );
+
+    $hidden_id = Html::getUniqueId('edit-' . $this->fieldDefinition->getName() . '-target-id');
+    $details_id = Html::getUniqueId('edit-' . $this->fieldDefinition->getName());
+
+    $element += [
+      '#id' => $details_id,
+      '#type' => 'details',
+      '#open' => !empty($entities) || $this->getSetting('open'),
+      '#required' => $this->fieldDefinition->isRequired(),
+      // We are not using Entity browser's hidden element since we maintain
+      // selected entities in it during entire process.
+      'target_id' => [
+        '#type' => 'hidden',
+        '#id' => $hidden_id,
+        // We need to repeat ID here as it is otherwise skipped when rendering.
+        '#attributes' => ['id' => $hidden_id],
+        '#default_value' => implode(' ', array_map(
+          function (EntityInterface $item) {
+            return $item->getEntityTypeId() . ':' . $item->id();
+          },
+          $entities
+        )),
+        // #ajax is officially not supported for hidden elements but if we
+        // specify event manually it works.
+        '#ajax' => [
+          'callback' => [get_class($this), 'updateWidgetCallback'],
+          'wrapper' => $details_id,
+          'event' => 'entity_browser_value_updated',
+        ],
+      ],
+    ];
+
+    // Get configuration required to check entity browser availability.
+    $selection_mode = $this->getSetting('selection_mode');
+
+    // Enable entity browser if requirements for that are fulfilled.
+    if (EntityBrowserElement::isEntityBrowserAvailable($selection_mode, 1, count($ids))) {
+      $persistentData = $this->getPersistentData();
+
+      $element['entity_browser'] = [
+        '#type' => 'entity_browser',
+        '#entity_browser' => $this->getSetting('entity_browser'),
+        '#cardinality' => 1,
+        '#selection_mode' => $selection_mode,
+        '#default_value' => $entities,
+        '#entity_browser_validators' => $persistentData['validators'],
+        '#widget_context' => $persistentData['widget_context'],
+        '#custom_hidden_id' => $hidden_id,
+        '#process' => [
+          ['\Drupal\entity_browser\Element\EntityBrowserElement', 'processEntityBrowser'],
+          [get_called_class(), 'processEntityBrowser'],
+        ],
+      ];
+    }
+
+    $element['#attached']['library'][] = 'entity_browser/entity_reference';
+
+    $field_parents = $element['#field_parents'];
+
+    $element['current'] = $this->displayCurrentSelection($details_id, $field_parents, $entities);
 
     $element['#description'] = $this->getMediaReferenceHelpText();
 
@@ -49,6 +119,8 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
    *
    * @param \Drupal\Core\Field\FieldItemListInterface $items
    *   The field item to extract the entities from.
+   * @param int $delta
+   *   The order of the item.
    * @param array $element
    *   The form element.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
@@ -60,7 +132,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
-  protected function formElementEntities(FieldItemListInterface $items, array $element, FormStateInterface $form_state) {
+  protected function formElementItemsEntities(FieldItemListInterface $items, int $delta, array $element, FormStateInterface $form_state) {
     $entities = [];
     $entity_type = $this->fieldDefinition->getFieldStorageDefinition()->getSetting('target_type');
     $entity_storage = $this->entityTypeManager->getStorage($entity_type);
@@ -114,38 +186,14 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       }
       return $entities;
     }
-    // IDs from a previous request might be saved in the form state.
-    elseif ($form_state->has([
-      'entity_browser_widget',
-      $this->getFormStateKey($items),
-    ])
-    ) {
-      $stored_ids = $form_state->get([
-        'entity_browser_widget',
-        $this->getFormStateKey($items),
-      ]);
-      $indexed_entities = $entity_storage->loadMultiple($stored_ids);
-
-      // Selection can contain same entity multiple times. Since loadMultiple()
-      // returns unique list of entities, it's necessary to recreate list of
-      // entities in order to preserve selection of duplicated entities.
-      foreach ($stored_ids as $entity_id) {
-        if (isset($indexed_entities[$entity_id])) {
-          $entities[] = $indexed_entities[$entity_id];
-        }
-      }
-      return $entities;
-    }
     // We are loading for for the first time so we need to load any existing
     // values that might already exist on the entity. Also, remove any leftover
     // data from removed entity references.
     else {
-      foreach ($items as $item) {
-        if (isset($item->target_id)) {
-          $entity = $entity_storage->load($item->target_id);
-          if (!empty($entity)) {
-            $entities[] = $entity;
-          }
+      if (isset($items[$delta]->target_id)) {
+        $entity = $entity_storage->load($items[$delta]->target_id);
+        if (!empty($entity)) {
+          $entities[] = $entity;
         }
       }
       return $entities;
