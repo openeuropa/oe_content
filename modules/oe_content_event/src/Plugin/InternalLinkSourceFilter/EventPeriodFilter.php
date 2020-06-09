@@ -130,6 +130,11 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
         $query->sort('oe_event_dates.value', 'ASC');
         $this->addTimeCacheTags($cacheability);
         break;
+
+      default:
+        $query->sort('oe_event_dates.value', 'DESC');
+        break;
+
     }
   }
 

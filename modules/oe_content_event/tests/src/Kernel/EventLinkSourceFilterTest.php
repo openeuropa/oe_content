@@ -163,6 +163,23 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       'oe_time_caching_date:2016-05-15-12',
     ];
     $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
+
+    // Configuring the filter to show all events shows all events..
+    $query = $storage->getQuery();
+    $plugin->setConfiguration(['period' => '']);
+    $cache = new CacheableMetadata();
+    $plugin->apply($query, [], $cache);
+    $query_results = $query->execute();
+    $all_events = [
+      $future_event->id() => $future_event->id(),
+      $upcoming_event->id() => $upcoming_event->id(),
+      $past_event->id() => $past_event->id(),
+      $ancient_event->id() => $ancient_event->id(),
+    ];
+    $this->assertEqual($query_results, $all_events);
+    // Because we are showing all events time based cache tags are not
+    // necessary.
+    $this->assertEqual($cache->getCacheTags(), []);
   }
 
 }
