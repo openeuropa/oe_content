@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Timeline Test Constraint module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function oe_content_timeline_test_constraint_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
+  // Add constraint to entity_test timeline field.
+  if ($entity_type->id() === 'entity_test' && isset($fields['timeline'])) {
+    $fields['timeline']->addConstraint('oe_content_timeline_test_constraint', []);
+  }
+}
