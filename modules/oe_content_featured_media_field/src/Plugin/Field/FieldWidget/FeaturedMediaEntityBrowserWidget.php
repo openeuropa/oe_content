@@ -8,7 +8,6 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 use Drupal\entity_browser\Element\EntityBrowserElement;
 use Drupal\entity_browser\Plugin\Field\FieldWidget\EntityReferenceBrowserWidget;
 
@@ -29,17 +28,19 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
 
   /**
    * {@inheritdoc}
+   *
+   * We need to extend this because the EntityReferenceBrowserWidget handles
+   * multiple values and we do not because we need to have a caption. And
+   * unfortunately it makes a call to
+   * EntityReferenceBrowserWidget::formElementEntities which does not support
+   * delta and which also needs to be overridden.
+   *
+   * For understanding the specificity of this method, check the comments in
+   * the parent class.
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
+    // This returns only the entities for a given delta.
     $entities = $this->formElementItemsEntities($items, $delta, $element, $form_state);
-
-    // Get correct ordered list of entity IDs.
-    $ids = array_map(
-      function (EntityInterface $entity) {
-        return $entity->id();
-      },
-      $entities
-    );
 
     $hidden_id = Html::getUniqueId('edit-' . $this->fieldDefinition->getName() . '-target-id');
     $details_id = Html::getUniqueId('edit-' . $this->fieldDefinition->getName());
@@ -49,12 +50,9 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       '#type' => 'details',
       '#open' => !empty($entities) || $this->getSetting('open'),
       '#required' => $this->fieldDefinition->isRequired(),
-      // We are not using Entity browser's hidden element since we maintain
-      // selected entities in it during entire process.
       'target_id' => [
         '#type' => 'hidden',
         '#id' => $hidden_id,
-        // We need to repeat ID here as it is otherwise skipped when rendering.
         '#attributes' => ['id' => $hidden_id],
         '#default_value' => implode(' ', array_map(
           function (EntityInterface $item) {
@@ -62,8 +60,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
           },
           $entities
         )),
-        // #ajax is officially not supported for hidden elements but if we
-        // specify event manually it works.
         '#ajax' => [
           'callback' => [get_class($this), 'updateWidgetCallback'],
           'wrapper' => $details_id,
@@ -72,11 +68,10 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       ],
     ];
 
-    // Get configuration required to check entity browser availability.
     $selection_mode = $this->getSetting('selection_mode');
 
     // Enable entity browser if requirements for that are fulfilled.
-    if (EntityBrowserElement::isEntityBrowserAvailable($selection_mode, 1, count($ids))) {
+    if (EntityBrowserElement::isEntityBrowserAvailable($selection_mode, 1, count($entities))) {
       $persistentData = $this->getPersistentData();
 
       $element['entity_browser'] = [
@@ -101,13 +96,11 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
 
     $element['current'] = $this->displayCurrentSelection($details_id, $field_parents, $entities);
 
-    $element['#description'] = $this->getMediaReferenceHelpText();
-
     $element['caption'] = [
       '#title' => $this->t('Caption'),
       '#description' => $this->t('The caption that goes with the referenced media.'),
       '#type' => 'textfield',
-      '#default_value' => $items[$delta]->caption,
+      '#default_value' => $items->offsetExists($delta) ? $items->get($delta)->caption : '',
       '#required' => $element['#required'],
     ];
 
@@ -116,6 +109,11 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
 
   /**
    * Determines the entities used for the form element.
+   *
+   * This is mostly borrowed from
+   * EntityReferenceBrowserWidget::formElementEntities() but accounts for the
+   * fact that this widget does not handle multiple values so the delta
+   * starts playing an important role.
    *
    * @param \Drupal\Core\Field\FieldItemListInterface $items
    *   The field item to extract the entities from.
@@ -145,9 +143,9 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
 
     // Determine if we're submitting and if submit came from this widget.
     $is_relevant_submit = FALSE;
-    if (($trigger = $form_state->getTriggeringElement())) {
-      // Can be triggered by hidden target_id element or "Remove" button.
-      $last_parent = end($trigger['#parents']);
+    $triggering_element = $form_state->getTriggeringElement();
+    if ($triggering_element) {
+      $last_parent = end($triggering_element['#parents']);
       if (in_array($last_parent, [
         'target_id',
         'remove_button',
@@ -157,47 +155,56 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
 
         // In case there are more instances of this widget on the same page we
         // need to check if submit came from this instance.
-        $field_name = $this->fieldDefinition->getName();
-        $found = FALSE;
-        foreach ($trigger['#parents'] as $key => $parent) {
-          if ($parent === $field_name) {
-            $found = TRUE;
-          }
-        }
-        $is_relevant_submit &= $found && (array_slice($trigger['#parents'], 0, count($element['#field_parents'])) == $element['#field_parents']);
+        $field_name_key = end($triggering_element['#parents']) === 'target_id' ? 2 : static::$deleteDepth + 1;
+        $field_name_key = count($triggering_element['#parents']) - $field_name_key;
+        // Since we are using deltas as well, we go one level below.
+        $field_name_key--;
+        $is_relevant_submit &= ($triggering_element['#parents'][$field_name_key] === $this->fieldDefinition->getName()) &&
+          (array_slice($triggering_element['#parents'], 0, count($element['#field_parents'])) == $element['#field_parents']);
       }
     };
 
     if ($is_relevant_submit) {
       // Submit was triggered by hidden "target_id" element when entities were
       // added via entity browser.
-      if (!empty($trigger['#ajax']['event']) && $trigger['#ajax']['event'] == 'entity_browser_value_updated') {
-        $parents = $trigger['#parents'];
+      if (!empty($triggering_element['#ajax']['event']) && $triggering_element['#ajax']['event'] == 'entity_browser_value_updated') {
+        $parents = $triggering_element['#parents'];
       }
       // Submit was triggered by one of the "Remove" buttons. We need to walk
       // few levels up to read value of "target_id" element.
-      elseif ($trigger['#type'] == 'submit' && strpos($trigger['#name'], $this->fieldDefinition->getName() . '_remove_') === 0) {
-        $parents = array_merge(array_slice($trigger['#parents'], 0, -static::$deleteDepth), ['target_id']);
+      elseif ($triggering_element['#type'] == 'submit' && strpos($triggering_element['#name'], $this->fieldDefinition->getName() . '_remove_') === 0) {
+        $parents = array_merge(array_slice($triggering_element['#parents'], 0, -static::$deleteDepth), ['target_id']);
       }
 
       if (isset($parents) && $value = $form_state->getValue($parents)) {
-        $entities = EntityBrowserElement::processEntityIds($value);
-        return $entities;
+        return EntityBrowserElement::processEntityIds($value);
       }
+
       return $entities;
     }
+
+    // Determine if we are adding a new delta value.
+    if ($triggering_element) {
+      $last_parent = end($triggering_element['#parents']);
+      if ($last_parent === 'add_more') {
+        $parents = $triggering_element['#parents'];
+        // Remove the button key.
+        array_pop($parents);
+        $value = $form_state->getValue($parents);
+        return EntityBrowserElement::processEntityIds($value[$delta]['target_id']);
+      }
+    };
+
     // We are loading for for the first time so we need to load any existing
     // values that might already exist on the entity. Also, remove any leftover
     // data from removed entity references.
-    else {
-      if (isset($items[$delta]->target_id)) {
-        $entity = $entity_storage->load($items[$delta]->target_id);
-        if (!empty($entity)) {
-          $entities[] = $entity;
-        }
+    if (isset($items[$delta]->target_id)) {
+      $entity = $entity_storage->load($items[$delta]->target_id);
+      if (!empty($entity)) {
+        $entities[] = $entity;
       }
-      return $entities;
     }
+    return $entities;
   }
 
   /**
@@ -222,46 +229,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     }
 
     return $return;
-  }
-
-  /**
-   * Gets extensive help text for media reference field.
-   *
-   * It provides useful information about the allowed media types to reference
-   * and a link to the media item list to create new media items.
-   *
-   * @return mixed
-   *   The render array containing help texts.
-   */
-  protected function getMediaReferenceHelpText(): array {
-    $help_text['description_wrapper'] = [
-      '#type' => 'container',
-    ];
-
-    $overview_url = Url::fromRoute('entity.media.collection');
-    if ($overview_url->access()) {
-      $help_text['description_wrapper']['media_list_link'] = [
-        '#type' => 'item',
-        '#markup' => $this->t('You can manage all the media items on <a href=":list_url" target="_blank">this page</a>.', [':list_url' => $overview_url->toString()]),
-      ];
-    }
-
-    $target_bundles = $target_bundles = $this->fieldDefinition->getSetting('handler_settings')['target_bundles'];
-    if (!empty($target_bundles)) {
-      $bundle_labels = [];
-      $media_types = $this->entityTypeManager->getStorage('media_type')->loadMultiple($target_bundles);
-
-      foreach ($media_types as $media_type) {
-        $bundle_labels[] = $media_type->label();
-      }
-
-      $help_text['description_wrapper']['allowed_types'] = [
-        '#type' => 'item',
-        '#markup' => $this->t('Allowed media types: %types', ['%types' => implode(', ', $bundle_labels)]),
-      ];
-    }
-
-    return $help_text;
   }
 
 }
