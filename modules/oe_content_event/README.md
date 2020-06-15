@@ -9,7 +9,7 @@ Before enabling this module, make sure that the following modules are present in
 
 ```json
 "require": {
-    "drupal/composite_reference": "1.x-dev",
+    "drupal/composite_reference": "~1.0-alpha1",
     "drupal/entity_reference_revisions": "~1.3",
     "drupal/field_group": "~3.0",
     "drupal/inline_entity_form": "~1.0-rc3",
