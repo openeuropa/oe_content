@@ -7,6 +7,7 @@ namespace Drupal\oe_content_featured_media_field\Plugin\Field\FieldWidget;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\entity_browser\Element\EntityBrowserElement;
 use Drupal\entity_browser\Plugin\Field\FieldWidget\EntityReferenceBrowserWidget;
@@ -205,6 +206,40 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       }
     }
     return $entities;
+  }
+
+  /**
+   * Overrides \Drupal\Core\Field\WidgetBase::formMultipleElements().
+   *
+   * Do not allow access to the weight select in order to avoid mixed data
+   * between media items and captions.
+   */
+  protected function formMultipleElements(FieldItemListInterface $items, array &$form, FormStateInterface $form_state) {
+    $elements = parent::formMultipleElements($items, $form, $form_state);
+
+    $field_name = $this->fieldDefinition->getName();
+    $cardinality = $this->fieldDefinition->getFieldStorageDefinition()->getCardinality();
+    $parents = $form['#parents'];
+
+    // Determine the number of possible items.
+    switch ($cardinality) {
+      case FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED:
+        $field_state = static::getWidgetState($parents, $field_name, $form_state);
+        $max = $field_state['items_count'];
+        break;
+
+      default:
+        $max = $cardinality - 1;
+        break;
+    }
+
+    for ($delta = 0; $delta <= $max; $delta++) {
+      if (isset($elements[$delta]['_weight'])) {
+        $elements[$delta]['_weight']['#access'] = FALSE;
+      }
+    }
+
+    return $elements;
   }
 
   /**
