@@ -10,7 +10,7 @@
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
-        "openeuropa/rdf_skos": "~0.7",
+        "openeuropa/rdf_skos": "~0.8",
         "openeuropa/oe_media": "^1.4",
         "php": ">=7.2"
     },
@@ -77,9 +77,6 @@
         "patches": {
             "drupal/field_group": {
                 "https://www.drupal.org/project/field_group/issues/2787179#comment-13467953": "https://www.drupal.org/files/issues/2020-02-17/2787179-highlight-html5-validation-45.patch"
-            },
-            "openeuropa/rdf_skos": {
-                "latest-master": "https://github.com/openeuropa/rdf_skos/compare/0.7.0...master.diff"
             }
         }
     },
