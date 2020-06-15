@@ -4,10 +4,14 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_timeline_field\Plugin\Field\FieldWidget;
 
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationInterface;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Plugin implementation of the 'timeline_widget' widget.
@@ -65,6 +69,57 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
     }
 
     return $values;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state) {
+    if (!empty($violation->arrayPropertyPath) && $sub_element = NestedArray::getValue($element, $violation->arrayPropertyPath)) {
+      return $sub_element;
+    }
+    return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * Override the parameters to use the form element labels.
+   */
+  public function flagErrors(FieldItemListInterface $items, ConstraintViolationListInterface $violations, array $form, FormStateInterface $form_state) {
+    /** @var \Symfony\Component\Validator\ConstraintViolationInterface $violation */
+    foreach ($violations as $offset => $violation) {
+      $initial_parameters = $violation->getParameters();
+      $parameters = $initial_parameters;
+      if (isset($initial_parameters['%label'])) {
+        $parameters['%label'] = $this->t('Label');
+      }
+      if (isset($initial_parameters['%title'])) {
+        $parameters['%title'] = $this->t('Title');
+      }
+      if (isset($initial_parameters['%body'])) {
+        $parameters['%body'] = $this->t('Content');
+      }
+
+      // If no parameters were replaced, do not replace the existing violation.
+      if ($initial_parameters === $parameters) {
+        continue;
+      }
+
+      $violations->set($offset, new ConstraintViolation(
+        // phpcs:ignore
+        $this->t($violation->getMessageTemplate(), $parameters),
+        $violation->getMessageTemplate(),
+        $parameters,
+        $violation->getRoot(),
+        $violation->getPropertyPath(),
+        $violation->getInvalidValue(),
+        $violation->getPlural(),
+        $violation->getCode()
+      ));
+    }
+
+    parent::flagErrors($items, $violations, $form, $form_state);
   }
 
 }

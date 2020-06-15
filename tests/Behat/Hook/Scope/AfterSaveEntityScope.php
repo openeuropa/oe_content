@@ -5,14 +5,14 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Hook\Scope;
 
 /**
- * Scope for hook running before saving an entity.
+ * Scope for hook running after saving an entity.
  */
-class BeforeSaveEntityScope extends SaveEntityScopeBase {
+class AfterSaveEntityScope extends SaveEntityScopeBase {
 
   /**
    * Scope name.
    */
-  const NAME = 'before.save.entity';
+  const NAME = 'after.save.entity';
 
   /**
    * {@inheritdoc}
