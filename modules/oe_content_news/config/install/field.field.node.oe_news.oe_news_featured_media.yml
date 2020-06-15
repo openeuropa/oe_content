@@ -26,6 +26,7 @@ settings:
       av_portal_video: av_portal_video
       image: image
       remote_video: remote_video
+      video_iframe: video_iframe
     sort:
       field: _none
     auto_create: false
