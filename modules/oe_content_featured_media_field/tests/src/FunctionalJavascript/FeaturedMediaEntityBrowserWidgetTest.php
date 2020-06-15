@@ -60,10 +60,22 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
     $image = File::create(['uri' => 'public://example.jpg']);
     $image->save();
 
-    // Create image media entity.
+    // Create 2 image media entities.
     $media_entity = Media::create([
       'bundle' => 'image',
-      'name' => 'Test image',
+      'name' => 'Image 1',
+      'field_media_image' => [
+        [
+          'target_id' => $image->id(),
+          'alt' => 'default alt',
+          'title' => 'default title',
+        ],
+      ],
+    ]);
+    $media_entity->save();
+    $media_entity = Media::create([
+      'bundle' => 'image',
+      'name' => 'Image 2',
       'field_media_image' => [
         [
           'target_id' => $image->id(),
@@ -78,7 +90,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
       'field_name' => 'featured_media_field',
       'entity_type' => 'node',
       'type' => 'oe_featured_media',
-      'cardinality' => 1,
+      'cardinality' => -1,
       'settings' => [
         'target_type' => 'media',
       ],
@@ -137,15 +149,13 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
   public function testFeaturedMediaEntityBrowserWidget(): void {
     $this->drupalGet('node/add/page');
 
-    // Assert the help texts, the caption field and entity browser button exist.
+    // Assert that all the entity browser elements are displayed.
     $this->assertSession()->buttonExists('Select images');
-    $this->assertSession()->pageTextContains('You can manage all the media items on this page.');
-    $this->assertSession()->pageTextContains('Allowed media types: Image');
-    $this->assertSession()->pageTextContains('You can select one media item.');
     $this->assertSession()->fieldExists('Caption');
     $this->assertSession()->pageTextContains('The caption that goes with the referenced media.');
+    $this->assertSession()->buttonExists('Add another item');
 
-    // Select the media image from the entity browser.
+    // Select one media image from the entity browser.
     $this->getSession()->getPage()->pressButton('Select images');
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
@@ -154,27 +164,42 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
     $this->assertSession()->assertWaitOnAjaxRequest();
 
     // Assert the image was selected and the widget shows the proper buttons.
-    $this->assertSession()->pageTextContains('Test image');
+    $this->assertSession()->pageTextContains('Image 1');
     $this->assertSession()->buttonNotExists('Select images');
     $this->assertSession()->buttonExists('Remove');
     $this->assertSession()->buttonExists('Edit');
 
+    // Add the other media image item.
+    $this->getSession()->getPage()->pressButton('Add another item');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->getSession()->getPage()->pressButton('Select images');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
+    $this->getSession()->getPage()->checkField('entity_browser_select[media:2]');
+    $this->getSession()->getPage()->pressButton('Select image');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->assertSession()->pageTextContains('Image 2');
+    $this->assertSession()->buttonNotExists('Select images');
+
     // Fill in the other fields and save the node.
-    $this->getSession()->getPage()->fillField('Caption', 'Image caption');
+    $this->getSession()->getPage()->fillField('featured_media_field[0][caption]', 'Image 1 caption');
+    $this->getSession()->getPage()->fillField('featured_media_field[1][caption]', 'Image 2 caption');
     $this->getSession()->getPage()->fillField('Title', 'Test entity browser widget');
     $this->getSession()->getPage()->pressButton('Save');
 
     // Assert that the values were saved.
     $this->assertSession()->pageTextContains('Featured media field');
-    $this->assertSession()->pageTextContains('Test image');
-    $this->assertSession()->pageTextContains('Image caption');
+    $this->assertSession()->pageTextContains('Image 1');
+    $this->assertSession()->pageTextContains('Image 2');
+    $this->assertSession()->pageTextContains('Image 1 caption');
+    $this->assertSession()->pageTextContains('Image 2 caption');
 
-    // Edit the node to remove the media.
+    // Edit the node to remove the first media.
     $this->drupalGet('node/1/edit');
     $this->getSession()->getPage()->pressButton('Remove');
     $this->assertSession()->assertWaitOnAjaxRequest();
     // Assert the image was removed from the field.
-    $this->assertSession()->pageTextNotContains('Test image');
+    $this->assertSession()->pageTextNotContains('Image 1');
     $this->assertSession()->buttonExists('Select images');
   }
 
