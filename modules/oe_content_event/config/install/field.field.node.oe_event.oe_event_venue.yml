@@ -7,6 +7,10 @@ dependencies:
     - oe_content_entity_venue.oe_venue_type.oe_default
   module:
     - entity_reference_revisions
+    - oe_content
+third_party_settings:
+  composite_reference:
+    composite: true
 id: node.oe_event.oe_event_venue
 field_name: oe_event_venue
 entity_type: node

@@ -41,6 +41,7 @@ abstract class EventKernelTestBase extends RdfKernelTestBase {
     'text',
     'typed_link',
     'user',
+    'composite_reference',
   ];
 
   /**
