@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_featured_media_field\FunctionalJavascript;
 
+use Behat\Mink\Exception\ExpectationException;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
@@ -181,26 +182,119 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
     $this->assertSession()->pageTextContains('Image 2');
     $this->assertSession()->buttonNotExists('Select images');
 
+    // Check that 'Image 1' media item is placed before 'Image 2'.
+    $this->assertOrderInPage(['Image 1', 'Image 2']);
+
     // Fill in the other fields and save the node.
     $this->getSession()->getPage()->fillField('featured_media_field[0][caption]', 'Image 1 caption');
     $this->getSession()->getPage()->fillField('featured_media_field[1][caption]', 'Image 2 caption');
     $this->getSession()->getPage()->fillField('Title', 'Test entity browser widget');
     $this->getSession()->getPage()->pressButton('Save');
 
-    // Assert that the values were saved.
+    // Assert the values were saved correctly in the node.
+    $this->assertSession()->pageTextContains('page Test entity browser widget has been created.');
+    $node = $this->drupalGetNodeByTitle('Test entity browser widget');
+    $expected_values = [
+      '0' => [
+        'target_id' => '1',
+        'caption' => 'Image 1 caption',
+      ],
+      '1' => [
+        'target_id' => '2',
+        'caption' => 'Image 2 caption',
+      ],
+    ];
+    $actual_values = $node->get('featured_media_field')->getValue();
+    $this->assertEquals($expected_values, $actual_values);
+    // Assert the values on the page.
     $this->assertSession()->pageTextContains('Featured media field');
     $this->assertSession()->pageTextContains('Image 1');
     $this->assertSession()->pageTextContains('Image 2');
     $this->assertSession()->pageTextContains('Image 1 caption');
     $this->assertSession()->pageTextContains('Image 2 caption');
+    // Assert items order is the same as it was in the form.
+    $this->assertOrderInPage(['Image 1', 'Image 2']);
 
-    // Edit the node to remove the first media.
+    // Edit the node to reorder field items.
     $this->drupalGet('node/1/edit');
-    $this->getSession()->getPage()->pressButton('Remove');
+    $handle = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(1) a.tabledrag-handle');
+    $target = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(2) a.tabledrag-handle');
+    $handle->dragTo($target);
+    $this->assertSession()->assertWaitOnAjaxRequest();
+
+    // Check that 'Image 1' media item is placed after 'Image 2'.
+    $this->assertOrderInPage(['Image 2', 'Image 1']);
+    $this->getSession()->getPage()->pressButton('Save');
+
+    // Assert the values were saved correctly in the node.
+    $this->assertSession()->pageTextContains('page Test entity browser widget has been updated.');
+    $node = $this->drupalGetNodeByTitle('Test entity browser widget', TRUE);
+    $expected_values = [
+      '0' => [
+        'target_id' => '2',
+        'caption' => 'Image 2 caption',
+      ],
+      '1' => [
+        'target_id' => '1',
+        'caption' => 'Image 1 caption',
+      ],
+    ];
+    $actual_values = $node->get('featured_media_field')->getValue();
+    $this->assertEquals($expected_values, $actual_values);
+
+    // Assert items order was saved.
+    $this->assertOrderInPage(['Image 2', 'Image 1']);
+    // Assert items on the page.
+    $this->assertSession()->pageTextContains('Featured media field');
+    $this->assertSession()->pageTextContains('Image 2');
+    $this->assertSession()->pageTextContains('Image 2 caption');
+    $this->assertSession()->pageTextContains('Image 1');
+    $this->assertSession()->pageTextContains('Image 1 caption');
+
+    // Edit the node to remove the current first item in the form (Image 2).
+    $this->drupalGet('node/1/edit');
+    $this->getSession()->getPage()->pressButton('edit-featured-media-field-0-current-items-0-remove-button');
     $this->assertSession()->assertWaitOnAjaxRequest();
     // Assert the image was removed from the field.
-    $this->assertSession()->pageTextNotContains('Image 1');
+    $this->assertSession()->pageTextNotContains('Image 2');
     $this->assertSession()->buttonExists('Select images');
+    $this->getSession()->getPage()->pressButton('Save');
+
+    // Assert the values were saved correctly in the node.
+    $this->assertSession()->pageTextContains('page Test entity browser widget has been updated.');
+    $node = $this->drupalGetNodeByTitle('Test entity browser widget', TRUE);
+    $expected_values = [
+      '0' => [
+        'target_id' => '1',
+        'caption' => 'Image 1 caption',
+      ],
+    ];
+    $actual_values = $node->get('featured_media_field')->getValue();
+    $this->assertEquals($expected_values, $actual_values);
+    $this->assertSession()->pageTextContains('Featured media field');
+    $this->assertSession()->pageTextContains('Image 1');
+    $this->assertSession()->pageTextContains('Image 1 caption');
+
+    // The removed item should not be displayed on the page anymore.
+    $this->assertSession()->pageTextNotContains('Image 2');
+    $this->assertSession()->pageTextNotContains('Image 2 caption');
+  }
+
+  /**
+   * Asserts strings are placed in markup in the given order.
+   */
+  protected function assertOrderInPage(array $expected_strings): void {
+    $session = $this->getSession();
+    $text = $session->getPage()->getHtml();
+    $actual_strings = [];
+    foreach ($expected_strings as $string) {
+      if (($pos = strpos($text, $string)) === FALSE) {
+        throw new ExpectationException("Cannot find '$string' in the page", $session->getDriver());
+      }
+      $actual_strings[$pos] = $string;
+    }
+    ksort($actual_strings);
+    $this->assertSame($expected_strings, array_values($actual_strings));
   }
 
 }

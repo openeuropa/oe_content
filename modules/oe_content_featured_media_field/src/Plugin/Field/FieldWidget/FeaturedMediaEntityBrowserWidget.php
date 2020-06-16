@@ -7,8 +7,8 @@ namespace Drupal\oe_content_featured_media_field\Plugin\Field\FieldWidget;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 use Drupal\entity_browser\Element\EntityBrowserElement;
 use Drupal\entity_browser\Plugin\Field\FieldWidget\EntityReferenceBrowserWidget;
 
@@ -136,12 +136,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     $entity_type = $this->fieldDefinition->getFieldStorageDefinition()->getSetting('target_type');
     $entity_storage = $this->entityTypeManager->getStorage($entity_type);
 
-    // Find IDs from target_id element (it stores selected entities in form).
-    // This was added to help solve a really edge casey bug in IEF.
-    if (($target_id_entities = $this->getEntitiesByTargetId($element, $form_state)) !== FALSE) {
-      return $target_id_entities;
-    }
-
     // Determine if we're submitting and if submit came from this widget.
     $is_relevant_submit = FALSE;
     $triggering_element = $form_state->getTriggeringElement();
@@ -196,7 +190,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       }
     };
 
-    // We are loading for for the first time so we need to load any existing
+    // We are loading for the first time so we need to load any existing
     // values that might already exist on the entity. Also, remove any leftover
     // data from removed entity references.
     if (isset($items[$delta]->target_id)) {
@@ -209,33 +203,18 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
   }
 
   /**
-   * Overrides \Drupal\Core\Field\WidgetBase::formMultipleElements().
-   *
-   * Do not allow access to the weight select in order to avoid mixed data
-   * between media items and captions.
+   * {@inheritdoc}
    */
   protected function formMultipleElements(FieldItemListInterface $items, array &$form, FormStateInterface $form_state) {
     $elements = parent::formMultipleElements($items, $form, $form_state);
 
-    $field_name = $this->fieldDefinition->getName();
-    $cardinality = $this->fieldDefinition->getFieldStorageDefinition()->getCardinality();
-    $parents = $form['#parents'];
-
-    // Determine the number of possible items.
-    switch ($cardinality) {
-      case FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED:
-        $field_state = static::getWidgetState($parents, $field_name, $form_state);
-        $max = $field_state['items_count'];
-        break;
-
-      default:
-        $max = $cardinality - 1;
-        break;
-    }
-
-    for ($delta = 0; $delta <= $max; $delta++) {
-      if (isset($elements[$delta]['_weight'])) {
-        $elements[$delta]['_weight']['#access'] = FALSE;
+    // Do not allow access to the weight select in order to avoid mixed data
+    // between media items and captions.
+    foreach (Element::children($elements) as $key) {
+      if (isset($elements[$key]['_weight'])) {
+        // Settings access false will not save the weight value so we're
+        // changing the element type to hidden.
+        $elements[$key]['_weight']['#type'] = 'hidden';
       }
     }
 

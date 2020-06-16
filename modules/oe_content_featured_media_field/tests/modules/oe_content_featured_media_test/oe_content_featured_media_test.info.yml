@@ -1,5 +1,5 @@
 name: OpenEuropa Content Featured Media Test
-description: Test module for Featured Media entity browser widget.
+description: Test module for Featured Media field type.
 package: OpenEuropa
 
 type: module
