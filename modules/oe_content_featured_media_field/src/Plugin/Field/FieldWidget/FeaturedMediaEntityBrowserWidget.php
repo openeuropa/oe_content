@@ -30,6 +30,35 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
   /**
    * {@inheritdoc}
    */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+    $element = parent::settingsForm($form, $form_state);
+    if (isset($element['field_widget_edit'])) {
+      // Set default value to FALSE and do not allow access to change the
+      // value as we do not allow to edit items.
+      $element['field_widget_edit']['#default_value'] = FALSE;
+      $element['field_widget_edit']['#access'] = FALSE;
+    }
+    if (isset($element['field_widget_replace'])) {
+      // Set default value to FALSE and do not allow access to change the
+      // value as we do not allow to replace items.
+      $element['field_widget_replace']['#default_value'] = FALSE;
+      $element['field_widget_replace']['#access'] = FALSE;
+    }
+    if (isset($element['selection_mode'])) {
+      // Do not allow access to change the value as editing items would not be
+      // possible.
+      $element['selection_mode']['#access'] = FALSE;
+    }
+
+    return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
+   */
   protected function formMultipleElements(FieldItemListInterface $items, array &$form, FormStateInterface $form_state) {
     $elements = parent::formMultipleElements($items, $form, $form_state);
 
@@ -295,6 +324,21 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     }
 
     return $return;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function displayCurrentSelection($details_id, array $field_parents, array $entities) {
+    $current_selection = parent::displayCurrentSelection($details_id, $field_parents, $entities);
+
+    foreach (Element::children($current_selection['items']) as $key) {
+      // Do not allow access to edit and replace buttons.
+      $current_selection['items'][$key]['edit_button']['#access'] = FALSE;
+      $current_selection['items'][$key]['replace_button']['#access'] = FALSE;
+    }
+
+    return $current_selection;
   }
 
 }

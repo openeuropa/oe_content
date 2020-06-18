@@ -107,7 +107,6 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
         'handler_settings' => [
           'target_bundles' => [
             'image' => 'image',
-            'av_portal_photo' => 'av_portal_photo',
           ],
         ],
       ],
@@ -168,7 +167,6 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
     $this->assertSession()->pageTextContains('Image 1');
     $this->assertSession()->buttonNotExists('Select images');
     $this->assertSession()->buttonExists('Remove');
-    $this->assertSession()->buttonExists('Edit');
 
     // Add the other media image item.
     $this->getSession()->getPage()->pressButton('Add another item');
