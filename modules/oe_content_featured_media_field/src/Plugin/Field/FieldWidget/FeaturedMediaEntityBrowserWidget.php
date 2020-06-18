@@ -171,6 +171,10 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
         $parents = array_merge(array_slice($triggering_element['#parents'], 0, -static::$deleteDepth), ['target_id']);
       }
 
+      // Since we are using a delta, replace the second value after the field
+      // name key with the current delta being requested.
+      $parents[$field_name_key + 1] = $delta;
+
       if (isset($parents) && $value = $form_state->getValue($parents)) {
         return EntityBrowserElement::processEntityIds($value);
       }
