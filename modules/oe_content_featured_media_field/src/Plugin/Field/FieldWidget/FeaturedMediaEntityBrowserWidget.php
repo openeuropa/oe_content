@@ -50,7 +50,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       '#id' => $details_id,
       '#type' => 'details',
       '#open' => !empty($entities) || $this->getSetting('open'),
-      '#required' => $this->fieldDefinition->isRequired(),
       'target_id' => [
         '#type' => 'hidden',
         '#id' => $hidden_id,
@@ -66,6 +65,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
           'wrapper' => $details_id,
           'event' => 'entity_browser_value_updated',
         ],
+        '#required' => $this->fieldDefinition->isRequired(),
       ],
     ];
 
@@ -102,7 +102,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       '#description' => $this->t('The caption that goes with the referenced media.'),
       '#type' => 'textfield',
       '#default_value' => $items->offsetExists($delta) ? $items->get($delta)->caption : '',
-      '#required' => $element['#required'],
+      '#required' => $this->fieldDefinition->isRequired(),
     ];
 
     return $element;
@@ -188,7 +188,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
         $value = $form_state->getValue($parents);
         return EntityBrowserElement::processEntityIds($value[$delta]['target_id']);
       }
-    };
+    }
 
     // We are loading for the first time so we need to load any existing
     // values that might already exist on the entity. Also, remove any leftover
