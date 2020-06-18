@@ -29,6 +29,75 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
 
   /**
    * {@inheritdoc}
+   */
+  protected function formMultipleElements(FieldItemListInterface $items, array &$form, FormStateInterface $form_state) {
+    $elements = parent::formMultipleElements($items, $form, $form_state);
+
+    // Do not allow access to the weight select in order to avoid mixed data
+    // between media items and captions.
+    foreach (Element::children($elements) as $key) {
+      if (isset($elements[$key]['_weight'])) {
+        // Settings access false will not save the weight value so we're
+        // changing the element type to hidden.
+        $elements[$key]['_weight']['#type'] = 'hidden';
+      }
+    }
+
+    // Determine which delta values need to be required.
+    $required = $this->fieldDefinition->isRequired();
+
+    if (!$required) {
+      return $elements;
+    }
+
+    $sub_elements = [
+      'target_id',
+      'caption',
+    ];
+
+    $value_deltas = [];
+
+    foreach (Element::children($elements) as $child) {
+      if (!isset($elements[$child]['target_id'])) {
+        continue;
+      }
+
+      // Unset the required state from the parent as we re-set it to the correct
+      // delta.
+      unset($elements[$child]['#required']);
+
+      // Keep track of the deltas which have a media value.
+      if (!empty($elements[$child]['current']['items'])) {
+        $value_deltas[] = $child;
+      }
+    }
+
+    // If there are no deltas with values, the first one becomes required.
+    if (!$value_deltas) {
+      $elements[0]['#required'] = TRUE;
+      if (isset($elements[0]['entity_browser'])) {
+        $elements[0]['entity_browser']['#required'] = TRUE;
+      }
+
+      $elements[0]['caption']['#required'] = TRUE;
+
+      return $elements;
+    }
+
+    // Otherwise, only the ones where we have media items become/stay required.
+    foreach ($value_deltas as $delta) {
+      $elements[$delta]['#required'] = TRUE;
+      if (isset($elements[$delta]['entity_browser'])) {
+        $elements[$delta]['entity_browser']['#required'] = TRUE;
+      }
+      $elements[$delta]['caption']['#required'] = TRUE;
+    }
+
+    return $elements;
+  }
+
+  /**
+   * {@inheritdoc}
    *
    * We need to extend this because the EntityReferenceBrowserWidget handles
    * multiple values and we do not because we need to have a caption. And
@@ -65,7 +134,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
           'wrapper' => $details_id,
           'event' => 'entity_browser_value_updated',
         ],
-        '#required' => $this->fieldDefinition->isRequired(),
       ],
     ];
 
@@ -102,7 +170,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       '#description' => $this->t('The caption that goes with the referenced media.'),
       '#type' => 'textfield',
       '#default_value' => $items->offsetExists($delta) ? $items->get($delta)->caption : '',
-      '#required' => $this->fieldDefinition->isRequired(),
     ];
 
     return $element;
@@ -204,25 +271,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       }
     }
     return $entities;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function formMultipleElements(FieldItemListInterface $items, array &$form, FormStateInterface $form_state) {
-    $elements = parent::formMultipleElements($items, $form, $form_state);
-
-    // Do not allow access to the weight select in order to avoid mixed data
-    // between media items and captions.
-    foreach (Element::children($elements) as $key) {
-      if (isset($elements[$key]['_weight'])) {
-        // Settings access false will not save the weight value so we're
-        // changing the element type to hidden.
-        $elements[$key]['_weight']['#type'] = 'hidden';
-      }
-    }
-
-    return $elements;
   }
 
   /**
