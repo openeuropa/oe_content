@@ -30,24 +30,29 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
   /**
    * {@inheritdoc}
    */
+  public static function defaultSettings() {
+    // Override some default settings that we don't want changed by the user.
+    return [
+      'field_widget_edit' => FALSE,
+    ] + parent::defaultSettings();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $element = parent::settingsForm($form, $form_state);
-    if (isset($element['field_widget_edit'])) {
-      // Set default value to FALSE and do not allow access to change the
-      // value as we do not allow to edit items.
-      $element['field_widget_edit']['#default_value'] = FALSE;
-      $element['field_widget_edit']['#access'] = FALSE;
-    }
-    if (isset($element['field_widget_replace'])) {
-      // Set default value to FALSE and do not allow access to change the
-      // value as we do not allow to replace items.
-      $element['field_widget_replace']['#default_value'] = FALSE;
-      $element['field_widget_replace']['#access'] = FALSE;
-    }
-    if (isset($element['selection_mode'])) {
-      // Do not allow access to change the value as editing items would not be
-      // possible.
-      $element['selection_mode']['#access'] = FALSE;
+    // We only keep a few configuration options from the parent. The settings
+    // form validation can also be removed as it doesn't affect our settings.
+    $allowed = [
+      'entity_browser',
+      'open',
+    ];
+
+    foreach ($element as $name => $form_element) {
+      if (!in_array($name, $allowed)) {
+        unset($element[$name]);
+      }
     }
 
     return $element;
@@ -66,7 +71,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     // between media items and captions.
     foreach (Element::children($elements) as $key) {
       if (isset($elements[$key]['_weight'])) {
-        // Settings access false will not save the weight value so we're
+        // Setting access to FALSE will not save the weight value so we're
         // changing the element type to hidden.
         $elements[$key]['_weight']['#type'] = 'hidden';
       }
@@ -76,14 +81,11 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     $required = $this->fieldDefinition->isRequired();
 
     if (!$required) {
+      // If the field is not marked as required, we don't need to do anything.
       return $elements;
     }
 
-    $sub_elements = [
-      'target_id',
-      'caption',
-    ];
-
+    // Keep track of the deltas which have a media value in in them.
     $value_deltas = [];
 
     foreach (Element::children($elements) as $child) {
@@ -95,7 +97,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       // delta.
       unset($elements[$child]['#required']);
 
-      // Keep track of the deltas which have a media value.
       if (!empty($elements[$child]['current']['items'])) {
         $value_deltas[] = $child;
       }
@@ -113,7 +114,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       return $elements;
     }
 
-    // Otherwise, only the ones where we have media items become/stay required.
+    // Otherwise, the ones where we have media items become required.
     foreach ($value_deltas as $delta) {
       $elements[$delta]['#required'] = TRUE;
       if (isset($elements[$delta]['entity_browser'])) {
@@ -324,21 +325,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     }
 
     return $return;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function displayCurrentSelection($details_id, array $field_parents, array $entities) {
-    $current_selection = parent::displayCurrentSelection($details_id, $field_parents, $entities);
-
-    foreach (Element::children($current_selection['items']) as $key) {
-      // Do not allow access to edit and replace buttons.
-      $current_selection['items'][$key]['edit_button']['#access'] = FALSE;
-      $current_selection['items'][$key]['replace_button']['#access'] = FALSE;
-    }
-
-    return $current_selection;
   }
 
 }

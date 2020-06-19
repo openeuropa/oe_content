@@ -4,38 +4,20 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_featured_media_field\FunctionalJavascript;
 
-use Behat\Mink\Exception\ExpectationException;
-use Drupal\field\Entity\FieldConfig;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\file\Entity\File;
-use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
-use Drupal\media\Entity\Media;
-use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
-use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
-use Drupal\Tests\node\Traits\NodeCreationTrait;
 
 /**
- * Tests the output of "oe_featured_media_widget" widget.
+ * Tests the output of "oe_featured_media_entity_browser" widget.
  *
  * @group oe_content_featured_media_field
  */
-class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
-
-  use ContentTypeCreationTrait;
-  use NodeCreationTrait;
-  use MediaTypeCreationTrait;
+class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestBase {
 
   /**
    * {@inheritdoc}
    */
   protected static $modules = [
-    'node',
-    'field',
-    'field_ui',
-    'media',
-    'media_test_source',
-    'oe_media',
-    'oe_content_featured_media_field',
     'views',
     'block',
     'views_ui',
@@ -46,71 +28,8 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stark';
-
-  /**
-   * {@inheritdoc}
-   */
   protected function setUp() {
     parent::setUp();
-
-    $this->createContentType(['type' => 'page']);
-
-    // Create an image file.
-    \Drupal::service('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
-    $image = File::create(['uri' => 'public://example.jpg']);
-    $image->save();
-
-    // Create 2 image media entities.
-    $media_entity = Media::create([
-      'bundle' => 'image',
-      'name' => 'Image 1',
-      'field_media_image' => [
-        [
-          'target_id' => $image->id(),
-          'alt' => 'default alt',
-          'title' => 'default title',
-        ],
-      ],
-    ]);
-    $media_entity->save();
-    $media_entity = Media::create([
-      'bundle' => 'image',
-      'name' => 'Image 2',
-      'field_media_image' => [
-        [
-          'target_id' => $image->id(),
-          'alt' => 'default alt',
-          'title' => 'default title',
-        ],
-      ],
-    ]);
-    $media_entity->save();
-
-    FieldStorageConfig::create([
-      'field_name' => 'featured_media_field',
-      'entity_type' => 'node',
-      'type' => 'oe_featured_media',
-      'cardinality' => -1,
-      'settings' => [
-        'target_type' => 'media',
-      ],
-    ])->save();
-
-    FieldConfig::create([
-      'label' => 'Featured media field',
-      'field_name' => 'featured_media_field',
-      'entity_type' => 'node',
-      'bundle' => 'page',
-      'settings' => [
-        'handler' => 'default:media',
-        'handler_settings' => [
-          'target_bundles' => [
-            'image' => 'image',
-          ],
-        ],
-      ],
-    ])->save();
 
     $view_display_options = [
       'type' => 'oe_featured_media_label',
@@ -119,6 +38,10 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
         'link' => TRUE,
       ],
     ];
+
+    FieldStorageConfig::load('node.featured_media_field')
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->save();
 
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = $this->container->get('entity_type.manager')
@@ -155,7 +78,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
     $this->assertSession()->pageTextContains('The caption that goes with the referenced media.');
     $this->assertSession()->buttonExists('Add another item');
 
-    // Select one media image from the entity browser.
+    // Select the first media image from the entity browser.
     $this->getSession()->getPage()->pressButton('Select images');
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
@@ -166,9 +89,9 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
     // Assert the image was selected and the widget shows the proper buttons.
     $this->assertSession()->pageTextContains('Image 1');
     $this->assertSession()->buttonNotExists('Select images');
-    $this->assertSession()->buttonExists('Remove');
+    $this->assertMediaSelectionHasRemoveButton('Image 1');
 
-    // Add the other media image item.
+    // Add the second media image item.
     $this->getSession()->getPage()->pressButton('Add another item');
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->getSession()->getPage()->pressButton('Select images');
@@ -179,6 +102,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->assertSession()->pageTextContains('Image 2');
     $this->assertSession()->buttonNotExists('Select images');
+    $this->assertMediaSelectionHasRemoveButton('Image 2');
 
     // Check that 'Image 1' media item is placed before 'Image 2'.
     $this->assertOrderInPage(['Image 1', 'Image 2']);
@@ -279,17 +203,34 @@ class FeaturedMediaEntityBrowserWidgetTest extends WebDriverTestBase {
   }
 
   /**
+   * Asserts that the media selection has the Remove button at a given delta.
+   *
+   * @param string $name
+   *   The name of the media item.
+   */
+  protected function assertMediaSelectionHasRemoveButton(string $name): void {
+    $xpath = '//table//tbody//tr[td//text()[contains(., "' . $name . '")]]';
+    $container = $this->getSession()->getPage()->find('xpath', $xpath);
+    if (!$container) {
+      $this->fail(sprintf('The media item %s was not found', $name));
+    }
+
+    $this->assertSession()->buttonExists('Remove', $container);
+  }
+
+  /**
    * Asserts strings are placed in markup in the given order.
+   *
+   * @param array $expected_strings
+   *   The strings in the expected order.
    */
   protected function assertOrderInPage(array $expected_strings): void {
     $session = $this->getSession();
     $text = $session->getPage()->getHtml();
     $actual_strings = [];
     foreach ($expected_strings as $string) {
-      if (($pos = strpos($text, $string)) === FALSE) {
-        throw new ExpectationException("Cannot find '$string' in the page", $session->getDriver());
-      }
-      $actual_strings[$pos] = $string;
+      $this->assertSession()->pageTextContains($string);
+      $actual_strings[strpos($text, $string)] = $string;
     }
     ksort($actual_strings);
     $this->assertSame($expected_strings, array_values($actual_strings));
