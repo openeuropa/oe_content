@@ -1,14 +1,36 @@
 # Changelog
 
+## [1.9.0](https://github.com/openeuropa/oe_content/tree/1.9.0) (2020-06-16)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.8.1...1.9.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3135: Test event deletion with composite references. [\#217](https://github.com/openeuropa/oe_content/pull/217) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-3135: Use alpha1 release for composite\_reference. [\#215](https://github.com/openeuropa/oe_content/pull/215) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-3135: Add composite\_reference module and configure event to use it. [\#213](https://github.com/openeuropa/oe_content/pull/213) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-0000: Remvoe typed\_link patches from readme. [\#211](https://github.com/openeuropa/oe_content/pull/211) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-0001: Removing typed\_link patches. [\#210](https://github.com/openeuropa/oe_content/pull/210) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-3160: Update Timeline field type. [\#208](https://github.com/openeuropa/oe_content/pull/208) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-3050: Add after entity save behat hook. [\#207](https://github.com/openeuropa/oe_content/pull/207) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-3216: Remove drupal-coder version. [\#205](https://github.com/openeuropa/oe_content/pull/205) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-3146: Create featured media field type. [\#199](https://github.com/openeuropa/oe_content/pull/199) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-3044: Deprecate PublicationsOfficeSkosGraphSetup [\#198](https://github.com/openeuropa/oe_content/pull/198) ([drishu](https://github.com/drishu))
+- OPENEUROPA-3199: Fix Event scenario testing maxlength limits. [\#197](https://github.com/openeuropa/oe_content/pull/197) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-3058: Set event type widget to select. [\#190](https://github.com/openeuropa/oe_content/pull/190) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-3050: Add link list source filter for events [\#187](https://github.com/openeuropa/oe_content/pull/187) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [1.8.1](https://github.com/openeuropa/oe_content/tree/1.8.1) (2020-05-08)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.8.0...1.8.1)
 
 **Merged pull requests:**
 
+- OPENEUROPA-3185: Prepare release 1.8.1. [\#195](https://github.com/openeuropa/oe_content/pull/195) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-3185: Fix invalid corporate entity permissions. [\#193](https://github.com/openeuropa/oe_content/pull/193) ([nagyad](https://github.com/nagyad))
 
 ## [1.8.0](https://github.com/openeuropa/oe_content/tree/1.8.0) (2020-05-07)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.7.0...1.8.0)
 
 **Merged pull requests:**
@@ -57,16 +79,19 @@
 - OPENEUROPA-2200: Event content type. [\#99](https://github.com/openeuropa/oe_content/pull/99) ([sergepavle](https://github.com/sergepavle))
 
 ## [1.7.0](https://github.com/openeuropa/oe_content/tree/1.7.0) (2020-04-08)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.6.1...1.7.0)
 
 **Merged pull requests:**
 
+- OPENEUROPA-2954: Release 1.7.0. [\#188](https://github.com/openeuropa/oe_content/pull/188) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2943: Update composer.json. [\#184](https://github.com/openeuropa/oe_content/pull/184) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-0000: Use drupal/core instead of drupal/core-recommended. [\#182](https://github.com/openeuropa/oe_content/pull/182) ([22Alexandra](https://github.com/22Alexandra))
 - OPENEUROPA-2943: Upgrade to PHP 7.3. [\#177](https://github.com/openeuropa/oe_content/pull/177) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2604: Drupal 8 recommended project. [\#176](https://github.com/openeuropa/oe_content/pull/176) ([upchuk](https://github.com/upchuk))
 
 ## [1.6.1](https://github.com/openeuropa/oe_content/tree/1.6.1) (2020-03-03)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.6.0...1.6.1)
 
 **Closed issues:**
@@ -79,6 +104,7 @@
 - OPENEUROPA-2746: Short title with fallback token is hardcoded to original node language. [\#157](https://github.com/openeuropa/oe_content/pull/157) ([nagyad](https://github.com/nagyad))
 
 ## [1.6.0](https://github.com/openeuropa/oe_content/tree/1.6.0) (2020-02-05)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.5.1...1.6.0)
 
 **Merged pull requests:**
@@ -88,6 +114,7 @@
 - OPENEUROPA-2730: Update common fields label and description. [\#151](https://github.com/openeuropa/oe_content/pull/151) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [1.5.1](https://github.com/openeuropa/oe_content/tree/1.5.1) (2019-12-16)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.5.0...1.5.1)
 
 **Merged pull requests:**
@@ -96,6 +123,7 @@
 - OPENEUROPA-2584: Keep query parameters and fragments from PURL. [\#143](https://github.com/openeuropa/oe_content/pull/143) ([sergepavle](https://github.com/sergepavle))
 
 ## [1.5.0](https://github.com/openeuropa/oe_content/tree/1.5.0) (2019-12-02)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.4.0...1.5.0)
 
 **Merged pull requests:**
@@ -112,6 +140,7 @@
 - OPENEUROPA-2258: Use PHP 7.2 in drone and docker image. [\#106](https://github.com/openeuropa/oe_content/pull/106) ([dxvargas](https://github.com/dxvargas))
 
 ## [1.4.0](https://github.com/openeuropa/oe_content/tree/1.4.0) (2019-10-16)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.3.0...1.4.0)
 
 **Merged pull requests:**
@@ -120,6 +149,7 @@
 - OPENEUROPA-2101: Update selected skos concept in subject field. [\#92](https://github.com/openeuropa/oe_content/pull/92) ([sergepavle](https://github.com/sergepavle))
 
 ## [1.3.0](https://github.com/openeuropa/oe_content/tree/1.3.0) (2019-09-24)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.2.0...1.3.0)
 
 **Closed issues:**
@@ -136,6 +166,7 @@
 - OPENEUROPA-2188: Remove field\_group dependency. [\#97](https://github.com/openeuropa/oe_content/pull/97) ([nagyad](https://github.com/nagyad))
 
 ## [1.2.0](https://github.com/openeuropa/oe_content/tree/1.2.0) (2019-08-20)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.1.0...1.2.0)
 
 **Merged pull requests:**
@@ -145,6 +176,7 @@
 - OPENEUROPA-2039: Update summary and body labels. [\#89](https://github.com/openeuropa/oe_content/pull/89) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [1.1.0](https://github.com/openeuropa/oe_content/tree/1.1.0) (2019-07-25)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0...1.1.0)
 
 **Closed issues:**
@@ -159,6 +191,7 @@
 - OPENEUROPA-2040: Add max length restriction to corporate content type titles. [\#85](https://github.com/openeuropa/oe_content/pull/85) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [1.0.0](https://github.com/openeuropa/oe_content/tree/1.0.0) (2019-06-26)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0-beta3...1.0.0)
 
 **Merged pull requests:**
@@ -167,6 +200,7 @@
 - OPENEUROPA-2014: Hide the documents field label. [\#82](https://github.com/openeuropa/oe_content/pull/82) ([upchuk](https://github.com/upchuk))
 
 ## [1.0.0-beta3](https://github.com/openeuropa/oe_content/tree/1.0.0-beta3) (2019-06-25)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0-beta2...1.0.0-beta3)
 
 **Merged pull requests:**
@@ -179,6 +213,7 @@
 - OPENEUROPA-1897: Removed drone permission fix. [\#75](https://github.com/openeuropa/oe_content/pull/75) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [1.0.0-beta2](https://github.com/openeuropa/oe_content/tree/1.0.0-beta2) (2019-05-15)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.0.0-beta1...1.0.0-beta2)
 
 **Merged pull requests:**
@@ -187,6 +222,7 @@
 - OPENEUROPA-1864: Update OpenEuropa Media version. [\#73](https://github.com/openeuropa/oe_content/pull/73) ([ademarco](https://github.com/ademarco))
 
 ## [1.0.0-beta1](https://github.com/openeuropa/oe_content/tree/1.0.0-beta1) (2019-05-15)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.6.0...1.0.0-beta1)
 
 **Closed issues:**
@@ -198,6 +234,7 @@
 - OPENEUROPA-1864: Update Changelog for release 1.0.0-beta1. [\#71](https://github.com/openeuropa/oe_content/pull/71) ([sergepavle](https://github.com/sergepavle))
 
 ## [0.6.0](https://github.com/openeuropa/oe_content/tree/0.6.0) (2019-05-14)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.5.0...0.6.0)
 
 **Merged pull requests:**
@@ -207,6 +244,7 @@
 - OPENEUROPA-1890: Related links field. [\#68](https://github.com/openeuropa/oe_content/pull/68) ([upchuk](https://github.com/upchuk))
 
 ## [0.5.0](https://github.com/openeuropa/oe_content/tree/0.5.0) (2019-05-06)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.4.2...0.5.0)
 
 **Merged pull requests:**
@@ -215,6 +253,7 @@
 - OPENEUROPA-1813: Upgrade to 8.7. [\#66](https://github.com/openeuropa/oe_content/pull/66) ([upchuk](https://github.com/upchuk))
 
 ## [0.4.2](https://github.com/openeuropa/oe_content/tree/0.4.2) (2019-05-03)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.4.1...0.4.2)
 
 **Merged pull requests:**
@@ -223,6 +262,7 @@
 - OPENEUROPA-1813: Updating 0.x dependencies. [\#64](https://github.com/openeuropa/oe_content/pull/64) ([upchuk](https://github.com/upchuk))
 
 ## [0.4.1](https://github.com/openeuropa/oe_content/tree/0.4.1) (2019-04-25)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.4.0...0.4.1)
 
 **Merged pull requests:**
@@ -231,6 +271,7 @@
 - OPENEUROPA-1821: Updating dependencies. [\#62](https://github.com/openeuropa/oe_content/pull/62) ([upchuk](https://github.com/upchuk))
 
 ## [0.4.0](https://github.com/openeuropa/oe_content/tree/0.4.0) (2019-04-25)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.3.0...0.4.0)
 
 **Closed issues:**
@@ -269,6 +310,7 @@
 - OPENEUROPA-1498: Add documentation on OE Content on how to use this component on a site [\#33](https://github.com/openeuropa/oe_content/pull/33) ([upchuk](https://github.com/upchuk))
 
 ## [0.3.0](https://github.com/openeuropa/oe_content/tree/0.3.0) (2018-12-17)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.2.0...0.3.0)
 
 **Merged pull requests:**
@@ -281,6 +323,7 @@
 - OPENEUROPA-1295: Make OE Content use RDF SKOS instead of RDF taxonomy [\#26](https://github.com/openeuropa/oe_content/pull/26) ([upchuk](https://github.com/upchuk))
 
 ## [0.2.0](https://github.com/openeuropa/oe_content/tree/0.2.0) (2018-09-27)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/0.1.0...0.2.0)
 
 **Merged pull requests:**
@@ -297,6 +340,9 @@
 - OPENEUROPA-1161: Apply patches to rdf\_entity instead of using GitHub fork [\#16](https://github.com/openeuropa/oe_content/pull/16) ([ademarco](https://github.com/ademarco))
 
 ## [0.1.0](https://github.com/openeuropa/oe_content/tree/0.1.0) (2018-08-29)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/564e8453aa1e19d2c9b5c5e72b440f0fd2726857...0.1.0)
+
 **Merged pull requests:**
 
 - Create CHANGELOG.md for 0.1.0 release [\#15](https://github.com/openeuropa/oe_content/pull/15) ([ademarco](https://github.com/ademarco))
@@ -316,4 +362,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
