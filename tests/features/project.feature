@@ -11,7 +11,7 @@ Feature: Project content creation
       | name    | file           | alt                |
       | Image 1 | example_1.jpeg | Alternative text 1 |
       | Image 2 | example_1.jpeg | Alternative text 2 |
-    # Create Stakeholders.
+    # Create stakeholders, to be referenced later on.
     And the following Stakeholder Organisation entity:
       | Name              | Coordinators stakeholder                                                                                                                                      |
       | Acronym           | CS                                                                                                                                                            |
@@ -29,13 +29,13 @@ Feature: Project content creation
       | Website           | https://ec.europa.eu/2                                                                                                                                    |
       | Published         | Yes                                                                                                                                                       |
 
-    # Create Documents.
-    And the following documents:
+    # Create a document, to be referenced later on.
+    And the following document:
       | name          | file       |
       | My Document 1 | sample.pdf |
 
     When I visit "the Project creation page"
-    # Mandatory fields.
+    # Fill up mandatory fields.
     And I fill in "Title" with "My Project"
     And I fill in "Subject" with "EU financing"
     And I fill in "Author" with "European Patent Office"
@@ -44,7 +44,7 @@ Feature: Project content creation
     And I fill in "Participants" with "Participants stakeholder"
     And I fill in "Teaser" with "Project teaser text" in the "Alternative titles and teaser" region
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    # Optional fields.
+    # Fill up optional fields.
     And I fill in "Summary" with "Summary text"
     And I fill in "Reference" with "Reference text"
     And I set "23-02-2019" as the "Start date" of "Project period"
@@ -67,7 +67,7 @@ Feature: Project content creation
     And I should not see "EU financing"
     And I should see "European Patent Office"
     And I should see "Body text"
-    # Coordinators
+    # Assert project coordinators field values.
     And I should see "Coordinators stakeholder" in the "Project coordinators" region
     And I should see "CS" in the "Project coordinators" region
     And I should see "France" in the "Project coordinators" region
@@ -76,11 +76,10 @@ Feature: Project content creation
     And I should see "Etage 1" in the "Project coordinators" region
     And I should see "11111" in the "Project coordinators" region
     And I should see "Cruscades" in the "Project coordinators" region
-    And I should see "1" in the "Project coordinators" region
     And I should see "https://ec.europa.eu/contact1" in the "Project coordinators" region
     And I should see "Logo" in the "Project coordinators" region
     And I should see "https://ec.europa.eu/1" in the "Project coordinators" region
-    # Participants
+    # Assert project participants field values.
     And I should see "Participants stakeholder" in the "Project participants" region
     And I should see "PS" in the "Project participants" region
     And I should see "Luxembourg" in the "Project participants" region
@@ -92,7 +91,7 @@ Feature: Project content creation
     And I should see "https://ec.europa.eu/contact2" in the "Project participants" region
     And I should see "Logo" in the "Project participants" region
     And I should see "https://ec.europa.eu/2" in the "Project participants" region
-    # Project
+    # Assert project field values.
     And I should see "Summary text"
     And I should see "Reference text"
     And I should see "2019-02-23"
