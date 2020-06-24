@@ -35,7 +35,7 @@ Feature: Project content creation
       | My Document 1 | sample.pdf |
 
     When I visit "the Project creation page"
-    # Fill up mandatory fields.
+    # Fill in mandatory fields.
     And I fill in "Title" with "My Project"
     And I fill in "Subject" with "EU financing"
     And I fill in "Author" with "European Patent Office"
@@ -44,7 +44,7 @@ Feature: Project content creation
     And I fill in "Participants" with "Participants stakeholder"
     And I fill in "Teaser" with "Project teaser text" in the "Alternative titles and teaser" region
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    # Fill up optional fields.
+    # Fill in optional fields.
     And I fill in "Summary" with "Summary text"
     And I fill in "Reference" with "Reference text"
     And I set "23-02-2019" as the "Start date" of "Project period"

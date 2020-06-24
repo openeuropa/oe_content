@@ -48,7 +48,7 @@ class StakeholderOrganisationContext extends RawDrupalContext {
           break;
 
         case 'Logo':
-          $fields = $this->getRevisionField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
