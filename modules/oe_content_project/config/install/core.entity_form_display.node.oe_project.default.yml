@@ -105,7 +105,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_autocomplete
+    type: inline_entity_form_simple
     region: content
   oe_project_participants:
     weight: 27
@@ -115,7 +115,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_autocomplete
+    type: inline_entity_form_simple
     region: content
   oe_project_funding_programme:
     weight: 26
@@ -204,7 +204,7 @@ content:
     weight: 7
     settings:
       increment: 15
-      date_order: YMD
+      date_order: DMY
       time_type: '24'
     third_party_settings: {  }
     type: daterange_datelist
