@@ -11,23 +11,6 @@ Feature: Project content creation
       | name    | file           | alt                |
       | Image 1 | example_1.jpeg | Alternative text 1 |
       | Image 2 | example_1.jpeg | Alternative text 2 |
-    # Create stakeholders, to be referenced later on.
-    And the following Stakeholder Organisation entity:
-      | Name              | Coordinators stakeholder                                                                                                                                      |
-      | Acronym           | CS                                                                                                                                                            |
-      | Address           | country_code: FR - locality: Cruscades - organization: Ma société 1 - address_line1: 1 rue de la Paix - address_line2: Etage 1 - postal_code: 11111 - code: 1 |
-      | Contact page URL  | https://ec.europa.eu/contact1                                                                                                                                 |
-      | Logo              | Image 1                                                                                                                                                       |
-      | Website           | https://ec.europa.eu/1                                                                                                                                        |
-      | Published         | Yes                                                                                                                                                           |
-    And the following Stakeholder Organisation entity:
-      | Name              | Participants stakeholder                                                                                                                                  |
-      | Acronym           | PS                                                                                                                                                        |
-      | Address           | country_code: LU - locality: Luxembourg city - organization: Ma société 2 - address_line1: 2 Avenue du Blues - address_line2: Etage 2 - postal_code: 2222 |
-      | Contact page URL  | https://ec.europa.eu/contact2                                                                                                                             |
-      | Logo              | Image 2                                                                                                                                                   |
-      | Website           | https://ec.europa.eu/2                                                                                                                                    |
-      | Published         | Yes                                                                                                                                                       |
 
     # Create a document, to be referenced later on.
     And the following document:
@@ -40,10 +23,35 @@ Feature: Project content creation
     And I fill in "Subject" with "EU financing"
     And I fill in "Author" with "European Patent Office"
     And I fill in "Body text" with "Body text"
-    And I fill in "Coordinators" with "Coordinators stakeholder"
-    And I fill in "Participants" with "Participants stakeholder"
     And I fill in "Teaser" with "Project teaser text" in the "Alternative titles and teaser" region
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
+
+    # Fill in Stakeholder fields by inline entity form for Coordinators field.
+    And I fill in "Name" with "Coordinators stakeholder" in the "Project coordinators" region
+    And I fill in "Acronym" with "Acronym of the Coordinator" in the "Project coordinators" region
+    And I fill in "Use existing media" with "Image 1" in the "Project coordinators" region
+    And I select "Belgium" from "Country" in the "Project coordinators" region
+    And I wait for AJAX to finish
+    And I fill in "Company" with "Ma société 1" in the "Project coordinators" region
+    And I fill in "Street address" with "Rue belliard 28" in the "Project coordinators" region
+    And I fill in "Postal code" with "1000" in the "Project coordinators" region
+    And I fill in "City" with "Brussels" in the "Project coordinators" region
+    And I fill in "Website" with "https://ec.europa.eu/website" in the "Project coordinators" region
+    And I fill in "Contact page URL" with "https://ec.europa.eu/contact" in the "Project coordinators" region
+
+    # Fill in Stakeholder fields by inline entity form for Participants field.
+    And I fill in "Name" with "Participants stakeholder" in the "Project participants" region
+    And I fill in "Acronym" with "Acronym of the Participant" in the "Project participants" region
+    And I fill in "Use existing media" with "Image 2" in the "Project participants" region
+    And I select "Belgium" from "Country" in the "Project participants" region
+    And I wait for AJAX to finish
+    And I fill in "Company" with "Ma société 1" in the "Project participants" region
+    And I fill in "Street address" with "Rue belliard 28" in the "Project participants" region
+    And I fill in "Postal code" with "1000" in the "Project participants" region
+    And I fill in "City" with "Brussels" in the "Project participants" region
+    And I fill in "Website" with "https://ec.europa.eu/website" in the "Project participants" region
+    And I fill in "Contact page URL" with "https://ec.europa.eu/contact" in the "Project participants" region
+
     # Fill in optional fields.
     And I fill in "Summary" with "Summary text"
     And I fill in "Reference" with "Reference text"
@@ -67,30 +75,31 @@ Feature: Project content creation
     And I should not see "EU financing"
     And I should see "European Patent Office"
     And I should see "Body text"
+
     # Assert project coordinators field values.
     And I should see "Coordinators stakeholder" in the "Project coordinators" region
-    And I should see "CS" in the "Project coordinators" region
-    And I should see "France" in the "Project coordinators" region
-    And I should see "Ma société 1" in the "Project coordinators" region
-    And I should see "1 rue de la Paix" in the "Project coordinators" region
-    And I should see "Etage 1" in the "Project coordinators" region
-    And I should see "11111" in the "Project coordinators" region
-    And I should see "Cruscades" in the "Project coordinators" region
-    And I should see "https://ec.europa.eu/contact1" in the "Project coordinators" region
+    And I should see "Acronym of the Coordinator" in the "Project coordinators" region
     And I should see "Logo" in the "Project coordinators" region
-    And I should see "https://ec.europa.eu/1" in the "Project coordinators" region
+    And I should see "Belgium" in the "Project coordinators" region
+    And I should see "Ma société 1" in the "Project coordinators" region
+    And I should see "Rue belliard 28" in the "Project coordinators" region
+    And I should see "1000" in the "Project coordinators" region
+    And I should see "Brussels" in the "Project coordinators" region
+    And I should see "https://ec.europa.eu/website" in the "Project coordinators" region
+    And I should see "https://ec.europa.eu/contact" in the "Project coordinators" region
+
     # Assert project participants field values.
     And I should see "Participants stakeholder" in the "Project participants" region
-    And I should see "PS" in the "Project participants" region
-    And I should see "Luxembourg" in the "Project participants" region
-    And I should see "Ma société 2" in the "Project participants" region
-    And I should see "2 Avenue du Blues" in the "Project participants" region
-    And I should see "Etage 2" in the "Project participants" region
-    And I should see "2222" in the "Project participants" region
-    And I should see "Luxembourg city" in the "Project participants" region
-    And I should see "https://ec.europa.eu/contact2" in the "Project participants" region
+    And I should see "Acronym of the Participant" in the "Project participants" region
     And I should see "Logo" in the "Project participants" region
-    And I should see "https://ec.europa.eu/2" in the "Project participants" region
+    And I should see "Belgium" in the "Project participants" region
+    And I should see "Ma société 1" in the "Project participants" region
+    And I should see "Rue belliard 28" in the "Project participants" region
+    And I should see "1000" in the "Project participants" region
+    And I should see "Brussels" in the "Project participants" region
+    And I should see "https://ec.europa.eu/website" in the "Project participants" region
+    And I should see "https://ec.europa.eu/contact" in the "Project participants" region
+
     # Assert project field values.
     And I should see "Summary text"
     And I should see "Reference text"
