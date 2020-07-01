@@ -175,14 +175,18 @@ content:
     weight: 23
     settings:
       form_mode: default
-      revision: false
-      override_labels: false
-      label_singular: ''
-      label_plural: ''
-      collapsible: false
+      revision: true
+      override_labels: true
+      label_singular: coordinator
+      label_plural: coordinators
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
       collapsed: false
+      allow_existing: false
+      allow_duplicate: false
     third_party_settings: {  }
-    type: inline_entity_form_simple
+    type: inline_entity_form_complex
     region: content
   oe_project_dates:
     weight: 7
@@ -217,14 +221,18 @@ content:
     weight: 24
     settings:
       form_mode: default
-      revision: false
-      override_labels: false
-      label_singular: ''
-      label_plural: ''
-      collapsible: false
+      revision: true
+      override_labels: true
+      label_singular: participant
+      label_plural: participants
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
       collapsed: false
+      allow_existing: false
+      allow_duplicate: false
     third_party_settings: {  }
-    type: inline_entity_form_simple
+    type: inline_entity_form_complex
     region: content
   oe_project_result_files:
     weight: 21
