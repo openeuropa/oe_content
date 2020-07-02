@@ -181,9 +181,9 @@ content:
       label_plural: coordinators
       collapsible: true
       allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
       collapsed: false
-      allow_existing: false
       allow_duplicate: false
     third_party_settings: {  }
     type: inline_entity_form_complex
@@ -227,9 +227,9 @@ content:
       label_plural: participants
       collapsible: true
       allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
       collapsed: false
-      allow_existing: false
       allow_duplicate: false
     third_party_settings: {  }
     type: inline_entity_form_complex
