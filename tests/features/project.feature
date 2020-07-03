@@ -27,14 +27,12 @@ Feature: Project content creation
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
 
     # Fill in Stakeholder fields by inline entity form for Coordinators field.
-    When I press "Add new coordinator"
-    And I wait for AJAX to finish
     And I fill in "Name" with "Coordinators stakeholder" in the "Project coordinators" region
     And I fill in "Acronym" with "Acronym of the Coordinator" in the "Project coordinators" region
     And I fill in "Use existing media" with "Image 1" in the "Project coordinators" region
     And I select "Belgium" from "Country" in the "Project coordinators" region
     And I wait for AJAX to finish
-    And I fill in "Company" with "Ma société 1" in the "Project coordinators" region
+    And I fill in "Company" with "My company 1" in the "Project coordinators" region
     And I fill in "Street address" with "Rue belliard 28" in the "Project coordinators" region
     And I fill in "Postal code" with "1000" in the "Project coordinators" region
     And I fill in "City" with "Brussels" in the "Project coordinators" region
@@ -42,14 +40,12 @@ Feature: Project content creation
     And I fill in "Contact page URL" with "https://ec.europa.eu/contact" in the "Project coordinators" region
 
     # Fill in Stakeholder fields by inline entity form for Participants field.
-    When I press "Add new participant"
-    And I wait for AJAX to finish
     And I fill in "Name" with "Participants stakeholder" in the "Project participants" region
     And I fill in "Acronym" with "Acronym of the Participant" in the "Project participants" region
     And I fill in "Use existing media" with "Image 2" in the "Project participants" region
     And I select "Belgium" from "Country" in the "Project participants" region
     And I wait for AJAX to finish
-    And I fill in "Company" with "Ma société 1" in the "Project participants" region
+    And I fill in "Company" with "My company 1" in the "Project participants" region
     And I fill in "Street address" with "Rue belliard 28" in the "Project participants" region
     And I fill in "Postal code" with "1000" in the "Project participants" region
     And I fill in "City" with "Brussels" in the "Project participants" region
@@ -85,7 +81,7 @@ Feature: Project content creation
     And I should see "Acronym of the Coordinator" in the "Project coordinators" region
     And I should see "Logo" in the "Project coordinators" region
     And I should see "Belgium" in the "Project coordinators" region
-    And I should see "Ma société 1" in the "Project coordinators" region
+    And I should see "My company 1" in the "Project coordinators" region
     And I should see "Rue belliard 28" in the "Project coordinators" region
     And I should see "1000" in the "Project coordinators" region
     And I should see "Brussels" in the "Project coordinators" region
@@ -97,7 +93,7 @@ Feature: Project content creation
     And I should see "Acronym of the Participant" in the "Project participants" region
     And I should see "Logo" in the "Project participants" region
     And I should see "Belgium" in the "Project participants" region
-    And I should see "Ma société 1" in the "Project participants" region
+    And I should see "My company 1" in the "Project participants" region
     And I should see "Rue belliard 28" in the "Project participants" region
     And I should see "1000" in the "Project participants" region
     And I should see "Brussels" in the "Project participants" region

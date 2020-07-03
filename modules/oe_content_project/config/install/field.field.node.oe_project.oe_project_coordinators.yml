@@ -6,7 +6,11 @@ dependencies:
     - node.type.oe_project
     - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
   module:
+    - composite_reference
     - entity_reference_revisions
+third_party_settings:
+  composite_reference:
+    composite: true
 id: node.oe_project.oe_project_coordinators
 field_name: oe_project_coordinators
 entity_type: node
