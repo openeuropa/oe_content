@@ -1,4 +1,4 @@
-@api @project
+@api
 Feature: Project content creation
   In order to have projects on the site
   As an editor
