@@ -6,12 +6,12 @@ namespace Drupal\Tests\oe_content\Kernel;
 
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
+use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Tests the content type base field definitions.
  */
-class BaseFieldsTest extends RdfKernelTestBase {
+class BaseFieldsTest extends SparqlKernelTestBase {
 
   /**
    * Modules to enable.

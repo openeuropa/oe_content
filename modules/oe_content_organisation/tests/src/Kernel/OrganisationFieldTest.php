@@ -5,22 +5,24 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_organisation\Kernel;
 
 use Drupal\node\Entity\Node;
-use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
+use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Test Organisation creation business logic.
  */
-class OrganisationFieldTest extends RdfKernelTestBase {
+class OrganisationFieldTest extends SparqlKernelTestBase {
 
   /**
    * {@inheritdoc}
    */
   public static $modules = [
+    'datetime',
     'field',
     'field_group',
     'entity_reference_revisions',
     'image',
     'inline_entity_form',
+    'link',
     'node',
     'maxlength',
     'media',
