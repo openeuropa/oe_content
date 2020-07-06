@@ -6,17 +6,17 @@ namespace Drupal\Tests\oe_content\Kernel;
 
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
-use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
+use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
+use Drupal\Tests\user\Traits\UserCreationTrait;
 
 /**
  * Tests the generation of the short title token.
  *
  * @group node
  */
-class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
+class ShortTitleTokenReplaceTest extends SparqlKernelTestBase {
 
-  use RdfDatabaseConnectionTrait;
+  use UserCreationTrait;
 
   /**
    * Modules to enable.
@@ -27,6 +27,7 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
     'content_translation',
     'field',
     'language',
+    'link',
     'node',
     'oe_content',
     'rdf_skos',
@@ -37,10 +38,11 @@ class ShortTitleTokenReplaceTest extends RdfKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->setUpSparql();
 
+    $this->installSchema('system', 'sequences');
     $this->installSchema('user', 'users_data');
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');

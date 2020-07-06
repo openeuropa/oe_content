@@ -1,6 +1,6 @@
 oe_content_persistent.purl_settings:
   title: 'Configure PURL'
-  parent: rdf_entity.admin_index
+  parent: sparql_entity_storage.settings
   description: 'PURL settings.'
   weight: -10
   route_name: oe_content_persistent.purl_settings

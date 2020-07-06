@@ -7,9 +7,9 @@ namespace Drupal\oe_content_news\Plugin\ConceptSubset;
 use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\rdf_entity\RdfFieldHandlerInterface;
 use Drupal\rdf_skos\ConceptSubsetPluginBase;
 use Drupal\rdf_skos\Plugin\PredicateMapperInterface;
+use Drupal\sparql_entity_storage\SparqlEntityStorageFieldHandlerInterface;
 
 /**
  * Resource type subset for news types.
@@ -42,7 +42,7 @@ class ResourceTypesNews extends ConceptSubsetPluginBase implements PredicateMapp
     $mapping['oe_content_news_resource_types_news'] = [
       'column' => 'value',
       'predicate' => ['http://lemon-model.net/lemon#context'],
-      'format' => RdfFieldHandlerInterface::RESOURCE,
+      'format' => SparqlEntityStorageFieldHandlerInterface::RESOURCE,
     ];
 
     return $mapping;

@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_organisation\EventSubscriber;
 
-use Drupal\rdf_entity\RdfFieldHandlerInterface;
 use Drupal\rdf_skos\Event\SkosPredicateMappingEvent;
+use Drupal\sparql_entity_storage\SparqlEntityStorageFieldHandlerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -38,7 +38,7 @@ class SkosPredicateMappingSubscriber implements EventSubscriberInterface {
       $mapping['fields']['oe_content_organisation_corporate_body_classification'] = [
         'column' => 'target_id',
         'predicate' => ['http://purl.org/dc/terms/type'],
-        'format' => RdfFieldHandlerInterface::RESOURCE,
+        'format' => SparqlEntityStorageFieldHandlerInterface::RESOURCE,
       ];
     }
 
