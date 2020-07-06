@@ -36,7 +36,7 @@ class ProjectContentContext extends RawDrupalContext {
       'Body text' => 'body',
       'Call for proposals' => 'oe_project_calls',
       'Coordinators' => 'oe_project_coordinators',
-      'Departments' => 'oe_project_departments',
+      'Departments' => 'oe_departments',
       'EU contribution' => 'oe_project_budget_eu',
       'Funding programme' => 'oe_project_funding_programme',
       'Navigation title' => 'oe_content_navigation_title',
