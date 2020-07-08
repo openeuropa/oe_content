@@ -65,7 +65,7 @@ Feature: Project content creation
     And I fill in "URL" with "http://example.com" in the "Call for proposals" region
     And I fill in "Link text" with "Example proposal" in the "Call for proposals" region
     And I fill in "Results" with "Result 1 text" in the "Result" region
-    And I fill in "Result files" with "My Document 1" in the "Result" region
+    And I fill in "Use existing media" with "My Document 1" in the "Result" region
     And I fill in "Alternative title" with "My alternative title text" in the "Alternative titles and teaser" region
     And I fill in "Navigation title" with "My navigation title text" in the "Alternative titles and teaser" region
     And I fill in "Departments" with "Audit Board of the European Communities"

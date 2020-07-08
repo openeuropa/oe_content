@@ -5,8 +5,6 @@ dependencies:
     - field.storage.node.oe_project_result_files
     - media.type.document
     - node.type.oe_project
-  module:
-    - entity_reference_revisions
 id: node.oe_project.oe_project_result_files
 field_name: oe_project_result_files
 entity_type: node
@@ -26,4 +24,4 @@ settings:
       field: _none
     auto_create: false
     auto_create_bundle: ''
-field_type: entity_reference_revisions
+field_type: entity_reference

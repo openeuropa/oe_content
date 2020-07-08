@@ -129,9 +129,9 @@ content:
     label: above
     settings:
       view_mode: default
-      link: ''
+      link: false
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    type: entity_reference_entity_view
     region: content
   oe_project_results:
     type: text_default
