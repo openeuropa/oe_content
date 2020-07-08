@@ -10,6 +10,7 @@ dependencies:
   - oe_content:oe_content
   - oe_content:oe_content_entity_organisation
   - oe_content:oe_content_departments_field
+  - oe_content:oe_content_featured_media_field
   - oe_media:oe_media
   - field_group:field_group
   - entity_reference_revisions:entity_reference_revisions

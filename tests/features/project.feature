@@ -8,9 +8,13 @@ Feature: Project content creation
   Scenario: Creation of a Project content through the UI.
     Given I am logged in as a user with the "create oe_project content, access content, edit own oe_project content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
-      | name    | file           | alt                |
-      | Image 1 | example_1.jpeg | Alternative text 1 |
-      | Image 2 | example_1.jpeg | Alternative text 2 |
+      | name    | file            | alt                 |
+      | Image 1 | example_1.jpeg  | Alternative text 1  |
+      | Image 2 | example_1.jpeg  | Alternative text 2  |
+      | Image 3 | example_1.jpeg  | Alternative text 3  |
+    And the following "Remote video" "Media" entity:
+      | url                                         | title                   |
+      | https://www.youtube.com/watch?v=YaUGTOnf6k0 | Plant health in the EU  |
 
     # Create a document, to be referenced later on.
     And the following document:
@@ -62,6 +66,8 @@ Feature: Project content creation
     And I fill in "Funding programme" with "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
     And I fill in "URL" with "http://project.website" in the "Project Website" region
     And I fill in "Link text" with "Website" in the "Project Website" region
+    And I fill in "Media item" with "Image 3" in the "featured media form element"
+    And I fill in "Caption" with "Here is my featured image text caption." in the "featured media form element"
     And I fill in "URL" with "http://example.com" in the "Call for proposals" region
     And I fill in "Link text" with "Example proposal" in the "Call for proposals" region
     And I fill in "Results" with "Result 1 text" in the "Result" region
@@ -102,6 +108,8 @@ Feature: Project content creation
 
     # Assert project field values.
     And I should see "Summary text"
+    And I should see "Image 3" in the "featured media form element" region
+    And I should see "Here is my featured image text caption." in the "featured media form element" region
     And I should see "Reference text"
     And I should see "2019-02-23"
     And I should see "2019-02-24"
@@ -113,3 +121,10 @@ Feature: Project content creation
     And I should see "Result 1 text"
     And I should see "sample.pdf"
     And I should see "Audit Board of the European Communities"
+    # Test remote video for Featured media.
+    When I click "Edit"
+    Then I fill in "Media item" with "Plant health in the EU" in the "featured media form element"
+    And I fill in "Caption" with "Here is my featured video text caption." in the "featured media form element"
+    When I press "Save"
+    Then I should see "Plant health in the EU" in the "featured media form element" region
+    And I should see "Here is my featured video text caption." in the "featured media form element" region

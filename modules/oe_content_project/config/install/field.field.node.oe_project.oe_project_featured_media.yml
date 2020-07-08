@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_project_featured_media
+    - media.type.image
+    - media.type.remote_video
+    - node.type.oe_project
+  module:
+    - oe_content_featured_media_field
+id: node.oe_project.oe_project_featured_media
+field_name: oe_project_featured_media
+entity_type: node
+bundle: oe_project
+label: 'Featured media'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      remote_video: remote_video
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: image
+field_type: oe_featured_media
