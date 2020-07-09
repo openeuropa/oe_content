@@ -11,7 +11,7 @@ entity_type: node
 type: entity_reference_revisions
 settings:
   target_type: oe_organisation
-module: core
+module: entity_reference_revisions
 locked: false
 cardinality: -1
 translatable: false
