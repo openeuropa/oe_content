@@ -26,6 +26,16 @@ The `field_group` module requires the following patches to be applied:
 }
 ```
 
+The `inline_entity_form` module requires the following patches to be applied:
+
+```json
+"patches": {
+    "drupal/inline_entity_form": {
+        "Field name/label disappears when I create a new entity inline": "https://www.drupal.org/files/issues/2020-07-09/inline_entity_form-no_label_required_field_with_no_entries-2842744-23-D8.patch"
+    }
+}
+```
+
 In order to apply the patches above add the following to your project's `composer.json` file:
 
 ```json
