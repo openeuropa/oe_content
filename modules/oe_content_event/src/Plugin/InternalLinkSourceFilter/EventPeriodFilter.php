@@ -126,9 +126,9 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
         break;
 
       case self::UPCOMING:
-        $query->condition('oe_event_dates.value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">");
+        $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">=");
         $query->sort('oe_event_dates.value', 'ASC');
-        $this->addTimeCacheTags($cacheability);
+        $this->addTimeCacheTags($cacheability, 'end_value');
         break;
 
       default:
