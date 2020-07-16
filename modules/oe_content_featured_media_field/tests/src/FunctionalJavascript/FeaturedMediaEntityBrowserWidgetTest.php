@@ -78,6 +78,14 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->assertSession()->pageTextContains('The caption that goes with the referenced media.');
     $this->assertSession()->buttonExists('Add another item');
 
+    // Assert validation of caption without Media.
+    $this->getSession()->getPage()->fillField('Title', 'Test entity browser widget');
+    $this->getSession()->getPage()->fillField('featured_media_field[0][caption]', 'Invalid caption');
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains('Please either remove the caption or select a Media entity');
+
+    $this->drupalGet('node/add/page');
+
     // Select the first media image from the entity browser.
     $this->getSession()->getPage()->pressButton('Select images');
     $this->assertSession()->assertWaitOnAjaxRequest();
@@ -114,7 +122,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->getSession()->getPage()->pressButton('Save');
 
     // Assert the values were saved correctly in the node.
-    $this->assertSession()->pageTextContains('page Test entity browser widget has been created.');
+    $this->assertSession()->pageTextContains('Test entity browser widget has been created.');
     $node = $this->drupalGetNodeByTitle('Test entity browser widget');
     $expected_values = [
       '0' => [
@@ -180,6 +188,13 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     // Assert the image was removed from the field.
     $this->assertSession()->pageTextNotContains('Image 2');
     $this->assertSession()->buttonExists('Select images');
+    $this->getSession()->getPage()->pressButton('Save');
+
+    // Assert the remaining caption should not remain.
+    $this->assertSession()->pageTextContains('Please either remove the caption or select a Media entity');
+
+    // Remove the caption.
+    $this->getSession()->getPage()->fillField('featured_media_field[0][caption]', '');
     $this->getSession()->getPage()->pressButton('Save');
 
     // Assert the values were saved correctly in the node.

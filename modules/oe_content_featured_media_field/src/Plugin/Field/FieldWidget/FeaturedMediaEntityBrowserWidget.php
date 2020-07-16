@@ -109,8 +109,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
         $elements[0]['entity_browser']['#required'] = TRUE;
       }
 
-      $elements[0]['caption']['#required'] = TRUE;
-
       return $elements;
     }
 
@@ -120,7 +118,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       if (isset($elements[$delta]['entity_browser'])) {
         $elements[$delta]['entity_browser']['#required'] = TRUE;
       }
-      $elements[$delta]['caption']['#required'] = TRUE;
     }
 
     return $elements;
@@ -171,7 +168,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
 
     // Enable entity browser if requirements for that are fulfilled.
     if (EntityBrowserElement::isEntityBrowserAvailable($selection_mode, 1, count($entities))) {
-      $persistentData = $this->getPersistentData();
+      $persistent_data = $this->getPersistentData();
 
       $element['entity_browser'] = [
         '#type' => 'entity_browser',
@@ -179,8 +176,8 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
         '#cardinality' => 1,
         '#selection_mode' => $selection_mode,
         '#default_value' => $entities,
-        '#entity_browser_validators' => $persistentData['validators'],
-        '#widget_context' => $persistentData['widget_context'],
+        '#entity_browser_validators' => $persistent_data['validators'],
+        '#widget_context' => $persistent_data['widget_context'],
         '#custom_hidden_id' => $hidden_id,
         '#process' => [
           ['\Drupal\entity_browser\Element\EntityBrowserElement', 'processEntityBrowser'],
@@ -200,9 +197,30 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       '#description' => $this->t('The caption that goes with the referenced media.'),
       '#type' => 'textfield',
       '#default_value' => $items->offsetExists($delta) ? $items->get($delta)->caption : '',
+      '#element_validate' => [[$this, 'validateCaptionField']],
     ];
 
     return $element;
+  }
+
+  /**
+   * Caption field validator.
+   *
+   * @param array $element
+   *   The element.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   * @param array $complete_form
+   *   The entire form.
+   */
+  public function validateCaptionField(array &$element, FormStateInterface &$form_state, array &$complete_form): void {
+    $parents = $element['#parents'];
+    $caption = $form_state->getValue($parents);
+    array_pop($parents);
+    $target_id = $form_state->getValue(array_merge($parents, ['target_id']));
+    if (empty($target_id) && $caption) {
+      $form_state->setError($element, $this->t('Please either remove the caption or select a Media entity'));
+    }
   }
 
   /**
