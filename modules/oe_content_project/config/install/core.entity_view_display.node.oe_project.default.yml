@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.node.oe_project.body
     - field.field.node.oe_project.oe_author
+    - field.field.node.oe_project.oe_documents
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_budget_eu
@@ -57,6 +58,15 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  oe_documents:
+    weight: 15
+    label: above
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
   oe_project_budget:
     type: number_decimal
     weight: 9
@@ -92,7 +102,7 @@ content:
       target: ''
     third_party_settings: {  }
   oe_project_coordinators:
-    weight: 12
+    weight: 13
     label: above
     settings:
       view_mode: default
@@ -127,7 +137,7 @@ content:
     type: skos_concept_entity_reference_label
     region: content
   oe_project_participants:
-    weight: 13
+    weight: 14
     label: above
     settings:
       link: ''

@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.node.oe_project.body
     - field.field.node.oe_project.oe_author
+    - field.field.node.oe_project.oe_documents
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_budget_eu
@@ -23,7 +24,6 @@ dependencies:
     - node.type.oe_project
   module:
     - datetime_range
-    - entity_reference_revisions
     - field_group
     - inline_entity_form
     - link
@@ -161,6 +161,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  oe_documents:
+    weight: 12
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   oe_departments:
     weight: 16
     settings:
@@ -194,7 +204,7 @@ content:
     type: link_default
     region: content
   oe_project_coordinators:
-    weight: 23
+    weight: 24
     settings:
       form_mode: default
       revision: true
@@ -220,7 +230,7 @@ content:
     type: daterange_datelist
     region: content
   oe_project_funding_programme:
-    weight: 24
+    weight: 23
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -254,7 +264,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_autocomplete
+    type: entity_reference_autocomplete
     region: content
   oe_project_results:
     weight: 20

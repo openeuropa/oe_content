@@ -47,6 +47,7 @@ class ProjectContentContext extends RawDrupalContext {
       'Project period end date' => 'oe_project_dates:end_value',
       'Published' => 'status',
       'Reference' => 'oe_reference',
+      'Documents' => 'oe_document',
       'Result files' => 'oe_project_result_files',
       'Results' => 'oe_project_results',
       'Summary' => 'oe_summary',
@@ -65,6 +66,7 @@ class ProjectContentContext extends RawDrupalContext {
           break;
 
         // Set Media entity reference fields.
+        case 'Documents':
         case 'Featured media':
           $fields = $this->getReferenceField($mapping[$key], 'media', $value);
           $scope->addFields($fields)->removeField($key);

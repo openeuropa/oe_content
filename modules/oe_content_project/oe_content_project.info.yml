@@ -9,6 +9,7 @@ dependencies:
   - drupal:datetime_range
   - oe_content:oe_content
   - oe_content:oe_content_entity_organisation
+  - oe_content:oe_content_documents_field
   - oe_content:oe_content_departments_field
   - oe_content:oe_content_featured_media_field
   - oe_media:oe_media
@@ -36,6 +37,7 @@ config_devel:
     - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_project_calls
+    - field.field.node.oe_project.oe_document
     - field.field.node.oe_project.body
     - field.storage.node.oe_project_coordinators
     - field.storage.node.oe_project_participants
