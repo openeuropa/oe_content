@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_tender_deadlines
+    - node.type.oe_tender
+  module:
+    - datetime
+id: node.oe_tender.oe_tender_deadlines
+field_name: oe_tender_deadlines
+entity_type: node
+bundle: oe_tender
+label: Deadline
+description: "Enter the deadline for submission of applications.\r\nIn the case of multiple deadlines (either two-stage or multiple cut-offs), add additional deadlines below. If you need to provide further details relating to these dates, please enter this in the main body text (Main content > Description of the call)."
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

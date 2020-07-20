@@ -1,0 +1,22 @@
+name: OpenEuropa Tender Content
+description: Contains the EC corporate Call for tenders content type.
+package: OpenEuropa
+type: module
+core: 8.x
+
+config_devel:
+  install:
+    - core.entity_form_display.node.oe_tender.default
+    - core.entity_view_display.node.oe_tender.default
+    - field.field.node.oe_tender.body
+    - field.field.node.oe_tender.oe_tender_deadlines
+    - field.field.node.oe_tender.oe_tender_opening_date
+    - field.field.node.oe_tender.oe_departments
+    - field.field.node.oe_tender.oe_publication_date
+    - field.field.node.oe_tender.oe_summary
+    - field.field.node.oe_tender.oe_teaser
+    - field.storage.node.oe_tender_deadlines
+    - field.storage.node.oe_tender_opening_date
+    - node.type.oe_tender
+  optional:
+    - language.content_settings.node.oe_tender
