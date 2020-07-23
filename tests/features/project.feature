@@ -12,9 +12,9 @@ Feature: Project content creation
       | Image 1 | example_1.jpeg  | Alternative text 1  |
       | Image 2 | example_1.jpeg  | Alternative text 2  |
       | Image 3 | example_1.jpeg  | Alternative text 3  |
-    And the following "Remote video" "Media" entity:
-      | url                                         | title                   |
-      | https://www.youtube.com/watch?v=YaUGTOnf6k0 | Plant health in the EU  |
+    And the following remote video:
+      | url                                         |
+      | https://www.youtube.com/watch?v=YaUGTOnf6k0 |
 
     # Create a document, to be referenced later on.
     And the following document:

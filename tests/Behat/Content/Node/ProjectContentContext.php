@@ -9,6 +9,7 @@ use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
+use Behat\Gherkin\Node\TableNode;
 
 /**
  * Context to create project content entities.
@@ -20,6 +21,13 @@ class ProjectContentContext extends RawDrupalContext {
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
   use EntityLoadingTrait;
+
+  /**
+   * Keep track of medias so they can be cleaned up.
+   *
+   * @var \Drupal\Core\Entity\ContentEntityInterface[]
+   */
+  protected $media = [];
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -102,6 +110,52 @@ class ProjectContentContext extends RawDrupalContext {
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
     ]);
+  }
+
+  /**
+   * Creates media Remote video with the specified URLs.
+   *
+   * Usage example:
+   *
+   * Given the following remote videos:
+   *   | url   |
+   *   | url 1 |
+   *   |  ...  |
+   *
+   * @Given the following remote video(s):
+   */
+  public function createMediaRemoteVideo(TableNode $table): void {
+    foreach ($table->getColumnsHash() as $hash) {
+      $media = \Drupal::entityTypeManager()
+        ->getStorage('media')->create([
+          'bundle' => 'remote_video',
+          'oe_media_oembed_video' => $hash['url'],
+          'status' => 1,
+        ]);
+      $media->save();
+
+      // Store for cleanup.
+      $this->media[] = $media;
+    }
+  }
+
+  /**
+   * Remove any created media.
+   *
+   * @AfterScenario
+   */
+  public function cleanMedias(): void {
+    $storage = \Drupal::entityTypeManager()->getStorage('media');
+    foreach ($this->media as $media) {
+      // Tests might manually delete entities created via this step.
+      // Here we check if the entity still exists before deleting it.
+      if ($storage->load($media->id()) !== NULL) {
+        $media->delete();
+      }
+    }
+
+    // Reset entity array.
+    $this->media = [];
   }
 
 }
