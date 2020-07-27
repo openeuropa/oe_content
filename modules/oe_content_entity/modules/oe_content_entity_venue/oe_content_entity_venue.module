@@ -14,9 +14,7 @@ function oe_content_entity_venue_theme() {
   return [
     'oe_venue' => [
       'render element' => 'elements',
-      'preprocess functions' => [
-        'oe_content_entity_default_preprocess',
-      ],
+      'base hook' => 'oe_content_entity',
     ],
   ];
 }
