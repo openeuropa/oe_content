@@ -37,7 +37,7 @@ config_devel:
     - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_project_calls
-    - field.field.node.oe_project.oe_document
+    - field.field.node.oe_project.oe_documents
     - field.field.node.oe_project.body
     - field.storage.node.oe_project_coordinators
     - field.storage.node.oe_project_participants

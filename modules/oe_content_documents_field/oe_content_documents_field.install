@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Documents Field installation file.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Config\FileStorage;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_documents_field_install() {
+  // If we are installing from config, we bail out.
+  if (\Drupal::isConfigSyncing() === TRUE) {
+    return;
+  }
+  // Does the field storage already exist ?
+  if (!empty($fieldStorageDocumentsfield = FieldStorageConfig::load('node', 'oe_documents'))) {
+    return;
+  }
+
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_documents_field') . '/config/overrides');
+  $values = $storage->read('field.storage.node.oe_documents');
+  FieldStorageConfig::create($values)->save();
+}
