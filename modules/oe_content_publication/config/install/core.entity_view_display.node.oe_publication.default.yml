@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_publication.oe_author
+    - field.field.node.oe_publication.oe_documents
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_type
     - field.field.node.oe_publication.oe_subject
