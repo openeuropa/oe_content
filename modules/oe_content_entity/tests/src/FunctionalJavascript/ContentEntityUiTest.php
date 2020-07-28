@@ -15,6 +15,7 @@ class ContentEntityUiTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'composite_reference',
     'oe_content',
     'oe_content_entity',
     'oe_content_entity_contact',

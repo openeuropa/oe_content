@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_contact.oe_press_contact_url
+    - oe_content_entity_contact.oe_contact_type.oe_press
+  module:
+    - link
+id: oe_contact.oe_press.oe_press_contact_url
+field_name: oe_press_contact_url
+entity_type: oe_contact
+bundle: oe_press
+label: 'Press contacts'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

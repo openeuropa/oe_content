@@ -6,6 +6,7 @@ core: 8.x
 
 dependencies:
   - oe_content:oe_content_entity
+  - oe_content:oe_content_featured_media_field
   - address:address
   - typed_link:typed_link
 
@@ -14,18 +15,46 @@ config_devel:
     - core.entity_form_display.oe_contact.oe_general.default
     - core.entity_form_display.oe_contact.oe_press.default
     - core.entity_view_display.oe_contact.oe_general.default
+    - core.entity_view_display.oe_contact.oe_general.oe_details
     - core.entity_view_display.oe_contact.oe_press.default
+    - core.entity_view_display.oe_contact.oe_press.oe_details
+    - core.entity_view_mode.oe_contact.oe_details
     - field.field.oe_contact.oe_general.oe_address
+    - field.field.oe_contact.oe_general.oe_body
     - field.field.oe_contact.oe_general.oe_email
+    - field.field.oe_contact.oe_general.oe_fax
+    - field.field.oe_contact.oe_general.oe_image
+    - field.field.oe_contact.oe_general.oe_mobile
+    - field.field.oe_contact.oe_general.oe_organisation
+    - field.field.oe_contact.oe_general.oe_office
     - field.field.oe_contact.oe_general.oe_phone
+    - field.field.oe_contact.oe_general.oe_press_contact_url
     - field.field.oe_contact.oe_general.oe_social_media
+    - field.field.oe_contact.oe_general.oe_website
     - field.field.oe_contact.oe_press.oe_address
+    - field.field.oe_contact.oe_press.oe_body
     - field.field.oe_contact.oe_press.oe_email
+    - field.field.oe_contact.oe_press.oe_fax
+    - field.field.oe_contact.oe_press.oe_image
+    - field.field.oe_contact.oe_press.oe_mobile
+    - field.field.oe_contact.oe_press.oe_organisation
+    - field.field.oe_contact.oe_press.oe_office
     - field.field.oe_contact.oe_press.oe_phone
+    - field.field.oe_contact.oe_press.oe_press_contact_url
     - field.field.oe_contact.oe_press.oe_social_media
+    - field.field.oe_contact.oe_press.oe_website
     - field.storage.oe_contact.oe_address
+    - field.storage.oe_contact.oe_body
     - field.storage.oe_contact.oe_email
+    - field.storage.oe_contact.oe_fax
+    - field.storage.oe_contact.oe_image
+    - field.storage.oe_contact.oe_mobile
+    - field.storage.oe_contact.oe_organisation
+    - field.storage.oe_contact.oe_office
     - field.storage.oe_contact.oe_phone
+    - field.storage.oe_contact.oe_press_contact_url
+    - field.storage.oe_contact.oe_social_media
+    - field.storage.oe_contact.oe_website
     - oe_content_entity_contact.oe_contact_type.oe_general
     - oe_content_entity_contact.oe_contact_type.oe_press
   optional:

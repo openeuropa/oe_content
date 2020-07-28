@@ -43,6 +43,7 @@ class ProjectContentContext extends RawDrupalContext {
       'Navigation title' => 'oe_content_navigation_title',
       'Overall budget' => 'oe_project_budget',
       'Participants' => 'oe_project_participants',
+      'Project contact' => 'oe_project_contact',
       'Project period start date' => 'oe_project_dates:value',
       'Project period end date' => 'oe_project_dates:end_value',
       'Published' => 'status',
@@ -81,6 +82,11 @@ class ProjectContentContext extends RawDrupalContext {
         case 'Coordinators':
         case 'Participants':
           $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_organisation', $value);
+          $scope->addFields($fields)->removeField($key);
+          break;
+
+        case 'Project contact':
+          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

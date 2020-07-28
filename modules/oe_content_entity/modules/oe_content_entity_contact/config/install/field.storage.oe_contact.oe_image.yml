@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   module:
+    - media
     - oe_content_entity_contact
-id: oe_contact.oe_phone
-field_name: oe_phone
+    - oe_content_featured_media_field
+id: oe_contact.oe_image
+field_name: oe_image
 entity_type: oe_contact
-type: string
+type: oe_featured_media
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
-module: core
+  target_type: media
+module: oe_content_featured_media_field
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

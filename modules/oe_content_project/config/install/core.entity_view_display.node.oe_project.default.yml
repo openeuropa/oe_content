@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_project_calls
+    - field.field.node.oe_project.oe_project_contact
     - field.field.node.oe_project.oe_project_coordinators
     - field.field.node.oe_project.oe_project_dates
     - field.field.node.oe_project.oe_project_featured_media
@@ -101,6 +102,15 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+  oe_project_contact:
+    weight: 14
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
   oe_project_coordinators:
     weight: 13
     label: above

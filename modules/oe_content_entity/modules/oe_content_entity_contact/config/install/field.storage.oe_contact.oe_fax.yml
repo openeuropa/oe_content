@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - oe_content_entity_contact
-id: oe_contact.oe_phone
-field_name: oe_phone
+id: oe_contact.oe_fax
+field_name: oe_fax
 entity_type: oe_contact
 type: string
 settings:

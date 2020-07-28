@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_contact.oe_image
+    - media.type.image
+    - oe_content_entity_contact.oe_contact_type.oe_press
+  module:
+    - oe_content_featured_media_field
+id: oe_contact.oe_press.oe_image
+field_name: oe_image
+entity_type: oe_contact
+bundle: oe_press
+label: Image
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: oe_featured_media
