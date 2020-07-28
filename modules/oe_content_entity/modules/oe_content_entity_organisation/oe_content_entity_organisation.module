@@ -14,9 +14,7 @@ function oe_content_entity_organisation_theme() {
   return [
     'oe_organisation' => [
       'render element' => 'elements',
-      'preprocess functions' => [
-        'oe_content_entity_default_preprocess',
-      ],
+      'base hook' => 'oe_content_entity',
     ],
   ];
 }
