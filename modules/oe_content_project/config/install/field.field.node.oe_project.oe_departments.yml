@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_project_departments
+    - field.storage.node.oe_departments
     - node.type.oe_project
   module:
     - rdf_skos
-id: node.oe_project.oe_project_departments
-field_name: oe_project_departments
+id: node.oe_project.oe_departments
+field_name: oe_departments
 entity_type: node
 bundle: oe_project
 label: Departments
@@ -26,7 +26,7 @@ settings:
     concept_schemes:
       - 'http://publications.europa.eu/resource/authority/corporate-body'
     field:
-      field_name: oe_project_departments
+      field_name: oe_departments
       entity_type: node
       bundle: oe_project
       concept_schemes:

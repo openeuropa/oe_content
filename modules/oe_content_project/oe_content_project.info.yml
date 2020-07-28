@@ -7,6 +7,7 @@ core: 8.x
 dependencies:
   - oe_content:oe_content
   - oe_content:oe_content_entity_organisation
+  - oe_content:oe_content_departments_field
   - oe_media:oe_media
   - field_group:field_group
   - entity_reference_revisions:entity_reference_revisions
@@ -30,7 +31,7 @@ config_devel:
     - field.field.node.oe_project.oe_project_results
     - field.field.node.oe_project.oe_project_result_files
     - field.field.node.oe_project.oe_project_budget_eu
-    - field.field.node.oe_project.oe_project_departments
+    - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_project_calls
     - field.field.node.oe_project.body
     - field.storage.node.oe_project_coordinators
@@ -42,7 +43,6 @@ config_devel:
     - field.storage.node.oe_project_results
     - field.storage.node.oe_project_result_files
     - field.storage.node.oe_project_budget_eu
-    - field.storage.node.oe_project_departments
     - field.storage.node.oe_project_calls
     - node.type.oe_project
   optional:
