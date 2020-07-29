@@ -356,4 +356,30 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     return $return;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsSummary() {
+    $summary = [];
+
+    $entity_browser_id = $this->getSetting('entity_browser');
+    if (empty($entity_browser_id)) {
+      return [$this->t('No entity browser selected.')];
+    }
+    else {
+      if ($browser = $this->entityTypeManager->getStorage('entity_browser')->load($entity_browser_id)) {
+        $summary[] = $this->t('Entity browser: @browser', ['@browser' => $browser->label()]);
+      }
+      else {
+        $this->messenger->addError($this->t('Missing entity browser!'));
+        return [$this->t('Missing entity browser!')];
+      }
+    }
+
+    $details = $this->getSetting('open') ? $this->t('open') : $this->t('closed');
+    $summary[] = $this->t('The widget details are by default: @details', ['@details' => $details]);
+
+    return $summary;
+  }
+
 }
