@@ -8,9 +8,7 @@
 declare(strict_types = 1);
 
 /**
- * Implements hook_update_N().
- *
- * Enable oe_content_documents_field to ensure node.oe_documents storage.
+ * Enable oe_content_documents_field module.
  */
 function oe_content_publication_update_8001() {
   \Drupal::service('module_installer')->install(['oe_content_documents_field']);
