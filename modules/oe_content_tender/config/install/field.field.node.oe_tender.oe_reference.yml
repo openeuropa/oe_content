@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_reference
+    - node.type.oe_tender
+id: node.oe_tender.oe_reference
+field_name: oe_reference
+entity_type: node
+bundle: oe_tender
+label: Reference
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
