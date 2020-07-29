@@ -191,6 +191,12 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     $field_parents = $element['#field_parents'];
 
     $element['current'] = $this->displayCurrentSelection($details_id, $field_parents, $entities);
+    // Append the delta to the #name of the remove button because if the same
+    // media entity is referenced, there will be no difference between
+    // buttons.
+    if ($element['current']['items']) {
+      $element['current']['items'][0]['remove_button']['#name'] .= $delta;
+    }
 
     $element['caption'] = [
       '#title' => $this->t('Caption'),
@@ -213,7 +219,12 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
    * @param array $complete_form
    *   The entire form.
    */
-  public function validateCaptionField(array &$element, FormStateInterface &$form_state, array &$complete_form): void {
+  public function validateCaptionField(array &$element, FormStateInterface $form_state, array &$complete_form): void {
+    $triggering_element = $form_state->getTriggeringElement();
+    if ($triggering_element && isset($triggering_element['#ajax'])) {
+      return;
+    }
+
     $parents = $element['#parents'];
     $caption = $form_state->getValue($parents);
     array_pop($parents);
