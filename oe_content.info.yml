@@ -20,7 +20,6 @@ config_devel:
     - field.storage.node.oe_subject
     - field.storage.node.oe_summary
     - field.storage.node.oe_teaser
-    - field.storage.node.oe_reference
   optional:
     - field.storage.node.oe_social_media_links
 
