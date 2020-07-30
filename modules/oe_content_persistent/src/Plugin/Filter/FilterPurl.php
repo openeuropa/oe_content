@@ -8,13 +8,15 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\Uuid\Uuid;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
+use Drupal\oe_content_persistent\Event\PersistentUrlResolverEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Provides a filter to convert PURL into internal urls/aliases.
@@ -27,6 +29,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * The event dispatcher.
+   *
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   */
+  protected $eventDispatcher;
 
   /**
    * The Content UUID resolver service.
@@ -58,13 +67,16 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The event dispatcher.
    * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
    *   The content UUID resolver service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The configuration factory.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentUuidResolverInterface $uuid_resolver, ConfigFactoryInterface $config_factory) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, ContentUuidResolverInterface $uuid_resolver, ConfigFactoryInterface $config_factory) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->eventDispatcher = $event_dispatcher;
     $this->contentUuidResolver = $uuid_resolver;
     $this->purlConfig = $config_factory->get('oe_content_persistent.settings');
     $this->siteConfig = $config_factory->get('system.site');
@@ -78,6 +90,7 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
       $configuration,
       $plugin_id,
       $plugin_definition,
+      $container->get('event_dispatcher'),
       $container->get('oe_content_persistent.resolver'),
       $container->get('config.factory')
     );
@@ -115,9 +128,15 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
         // we link to the 404 page of the site so that it mirrors the default
         // effect of the referenced entity being deleted from the system.
         $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
-        if ($entity instanceof ContentEntityInterface) {
+        if ($entity instanceof EntityInterface) {
+          // Not all entity types will need to be linked to their
+          // canonical URLs so we dispatch an event to allow to modify
+          // the resulting URL.
+          $event = new PersistentUrlResolverEvent($entity);
+          $this->eventDispatcher->dispatch(PersistentUrlResolverEvent::NAME, $event);
+          $url = is_null($event->getUrl()) ? $entity->toUrl() : $event->getUrl();
           $parsed_href = UrlHelper::parse($href);
-          $url = $entity->toUrl('canonical', [
+          $url = $url->setOptions([
             'query' => $parsed_href['query'],
             'fragment' => $parsed_href['fragment'],
           ])->toString(TRUE);
