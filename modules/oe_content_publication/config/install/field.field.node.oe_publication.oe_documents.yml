@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.oe_documents
     - media.type.document
     - node.type.oe_publication
 id: node.oe_publication.oe_documents
