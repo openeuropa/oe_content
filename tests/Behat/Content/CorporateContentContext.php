@@ -200,6 +200,41 @@ class CorporateContentContext extends RawDrupalContext {
   }
 
   /**
+   * Run before fields are parsed by Drupal Behat extension.
+   *
+   * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope $scope
+   *   Behat hook scope.
+   *
+   * @BeforeParseEntityFields(node)
+   */
+  public function mapFieldsLabelName(BeforeParseEntityFieldsScope &$scope): void {
+    // Maps human readable field names to their Behat parsable machine names.
+    $bundle_fields = \Drupal::getContainer()->get('entity_field.manager')->getFieldDefinitions($scope->getEntityType(), $scope->getBundle());
+    $mapping = [];
+    foreach ($bundle_fields as $field_name => $field_config) {
+      if (is_string($label = $field_config->getLabel())) {
+        $mapping[$label] = $field_name;
+      }
+    }
+    $mapping['Published'] = 'status';
+
+    foreach ($scope->getFields() as $key => $value) {
+      switch ($key) {
+        case 'Published':
+          $scope->addFields([
+            $mapping[$key] => (int) ($value === 'Yes'),
+          ])->removeField($key);
+          break;
+
+        default:
+          if (isset($mapping[$key])) {
+            $scope->renameField($key, $mapping[$key]);
+          }
+      }
+    }
+  }
+
+  /**
    * Parse entity fields.
    *
    * Also fires the following two Behat hooks:
