@@ -31,7 +31,7 @@ class PurlSettingsForm extends ConfigFormBase {
    *   The entity type manager.
    */
   public function __construct(ConfigFactoryInterface $config_factory, EntityTypeManagerInterface $entity_type_manager) {
-    $this->setConfigFactory($config_factory);
+    parent::__construct($config_factory);
     $this->entityTypeManager = $entity_type_manager;
   }
 
@@ -76,6 +76,7 @@ class PurlSettingsForm extends ConfigFormBase {
 
     $form['supported_entity_types'] = [
       '#type' => 'checkboxes',
+      '#required' => TRUE,
       '#options' => $this->getEntityTypeOptions(),
       '#default_value' => $config->get('supported_entity_types'),
       '#title' => $this->t('Supported entity types'),
