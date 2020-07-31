@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Post update functions for OpenEuropa Content module.
+ * Post update functions for OpenEuropa Content Persistent module.
  */
 
 declare(strict_types = 1);

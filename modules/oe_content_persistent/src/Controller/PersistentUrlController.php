@@ -73,8 +73,6 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
       // More information you could find in this article:
       // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
       if ($entity instanceof ContentEntityInterface) {
-        // Not all entity types will need to be linked to their
-        // canonical URLs so use the url resolver to get the final URL.
         $url = $this->contentUrlResolver->resolveUrl($entity);
         return new RedirectResponse($url->toString(), 302, ['PURL' => '1']);
       }

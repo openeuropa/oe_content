@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_persistent;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
 use Drupal\oe_content_persistent\Event\PersistentUrlResolverEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -16,7 +15,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class ContentUrlResolver implements ContentUrlResolverInterface {
 
   /**
-   * Static cache of UUID lookups, per language.
+   * Static cache of resolved URLs, per language.
    *
    * @var array
    */
@@ -30,7 +29,7 @@ class ContentUrlResolver implements ContentUrlResolverInterface {
   protected $eventDispatcher;
 
   /**
-   * Constructs a ContentUuidResolver.
+   * Constructs a ContentUrlResolver.
    *
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
    *   The event dispatcher.
@@ -50,11 +49,12 @@ class ContentUrlResolver implements ContentUrlResolverInterface {
    * {@inheritdoc}
    */
   public function resolveUrl(ContentEntityInterface $entity): Url {
-    $langcode = $langcode ?? LanguageInterface::LANGCODE_DEFAULT;
+    $langcode = $entity->language()->getId();
+    $uuid = $entity->uuid();
 
     // Try the static cache first.
-    if (isset($this->lookupMap[$entity->uuid()]) && array_key_exists($langcode, $this->lookupMap[$entity->uuid()])) {
-      return $this->lookupMap[$entity->uuid()][$langcode];
+    if (isset($this->lookupMap[$uuid]) && array_key_exists($langcode, $this->lookupMap[$uuid])) {
+      return $this->lookupMap[$uuid][$langcode];
     }
     // Not all entity types will need to be linked to their canonical URLs,
     // so we dispatch an event to allow to modify the resulting URL.

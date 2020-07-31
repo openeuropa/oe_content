@@ -128,8 +128,6 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
         // effect of the referenced entity being deleted from the system.
         $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
         if ($entity instanceof ContentEntityInterface) {
-          // Not all entity types will need to be linked to their
-          // canonical URLs so use the url resolver to get the final URL.
           $url = $this->contentUrlResolver->resolveUrl($entity);
           $parsed_href = UrlHelper::parse($href);
           $url = $url->setOption('query', $parsed_href['query'])
