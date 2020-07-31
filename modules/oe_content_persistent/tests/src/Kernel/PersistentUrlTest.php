@@ -29,6 +29,7 @@ class PersistentUrlTest extends KernelTestBase {
     'language',
     'content_translation',
     'oe_content_persistent',
+    'path_alias',
   ];
 
   /**
@@ -40,18 +41,12 @@ class PersistentUrlTest extends KernelTestBase {
     $this->installEntitySchema('node');
     $this->installEntitySchema('user');
     $this->installEntitySchema('configurable_language');
+    $this->installEntitySchema('path_alias');
     $this->installSchema('node', ['node_access']);
 
     $this->installConfig(['language']);
     $this->installConfig(['user']);
-
-    // In Drupal 8.8, paths have been moved to an entity type.
-    // @todo remove this when the component will depend on 8.8.
-    if (version_compare(\Drupal::VERSION, '8.8.0', '>=')) {
-      $this->container->get('module_installer')->install(['path_alias']);
-      $this->installEntitySchema('path_alias');
-    }
-
+    $this->installConfig(['oe_content_persistent']);
     ConfigurableLanguage::create(['id' => 'fr'])->save();
 
     $node_type = NodeType::create(['type' => 'page']);
@@ -64,7 +59,7 @@ class PersistentUrlTest extends KernelTestBase {
   public function testContentUuidResolver(): void {
 
     /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
-    $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
+    $uuid_resolver = $this->container->get('oe_content_persistent.resolver');
 
     $node = Node::create([
       'title' => 'Testing create()',
@@ -93,7 +88,7 @@ class PersistentUrlTest extends KernelTestBase {
     $this->assertEquals($translation->language()->getId(), $entity->language()->getId());
 
     // Check try to get not existing entity.
-    $entity = $uuid_resolver->getEntityByUuid(\Drupal::service('uuid')->generate());
+    $entity = $uuid_resolver->getEntityByUuid($this->container->get('uuid')->generate());
     $this->assertEquals(NULL, $entity);
   }
 

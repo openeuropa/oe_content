@@ -32,6 +32,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
     'language',
     'content_translation',
     'oe_content_persistent',
+    'path_alias',
   ];
 
   /**
@@ -50,22 +51,16 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $this->installEntitySchema('node');
     $this->installEntitySchema('user');
     $this->installEntitySchema('configurable_language');
+    $this->installEntitySchema('path_alias');
     $this->installConfig([
+      'oe_content_persistent',
       'filter',
       'node',
       'system',
       'language',
       'user',
-      'oe_content_persistent',
     ]);
     $this->installSchema('node', ['node_access']);
-
-    // In Drupal 8.8, paths have been moved to an entity type.
-    // @todo remove this when the component will depend on 8.8.
-    if (version_compare(\Drupal::VERSION, '8.8.0', '>=')) {
-      $this->container->get('module_installer')->install(['path_alias']);
-      $this->installEntitySchema('path_alias');
-    }
 
     ConfigurableLanguage::create(['id' => 'fr'])->save();
 
@@ -74,9 +69,9 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $this->filters = $bag->getAll();
 
     /** @var \Drupal\Core\PathProcessor\PathProcessorManager $path_processor_manager */
-    $path_processor_manager = \Drupal::service('path_processor_manager');
+    $path_processor_manager = $this->container->get('path_processor_manager');
     /** @var \Drupal\Core\PathProcessor\PathProcessorAlias $path_processor */
-    $path_processor = \Drupal::service('path_processor_alias');
+    $path_processor = $this->container->get('path_processor_alias');
     $path_processor_manager->addOutbound($path_processor);
   }
 
@@ -85,7 +80,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
    */
   public function testPersistentUrlFilter(): void {
     /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
-    $uuid_resolver = \Drupal::service('oe_content_persistent.resolver');
+    $uuid_resolver = $this->container->get('oe_content_persistent.resolver');
 
     $filter = $this->filters['filter_purl'];
     $base_url = $this->config('oe_content_persistent.settings')->get('base_url');
@@ -135,7 +130,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $output = $test($input, 'en');
     $this->assertSame($expected, $output->getProcessedText());
 
-    $uuid_service = \Drupal::service('uuid');
+    $uuid_service = $this->container->get('uuid');
     $uuid = $uuid_service->generate();
 
     $input = '<a href="' . $base_url . $uuid . '">test</a>';
@@ -143,7 +138,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $output = $test($input, 'fr');
     $this->assertSame($expected, $output->getProcessedText());
 
-    $system_config = \Drupal::configFactory()->getEditable('system.site');
+    $system_config = $this->container->get('config.factory')->getEditable('system.site');
     $system_config->set('page.404', '/custom/404');
     $system_config->save();
 

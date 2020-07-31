@@ -136,10 +136,9 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
           $this->eventDispatcher->dispatch(PersistentUrlResolverEvent::NAME, $event);
           $url = is_null($event->getUrl()) ? $entity->toUrl() : $event->getUrl();
           $parsed_href = UrlHelper::parse($href);
-          $url = $url->setOptions([
-            'query' => $parsed_href['query'],
-            'fragment' => $parsed_href['fragment'],
-          ])->toString(TRUE);
+          $url = $url->setOption('query', $parsed_href['query'])
+            ->setOption('fragment', $parsed_href['fragment'])
+            ->toString(TRUE);
           $result->addCacheableDependency($entity);
         }
         else {
