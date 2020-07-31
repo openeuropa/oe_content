@@ -74,7 +74,6 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
       // More information you could find in this article:
       // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
       if ($entity instanceof EntityInterface) {
-
         // Not all entity types will need to be linked to their canonical URLs,
         // so we dispatch an event to allow to modify the resulting URL.
         $event = new PersistentUrlResolverEvent($entity);

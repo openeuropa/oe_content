@@ -19,21 +19,21 @@ class PersistentUrlResolverEvent extends Event {
   const NAME = 'oe_content_persistent.event.persistent_url_resolver';
 
   /**
-   * The content entity whose URL we want to resolve.
+   * The entity whose URL we want to resolve.
    *
    * @var \Drupal\Core\Entity\EntityInterface
    */
   protected $entity;
 
   /**
-   * The resulting url.
+   * The resulting URL.
    *
    * @var \Drupal\Core\Url|null
    */
   protected $url = NULL;
 
   /**
-   * EntityValueResolverEvent constructor.
+   * PersistentUrlResolverEvent constructor.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The content entity.
@@ -53,20 +53,20 @@ class PersistentUrlResolverEvent extends Event {
   }
 
   /**
-   * Gets the url.
+   * Gets the URL.
    *
    * @return \Drupal\Core\Url|null
-   *   The resolved url.
+   *   The resolved URL.
    */
   public function getUrl(): ?Url {
     return $this->url;
   }
 
   /**
-   * Sets the url.
+   * Sets the URL.
    *
    * @param \Drupal\Core\Url $url
-   *   The resolved url.
+   *   The resolved URL.
    */
   public function setUrl(Url $url): void {
     $this->url = $url;

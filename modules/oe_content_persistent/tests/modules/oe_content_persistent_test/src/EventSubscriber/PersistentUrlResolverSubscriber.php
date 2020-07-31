@@ -14,7 +14,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class PersistentUrlResolverSubscriber implements EventSubscriberInterface {
 
   /**
-   * We redirect articlet content types to the home page.
+   * We redirect article content types to the home page.
    *
    * @param \Drupal\oe_content_persistent\Event\PersistentUrlResolverEvent $event
    *   The Event to process.

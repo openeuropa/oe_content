@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_persistent\Form;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -14,11 +16,32 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class PurlSettingsForm extends ConfigFormBase {
 
   /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * Constructs a PurlSettingsForm object.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The factory for configuration objects.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory, EntityTypeManagerInterface $entity_type_manager) {
+    $this->setConfigFactory($config_factory);
+    $this->entityTypeManager = $entity_type_manager;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -80,7 +103,7 @@ class PurlSettingsForm extends ConfigFormBase {
    *   The available entity types keyed by ID.
    */
   protected function getEntityTypeOptions() : array {
-    $entity_type_definitions = \Drupal::entityTypeManager()->getDefinitions();
+    $entity_type_definitions = $this->entityTypeManager->getDefinitions();
     $entity_type_options = [];
     foreach ($entity_type_definitions as $definition) {
       $entity_type_options[$definition->id()] = $definition->getLabel();
