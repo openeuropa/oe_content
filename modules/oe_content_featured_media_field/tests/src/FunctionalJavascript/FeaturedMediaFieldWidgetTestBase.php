@@ -102,7 +102,6 @@ class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
       ],
       'required' => FALSE,
     ])->save();
-
   }
 
 }

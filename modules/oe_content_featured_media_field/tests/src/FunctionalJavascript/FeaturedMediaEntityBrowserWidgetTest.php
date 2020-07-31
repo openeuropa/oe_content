@@ -44,7 +44,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
       ->save();
 
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
-    $form_display = $this->container->get('entity_type.manager')
+    $form_display = \Drupal::service('entity_type.manager')
       ->getStorage('entity_form_display')
       ->load('node.page.default');
 

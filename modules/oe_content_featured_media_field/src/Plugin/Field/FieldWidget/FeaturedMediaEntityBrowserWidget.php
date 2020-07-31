@@ -85,7 +85,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       return $elements;
     }
 
-    // Keep track of the deltas which have a media value in in them.
+    // Keep track of the deltas which have a media value in them.
     $value_deltas = [];
 
     foreach (Element::children($elements) as $child) {
@@ -257,7 +257,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
-  protected function formElementItemsEntities(FieldItemListInterface $items, int $delta, array $element, FormStateInterface $form_state) {
+  protected function formElementItemsEntities(FieldItemListInterface $items, int $delta, array $element, FormStateInterface $form_state): array {
     $entities = [];
     $entity_type = $this->fieldDefinition->getFieldStorageDefinition()->getSetting('target_type');
     $entity_storage = $this->entityTypeManager->getStorage($entity_type);
@@ -301,7 +301,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       // name key with the current delta being requested.
       $parents[$field_name_key + 1] = $delta;
 
-      if (isset($parents) && $value = $form_state->getValue($parents)) {
+      if ($value = $form_state->getValue($parents)) {
         return EntityBrowserElement::processEntityIds($value);
       }
 
