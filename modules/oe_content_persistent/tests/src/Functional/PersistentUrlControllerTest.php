@@ -29,6 +29,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     'page_cache',
     'oe_content_persistent',
     'oe_content_persistent_test',
+    'path_alias',
   ];
 
   /**
@@ -36,12 +37,6 @@ class PersistentUrlControllerTest extends BrowserTestBase {
    */
   protected function setUp() {
     parent::setUp();
-
-    // In Drupal 8.8, paths have been moved to an entity type.
-    // @todo remove this when the component will depend on 8.8.
-    if (version_compare(\Drupal::VERSION, '8.8.0', '>=')) {
-      $this->container->get('module_installer')->install(['path_alias']);
-    }
 
     NodeType::create(['type' => 'page'])->save();
     NodeType::create(['type' => 'article'])->save();
