@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_persistent\Event;
 
-use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Url;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -16,12 +16,12 @@ class PersistentUrlResolverEvent extends Event {
   /**
    * The name of the event.
    */
-  const NAME = 'oe_content_persistent.event.persistent_url_resolver';
+  const NAME = 'oe_content_persistent.event.entity_url_resolver';
 
   /**
    * The entity whose URL we want to resolve.
    *
-   * @var \Drupal\Core\Entity\EntityInterface
+   * @var \Drupal\Core\Entity\ContentEntityInterface
    */
   protected $entity;
 
@@ -35,20 +35,20 @@ class PersistentUrlResolverEvent extends Event {
   /**
    * PersistentUrlResolverEvent constructor.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   The content entity.
    */
-  public function __construct(EntityInterface $entity) {
+  public function __construct(ContentEntityInterface $entity) {
     $this->entity = $entity;
   }
 
   /**
    * Returns the entity.
    *
-   * @return \Drupal\Core\Entity\EntityInterface
+   * @return \Drupal\Core\Entity\ContentEntityInterface
    *   The entity.
    */
-  public function getEntity(): EntityInterface {
+  public function getEntity(): ContentEntityInterface {
     return $this->entity;
   }
 

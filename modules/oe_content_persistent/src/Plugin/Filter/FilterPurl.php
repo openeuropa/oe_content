@@ -8,7 +8,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\Uuid\Uuid;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\filter\FilterProcessResult;
@@ -128,7 +128,7 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
         // we link to the 404 page of the site so that it mirrors the default
         // effect of the referenced entity being deleted from the system.
         $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
-        if ($entity instanceof EntityInterface) {
+        if ($entity instanceof ContentEntityInterface) {
           // Not all entity types will need to be linked to their
           // canonical URLs so we dispatch an event to allow to modify
           // the resulting URL.

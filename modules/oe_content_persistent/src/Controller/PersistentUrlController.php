@@ -6,7 +6,7 @@ namespace Drupal\oe_content_persistent\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
 use Drupal\oe_content_persistent\Event\PersistentUrlResolverEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -73,7 +73,7 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
       // \Drupal\Core\EventSubscriber\EarlyRenderingControllerWrapperSubscriber.
       // More information you could find in this article:
       // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
-      if ($entity instanceof EntityInterface) {
+      if ($entity instanceof ContentEntityInterface) {
         // Not all entity types will need to be linked to their canonical URLs,
         // so we dispatch an event to allow to modify the resulting URL.
         $event = new PersistentUrlResolverEvent($entity);

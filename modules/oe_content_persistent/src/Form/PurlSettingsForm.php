@@ -106,7 +106,9 @@ class PurlSettingsForm extends ConfigFormBase {
     $entity_type_definitions = $this->entityTypeManager->getDefinitions();
     $entity_type_options = [];
     foreach ($entity_type_definitions as $definition) {
-      $entity_type_options[$definition->id()] = $definition->getLabel();
+      if ($definition->entityClassImplements('Drupal\Core\Entity\ContentEntityInterface')) {
+        $entity_type_options[$definition->id()] = $definition->getLabel();
+      }
     }
     return $entity_type_options;
   }
