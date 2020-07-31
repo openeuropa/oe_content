@@ -28,9 +28,9 @@ class PersistentUrlResolverEvent extends Event {
   /**
    * The resulting URL.
    *
-   * @var \Drupal\Core\Url|null
+   * @var \Drupal\Core\Url
    */
-  protected $url = NULL;
+  protected $url;
 
   /**
    * PersistentUrlResolverEvent constructor.
@@ -53,12 +53,22 @@ class PersistentUrlResolverEvent extends Event {
   }
 
   /**
+   * Asserts whether a URL was set or not.
+   *
+   * @return bool
+   *   Whether the URL was set or not.
+   */
+  public function hasUrl(): bool {
+    return isset($this->url);
+  }
+
+  /**
    * Gets the URL.
    *
-   * @return \Drupal\Core\Url|null
+   * @return \Drupal\Core\Url
    *   The resolved URL.
    */
-  public function getUrl(): ?Url {
+  public function getUrl(): Url {
     return $this->url;
   }
 

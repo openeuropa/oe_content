@@ -91,7 +91,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $this->drupalGet('/content/' . $this->randomString());
     $this->assertResponse(404);
 
-    // Create a new node that will be send to the home page by the controller.
+    // Create a new node that will be sent to the home page by the controller.
     $node = Node::create([
       'title' => 'Testing create()',
       'type' => 'article',

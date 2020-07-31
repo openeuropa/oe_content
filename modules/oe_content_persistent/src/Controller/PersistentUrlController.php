@@ -7,10 +7,9 @@ namespace Drupal\oe_content_persistent\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\oe_content_persistent\ContentUrlResolverInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
-use Drupal\oe_content_persistent\Event\PersistentUrlResolverEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -20,11 +19,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PersistentUrlController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
-   * The event dispatcher.
+   * The Content URL resolver service.
    *
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   * @var \Drupal\oe_content_persistent\ContentUrlResolverInterface
    */
-  protected $eventDispatcher;
+  protected $contentUrlResolver;
 
   /**
    * The content UUID resolver.
@@ -36,13 +35,13 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
   /**
    * PersistentUrlController constructor.
    *
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-   *   The event dispatcher.
+   * @param \Drupal\oe_content_persistent\ContentUrlResolverInterface $url_resolver
+   *   The content URL resolver service.
    * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
    *   The content UUID resolver.
    */
-  public function __construct(EventDispatcherInterface $event_dispatcher, ContentUuidResolverInterface $uuid_resolver) {
-    $this->eventDispatcher = $event_dispatcher;
+  public function __construct(ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver) {
+    $this->contentUrlResolver = $url_resolver;
     $this->contentUuidResolver = $uuid_resolver;
   }
 
@@ -51,8 +50,8 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('event_dispatcher'),
-      $container->get('oe_content_persistent.resolver')
+      $container->get('oe_content_persistent.url_resolver'),
+      $container->get('oe_content_persistent.uuid_resolver')
     );
   }
 
@@ -74,11 +73,9 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
       // More information you could find in this article:
       // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
       if ($entity instanceof ContentEntityInterface) {
-        // Not all entity types will need to be linked to their canonical URLs,
-        // so we dispatch an event to allow to modify the resulting URL.
-        $event = new PersistentUrlResolverEvent($entity);
-        $this->eventDispatcher->dispatch(PersistentUrlResolverEvent::NAME, $event);
-        $url = is_null($event->getUrl()) ? $entity->toUrl() : $event->getUrl();
+        // Not all entity types will need to be linked to their
+        // canonical URLs so use the url resolver to get the final URL.
+        $url = $this->contentUrlResolver->resolveUrl($entity);
         return new RedirectResponse($url->toString(), 302, ['PURL' => '1']);
       }
     }

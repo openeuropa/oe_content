@@ -80,7 +80,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
    */
   public function testPersistentUrlFilter(): void {
     /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
-    $uuid_resolver = $this->container->get('oe_content_persistent.resolver');
+    $uuid_resolver = $this->container->get('oe_content_persistent.uuid_resolver');
 
     $filter = $this->filters['filter_purl'];
     $base_url = $this->config('oe_content_persistent.settings')->get('base_url');

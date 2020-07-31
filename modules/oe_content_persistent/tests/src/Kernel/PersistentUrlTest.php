@@ -59,7 +59,7 @@ class PersistentUrlTest extends KernelTestBase {
   public function testContentUuidResolver(): void {
 
     /** @var \Drupal\oe_content_persistent\ContentUuidResolver $uuid_resolver */
-    $uuid_resolver = $this->container->get('oe_content_persistent.resolver');
+    $uuid_resolver = $this->container->get('oe_content_persistent.uuid_resolver');
 
     $node = Node::create([
       'title' => 'Testing create()',
