@@ -10,17 +10,6 @@ declare(strict_types = 1);
 use Drupal\Core\Render\Element;
 
 /**
- * Implements hook_theme().
- */
-function oe_content_entity_theme() {
-  return [
-    'oe_content_entity' => [
-      'render element' => 'elements',
-    ],
-  ];
-}
-
-/**
  * Default preprocess function to be ran for all corporate entities.
  *
  * This preprocess sets default values to be passed to the main entity
@@ -28,9 +17,11 @@ function oe_content_entity_theme() {
  *
  * @param array $variables
  *   Render variables.
+ * @param string $hook
+ *   Hook name, in this case the entity type ID itself.
  */
-function template_preprocess_oe_content_entity(array &$variables) {
-  $variables['entity'] = $variables['elements']["#{$variables['theme_hook_original']}"];
+function oe_content_entity_default_preprocess(array &$variables, string $hook) {
+  $variables['entity'] = $variables['elements']["#{$hook}"];
   $variables['view_mode'] = $variables['elements']['#view_mode'];
   $variables['label'] = $variables['entity']->label();
 
