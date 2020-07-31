@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_persistent\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -107,7 +108,7 @@ class PurlSettingsForm extends ConfigFormBase {
     $entity_type_definitions = $this->entityTypeManager->getDefinitions();
     $entity_type_options = [];
     foreach ($entity_type_definitions as $definition) {
-      if ($definition->entityClassImplements('Drupal\Core\Entity\ContentEntityInterface')) {
+      if ($definition instanceof ContentEntityTypeInterface) {
         $entity_type_options[$definition->id()] = $definition->getLabel();
       }
     }
