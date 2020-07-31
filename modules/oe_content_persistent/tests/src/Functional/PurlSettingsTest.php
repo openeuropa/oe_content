@@ -65,8 +65,6 @@ class PurlSettingsTest extends BrowserTestBase {
     $this->assertEquals('https://custom-site.com', $config->get('base_url'));
     $expected_supported_entity_types = [
       'user' => 'user',
-      'node' => 0,
-      'path_alias' => 0,
     ];
     $this->assertEquals($expected_supported_entity_types, $config->get('supported_entity_types'));
   }

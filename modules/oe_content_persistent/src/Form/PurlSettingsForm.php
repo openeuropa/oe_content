@@ -92,7 +92,7 @@ class PurlSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->configFactory->getEditable('oe_content_persistent.settings')
       ->set('base_url', $form_state->getValue('base_url'))
-      ->set('supported_entity_types', $form_state->getValue('supported_entity_types'))
+      ->set('supported_entity_types', array_filter($form_state->getValue('supported_entity_types')))
       ->save();
 
     parent::submitForm($form, $form_state);
