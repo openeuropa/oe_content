@@ -3,6 +3,11 @@ status: true
 dependencies:
   config:
     - node.type.oe_tender
+module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
 id: node.oe_tender
 target_entity_type_id: node
 target_bundle: oe_tender
