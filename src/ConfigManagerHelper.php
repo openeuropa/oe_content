@@ -5,14 +5,14 @@ declare(strict_types = 1);
 namespace Drupal\oe_content;
 
 use Drupal\Core\Config\ConfigManagerInterface;
-use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Config\StorageInterface;
 
 /**
  * The ConfigManagerHelper class.
  *
  * It provides additional methods to work with the configuration system.
  */
-class ConfigManagerHelper {
+class ConfigManagerHelper implements ConfigManagerHelperInterface {
 
   /**
    * Configuration manager.
@@ -40,17 +40,12 @@ class ConfigManagerHelper {
   }
 
   /**
-   * Creates configuration from the *.yml file.
-   *
-   * @param string $config_name
-   *   Config name (file name).
-   * @param \Drupal\Core\Config\FileStorage $file_storage
-   *   File storage instance.
+   * {@inheritdoc}
    */
-  public function createConfig(string $config_name, FileStorage $file_storage) {
+  public function createConfig(string $config_name, StorageInterface $storage): void {
     $entity_type = $this->configManager->getEntityTypeIdByName($config_name);
 
-    $config_values = $file_storage->read($config_name);
+    $config_values = $storage->read($config_name);
     if (!$this->entityTypeManager->getStorage($entity_type)->load($config_values['id'])) {
       $entity_type_definition = $this->entityTypeManager->getDefinition($entity_type);
       $entity_type_class = $entity_type_definition->getOriginalClass();
@@ -59,19 +54,11 @@ class ConfigManagerHelper {
   }
 
   /**
-   * Updates existing configuration using values from *.yml files.
-   *
-   * @param string $config_name
-   *   Config name (file name).
-   * @param \Drupal\Core\Config\FileStorage $file_storage
-   *   File storage instance.
-   * @param array $field_names
-   *   List of fields that have to be updated. All config values will be updated
-   *   if variable is empty.
+   * {@inheritdoc}
    */
-  public function updateConfig(string $config_name, FileStorage $file_storage, array $field_names = []) {
+  public function updateConfig(string $config_name, StorageInterface $storage, array $field_names = []): void {
     // Load configuration.
-    $config_values = $file_storage->read($config_name);
+    $config_values = $storage->read($config_name);
     $entity_type = $this->configManager->getEntityTypeIdByName($config_name);
     $config_entity_storage = $this->entityTypeManager->getStorage($entity_type);
     $config = $config_entity_storage->load($config_values['id']);

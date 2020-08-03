@@ -7,6 +7,7 @@ core: 8.x
 dependencies:
   - oe_content:oe_content_entity
   - oe_content:oe_content_featured_media_field
+  - oe_media:oe_media
   - address:address
   - typed_link:typed_link
 

@@ -11,7 +11,7 @@ bundle: oe_press
 label: Organisation
 description: 'Fill in the name of the organisation if it is not a Directorate-General (DG).'
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
