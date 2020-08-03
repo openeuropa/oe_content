@@ -6,7 +6,8 @@ namespace Drupal\oe_content_persistent\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Entity\TranslatableInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\oe_content_persistent\ContentUrlResolverInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,6 +19,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PersistentUrlController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
+   * The Content URL resolver service.
+   *
+   * @var \Drupal\oe_content_persistent\ContentUrlResolverInterface
+   */
+  protected $contentUrlResolver;
+
+  /**
    * The content UUID resolver.
    *
    * @var \Drupal\oe_content_persistent\ContentUuidResolverInterface
@@ -27,10 +35,13 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
   /**
    * PersistentUrlController constructor.
    *
+   * @param \Drupal\oe_content_persistent\ContentUrlResolverInterface $url_resolver
+   *   The content URL resolver service.
    * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
    *   The content UUID resolver.
    */
-  public function __construct(ContentUuidResolverInterface $uuid_resolver) {
+  public function __construct(ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver) {
+    $this->contentUrlResolver = $url_resolver;
     $this->contentUuidResolver = $uuid_resolver;
   }
 
@@ -39,7 +50,8 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('oe_content_persistent.resolver')
+      $container->get('oe_content_persistent.url_resolver'),
+      $container->get('oe_content_persistent.uuid_resolver')
     );
   }
 
@@ -60,8 +72,9 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
       // \Drupal\Core\EventSubscriber\EarlyRenderingControllerWrapperSubscriber.
       // More information you could find in this article:
       // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
-      if ($entity instanceof TranslatableInterface) {
-        return new RedirectResponse($entity->toUrl()->toString(), 302, ['PURL' => '1']);
+      if ($entity instanceof ContentEntityInterface) {
+        $url = $this->contentUrlResolver->resolveUrl($entity);
+        return new RedirectResponse($url->toString(), 302, ['PURL' => '1']);
       }
     }
 

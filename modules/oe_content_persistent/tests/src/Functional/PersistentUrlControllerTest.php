@@ -28,6 +28,8 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     'dynamic_page_cache',
     'page_cache',
     'oe_content_persistent',
+    'oe_content_persistent_test',
+    'path_alias',
   ];
 
   /**
@@ -36,14 +38,8 @@ class PersistentUrlControllerTest extends BrowserTestBase {
   protected function setUp() {
     parent::setUp();
 
-    // In Drupal 8.8, paths have been moved to an entity type.
-    // @todo remove this when the component will depend on 8.8.
-    if (version_compare(\Drupal::VERSION, '8.8.0', '>=')) {
-      $this->container->get('module_installer')->install(['path_alias']);
-    }
-
-    $node_type = NodeType::create(['type' => 'page']);
-    $node_type->save();
+    NodeType::create(['type' => 'page'])->save();
+    NodeType::create(['type' => 'article'])->save();
   }
 
   /**
@@ -89,6 +85,22 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     // Not valid uuid.
     $this->drupalGet('/content/' . $this->randomString());
     $this->assertResponse(404);
+
+    // Create a new node that will be sent to the home page by the controller.
+    $node = Node::create([
+      'title' => 'Testing create()',
+      'type' => 'article',
+      'path' => ['alias' => '/bar'],
+      'status' => TRUE,
+      'uid' => 0,
+    ]);
+    $node->save();
+
+    $this->drupalGet('/content/' . $node->uuid());
+    $this->assertResponse(200);
+    // We should be redirected to the home page.
+    $this->assertUrl('/');
+    $this->assertNoText('Testing create()');
   }
 
 }

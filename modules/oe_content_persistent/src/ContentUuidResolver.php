@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_persistent;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -28,23 +29,23 @@ class ContentUuidResolver implements ContentUuidResolverInterface {
   protected $entityTypeManager;
 
   /**
-   * List of supported entity types.
+   * The config of PURL.
    *
-   * @var array
+   * @var \Drupal\Core\Config\ImmutableConfig
    */
-  protected $supportedEntityTypes;
+  protected $purlConfig;
 
   /**
    * Constructs a ContentUuidResolver.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param array $supported_entity_types
-   *   List of supported entity types.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, array $supported_entity_types = []) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory) {
     $this->entityTypeManager = $entity_type_manager;
-    $this->supportedEntityTypes = $supported_entity_types;
+    $this->purlConfig = $config_factory->get('oe_content_persistent.settings');
   }
 
   /**
@@ -65,9 +66,9 @@ class ContentUuidResolver implements ContentUuidResolverInterface {
       return $this->lookupMap[$uuid][$langcode];
     }
 
-    // Loop through the available storages and load the entity from the first
+    // Loop through the supported storages and load the entity from the first
     // storage we find it in.
-    foreach ($this->supportedEntityTypes as $entity_type) {
+    foreach ($this->purlConfig->get('supported_entity_types') as $entity_type) {
       $storage = $this->entityTypeManager->getStorage($entity_type);
       $entities = $storage->loadByProperties(['uuid' => $uuid]);
       if (empty($entities)) {
