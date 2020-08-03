@@ -120,11 +120,11 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $plugin->apply($query, [], $cache);
     $query_results = $query->execute();
     $future_events = [
+      $ongoing_event->id() => $ongoing_event->id(),
       $upcoming_event->id() => $upcoming_event->id(),
       $future_event->id() => $future_event->id(),
-      $ongoing_event->id() => $ongoing_event->id(),
     ];
-    $this->assertEqual($query_results, $future_events);
+    $this->assertEquals($future_events, $query_results);
     // Time based caches have been added and they correspond to the closest
     // upcoming event start date.
     $date_cache_tags = [
@@ -133,7 +133,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       'oe_time_caching_date:2050-05-15',
       'oe_time_caching_date:2050-05-15-12',
     ];
-    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
+    $this->assertEquals($date_cache_tags, $cache->getCacheTags());
 
     // Configuring the filter for past events will only return finished events.
     $query = $storage->getQuery();
@@ -145,7 +145,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       $past_event->id() => $past_event->id(),
       $ancient_event->id() => $ancient_event->id(),
     ];
-    $this->assertEqual($query_results, $past_events);
+    $this->assertEquals($past_events, $query_results);
     // Time based caches have been added and they correspond to the closest
     // event end date.
     $date_cache_tags = [
@@ -154,7 +154,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       'oe_time_caching_date:2050-05-15',
       'oe_time_caching_date:2050-05-15-12',
     ];
-    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
+    $this->assertEquals($date_cache_tags, $cache->getCacheTags());
 
     // If we move back in time, the query updates its results.
     $static_time = new DrupalDateTime('2015-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
@@ -166,7 +166,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $past_events = [
       $ancient_event->id() => $ancient_event->id(),
     ];
-    $this->assertEqual($query_results, $past_events);
+    $this->assertEquals($past_events, $query_results);
     // Time based caches have been added and they correspond to the closest
     // event end date.
     $date_cache_tags = [
@@ -175,7 +175,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       'oe_time_caching_date:2016-05-15',
       'oe_time_caching_date:2016-05-15-12',
     ];
-    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
+    $this->assertEquals($date_cache_tags, $cache->getCacheTags());
 
     // Set the time to the end date of an ongoing event.
     $static_time = new DrupalDateTime('2050-05-15 12:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
@@ -191,7 +191,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       $upcoming_event->id() => $upcoming_event->id(),
       $future_event->id() => $future_event->id(),
     ];
-    $this->assertEqual($query_results, $ongoing_events);
+    $this->assertEquals($ongoing_events, $query_results);
     // Time based caches have been added and they correspond to the closest
     // event end date.
     $date_cache_tags = [
@@ -200,7 +200,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       'oe_time_caching_date:2200-05-15',
       'oe_time_caching_date:2200-05-15-12',
     ];
-    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
+    $this->assertEquals($date_cache_tags, $cache->getCacheTags());
 
     // Configuring the filter to show all events shows all events.
     $query = $storage->getQuery();
@@ -215,10 +215,10 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       $past_event->id() => $past_event->id(),
       $ancient_event->id() => $ancient_event->id(),
     ];
-    $this->assertEqual($query_results, $all_events);
+    $this->assertEquals($all_events, $query_results);
     // Because we are showing all events time based cache tags are not
     // necessary.
-    $this->assertEqual($cache->getCacheTags(), []);
+    $this->assertEquals([], $cache->getCacheTags());
   }
 
 }
