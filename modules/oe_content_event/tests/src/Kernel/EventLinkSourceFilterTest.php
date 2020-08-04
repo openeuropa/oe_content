@@ -187,8 +187,8 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $plugin->apply($query, [], $cache);
     $query_results = $query->execute();
     $ongoing_events = [
-      $ongoing_event->id() => $ongoing_event->id(),
-      $upcoming_event->id() => $upcoming_event->id(),
+      // Only future event is visible because the time is set to the
+      // end date of the ongoing and upcoming event.
       $future_event->id() => $future_event->id(),
     ];
     $this->assertEquals($ongoing_events, $query_results);
