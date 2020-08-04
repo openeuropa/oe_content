@@ -5,6 +5,10 @@ type: module
 core: 8.x
 
 dependencies:
+  - drupal:composite_reference
+  - drupal:datetime
+  - drupal:link
+  - oe_content:oe_content_publication
   - oe_content:oe_content_departments_field
 
 config_devel:

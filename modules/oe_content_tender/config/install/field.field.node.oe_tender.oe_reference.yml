@@ -9,7 +9,7 @@ field_name: oe_reference
 entity_type: node
 bundle: oe_tender
 label: Reference
-description: ''
+description: 'May be an OP reference, an ISBN, etc.'
 required: false
 translatable: false
 default_value: {  }

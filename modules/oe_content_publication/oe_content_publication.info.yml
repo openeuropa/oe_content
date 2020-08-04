@@ -5,6 +5,7 @@ package: OpenEuropa
 type: module
 core: 8.x
 dependencies:
+  - oe_media:oe_media
   - oe_content:oe_content
 
 config_devel:
