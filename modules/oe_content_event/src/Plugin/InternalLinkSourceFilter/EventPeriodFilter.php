@@ -120,13 +120,13 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
     $now->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
     switch ($this->getConfiguration()['period']) {
       case self::PAST:
-        $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), "<");
+        $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), "<=");
         $query->sort('oe_event_dates.end_value', 'DESC');
         $this->addTimeCacheTags($cacheability, 'end_value');
         break;
 
       case self::UPCOMING:
-        $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">=");
+        $query->condition('oe_event_dates.end_value', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">");
         $query->sort('oe_event_dates.value', 'ASC');
         $this->addTimeCacheTags($cacheability, 'end_value');
         break;
