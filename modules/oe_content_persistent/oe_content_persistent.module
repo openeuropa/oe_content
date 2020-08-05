@@ -12,6 +12,6 @@ declare(strict_types = 1);
  */
 function oe_content_persistent_linkit_matcher_alter(array &$plugins) {
   if (isset($plugins['entity:node'])) {
-    $plugins['entity:node']['class'] = 'Drupal\\oe_content_persistent\\Plugin\\LinkitMatcherPlugin\\NodePurlMatcher';
+    $plugins['entity:node']['class'] = 'Drupal\\oe_content_persistent\\Plugin\\Linkit\\Matcher\\NodePurlMatcher';
   }
 }

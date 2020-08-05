@@ -45,7 +45,7 @@ abstract class PurlEntityMatcherBase extends EntityMatcher {
    * @SuppressWarnings(PHPMD.ExcessiveParameterList)
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, Connection $database, EntityTypeManagerInterface $entity_type_manager, EntityTypeBundleInfoInterface $entity_type_bundle_info, EntityRepositoryInterface $entity_repository, ModuleHandlerInterface $module_handler, AccountInterface $current_user, SubstitutionManagerInterface $substitution_manager, ConfigFactoryInterface $config_factory, EntityFieldManagerInterface $entity_field_manager) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $database, $entity_type_manager, $entity_type_bundle_info, $entity_repository, $module_handler, $current_user, $substitution_manager, $config_factory);
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $database, $entity_type_manager, $entity_type_bundle_info, $entity_repository, $module_handler, $current_user, $substitution_manager);
     $this->entityFieldManager = $entity_field_manager;
     $this->config = $config_factory->get('oe_content_persistent.settings');
   }
