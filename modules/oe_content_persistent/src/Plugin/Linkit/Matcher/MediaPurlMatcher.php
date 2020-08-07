@@ -6,7 +6,6 @@ namespace Drupal\oe_content_persistent\Plugin\Linkit\Matcher;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
@@ -15,12 +14,14 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\linkit\Plugin\Linkit\Matcher\EntityMatcher;
 use Drupal\linkit\SubstitutionManagerInterface;
 use Drupal\linkit\Utility\LinkitXss;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides specific linkit matchers for the node entity type.
+ * Provides specific linkit matchers for the media entity type.
  *
  * @Matcher(
  *   id = "entity:media",
@@ -29,7 +30,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   provider = "media"
  * )
  */
-class MediaPurlMatcher extends PurlEntityMatcherBase {
+class MediaPurlMatcher extends EntityMatcher {
+
+  use PurlMatcherTrait;
 
   /**
    * The config of PURL.
@@ -43,8 +46,9 @@ class MediaPurlMatcher extends PurlEntityMatcherBase {
    *
    * @SuppressWarnings(PHPMD.ExcessiveParameterList)
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, Connection $database, EntityTypeManagerInterface $entity_type_manager, EntityTypeBundleInfoInterface $entity_type_bundle_info, EntityRepositoryInterface $entity_repository, ModuleHandlerInterface $module_handler, AccountInterface $current_user, SubstitutionManagerInterface $substitution_manager, ConfigFactoryInterface $config_factory, EntityFieldManagerInterface $entity_field_manager, RendererInterface $renderer) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $database, $entity_type_manager, $entity_type_bundle_info, $entity_repository, $module_handler, $current_user, $substitution_manager, $config_factory, $entity_field_manager);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Connection $database, EntityTypeManagerInterface $entity_type_manager, EntityTypeBundleInfoInterface $entity_type_bundle_info, EntityRepositoryInterface $entity_repository, ModuleHandlerInterface $module_handler, AccountInterface $current_user, SubstitutionManagerInterface $substitution_manager, ConfigFactoryInterface $config_factory, RendererInterface $renderer) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $database, $entity_type_manager, $entity_type_bundle_info, $entity_repository, $module_handler, $current_user, $substitution_manager);
+    $this->config = $config_factory->get('oe_content_persistent.settings');
     $this->renderer = $renderer;
   }
 
@@ -64,9 +68,33 @@ class MediaPurlMatcher extends PurlEntityMatcherBase {
       $container->get('current_user'),
       $container->get('plugin.manager.linkit.substitution'),
       $container->get('config.factory'),
-      $container->get('entity_field.manager'),
       $container->get('renderer')
     );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSummary() {
+    $summary = parent::getSummary();
+
+    $summary[] = $this->t('Include unpublished: @include_unpublished', [
+      '@include_unpublished' => $this->configuration['include_unpublished'] ? $this->t('Yes') : $this->t('No'),
+    ]);
+
+    $summary[] = $this->t('Show image thumbnail: @show_image_thumbnail', [
+      '@show_image_thumbnail' => $this->configuration['thumbnail']['show_thumbnail'] ? $this->t('Yes') : $this->t('No'),
+    ]);
+
+    if ($this->moduleHandler->moduleExists('image') && $this->configuration['thumbnail']['show_thumbnail']) {
+      $image_style = ImageStyle::load($this->configuration['thumbnail']['thumbnail_image_style']);
+      if (!is_null($image_style)) {
+        $summary[] = $this->t('Thumbnail style: @thumbnail_style', [
+          '@thumbnail_style' => $image_style->label(),
+        ]);
+      }
+    }
+    return $summary;
   }
 
   /**
@@ -88,6 +116,7 @@ class MediaPurlMatcher extends PurlEntityMatcherBase {
    */
   public function defaultConfiguration() {
     return [
+      'include_unpublished' => FALSE,
       'thumbnail' => [
         'show_thumbnail' => FALSE,
         'thumbnail_image_style' => 'linkit_result_thumbnail',
@@ -100,6 +129,19 @@ class MediaPurlMatcher extends PurlEntityMatcherBase {
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildConfigurationForm($form, $form_state);
+
+    $form['unpublished_media'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Unpublished media'),
+      '#open' => TRUE,
+    ];
+
+    $form['unpublished_media']['include_unpublished'] = [
+      '#title' => $this->t('Include unpublished media'),
+      '#type' => 'checkbox',
+      '#default_value' => $this->configuration['include_unpublished'],
+      '#description' => $this->t('In order to see unpublished media, users must also have permissions to do so.'),
+    ];
 
     if ($this->moduleHandler->moduleExists('image')) {
       $form['thumbnail'] = [
@@ -136,11 +178,23 @@ class MediaPurlMatcher extends PurlEntityMatcherBase {
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     parent::submitConfigurationForm($form, $form_state);
+    $this->configuration['include_unpublished'] = $form_state->getValue('include_unpublished');
     $values = $form_state->getValue('thumbnail');
     if (!$values['show_thumbnail']) {
       $values['thumbnail_image_style'] = NULL;
     }
     $this->configuration['thumbnail'] = $values;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function buildEntityQuery($search_string) {
+    $query = parent::buildEntityQuery($search_string);
+    if ($this->configuration['include_unpublished'] == FALSE) {
+      $query->condition('status', 1);
+    }
+    return $query;
   }
 
   /**
