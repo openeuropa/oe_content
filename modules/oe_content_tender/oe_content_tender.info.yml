@@ -22,9 +22,9 @@ config_devel:
     - field.field.node.oe_tender.oe_reference
     - field.field.node.oe_tender.oe_summary
     - field.field.node.oe_tender.oe_teaser
-    - field.field.node.oe_tender.oe_tender_deadlines
+    - field.field.node.oe_tender.oe_tender_deadline
     - field.field.node.oe_tender.oe_tender_opening_date
-    - field.storage.node.oe_tender_deadlines
+    - field.storage.node.oe_tender_deadline
     - field.storage.node.oe_tender_opening_date
     - node.type.oe_tender
   optional:

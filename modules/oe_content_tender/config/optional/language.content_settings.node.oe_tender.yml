@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - node.type.oe_tender
-module:
+  module:
     - content_translation
 third_party_settings:
   content_translation:

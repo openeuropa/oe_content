@@ -10,7 +10,7 @@ dependencies:
     - field.field.node.oe_tender.oe_subject
     - field.field.node.oe_tender.oe_summary
     - field.field.node.oe_tender.oe_teaser
-    - field.field.node.oe_tender.oe_tender_deadlines
+    - field.field.node.oe_tender.oe_tender_deadline
     - field.field.node.oe_tender.oe_tender_opening_date
     - node.type.oe_tender
   module:
@@ -144,7 +144,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  oe_tender_deadlines:
+  oe_tender_deadline:
     weight: 8
     settings:
       date_order: DMY

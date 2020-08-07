@@ -19,7 +19,7 @@ Feature: Call for Tenders content creation
     And I fill in "Reference" with "My Reference text"
     And I set "Publication date" to the date "14-07-2020"
     And I set "Opening" to the date "24-07-2020"
-    And I set "Deadline" to the date "31-07-2020 23:45" using format "d-m-Y G:i"
+    And I set "Deadline date" to the date "31-07-2020 23:45" using format "d-m-Y G:i"
     And I fill in "Responsible department" with "Audit Board of the European Communities (http://publications.europa.eu/resource/authority/corporate-body/ABEC)"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "Body text" with "My Body text"
