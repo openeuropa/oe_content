@@ -14,7 +14,6 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\image\Entity\ImageStyle;
 use Drupal\linkit\Plugin\Linkit\Matcher\EntityMatcher;
 use Drupal\linkit\SubstitutionManagerInterface;
 use Drupal\linkit\Utility\LinkitXss;
@@ -27,7 +26,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "entity:media",
  *   label = @Translation("Media"),
  *   target_entity = "media",
- *   provider = "media"
+ *   provider = "oe_content_persistent"
  * )
  */
 class MediaPurlMatcher extends EntityMatcher {
@@ -87,7 +86,7 @@ class MediaPurlMatcher extends EntityMatcher {
     ]);
 
     if ($this->moduleHandler->moduleExists('image') && $this->configuration['thumbnail']['show_thumbnail']) {
-      $image_style = ImageStyle::load($this->configuration['thumbnail']['thumbnail_image_style']);
+      $image_style = $this->entityTypeManager->getStorage('image_style')->load($this->configuration['thumbnail']['thumbnail_image_style']);
       if (!is_null($image_style)) {
         $summary[] = $this->t('Thumbnail style: @thumbnail_style', [
           '@thumbnail_style' => $image_style->label(),

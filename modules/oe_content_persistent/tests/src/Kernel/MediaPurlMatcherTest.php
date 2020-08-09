@@ -15,9 +15,7 @@ use Drupal\Tests\linkit\Kernel\LinkitKernelTestBase;
 class MediaPurlMatcherTest extends LinkitKernelTestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   public static $modules = [
     'file_test',
@@ -111,8 +109,6 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
     $suggestions = $plugin->execute('image-test');
     $this->assertEquals(3, count($suggestions->getSuggestions()), 'Correct number of suggestions.');
 
-    /** @var \Drupal\Core\Entity\EntityStorageInterface $media_storage */
-    $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
     // Verify suggestion paths.
     foreach ($suggestions->getSuggestions() as $key => $suggestion) {
       $media = $media_storage->load($key + 1);
