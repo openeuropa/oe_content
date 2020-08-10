@@ -5,6 +5,8 @@ type: module
 core: 8.x
 
 dependencies:
+  - composite_reference:composite_reference
+  - drupal:datetime_range
   - oe_content:oe_content
   - oe_content:oe_content_entity_organisation
   - oe_content:oe_content_departments_field
