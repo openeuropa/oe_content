@@ -5,6 +5,7 @@ type: module
 core: 8.x
 
 dependencies:
+  - address:address
   - oe_content:oe_content_entity
   - oe_media:oe_media
 
