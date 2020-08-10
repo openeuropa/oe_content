@@ -20,7 +20,7 @@ Feature: Project content creation
     And the following document:
       | name          | file       |
       | My Document 1 | sample.pdf |
-      | My Document 2 | sample.pdf |
+      | My Document 2 | document.pdf |
 
     When I visit "the Project creation page"
     # Fill in mandatory fields.
@@ -121,7 +121,7 @@ Feature: Project content creation
     And I should see "Website"
     And I should see "Example proposal"
     And I should see "Result 1 text"
-    And I should see "sample.pdf" in the "Project documents" region
+    And I should see "document.pdf" in the "Project documents" region
     And I should see "sample.pdf" in the "Project result files" region
     And I should see "Audit Board of the European Communities"
     # Test remote video for Featured media.

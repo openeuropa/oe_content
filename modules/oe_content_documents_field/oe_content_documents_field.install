@@ -18,15 +18,14 @@ function oe_content_documents_field_install() {
     return;
   }
 
-  // Does the field storage already exist ?
-  if (array_key_exists('oe_documents', \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node'))) {
-    return;
-  }
-
   // The common field oe_documents was implemented in oe_content_publication,
   // to fix this and re-use the field storage for other content types,
   // we moved the field storage creation here. We only do this if oe_documents
   // wasn't already created by publications.
+  if (array_key_exists('oe_documents', \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node'))) {
+    return;
+  }
+
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_documents_field') . '/config/overrides');
   $values = $storage->read('field.storage.node.oe_documents');
   \Drupal::service('entity_type.manager')->getStorage('field_storage_config')->create($values)->save();
