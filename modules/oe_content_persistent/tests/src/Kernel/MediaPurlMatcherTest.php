@@ -97,6 +97,7 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
       $this->assertEquals($base_url . $media->uuid(), $suggestion->getPath());
     }
 
+    // Configure the plugin to show media thumbnails.
     /** @var \Drupal\linkit\MatcherInterface $plugin */
     $plugin = $matcher_manager->createInstance('entity:media', [
       'settings' => [
@@ -109,13 +110,17 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
     $suggestions = $plugin->execute('image-test');
     $this->assertEquals(3, count($suggestions->getSuggestions()), 'Correct number of suggestions.');
 
-    // Verify suggestion paths.
+    // Verify suggestion contents.
+    /** @var \Drupal\image\ImageStyleInterface $style */
+    $style = $this->container->get('entity_type.manager')->getStorage('image_style')->load('linkit_result_thumbnail');
     foreach ($suggestions->getSuggestions() as $key => $suggestion) {
       $media = $media_storage->load($key + 1);
       $this->assertEquals($base_url . $media->uuid(), $suggestion->getPath());
-      $this->assertContains('linkit_result_thumbnail', $suggestion->getDescription());
+      $thumbnail = $media->get('thumbnail')->first();
+      $thumbnail_file = $thumbnail->get('entity')->getTarget();
+      $thumbnail_url = $style->buildUrl($thumbnail_file->get('uri')->getString());
+      $this->assertContains(parse_url($thumbnail_url)['path'], $suggestion->getDescription());
     }
-
   }
 
 }
