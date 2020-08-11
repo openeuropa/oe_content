@@ -11,7 +11,7 @@
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "~0.8",
-        "openeuropa/oe_media": "^1.4",
+        "openeuropa/oe_media": "dev-master",
         "php": ">=7.2"
     },
     "require-dev": {
@@ -78,9 +78,6 @@
         "patches": {
             "drupal/field_group": {
                 "https://www.drupal.org/project/field_group/issues/2787179#comment-13467953": "https://www.drupal.org/files/issues/2020-02-17/2787179-highlight-html5-validation-45.patch"
-            },
-            "openeuropa/oe_media": {
-                "EWPP-32: Add createMediaRemoteVideo to MediaContext - https://github.com/openeuropa/oe_media/pull/121": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_media/pull/121.patch"
             }
         }
     },
