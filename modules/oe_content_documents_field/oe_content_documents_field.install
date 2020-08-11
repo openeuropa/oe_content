@@ -7,8 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Config\FileStorage;
-
 /**
  * Implements hook_install().
  */
@@ -26,7 +24,25 @@ function oe_content_documents_field_install() {
     return;
   }
 
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_documents_field') . '/config/overrides');
-  $values = $storage->read('field.storage.node.oe_documents');
+  $values = [
+    'langcode' => 'en',
+    'status' => TRUE,
+    'dependencies' => [
+      'module' => [
+        'media',
+        'node',
+      ],
+    ],
+    'id' => 'node.oe_documents',
+    'field_name' => 'oe_documents',
+    'entity_type' => 'node',
+    'type' => 'entity_reference',
+    'settings' => [
+      'target_type' => 'media',
+    ],
+    'module' => 'core',
+    'cardinality' => -1,
+    'translatable' => TRUE,
+  ];
   \Drupal::service('entity_type.manager')->getStorage('field_storage_config')->create($values)->save();
 }
