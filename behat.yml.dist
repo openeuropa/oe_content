@@ -48,6 +48,7 @@ default:
         title form element: ".field--name-title"
         teaser form element: ".field--name-oe-teaser"
         summary form element: ".field--name-oe-summary"
+        featured media form element: ".field--name-oe-project-featured-media"
         featured media legend form element: ".field--name-oe-event-featured-media-legend"
         alternative title form element: ".field--name-oe-content-short-title"
         subject form element: ".field--name-oe-subject"

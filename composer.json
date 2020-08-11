@@ -11,7 +11,7 @@
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "openeuropa/rdf_skos": "~0.8",
-        "openeuropa/oe_media": "^1.4",
+        "openeuropa/oe_media": "dev-master",
         "php": ">=7.2"
     },
     "require-dev": {

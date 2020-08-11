@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.oe_project.oe_project_calls
     - field.field.node.oe_project.oe_project_coordinators
     - field.field.node.oe_project.oe_project_dates
+    - field.field.node.oe_project.oe_project_featured_media
     - field.field.node.oe_project.oe_project_funding_programme
     - field.field.node.oe_project.oe_project_participants
     - field.field.node.oe_project.oe_project_result_files
@@ -24,6 +25,7 @@ dependencies:
     - datetime_range
     - entity_reference_revisions
     - link
+    - oe_content_featured_media_field
     - rdf_skos
     - text
     - user
@@ -108,6 +110,14 @@ content:
       format_type: html_date
       separator: '-'
     third_party_settings: {  }
+  oe_project_featured_media:
+    weight: 14
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: oe_featured_media_label
+    region: content
   oe_project_funding_programme:
     weight: 12
     label: above
