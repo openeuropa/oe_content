@@ -68,6 +68,8 @@ default:
         Event contact social media links: ".field--name-oe-social-media"
         Project coordinators: ".field--name-oe-project-coordinators"
         Project participants: ".field--name-oe-project-participants"
+        Project result files: ".field--name-oe-project-result-files"
+        Project documents: ".field--name-oe-documents"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'

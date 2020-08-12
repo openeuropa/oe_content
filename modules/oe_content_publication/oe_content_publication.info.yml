@@ -6,6 +6,7 @@ type: module
 core: 8.x
 dependencies:
   - oe_content:oe_content
+  - oe_content:oe_content_documents_field
 
 config_devel:
   install:

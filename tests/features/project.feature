@@ -20,6 +20,7 @@ Feature: Project content creation
     And the following document:
       | name          | file       |
       | My Document 1 | sample.pdf |
+      | My Document 2 | document.pdf |
 
     When I visit "the Project creation page"
     # Fill in mandatory fields.
@@ -70,6 +71,7 @@ Feature: Project content creation
     And I fill in "Caption" with "Here is my featured image text caption." in the "featured media form element"
     And I fill in "URL" with "http://example.com" in the "Call for proposals" region
     And I fill in "Link text" with "Example proposal" in the "Call for proposals" region
+    And I fill in "Use existing media" with "My Document 2" in the "Project documents" region
     And I fill in "Results" with "Result 1 text" in the "Result" region
     And I fill in "Use existing media" with "My Document 1" in the "Result" region
     And I fill in "Alternative title" with "My alternative title text" in the "Alternative titles and teaser" region
@@ -119,7 +121,8 @@ Feature: Project content creation
     And I should see "Website"
     And I should see "Example proposal"
     And I should see "Result 1 text"
-    And I should see "sample.pdf"
+    And I should see "document.pdf" in the "Project documents" region
+    And I should see "sample.pdf" in the "Project result files" region
     And I should see "Audit Board of the European Communities"
     # Test remote video for Featured media.
     When I click "Edit"
