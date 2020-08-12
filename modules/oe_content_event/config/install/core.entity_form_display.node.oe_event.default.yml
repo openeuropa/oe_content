@@ -403,13 +403,17 @@ content:
     settings:
       form_mode: default
       revision: true
-      label_singular: ''
-      label_plural: ''
-      override_labels: false
-      collapsible: false
+      override_labels: true
+      label_singular: venue
+      label_plural: venues
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
       collapsed: false
+      allow_existing: false
+      allow_duplicate: false
     third_party_settings: {  }
-    type: inline_entity_form_simple
+    type: inline_entity_form_complex
     region: content
   oe_event_website:
     weight: 12

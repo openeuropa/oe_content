@@ -57,6 +57,8 @@ Feature: Event content creation
 
      # The venue group is open by default.
     And I should see the text "Venue"
+    When I press "Add new venue"
+    And I wait for AJAX to finish
     And I should see the text "Name"
     And I should see the text "Capacity"
     And I should see the text "Room"
@@ -169,16 +171,18 @@ Feature: Event content creation
     And I fill in "Subject" with "EU financing"
     And I set "21-02-2019 02:15" as the "Start date" of "Event date"
     And I set "21-02-2019 14:15" as the "End date" of "Event date"
-    # Venue reference by inline entity form.
-    And I fill in "Name" with "Name of the venue"
-    And I fill in "Capacity" with "Capacity of the venue"
-    And I fill in "Room" with "Room of the venue"
-    And I select "Belgium" from "Country"
+    # Venue reference by Inline entity form - Complex.
+    When I press "Add new venue"
     And I wait for AJAX to finish
-    And I fill in "Street address" with "Rue belliard 28"
-    And I fill in "Postal code" with "1000"
-    And I fill in "City" with "Brussels"
-
+    Then I fill in "Name" with "Name of the venue" in the "Event venue" region
+    And I fill in "Capacity" with "Capacity of the venue" in the "Event venue" region
+    And I fill in "Room" with "Room of the venue" in the "Event venue" region
+    And I select "Belgium" from "Country" in the "Event venue" region
+    And I wait for AJAX to finish
+    And I fill in "Street address" with "Rue belliard 28" in the "Event venue" region
+    And I fill in "Postal code" with "1000" in the "Event venue" region
+    And I fill in "City" with "Brussels" in the "Event venue" region
+    And I press "Create venue"
     # Online field group.
     When I press "Online"
     Then I select "Facebook" from "Online type"
@@ -311,10 +315,6 @@ Feature: Event content creation
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
     And I fill in "Teaser" with "Event teaser"
-    And I press "Save"
-    Then I should see the following error messages:
-      | error messages                                                                                 |
-      | You have to fill in at least one of the following fields: Internal organiser or Organiser name |
     # Make sure that errors related to the Organiser fields are fixed.
     When I check "Organiser is internal"
     And I fill in "Internal organiser" with "Audit Board of the European Communities"

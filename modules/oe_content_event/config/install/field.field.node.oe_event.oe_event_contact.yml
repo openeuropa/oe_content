@@ -7,8 +7,8 @@ dependencies:
     - oe_content_entity_contact.oe_contact_type.oe_general
     - oe_content_entity_contact.oe_contact_type.oe_press
   module:
+    - composite_reference
     - entity_reference_revisions
-    - oe_content
 third_party_settings:
   composite_reference:
     composite: true
