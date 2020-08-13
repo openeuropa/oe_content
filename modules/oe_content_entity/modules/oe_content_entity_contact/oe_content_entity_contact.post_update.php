@@ -23,7 +23,7 @@ function oe_content_entity_contact_post_update_00001(): void {
 /**
  * Create new configuration for Contact entity.
  *
- * Add new fields to the Contact entity:
+ * Add new fields:
  *  - Body text (oe_body);
  *  - Fax number (oe_fax);
  *  - Image (oe_image).
@@ -32,7 +32,8 @@ function oe_content_entity_contact_post_update_00001(): void {
  *  - Organisation (oe_organisation);
  *  - Press contacts (oe_press_contact_url);
  *  - Website (oe_website).
- * Add view mode "oe_details" for Contact entity.
+ *
+ * Create view mode "oe_details".
  */
 function oe_content_entity_contact_post_update_00002(): void {
   // Create a file storage instance for reading configurations.
@@ -66,13 +67,9 @@ function oe_content_entity_contact_post_update_00003(): void {
   }
 
   // Update cardinality of oe_phone field.
-  $oe_phone_field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->load('field.storage.oe_contact.oe_phone');
+  $oe_phone_field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->load('oe_contact.oe_phone');
   if ($oe_phone_field_storage) {
     $oe_phone_field_storage->set('cardinality', -1);
     $oe_phone_field_storage->save();
   }
-
-  // Clear caches.
-  \Drupal::service('kernel')->invalidateContainer();
-  \Drupal::service('plugin.cache_clearer')->clearCachedDefinitions();
 }
