@@ -7,10 +7,21 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Config\FileStorage;
 
 /**
- * Update Contact entity.
+ * Enable dependencies: oe_content_featured_media_field, oe_media.
+ */
+function oe_content_entity_contact_post_update_00001(): void {
+  \Drupal::service('module_installer')->install([
+    'oe_content_featured_media_field',
+    'oe_media',
+  ]);
+}
+
+/**
+ * Create new configuration for Contact entity.
  *
  * Add new fields to the Contact entity:
  *  - Body text (oe_body);
@@ -21,44 +32,45 @@ use Drupal\Core\Config\FileStorage;
  *  - Organisation (oe_organisation);
  *  - Press contacts (oe_press_contact_url);
  *  - Website (oe_website).
+ * Add view mode "oe_details" for Contact entity.
+ */
+function oe_content_entity_contact_post_update_00002(): void {
+  // Create a file storage instance for reading configurations.
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00002_create_oe_contact_fields');
+
+  // Create new configurations.
+  \Drupal::service('config.installer')->installOptionalConfig($storage);
+}
+
+/**
  * Change cardinality of the Phone field.
  */
-function oe_content_entity_contact_post_update_00001(): void {
-  // Enable module that provides "Featured media" field type.
-  \Drupal::service('module_installer')->install(['oe_content_featured_media_field']);
-
+function oe_content_entity_contact_post_update_00003(): void {
   // Create a file storage instance for reading configurations.
-  $file_storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/install');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00003_update_oe_contact_form_displays');
 
-  // Create new fields.
-  $config_manager_helper = \Drupal::service('oe_content.config_manager_helper');
-  $fields = [
-    'oe_body',
-    'oe_fax',
-    'oe_image',
-    'oe_mobile',
-    'oe_office',
-    'oe_organisation',
-    'oe_press_contact_url',
-    'oe_website',
+  // Form display configurations to update.
+  $form_displays = [
+    'core.entity_form_display.oe_contact.oe_general.default',
+    'core.entity_form_display.oe_contact.oe_press.default',
   ];
-  foreach ($fields as $field_name) {
-    $config_manager_helper->createConfig("field.storage.oe_contact.$field_name", $file_storage);
-    $config_manager_helper->createConfig("field.field.oe_contact.oe_general.$field_name", $file_storage);
-    $config_manager_helper->createConfig("field.field.oe_contact.oe_press.$field_name", $file_storage);
+  foreach ($form_displays as $display) {
+    $values = $storage->read($display);
+    $config = EntityFormDisplay::load($values['id']);
+    if ($config) {
+      foreach ($values as $key => $value) {
+        $config->set($key, $value);
+      }
+      $config->save();
+    }
   }
 
-  // Update form view.
-  $config_manager_helper->updateConfig('core.entity_form_display.oe_contact.oe_general.default', $file_storage);
-  $config_manager_helper->updateConfig('core.entity_form_display.oe_contact.oe_press.default', $file_storage);
-
-  // Create "Details" view mode.
-  $config_manager_helper->createConfig('core.entity_view_mode.oe_contact.oe_details', $file_storage);
-  $config_manager_helper->createConfig('core.entity_view_display.oe_contact.oe_general.oe_details', $file_storage);
-  $config_manager_helper->createConfig('core.entity_view_display.oe_contact.oe_press.oe_details', $file_storage);
-
-  // Change cardinality of the Phone field.
-  $config_manager_helper->updateConfig('field.storage.oe_contact.oe_phone', $file_storage, ['cardinality']);
+  // Update cardinality of oe_phone field.
+  $oe_phone_field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->load('field.storage.oe_contact.oe_phone');
+  if ($oe_phone_field_storage) {
+    $oe_phone_field_storage->set('cardinality', -1);
+    $oe_phone_field_storage->save();
+  }
 
   // Clear caches.
   \Drupal::service('kernel')->invalidateContainer();

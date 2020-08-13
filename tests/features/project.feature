@@ -66,6 +66,8 @@ Feature: Project content creation
     And I fill in "Funding programme" with "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
     And I fill in "URL" with "http://project.website" in the "Project Website" region
     And I fill in "Link text" with "Website" in the "Project Website" region
+    And I fill in "Media item" with "Image 3" in the "featured media form element"
+    And I fill in "Caption" with "Here is my featured image text caption." in the "featured media form element"
     And I fill in "URL" with "http://example.com" in the "Call for proposals" region
     And I fill in "Link text" with "Example proposal" in the "Call for proposals" region
     And I fill in "Use existing media" with "My Document 2" in the "Project documents" region
@@ -105,6 +107,8 @@ Feature: Project content creation
 
     # Assert project field values.
     And I should see "Summary text"
+    And I should see "Image 3" in the "featured media form element" region
+    And I should see "Here is my featured image text caption." in the "featured media form element" region
     And I should see "Reference text"
     And I should see "2019-02-23"
     And I should see "2019-02-24"
@@ -117,3 +121,10 @@ Feature: Project content creation
     And I should see "document.pdf" in the "Project documents" region
     And I should see "sample.pdf" in the "Project result files" region
     And I should see "Audit Board of the European Communities"
+    # Test remote video for Featured media.
+    When I click "Edit"
+    Then I fill in "Media item" with "Plant health in the EU" in the "featured media form element"
+    And I fill in "Caption" with "Here is my featured video text caption." in the "featured media form element"
+    When I press "Save"
+    Then I should see "Plant health in the EU" in the "featured media form element" region
+    And I should see "Here is my featured video text caption." in the "featured media form element" region
