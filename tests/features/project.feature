@@ -77,6 +77,29 @@ Feature: Project content creation
     And I fill in "Navigation title" with "My navigation title text" in the "Alternative titles and teaser" region
     And I fill in "Departments" with "Audit Board of the European Communities"
 
+    # Project contact field group.
+    When I press "Add new contact"
+    And I wait for AJAX to finish
+    Then I fill in "Name" with "Name of the project contact" in the "Project contact" region
+    And I fill in "Organisation" with "Project contact organisation" in the "Project contact" region
+    And I fill in "Body text" with "Project contact body text" in the "Project contact" region
+    And I fill in "Website" with "http://www.example.com/project_contact" in the "Project contact" region
+    And I fill in "Email" with "project_contact@example.com" in the "Project contact" region
+    And I fill in "Phone number" with "0488779033" in the "Project contact" region
+    And I fill in "Mobile number" with "0488779034" in the "Project contact" region
+    And I fill in "Fax number" with "0488779035" in the "Project contact" region
+    And I select "Hungary" from "Country" in the "Project contact" region
+    And I wait for AJAX to finish
+    And I fill in "Street address" with "Project contact street" in the "Project contact" region
+    And I fill in "Postal code" with "9000" in the "Project contact" region
+    And I fill in "City" with "Budapest" in the "Project contact" region
+    And I fill in "Office" with "Project contact office" in the "Project contact" region
+    And I fill in "URL" with "mailto:project_contact_social@example.com" in the "Project contact social media links" region
+    And I fill in "Link text" with "Project contact social link email" in the "Project contact social media links" region
+    And I fill in "Media item" with "Contact image" in the "Project contact" region
+    And I fill in "Caption" with "Project contact caption" in the "Project contact" region
+    And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Project contact" region
+
     When I press "Save"
     Then I should see "My Project"
     And I should not see "EU financing"
@@ -121,6 +144,25 @@ Feature: Project content creation
     And I should see "document.pdf" in the "Project documents" region
     And I should see "sample.pdf" in the "Project result files" region
     And I should see "Audit Board of the European Communities"
+
+    # Assert project contact values.
+    And I should see the text "Name of the project contact"
+    And I should see the text "Project contact body text"
+    And I should see the text "Project contact organisation"
+    And I should see the link "http://www.example.com/project_contact"
+    And I should see the text "project_contact@example.com"
+    And I should see the text "0488779033"
+    And I should see the text "0488779034"
+    And I should see the text "0488779035"
+    And I should see the text "Project contact street"
+    And I should see the text "Budapest"
+    And I should see the text "9000"
+    And I should see the text "Hungary"
+    And I should see the link "Project contact social link email"
+    And I should see the text "Project contact office"
+    And I should see the link "Contact image"
+    And I should see the text "Project contact caption"
+    And I should see the link "http://example.com/press_contacts"
     # Test remote video for Featured media.
     When I click "Edit"
     Then I fill in "Media item" with "Plant health in the EU" in the "featured media form element"

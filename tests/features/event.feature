@@ -144,6 +144,9 @@ Feature: Event content creation
   @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
+    And the following images:
+      | name          | file           | alt                            |
+      | Contact image | example_1.jpeg | Contact image alternative text |
     # Create a "Media AV portal photo".
     And the following AV Portal photos:
       | url                                                         |
@@ -229,7 +232,9 @@ Feature: Event content creation
     And I fill in "City" with "Budapest" in the "Event contact" region
     And I fill in "Office" with "Event contact office" in the "Event contact" region
     And I fill in "URL" with "mailto:example@email.com" in the "Event contact social media links" region
-    And I fill in "Link text" with "Email" in the "Event contact social media links" region
+    And I fill in "Link text" with "Event contact social link email" in the "Event contact social media links" region
+    And I fill in "Media item" with "Contact image" in the "Event contact" region
+    And I fill in "Caption" with "Event contact caption" in the "Event contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Event contact" region
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
@@ -282,9 +287,10 @@ Feature: Event content creation
     And I should see the text "Budapest"
     And I should see the text "9000"
     And I should see the text "Hungary"
-    And I should see the text "0488779033"
-    And I should see the link "Email"
+    And I should see the link "Event contact social link email"
     And I should see the text "Event contact office"
+    And I should see the link "Contact image"
+    And I should see the text "Event contact caption"
     And I should see the link "http://example.com/press_contacts"
 
   @javascript @av_portal
