@@ -26,6 +26,7 @@ function oe_content_project_install() {
  */
 function oe_content_project_module_preinstall($module) {
   if ($module === 'oe_content_project' && \Drupal::moduleHandler()->moduleExists('oe_content_entity_organisation')) {
+    module_load_include('post_update.php', 'oe_content_entity_organisation');
     oe_content_entity_organisation_post_update_00001();
   }
 }
