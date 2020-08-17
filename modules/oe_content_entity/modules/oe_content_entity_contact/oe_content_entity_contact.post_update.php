@@ -18,6 +18,8 @@ function oe_content_entity_contact_post_update_00001(): void {
     'oe_content_featured_media_field',
     'oe_media',
   ]);
+  // Invalidate container, so we can discover oe_featured_media field type.
+  \Drupal::service('kernel')->invalidateContainer();
 }
 
 /**
