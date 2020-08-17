@@ -20,7 +20,7 @@ use Drupal\Core\Render\Element;
  * @param string $hook
  *   Hook name, in this case the entity type ID itself.
  */
-function oe_content_entity_default_preprocess(array &$variables, string $hook) {
+function oe_content_entity_default_preprocess(array &$variables, string $hook): void {
   $variables['entity'] = $variables['elements']["#{$hook}"];
   $variables['view_mode'] = $variables['elements']['#view_mode'];
   $variables['label'] = $variables['entity']->label();
