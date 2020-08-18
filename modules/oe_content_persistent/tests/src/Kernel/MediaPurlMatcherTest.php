@@ -35,12 +35,11 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
     $this->installEntitySchema('file');
     $this->installEntitySchema('media');
     $this->installEntitySchema('entity_view_display');
-    $this->installConfig(['media']);
-    $this->installConfig(['image']);
+    $this->installConfig(['media', 'image']);
     $this->installSchema('system', ['key_value_expire']);
     $this->installSchema('file', ['file_usage']);
 
-    // Set up media bundle and fields.
+    // Setup media bundle and fields.
     $media_type = MediaType::create([
       'label' => 'test',
       'id' => 'test',
@@ -74,20 +73,20 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
     }
 
     // Create user 1 who has special permissions.
-    \Drupal::currentUser()->setAccount($this->createUser(['uid' => 1]));
+    $this->container->get('current_user')->setAccount($this->createUser(['uid' => 1]));
   }
 
   /**
-   * Tests media PURL matcher.
+   * Tests media PURL matcher with different configurations.
    */
-  public function testMediaMatcherWithDefaultConfiguration() {
+  public function testMediaPurlMatcher() {
     $base_url = $this->config('oe_content_persistent.settings')->get('base_url');
     $matcher_manager = $this->container->get('plugin.manager.linkit.matcher');
 
     /** @var \Drupal\linkit\MatcherInterface $plugin */
     $plugin = $matcher_manager->createInstance('entity:media', []);
     $suggestions = $plugin->execute('image-test');
-    $this->assertEquals(3, count($suggestions->getSuggestions()), 'Correct number of suggestions.');
+    $this->assertCount(3, $suggestions->getSuggestions(), 'Correct number of suggestions.');
 
     /** @var \Drupal\Core\Entity\EntityStorageInterface $media_storage */
     $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
@@ -108,7 +107,7 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
       ],
     ]);
     $suggestions = $plugin->execute('image-test');
-    $this->assertEquals(3, count($suggestions->getSuggestions()), 'Correct number of suggestions.');
+    $this->assertCount(3, $suggestions->getSuggestions(), 'Correct number of suggestions.');
 
     // Verify suggestion contents.
     /** @var \Drupal\image\ImageStyleInterface $style */
