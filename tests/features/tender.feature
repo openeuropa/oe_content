@@ -24,7 +24,7 @@ Feature: Call for Tenders content creation
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "Body text" with "My Body text"
     And I fill in "Use existing media" with "My Document 1" in the "Documents" region
-    When I press "Save"
+    And I press "Save"
     Then I should see "My Call for Tenders 1"
     And I should not see "My Teaser text"
     And I should not see "My Introduction text"

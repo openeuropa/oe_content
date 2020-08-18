@@ -7,7 +7,7 @@ id: node.oe_tender.title
 field_name: title
 entity_type: node
 bundle: oe_tender
-label: Title
+label: Page Title
 description: 'The ideal length is 50 to 60 characters including spaces. If it must be longer, make sure you fill in a shorter version in the Alternative title field.'
 required: true
 translatable: true
