@@ -12,7 +12,7 @@ Before enabling this module, make sure that the following modules are present in
     "drupal/composite_reference": "~1.0@alpha",
     "drupal/entity_reference_revisions": "~1.3",
     "drupal/field_group": "~3.0",
-    "drupal/inline_entity_form": "~1.0-rc3",
+    "drupal/inline_entity_form": "~1.0-rc5",
 }
 ```
 
@@ -31,7 +31,7 @@ The `inline_entity_form` module requires the following patches to be applied:
 ```json
 "patches": {
     "drupal/inline_entity_form": {
-        "https://www.drupal.org/project/inline_entity_form/issues/2842744#comment-13740190": "https://www.drupal.org/files/issues/2020-07-09/inline_entity_form-no_label_required_field_with_no_entries-2842744-23-D8.patch"
+        "https://www.drupal.org/project/inline_entity_form/issues/2842744#comment-13775778": "https://www.drupal.org/files/issues/2020-08-04/inline_entity_form-no_label_required_field_with_no_entries-2842744-27-D8.patch"
     }
 }
 ```
