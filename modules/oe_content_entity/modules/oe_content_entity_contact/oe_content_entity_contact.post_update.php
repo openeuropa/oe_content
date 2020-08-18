@@ -41,7 +41,7 @@ function oe_content_entity_contact_post_update_00002(): void {
 }
 
 /**
- * Change cardinality of the Phone field.
+ * Update contact form displays.
  */
 function oe_content_entity_contact_post_update_00003(): void {
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00003_update_contact_form_displays');
