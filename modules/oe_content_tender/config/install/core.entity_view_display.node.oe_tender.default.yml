@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.oe_tender.oe_departments
     - field.field.node.oe_tender.oe_documents
     - field.field.node.oe_tender.oe_publication_date
-    - field.field.node.oe_tender.oe_reference
+    - field.field.node.oe_tender.oe_reference_code
     - field.field.node.oe_tender.oe_subject
     - field.field.node.oe_tender.oe_summary
     - field.field.node.oe_tender.oe_teaser
@@ -55,7 +55,7 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  oe_reference:
+  oe_reference_code:
     weight: 0
     label: above
     settings:
