@@ -46,7 +46,7 @@ class ProjectContentContext extends RawDrupalContext {
       'Project period start date' => 'oe_project_dates:value',
       'Project period end date' => 'oe_project_dates:end_value',
       'Published' => 'status',
-      'Reference' => 'oe_reference',
+      'Reference' => 'oe_reference_code',
       'Documents' => 'oe_documents',
       'Result files' => 'oe_project_result_files',
       'Results' => 'oe_project_results',

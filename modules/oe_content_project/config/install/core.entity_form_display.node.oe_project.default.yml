@@ -17,7 +17,7 @@ dependencies:
     - field.field.node.oe_project.oe_project_result_files
     - field.field.node.oe_project.oe_project_results
     - field.field.node.oe_project.oe_project_website
-    - field.field.node.oe_project.oe_reference
+    - field.field.node.oe_project.oe_reference_code
     - field.field.node.oe_project.oe_subject
     - field.field.node.oe_project.oe_summary
     - field.field.node.oe_project.oe_teaser
@@ -282,7 +282,7 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  oe_reference:
+  oe_reference_code:
     weight: 6
     settings:
       size: 60
