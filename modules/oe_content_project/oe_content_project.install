@@ -20,13 +20,3 @@ function oe_content_project_install() {
     'eu-programme' => 'http://publications.europa.eu/resource/authority/eu-programme',
   ]);
 }
-
-/**
- * Implements hook_module_preinstall().
- */
-function oe_content_project_module_preinstall($module) {
-  if ($module === 'oe_content_project' && \Drupal::moduleHandler()->moduleExists('oe_content_entity_organisation')) {
-    module_load_include('post_update.php', 'oe_content_entity_organisation');
-    oe_content_entity_organisation_post_update_00001();
-  }
-}
