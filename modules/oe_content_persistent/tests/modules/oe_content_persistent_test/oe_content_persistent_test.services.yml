@@ -1,0 +1,5 @@
+services:
+  oe_content_persistent_test.resolver_subscriber:
+    class: \Drupal\oe_content_persistent_test\EventSubscriber\PersistentUrlResolverSubscriber
+    tags:
+      - { name: event_subscriber }

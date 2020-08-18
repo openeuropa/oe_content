@@ -1,11 +1,25 @@
 # Changelog
 
+## [1.10.0](https://github.com/openeuropa/oe_content/tree/1.10.0) (2020-08-06)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.9.0...1.10.0)
+
+**Merged pull requests:**
+
+- EWPP-94: Refactor the PURL module to allow for other entity types [\#239](https://github.com/openeuropa/oe_content/pull/239) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-3380: Use base hook for templates of corporate entities. [\#235](https://github.com/openeuropa/oe_content/pull/235) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-31: Create 'Departments' shared field. [\#230](https://github.com/openeuropa/oe_content/pull/230) ([julien-](https://github.com/julien-))
+- EWPP-26: Extend events filter for ongoing events. [\#225](https://github.com/openeuropa/oe_content/pull/225) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-3371: Change getRevisionField\(\) to getReferenceField\(\) [\#219](https://github.com/openeuropa/oe_content/pull/219) ([enriquelacoma](https://github.com/enriquelacoma))
+- OPENEUROPA-3235: Featured media entity browser widget. [\#209](https://github.com/openeuropa/oe_content/pull/209) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [1.9.0](https://github.com/openeuropa/oe_content/tree/1.9.0) (2020-06-16)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.8.1...1.9.0)
 
 **Merged pull requests:**
 
+- Prepare 1.9.0 release. [\#218](https://github.com/openeuropa/oe_content/pull/218) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-3135: Test event deletion with composite references. [\#217](https://github.com/openeuropa/oe_content/pull/217) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-3135: Use alpha1 release for composite\_reference. [\#215](https://github.com/openeuropa/oe_content/pull/215) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-3135: Add composite\_reference module and configure event to use it. [\#213](https://github.com/openeuropa/oe_content/pull/213) ([imanoleguskiza](https://github.com/imanoleguskiza))

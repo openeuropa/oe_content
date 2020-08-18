@@ -5,3 +5,9 @@ oe_content_persistent.settings:
     base_url:
       type: uri
       label: 'Inter institutional base path'
+    supported_entity_types:
+      type: sequence
+      label: 'Supported entity types'
+      sequence:
+        type: string
+        label: 'Entity type ID'
