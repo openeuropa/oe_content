@@ -30,3 +30,22 @@ function oe_content_entity_default_preprocess(array &$variables, string $hook): 
     $variables['content'][$key] = $variables['elements'][$key];
   }
 }
+
+/**
+ * Default theme suggestion function to be used for all corporate entities.
+ *
+ * @param array $variables
+ *   Render variables.
+ * @param string $hook
+ *   Theme name.
+ *
+ * @return array
+ *   List of template suggestions.
+ */
+function oe_content_entity_default_theme_suggestion(array &$variables, string $hook): array {
+  $suggestions = [];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+  $suggestions[] = $hook . '__' . $sanitized_view_mode;
+
+  return $suggestions;
+}
