@@ -23,25 +23,20 @@ function oe_content_entity_contact_post_update_00001(): void {
 }
 
 /**
- * Create new configuration for Contact entity.
+ * Add new fields to contact entity bundles.
  *
- * Add new fields:
- *  - Body text (oe_body);
- *  - Fax number (oe_fax);
- *  - Image (oe_image).
- *  - Mobile number (oe_mobile);
- *  - Office (oe_office);
- *  - Organisation (oe_organisation);
- *  - Press contacts (oe_press_contact_url);
- *  - Website (oe_website).
- *
- * Create view mode "oe_details".
+ * The following fields will be created:
+ *  - Body text (oe_body)
+ *  - Fax number (oe_fax)
+ *  - Image (oe_image)
+ *  - Mobile number (oe_mobile)
+ *  - Office (oe_office)
+ *  - Organisation (oe_organisation)
+ *  - Press contacts (oe_press_contact_url)
+ *  - Website (oe_website)
  */
 function oe_content_entity_contact_post_update_00002(): void {
-  // Create a file storage instance for reading configurations.
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00002_create_oe_contact_fields');
-
-  // Create new configurations.
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00002_create_contact_fields');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 
@@ -49,8 +44,7 @@ function oe_content_entity_contact_post_update_00002(): void {
  * Change cardinality of the Phone field.
  */
 function oe_content_entity_contact_post_update_00003(): void {
-  // Create a file storage instance for reading configurations.
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00003_update_oe_contact_form_displays');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00003_update_contact_form_displays');
 
   // Form display configurations to update.
   $form_displays = [
@@ -60,15 +54,25 @@ function oe_content_entity_contact_post_update_00003(): void {
   foreach ($form_displays as $display) {
     $values = $storage->read($display);
     $config = EntityFormDisplay::load($values['id']);
-    if ($config) {
-      foreach ($values as $key => $value) {
-        $config->set($key, $value);
-      }
-      $config->save();
+    foreach ($values as $key => $value) {
+      $config->set($key, $value);
     }
+    $config->save();
   }
+}
 
-  // Update cardinality of oe_phone field.
+/**
+ * Create "oe_details" view mode.
+ */
+function oe_content_entity_contact_post_update_00004(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00004_create_details_view_mode');
+  \Drupal::service('config.installer')->installOptionalConfig($storage);
+}
+
+/**
+ * Change "Phone" field cardinality to unlimited.
+ */
+function oe_content_entity_contact_post_update_00005(): void {
   $oe_phone_field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->load('oe_contact.oe_phone');
   if ($oe_phone_field_storage) {
     $oe_phone_field_storage->set('cardinality', -1);
