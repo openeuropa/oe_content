@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - node
-id: node.oe_reference
-field_name: oe_reference
+id: node.oe_reference_code
+field_name: oe_reference_code
 entity_type: node
 type: string
 settings:

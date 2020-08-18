@@ -1,0 +1,13 @@
+name: OpenEuropa Content Reference Code Field
+description: Contains the reference code storage field.
+package: OpenEuropa
+
+type: module
+core: 8.x
+
+dependencies:
+  - drupal:node
+
+config_devel:
+  install:
+    - field.storage.node.oe_reference_code
