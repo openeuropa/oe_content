@@ -16,7 +16,7 @@ use Drupal\linkit\SubstitutionManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides overriden linkit matchers for the node entity type.
+ * Provides overridden linkit matchers for the node entity type.
  */
 class NodePurlMatcher extends NodeMatcher {
 
