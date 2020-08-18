@@ -6,6 +6,7 @@ type: module
 core: 8.x
 dependencies:
   - drupal:media
+  - drupal:entity_browser
 
 config_devel:
   install:

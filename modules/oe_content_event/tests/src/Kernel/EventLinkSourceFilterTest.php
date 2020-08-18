@@ -80,6 +80,18 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $future_event = Node::create($values);
     $future_event->save();
 
+    // Create an event that is ongoing.
+    $values = [
+      'type' => 'oe_event',
+      'title' => 'My node title',
+      'oe_event_dates' => [
+        'value' => '2016-05-10T12:00:00',
+        'end_value' => '2050-05-15T12:00:00',
+      ],
+    ];
+    $ongoing_event = Node::create($values);
+    $ongoing_event->save();
+
     /** @var \Drupal\oe_link_lists_internal_source\InternalLinkSourceFilterPluginManager $plugin_manager */
     $plugin_manager = $this->container->get('plugin.manager.oe_link_lists.internal_source_filter');
     /** @var \Drupal\oe_link_lists_internal_source\InternalLinkSourceFilterInterface $plugin */
@@ -108,19 +120,20 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $plugin->apply($query, [], $cache);
     $query_results = $query->execute();
     $future_events = [
+      $ongoing_event->id() => $ongoing_event->id(),
       $upcoming_event->id() => $upcoming_event->id(),
       $future_event->id() => $future_event->id(),
     ];
-    $this->assertEqual($query_results, $future_events);
+    $this->assertEquals($future_events, $query_results);
     // Time based caches have been added and they correspond to the closest
     // upcoming event start date.
     $date_cache_tags = [
       'oe_time_caching_date:2050',
       'oe_time_caching_date:2050-05',
-      'oe_time_caching_date:2050-05-10',
-      'oe_time_caching_date:2050-05-10-12',
+      'oe_time_caching_date:2050-05-15',
+      'oe_time_caching_date:2050-05-15-12',
     ];
-    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
+    $this->assertEquals($date_cache_tags, $cache->getCacheTags());
 
     // Configuring the filter for past events will only return finished events.
     $query = $storage->getQuery();
@@ -132,7 +145,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       $past_event->id() => $past_event->id(),
       $ancient_event->id() => $ancient_event->id(),
     ];
-    $this->assertEqual($query_results, $past_events);
+    $this->assertEquals($past_events, $query_results);
     // Time based caches have been added and they correspond to the closest
     // event end date.
     $date_cache_tags = [
@@ -141,7 +154,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       'oe_time_caching_date:2050-05-15',
       'oe_time_caching_date:2050-05-15-12',
     ];
-    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
+    $this->assertEquals($date_cache_tags, $cache->getCacheTags());
 
     // If we move back in time, the query updates its results.
     $static_time = new DrupalDateTime('2015-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
@@ -153,7 +166,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $past_events = [
       $ancient_event->id() => $ancient_event->id(),
     ];
-    $this->assertEqual($query_results, $past_events);
+    $this->assertEquals($past_events, $query_results);
     // Time based caches have been added and they correspond to the closest
     // event end date.
     $date_cache_tags = [
@@ -162,7 +175,32 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
       'oe_time_caching_date:2016-05-15',
       'oe_time_caching_date:2016-05-15-12',
     ];
-    $this->assertEqual($cache->getCacheTags(), $date_cache_tags);
+    $this->assertEquals($date_cache_tags, $cache->getCacheTags());
+
+    // Set the time to the end date of an ongoing event.
+    $static_time = new DrupalDateTime('2050-05-15 12:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $time->setTime($static_time->getTimestamp());
+    $query = $storage->getQuery();
+    // Configuring the filter for upcoming events.
+    $plugin->setConfiguration(['period' => EventPeriodFilter::UPCOMING]);
+    $cache = new CacheableMetadata();
+    $plugin->apply($query, [], $cache);
+    $query_results = $query->execute();
+    $ongoing_events = [
+      // Only future event is visible because the time is set to the
+      // end date of the ongoing and upcoming event.
+      $future_event->id() => $future_event->id(),
+    ];
+    $this->assertEquals($ongoing_events, $query_results);
+    // Time based caches have been added and they correspond to the closest
+    // event end date.
+    $date_cache_tags = [
+      'oe_time_caching_date:2200',
+      'oe_time_caching_date:2200-05',
+      'oe_time_caching_date:2200-05-15',
+      'oe_time_caching_date:2200-05-15-12',
+    ];
+    $this->assertEquals($date_cache_tags, $cache->getCacheTags());
 
     // Configuring the filter to show all events shows all events.
     $query = $storage->getQuery();
@@ -173,13 +211,14 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $all_events = [
       $future_event->id() => $future_event->id(),
       $upcoming_event->id() => $upcoming_event->id(),
+      $ongoing_event->id() => $ongoing_event->id(),
       $past_event->id() => $past_event->id(),
       $ancient_event->id() => $ancient_event->id(),
     ];
-    $this->assertEqual($query_results, $all_events);
+    $this->assertEquals($all_events, $query_results);
     // Because we are showing all events time based cache tags are not
     // necessary.
-    $this->assertEqual($cache->getCacheTags(), []);
+    $this->assertEquals([], $cache->getCacheTags());
   }
 
 }

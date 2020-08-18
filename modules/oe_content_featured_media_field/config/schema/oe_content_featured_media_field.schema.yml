@@ -24,3 +24,7 @@ field.formatter.settings.oe_featured_media_label:
 
 field.widget.settings.oe_featured_media_autocomplete:
   type: field.widget.settings.entity_reference_autocomplete
+
+field.widget.settings.oe_featured_media_entity_browser:
+  type: field.widget.settings.entity_browser_entity_reference
+  label: 'Featured media entity browser widget'
