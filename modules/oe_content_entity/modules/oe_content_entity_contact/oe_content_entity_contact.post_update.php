@@ -54,10 +54,12 @@ function oe_content_entity_contact_post_update_00003(): void {
   foreach ($form_displays as $display) {
     $values = $storage->read($display);
     $config = EntityFormDisplay::load($values['id']);
-    foreach ($values as $key => $value) {
-      $config->set($key, $value);
+    if ($config) {
+      foreach ($values as $key => $value) {
+        $config->set($key, $value);
+      }
+      $config->save();
     }
-    $config->save();
   }
 }
 
