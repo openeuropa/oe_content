@@ -51,14 +51,14 @@ function oe_content_entity_contact_post_update_00003(): void {
     'core.entity_form_display.oe_contact.oe_general.default',
     'core.entity_form_display.oe_contact.oe_press.default',
   ];
-  foreach ($form_displays as $display) {
-    $values = $storage->read($display);
-    $config = EntityFormDisplay::load($values['id']);
-    if ($config) {
-      foreach ($values as $key => $value) {
-        $config->set($key, $value);
-      }
-      $config->save();
+  foreach ($form_displays as $form_display) {
+    $form_display_values = $storage->read($form_display);
+    $form_display = EntityFormDisplay::load($form_display_values['id']);
+    if ($form_display) {
+      $updated_form_display = \Drupal::entityTypeManager()
+        ->getStorage($form_display->getEntityTypeId())
+        ->updateFromStorageRecord($form_display, $form_display_values);
+      $updated_form_display->save();
     }
   }
 }
@@ -79,5 +79,25 @@ function oe_content_entity_contact_post_update_00005(): void {
   if ($oe_phone_field_storage) {
     $oe_phone_field_storage->set('cardinality', -1);
     $oe_phone_field_storage->save();
+  }
+}
+
+/**
+ * Hide "Organisation" property from Address field.
+ */
+function oe_content_entity_contact_post_update_00006(): void {
+  $bundles = ['oe_general', 'oe_press'];
+  foreach ($bundles as $bundle) {
+    $field_config = \Drupal::entityTypeManager()->getStorage('field_config')->load("oe_contact.$bundle.oe_address");
+    if ($field_config) {
+      // Field exists.
+      $field_overrides = $field_config->getSetting('field_overrides');
+      if (!isset($field_overrides['organization'])) {
+        // Default configuration is set, so we can update it.
+        $field_overrides['organization']['override'] = 'hidden';
+        $field_config->setSetting('field_overrides', $field_overrides);
+        $field_config->save();
+      }
+    }
   }
 }
