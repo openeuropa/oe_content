@@ -26,6 +26,14 @@ content:
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
+  name:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_acronym:
     weight: 1
     label: above
@@ -74,14 +82,6 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  name:
-    label: hidden
-    type: string
-    weight: -5
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
 hidden:
   langcode: true
   status: true

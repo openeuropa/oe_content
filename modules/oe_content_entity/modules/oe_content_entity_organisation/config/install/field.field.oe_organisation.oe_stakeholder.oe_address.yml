@@ -26,5 +26,7 @@ settings:
       override: hidden
     familyName:
       override: hidden
+    organization:
+      override: hidden
   fields: {  }
 field_type: address
