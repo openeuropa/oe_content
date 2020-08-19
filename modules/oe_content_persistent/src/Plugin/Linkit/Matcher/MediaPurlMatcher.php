@@ -103,7 +103,7 @@ class MediaPurlMatcher extends EntityMatcher {
     $dependencies = parent::calculateDependencies() + [
       'module' => ['media'],
     ];
-    if ($this->configuration['images']['show_thumbnail']) {
+    if ($this->configuration['thumbnail']['show_thumbnail']) {
       $dependencies['module'][] = 'image';
       $dependencies['config'][] = 'image.style.' . $this->configuration['images']['thumbnail_image_style'];
     }
