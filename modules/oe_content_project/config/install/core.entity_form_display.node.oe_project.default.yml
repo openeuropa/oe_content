@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_project_calls
+    - field.field.node.oe_project.oe_project_contact
     - field.field.node.oe_project.oe_project_coordinators
     - field.field.node.oe_project.oe_project_dates
     - field.field.node.oe_project.oe_project_featured_media
@@ -202,6 +203,23 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  oe_project_contact:
+    weight: 26
+    settings:
+      form_mode: default
+      revision: true
+      override_labels: true
+      label_singular: contact
+      label_plural: contacts
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
     region: content
   oe_project_coordinators:
     weight: 24
