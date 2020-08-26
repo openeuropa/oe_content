@@ -31,5 +31,5 @@ settings:
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: general
+    auto_create_bundle: oe_general
 field_type: entity_reference_revisions
