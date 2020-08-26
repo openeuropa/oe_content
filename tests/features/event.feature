@@ -300,6 +300,11 @@ Feature: Event content creation
   @javascript @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
+    # Create a "Media AV portal photo".
+    And the following AV Portal photos:
+      | url                                                         |
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
+
     # Create a "Event" content.
     When I visit "the Event creation page"
     And I fill in "Page title" with "My Event item"
