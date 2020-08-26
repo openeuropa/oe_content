@@ -11,3 +11,17 @@ oe_content_persistent.settings:
       sequence:
         type: string
         label: 'Entity type ID'
+
+linkit.matcher.entity:media:
+  type: linkit.matcher.entity
+  mapping:
+    include_unpublished:
+      type: boolean
+    thumbnail:
+      type: mapping
+      mapping:
+        show_thumbnail:
+          type: boolean
+        thumbnail_image_style:
+          type: string
+          nullable: true
