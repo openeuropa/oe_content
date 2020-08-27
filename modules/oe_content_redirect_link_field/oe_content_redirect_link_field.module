@@ -34,7 +34,8 @@ function oe_content_redirect_link_field_form_node_form_alter(&$form, FormStateIn
     $form['oe_redirect_link']['#group'] = 'redirect_link';
 
     $form['oe_redirect_link']['widget'][0]['uri']['#description'] = t('This page will be redirected to this URL. All of its translations that do not have a language specific Redirect link URL filled in will also be redirected to this URL. Removing this value will prevent the redirect from happening on all of the translations as well.');
-    // Forcibly disable the 'title' field even if it is enabled on the field instance level.
+    // Forcibly disable the 'title' field even if it is enabled
+    // on the field instance level.
     $form['oe_redirect_link']['widget'][0]['title']['#access'] = FALSE;
     foreach ($form['oe_redirect_link']['widget'][0]['#element_validate'] as $index => $validator) {
       if (in_array($validator[1], ['validateTitleElement', 'validateTitleNoLink'])) {
@@ -59,11 +60,6 @@ function oe_content_redirect_link_field_form_node_form_alter(&$form, FormStateIn
 
 /**
  * Submit form handler for node with 'oe_redirect_link' field.
- *
- * @param $form
- *   The form array of elements.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The form state instance.
  */
 function _oe_content_redirect_link_field_node_form_submit(&$form, FormStateInterface $form_state): void {
   if ($form_state->getValue('redirect_link_enable', 0) === 0) {
