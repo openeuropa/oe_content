@@ -193,7 +193,7 @@ class NodeFormRedirectLinkTest extends WebDriverTestBase {
   /**
    * Data provider for testRedirectLinkWithDifferentSettings().
    */
-  protected function fieldSettingsDataProvider(): array {
+  public function fieldSettingsDataProvider(): array {
     return [
       [
         'settings' => [
