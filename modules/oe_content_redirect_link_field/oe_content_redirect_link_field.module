@@ -13,48 +13,51 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function oe_content_redirect_link_field_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if (!empty($form['oe_redirect_link'])) {
-    $form['redirect_link'] = [
-      '#type' => 'details',
-      '#title' => t('Redirect link'),
-      '#weight' => 10,
-      '#open' => TRUE,
-      '#group' => 'advanced',
-      '#attributes' => [
-        'class' => ['redirect-link-group'],
-      ],
-      '#tree' => TRUE,
-    ];
-    $form['redirect_link_enable'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Redirect this page to an external link'),
-      '#group' => 'redirect_link',
-      '#default_value' => !$form_state->getFormObject()->getEntity()->get('oe_redirect_link')->isEmpty(),
-    ];
-    $form['oe_redirect_link']['#group'] = 'redirect_link';
+  if (empty($form['oe_redirect_link'])) {
+    return;
+  }
 
-    $form['oe_redirect_link']['widget'][0]['uri']['#description'] = t('This page will be redirected to this URL. All of its translations that do not have a language specific Redirect link URL filled in will also be redirected to this URL. Removing this value will prevent the redirect from happening on all of the translations as well.');
-    // Forcibly disable the 'title' field even if it is enabled
-    // on the field instance level.
-    $form['oe_redirect_link']['widget'][0]['title']['#access'] = FALSE;
-    foreach ($form['oe_redirect_link']['widget'][0]['#element_validate'] as $index => $validator) {
-      if (in_array($validator[1], ['validateTitleElement', 'validateTitleNoLink'])) {
-        unset($form['oe_redirect_link']['widget'][0]['#element_validate'][$index]);
-      }
+  $form['redirect_link'] = [
+    '#type' => 'details',
+    '#title' => t('Redirect link'),
+    '#weight' => 10,
+    '#open' => TRUE,
+    '#group' => 'advanced',
+    '#attributes' => [
+      'class' => ['redirect-link-group'],
+    ],
+    '#tree' => TRUE,
+  ];
+  $form['redirect_link_enable'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Redirect this page to an external link'),
+    '#group' => 'redirect_link',
+    '#default_value' => !$form_state->getFormObject()->getEntity()->get('oe_redirect_link')->isEmpty(),
+  ];
+
+  $form['oe_redirect_link']['#group'] = 'redirect_link';
+
+  $form['oe_redirect_link']['widget'][0]['uri']['#description'] = t('This page will be redirected to this URL. All of its translations that do not have a language specific Redirect link URL filled in will also be redirected to this URL. Removing this value will prevent the redirect from happening on all of the translations as well.');
+  // Forcibly disable the 'title' field even if it is enabled
+  // on the field instance level.
+  $form['oe_redirect_link']['widget'][0]['title']['#access'] = FALSE;
+  foreach ($form['oe_redirect_link']['widget'][0]['#element_validate'] as $index => $validator) {
+    if (in_array($validator[1], ['validateTitleElement', 'validateTitleNoLink'])) {
+      unset($form['oe_redirect_link']['widget'][0]['#element_validate'][$index]);
     }
-    $form['oe_redirect_link']['#states'] = [
-      'visible' => [
-        ':input[name="redirect_link_enable"]' => [
-          'checked' => TRUE,
-        ],
+  }
+  $form['oe_redirect_link']['#states'] = [
+    'visible' => [
+      ':input[name="redirect_link_enable"]' => [
+        'checked' => TRUE,
       ],
-    ];
-    if (isset($form['actions']['submit']['#submit'])) {
-      $submit_handlers = $form['actions']['submit']['#submit'];
-      // Make sure that custom submit handler executed first.
-      array_unshift($submit_handlers, '_oe_content_redirect_link_field_node_form_submit');
-      $form['actions']['submit']['#submit'] = $submit_handlers;
-    }
+    ],
+  ];
+  if (isset($form['actions']['submit']['#submit'])) {
+    $submit_handlers = $form['actions']['submit']['#submit'];
+    // Make sure that custom submit handler executed first.
+    array_unshift($submit_handlers, '_oe_content_redirect_link_field_node_form_submit');
+    $form['actions']['submit']['#submit'] = $submit_handlers;
   }
 }
 
