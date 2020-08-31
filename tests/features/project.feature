@@ -100,6 +100,13 @@ Feature: Project content creation
     And I fill in "Caption" with "Project contact caption" in the "Project contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Project contact" region
 
+    # Fill in Project locations field.
+    And I select "Spain" from "Country" in the "Project locations" region
+    And I wait for AJAX to finish
+    And I fill in "Postal code" with "09199" in the "Project locations" region
+    And I fill in "City" with "Ages" in the "Project locations" region
+    And I select "Burgos" from "Province" in the "Project locations" region
+
     When I press "Save"
     Then I should see "My Project"
     And I should not see "EU financing"
@@ -163,6 +170,13 @@ Feature: Project content creation
     And I should see the link "Contact image"
     And I should see the text "Project contact caption"
     And I should see the link "http://example.com/press_contacts"
+
+    # Assert project locations values.
+    And I should see the text "Spain"
+    And I should see the text "09199"
+    And I should see the text "Ages"
+    And I should see the text "Burgos"
+
     # Test remote video for Featured media.
     When I click "Edit"
     Then I fill in "Media item" with "Plant health in the EU" in the "featured media form element"

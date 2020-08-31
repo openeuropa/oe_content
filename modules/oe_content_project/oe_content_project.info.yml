@@ -16,6 +16,7 @@ dependencies:
   - field_group:field_group
   - entity_reference_revisions:entity_reference_revisions
   - inline_entity_form:inline_entity_form
+  - address:address
 
 config_devel:
   install:
@@ -40,6 +41,7 @@ config_devel:
     - field.field.node.oe_project.oe_documents
     - field.field.node.oe_project.body
     - field.field.node.oe_project.oe_project_contact
+    - field.field.node.oe_project.oe_project_locations
     - field.storage.node.oe_project_coordinators
     - field.storage.node.oe_project_participants
     - field.storage.node.oe_project_funding_programme
@@ -51,6 +53,7 @@ config_devel:
     - field.storage.node.oe_project_budget_eu
     - field.storage.node.oe_project_calls
     - field.storage.node.oe_project_contact
+    - field.storage.node.oe_project_locations
     - node.type.oe_project
   optional:
     - language.content_settings.node.oe_project
