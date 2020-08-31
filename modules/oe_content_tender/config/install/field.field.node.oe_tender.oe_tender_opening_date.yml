@@ -10,7 +10,7 @@ id: node.oe_tender.oe_tender_opening_date
 field_name: oe_tender_opening_date
 entity_type: node
 bundle: oe_tender
-label: Opening
+label: 'Opening date'
 description: 'When does/did the call open for applications? E.g.: 20/02/2020'
 required: false
 translatable: false
