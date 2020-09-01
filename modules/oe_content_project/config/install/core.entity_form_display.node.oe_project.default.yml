@@ -6,13 +6,13 @@ dependencies:
     - field.field.node.oe_project.oe_author
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_documents
+    - field.field.node.oe_project.oe_featured_media
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_project_calls
     - field.field.node.oe_project.oe_project_contact
     - field.field.node.oe_project.oe_project_coordinators
     - field.field.node.oe_project.oe_project_dates
-    - field.field.node.oe_project.oe_project_featured_media
     - field.field.node.oe_project.oe_project_funding_programme
     - field.field.node.oe_project.oe_project_locations
     - field.field.node.oe_project.oe_project_participants
@@ -41,7 +41,7 @@ third_party_settings:
         - oe_project_results
         - oe_project_result_files
       parent_name: ''
-      weight: 15
+      weight: 16
       format_type: details
       region: content
       format_settings:
@@ -57,7 +57,7 @@ third_party_settings:
         - oe_content_navigation_title
         - oe_teaser
       parent_name: ''
-      weight: 16
+      weight: 17
       format_type: tab
       region: content
       format_settings:
@@ -88,7 +88,7 @@ bundle: oe_project
 mode: default
 content:
   body:
-    weight: 12
+    weight: 13
     settings:
       rows: 9
       summary_rows: 3
@@ -99,13 +99,13 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 23
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 17
+    weight: 18
     region: content
     settings:
       include_locked: true
@@ -122,7 +122,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 20
+    weight: 21
     region: content
     settings:
       match_operator: CONTAINS
@@ -132,7 +132,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 21
+    weight: 22
     region: content
     settings:
       placeholder_url: ''
@@ -155,7 +155,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   oe_departments:
-    weight: 18
+    weight: 19
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -165,7 +165,7 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_documents:
-    weight: 14
+    weight: 15
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -173,6 +173,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  oe_featured_media:
+    weight: 12
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: oe_featured_media_autocomplete
     region: content
   oe_project_budget:
     weight: 9
@@ -189,7 +199,7 @@ content:
     type: number
     region: content
   oe_project_calls:
-    weight: 13
+    weight: 14
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -197,7 +207,7 @@ content:
     type: link_default
     region: content
   oe_project_contact:
-    weight: 28
+    weight: 29
     settings:
       form_mode: default
       revision: true
@@ -214,7 +224,7 @@ content:
     type: inline_entity_form_complex
     region: content
   oe_project_coordinators:
-    weight: 26
+    weight: 27
     settings:
       form_mode: default
       revision: true
@@ -239,18 +249,8 @@ content:
     third_party_settings: {  }
     type: daterange_datelist
     region: content
-  oe_project_featured_media:
-    weight: 11
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: oe_featured_media_autocomplete
-    region: content
   oe_project_funding_programme:
-    weight: 25
+    weight: 26
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -266,7 +266,7 @@ content:
     type: address_default
     region: content
   oe_project_participants:
-    weight: 27
+    weight: 28
     settings:
       form_mode: default
       revision: true
@@ -344,7 +344,7 @@ content:
     region: content
   path:
     type: path
-    weight: 19
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -359,7 +359,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 24
+    weight: 25
     region: content
     third_party_settings: {  }
   sticky:
@@ -384,7 +384,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 22
+    weight: 23
     settings:
       match_operator: CONTAINS
       size: 60

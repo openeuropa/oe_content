@@ -43,6 +43,7 @@ config_devel:
     - field.field.node.oe_project.body
     - field.field.node.oe_project.oe_project_contact
     - field.field.node.oe_project.oe_project_locations
+    - field.field.node.oe_project.oe_featured_media
     - field.storage.node.oe_project_coordinators
     - field.storage.node.oe_project_participants
     - field.storage.node.oe_project_funding_programme
