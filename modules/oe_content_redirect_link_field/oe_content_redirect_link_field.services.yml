@@ -1,0 +1,10 @@
+services:
+  path_processor.oe_content_redirect_link_field:
+    class: Drupal\oe_content_redirect_link_field\PathProcessor\PathProcessorRedirectLink
+    arguments: ['@oe_content_redirect_link_field.retrieve_redirect_link']
+    tags:
+      - { name: path_processor_outbound, priority: 99 }
+
+  oe_content_redirect_link_field.retrieve_redirect_link:
+    class: Drupal\oe_content_redirect_link_field\RetrieveRedirectLink
+    arguments: ['@current_user', '@entity_type.manager']
