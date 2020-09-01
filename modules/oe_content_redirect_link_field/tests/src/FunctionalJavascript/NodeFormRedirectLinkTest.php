@@ -58,6 +58,7 @@ class NodeFormRedirectLinkTest extends WebDriverTestBase {
     $this->nodeUser = $this->createUser([
       'create test_with_redirect_link content',
       'edit own test_with_redirect_link content',
+      'bypass redirect link outbound rewriting',
     ]);
   }
 
