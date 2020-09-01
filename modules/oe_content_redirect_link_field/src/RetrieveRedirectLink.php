@@ -38,8 +38,6 @@ class RetrieveRedirectLink implements RetrieveRedirectLinkInterface {
    *   The current active user.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   *
-   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function __construct(AccountInterface $current_user, EntityTypeManagerInterface $entity_type_manager) {
     $this->currentUser = $current_user;
