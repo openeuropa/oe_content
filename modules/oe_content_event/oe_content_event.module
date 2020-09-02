@@ -47,3 +47,10 @@ function oe_content_event_form_node_oe_event_form_alter(&$form, FormStateInterfa
 function oe_content_event_form_node_oe_event_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   ContentFormUtilities::toggleFieldsWithCheckbox($form, 'oe_event_organiser_is_internal', 'oe_event_organiser_internal', 'oe_event_organiser_name');
 }
+
+/**
+ * Implements hook_facets_search_api_query_type_mapping_alter().
+ */
+function oe_content_event_facets_search_api_query_type_mapping_alter($backend_plugin_id, array &$query_types) {
+  $query_types['oe_content_event_status_comparison'] = 'oe_content_event_query_type';
+}
