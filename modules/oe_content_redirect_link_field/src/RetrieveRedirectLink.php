@@ -158,10 +158,10 @@ class RetrieveRedirectLink implements RetrieveRedirectLinkInterface {
     }
 
     if (empty($node_translated) || $node_translated->isDefaultTranslation() || $node_translated->get('oe_redirect_link')->isEmpty()) {
-      return $node->get('oe_redirect_link')->getString();
+      return $node->get('oe_redirect_link')->getValue()[0]['uri'] ?? NULL;
     }
     else {
-      return $node_translated->get('oe_redirect_link')->getString();
+      return $node_translated->get('oe_redirect_link')->getValue()[0]['uri'] ?? NULL;
     }
   }
 
