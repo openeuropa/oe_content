@@ -6,5 +6,5 @@ services:
       - { name: path_processor_outbound, priority: 99 }
 
   oe_content_redirect_link_field.retrieve_redirect_link:
-    class: Drupal\oe_content_redirect_link_field\RetrieveRedirectLink
-    arguments: ['@current_user', '@entity_type.manager']
+    class: Drupal\oe_content_redirect_link_field\RedirectLinkResolver
+    arguments: ['@current_user']
