@@ -188,6 +188,16 @@ class FeatureContext extends RawDrupalContext {
   }
 
   /**
+   * Visit a edit page by node title.
+   *
+   * @When I visit node :arg1 edit page
+   */
+  public function iVisitNodeEditPage($arg1) {
+    $node = $this->getNodeByTitle($arg1);
+    $this->visitPath("/node/{$node->id()}/edit");
+  }
+
+  /**
    * Step to fill in multi value fields with columns.
    *
    * @Given I fill in :column with :value in the :row :field field element

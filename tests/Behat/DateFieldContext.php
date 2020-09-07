@@ -119,7 +119,28 @@ class DateFieldContext extends RawDrupalContext {
   }
 
   /**
-   * Set the date and time value of a date list widget.
+   * Check values for list date range fields.
+   *
+   * @Then :value is selected for :field_item of :field_group
+   * @TODO: check values against fields.
+   */
+  public function isSelectedForOf($value, $field_item, $field_group) {
+    $values = explode(' ', $value);
+    $page = $this->getSession()->getPage();
+
+    $field_selectors = $this->findDateListRangeFields($field_group);
+    if (count($field_selectors) > 1) {
+      throw new \Exception('More than one elements were found.');
+    }
+
+    $field_selector = reset($field_selectors);
+  }
+
+  /**
+   * Finds a datetime field.
+   *
+   * @param string $field
+   *   The field name.
    *
    * When I set "Field" to the date "22-02-2019"
    * When I set "Field" to the date "22-02-2019 14:30" using format "d-m-Y H:i"
