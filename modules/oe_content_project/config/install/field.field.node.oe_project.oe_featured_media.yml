@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_project_featured_media
+    - field.storage.node.oe_featured_media
     - media.type.image
     - media.type.remote_video
     - node.type.oe_project
   module:
     - oe_content_featured_media_field
-id: node.oe_project.oe_project_featured_media
-field_name: oe_project_featured_media
+id: node.oe_project.oe_featured_media
+field_name: oe_featured_media
 entity_type: node
 bundle: oe_project
 label: 'Featured media'
