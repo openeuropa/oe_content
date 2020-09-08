@@ -34,7 +34,7 @@
         "guzzlehttp/guzzle": "~6.3",
         "nikic/php-parser": "^3.1.5",
         "openeuropa/behat-transformation-context": "~0.1",
-        "openeuropa/code-review": "~1.3.0",
+        "openeuropa/code-review": "~1.5",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
         "openeuropa/oe_link_lists": "~0.5.0",

@@ -1,7 +1,7 @@
 # Corporate Contact entity type
 
-The Contact entity type is used when collecting information about different types of contacts, 
-such as a press contact. 
+The Contact entity type is used when collecting information about different types of contacts,
+such as a press contact.
 
 This module provides the following bundles:
 
@@ -23,5 +23,17 @@ The module provides the following permissions:
 - `Contact: View any published entity`
 - `Contact: View any unpublished entity`
 
-Grant the `Contact: View any published entity` permissions to the anonymous user role in order to allow your 
+Grant the `Contact: View any published entity` permissions to the anonymous user role in order to allow your
 site's visitors to view contact entities.
+
+## Installation
+
+Before enabling this module, make sure the following modules are present in your codebase by adding them to your
+`composer.json` and by running `composer update`:
+
+```json
+"require": {
+    "drupal/address": "~1.7",
+    "drupal/typed_link": "~1.1"
+}
+```
