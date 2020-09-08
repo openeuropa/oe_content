@@ -89,16 +89,27 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
       return $path;
     }
 
+    $options['prefix'] = '';
+
+    $parsed = UrlHelper::parse($redirect_path);
     if (UrlHelper::isExternal($redirect_path)) {
-      $options['external'] = TRUE;
-      $options['base_url'] = $redirect_path;
+      $options['base_url'] = Url::fromUri($parsed['path'], ['fragment' => $parsed['fragment'], 'query' => $parsed['query']])->toString();
+      if (isset($options['language'])) {
+        unset($options['language']);
+      }
       return '';
     }
 
-    $options['external'] = FALSE;
-    $options['prefix'] = '';
     try {
-      return Url::fromUri($redirect_path, $options)->toString();
+      // If the URL is internal, we don't want to regenerate it with all the
+      // same options (such as query and fragment). Moreover, we want to remove
+      // the base path when we generate it here so that it can get added later.
+      // Unfortunately, the fragment is processed before this processor so for
+      // internal URLs we cannot keep the fragment.
+      $url = Url::fromUri($parsed['path'], ['base_url' => ''] + $options)->toString();
+      $options['query'] = $parsed['query'];
+
+      return $url;
     }
     catch (\Exception $exception) {
       return $path;
