@@ -26,7 +26,7 @@
         "drupal/entity_embed": "~1.0",
         "drupal/entity_reference_revisions": "~1.3",
         "drupal/field_group": "~3.0",
-        "drupal/inline_entity_form": "~1.0-rc3",
+        "drupal/inline_entity_form": "~1.0-rc7",
         "drupal/typed_link": "~1.1",
         "drupaltest/behat-traits": "dev-8.x-1.x",
         "drush/drush": "~9.0",
@@ -34,7 +34,7 @@
         "guzzlehttp/guzzle": "~6.3",
         "nikic/php-parser": "^3.1.5",
         "openeuropa/behat-transformation-context": "~0.1",
-        "openeuropa/code-review": "~1.3.0",
+        "openeuropa/code-review": "~1.5",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
         "openeuropa/oe_link_lists": "~0.5.0",
@@ -79,6 +79,9 @@
         "patches": {
             "drupal/field_group": {
                 "https://www.drupal.org/project/field_group/issues/2787179#comment-13467953": "https://www.drupal.org/files/issues/2020-02-17/2787179-highlight-html5-validation-45.patch"
+            },
+            "drupal/inline_entity_form": {
+                "https://www.drupal.org/project/inline_entity_form/issues/3162384": "https://www.drupal.org/files/issues/2020-08-13/fixed_duplicate_rows-3162384-16.patch"
             }
         }
     },
