@@ -150,15 +150,13 @@ class RedirectSubscriberTest extends BrowserTestBase {
     $translated_node->save();
     $this->assertRedirect('http://example.com/french', $external_node, 301, 'fr');
     $this->assertRedirect('http://example.com/3', $external_node);
-    $this->assertRedirect('http://example.com/french', $external_node, 301, 'fr');
-    $this->assertRedirect('http://example.com/3', $external_node);
 
     // Unset the redirect link from the source translation.
     $external_node->set('oe_redirect_link', NULL);
     $external_node->save();
     $this->drupalGet('/node/' . $external_node->id());
     $this->assertSession()->addressEquals('/node/' . $external_node->id());
-    $this->drupalGet('/node/' . $translated_node->id());
+    $this->drupalGet('/fr/node/' . $translated_node->id());
     $this->assertSession()->addressEquals('/fr/node/' . $translated_node->id());
   }
 
@@ -190,6 +188,7 @@ class RedirectSubscriberTest extends BrowserTestBase {
     $ending_url = $response->getHeader('location');
     $ending_url = $ending_url ? $ending_url[0] : NULL;
     $this->assertEquals($expected, $ending_url);
+    $this->refreshVariables();
   }
 
 }
