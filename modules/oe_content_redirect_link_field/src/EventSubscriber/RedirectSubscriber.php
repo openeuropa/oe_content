@@ -89,6 +89,11 @@ class RedirectSubscriber implements EventSubscriberInterface {
     $redirect_response = new TrustedRedirectResponse($redirect_path, 301);
     $redirect_response->addCacheableDependency($bubbleable_metadata);
     $event->setResponse($redirect_response);
+    // For avoiding possible double handling or override of request in next
+    // request event subscribers (like in 'redirect' module), we have to stop
+    // further propagation of the event, if we have a URL from the value of
+    // the redirect link field.
+    $event->stopPropagation();
   }
 
 }
