@@ -11,6 +11,6 @@ services:
 
   oe_content_redirect_link_field.event_subscriber:
     class: Drupal\oe_content_redirect_link_field\EventSubscriber\RedirectSubscriber
-    arguments: ['@oe_content_redirect_link_field.retrieve_redirect_link']
+    arguments: ['@oe_content_redirect_link_field.retrieve_redirect_link', '@language_manager']
     tags:
       - { name: event_subscriber }

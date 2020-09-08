@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_redirect_link_field\Functional;
 
+use Drupal\Core\Url;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\link\LinkItemInterface;
@@ -13,7 +14,7 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
 
 /**
- * Test event subscriber for handling redirects to URL from redirect link field.
+ * Testing redirects to redirect link field value.
  */
 class RedirectSubscriberTest extends BrowserTestBase {
 
@@ -68,87 +69,127 @@ class RedirectSubscriberTest extends BrowserTestBase {
 
     $language = ConfigurableLanguage::createFromLangcode('fr');
     $language->save();
-  }
 
-  /**
-   * Test redirect to URL from oe_redirect_link field value.
-   */
-  public function testRedirectEvent(): void {
     FieldConfig::create([
       'entity_type' => 'node',
       'field_name' => 'oe_redirect_link',
       'bundle' => $this->nodeType->id(),
+      'translatable' => TRUE,
       'settings' => [
         'link_type' => LinkItemInterface::LINK_EXTERNAL,
         // Enable the title field so we can test it doesn't show up.
         'title' => 1,
       ],
     ])->save();
-    $node = $this->drupalCreateNode([
-      'type' => 'test_with_redirect_link',
-      'oe_redirect_link' => 'http://example.com',
-      'status' => NodeInterface::PUBLISHED,
-    ]);
-    $node->save();
-
-    $this->drupalLogin($this->nodeUser);
-    $this->drupalGet('node/' . $node->id());
-    // No redirect because the user has
-    // 'bypass redirect link outbound rewriting' permission.
-    $this->assertSession()->addressEquals('/node/' . $node->id());
-    $this->drupalLogout();
-    // Redirect to URL from redirect link field.
-    $this->assertRedirect('node/' . $node->id(), 'http://example.com');
-
-    $node->set('oe_redirect_link', 'http://example.com/2');
-    $node->save();
-    // The updated value of the redirect link field.
-    $this->assertRedirect('node/' . $node->id(), 'http://example.com/2');
-
-    $translated_node = $node->addTranslation('fr', $node->toArray());
-    $translated_node->set('oe_redirect_link', 'http://example.com/fr');
-    $translated_node->save();
-    // Use the translated value of redirect link field.
-    $this->assertRedirect('fr/node/' . $node->id(), 'http://example.com/fr');
-
-    $node = $this->drupalCreateNode([
-      'type' => 'test_with_redirect_link',
-      'oe_redirect_link' => 'http://example.com',
-      'status' => NodeInterface::PUBLISHED,
-    ]);
-    $node->save();
-
-    $translated_node = $node->addTranslation('fr', $node->toArray());
-    $translated_node->set('oe_redirect_link', 'http://example.com/fr');
-    $translated_node->save();
-    $node->set('oe_redirect_link', '');
-    $node->save();
-    // We do not have redirect because redirect link value for the source
-    // language is empty.
-    $this->assertRedirect('/node/' . $node->id(), NULL, 200);
   }
 
   /**
-   * Asserts the redirect from $path to the $expected_ending_url.
+   * Test redirect to URL from oe_redirect_link field value.
+   */
+  public function testRedirectEvent(): void {
+    // Create 3 nodes, 2 with redirect links and 1 without.
+    $external_node = $this->drupalCreateNode([
+      'type' => 'test_with_redirect_link',
+      'oe_redirect_link' => 'http://example.com',
+      'status' => NodeInterface::PUBLISHED,
+    ]);
+    $external_node->save();
+
+    $internal_node = $this->drupalCreateNode([
+      'type' => 'test_with_redirect_link',
+      'oe_redirect_link' => 'internal:/admin',
+      'status' => NodeInterface::PUBLISHED,
+    ]);
+    $internal_node->save();
+
+    $no_redirect_node = $this->drupalCreateNode([
+      'type' => 'test_with_redirect_link',
+      'status' => NodeInterface::PUBLISHED,
+    ]);
+    $no_redirect_node->save();
+
+    // Assert that a user with the bypass permission doesn't get redirected.
+    $this->drupalLogin($this->nodeUser);
+    $this->drupalGet('node/' . $external_node->id());
+    $this->assertSession()->addressEquals('/node/' . $external_node->id());
+    $this->drupalLogout();
+
+    // Navigate to all the nodes in a row twice, and assert that even after a
+    // redirect happened and got cached, we are redirecting correctly.
+    $nodes = [
+      'http://example.com' => $external_node,
+      Url::fromUri('internal:/admin')->setAbsolute()->toString() => $internal_node,
+    ];
+
+    foreach ($nodes as $expected => $node) {
+      $this->assertRedirect($expected, $node);
+    }
+    $this->drupalGet('node/' . $no_redirect_node->id());
+    $this->assertSession()->addressEquals('/node/' . $no_redirect_node->id());
+    foreach ($nodes as $expected => $node) {
+      $this->assertRedirect($expected, $node);
+    }
+    $this->drupalGet('node/' . $no_redirect_node->id());
+    $this->assertSession()->addressEquals('/node/' . $no_redirect_node->id());
+
+    // Update one of the redirect links and run the assertions again.
+    $external_node->set('oe_redirect_link', 'http://example.com/2');
+    $external_node->save();
+    $this->assertRedirect('http://example.com/2', $external_node);
+    $external_node->set('oe_redirect_link', 'http://example.com/3');
+    $external_node->save();
+    $this->assertRedirect('http://example.com/3', $external_node);
+
+    $this->assertRedirect(Url::fromUri('internal:/admin')->setAbsolute()->toString(), $internal_node);
+    $this->drupalGet('node/' . $no_redirect_node->id());
+    $this->assertSession()->addressEquals('/node/' . $no_redirect_node->id());
+
+    // Add a translation and assert the redirect to the correct path.
+    $translated_node = $external_node->addTranslation('fr', $external_node->toArray());
+    $translated_node->set('oe_redirect_link', 'http://example.com/french');
+    $translated_node->save();
+    $this->assertRedirect('http://example.com/french', $external_node, 301, 'fr');
+    $this->assertRedirect('http://example.com/3', $external_node);
+    $this->assertRedirect('http://example.com/french', $external_node, 301, 'fr');
+    $this->assertRedirect('http://example.com/3', $external_node);
+
+    // Unset the redirect link from the source translation.
+    $external_node->set('oe_redirect_link', NULL);
+    $external_node->save();
+    $this->drupalGet('/node/' . $external_node->id());
+    $this->assertSession()->addressEquals('/node/' . $external_node->id());
+    $this->drupalGet('/node/' . $translated_node->id());
+    $this->assertSession()->addressEquals('/fr/node/' . $translated_node->id());
+  }
+
+  /**
+   * Asserts the redirect of a node to a certain path.
    *
-   * @param string $path
-   *   The request path.
-   * @param string|null $expected_ending_url
-   *   The path where we expect it to redirect.
+   * @param string $expected
+   *   The expected redirect path.
+   * @param \Drupal\node\NodeInterface $node
+   *   The node being tested for redirect.
    * @param int|null $expected_status_code
    *   The expected status code.
+   * @param string|null $language
+   *   The expected path language.
    */
-  public function assertRedirect(string $path, $expected_ending_url, int $expected_status_code = 301): void {
+  public function assertRedirect(string $expected, NodeInterface $node, int $expected_status_code = 301, string $language = NULL): void {
     /** @var \GuzzleHttp\ClientInterface $client */
     $client = $this->getHttpClient();
     /** @var \Psr\Http\Message\ResponseInterface $response */
+    $path = '';
+    if ($language) {
+      $path = $language . '/';
+    }
+    $path .= 'node/' . $node->id();
     $url = $this->getAbsoluteUrl($path);
     $response = $client->request('GET', $url, ['allow_redirects' => FALSE]);
     $this->assertEquals($expected_status_code, $response->getStatusCode());
 
     $ending_url = $response->getHeader('location');
     $ending_url = $ending_url ? $ending_url[0] : NULL;
-    $this->assertEquals($expected_ending_url, $ending_url);
+    $this->assertEquals($expected, $ending_url);
   }
 
 }

@@ -5,9 +5,11 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_redirect_link_field\EventSubscriber;
 
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Routing\TrustedRedirectResponse;
+use Drupal\Core\Url;
 use Drupal\oe_content_redirect_link_field\RedirectLinkResolverInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -26,13 +28,23 @@ class RedirectSubscriber implements EventSubscriberInterface {
   protected $redirectLinkResolver;
 
   /**
+   * The language manager.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
+
+  /**
    * Constructs event subscriber.
    *
-   * @param \Drupal\oe_content_redirect_link_field\RedirectLinkResolverInterface $redirect_link_resolver
+   * @param \Drupal\oe_content_redirect_link_field\RedirectLinkResolverInterface $redirectLinkResolver
    *   The redirect link resolver.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
+   *   The language manager.
    */
-  public function __construct(RedirectLinkResolverInterface $redirect_link_resolver) {
-    $this->redirectLinkResolver = $redirect_link_resolver;
+  public function __construct(RedirectLinkResolverInterface $redirectLinkResolver, LanguageManagerInterface $languageManager) {
+    $this->redirectLinkResolver = $redirectLinkResolver;
+    $this->languageManager = $languageManager;
   }
 
   /**
@@ -40,12 +52,14 @@ class RedirectSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
+      // Subscribing after the route subscriber so that we have access to the
+      // route matching.
       KernelEvents::REQUEST => ['onKernelRequest', 31],
     ];
   }
 
   /**
-   * Handle request event for applying redirect if needed.
+   * Redirects entity canonical URLs to their corresponding redirect links.
    *
    * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
    *   Response event.
@@ -64,36 +78,51 @@ class RedirectSubscriber implements EventSubscriberInterface {
     }
 
     $entity_type = $route_parts[1];
-    if (empty($request->attributes->get($entity_type))) {
-      return;
-    }
-
-    if (!$request->attributes->get($entity_type) instanceof ContentEntityInterface) {
-      return;
-    }
-
     $entity = $request->attributes->get($entity_type);
+    if (!$entity instanceof ContentEntityInterface) {
+      return;
+    }
 
-    $bubbleable_metadata = new BubbleableMetadata();
-    $bubbleable_metadata->addCacheContexts(['languages:language_interface']);
-    $redirect_path = $this->redirectLinkResolver->getPath($entity, $bubbleable_metadata);
+    $current_language = $this->languageManager->getCurrentLanguage()->getId();
+    $entity = $entity->hasTranslation($current_language) ? $entity->getTranslation($current_language) : $entity;
+
+    $cache = new CacheableMetadata();
+    $cache->addCacheContexts(['languages:language_interface']);
+    $redirect_path = $this->redirectLinkResolver->getPath($entity, $cache);
 
     if (!$redirect_path) {
       return;
     }
 
-    if (!UrlHelper::isExternal($redirect_path)) {
-      $redirect_path = $request->getUriForPath($redirect_path);
+    $redirect_path = $this->preparePath($redirect_path);
+    if (!$redirect_path) {
+      return;
     }
 
     $redirect_response = new TrustedRedirectResponse($redirect_path, 301);
-    $redirect_response->addCacheableDependency($bubbleable_metadata);
+    $redirect_response->addCacheableDependency($cache);
     $event->setResponse($redirect_response);
-    // For avoiding possible double handling or override of request in next
-    // request event subscribers (like in 'redirect' module), we have to stop
-    // further propagation of the event, if we have a URL from the value of
-    // the redirect link field.
     $event->stopPropagation();
+  }
+
+  /**
+   * Given the path the resolver provided, prepare it for the response.
+   *
+   * @param string $path
+   *   The redirect path.
+   *
+   * @return string
+   *   The redirect response URL.
+   */
+  protected function preparePath(string $path): ?string {
+    $parsed = UrlHelper::parse($path);
+
+    try {
+      return Url::fromUri($parsed['path'], ['fragment' => $parsed['fragment'], 'query' => $parsed['query']])->setAbsolute()->toString();
+    }
+    catch (\Exception $exception) {
+      return NULL;
+    }
   }
 
 }
