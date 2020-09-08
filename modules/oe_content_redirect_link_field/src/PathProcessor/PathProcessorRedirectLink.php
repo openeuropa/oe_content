@@ -24,11 +24,11 @@ use Symfony\Component\HttpFoundation\Request;
  * norm:
  *
  * - We cannot rely on the $options array because not all canonical URLs are
- * being build from the EntityBase class. Moreover, we don't know if the route
- * is the canonical one. For this, we use the Router service to match the
- * path.
+ *   being build from the EntityBase class. Moreover, we don't know if the route
+ *   is the canonical one. For this, we use the Router service to match the
+ *   path.
  * - We cannot inject the Router service because of circular dependency issues
- * so we have to use it statically.
+ *   so we have to use it statically.
  */
 class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
 

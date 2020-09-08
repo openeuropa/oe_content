@@ -21,7 +21,7 @@ class RedirectLinkResolver implements RedirectLinkResolverInterface {
   protected $currentUser;
 
   /**
-   * Constructs a RetrieveRedirectLink object.
+   * Constructs a RedirectLinkResolver object.
    *
    * @param \Drupal\Core\Session\AccountInterface $current_user
    *   The current active user.
@@ -66,18 +66,13 @@ class RedirectLinkResolver implements RedirectLinkResolverInterface {
     }
 
     $source = $entity->getUntranslated();
-    if (!$entity->isDefaultTranslation() && $entity->get('oe_redirect_link')->isEmpty()) {
-      // If we are dealing with a translation which doesn't have a redirect link
-      // we need to check the source if it has one and return that one.
-      return !$source->get('oe_redirect_link')->isEmpty() ? $source->get('oe_redirect_link')->uri : NULL;
+    if ($source->get('oe_redirect_link')->isEmpty()) {
+      // If the source doesn't have a redirect link, we return NULL regardless
+      // of whether the translation has one because we use this to control it.
+      return NULL;
     }
 
-    if (!$entity->isDefaultTranslation()) {
-      // If the entity translation does have a redirect link value, we need to
-      // check the source to see if it has one because we use that as a way to
-      // control whether the translation should be used.
-      return !$source->get('oe_redirect_link')->isEmpty() ? $entity->get('oe_redirect_link')->uri : NULL;
-    }
+    return $entity->get('oe_redirect_link')->isEmpty() ? $source->get('oe_redirect_link')->uri : $entity->get('oe_redirect_link')->uri;
   }
 
 }
