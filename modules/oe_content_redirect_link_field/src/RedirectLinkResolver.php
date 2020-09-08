@@ -35,13 +35,13 @@ class RedirectLinkResolver implements RedirectLinkResolverInterface {
    */
   public function getPath(ContentEntityInterface $entity, CacheableMetadata $cacheable_metadata): ?string {
     $cacheable_metadata->addCacheContexts(['user.permissions']);
-    $cacheable_metadata->addCacheableDependency($entity);
 
     if ($this->currentUser->hasPermission('bypass redirect link outbound rewriting')) {
       // Users with this permission do not get the redirect link.
       return NULL;
     }
 
+    $cacheable_metadata->addCacheableDependency($entity);
     return $this->getRedirectLink($entity);
   }
 
