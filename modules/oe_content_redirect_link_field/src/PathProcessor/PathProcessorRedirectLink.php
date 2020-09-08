@@ -91,14 +91,31 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
 
     $options['prefix'] = '';
 
-    $parsed = UrlHelper::parse($redirect_path);
     if (UrlHelper::isExternal($redirect_path)) {
-      $options['base_url'] = Url::fromUri($parsed['path'], ['fragment' => $parsed['fragment'], 'query' => $parsed['query']])->toString();
+      $options['base_url'] = $redirect_path;
+      // Remove the language option as we don't want to append a language code
+      // to the external URL.
       if (isset($options['language'])) {
         unset($options['language']);
       }
+
+      // We don't want existing query parameters or fragment to be appended
+      // to the redirect link which may or may not contain its own.
+      if (isset($options['query'])) {
+        $options['query'] = [];
+      }
+
+      if (isset($options['fragment'])) {
+        // Unfortunately the fragment cannot be removed because the UrlGenerator
+        // doesn't honor changes made here so it will still be appended.
+        // @see https://www.drupal.org/project/drupal/issues/2881077.
+        unset($options['fragment']);
+      }
+
       return '';
     }
+
+    $parsed = UrlHelper::parse($redirect_path);
 
     try {
       // If the URL is internal, we don't want to regenerate it with all the
