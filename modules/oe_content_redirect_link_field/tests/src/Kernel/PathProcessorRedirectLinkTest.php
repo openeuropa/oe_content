@@ -107,6 +107,11 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     // Assert also the URL generation via the EntityBase class.
     $this->assertEquals('http://example.com', $node->toUrl()->toString());
 
+    // Assert we have the appropriate cache metadata.
+    $generated_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString(TRUE);
+    $this->assertEquals(['user.permissions'], $generated_url->getCacheContexts());
+    $this->assertEquals(['node:' . $node->id()], $generated_url->getCacheTags());
+
     // Set an external URL with a query parameter and fragment.
     $node->set('oe_redirect_link', 'http://example.com?bobo=1#frag');
     $node->save();
@@ -155,6 +160,11 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     // Users with the permission to bypass the rewriting should not see a
     // different URL.
     $this->assertEquals('/node/' . $node->id(), $url);
+
+    // Assert we have the appropriate cache metadata.
+    $generated_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString(TRUE);
+    $this->assertEquals(['user.permissions'], $generated_url->getCacheContexts());
+    $this->assertEmpty($generated_url->getCacheTags());
 
     unset($permissions['bypass']);
     $this->setUpCurrentUser([], $permissions);
