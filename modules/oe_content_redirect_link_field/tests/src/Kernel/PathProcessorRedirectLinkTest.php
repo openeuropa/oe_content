@@ -104,6 +104,7 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     $node->save();
     $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
     $this->assertEquals('http://example.com', $url);
+    // Assert also the URL generation via the EntityBase class.
     $this->assertEquals('http://example.com', $node->toUrl()->toString());
 
     // Set an external URL with a query parameter and fragment.
@@ -153,7 +154,7 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
     // Users with the permission to bypass the rewriting should not see a
     // different URL.
-    $this->assertEquals($url, $url);
+    $this->assertEquals('/node/' . $node->id(), $url);
 
     unset($permissions['bypass']);
     $this->setUpCurrentUser([], $permissions);
@@ -164,7 +165,7 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     $node->set('oe_redirect_link', '');
     $node->save();
     $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
-    $this->assertEquals($url, $url);
+    $this->assertEquals('/node/' . $node->id(), $url);
 
     // Check that language-specific conditions are respected.
     $language = \Drupal::languageManager()->getLanguage('fr');
@@ -179,13 +180,13 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     $node->save();
 
     // The source translation has the redirect link.
-    $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
-    $this->assertEquals('http://example.com', $url);
+    $source_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
+    $this->assertEquals('http://example.com', $source_url);
     $this->assertEquals('http://example.com', $node->toUrl()->toString());
-    // But not the translation.
-    $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()], ['language' => $language])->toString();
-    $this->assertEquals($url, $url);
-    $this->assertEquals($url, $translated_node->toUrl()->toString());
+    // But not the translation so we default to the source translation link.
+    $translation_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()], ['language' => $language])->toString();
+    $this->assertEquals('http://example.com', $translation_url);
+    $this->assertEquals('http://example.com', $translated_node->toUrl()->toString());
 
     // Add a redirect link to the translation.
     $translated_node->set('oe_redirect_link', 'http://example.com/fr');
@@ -207,8 +208,8 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     $this->assertEquals('http://example.com/fr', $translated_node->get('oe_redirect_link')->uri);
     $this->assertTrue($node->get('oe_redirect_link')->isEmpty());
     $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()], ['language' => $language])->toString();
-    $this->assertEquals($url, $url);
-    $this->assertEquals($url, $translated_node->toUrl()->toString());
+    $this->assertEquals('/node/' . $translated_node->id(), $url);
+    $this->assertEquals('/node/' . $translated_node->id(), $translated_node->toUrl()->toString());
   }
 
 }
