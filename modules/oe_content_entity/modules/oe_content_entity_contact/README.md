@@ -31,6 +31,9 @@ site's visitors to view contact entities.
 Before enabling this module, make sure the following modules are present in your codebase by adding them to your
 `composer.json` and by running `composer update`:
 
-```bash
-composer require "drupal/typed_link ~1.1"
+```json
+"require": {
+    "drupal/address": "~1.7",
+    "drupal/typed_link": "~1.1"
+}
 ```
