@@ -108,6 +108,13 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     $this->assertEquals('http://example.com', $url);
     $this->assertEquals('http://example.com', $node->toUrl()->toString());
 
+    // Set an external URL with a query parameter and fragment.
+    $node->set('oe_redirect_link', 'http://example.com?bobo=1#frag');
+    $node->save();
+    $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
+    $this->assertEquals('http://example.com?bobo=1#frag', $url);
+    $this->assertEquals('http://example.com?bobo=1#frag', $node->toUrl()->toString());
+
     // Set a link to another node.
     $node->set('oe_redirect_link', 'entity:node/' . $target_node->id());
     $node->save();
@@ -115,12 +122,26 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     $this->assertEquals('/node/' . $target_node->id(), $url);
     $this->assertEquals('/node/' . $target_node->id(), $node->toUrl()->toString());
 
+    // Set a link to another node with query params.
+    $node->set('oe_redirect_link', 'entity:node/' . $target_node->id() . '?bobo=1');
+    $node->save();
+    $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
+    $this->assertEquals('/node/' . $target_node->id() . '?bobo=1', $url);
+    $this->assertEquals('/node/' . $target_node->id() . '?bobo=1', $node->toUrl()->toString());
+
     // Set an internal URL.
     $node->set('oe_redirect_link', 'internal:/admin');
     $node->save();
     $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
     $this->assertEquals('/admin', $url);
     $this->assertEquals('/admin', $node->toUrl()->toString());
+
+    // Set an internal URL with query params.
+    $node->set('oe_redirect_link', 'internal:/admin?bobo=1');
+    $node->save();
+    $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
+    $this->assertEquals('/admin?bobo=1', $url);
+    $this->assertEquals('/admin?bobo=1', $node->toUrl()->toString());
 
     // Set another external URL.
     $node->set('oe_redirect_link', 'http://example2.com');
