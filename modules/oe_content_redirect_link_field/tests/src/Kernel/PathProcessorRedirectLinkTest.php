@@ -12,7 +12,6 @@ use Drupal\link\LinkItemInterface;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
-use Drupal\user\Entity\Role;
 
 /**
  * Test outbound path processor for redirect links.
@@ -82,12 +81,11 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
    * Test the outbound processing of entities with redirect link.
    */
   public function testPathOutboundRedirectLink() {
-    $user = $this->createUser([
+    $permissions = [
       'access content',
       'create node_with_redirect content',
-    ], NULL, FALSE, ['uid' => 2]);
-
-    $this->container->get('current_user')->setAccount($user);
+    ];
+    $this->setUpCurrentUser([], $permissions);
 
     $node = $this->createNode([
       'type' => 'node_with_redirect',
@@ -150,13 +148,15 @@ class PathProcessorRedirectLinkTest extends KernelTestBase {
     $this->assertEquals('http://example2.com', $url);
     $this->assertEquals('http://example2.com', $node->toUrl()->toString());
 
-    Role::load($user->getRoles()[1])->grantPermission('bypass redirect link outbound rewriting');
+    $permissions['bypass'] = 'bypass redirect link outbound rewriting';
+    $this->setUpCurrentUser([], $permissions);
     $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
     // Users with the permission to bypass the rewriting should not see a
     // different URL.
     $this->assertEquals($url, $url);
 
-    Role::load($user->getRoles()[1])->revokePermission('bypass redirect link outbound rewriting');
+    unset($permissions['bypass']);
+    $this->setUpCurrentUser([], $permissions);
     $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()])->toString();
     $this->assertEquals('http://example2.com', $url);
 
