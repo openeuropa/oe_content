@@ -8,8 +8,8 @@ Feature: Call for Tender content creation
   Scenario: Creation of a Call for Tender content through the UI.
     Given I am logged in as a user with the "create oe_tender content, access content, edit own oe_tender content, view published skos concept entities" permission
     And the following document:
-      | name          | file        |
-      | My Document 1 | sample.pdf  |
+      | name          | file       |
+      | My Document 1 | sample.pdf |
 
     When I visit "the Call for tender creation page"
     And I fill in "Title" with "My Call for Tender 1"
