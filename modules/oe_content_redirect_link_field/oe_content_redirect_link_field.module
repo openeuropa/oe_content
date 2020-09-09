@@ -41,11 +41,14 @@ function oe_content_redirect_link_field_form_node_form_alter(&$form, FormStateIn
   // Forcibly disable the 'title' field even if it is enabled
   // on the field instance level.
   $form['oe_redirect_link']['widget'][0]['title']['#access'] = FALSE;
-  foreach ($form['oe_redirect_link']['widget'][0]['#element_validate'] as $index => $validator) {
-    if (in_array($validator[1], ['validateTitleElement', 'validateTitleNoLink'])) {
-      unset($form['oe_redirect_link']['widget'][0]['#element_validate'][$index]);
+  if (!empty($form['oe_redirect_link']['widget'][0]['#element_validate'])) {
+    foreach ($form['oe_redirect_link']['widget'][0]['#element_validate'] as $index => $validator) {
+      if (in_array($validator[1], ['validateTitleElement', 'validateTitleNoLink'])) {
+        unset($form['oe_redirect_link']['widget'][0]['#element_validate'][$index]);
+      }
     }
   }
+
   $form['oe_redirect_link']['#states'] = [
     'visible' => [
       ':input[name="redirect_link_enable"]' => [
