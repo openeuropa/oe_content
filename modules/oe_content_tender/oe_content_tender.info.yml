@@ -1,5 +1,5 @@
 name: OpenEuropa Tender Content
-description: Contains the EC corporate Call for tenders content type.
+description: Contains the EC corporate Call for tender content type.
 package: OpenEuropa
 type: module
 core: 8.x

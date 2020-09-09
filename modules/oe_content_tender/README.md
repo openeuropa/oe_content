@@ -1,10 +1,10 @@
-# OpenEuropa content tender
+# OpenEuropa Tender Content
 
-This module provides the corporate "Call for tenders" (oe_tender) content type.
+This module provides the corporate "Call for tender" (oe_tender) content type.
 
 ## Installation
 
-Before enabling this module, make sure that the following modules are present in your codebase by adding them to your
+Before enabling this module, make sure the following modules are present in your codebase by adding them to your
 `composer.json` and by running `composer update`:
 
 ```json

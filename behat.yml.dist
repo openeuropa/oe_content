@@ -20,7 +20,7 @@ default:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
             pages:
               AV Portal photo creation: 'media/add/av_portal_photo'
-              Call for tenders creation: 'node/add/oe_tender'
+              Call for tender creation: 'node/add/oe_tender'
               document creation: 'media/add/document'
               Event creation: 'node/add/oe_event'
               interface translation: 'admin/config/regional/translate'

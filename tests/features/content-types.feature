@@ -21,7 +21,7 @@ Feature: Common fields across the content types
 
     Examples:
       | content_type      |
-      | Call for tenders  |
+      | Call for tender  |
       | Event             |
       | Page              |
       | News              |
