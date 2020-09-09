@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_publication_date
+    - node.type.oe_tender
+  module:
+    - datetime
+id: node.oe_tender.oe_publication_date
+field_name: oe_publication_date
+entity_type: node
+bundle: oe_tender
+label: 'Publication date'
+description: 'Use to manually define the publication date printed on the page and metadata.'
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

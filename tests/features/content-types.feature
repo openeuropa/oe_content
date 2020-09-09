@@ -5,7 +5,7 @@ Feature: Common fields across the content types
   I should have common fields configured the same for each content type.
 
   Scenario Outline: Fields have the correct description.
-    Given I am logged in as a user with the "create oe_event content, create oe_news content, create oe_page content, create oe_policy content, create oe_publication content, access content" permission
+    Given I am logged in as a user with the "create oe_event content, create oe_news content, create oe_page content, create oe_policy content, create oe_publication content, create oe_tender content, access content" permission
     When I visit "the <content_type> creation page"
     Then I should see the text "The ideal length is 50 to 60 characters including spaces." in the "title form element"
     And I should see the text "If it must be longer, make sure you fill in a shorter version in the Alternative title field." in the "title form element"
@@ -20,9 +20,10 @@ Feature: Common fields across the content types
     And I should see the text "This is not the writer of the content, but the subject matter expert responsible for keeping this content up to date." in the "content owner form element"
 
     Examples:
-      | content_type |
-      | Event        |
-      | Page         |
-      | News         |
-      | Policy       |
-      | Publication  |
+      | content_type      |
+      | Call for tender   |
+      | Event             |
+      | Page              |
+      | News              |
+      | Policy            |
+      | Publication       |

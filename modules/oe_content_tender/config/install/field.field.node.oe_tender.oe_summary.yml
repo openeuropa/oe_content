@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_summary
+    - node.type.oe_tender
+  module:
+    - text
+id: node.oe_tender.oe_summary
+field_name: oe_summary
+entity_type: node
+bundle: oe_tender
+label: Introduction
+description: 'A short text that will be displayed in the blue header, below the page title. This should be a brief summary of the content on the page that tells the user what information they will find on this page.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
