@@ -121,19 +121,54 @@ class DateFieldContext extends RawDrupalContext {
   /**
    * Check values for list date range fields.
    *
-   * @Then :value is selected for :field_item of :field_group
-   * @TODO: check values against fields.
+   * "15 Jun 2020 12 30" is selected for "Start date" of "My date range field"
+   *
+   * @param string $value
+   *   The value of the field.
+   * @param string $field_item
+   *   The date field item inside the field component.
+   * @param string $field_group
+   *   The field component's label.
+   *
+   * @Then datetime :value is selected for :field_item of :field_group
    */
-  public function isSelectedForOf($value, $field_item, $field_group) {
+  public function isSelectedForOf($value, $field_item, $field_group): void {
     $values = explode(' ', $value);
-    $page = $this->getSession()->getPage();
-
     $field_selectors = $this->findDateListRangeFields($field_group);
+
     if (count($field_selectors) > 1) {
       throw new \Exception('More than one elements were found.');
     }
 
     $field_selector = reset($field_selectors);
+    if ($field_item === 'End date') {
+      $field_selector = $field_selector->findAll('css', 'div[id*="end-value"]');
+      $field_selector = reset($field_selector);
+    }
+
+    $date_components = [
+      'Day',
+      'Month',
+      'Year',
+      'Hour',
+      'Minute',
+    ];
+
+    foreach ($date_components as $index => $date_component) {
+      $field = $field_selector->findField($date_component);
+      $optionField = $field->find('named', [
+        'option',
+        $values[$index],
+      ]);
+
+      if ($optionField === NULL) {
+        throw new \Exception('Option not found.');
+      }
+
+      if (!$optionField->isSelected()) {
+        throw new \Exception('Option is not selected.');
+      }
+    }
   }
 
   /**

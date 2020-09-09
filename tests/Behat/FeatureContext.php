@@ -198,6 +198,72 @@ class FeatureContext extends RawDrupalContext {
   }
 
   /**
+   * Checks, that form field has specified value.
+   *
+   * @Then the :field field contains :value
+   */
+  public function theFieldContains($field, $value) {
+    $node = $this->getSession()->getPage()->findField($field);
+    $actual = $node->getValue();
+
+    if (strpos($actual, $value) === FALSE) {
+      throw new \Exception(sprintf('Field %s does not contain %s.', $field, $value));
+    }
+  }
+
+  /**
+   * Attempts to find a button in a table row containing giving text.
+   *
+   * @When I press :button in the :rowText row
+   */
+  public function iPressInTheRow($button, $rowText) {
+    $page = $this->getSession()->getPage();
+    $rows = $page->findAll('css', 'tr');
+
+    if (empty($rows)) {
+      throw new \Exception(sprintf('No rows found on the page %s', $this->getSession()->getCurrentUrl()));
+    }
+
+    /** @var \Behat\Mink\Element\NodeElement $row */
+    foreach ($rows as $row) {
+      if (strpos($row->getText(), $rowText) !== FALSE) {
+        break;
+      }
+    }
+
+    if ($row === NULL) {
+      throw new \Exception(sprintf('Row "%s" not found', $rowText));
+    }
+
+    $button_element = $row->findButton($button);
+
+    if ($button_element === NULL) {
+      throw new \Exception(sprintf('Button "%s" not found in row %s', $button, $rowText));
+    }
+
+    $button_element->press();
+  }
+
+  /**
+   * Assert option is selected.
+   *
+   * @When :option should be selected for :field select
+   */
+  public function shouldBeSelectedForSelect($option, $field) {
+    if (!$element = $this->getSession()->getPage()->findField($field)) {
+      throw new \Exception(sprintf('Field %s not found.', $field));
+    }
+
+    $selected_option = $element->find('css', "option[selected='selected']");
+
+    if ($selected_option === NULL) {
+      throw new \Exception(sprintf('Option "%s" not found for %s select', $option, $field));
+    }
+
+    Assert::assertTrue($selected_option->getValue() === $option);
+  }
+
+  /**
    * Step to fill in multi value fields with columns.
    *
    * @Given I fill in :column with :value in the :row :field field element
