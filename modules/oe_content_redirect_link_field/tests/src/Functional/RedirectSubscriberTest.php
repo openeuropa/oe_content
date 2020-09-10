@@ -81,6 +81,10 @@ class RedirectSubscriberTest extends BrowserTestBase {
         'title' => 1,
       ],
     ])->save();
+
+    $this->setContainerParameter('http.response.debug_cacheability_headers', TRUE);
+    $this->rebuildContainer();
+    $this->resetAll();
   }
 
   /**
@@ -114,33 +118,38 @@ class RedirectSubscriberTest extends BrowserTestBase {
     $this->assertSession()->addressEquals('/node/' . $external_node->id());
     $this->drupalLogout();
 
-    // Navigate to all the nodes in a row twice, and assert that even after a
-    // redirect happened and got cached, we are redirecting correctly.
+    // Navigate to all the nodes in a row and assert that we are redirecting
+    // correctly.
     $nodes = [
       'http://example.com' => $external_node,
       Url::fromUri('internal:/admin')->setAbsolute()->toString() => $internal_node,
     ];
 
     foreach ($nodes as $expected => $node) {
-      $this->assertRedirect($expected, $node);
+      $this->assertRedirect($expected, $node, 'MISS');
     }
     $this->drupalGet('node/' . $no_redirect_node->id());
     $this->assertSession()->addressEquals('/node/' . $no_redirect_node->id());
+
+    // Run through these again to assert that the redirect was cached.
+    $nodes = [
+      'http://example.com' => $external_node,
+      Url::fromUri('internal:/admin')->setAbsolute()->toString() => $internal_node,
+    ];
+
     foreach ($nodes as $expected => $node) {
-      $this->assertRedirect($expected, $node);
+      $this->assertRedirect($expected, $node, 'HIT');
     }
-    $this->drupalGet('node/' . $no_redirect_node->id());
-    $this->assertSession()->addressEquals('/node/' . $no_redirect_node->id());
 
     // Update one of the redirect links and run the assertions again.
     $external_node->set('oe_redirect_link', 'http://example.com/2');
     $external_node->save();
-    $this->assertRedirect('http://example.com/2', $external_node);
+    $this->assertRedirect('http://example.com/2', $external_node, 'MISS');
     $external_node->set('oe_redirect_link', 'http://example.com/3');
     $external_node->save();
-    $this->assertRedirect('http://example.com/3', $external_node);
+    $this->assertRedirect('http://example.com/3', $external_node, 'MISS');
 
-    $this->assertRedirect(Url::fromUri('internal:/admin')->setAbsolute()->toString(), $internal_node);
+    $this->assertRedirect(Url::fromUri('internal:/admin')->setAbsolute()->toString(), $internal_node, 'HIT');
     $this->drupalGet('node/' . $no_redirect_node->id());
     $this->assertSession()->addressEquals('/node/' . $no_redirect_node->id());
 
@@ -148,8 +157,12 @@ class RedirectSubscriberTest extends BrowserTestBase {
     $translated_node = $external_node->addTranslation('fr', $external_node->toArray());
     $translated_node->set('oe_redirect_link', 'http://example.com/french');
     $translated_node->save();
-    $this->assertRedirect('http://example.com/french', $external_node, 301, 'fr');
-    $this->assertRedirect('http://example.com/3', $external_node);
+    $this->assertRedirect('http://example.com/french', $external_node, 'MISS', 301, 'fr');
+    $this->assertRedirect('http://example.com/3', $external_node, 'MISS');
+
+    // Make another request to check the response was cached.
+    $this->assertRedirect('http://example.com/french', $external_node, 'HIT', 301, 'fr');
+    $this->assertRedirect('http://example.com/3', $external_node, 'HIT');
 
     // Unset the redirect link from the source translation.
     $external_node->set('oe_redirect_link', NULL);
@@ -167,12 +180,16 @@ class RedirectSubscriberTest extends BrowserTestBase {
    *   The expected redirect path.
    * @param \Drupal\node\NodeInterface $node
    *   The node being tested for redirect.
+   * @param string $cache
+   *   Whether the Drupal cache was HIT or MISS-ed.
    * @param int|null $expected_status_code
    *   The expected status code.
    * @param string|null $language
    *   The expected path language.
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function assertRedirect(string $expected, NodeInterface $node, int $expected_status_code = 301, string $language = NULL): void {
+  public function assertRedirect(string $expected, NodeInterface $node, string $cache, int $expected_status_code = 301, string $language = NULL): void {
     /** @var \GuzzleHttp\ClientInterface $client */
     $client = $this->getHttpClient();
     /** @var \Psr\Http\Message\ResponseInterface $response */
@@ -188,6 +205,11 @@ class RedirectSubscriberTest extends BrowserTestBase {
     $ending_url = $response->getHeader('location');
     $ending_url = $ending_url ? $ending_url[0] : NULL;
     $this->assertEquals($expected, $ending_url);
+    $headers = $response->getHeaders();
+    $cache_tags = explode(' ', $headers['X-Drupal-Cache-Tags'][0]);
+    $cache_contexts = explode(' ', $headers['X-Drupal-Cache-Contexts'][0]);
+    $this->assertContains('node:' . $node->id(), $cache_tags);
+    $this->assertContains('user.permissions', $cache_contexts);
     $this->refreshVariables();
   }
 
