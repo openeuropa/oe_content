@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_tender;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
@@ -14,7 +15,7 @@ interface TenderNodeWrapperInterface {
   /**
    * Tender isn't available. Is used when opening date isn't defined.
    */
-  const TENDER_STATUS_NOT_AVAILABLE = 'N/A';
+  const TENDER_STATUS_NOT_AVAILABLE = 'n/a';
 
   /**
    * Tender is upcoming.
@@ -94,5 +95,13 @@ interface TenderNodeWrapperInterface {
    *   Tender status.
    */
   public function getTenderStatus(): string;
+
+  /**
+   * Gets label of the tender status.
+   *
+   * @return \Drupal\Component\Render\MarkupInterface
+   *   Translated label.
+   */
+  public function getTenderStatusLabel(): MarkupInterface;
 
 }

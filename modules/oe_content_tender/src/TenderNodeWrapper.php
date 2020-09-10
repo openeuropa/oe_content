@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_tender;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content\EntityWrapperBase;
 
 /**
@@ -13,6 +15,8 @@ use Drupal\oe_content\EntityWrapperBase;
  * @method static TenderNodeWrapperInterface getInstance(\Drupal\Core\Entity\ContentEntityInterface $entity)
  */
 class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperInterface {
+
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -77,6 +81,30 @@ class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperIn
     }
 
     return $status;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTenderStatusLabel(): MarkupInterface {
+    switch ($this->getTenderStatus()) {
+      case static::TENDER_STATUS_NOT_AVAILABLE:
+        $label = $this->t('N/A');
+        break;
+
+      case static::TENDER_STATUS_UPCOMING:
+        $label = $this->t('Upcoming');
+        break;
+
+      case static::TENDER_STATUS_OPEN:
+        $label = $this->t('Open');
+        break;
+
+      default:
+        $label = $this->t('N/A');
+    }
+
+    return $label;
   }
 
   /**
