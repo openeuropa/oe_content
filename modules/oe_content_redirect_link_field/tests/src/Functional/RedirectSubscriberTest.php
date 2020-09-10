@@ -12,6 +12,7 @@ use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Testing redirects to redirect link field value.
@@ -34,6 +35,8 @@ class RedirectSubscriberTest extends BrowserTestBase {
     'content_translation',
     'dynamic_page_cache',
     'page_cache',
+    'path',
+    'path_alias',
   ];
 
   /**
@@ -91,7 +94,7 @@ class RedirectSubscriberTest extends BrowserTestBase {
    * Test redirect to URL from oe_redirect_link field value.
    */
   public function testRedirectEvent(): void {
-    // Create 3 nodes, 2 with redirect links and 1 without.
+    // Create 4 nodes, 3 with redirect links and 1 without.
     $external_node = $this->drupalCreateNode([
       'type' => 'test_with_redirect_link',
       'oe_redirect_link' => 'http://example.com',
@@ -171,6 +174,30 @@ class RedirectSubscriberTest extends BrowserTestBase {
     $this->assertSession()->addressEquals('/node/' . $external_node->id());
     $this->drupalGet('/fr/node/' . $translated_node->id());
     $this->assertSession()->addressEquals('/fr/node/' . $translated_node->id());
+
+    // Create a node that redirects to another node whose alias changes and
+    // assert the redirect is cached correctly.
+    $target_node = $this->drupalCreateNode([
+      'type' => 'test_with_redirect_link',
+      'path' => ['alias' => '/target-node'],
+      'status' => NodeInterface::PUBLISHED,
+    ]);
+
+    $target_node->save();
+
+    $redirect_node = $this->drupalCreateNode([
+      'type' => 'test_with_redirect_link',
+      'oe_redirect_link' => 'entity:node/' . $target_node->id(),
+      'status' => NodeInterface::PUBLISHED,
+    ]);
+    $redirect_node->save();
+    $this->assertRedirect(Url::fromUserInput('/target-node')->setAbsolute()->toString(), $redirect_node, 'MISS');
+    $response = $this->assertRedirect(Url::fromUserInput('/target-node')->setAbsolute()->toString(), $redirect_node, 'HIT');
+    $this->assertContains('node:' . $target_node->id(), explode(' ', $response->getHeaders()['X-Drupal-Cache-Tags'][0]));
+
+    $target_node->set('path', ['alias' => '/new-path']);
+    $target_node->save();
+    $this->assertRedirect(Url::fromUserInput('/new-path')->setAbsolute()->toString(), $redirect_node, 'MISS');
   }
 
   /**
@@ -187,9 +214,10 @@ class RedirectSubscriberTest extends BrowserTestBase {
    * @param string|null $language
    *   The expected path language.
    *
-   * @throws \GuzzleHttp\Exception\GuzzleException
+   * @return \Psr\Http\Message\ResponseInterface
+   *   The response.
    */
-  public function assertRedirect(string $expected, NodeInterface $node, string $cache, int $expected_status_code = 301, string $language = NULL): void {
+  public function assertRedirect(string $expected, NodeInterface $node, string $cache, int $expected_status_code = 301, string $language = NULL): ResponseInterface {
     /** @var \GuzzleHttp\ClientInterface $client */
     $client = $this->getHttpClient();
     /** @var \Psr\Http\Message\ResponseInterface $response */
@@ -199,7 +227,11 @@ class RedirectSubscriberTest extends BrowserTestBase {
     }
     $path .= 'node/' . $node->id();
     $url = $this->getAbsoluteUrl($path);
-    $response = $client->request('GET', $url, ['allow_redirects' => FALSE]);
+    $options = [
+      'allow_redirects' => FALSE,
+    ];
+
+    $response = $client->request('GET', $url, $options);
     $this->assertEquals($expected_status_code, $response->getStatusCode());
 
     $ending_url = $response->getHeader('location');
@@ -211,6 +243,8 @@ class RedirectSubscriberTest extends BrowserTestBase {
     $this->assertContains('node:' . $node->id(), $cache_tags);
     $this->assertContains('user.permissions', $cache_contexts);
     $this->refreshVariables();
+
+    return $response;
   }
 
 }

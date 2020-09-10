@@ -7,6 +7,7 @@ namespace Drupal\oe_content_redirect_link_field\EventSubscriber;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
@@ -99,7 +100,9 @@ class RedirectSubscriber implements EventSubscriberInterface {
       return;
     }
 
-    $redirect_response = new TrustedRedirectResponse($redirect_path, 301);
+    $cache->addCacheableDependency($redirect_path);
+
+    $redirect_response = new TrustedRedirectResponse($redirect_path->getGeneratedUrl(), 301);
     $redirect_response->addCacheableDependency($cache);
     $event->setResponse($redirect_response);
     $event->stopPropagation();
@@ -114,11 +117,11 @@ class RedirectSubscriber implements EventSubscriberInterface {
    * @return string
    *   The redirect response URL.
    */
-  protected function preparePath(string $path): ?string {
+  protected function preparePath(string $path): ?GeneratedUrl {
     $parsed = UrlHelper::parse($path);
 
     try {
-      return Url::fromUri($parsed['path'], ['fragment' => $parsed['fragment'], 'query' => $parsed['query']])->setAbsolute()->toString();
+      return Url::fromUri($parsed['path'], ['fragment' => $parsed['fragment'], 'query' => $parsed['query']])->setAbsolute()->toString(TRUE);
     }
     catch (\Exception $exception) {
       return NULL;
