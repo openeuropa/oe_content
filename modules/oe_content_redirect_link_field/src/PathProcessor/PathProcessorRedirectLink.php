@@ -6,7 +6,6 @@ namespace Drupal\oe_content_redirect_link_field\PathProcessor;
 
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\PathProcessor\OutboundPathProcessorInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Url;
@@ -77,8 +76,9 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
       return $path;
     }
 
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
     $entity = $match[$entity_type];
-    if ($entity instanceof TranslatableInterface && isset($options['language'])) {
+    if (isset($options['language'])) {
       $entity = $entity->hasTranslation($options['language']->getId()) ? $entity->getTranslation($options['language']->getId()) : $entity;
     }
 
