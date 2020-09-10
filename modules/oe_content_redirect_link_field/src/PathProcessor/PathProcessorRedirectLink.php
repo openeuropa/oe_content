@@ -123,10 +123,11 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
       // the base path when we generate it here so that it can get added later.
       // Unfortunately, the fragment is processed before this processor so for
       // internal URLs we cannot keep the fragment.
-      $url = Url::fromUri($parsed['path'], ['base_url' => ''] + $options)->toString();
+      $url = Url::fromUri($parsed['path'], ['base_url' => ''] + $options)->toString(TRUE);
+      $bubbleable_metadata->addCacheableDependency($url);
       $options['query'] = $parsed['query'];
 
-      return $url;
+      return $url->getGeneratedUrl();
     }
     catch (\Exception $exception) {
       return $path;
