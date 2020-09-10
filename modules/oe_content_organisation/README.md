@@ -1,4 +1,4 @@
-# OpenEuropa content organisation
+# OpenEuropa Organisation Content
 
 This module provides the corporate organisation content type.
 
@@ -22,7 +22,8 @@ The `field_group` module requires the following patches to be applied:
 ```json
 "patches": {
     "drupal/field_group": {
-        "https://www.drupal.org/project/field_group/issues/2787179#comment-13467953": "https://www.drupal.org/files/issues/2020-02-17/2787179-highlight-html5-validation-45.patch"
+        "https://www.drupal.org/project/field_group/issues/2787179#comment-13467953": "https://www.drupal.org/files/issues/2020-02-17/2787179-highlight-html5-validation-45.patch",
+        "https://www.drupal.org/node/3072732": "https://www.drupal.org/files/issues/2019-08-06/3072732-6.patch"
     }
 }
 ```
