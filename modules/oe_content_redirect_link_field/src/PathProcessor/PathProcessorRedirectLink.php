@@ -6,7 +6,6 @@ namespace Drupal\oe_content_redirect_link_field\PathProcessor;
 
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\PathProcessor\OutboundPathProcessorInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Url;
@@ -77,8 +76,9 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
       return $path;
     }
 
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
     $entity = $match[$entity_type];
-    if ($entity instanceof TranslatableInterface && isset($options['language'])) {
+    if (isset($options['language'])) {
       $entity = $entity->hasTranslation($options['language']->getId()) ? $entity->getTranslation($options['language']->getId()) : $entity;
     }
 
@@ -123,10 +123,11 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
       // the base path when we generate it here so that it can get added later.
       // Unfortunately, the fragment is processed before this processor so for
       // internal URLs we cannot keep the fragment.
-      $url = Url::fromUri($parsed['path'], ['base_url' => ''] + $options)->toString();
+      $url = Url::fromUri($parsed['path'], ['base_url' => ''] + $options)->toString(TRUE);
+      $bubbleable_metadata->addCacheableDependency($url);
       $options['query'] = $parsed['query'];
 
-      return $url;
+      return $url->getGeneratedUrl();
     }
     catch (\Exception $exception) {
       return $path;
