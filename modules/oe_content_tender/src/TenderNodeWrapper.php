@@ -42,6 +42,13 @@ class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperIn
   /**
    * {@inheritdoc}
    */
+  public function hasDeadlineDate(): bool {
+    return !$this->entity->get('oe_tender_deadline')->isEmpty();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getOpeningDate(): ?DrupalDateTime {
     if ($this->hasOpeningDate()) {
       $opening_date = $this->entity->get('oe_tender_opening_date')->date;
@@ -55,8 +62,11 @@ class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperIn
   /**
    * {@inheritdoc}
    */
-  public function getDeadlineDate(): DrupalDateTime {
-    return $this->entity->get('oe_tender_deadline')->date;
+  public function getDeadlineDate(): ?DrupalDateTime {
+    if ($this->hasDeadlineDate()) {
+      return $this->entity->get('oe_tender_deadline')->date;
+    }
+    return NULL;
   }
 
   /**
@@ -67,17 +77,17 @@ class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperIn
     $closing_date = $this->getDeadlineDate();
     $now = $this->getNow();
 
-    if (empty($opening_date)) {
-      $status = static::TENDER_STATUS_NOT_AVAILABLE;
-    }
-    elseif ($now < $opening_date) {
-      $status = static::TENDER_STATUS_UPCOMING;
-    }
-    elseif ($opening_date <= $now && $now < $closing_date) {
-      $status = static::TENDER_STATUS_OPEN;
-    }
-    else {
-      $status = static::TENDER_STATUS_CLOSED;
+    $status = static::TENDER_STATUS_NOT_AVAILABLE;
+    if (!empty($opening_date)) {
+      if ($now < $opening_date) {
+        $status = static::TENDER_STATUS_UPCOMING;
+      }
+      elseif ($opening_date <= $now && $now < $closing_date) {
+        $status = static::TENDER_STATUS_OPEN;
+      }
+      else {
+        $status = static::TENDER_STATUS_CLOSED;
+      }
     }
 
     return $status;
@@ -88,16 +98,16 @@ class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperIn
    */
   public function getTenderStatusLabel(): MarkupInterface {
     switch ($this->getTenderStatus()) {
-      case static::TENDER_STATUS_NOT_AVAILABLE:
-        $label = $this->t('N/A');
-        break;
-
       case static::TENDER_STATUS_UPCOMING:
         $label = $this->t('Upcoming');
         break;
 
       case static::TENDER_STATUS_OPEN:
         $label = $this->t('Open');
+        break;
+
+      case static::TENDER_STATUS_CLOSED:
+        $label = $this->t('Closed');
         break;
 
       default:

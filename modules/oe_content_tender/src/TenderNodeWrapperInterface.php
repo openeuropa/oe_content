@@ -75,10 +75,10 @@ interface TenderNodeWrapperInterface {
   /**
    * Get tender deadline date.
    *
-   * @return \Drupal\Core\Datetime\DrupalDateTime
+   * @return \Drupal\Core\Datetime\DrupalDateTime|null
    *   Deadline date as Drupal datetime object.
    */
-  public function getDeadlineDate(): DrupalDateTime;
+  public function getDeadlineDate(): ?DrupalDateTime;
 
   /**
    * Check whether the tender has opening date.
@@ -87,6 +87,14 @@ interface TenderNodeWrapperInterface {
    *   Whereas the tender has opening date.
    */
   public function hasOpeningDate(): bool;
+
+  /**
+   * Check whether the tender has deadline date.
+   *
+   * @return bool
+   *   Whereas the tender has deadline date.
+   */
+  public function hasDeadlineDate(): bool;
 
   /**
    * Gets status of the tender.
