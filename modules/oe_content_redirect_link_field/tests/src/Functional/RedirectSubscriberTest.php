@@ -242,6 +242,7 @@ class RedirectSubscriberTest extends BrowserTestBase {
     $cache_contexts = explode(' ', $headers['X-Drupal-Cache-Contexts'][0]);
     $this->assertContains('node:' . $node->id(), $cache_tags);
     $this->assertContains('user.permissions', $cache_contexts);
+    $this->assertEquals($cache, $headers['X-Drupal-Cache'][0]);
     $this->refreshVariables();
 
     return $response;
