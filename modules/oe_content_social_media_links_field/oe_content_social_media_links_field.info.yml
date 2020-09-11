@@ -5,6 +5,9 @@ package: OpenEuropa
 type: module
 core: 8.x
 
+dependencies:
+  - typed_link:typed_link
+
 config_devel:
   install:
     - field.storage.node.oe_social_media_links

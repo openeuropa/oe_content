@@ -10,7 +10,6 @@ dependencies:
   - drupal:datetime
   - rdf_skos:rdf_skos
   - maxlength:maxlength
-  - typed_link:typed_link
 
 config_devel:
   install:
