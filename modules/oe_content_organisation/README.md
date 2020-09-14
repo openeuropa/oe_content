@@ -1,6 +1,6 @@
-# OpenEuropa content event
+# OpenEuropa Organisation Content
 
-This module provides the corporate event content type.
+This module provides the corporate organisation content type.
 
 ## Installation
 
@@ -13,7 +13,6 @@ Before enabling this module, make sure that the following modules are present in
     "drupal/entity_reference_revisions": "~1.3",
     "drupal/field_group": "~3.0",
     "drupal/inline_entity_form": "~1.0-rc7",
-    "drupal/typed_link": "~1.1",
     "openeuropa/oe_corporate_countries": "~1.0.0-beta1"
 }
 ```
@@ -51,10 +50,3 @@ In order to apply the patches above add the following to your project's `compose
 ```
 
 For more information check `cweagans/composer-patches` documentation [here](https://github.com/cweagans/composer-patches).
-
-## Link List integration
-
-This module provides integration with the OpenEuropa Link List component in the form of a custom Link Source Filter
-plugin that allows to filter Event link lists based on their start and end dates.
-To ensure proper cacheability, this plugin depends on the `openeuropa/oe_time_caching` component so make sure you
-require it in your composer.json file.

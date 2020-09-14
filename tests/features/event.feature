@@ -213,8 +213,8 @@ Feature: Event content creation
     And I fill in "City" with "Budapest" in the "Event contact" region
     And I fill in "Email" with "test@example.com" in the "Event contact" region
     And I fill in "Phone number" with "0488779033" in the "Event contact" region
-    And I fill in "URL" with "mailto:example@email.com" in the "Event contact social media links" region
-    And I fill in "Link text" with "Email" in the "Event contact social media links" region
+    And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
+    And I fill in "Link text" with "Email" in the "Contact social media links" region
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"

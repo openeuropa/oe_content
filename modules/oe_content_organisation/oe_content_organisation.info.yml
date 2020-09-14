@@ -1,0 +1,30 @@
+name: OpenEuropa Organisation Content
+description: Contains the EC corporate Organisation content type.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - oe_content:oe_content
+  - drupal:composite_reference
+  - oe_content:oe_content_entity_contact
+  - field_group:field_group
+  - entity_reference_revisions:entity_reference_revisions
+  - inline_entity_form:inline_entity_form
+
+config_devel:
+  install:
+    - core.entity_form_display.node.oe_organisation.default
+    - core.entity_view_display.node.oe_organisation.default
+    - field.field.node.oe_organisation.body
+    - field.field.node.oe_organisation.oe_teaser
+    - field.field.node.oe_organisation.oe_summary
+    - field.field.node.oe_organisation.oe_organisation_acronym
+    - field.field.node.oe_organisation.oe_organisation_contact
+    - field.field.node.oe_organisation.oe_organisation_logo
+    - field.storage.node.oe_organisation_acronym
+    - field.storage.node.oe_organisation_contact
+    - field.storage.node.oe_organisation_logo
+    - node.type.oe_organisation
+  optional:
+    - language.content_settings.node.oe_organisation
