@@ -26,7 +26,6 @@ config_devel:
     - core.entity_view_display.node.oe_project.default
     - field.field.node.oe_project.oe_reference_code
     - field.field.node.oe_project.oe_subject
-    - field.field.node.oe_project.oe_author
     - field.field.node.oe_project.oe_summary
     - field.field.node.oe_project.oe_teaser
     - field.field.node.oe_project.oe_project_coordinators

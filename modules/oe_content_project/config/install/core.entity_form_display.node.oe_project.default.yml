@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_project.body
-    - field.field.node.oe_project.oe_author
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_documents
     - field.field.node.oe_project.oe_featured_media
@@ -110,16 +109,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  oe_author:
-    weight: 5
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
     weight: 21

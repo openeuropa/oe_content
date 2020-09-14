@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_project.body
-    - field.field.node.oe_project.oe_author
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_documents
     - field.field.node.oe_project.oe_featured_media
@@ -45,14 +44,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  oe_author:
-    type: skos_concept_entity_reference_label
-    weight: 3
-    region: content
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
   oe_departments:
     type: skos_concept_entity_reference_label
     weight: 7

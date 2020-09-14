@@ -27,7 +27,6 @@ Feature: Project content creation
     # Fill in mandatory fields.
     And I fill in "Title" with "My Project"
     And I fill in "Subject" with "EU financing"
-    And I fill in "Author" with "European Patent Office"
     And I fill in "Body text" with "Body text"
     And I fill in "Teaser" with "Project teaser text" in the "Alternative titles and teaser" region
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
@@ -110,7 +109,6 @@ Feature: Project content creation
     When I press "Save"
     Then I should see "My Project"
     And I should not see "EU financing"
-    And I should see "European Patent Office"
     And I should see "Body text"
 
     # Assert project coordinators field values.
