@@ -22,7 +22,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
   /**
    * Test exception thrown if an unsupported entity type is passed.
    */
-  public function testUnsupportedEntityType() {
+  public function testUnsupportedEntityType(): void {
     $this->expectException(\InvalidArgumentException::class);
     $this->expectExceptionMessage("The current wrapper only accepts 'node' entities.");
     $entity = EntityTest::create();
@@ -32,7 +32,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
   /**
    * Test exception thrown if an unsupported entity bundle is passed.
    */
-  public function testUnsupportedEntityBundle() {
+  public function testUnsupportedEntityBundle(): void {
     $this->expectException(\InvalidArgumentException::class);
     $this->expectExceptionMessage("The current wrapper only accepts 'node' entities of type 'oe_tender'.");
     $node_type = NodeType::create([
@@ -142,6 +142,48 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
           'hasDeadlineDate' => FALSE,
           'getOpeningDate' => date('Y') + 1 . '-11-26 00:00:00',
           'getDeadlineDate' => NULL,
+        ],
+      ],
+      [
+        'case' => 'Test open status',
+        'values' => [
+          'oe_tender_opening_date' => [
+            'value' => '2020-09-01',
+          ],
+          'oe_tender_deadline' => [
+            'value' => date('Y') + 1 . '-09-01T00:00:00',
+          ],
+        ],
+        'assertions' => [
+          'isNotAvailable' => FALSE,
+          'isUpcoming' => FALSE,
+          'isOpen' => TRUE,
+          'isClosed' => FALSE,
+          'hasOpeningDate' => TRUE,
+          'hasDeadlineDate' => TRUE,
+          'getOpeningDate' => '2020-09-01 00:00:00',
+          'getDeadlineDate' => date('Y') + 1 . '-09-01 00:00:00',
+        ],
+      ],
+      [
+        'case' => 'Test closed status',
+        'values' => [
+          'oe_tender_opening_date' => [
+            'value' => '2020-09-01',
+          ],
+          'oe_tender_deadline' => [
+            'value' => '2020-09-10T00:00:00',
+          ],
+        ],
+        'assertions' => [
+          'isNotAvailable' => FALSE,
+          'isUpcoming' => FALSE,
+          'isOpen' => FALSE,
+          'isClosed' => TRUE,
+          'hasOpeningDate' => TRUE,
+          'hasDeadlineDate' => TRUE,
+          'getOpeningDate' => '2020-09-01 00:00:00',
+          'getDeadlineDate' => '2020-09-10 00:00:00',
         ],
       ],
     ];
