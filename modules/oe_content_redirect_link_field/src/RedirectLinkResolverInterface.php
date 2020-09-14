@@ -25,4 +25,15 @@ interface RedirectLinkResolverInterface {
    */
   public function getPath(ContentEntityInterface $entity, CacheableMetadata $cacheable_metadata): ?string;
 
+  /**
+   * Get the redirect link if possible.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The entity object.
+   *
+   * @return string|null
+   *   The redirect link or NULL if it doesn't apply.
+   */
+  public function getRedirectLink(ContentEntityInterface $entity): ?string;
+
 }

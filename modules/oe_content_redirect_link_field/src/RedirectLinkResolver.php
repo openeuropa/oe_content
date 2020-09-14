@@ -46,15 +46,9 @@ class RedirectLinkResolver implements RedirectLinkResolverInterface {
   }
 
   /**
-   * Get the redirect link if possible.
-   *
-   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
-   *   The entity object.
-   *
-   * @return string|null
-   *   The redirect link or NULL if it doesn't apply.
+   * {@inheritdoc}
    */
-  protected function getRedirectLink(ContentEntityInterface $entity): ?string {
+  public function getRedirectLink(ContentEntityInterface $entity): ?string {
     if (!$entity->hasField('oe_redirect_link')) {
       return NULL;
     }
