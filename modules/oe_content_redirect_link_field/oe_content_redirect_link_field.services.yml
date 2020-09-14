@@ -1,16 +1,16 @@
 services:
   path_processor.oe_content_redirect_link_field:
     class: Drupal\oe_content_redirect_link_field\PathProcessor\PathProcessorRedirectLink
-    arguments: ['@oe_content_redirect_link_field.retrieve_redirect_link']
+    arguments: ['@oe_content_redirect_link_field.redirect_link_resolver']
     tags:
       - { name: path_processor_outbound, priority: 99 }
 
-  oe_content_redirect_link_field.retrieve_redirect_link:
+  oe_content_redirect_link_field.redirect_link_resolver:
     class: Drupal\oe_content_redirect_link_field\RedirectLinkResolver
     arguments: ['@current_user']
 
   oe_content_redirect_link_field.event_subscriber:
     class: Drupal\oe_content_redirect_link_field\EventSubscriber\RedirectSubscriber
-    arguments: ['@oe_content_redirect_link_field.retrieve_redirect_link', '@language_manager']
+    arguments: ['@oe_content_redirect_link_field.redirect_link_resolver', '@language_manager']
     tags:
       - { name: event_subscriber }
