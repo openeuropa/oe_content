@@ -44,6 +44,7 @@ class ProjectContentContext extends RawDrupalContext {
       'Overall budget' => 'oe_project_budget',
       'Participants' => 'oe_project_participants',
       'Project contact' => 'oe_project_contact',
+      'Project locations' => 'oe_project_locations',
       'Project period start date' => 'oe_project_dates:value',
       'Project period end date' => 'oe_project_dates:end_value',
       'Published' => 'status',
