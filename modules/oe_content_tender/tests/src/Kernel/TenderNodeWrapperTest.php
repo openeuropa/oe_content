@@ -10,6 +10,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\oe_content\EntityWrapperInterface;
 use Drupal\oe_content_tender\TenderNodeWrapper;
+use Drupal\oe_content_tender\TenderNodeWrapperInterface;
 
 /**
  * Tests tender wrapper class.
@@ -116,10 +117,12 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
         'case' => 'Test default getters behaviour when no fields are set',
         'values' => [],
         'assertions' => [
-          'isNotAvailable' => TRUE,
+          'hasStatus' => FALSE,
           'isUpcoming' => FALSE,
           'isOpen' => FALSE,
           'isClosed' => FALSE,
+          'getStatus' => TenderNodeWrapperInterface::STATUS_NOT_AVAILABLE,
+          'getStatusLabel' => 'N/A',
           'hasOpeningDate' => FALSE,
           'hasDeadlineDate' => FALSE,
           'getOpeningDate' => NULL,
@@ -134,10 +137,12 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
           ],
         ],
         'assertions' => [
-          'isNotAvailable' => FALSE,
+          'hasStatus' => TRUE,
           'isUpcoming' => TRUE,
           'isOpen' => FALSE,
           'isClosed' => FALSE,
+          'getStatus' => TenderNodeWrapperInterface::STATUS_UPCOMING,
+          'getStatusLabel' => 'Upcoming',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => FALSE,
           'getOpeningDate' => date('Y') + 1 . '-11-26 00:00:00',
@@ -155,10 +160,12 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
           ],
         ],
         'assertions' => [
-          'isNotAvailable' => FALSE,
+          'hasStatus' => TRUE,
           'isUpcoming' => FALSE,
           'isOpen' => TRUE,
           'isClosed' => FALSE,
+          'getStatus' => TenderNodeWrapperInterface::STATUS_OPEN,
+          'getStatusLabel' => 'Open',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => TRUE,
           'getOpeningDate' => '2020-09-01 00:00:00',
@@ -176,10 +183,12 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
           ],
         ],
         'assertions' => [
-          'isNotAvailable' => FALSE,
+          'hasStatus' => TRUE,
           'isUpcoming' => FALSE,
           'isOpen' => FALSE,
           'isClosed' => TRUE,
+          'getStatus' => TenderNodeWrapperInterface::STATUS_CLOSED,
+          'getStatusLabel' => 'Closed',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => TRUE,
           'getOpeningDate' => '2020-09-01 00:00:00',

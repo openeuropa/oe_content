@@ -15,22 +15,22 @@ interface TenderNodeWrapperInterface {
   /**
    * Tender isn't available. Is used when opening date isn't defined.
    */
-  const TENDER_STATUS_NOT_AVAILABLE = 'n/a';
+  const STATUS_NOT_AVAILABLE = 'not_available';
 
   /**
    * Tender is upcoming.
    */
-  const TENDER_STATUS_UPCOMING = 'upcoming';
+  const STATUS_UPCOMING = 'upcoming';
 
   /**
    * Tender is open.
    */
-  const TENDER_STATUS_OPEN = 'open';
+  const STATUS_OPEN = 'open';
 
   /**
    * Tenser is closed.
    */
-  const TENDER_STATUS_CLOSED = 'closed';
+  const STATUS_CLOSED = 'closed';
 
   /**
    * Check whether the tender status is 'open'.
@@ -62,7 +62,7 @@ interface TenderNodeWrapperInterface {
    * @return bool
    *   Whereas the tender status is not available.
    */
-  public function isNotAvailable(): bool;
+  public function hasStatus(): bool;
 
   /**
    * Get tender opening date.
@@ -102,7 +102,7 @@ interface TenderNodeWrapperInterface {
    * @return string
    *   Tender status.
    */
-  public function getTenderStatus(): string;
+  public function getStatus(): string;
 
   /**
    * Gets label of the tender status.
@@ -110,6 +110,6 @@ interface TenderNodeWrapperInterface {
    * @return \Drupal\Component\Render\MarkupInterface
    *   Translated label.
    */
-  public function getTenderStatusLabel(): MarkupInterface;
+  public function getStatusLabel(): MarkupInterface;
 
 }

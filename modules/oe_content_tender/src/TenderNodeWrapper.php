@@ -50,43 +50,43 @@ class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperIn
    * {@inheritdoc}
    */
   public function getOpeningDate(): ?DrupalDateTime {
-    if ($this->hasOpeningDate()) {
-      $opening_date = $this->entity->get('oe_tender_opening_date')->date;
-      // Prevent upcoming status when now & opening dates are the same.
-      $opening_date->setTime(0, 0, 0);
-      return $opening_date;
+    if (!$this->hasOpeningDate()) {
+      return NULL;
     }
-    return NULL;
+    $opening_date = $this->entity->get('oe_tender_opening_date')->date;
+    // Prevent upcoming status when now & opening dates are the same.
+    $opening_date->setTime(0, 0, 0);
+    return $opening_date;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getDeadlineDate(): ?DrupalDateTime {
-    if ($this->hasDeadlineDate()) {
-      return $this->entity->get('oe_tender_deadline')->date;
+    if (!$this->hasDeadlineDate()) {
+      return NULL;
     }
-    return NULL;
+    return $this->entity->get('oe_tender_deadline')->date;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getTenderStatus(): string {
+  public function getStatus(): string {
     $opening_date = $this->getOpeningDate();
     $closing_date = $this->getDeadlineDate();
     $now = $this->getNow();
 
-    $status = static::TENDER_STATUS_NOT_AVAILABLE;
+    $status = static::STATUS_NOT_AVAILABLE;
     if (!empty($opening_date)) {
       if ($now < $opening_date) {
-        $status = static::TENDER_STATUS_UPCOMING;
+        $status = static::STATUS_UPCOMING;
       }
       elseif ($opening_date <= $now && $now < $closing_date) {
-        $status = static::TENDER_STATUS_OPEN;
+        $status = static::STATUS_OPEN;
       }
       else {
-        $status = static::TENDER_STATUS_CLOSED;
+        $status = static::STATUS_CLOSED;
       }
     }
 
@@ -96,17 +96,17 @@ class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperIn
   /**
    * {@inheritdoc}
    */
-  public function getTenderStatusLabel(): MarkupInterface {
-    switch ($this->getTenderStatus()) {
-      case static::TENDER_STATUS_UPCOMING:
+  public function getStatusLabel(): MarkupInterface {
+    switch ($this->getStatus()) {
+      case static::STATUS_UPCOMING:
         $label = $this->t('Upcoming');
         break;
 
-      case static::TENDER_STATUS_OPEN:
+      case static::STATUS_OPEN:
         $label = $this->t('Open');
         break;
 
-      case static::TENDER_STATUS_CLOSED:
+      case static::STATUS_CLOSED:
         $label = $this->t('Closed');
         break;
 
@@ -120,29 +120,29 @@ class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperIn
   /**
    * {@inheritdoc}
    */
-  public function isNotAvailable(): bool {
-    return $this->getTenderStatus() === static::TENDER_STATUS_NOT_AVAILABLE;
+  public function hasStatus(): bool {
+    return $this->getStatus() !== static::STATUS_NOT_AVAILABLE;
   }
 
   /**
    * {@inheritdoc}
    */
   public function isUpcoming(): bool {
-    return $this->getTenderStatus() === static::TENDER_STATUS_UPCOMING;
+    return $this->getStatus() === static::STATUS_UPCOMING;
   }
 
   /**
    * {@inheritdoc}
    */
   public function isOpen(): bool {
-    return $this->getTenderStatus() === static::TENDER_STATUS_OPEN;
+    return $this->getStatus() === static::STATUS_OPEN;
   }
 
   /**
    * {@inheritdoc}
    */
   public function isClosed(): bool {
-    return $this->getTenderStatus() === static::TENDER_STATUS_CLOSED;
+    return $this->getStatus() === static::STATUS_CLOSED;
   }
 
   /**

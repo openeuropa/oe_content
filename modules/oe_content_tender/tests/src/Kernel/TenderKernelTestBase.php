@@ -19,11 +19,9 @@ abstract class TenderKernelTestBase extends RdfKernelTestBase {
   public static $modules = [
     'field',
     'field_group',
-    'datetime_range',
     'entity_reference_revisions',
     'link',
     'image',
-    'inline_entity_form',
     'node',
     'maxlength',
     'media',
