@@ -5,7 +5,9 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_featured_media_field\FunctionalJavascript;
 
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\node\Entity\Node;
 
 /**
  * Tests the output of "oe_featured_media_entity_browser" widget.
@@ -31,6 +33,37 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
   protected function setUp() {
     parent::setUp();
 
+    // Add an entity reference field with unlimited cardinality.
+    FieldStorageConfig::create([
+      'field_name' => 'news_reference_field',
+      'entity_type' => 'node',
+      'type' => 'entity_reference',
+      'cardinality' => FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED,
+      'settings' => [
+        'target_type' => 'node',
+      ],
+    ])->save();
+
+    FieldConfig::create([
+      'label' => 'News reference field',
+      'field_name' => 'news_reference_field',
+      'entity_type' => 'node',
+      'bundle' => 'page',
+      'settings' => [
+        'handler' => 'default:media',
+        'handler_settings' => [
+          'target_bundles' => [
+            'oe_news' => 'oe_news',
+          ],
+        ],
+        'sort' => [
+          'field' => '_none',
+        ],
+        'auto_create' => '0',
+      ],
+      'required' => FALSE,
+    ])->save();
+
     $view_display_options = [
       'type' => 'oe_featured_media_label',
       'label' => 'above',
@@ -55,6 +88,14 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
         'field_widget_display' => 'label',
         'open' => TRUE,
       ],
+    ]);
+    $form_display->setComponent('news_reference_field', [
+      'type' => 'entity_reference_autocomplete',
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+        'size' => 60,
+        'match_limit' => 10,
+      ],
     ])->save();
 
     // Prepare the default view display for rendering.
@@ -62,6 +103,11 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
       ->getViewDisplay('node', 'page')
       ->setComponent('featured_media_field', $view_display_options);
     $display->save();
+
+    Node::create([
+      'type' => 'oe_news',
+      'title' => 'News node',
+    ])->save();
 
     $this->drupalLogin($this->drupalCreateUser([], '', TRUE));
   }
@@ -72,22 +118,39 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
   public function testFeaturedMediaEntityBrowserWidget(): void {
     $this->drupalGet('node/add/page');
 
+    // Add another item in a different entity reference field to ensure AJAX
+    // is not broken due to our widget.
+    $this->getSession()->getPage()->fillField('Title', 'Node with featured media');
+    $this->getSession()->getPage()->fillField('News reference field (value 1)', 'News node');
+    $this->getSession()->getPage()->pressButton('Save');
+
+    $node = $this->drupalGetNodeByTitle('Node with featured media');
+    $this->drupalGet($node->toUrl('edit-form'));
+    $news_reference_field = $this->getSession()->getPage()->find('css', 'div#news-reference-field-add-more-wrapper');
+    $news_reference_field->pressButton('Add another item');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    // Assert the item was correctly added.
+    $this->assertSession()->pageTextContains('News reference field (value 2)');
+
     // Assert that all the entity browser elements are displayed.
-    $this->assertSession()->buttonExists('Select images');
-    $this->assertSession()->fieldExists('Caption');
+    $featured_media_field_wrapper = $this->xpath('//div[@data-drupal-selector=\'edit-featured-media-field\']');
+    $this->assertCount(1, $featured_media_field_wrapper);
+    $featured_media_field = reset($featured_media_field_wrapper);
+    $this->assertTrue($featured_media_field->hasButton('Select images'));
+    $this->assertTrue($featured_media_field->hasField('Caption'));
     $this->assertSession()->pageTextContains('The caption that goes with the referenced media.');
-    $this->assertSession()->buttonExists('Add another item');
+    $this->assertTrue($featured_media_field->hasButton('Add another item'));
 
     // Assert validation of caption without Media.
-    $this->getSession()->getPage()->fillField('Title', 'Test entity browser widget');
     $this->getSession()->getPage()->fillField('featured_media_field[0][caption]', 'Invalid caption');
     $this->getSession()->getPage()->pressButton('Save');
     $this->assertSession()->pageTextContains('Please either remove the caption or select a Media entity');
 
-    $this->drupalGet('node/add/page');
+    // Start over and use the entity browser.
+    $this->drupalGet($node->toUrl('edit-form'));
 
     // Select the first media image from the entity browser.
-    $this->getSession()->getPage()->pressButton('Select images');
+    $featured_media_field->pressButton('Select images');
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
     $this->getSession()->getPage()->checkField('entity_browser_select[media:1]');
@@ -96,34 +159,35 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
 
     // Assert the image was selected and the widget shows the proper buttons.
     $this->assertSession()->pageTextContains('Image 1');
-    $this->assertSession()->buttonNotExists('Select images');
+    $this->assertFalse($featured_media_field->hasButton('Select images'));
     $this->assertMediaSelectionHasRemoveButton('Image 1');
 
     // Add the second media image item.
     $this->getSession()->getPage()->pressButton('Add another item');
     $this->assertSession()->assertWaitOnAjaxRequest();
-    $this->getSession()->getPage()->pressButton('Select images');
+    // Assert that the item was added to the featured media field.
+    $this->assertSession()->pageTextContains('Featured media field (value 2)');
+    $featured_media_field->pressButton('Select images');
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
     $this->getSession()->getPage()->checkField('entity_browser_select[media:2]');
     $this->getSession()->getPage()->pressButton('Select image');
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->assertSession()->pageTextContains('Image 2');
-    $this->assertSession()->buttonNotExists('Select images');
+    $this->assertFalse($featured_media_field->hasButton('Select images'));
     $this->assertMediaSelectionHasRemoveButton('Image 2');
 
     // Check that 'Image 1' media item is placed before 'Image 2'.
     $this->assertOrderInPage(['Image 1', 'Image 2']);
 
-    // Fill in the other fields and save the node.
+    // Fill in the captions and save the node.
     $this->getSession()->getPage()->fillField('featured_media_field[0][caption]', 'Image 1 caption');
     $this->getSession()->getPage()->fillField('featured_media_field[1][caption]', 'Image 2 caption');
-    $this->getSession()->getPage()->fillField('Title', 'Test entity browser widget');
     $this->getSession()->getPage()->pressButton('Save');
 
     // Assert the values were saved correctly in the node.
-    $this->assertSession()->pageTextContains('Test entity browser widget has been created.');
-    $node = $this->drupalGetNodeByTitle('Test entity browser widget');
+    $this->assertSession()->pageTextContains('Node with featured media has been updated.');
+    $node = $this->drupalGetNodeByTitle('Node with featured media', TRUE);
     $expected_values = [
       '0' => [
         'target_id' => '1',
@@ -146,7 +210,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->assertOrderInPage(['Image 1', 'Image 2']);
 
     // Edit the node to reorder field items.
-    $this->drupalGet('node/1/edit');
+    $this->drupalGet($node->toUrl('edit-form'));
     $handle = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(1) a.tabledrag-handle');
     $target = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(2) a.tabledrag-handle');
     $handle->dragTo($target);
@@ -157,8 +221,8 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->getSession()->getPage()->pressButton('Save');
 
     // Assert the values were saved correctly in the node.
-    $this->assertSession()->pageTextContains('page Test entity browser widget has been updated.');
-    $node = $this->drupalGetNodeByTitle('Test entity browser widget', TRUE);
+    $this->assertSession()->pageTextContains('page Node with featured media has been updated.');
+    $node = $this->drupalGetNodeByTitle('Node with featured media', TRUE);
     $expected_values = [
       '0' => [
         'target_id' => '2',
@@ -182,7 +246,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->assertSession()->pageTextContains('Image 1 caption');
 
     // Edit the node to remove the current first item in the form (Image 2).
-    $this->drupalGet('node/1/edit');
+    $this->drupalGet($node->toUrl('edit-form'));
     $this->getSession()->getPage()->pressButton('edit-featured-media-field-0-current-items-0-remove-button');
     $this->assertSession()->assertWaitOnAjaxRequest();
     // Assert the image was removed from the field.
@@ -198,8 +262,8 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->getSession()->getPage()->pressButton('Save');
 
     // Assert the values were saved correctly in the node.
-    $this->assertSession()->pageTextContains('page Test entity browser widget has been updated.');
-    $node = $this->drupalGetNodeByTitle('Test entity browser widget', TRUE);
+    $this->assertSession()->pageTextContains('page Node with featured media has been updated.');
+    $node = $this->drupalGetNodeByTitle('Node with featured media', TRUE);
     $expected_values = [
       '0' => [
         'target_id' => '1',
