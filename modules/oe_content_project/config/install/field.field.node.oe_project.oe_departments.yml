@@ -31,5 +31,4 @@ settings:
       bundle: oe_project
       concept_schemes:
         - 'http://publications.europa.eu/resource/authority/corporate-body'
-    concept_subset: corporate_bodies_department_executive_agencies
 field_type: skos_concept_entity_reference
