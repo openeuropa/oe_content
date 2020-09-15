@@ -136,10 +136,10 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $featured_media_field_wrapper = $this->xpath('//div[@data-drupal-selector=\'edit-featured-media-field\']');
     $this->assertCount(1, $featured_media_field_wrapper);
     $featured_media_field = reset($featured_media_field_wrapper);
-    $featured_media_field->hasButton('Select images');
-    $featured_media_field->hasField('Caption');
+    $this->assertTrue($featured_media_field->hasButton('Select images'));
+    $this->assertTrue($featured_media_field->hasField('Caption'));
     $this->assertSession()->pageTextContains('The caption that goes with the referenced media.');
-    $featured_media_field->hasButton('Add another item');
+    $this->assertTrue($featured_media_field->hasButton('Add another item'));
 
     // Assert validation of caption without Media.
     $this->getSession()->getPage()->fillField('featured_media_field[0][caption]', 'Invalid caption');
