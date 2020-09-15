@@ -12,7 +12,7 @@ entity_type: oe_organisation
 bundle: oe_stakeholder
 label: Address
 description: ''
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
