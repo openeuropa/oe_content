@@ -108,7 +108,7 @@ Feature: Project content creation
 
     When I press "Save"
     Then I should see "My Project"
-    And I should not see "EU financing"
+    And I should see "EU financing"
     And I should see "Body text"
 
     # Assert project coordinators field values.
