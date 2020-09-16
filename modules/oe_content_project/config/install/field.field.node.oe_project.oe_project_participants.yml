@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_project_participants
+    - node.type.oe_project
+    - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
+  module:
+    - composite_reference
+    - entity_reference_revisions
+third_party_settings:
+  composite_reference:
+    composite: true
+id: node.oe_project.oe_project_participants
+field_name: oe_project_participants
+entity_type: node
+bundle: oe_project
+label: Participants
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:oe_organisation'
+  handler_settings:
+    target_bundles:
+      oe_stakeholder: oe_stakeholder
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions
