@@ -48,6 +48,9 @@ class ContentEntityUiTest extends BrowserTestBase {
       $this->getSession()->getPage()->findField('Label')->setValue("{$label} type name");
       $this->getSession()->getPage()->findField('Machine-readable name')->setValue("{$label}_type_name");
       $this->getSession()->getPage()->fillField('Description', "{$label} type description");
+      // Assert that fields description is correct.
+      $this->assertSession()->pageTextContains('Label for the ' . $entity_type_id . ' entity type (bundle).');
+      $this->assertSession()->pageTextContains('This text will be displayed on the "Add ' . $entity_type_id . '" page.');
       $this->getSession()->getPage()->pressButton('Save');
 
       // Assert that the bundle has been created and it's listed correctly.

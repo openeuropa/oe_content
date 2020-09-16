@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_contact.oe_website
+    - oe_content_entity_contact.oe_contact_type.oe_general
+  module:
+    - link
+id: oe_contact.oe_general.oe_website
+field_name: oe_website
+entity_type: oe_contact
+bundle: oe_general
+label: Website
+description: 'Fill in the website of the organisation.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

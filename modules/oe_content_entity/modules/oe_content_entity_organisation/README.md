@@ -11,5 +11,7 @@ The module provides the following permissions:
 - `Organisation: View any published entity`
 - `Organisation: View any unpublished entity`
 
-Grant the `Organisation: View any published entity` permission to the anonymous user role in order to allow your 
+Grant the `Organisation: View any published entity` permission to the anonymous user role in order to allow your
 site's visitors to view organisation entities.
+
+This module also provides the `Stakeholder` bundle to be used when dealing with stakeholder organizations (for example on projects).

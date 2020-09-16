@@ -102,9 +102,18 @@ Feature: Event content creation
     When I press "Add new contact"
     And I wait for AJAX to finish
     Then I should see "Name" in the "Event contact" region
-    Then I should see "Country" in the "Event contact" region
+    Then I should see "Organisation" in the "Event contact" region
+    Then I should see "Body text" in the "Event contact" region
+    Then I should see "Website" in the "Event contact" region
     Then I should see "Email" in the "Event contact" region
     Then I should see "Phone number" in the "Event contact" region
+    Then I should see "Mobile number" in the "Event contact" region
+    Then I should see "Fax number" in the "Event contact" region
+    Then I should see "Country" in the "Event contact" region
+    Then I should see "Office" in the "Event contact" region
+    Then I should see "Social media links" in the "Event contact" region
+    Then I should see "Image" in the "Event contact" region
+    Then I should see "Press contacts" in the "Event contact" region
 
     # The alternative titles and teaser group is open by default.
     And I should see the text "Alternative titles and teaser"
@@ -135,6 +144,9 @@ Feature: Event content creation
   @javascript @av_portal
   Scenario: Creation of a Event content through the UI.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
+    And the following images:
+      | name          | file           | alt                            |
+      | Contact image | example_1.jpeg | Contact image alternative text |
     # Create a "Media AV portal photo".
     And the following AV Portal photos:
       | url                                                         |
@@ -206,15 +218,24 @@ Feature: Event content creation
     When I press "Add new contact"
     And I wait for AJAX to finish
     Then I fill in "Name" with "Name of the event contact" in the "Event contact" region
+    And I fill in "Organisation" with "Event contact organisation" in the "Event contact" region
+    And I fill in "Body text" with "Event contact body text" in the "Event contact" region
+    And I fill in "Website" with "http://www.example.com/event_contact" in the "Event contact" region
+    And I fill in "Email" with "test@example.com" in the "Event contact" region
+    And I fill in "Phone number" with "0488779033" in the "Event contact" region
+    And I fill in "Mobile number" with "0488779034" in the "Event contact" region
+    And I fill in "Fax number" with "0488779035" in the "Event contact" region
     And I select "Hungary" from "Country" in the "Event contact" region
     And I wait for AJAX to finish
     And I fill in "Street address" with "Back street 3" in the "Event contact" region
     And I fill in "Postal code" with "9000" in the "Event contact" region
     And I fill in "City" with "Budapest" in the "Event contact" region
-    And I fill in "Email" with "test@example.com" in the "Event contact" region
-    And I fill in "Phone number" with "0488779033" in the "Event contact" region
+    And I fill in "Office" with "Event contact office" in the "Event contact" region
     And I fill in "URL" with "mailto:example@email.com" in the "Event contact social media links" region
-    And I fill in "Link text" with "Email" in the "Event contact social media links" region
+    And I fill in "Link text" with "Event contact social link email" in the "Event contact social media links" region
+    And I fill in "Media item" with "Contact image" in the "Event contact" region
+    And I fill in "Caption" with "Event contact caption" in the "Event contact" region
+    And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Event contact" region
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
@@ -255,13 +276,22 @@ Feature: Event content creation
     And I should see the text "Belgium"
     # Event contact values.
     And I should see the text "Name of the event contact"
+    And I should see the text "Event contact body text"
+    And I should see the text "Event contact organisation"
+    And I should see the link "http://www.example.com/event_contact"
+    And I should see the text "test@example.com"
+    And I should see the text "0488779033"
+    And I should see the text "0488779034"
+    And I should see the text "0488779035"
     And I should see the text "Back street 3"
     And I should see the text "Budapest"
     And I should see the text "9000"
     And I should see the text "Hungary"
-    And I should see the text "test@example.com"
-    And I should see the text "0488779033"
-    And I should see the link "Email"
+    And I should see the link "Event contact social link email"
+    And I should see the text "Event contact office"
+    And I should see the link "Contact image"
+    And I should see the text "Event contact caption"
+    And I should see the link "http://example.com/press_contacts"
 
   @javascript @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.

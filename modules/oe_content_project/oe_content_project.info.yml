@@ -1,0 +1,61 @@
+name: OpenEuropa Project Content
+description: Contains the EC corporate Project content type.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - composite_reference:composite_reference
+  - drupal:datetime_range
+  - oe_content:oe_content
+  - oe_content:oe_content_entity_contact
+  - oe_content:oe_content_entity_organisation
+  - oe_content:oe_content_documents_field
+  - oe_content:oe_content_departments_field
+  - oe_content:oe_content_featured_media_field
+  - oe_content:oe_content_reference_code_field
+  - oe_media:oe_media
+  - field_group:field_group
+  - entity_reference_revisions:entity_reference_revisions
+  - inline_entity_form:inline_entity_form
+  - address:address
+
+config_devel:
+  install:
+    - core.entity_form_display.node.oe_project.default
+    - core.entity_view_display.node.oe_project.default
+    - field.field.node.oe_project.oe_reference_code
+    - field.field.node.oe_project.oe_subject
+    - field.field.node.oe_project.oe_summary
+    - field.field.node.oe_project.oe_teaser
+    - field.field.node.oe_project.oe_project_coordinators
+    - field.field.node.oe_project.oe_project_participants
+    - field.field.node.oe_project.oe_project_funding_programme
+    - field.field.node.oe_project.oe_project_budget
+    - field.field.node.oe_project.oe_project_dates
+    - field.field.node.oe_project.oe_project_website
+    - field.field.node.oe_project.oe_project_results
+    - field.field.node.oe_project.oe_project_result_files
+    - field.field.node.oe_project.oe_project_budget_eu
+    - field.field.node.oe_project.oe_departments
+    - field.field.node.oe_project.oe_project_calls
+    - field.field.node.oe_project.oe_documents
+    - field.field.node.oe_project.body
+    - field.field.node.oe_project.oe_project_contact
+    - field.field.node.oe_project.oe_project_locations
+    - field.field.node.oe_project.oe_featured_media
+    - field.storage.node.oe_project_coordinators
+    - field.storage.node.oe_project_participants
+    - field.storage.node.oe_project_funding_programme
+    - field.storage.node.oe_project_budget
+    - field.storage.node.oe_project_dates
+    - field.storage.node.oe_project_website
+    - field.storage.node.oe_project_results
+    - field.storage.node.oe_project_result_files
+    - field.storage.node.oe_project_budget_eu
+    - field.storage.node.oe_project_calls
+    - field.storage.node.oe_project_contact
+    - field.storage.node.oe_project_locations
+    - node.type.oe_project
+  optional:
+    - language.content_settings.node.oe_project
