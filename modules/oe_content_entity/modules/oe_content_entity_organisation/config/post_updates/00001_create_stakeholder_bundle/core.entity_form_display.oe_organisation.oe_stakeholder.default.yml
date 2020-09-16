@@ -16,29 +16,23 @@ targetEntityType: oe_organisation
 bundle: oe_stakeholder
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 7
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 6
-    region: content
+    weight: 0
+    region: contentproject
     settings:
       include_locked: true
     third_party_settings: {  }
   name:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   oe_acronym:
-    weight: 1
+    weight: 2
     settings:
       size: 60
       placeholder: ''
@@ -46,13 +40,13 @@ content:
     type: string_textfield
     region: content
   oe_address:
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: address_default
     region: content
   oe_contact_url:
-    weight: 5
+    weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -60,7 +54,7 @@ content:
     type: link_default
     region: content
   oe_logo:
-    weight: 2
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
@@ -70,7 +64,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   oe_website:
-    weight: 4
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -81,7 +75,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 7
     region: content
     third_party_settings: {  }
   translation:
@@ -89,4 +83,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  created: true
