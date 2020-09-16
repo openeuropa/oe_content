@@ -15,6 +15,7 @@ default:
         - Drupal\Tests\oe_media\Behat\MediaContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
@@ -23,6 +24,7 @@ default:
               News creation: 'node/add/oe_news'
               Event creation: 'node/add/oe_event'
               Policy creation: 'node/add/oe_policy'
+              Project creation: 'node/add/oe_project'
               Publication creation: 'node/add/oe_publication'
               AV Portal photo creation: 'media/add/av_portal_photo'
               document creation: 'media/add/document'
@@ -46,6 +48,7 @@ default:
         title form element: ".field--name-title"
         teaser form element: ".field--name-oe-teaser"
         summary form element: ".field--name-oe-summary"
+        featured media form element: ".field--name-oe-featured-media"
         featured media legend form element: ".field--name-oe-event-featured-media-legend"
         alternative title form element: ".field--name-oe-content-short-title"
         subject form element: ".field--name-oe-subject"
@@ -53,11 +56,23 @@ default:
         content owner form element: ".field--name-oe-content-content-owner"
         Online link: "#edit-oe-event-online-link-0"
         Website: "#edit-oe-event-website-0"
+        Project Website: "#edit-oe-project-website-0"
+        Alternative titles and teaser : "#edit-group-alternative-titles-teaser"
+        Budget : "#edit-group-budget"
+        Result : "#edit-group-result"
+        Call for proposals: "#oe-project-calls-values"
         Social media links: "#oe-social-media-links-values"
         Description: "#edit-oe-event-featured-media"
         Event report: "#edit-group-report"
         Event contact: "#edit-oe-event-contact-wrapper"
         Event contact social media links: ".field--name-oe-social-media"
+        Project coordinators: ".field--name-oe-project-coordinators"
+        Project participants: ".field--name-oe-project-participants"
+        Project result files: ".field--name-oe-project-result-files"
+        Project documents: ".field--name-oe-documents"
+        Project contact: "#edit-oe-project-contact-wrapper"
+        Project contact social media links: ".field--name-oe-social-media"
+        Project locations: "#edit-oe-project-locations-wrapper"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'

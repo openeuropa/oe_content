@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_organisation.oe_address
+    - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
+  module:
+    - address
+id: oe_organisation.oe_stakeholder.oe_address
+field_name: oe_address
+entity_type: oe_organisation
+bundle: oe_stakeholder
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    organization:
+      override: hidden
+  fields: {  }
+field_type: address

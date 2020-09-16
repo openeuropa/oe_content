@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Project installation file.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_project_install() {
+  if (\Drupal::service('config.installer')->isSyncing()) {
+    return;
+  }
+
+  // Add 'EU Programme' vocabulary.
+  \Drupal::service('rdf_skos.skos_graph_configurator')->addGraphs([
+    'eu-programme' => 'http://publications.europa.eu/resource/authority/eu-programme',
+  ]);
+}

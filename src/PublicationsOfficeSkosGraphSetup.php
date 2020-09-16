@@ -49,6 +49,7 @@ class PublicationsOfficeSkosGraphSetup {
       'europa_digital_thesaurus' => 'http://data.europa.eu/uxp',
       'country' => 'http://publications.europa.eu/resource/authority/country',
       'language' => 'http://publications.europa.eu/resource/authority/language',
+      'eu-programme' => 'http://publications.europa.eu/resource/authority/eu-programme',
     ];
   }
 

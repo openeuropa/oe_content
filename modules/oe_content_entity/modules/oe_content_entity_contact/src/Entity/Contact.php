@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_entity_contact\Entity;
 
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityBase;
 
 /**
@@ -69,4 +70,16 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  *  type = {"entity"}
  * )
  */
-class Contact extends CorporateEntityBase implements ContactInterface {}
+class Contact extends CorporateEntityBase implements ContactInterface {
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+    $fields = parent::baseFieldDefinitions($entity_type);
+    $fields['name']->setDescription(t('Name of office, organisation or person the contact details refer to.'));
+
+    return $fields;
+  }
+
+}
