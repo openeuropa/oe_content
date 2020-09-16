@@ -8,8 +8,6 @@ dependencies:
 third_party_settings:
   content_translation:
     enabled: false
-    bundle_settings:
-      untranslatable_fields_hide: '0'
 id: node.oe_project
 target_entity_type_id: node
 target_bundle: oe_project
