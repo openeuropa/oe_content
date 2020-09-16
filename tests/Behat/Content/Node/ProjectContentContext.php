@@ -44,6 +44,7 @@ class ProjectContentContext extends RawDrupalContext {
       'Overall budget' => 'oe_project_budget',
       'Participants' => 'oe_project_participants',
       'Project contact' => 'oe_project_contact',
+      'Project locations' => 'oe_project_locations',
       'Project period start date' => 'oe_project_dates:value',
       'Project period end date' => 'oe_project_dates:end_value',
       'Published' => 'status',
@@ -107,7 +108,6 @@ class ProjectContentContext extends RawDrupalContext {
     // Set default fields.
     $scope->addFields([
       'oe_subject' => 'http://data.europa.eu/uxp/10',
-      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
     ]);
   }
