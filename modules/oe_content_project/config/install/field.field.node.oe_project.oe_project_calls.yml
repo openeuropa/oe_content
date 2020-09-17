@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_project_calls
+    - node.type.oe_project
+  module:
+    - link
+id: node.oe_project.oe_project_calls
+field_name: oe_project_calls
+entity_type: node
+bundle: oe_project
+label: 'Call for proposals'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

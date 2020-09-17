@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_contact.oe_body
+    - oe_content_entity_contact.oe_contact_type.oe_general
+  module:
+    - text
+id: oe_contact.oe_general.oe_body
+field_name: oe_body
+entity_type: oe_contact
+bundle: oe_general
+label: 'Body text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
