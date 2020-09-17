@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_organisation.oe_acronym
+    - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
+id: oe_organisation.oe_stakeholder.oe_acronym
+field_name: oe_acronym
+entity_type: oe_organisation
+bundle: oe_stakeholder
+label: Acronym
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

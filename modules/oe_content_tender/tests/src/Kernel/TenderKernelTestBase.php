@@ -28,7 +28,7 @@ abstract class TenderKernelTestBase extends RdfKernelTestBase {
     'oe_media',
     'oe_content',
     'oe_content_departments_field',
-    'oe_content_publication',
+    'oe_content_documents_field',
     'oe_content_reference_code_field',
     'oe_content_social_media_links_field',
     'oe_content_entity',
@@ -53,12 +53,13 @@ abstract class TenderKernelTestBase extends RdfKernelTestBase {
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
     $this->installEntitySchema('media');
+    module_load_include('install', 'oe_content_documents_field');
+    oe_content_documents_field_install();
     $this->installConfig([
       'field',
       'node',
       'oe_content',
       'oe_content_departments_field',
-      'oe_content_publication',
       'oe_content_reference_code_field',
       'oe_content_social_media_links_field',
       'oe_content_tender',

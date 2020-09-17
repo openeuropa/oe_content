@@ -57,7 +57,7 @@ class CorporateEntityTypeForm extends BundleEntityFormBase {
       '#title' => $this->t('Label'),
       '#maxlength' => 255,
       '#default_value' => $entity_type->label(),
-      '#description' => $this->t("Label for the %content_entity_id entity type (bundle).", ['%entity_bundle_id' => $entity_bundle_id]),
+      '#description' => $this->t("Label for the %entity_bundle_id entity type (bundle).", ['%entity_bundle_id' => $entity_bundle_id]),
       '#required' => TRUE,
     ];
 
@@ -74,7 +74,7 @@ class CorporateEntityTypeForm extends BundleEntityFormBase {
       '#title' => $this->t('Description'),
       '#type' => 'textarea',
       '#default_value' => $entity_type->getDescription(),
-      '#description' => $this->t('This text will be displayed on the "Add %content_entity_id" page.', ['%entity_bundle_id' => $entity_bundle_id]),
+      '#description' => $this->t('This text will be displayed on the "Add %entity_bundle_id" page.', ['%entity_bundle_id' => $entity_bundle_id]),
     ];
 
     return $this->protectBundleIdElement($form);

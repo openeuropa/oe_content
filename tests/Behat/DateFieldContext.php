@@ -74,6 +74,7 @@ class DateFieldContext extends RawDrupalContext {
    * Set the date and time value of a datelist date range widget.
    *
    * When I set "22-02-2019 02:30" as the "Start date" of "My date field"
+   * When I set "22-02-2019" as the "Start date" of "My date field"
    *
    * @param string $field_item
    *   The date field item inside the field component.
@@ -93,14 +94,23 @@ class DateFieldContext extends RawDrupalContext {
       $field_selector = reset($field_selector);
     }
 
-    $date = DrupalDateTime::createFromFormat('d-m-Y H:i', $value, 'UTC');
+    // Make sure that the step supports "Date only" and "Date and time" inputs.
     $date_components = [
       'Day' => 'd',
       'Month' => 'n',
       'Year' => 'Y',
-      'Hour' => 'G',
-      'Minute' => 'i',
     ];
+    try {
+      $date = DrupalDateTime::createFromFormat('d-m-Y', $value, 'UTC');
+    }
+    catch (\InvalidArgumentException $e) {
+      $date_components += [
+        'Hour' => 'G',
+        'Minute' => 'i',
+      ];
+      $date = DrupalDateTime::createFromFormat('d-m-Y H:i', $value, 'UTC');
+    }
+
     foreach ($date_components as $date_component => $date_component_format) {
       // For avoiding usage of minutes with leading zero sign,
       // we use casting to integer.

@@ -22,3 +22,10 @@ function oe_content_publication_post_update_00001_update_field_labels(array &$sa
     $field_config->save();
   }
 }
+
+/**
+ * Enable oe_content_documents_field module.
+ */
+function oe_content_publication_post_update_00002() {
+  \Drupal::service('module_installer')->install(['oe_content_documents_field']);
+}

@@ -311,7 +311,8 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     // Determine if we are adding a new delta value.
     if ($triggering_element) {
       $last_parent = end($triggering_element['#parents']);
-      if ($last_parent === 'add_more') {
+      $field_name = prev($triggering_element['#parents']);
+      if ($last_parent === 'add_more' && $field_name === $this->fieldDefinition->getName()) {
         $parents = $triggering_element['#parents'];
         // Remove the button key.
         array_pop($parents);

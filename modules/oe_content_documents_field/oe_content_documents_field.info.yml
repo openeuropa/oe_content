@@ -1,0 +1,8 @@
+name: OpenEuropa Content Documents Field
+description: Contains the Documents field type and storage.
+package: OpenEuropa
+
+type: module
+core: 8.x
+dependencies:
+  - drupal:media
