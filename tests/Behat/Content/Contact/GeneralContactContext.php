@@ -24,9 +24,15 @@ class GeneralContactContext extends RawDrupalContext {
     // Maps human readable field names to their Behat parsable machine names.
     $mapping = [
       'Name' => 'name',
+      'Body text' => 'oe_body',
+      'Organisation' => 'oe_organisation',
       'Address' => 'oe_address',
       'Email' => 'oe_email',
       'Phone number' => 'oe_phone',
+      'Mobile number' => 'oe_mobile',
+      'Fax number' => 'oe_fax',
+      'Press contact' => 'oe_press_contact_url',
+      'Website' => 'oe_website',
       'Social media links' => 'oe_social_media',
       'Published' => 'status',
     ];
