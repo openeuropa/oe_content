@@ -5,6 +5,7 @@ package: OpenEuropa
 type: module
 core: 8.x
 dependencies:
+  - field_group:field_group
   - oe_content:oe_content
   - oe_content:oe_content_reference_code_field
   - oe_media:oe_media
