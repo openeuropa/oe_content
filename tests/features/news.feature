@@ -7,6 +7,9 @@ Feature: News content creation
   @javascript @cleanup:media
   Scenario: Creation of a News content through the UI.
     Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media, manage corporate content entities" permission
+    And the following images:
+      | name          | file           | alt                            |
+      | Contact image | example_1.jpeg | Contact image alternative text |
     # Create a "Media AV portal photo".
     And I visit "the AV Portal photo creation page"
     And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
@@ -19,12 +22,19 @@ Feature: News content creation
     And I fill in "Body text" with "Body text"
     And I fill in "Location" with "Budapest"
     And I fill in "Reference" with "Reference text"
-    And I fill in "Publication date" with the date "2019-02-21"
     And I fill in "Publication date" with the date "21/02/2019"
     And I fill in "Subject" with "financing"
     And I fill in "Author" with "European Patent Office"
+    # Reference the media photo to the news item.
+    And I fill in "Use existing media" with "Euro with miniature figurines"
+    And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
+    And I fill in "Redirect link" with "http://example.com"
+    And I fill in "Navigation title" with "Navi title"
+    And I fill in "Alternative title" with "Shorter title"
+    And I fill in "URL" with "http://example.com"
+    And I fill in "Link text" with "My link"
     # News contact field.
-    When I press "Add new contact"
+    And I press "Add new contact"
     And I wait for AJAX to finish
     Then I fill in "Name" with "Name of the contact" in the "News contact" region
     And I fill in "Organisation" with "News contact organisation" in the "News contact" region
@@ -66,15 +76,6 @@ Feature: News content creation
     And I should see the text "News contact caption"
     And I should see the link "http://example.com/press_contacts"
 
-    # Reference the media photo to the news item.
-    And I fill in "Use existing media" with "Euro with miniature figurines"
-    And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I fill in "Redirect link" with "http://example.com"
-    And I fill in "Navigation title" with "Navi title"
-    And I fill in "Alternative title" with "Shorter title"
-    And I fill in "URL" with "http://example.com"
-    And I fill in "Link text" with "My link"
-    When I press "Save"
     Then I should see "My News item"
     And I should not see "Navi title"
     And I should not see "Shorter title"
