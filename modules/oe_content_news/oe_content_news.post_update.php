@@ -27,14 +27,13 @@ function oe_content_news_post_update_00001_update_field_labels(array &$sandbox):
 }
 
 /**
- * Add type field.
+ * Create new field News types.
  */
 function oe_content_news_post_update_00002(): void {
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00002');
   $config_manager = \Drupal::service('config.manager');
   $entity_manager = \Drupal::entityTypeManager();
 
-  // Create new field.
   $config_ids = [
     'field.storage.node.oe_news_types',
     'field.field.node.oe_news.oe_news_types',
@@ -46,8 +45,13 @@ function oe_content_news_post_update_00002(): void {
     $entity = $entity_storage->createFromStorageRecord($config_record);
     $entity->save();
   }
+}
 
-  // Update form display.
+/**
+ * Update form display.
+ */
+function oe_content_news_post_update_00003(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00003');
   /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
   $values = $storage->read('core.entity_form_display.node.oe_news.default');
   $display = EntityFormDisplay::load($values['id']);
