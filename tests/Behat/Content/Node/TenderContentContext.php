@@ -4,6 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat\Content\Node;
 
+use Drupal\Component\Datetime\DateTimePlus;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
@@ -27,9 +30,9 @@ class TenderContentContext extends RawDrupalContext {
    * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope $scope
    *   Behat hook scope.
    *
-   * @BeforeParseEntityFields(node,oe_project)
+   * @BeforeParseEntityFields(node,oe_tender)
    */
-  public function alterProjectFields(BeforeParseEntityFieldsScope $scope): void {
+  public function alterCallForTenderFields(BeforeParseEntityFieldsScope $scope): void {
     // Map human readable field names to their Behat parsable machine names.
     $mapping = [
       'Alternative title' => 'oe_content_short_title',
@@ -41,7 +44,7 @@ class TenderContentContext extends RawDrupalContext {
       'Published' => 'status',
       'Reference' => 'oe_reference_code',
       'Documents' => 'oe_documents',
-      'Summary' => 'oe_summary',
+      'Introduction' => 'oe_summary',
       'Teaser' => 'oe_teaser',
       'Title' => 'title',
     ];
@@ -58,6 +61,15 @@ class TenderContentContext extends RawDrupalContext {
         case 'Documents':
           $fields = $this->getReferenceField($mapping[$key], 'media', $value);
           $scope->addFields($fields)->removeField($key);
+          break;
+
+        // Convert dates to UTC so that they can be expressed in site timezone.
+        case 'Deadline date':
+          $date = DrupalDateTime::createFromFormat(DateTimePlus::FORMAT, $value)
+            ->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, [
+              'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
+            ]);
+          $scope->addFields([$mapping[$key] => $date])->removeField($key);
           break;
 
         // Set content published status.
