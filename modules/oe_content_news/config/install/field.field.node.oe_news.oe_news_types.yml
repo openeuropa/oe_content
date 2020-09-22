@@ -1,4 +1,3 @@
-uuid: f3c5857e-e97f-4e89-a5d6-ceec6fa16926
 langcode: en
 status: true
 dependencies:
@@ -15,7 +14,9 @@ label: 'News type'
 description: ''
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_id: 'http://publications.europa.eu/resource/authority/resource-type/ARTICLE_NEWS'
 default_value_callback: ''
 settings:
   handler: 'default:skos_concept'

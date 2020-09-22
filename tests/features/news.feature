@@ -14,7 +14,6 @@ Feature: News content creation
     # Create a "News" content.
     And I visit "the News creation page"
     And I fill in "Page title" with "My News item"
-    And I select "Factsheet" from "News type"
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Body text" with "Body text"
