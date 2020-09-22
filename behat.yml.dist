@@ -13,6 +13,7 @@ default:
         - Drupal\Tests\oe_content\Behat\WysiwygContext
         - Drupal\Tests\oe_media\Behat\AvPortalContext
         - Drupal\Tests\oe_media\Behat\MediaContext
+        - Drupal\Tests\oe_media\Behat\FeatureContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
