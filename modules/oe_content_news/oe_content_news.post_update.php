@@ -64,18 +64,25 @@ function oe_content_news_post_update_00003(): void {
 }
 
 /**
- * Create oe_reference field in the news content type.
+ * Enable new modules from dependency.
  */
 function oe_content_news_post_update_00002(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00002_create_fields');
+  \Drupal::service('module_installer')->install(['field_group', 'oe_content_reference_code_field']);
+}
+
+/**
+ * Create oe_reference field in the news content type.
+ */
+function oe_content_news_post_update_00003(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00003_create_fields');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 
 /**
  * Update news node form display.
  */
-function oe_content_news_post_update_00003(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00003_update_form_display');
+function oe_content_news_post_update_00004(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00004_update_form_display');
 
   // Form display configurations to update.
   $form_display_values = $storage->read('core.entity_form_display.node.oe_news.default');
