@@ -14,11 +14,11 @@ use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 
 /**
- * Context to create call for tender content entities.
+ * Context to create call for tenders content entities.
  *
  * @SuppressWarnings(PHPMD)
  */
-class TenderContentContext extends RawDrupalContext {
+class CallForTendersContentContext extends RawDrupalContext {
 
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
@@ -30,16 +30,16 @@ class TenderContentContext extends RawDrupalContext {
    * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope $scope
    *   Behat hook scope.
    *
-   * @BeforeParseEntityFields(node,oe_tender)
+   * @BeforeParseEntityFields(node,oe_call_tenders)
    */
-  public function alterCallForTenderFields(BeforeParseEntityFieldsScope $scope): void {
+  public function alterCallForTendersFields(BeforeParseEntityFieldsScope $scope): void {
     // Map human readable field names to their Behat parsable machine names.
     $mapping = [
       'Alternative title' => 'oe_content_short_title',
       'Body text' => 'body',
       'Responsible department' => 'oe_departments',
-      'Opening date' => 'oe_tender_opening_date',
-      'Deadline date' => 'oe_tender_deadline',
+      'Opening date' => 'oe_call_tenders_opening_date',
+      'Deadline date' => 'oe_call_tenders_deadline',
       'Publication date' => 'oe_publication_date',
       'Published' => 'status',
       'Reference' => 'oe_reference_code',
