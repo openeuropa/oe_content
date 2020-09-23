@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_eu_organisation
+    - node.type.oe_organisation
+  module:
+    - rdf_skos
+id: node.oe_organisation.oe_eu_organisation
+field_name: oe_eu_organisation
+entity_type: node
+bundle: oe_organisation
+label: 'EU organisation'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:skos_concept'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+    concept_schemes:
+      - 'http://publications.europa.eu/resource/authority/corporate-body'
+    field:
+      field_name: oe_eu_organisation
+      entity_type: node
+      bundle: oe_organisation
+      concept_schemes:
+        - 'http://publications.europa.eu/resource/authority/corporate-body'
+field_type: skos_concept_entity_reference

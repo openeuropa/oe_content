@@ -3,6 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_organisation.body
+    - field.field.node.oe_organisation.oe_eu_organisation
+    - field.field.node.oe_organisation.oe_eu_organisation_type
+    - field.field.node.oe_organisation.oe_non_eu_organisation_type
+    - field.field.node.oe_organisation.oe_organisation_type
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
     - field.field.node.oe_organisation.oe_organisation_logo
@@ -34,6 +38,22 @@ third_party_settings:
         formatter: open
         required_fields: true
       label: 'Alternative titles and teaser'
+    group_organisation_type:
+      children:
+        - oe_organisation_type
+        - oe_eu_organisation
+        - oe_non_eu_organisation_type
+      parent_name: ''
+      weight: 16
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: true
+        required_fields: true
+      label: 'Organisation type'
 id: node.oe_organisation.default
 targetEntityType: node
 bundle: oe_organisation
@@ -55,6 +75,32 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_eu_organisation:
+    weight: 17
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
+  oe_non_eu_organisation_type:
+    weight: 19
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
+  oe_organisation_type:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   langcode:
     type: language_select
     weight: 9
@@ -192,4 +238,5 @@ content:
       match_limit: 10
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  oe_eu_organisation_type: true
