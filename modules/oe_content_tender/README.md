@@ -1,6 +1,6 @@
-# OpenEuropa Call for Tender Content
+# OpenEuropa Call for tenders Content
 
-This module provides the corporate "Call for tender" (oe_tender) content type.
+This module provides the corporate "Call for tenders" (oe_tender) content type.
 
 ## Installation
 

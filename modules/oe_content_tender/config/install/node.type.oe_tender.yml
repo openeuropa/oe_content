@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-name: 'Call for tender'
+name: 'Call for tenders'
 type: oe_tender
 description: ''
 help: ''
