@@ -10,7 +10,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content\EntityWrapperBase;
 
 /**
- * Wrap the tender entity by adding business specific methods.
+ * Wrap the "Call for tenders" content type by adding business specific methods.
  *
  * @method static CallForTendersNodeWrapperInterface getInstance(\Drupal\Core\Entity\ContentEntityInterface $entity)
  */
