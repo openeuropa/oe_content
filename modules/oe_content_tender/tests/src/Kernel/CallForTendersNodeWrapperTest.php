@@ -35,7 +35,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
    */
   public function testUnsupportedEntityBundle(): void {
     $this->expectException(\InvalidArgumentException::class);
-    $this->expectExceptionMessage("The current wrapper only accepts 'node' entities of type 'oe_tender'.");
+    $this->expectExceptionMessage("The current wrapper only accepts 'node' entities of type 'oe_call_tenders'.");
     $node_type = NodeType::create([
       'type' => 'test',
       'name' => 'Test bundle',
@@ -92,7 +92,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
   protected function createWrapper(array $values): EntityWrapperInterface {
     // Create wrapper.
     $node = Node::create($values + [
-      'type' => 'oe_tender',
+      'type' => 'oe_call_tenders',
       'title' => 'My tender',
     ]);
     $node->save();
@@ -132,7 +132,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
       [
         'case' => 'Test upcoming status',
         'values' => [
-          'oe_tender_opening_date' => [
+          'oe_call_tenders_opening_date' => [
             'value' => date('Y') + 1 . '-11-26',
           ],
         ],
@@ -152,10 +152,10 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
       [
         'case' => 'Test open status',
         'values' => [
-          'oe_tender_opening_date' => [
+          'oe_call_tenders_opening_date' => [
             'value' => '2020-09-01',
           ],
-          'oe_tender_deadline' => [
+          'oe_call_tenders_deadline' => [
             'value' => date('Y') + 1 . '-09-01T00:00:00',
           ],
         ],
@@ -175,10 +175,10 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
       [
         'case' => 'Test closed status',
         'values' => [
-          'oe_tender_opening_date' => [
+          'oe_call_tenders_opening_date' => [
             'value' => '2020-09-01',
           ],
-          'oe_tender_deadline' => [
+          'oe_call_tenders_deadline' => [
             'value' => '2020-09-10T00:00:00',
           ],
         ],

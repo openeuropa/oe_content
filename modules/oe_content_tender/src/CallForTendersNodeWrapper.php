@@ -29,21 +29,21 @@ class CallForTendersNodeWrapper extends EntityWrapperBase implements CallForTend
    * {@inheritdoc}
    */
   public function getEntityBundle(): string {
-    return 'oe_tender';
+    return 'oe_call_tenders';
   }
 
   /**
    * {@inheritdoc}
    */
   public function hasOpeningDate(): bool {
-    return !$this->entity->get('oe_tender_opening_date')->isEmpty();
+    return !$this->entity->get('oe_call_tenders_opening_date')->isEmpty();
   }
 
   /**
    * {@inheritdoc}
    */
   public function hasDeadlineDate(): bool {
-    return !$this->entity->get('oe_tender_deadline')->isEmpty();
+    return !$this->entity->get('oe_call_tenders_deadline')->isEmpty();
   }
 
   /**
@@ -53,7 +53,7 @@ class CallForTendersNodeWrapper extends EntityWrapperBase implements CallForTend
     if (!$this->hasOpeningDate()) {
       return NULL;
     }
-    $opening_date = $this->entity->get('oe_tender_opening_date')->date;
+    $opening_date = $this->entity->get('oe_call_tenders_opening_date')->date;
     // Prevent upcoming status when now & opening dates are the same.
     $opening_date->setTime(0, 0, 0);
     return $opening_date;
@@ -66,7 +66,7 @@ class CallForTendersNodeWrapper extends EntityWrapperBase implements CallForTend
     if (!$this->hasDeadlineDate()) {
       return NULL;
     }
-    return $this->entity->get('oe_tender_deadline')->date;
+    return $this->entity->get('oe_call_tenders_deadline')->date;
   }
 
   /**
