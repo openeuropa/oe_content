@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_news.body
+    - field.field.node.oe_news.oe_news_types
     - field.field.node.oe_news.oe_author
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_location
@@ -63,7 +64,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 3
+    weight: 5
     settings:
       rows: 9
       placeholder: ''
@@ -77,9 +78,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_news_types:
+    weight: 1
+    settings:
+      sort: label
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_options_select
+    region: content
   langcode:
     type: language_select
-    weight: 12
+    weight: 4
     region: content
     settings:
       include_locked: true
