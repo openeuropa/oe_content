@@ -26,7 +26,7 @@ default:
               Policy creation: 'node/add/oe_policy'
               Project creation: 'node/add/oe_project'
               Publication creation: 'node/add/oe_publication'
-              Call for tender creation: 'node/add/oe_tender'
+              Call for tenders creation: 'node/add/oe_call_tenders'
               AV Portal photo creation: 'media/add/av_portal_photo'
               document creation: 'media/add/document'
               interface translation: 'admin/config/regional/translate'

@@ -1,18 +1,18 @@
 @api
-Feature: Call for Tender content creation
-  In order to have Calls for tender on the site
+Feature: Call for tenders content creation
+  In order to have Calls for tenders on the site
   As an editor
-  I need to be able to create and see call for tender items
+  I need to be able to create and see call for tenders items
 
   @javascript
-  Scenario: Creation of a Call for Tender content through the UI.
-    Given I am logged in as a user with the "create oe_tender content, access content, edit own oe_tender content, view published skos concept entities" permission
+  Scenario: Creation of a Call for tenders content through the UI.
+    Given I am logged in as a user with the "create oe_call_tenders content, access content, edit own oe_call_tenders content, view published skos concept entities" permission
     And the following document:
       | name          | file       |
       | My Document 1 | sample.pdf |
 
-    When I visit "the Call for tender creation page"
-    And I fill in "Title" with "My Call for Tender 1"
+    When I visit "the Call for tenders creation page"
+    And I fill in "Title" with "My Call for tenders 1"
     And I fill in "Subject" with "EU financing"
     And I fill in "Teaser" with "My Teaser text"
     And I fill in "Introduction" with "My Introduction text"
@@ -25,7 +25,7 @@ Feature: Call for Tender content creation
     And I fill in "Body text" with "My Body text"
     And I fill in "Use existing media" with "My Document 1" in the "Documents" region
     And I press "Save"
-    Then I should see "My Call for Tender 1"
+    Then I should see "My Call for tenders 1"
     And I should not see "My Teaser text"
     And I should not see "My Introduction text"
     And I should see "My Reference text"
