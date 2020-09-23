@@ -13,12 +13,12 @@ use Drupal\oe_content_tender\CallForTendersNodeWrapper;
 use Drupal\oe_content_tender\CallForTendersNodeWrapperInterface;
 
 /**
- * Tests tender wrapper class.
+ * Tests "Call for tenders" wrapper class.
  *
  * @coversDefaultClass \Drupal\oe_content_tender\CallForTendersNodeWrapper
  * @group oe_content_tender
  */
-class TenderNodeWrapperTest extends TenderKernelTestBase {
+class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
 
   /**
    * Test exception thrown if an unsupported entity type is passed.

@@ -7,9 +7,9 @@ namespace Drupal\Tests\oe_content_tender\Kernel;
 use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
 
 /**
- * Base test class for tender content type kernel tests.
+ * Base test class for "Call for tenders" content type kernel tests.
  */
-abstract class TenderKernelTestBase extends RdfKernelTestBase {
+abstract class CallForTendersKernelTestBase extends RdfKernelTestBase {
 
   /**
    * Modules to enable.
