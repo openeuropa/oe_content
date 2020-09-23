@@ -1,0 +1,36 @@
+name: OpenEuropa Call for tenders Content
+description: Contains the EC corporate Call for tenders content type.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - composite_reference:composite_reference
+  - drupal:datetime
+  - drupal:link
+  - drupal:path
+  - field_group:field_group
+  - oe_content:oe_content
+  - oe_content:oe_content_departments_field
+  - oe_content:oe_content_reference_code_field
+  - oe_content:oe_content_documents_field
+  - oe_media:oe_media
+
+config_devel:
+  install:
+    - core.base_field_override.node.oe_call_tenders.title
+    - core.entity_form_display.node.oe_call_tenders.default
+    - core.entity_view_display.node.oe_call_tenders.default
+    - field.field.node.oe_call_tenders.body
+    - field.field.node.oe_call_tenders.oe_call_tenders_deadline
+    - field.field.node.oe_call_tenders.oe_call_tenders_opening_date
+    - field.field.node.oe_call_tenders.oe_departments
+    - field.field.node.oe_call_tenders.oe_documents
+    - field.field.node.oe_call_tenders.oe_publication_date
+    - field.field.node.oe_call_tenders.oe_reference_code
+    - field.field.node.oe_call_tenders.oe_subject
+    - field.field.node.oe_call_tenders.oe_summary
+    - field.field.node.oe_call_tenders.oe_teaser
+    - field.storage.node.oe_call_tenders_deadline
+  optional:
+    - language.content_settings.node.oe_call_tenders
