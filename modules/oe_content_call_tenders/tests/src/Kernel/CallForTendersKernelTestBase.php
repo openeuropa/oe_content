@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_tender\Kernel;
+namespace Drupal\Tests\oe_content_call_tenders\Kernel;
 
 use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
 
@@ -32,7 +32,7 @@ abstract class CallForTendersKernelTestBase extends RdfKernelTestBase {
     'oe_content_reference_code_field',
     'oe_content_social_media_links_field',
     'oe_content_entity',
-    'oe_content_tender',
+    'oe_content_call_tenders',
     'options',
     'rdf_skos',
     'system',
@@ -62,7 +62,7 @@ abstract class CallForTendersKernelTestBase extends RdfKernelTestBase {
       'oe_content_departments_field',
       'oe_content_reference_code_field',
       'oe_content_social_media_links_field',
-      'oe_content_tender',
+      'oe_content_call_tenders',
     ]);
     module_load_include('install', 'oe_content');
     oe_content_install();

@@ -2,21 +2,21 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_tender\Kernel;
+namespace Drupal\Tests\oe_content_call_tenders\Kernel;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\oe_content\EntityWrapperInterface;
-use Drupal\oe_content_tender\CallForTendersNodeWrapper;
-use Drupal\oe_content_tender\CallForTendersNodeWrapperInterface;
+use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
+use Drupal\oe_content_call_tenders\CallForTendersNodeWrapperInterface;
 
 /**
  * Tests "Call for tenders" wrapper class.
  *
- * @coversDefaultClass \Drupal\oe_content_tender\CallForTendersNodeWrapper
- * @group oe_content_tender
+ * @coversDefaultClass \Drupal\oe_content_call_tenders\CallForTendersNodeWrapper
+ * @group oe_content_call_tenders
  */
 class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
 
@@ -86,7 +86,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
    * @param array $values
    *   Entity values.
    *
-   * @return \Drupal\oe_content_tender\CallForTendersNodeWrapper
+   * @return \Drupal\oe_content_call_tenders\CallForTendersNodeWrapper
    *   Wrapper object.
    */
   protected function createWrapper(array $values): EntityWrapperInterface {
