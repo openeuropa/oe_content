@@ -9,13 +9,13 @@ use Drupal\entity_test\Entity\EntityTest;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\oe_content\EntityWrapperInterface;
-use Drupal\oe_content_tender\TenderNodeWrapper;
-use Drupal\oe_content_tender\TenderNodeWrapperInterface;
+use Drupal\oe_content_tender\CallForTendersNodeWrapper;
+use Drupal\oe_content_tender\CallForTendersNodeWrapperInterface;
 
 /**
  * Tests tender wrapper class.
  *
- * @coversDefaultClass \Drupal\oe_content_tender\TenderNodeWrapper
+ * @coversDefaultClass \Drupal\oe_content_tender\CallForTendersNodeWrapper
  * @group oe_content_tender
  */
 class TenderNodeWrapperTest extends TenderKernelTestBase {
@@ -27,7 +27,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
     $this->expectException(\InvalidArgumentException::class);
     $this->expectExceptionMessage("The current wrapper only accepts 'node' entities.");
     $entity = EntityTest::create();
-    TenderNodeWrapper::getInstance($entity);
+    CallForTendersNodeWrapper::getInstance($entity);
   }
 
   /**
@@ -44,7 +44,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
     $entity = Node::create([
       'type' => 'test',
     ]);
-    TenderNodeWrapper::getInstance($entity);
+    CallForTendersNodeWrapper::getInstance($entity);
   }
 
   /**
@@ -86,7 +86,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
    * @param array $values
    *   Entity values.
    *
-   * @return \Drupal\oe_content_tender\TenderNodeWrapper
+   * @return \Drupal\oe_content_tender\CallForTendersNodeWrapper
    *   Wrapper object.
    */
   protected function createWrapper(array $values): EntityWrapperInterface {
@@ -96,7 +96,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
       'title' => 'My tender',
     ]);
     $node->save();
-    return TenderNodeWrapper::getInstance($node);
+    return CallForTendersNodeWrapper::getInstance($node);
   }
 
   /**
@@ -121,7 +121,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
           'isUpcoming' => FALSE,
           'isOpen' => FALSE,
           'isClosed' => FALSE,
-          'getStatus' => TenderNodeWrapperInterface::STATUS_NOT_AVAILABLE,
+          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_NOT_AVAILABLE,
           'getStatusLabel' => 'N/A',
           'hasOpeningDate' => FALSE,
           'hasDeadlineDate' => FALSE,
@@ -141,7 +141,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
           'isUpcoming' => TRUE,
           'isOpen' => FALSE,
           'isClosed' => FALSE,
-          'getStatus' => TenderNodeWrapperInterface::STATUS_UPCOMING,
+          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_UPCOMING,
           'getStatusLabel' => 'Upcoming',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => FALSE,
@@ -164,7 +164,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
           'isUpcoming' => FALSE,
           'isOpen' => TRUE,
           'isClosed' => FALSE,
-          'getStatus' => TenderNodeWrapperInterface::STATUS_OPEN,
+          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_OPEN,
           'getStatusLabel' => 'Open',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => TRUE,
@@ -187,7 +187,7 @@ class TenderNodeWrapperTest extends TenderKernelTestBase {
           'isUpcoming' => FALSE,
           'isOpen' => FALSE,
           'isClosed' => TRUE,
-          'getStatus' => TenderNodeWrapperInterface::STATUS_CLOSED,
+          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_CLOSED,
           'getStatusLabel' => 'Closed',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => TRUE,

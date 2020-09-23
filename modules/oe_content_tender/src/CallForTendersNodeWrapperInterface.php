@@ -10,7 +10,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 /**
  * Interface for the tender entity wrapper.
  */
-interface TenderNodeWrapperInterface {
+interface CallForTendersNodeWrapperInterface {
 
   /**
    * Tender isn't available. Is used when opening date isn't defined.

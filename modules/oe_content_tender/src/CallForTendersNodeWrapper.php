@@ -12,9 +12,9 @@ use Drupal\oe_content\EntityWrapperBase;
 /**
  * Wrap the tender entity by adding business specific methods.
  *
- * @method static TenderNodeWrapperInterface getInstance(\Drupal\Core\Entity\ContentEntityInterface $entity)
+ * @method static CallForTendersNodeWrapperInterface getInstance(\Drupal\Core\Entity\ContentEntityInterface $entity)
  */
-class TenderNodeWrapper extends EntityWrapperBase implements TenderNodeWrapperInterface {
+class CallForTendersNodeWrapper extends EntityWrapperBase implements CallForTendersNodeWrapperInterface {
 
   use StringTranslationTrait;
 
