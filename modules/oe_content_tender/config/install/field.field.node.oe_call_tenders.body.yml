@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.oe_tender
+    - node.type.oe_call_tenders
   module:
     - text
-id: node.oe_tender.body
+id: node.oe_call_tenders.body
 field_name: body
 entity_type: node
-bundle: oe_tender
+bundle: oe_call_tenders
 label: 'Body text'
 description: 'Your page main contents'
 required: false

@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.oe_tender.body
-    - field.field.node.oe_tender.oe_departments
-    - field.field.node.oe_tender.oe_documents
-    - field.field.node.oe_tender.oe_publication_date
-    - field.field.node.oe_tender.oe_reference_code
-    - field.field.node.oe_tender.oe_subject
-    - field.field.node.oe_tender.oe_summary
-    - field.field.node.oe_tender.oe_teaser
-    - field.field.node.oe_tender.oe_tender_deadline
-    - field.field.node.oe_tender.oe_tender_opening_date
-    - node.type.oe_tender
+    - field.field.node.oe_call_tenders.body
+    - field.field.node.oe_call_tenders.oe_departments
+    - field.field.node.oe_call_tenders.oe_documents
+    - field.field.node.oe_call_tenders.oe_publication_date
+    - field.field.node.oe_call_tenders.oe_reference_code
+    - field.field.node.oe_call_tenders.oe_subject
+    - field.field.node.oe_call_tenders.oe_summary
+    - field.field.node.oe_call_tenders.oe_teaser
+    - field.field.node.oe_call_tenders.oe_call_tenders_deadline
+    - field.field.node.oe_call_tenders.oe_call_tenders_opening_date
+    - node.type.oe_call_tenders
   module:
     - datetime
     - field_group
@@ -38,9 +38,9 @@ third_party_settings:
         formatter: open
         required_fields: true
       label: 'Alternative titles and teaser'
-id: node.oe_tender.default
+id: node.oe_call_tenders.default
 targetEntityType: node
-bundle: oe_tender
+bundle: oe_call_tenders
 mode: default
 content:
   body:
@@ -163,7 +163,7 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  oe_tender_deadline:
+  oe_call_tenders_deadline:
     weight: 5
     settings:
       date_order: DMY
@@ -172,7 +172,7 @@ content:
     third_party_settings: {  }
     type: datetime_datelist
     region: content
-  oe_tender_opening_date:
+  oe_call_tenders_opening_date:
     weight: 4
     settings:
       date_order: DMY

@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_tender_opening_date
-    - node.type.oe_tender
+    - field.storage.node.oe_call_tenders_opening_date
+    - node.type.oe_call_tenders
   module:
     - datetime
-id: node.oe_tender.oe_tender_opening_date
-field_name: oe_tender_opening_date
+id: node.oe_call_tenders.oe_call_tenders_opening_date
+field_name: oe_call_tenders_opening_date
 entity_type: node
-bundle: oe_tender
+bundle: oe_call_tenders
 label: 'Opening date'
 description: 'When does/did the call open for applications? E.g.: 20/02/2020'
 required: false

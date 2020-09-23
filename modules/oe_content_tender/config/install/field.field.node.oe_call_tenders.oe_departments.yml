@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.oe_departments
-    - node.type.oe_tender
+    - node.type.oe_call_tenders
   module:
     - rdf_skos
-id: node.oe_tender.oe_departments
+id: node.oe_call_tenders.oe_departments
 field_name: oe_departments
 entity_type: node
-bundle: oe_tender
+bundle: oe_call_tenders
 label: 'Responsible department'
 description: 'The authoring department.'
 required: false
@@ -28,7 +28,7 @@ settings:
     field:
       field_name: oe_departments
       entity_type: node
-      bundle: oe_tender
+      bundle: oe_call_tenders
       concept_schemes:
         - 'http://publications.europa.eu/resource/authority/corporate-body'
 field_type: skos_concept_entity_reference
