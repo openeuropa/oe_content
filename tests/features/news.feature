@@ -4,9 +4,12 @@ Feature: News content creation
   As an editor
   I need to be able to create and see news items
 
-  @cleanup:media
+  @javascript @cleanup:media
   Scenario: Creation of a News content through the UI.
-    Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media" permission
+    Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media, manage corporate content entities" permission
+    And the following images:
+      | name          | file           | alt                            |
+      | Contact image | example_1.jpeg | Contact image alternative text |
     # Create a "Media AV portal photo".
     And I visit "the AV Portal photo creation page"
     And I fill in "Media AV Portal Photo" with "https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15"
@@ -29,7 +32,7 @@ Feature: News content creation
     And I fill in "Body text" with "Body text"
     And I fill in "Location" with "Budapest"
     And I fill in "Reference" with "Reference text"
-    And I fill in "Publication date" with the date "2019-02-21"
+    And I fill in "Publication date" with the date "21/02/2019"
     And I fill in "Subject" with "financing"
     And I fill in "Author" with "European Patent Office"
     # Reference the media photo to the news item.
@@ -40,7 +43,49 @@ Feature: News content creation
     And I fill in "Alternative title" with "Shorter title"
     And I fill in "URL" with "http://example.com"
     And I fill in "Link text" with "My link"
+    # News contact field.
+    And I press "Add new contact"
+    And I wait for AJAX to finish
+    Then I fill in "Name" with "Name of the contact" in the "News contact" region
+    And I fill in "Organisation" with "News contact organisation" in the "News contact" region
+    And I fill in "Body text" with "News contact body text" in the "News contact" region
+    And I fill in "Website" with "http://www.example.com/news_contact" in the "News contact" region
+    And I fill in "Email" with "test@example.com" in the "News contact" region
+    And I fill in "Phone number" with "0488779033" in the "News contact" region
+    And I fill in "Mobile number" with "0488779034" in the "News contact" region
+    And I fill in "Fax number" with "0488779035" in the "News contact" region
+    And I select "Hungary" from "Country" in the "News contact" region
+    And I wait for AJAX to finish
+    And I fill in "Street address" with "Back street 3" in the "News contact" region
+    And I fill in "Postal code" with "9000" in the "News contact" region
+    And I fill in "City" with "Budapest" in the "News contact" region
+    And I fill in "Office" with "News contact office" in the "News contact" region
+    And I fill in "URL" with "mailto:example@email.com" in the "News contact social media links" region
+    And I fill in "Link text" with "News contact social link email" in the "News contact social media links" region
+    And I fill in "Media item" with "Contact image" in the "News contact" region
+    And I fill in "Caption" with "News contact caption" in the "News contact" region
+    And I fill in "Press contacts" with "http://example.com/press_contacts" in the "News contact" region
+    And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     When I press "Save"
+    # News contact values.
+    Then I should see the text "Name of the contact"
+    And I should see the text "News contact body text"
+    And I should see the text "News contact organisation"
+    And I should see the link "http://www.example.com/news_contact"
+    And I should see the text "test@example.com"
+    And I should see the text "0488779033"
+    And I should see the text "0488779034"
+    And I should see the text "0488779035"
+    And I should see the text "Back street 3"
+    And I should see the text "Budapest"
+    And I should see the text "9000"
+    And I should see the text "Hungary"
+    And I should see the link "News contact social link email"
+    And I should see the text "News contact office"
+    And I should see the link "Contact image"
+    And I should see the text "News contact caption"
+    And I should see the link "http://example.com/press_contacts"
+
     Then I should see "My News item"
     And I should not see "Navi title"
     And I should not see "Shorter title"
@@ -71,4 +116,3 @@ Feature: News content creation
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."
-
