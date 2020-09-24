@@ -144,8 +144,8 @@ class DateFieldContext extends RawDrupalContext {
       'Month' => 'm',
       'Day' => 'd',
     ];
-    if (strpos($format, 'G') !== FALSE) {
-      $date_components['Hour'] = 'G';
+    if (strpos($format, 'H') !== FALSE) {
+      $date_components['Hour'] = 'H';
     }
     if (strpos($format, 'i') !== FALSE) {
       $date_components['Minute'] = 'i';
