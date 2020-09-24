@@ -3,10 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_organisation.body
-    - field.field.node.oe_organisation.oe_eu_organisation
-    - field.field.node.oe_organisation.oe_eu_organisation_type
-    - field.field.node.oe_organisation.oe_non_eu_organisation_type
-    - field.field.node.oe_organisation.oe_organisation_type
+    - field.field.node.oe_organisation.oe_organisation_eu_org
+    - field.field.node.oe_organisation.oe_organisation_eu_org_type
+    - field.field.node.oe_organisation.oe_organisation_non_eu_org_type
+    - field.field.node.oe_organisation.oe_organisation_org_type
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
     - field.field.node.oe_organisation.oe_organisation_logo
@@ -74,10 +74,10 @@ content:
     type: text_default
     region: content
 hidden:
-  oe_eu_organisation: true
-  oe_eu_organisation_type: true
-  oe_non_eu_organisation_type: true
-  oe_organisation_type: true
+  oe_organisation_eu_org: true
+  oe_organisation_eu_org_type: true
+  oe_organisation_non_eu_org_type: true
+  oe_organisation_org_type: true
   langcode: true
   oe_content_content_owner: true
   oe_content_legacy_link: true

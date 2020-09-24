@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - rdf_skos
-id: node.oe_non_eu_organisation_type
-field_name: oe_non_eu_organisation_type
+id: node.oe_organisation_eu_org_type
+field_name: oe_organisation_eu_org_type
 entity_type: node
 type: skos_concept_entity_reference
 settings:

@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_eu_organisation
+    - field.storage.node.oe_organisation_eu_org
     - node.type.oe_organisation
   module:
     - rdf_skos
-id: node.oe_organisation.oe_eu_organisation
-field_name: oe_eu_organisation
+id: node.oe_organisation.oe_organisation_eu_org
+field_name: oe_organisation_eu_org
 entity_type: node
 bundle: oe_organisation
 label: 'EU organisation'
@@ -26,7 +26,7 @@ settings:
     concept_schemes:
       - 'http://publications.europa.eu/resource/authority/corporate-body'
     field:
-      field_name: oe_eu_organisation
+      field_name: oe_organisation_eu_org
       entity_type: node
       bundle: oe_organisation
       concept_schemes:
