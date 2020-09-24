@@ -13,6 +13,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\rdf_skos\Entity\Concept;
+use Drupal\rdf_skos\Entity\ConceptInterface;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter for the node form.
@@ -72,7 +73,7 @@ function oe_content_organisation_node_validate(array $form, FormStateInterface $
   // organisation. This happens in the entity builder.
   // @see oe_content_organisation_node_builder()
   $organisation = Concept::load($eu_organisation);
-  if (!$organisation->get('oe_content_organisation_corporate_body_classification')->entity instanceof Concept) {
+  if ($organisation && !$organisation->get('oe_content_organisation_corporate_body_classification')->entity instanceof Concept) {
     $form_state->setErrorByName('oe_organisation_eu_org', t('The selected EU organisation does not have a type.'));
   }
 }
@@ -105,7 +106,7 @@ function oe_content_organisation_node_builder(string $entity_type_id, EntityInte
   // If we are working with an EU organisation, we need to derive the type.
   /** @var \Drupal\rdf_skos\Entity\ConceptInterface $organisation */
   $organisation = $entity->get('oe_organisation_eu_org')->entity;
-  if (!$organisation instanceof \Drupal\rdf_skos\Entity\ConceptInterface) {
+  if (!$organisation instanceof ConceptInterface) {
     return;
   }
   $classification = $organisation->get('oe_content_organisation_corporate_body_classification')->target_id;

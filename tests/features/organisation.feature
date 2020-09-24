@@ -19,6 +19,8 @@ Feature: Organisation content creation
     And I fill in "Acronym" with "Organisation Acronym"
     And I fill in "Teaser" with "Organisation teaser text"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
+    And I select "EU organisation" from "Organisation type"
+    And I fill in "EU organisation" with "Audit Board of the European Communities"
 
     # Organisation contact field group.
     When I press "Add new contact"
