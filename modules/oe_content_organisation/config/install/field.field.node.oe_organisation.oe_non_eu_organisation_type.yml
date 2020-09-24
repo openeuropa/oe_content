@@ -24,11 +24,11 @@ settings:
       field: _none
     auto_create: false
     concept_schemes:
-      - 'http://data.europa.eu/uxp/det'
+      - 'http://data.europa.eu/uxp/non-EC_bodies'
     field:
       field_name: oe_non_eu_organisation_type
       entity_type: node
       bundle: oe_organisation
       concept_schemes:
-        - 'http://data.europa.eu/uxp/det'
+        - 'http://data.europa.eu/uxp/non-EC_bodies'
 field_type: skos_concept_entity_reference
