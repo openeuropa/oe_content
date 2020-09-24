@@ -26,6 +26,7 @@ default:
               Policy creation: 'node/add/oe_policy'
               Project creation: 'node/add/oe_project'
               Publication creation: 'node/add/oe_publication'
+              Call for tenders creation: 'node/add/oe_call_tenders'
               AV Portal photo creation: 'media/add/av_portal_photo'
               document creation: 'media/add/document'
               interface translation: 'admin/config/regional/translate'
@@ -73,6 +74,7 @@ default:
         Project contact: "#edit-oe-project-contact-wrapper"
         Project contact social media links: ".field--name-oe-social-media"
         Project locations: "#edit-oe-project-locations-wrapper"
+        Documents: "#edit-oe-documents"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'

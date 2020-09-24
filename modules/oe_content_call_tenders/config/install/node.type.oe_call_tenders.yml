@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Call for tenders'
+type: oe_call_tenders
+description: ''
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false
