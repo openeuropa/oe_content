@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
 /**
  * Update body and summary labels.
@@ -55,5 +56,46 @@ function oe_content_news_post_update_00004(): void {
       ->getStorage($form_display->getEntityTypeId())
       ->updateFromStorageRecord($form_display, $form_display_values);
     $updated_form_display->save();
+  }
+}
+
+/**
+ * Create oe_news_contacts field in the news content type.
+ */
+function oe_content_news_post_update_00005(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00005_create_fields');
+  \Drupal::service('config.installer')->installOptionalConfig($storage);
+}
+
+/**
+ * Update news node form display.
+ */
+function oe_content_news_post_update_00006(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00006_update_form_display');
+
+  // Form display configurations to update.
+  $form_display_values = $storage->read('core.entity_form_display.node.oe_news.default');
+  $form_display = EntityFormDisplay::load($form_display_values['id']);
+  if ($form_display) {
+    $updated_form_display = \Drupal::entityTypeManager()
+      ->getStorage($form_display->getEntityTypeId())
+      ->updateFromStorageRecord($form_display, $form_display_values);
+    $updated_form_display->save();
+  }
+}
+
+/**
+ * Update news node default display.
+ */
+function oe_content_news_post_update_00007(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00007_update_view_display');
+
+  $display = EntityViewDisplay::load('node.oe_news.default');
+  $display_values = $storage->read('core.entity_view_display.node.oe_news.default');
+  if ($display) {
+    $updated_display = \Drupal::entityTypeManager()
+      ->getStorage($display->getEntityTypeId())
+      ->updateFromStorageRecord($display, $display_values);
+    $updated_display->save();
   }
 }
