@@ -82,7 +82,7 @@ function oe_content_organisation_node_validate(array $form, FormStateInterface $
  */
 function oe_content_organisation_node_presave(EntityInterface $entity) {
   if ($entity->bundle() !== 'oe_organisation') {
-   return;
+    return;
   }
 
   $organisation_type = $entity->get('oe_organisation_org_type')->value;

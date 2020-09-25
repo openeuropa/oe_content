@@ -83,7 +83,6 @@ class OrganisationFieldTest extends RdfKernelTestBase {
     $this->assertEquals('Directorate-General for Informatics', $node->get('oe_organisation_eu_org')->entity->label());
     $this->assertEquals('Directorate-general', $node->get('oe_organisation_eu_org_type')->entity->label());
 
-
     $node = Node::create([
       'oe_organisation_org_type' => 'non_eu',
     ] + $values);
