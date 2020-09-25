@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_news.body
-    - field.field.node.oe_news.field_oe_news_contacts
+    - field.field.node.oe_news.oe_news_contacts
     - field.field.node.oe_news.oe_author
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_location
@@ -31,7 +31,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_oe_news_contacts:
+  oe_news_contacts:
     type: entity_reference_revisions_entity_view
     weight: 1
     region: content

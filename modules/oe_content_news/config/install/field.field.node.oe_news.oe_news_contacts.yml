@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_oe_news_contacts
+    - field.storage.node.oe_news_contacts
     - node.type.oe_news
     - oe_content_entity_contact.oe_contact_type.oe_general
     - oe_content_entity_contact.oe_contact_type.oe_press
@@ -12,8 +12,8 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: true
-id: node.oe_news.field_oe_news_contacts
-field_name: field_oe_news_contacts
+id: node.oe_news.oe_news_contacts
+field_name: oe_news_contacts
 entity_type: node
 bundle: oe_news
 label: Contacts
@@ -27,7 +27,6 @@ settings:
   handler_settings:
     target_bundles:
       oe_general: oe_general
-      oe_press: oe_press
     sort:
       field: _none
     auto_create: false

@@ -5,8 +5,8 @@ dependencies:
     - entity_reference_revisions
     - node
     - oe_content_entity_contact
-id: node.field_oe_news_contacts
-field_name: field_oe_news_contacts
+id: node.oe_news_contacts
+field_name: oe_news_contacts
 entity_type: node
 type: entity_reference_revisions
 settings:
