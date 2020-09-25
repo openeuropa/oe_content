@@ -1,0 +1,14 @@
+name: OpenEuropa Redirect Link Field
+description: Contains Redirect Link storage field.
+package: OpenEuropa
+
+type: module
+core: 8.x
+
+dependencies:
+  - drupal:node
+  - drupal:link
+
+config_devel:
+  install:
+    - field.storage.node.oe_redirect_link
