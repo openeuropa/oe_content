@@ -19,8 +19,12 @@ Feature: Organisation content creation
     And I fill in "Acronym" with "Organisation Acronym"
     And I fill in "Teaser" with "Organisation teaser text"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I select "EU organisation" from "Organisation type"
-    And I fill in "EU organisation" with "Audit Board of the European Communities"
+    And I should not see "Non-EU organisation type"
+    When I select "Non-EU organisation" from "Organisation type"
+    Then I should see "Non-EU organisation type"
+    And I fill in "Non-EU organisation type" with "foundation"
+    When I select "EU organisation" from "Organisation type"
+    Then I fill in "EU organisation" with "Audit Board of the European Communities"
 
     # Organisation contact field group.
     When I press "Add new contact"
@@ -53,3 +57,7 @@ Feature: Organisation content creation
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
     And I should see the link "Email"
+
+    When I click "Edit"
+    And I select "Non-EU organisation" from "Organisation type"
+    Then I should not see "foundation"
