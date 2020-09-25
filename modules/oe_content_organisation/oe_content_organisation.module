@@ -43,7 +43,6 @@ function oe_content_organisation_form_node_form_alter(array &$form, FormStateInt
     ]
   ];
 
-  $form['#entity_builders'][] = 'oe_content_organisation_node_builder';
   $form['#validate'][] = 'oe_content_organisation_node_validate';
 }
 
@@ -70,8 +69,8 @@ function oe_content_organisation_node_validate(array $form, FormStateInterface $
   }
 
   // Check that an EU organisation type can be resolved from the chosen
-  // organisation. This happens in the entity builder.
-  // @see oe_content_organisation_node_builder()
+  // organisation. This happens in the entity presave.
+  // @see oe_content_organisation_node_presave()
   $organisation = Concept::load($eu_organisation);
   if ($organisation && !$organisation->get('oe_content_organisation_corporate_body_classification')->entity instanceof Concept) {
     $form_state->setErrorByName('oe_organisation_eu_org', t('The selected EU organisation does not have a type.'));
@@ -79,18 +78,13 @@ function oe_content_organisation_node_validate(array $form, FormStateInterface $
 }
 
 /**
- * Entity builder for the Organisation node form.
- *
- * @param string $entity_type_id
- *   The entity type ID.
- * @param \Drupal\Core\Entity\EntityInterface $entity
- *   The node.
- * @param array $form
- *   The form.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The form state.
+ * Implements hook_ENTITY_TYPE_presave().
  */
-function oe_content_organisation_node_builder(string $entity_type_id, EntityInterface $entity, array $form, FormStateInterface $form_state): void {
+function oe_content_organisation_node_presave(EntityInterface $entity) {
+  if ($entity->bundle() !== 'oe_organisation') {
+   return;
+  }
+
   $organisation_type = $entity->get('oe_organisation_org_type')->value;
   // Clear the respective organisation-related fields depending on the
   // chosen organisation type.

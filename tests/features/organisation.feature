@@ -57,7 +57,3 @@ Feature: Organisation content creation
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
     And I should see the link "Email"
-
-    When I click "Edit"
-    And I select "Non-EU organisation" from "Organisation type"
-    Then I should not see "foundation"
