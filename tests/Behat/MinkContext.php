@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat;
 
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeStepScope;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\MinkExtension\Context\RawMinkContext;
@@ -16,19 +15,6 @@ use Drupal\DrupalExtension\TagTrait;
 class MinkContext extends RawMinkContext {
 
   use TagTrait;
-
-  /**
-   * Gathers some other contexts.
-   *
-   * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
-   *   The before scenario scope.
-   *
-   * @BeforeScenario
-   */
-  public function gatherContexts(BeforeScenarioScope $scope): void {
-    $environment = $scope->getEnvironment();
-    $this->minkContext = $environment->getContext('Drupal\DrupalExtension\Context\MinkContext');
-  }
 
   /**
    * Disables browser validation for required fields.
