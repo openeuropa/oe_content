@@ -1,0 +1,5 @@
+services:
+  oe_content_organisation.skos_predicate_mapping_subscriber:
+    class: Drupal\oe_content_organisation\EventSubscriber\SkosPredicateMappingSubscriber
+    tags:
+      - { name: event_subscriber }

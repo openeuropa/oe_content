@@ -1,0 +1,127 @@
+<?php
+
+/**
+ * @file
+ * OE Content Organisation module file.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\rdf_skos\Entity\Concept;
+use Drupal\rdf_skos\Entity\ConceptInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter for the node form.
+ */
+function oe_content_organisation_form_node_form_alter(array &$form, FormStateInterface $form_state) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+  if ($node->bundle() !== 'oe_organisation') {
+    return;
+  }
+
+  $form['oe_organisation_non_eu_org_type']['widget'][0]['target_id']['#states'] = [
+    'visible' => [
+      'select[name="oe_organisation_org_type"]' => ['value' => 'non_eu']
+    ],
+    'required' => [
+      'select[name="oe_organisation_org_type"]' => ['value' => 'non_eu']
+    ]
+  ];
+
+  $form['oe_organisation_eu_org']['widget'][0]['target_id']['#states'] = [
+    'visible' => [
+      'select[name="oe_organisation_org_type"]' => ['value' => 'eu']
+    ],
+    'required' => [
+      'select[name="oe_organisation_org_type"]' => ['value' => 'eu']
+    ]
+  ];
+
+  $form['#validate'][] = 'oe_content_organisation_node_validate';
+}
+
+/**
+ * Custom validator for the Organisation node form.
+ *
+ * @param array $form
+ *   The form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function oe_content_organisation_node_validate(array $form, FormStateInterface $form_state): void{
+  // Ensure that organisation values are correctly selected.
+  $organisation_type = $form_state->getValue(['oe_organisation_org_type', 0, 'value']);
+  $non_eu_organisation_type = $form_state->getValue(['oe_organisation_non_eu_org_type', 0, 'target_id']);
+  $eu_organisation = $form_state->getValue(['oe_organisation_eu_org', 0, 'target_id']);
+  if ($organisation_type === 'eu' && !$eu_organisation) {
+    $form_state->setErrorByName('oe_organisation_eu_org', t('Please select an EU organisation.'));
+    return;
+  }
+  if ($organisation_type === 'non_eu' && !$non_eu_organisation_type) {
+    $form_state->setErrorByName('oe_organisation_non_eu_org_type', t('Please select a non-EU organisation type.'));
+    return;
+  }
+
+  // Check that an EU organisation type can be resolved from the chosen
+  // organisation. This happens in the entity presave.
+  // @see oe_content_organisation_node_presave()
+  $organisation = Concept::load($eu_organisation);
+  if ($organisation && !$organisation->get('oe_content_organisation_corporate_body_classification')->entity instanceof Concept) {
+    $form_state->setErrorByName('oe_organisation_eu_org', t('The selected EU organisation does not have a type.'));
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function oe_content_organisation_node_presave(EntityInterface $entity) {
+  if ($entity->bundle() !== 'oe_organisation') {
+    return;
+  }
+
+  $organisation_type = $entity->get('oe_organisation_org_type')->value;
+  // Clear the respective organisation-related fields depending on the
+  // chosen organisation type.
+  if ($organisation_type === 'eu') {
+    $entity->set('oe_organisation_non_eu_org_type', NULL);
+  }
+  if ($organisation_type === 'non_eu') {
+    $entity->set('oe_organisation_eu_org_type', NULL);
+    $entity->set('oe_organisation_eu_org', NULL);
+    return;
+  }
+
+  // If we are working with an EU organisation, we need to derive the type.
+  /** @var \Drupal\rdf_skos\Entity\ConceptInterface $organisation */
+  $organisation = $entity->get('oe_organisation_eu_org')->entity;
+  if (!$organisation instanceof ConceptInterface) {
+    return;
+  }
+  $classification = $organisation->get('oe_content_organisation_corporate_body_classification')->target_id;
+  $entity->set('oe_organisation_eu_org_type', $classification);
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function oe_content_organisation_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() !== 'skos_concept') {
+    return [];
+  }
+
+  $fields = [];
+
+  $fields['oe_content_organisation_corporate_body_classification'] = BaseFieldDefinition::create('entity_reference')
+    ->setLabel(t('Corporate bodies classification'))
+    ->setDescription(t('The corporate body classification.'))
+    ->setSetting('target_type', 'skos_concept')
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
+
+  return $fields;
+}

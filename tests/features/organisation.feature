@@ -4,7 +4,7 @@ Feature: Organisation content creation
   As an editor
   I need to be able to create and see organisation items
 
-  @javascript
+  @javascript @disable-browser-required-field-validation
   Scenario: Creation of a Organisation content through the UI.
     Given I am logged in as a user with the "create oe_organisation content, access content, edit own oe_organisation content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
@@ -19,6 +19,17 @@ Feature: Organisation content creation
     And I fill in "Acronym" with "Organisation Acronym"
     And I fill in "Teaser" with "Organisation teaser text"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
+    And I should not see "Non-EU organisation type"
+    When I select "Non-EU organisation" from "Organisation type"
+    Then I should see "Non-EU organisation type"
+    When I select "EU organisation" from "Organisation type"
+    And I press "Save"
+    Then I should see the error message "Please select an EU organisation."
+    When I select "Non-EU organisation" from "Organisation type"
+    And I press "Save"
+    Then I should see the error message "Please select a non-EU organisation type."
+    When I select "EU organisation" from "Organisation type"
+    Then I fill in "EU organisation" with "Audit Board of the European Communities"
 
     # Organisation contact field group.
     When I press "Add new contact"
@@ -51,3 +62,17 @@ Feature: Organisation content creation
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
     And I should see the link "Email"
+
+    # Assert organisation type for EU organisations.
+    And I should see "Organisation type EU organisation"
+    And I should see "EU organisation Audit Board of the European Communities"
+    And I should see "EU organisation type European Union corporate body"
+
+    # Assert organisation type for non-EU organisations.
+    When I click "Edit"
+    And I select "Non-EU organisation" from "Organisation type"
+    And I fill in "Non-EU organisation type" with "non-governmental organisation"
+
+    When I press "Save"
+    Then I should see "Organisation type non-EU organisation"
+    And I should see "Non-EU organisation type non-governmental organisation"

@@ -11,6 +11,7 @@ default:
         - Drupal\Tests\oe_content\Behat\DateFieldContext
         - Drupal\Tests\oe_content\Behat\CleanupContext
         - Drupal\Tests\oe_content\Behat\WysiwygContext
+        - Drupal\Tests\oe_content\Behat\MinkContext
         - Drupal\Tests\oe_media\Behat\AvPortalContext
         - Drupal\Tests\oe_media\Behat\MediaContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext

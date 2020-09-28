@@ -5,12 +5,18 @@ dependencies:
     - field.field.node.oe_organisation.body
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
+    - field.field.node.oe_organisation.oe_organisation_eu_org
+    - field.field.node.oe_organisation.oe_organisation_eu_org_type
     - field.field.node.oe_organisation.oe_organisation_logo
+    - field.field.node.oe_organisation.oe_organisation_non_eu_org_type
+    - field.field.node.oe_organisation.oe_organisation_org_type
     - field.field.node.oe_organisation.oe_summary
     - field.field.node.oe_organisation.oe_teaser
     - node.type.oe_organisation
   module:
     - entity_reference_revisions
+    - options
+    - rdf_skos
     - text
     - user
 id: node.oe_organisation.default
@@ -21,17 +27,17 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 101
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     region: content
   links:
-    weight: 100
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
   oe_organisation_acronym:
-    weight: 105
+    weight: 9
     label: above
     settings:
       link_to_entity: false
@@ -39,7 +45,7 @@ content:
     type: string
     region: content
   oe_organisation_contact:
-    weight: 106
+    weight: 10
     label: above
     settings:
       view_mode: default
@@ -47,23 +53,54 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: content
+  oe_organisation_eu_org:
+    type: skos_concept_entity_reference_label
+    weight: 2
+    region: content
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+  oe_organisation_eu_org_type:
+    type: skos_concept_entity_reference_label
+    weight: 3
+    region: content
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
   oe_organisation_logo:
     type: entity_reference_label
-    weight: 104
+    weight: 8
     label: above
     settings:
       link: false
     third_party_settings: {  }
     region: content
+  oe_organisation_non_eu_org_type:
+    type: skos_concept_entity_reference_label
+    weight: 4
+    region: content
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+  oe_organisation_org_type:
+    type: list_default
+    weight: 1
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   oe_summary:
-    weight: 102
+    weight: 6
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   oe_teaser:
-    weight: 103
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
