@@ -62,3 +62,17 @@ Feature: Organisation content creation
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
     And I should see the link "Email"
+
+    # Assert organisation type for EU organisations.
+    And I should see "Organisation type EU organisation"
+    And I should see "EU organisation Audit Board of the European Communities"
+    And I should see "EU organisation type European Union corporate body"
+
+    # Assert organisation type for non-EU organisations.
+    When I click "Edit"
+    And I select "Non-EU organisation" from "Organisation type"
+    And I fill in "Non-EU organisation type" with "non-governmental organisation"
+
+    When I press "Save"
+    Then I should see "Organisation type non-EU organisation"
+    And I should see "Non-EU organisation type non-governmental organisation"
