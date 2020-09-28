@@ -68,6 +68,11 @@ function oe_content_organisation_node_validate(array $form, FormStateInterface $
     return;
   }
 
+  // Bail out if no EU organisation is selected.
+  if (!$eu_organisation) {
+    return;
+  }
+
   // Check that an EU organisation type can be resolved from the chosen
   // organisation. This happens in the entity presave.
   // @see oe_content_organisation_node_presave()
