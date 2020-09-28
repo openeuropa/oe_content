@@ -13,9 +13,7 @@ use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
 class OrganisationFieldTest extends RdfKernelTestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   public static $modules = [
     'field',
