@@ -10,7 +10,6 @@ declare(strict_types = 1);
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
-use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
 /**
  * Update body and summary labels.
@@ -81,21 +80,5 @@ function oe_content_news_post_update_00006(): void {
       ->getStorage($form_display->getEntityTypeId())
       ->updateFromStorageRecord($form_display, $form_display_values);
     $updated_form_display->save();
-  }
-}
-
-/**
- * Update news node default display.
- */
-function oe_content_news_post_update_00007(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00007_update_view_display');
-
-  $display = EntityViewDisplay::load('node.oe_news.default');
-  $display_values = $storage->read('core.entity_view_display.node.oe_news.default');
-  if ($display) {
-    $updated_display = \Drupal::entityTypeManager()
-      ->getStorage($display->getEntityTypeId())
-      ->updateFromStorageRecord($display, $display_values);
-    $updated_display->save();
   }
 }
