@@ -36,6 +36,7 @@ function oe_content_news_post_update_00002(): void {
     'oe_content_entity_contact',
     'composite_reference',
     'entity_reference_revisions',
+    'inline_entity_form',
   ];
   \Drupal::service('module_installer')->install($modules);
 }

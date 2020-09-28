@@ -13,6 +13,7 @@ dependencies:
   - oe_content_entity_contact:oe_content_entity_contact
   - composite_reference:composite_reference
   - entity_reference_revisions:entity_reference_revisions
+  - inline_entity_form:inline_entity_form
 
 config_devel:
   install:
