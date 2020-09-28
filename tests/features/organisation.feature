@@ -4,7 +4,7 @@ Feature: Organisation content creation
   As an editor
   I need to be able to create and see organisation items
 
-  @javascript
+  @javascript @disable-browser-required-field-validation @run
   Scenario: Creation of a Organisation content through the UI.
     Given I am logged in as a user with the "create oe_organisation content, access content, edit own oe_organisation content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
@@ -22,6 +22,12 @@ Feature: Organisation content creation
     And I should not see "Non-EU organisation type"
     When I select "Non-EU organisation" from "Organisation type"
     Then I should see "Non-EU organisation type"
+    When I select "EU organisation" from "Organisation type"
+    And I press "Save"
+    Then I should see the error message "Please select an EU organisation."
+    When I select "Non-EU organisation" from "Organisation type"
+    And I press "Save"
+    Then I should see the error message "Please select a non-EU organisation type."
     When I select "EU organisation" from "Organisation type"
     Then I fill in "EU organisation" with "Audit Board of the European Communities"
 
@@ -67,9 +73,3 @@ Feature: Organisation content creation
     And I fill in "Acronym" with "Organisation Acronym"
     And I fill in "Teaser" with "Organisation teaser text"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    When I select "EU organisation" from "Organisation type"
-    And I press "Save"
-    Then I should see the error message "Please select an EU organisation."
-    When I select "Non-EU organisation" from "Organisation type"
-    And I press "Save"
-    Then I should see the error message "Please select an non-EU organisation type."

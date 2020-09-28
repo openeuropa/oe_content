@@ -19,7 +19,6 @@ class OrganisationFieldTest extends RdfKernelTestBase {
     'field',
     'field_group',
     'entity_reference_revisions',
-    'link',
     'image',
     'inline_entity_form',
     'node',
@@ -34,7 +33,6 @@ class OrganisationFieldTest extends RdfKernelTestBase {
     'rdf_skos',
     'system',
     'text',
-    'typed_link',
     'user',
     'composite_reference',
   ];
@@ -45,8 +43,6 @@ class OrganisationFieldTest extends RdfKernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->installSchema('user', 'users_data');
-    $this->installSchema('node', 'node_access');
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
     $this->installEntitySchema('media');
