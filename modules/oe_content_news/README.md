@@ -1,4 +1,4 @@
-# OpenEuropa Mews Content
+# OpenEuropa News Content
 
 This module provides the corporate "News" (oe_news) content type.
 
