@@ -11,6 +11,7 @@ dependencies:
   - field_group:field_group
   - entity_reference_revisions:entity_reference_revisions
   - inline_entity_form:inline_entity_form
+  - oe_media:oe_media_avportal
 
 config_devel:
   install:
