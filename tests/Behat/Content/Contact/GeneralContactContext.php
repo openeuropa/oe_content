@@ -6,11 +6,16 @@ namespace Drupal\Tests\oe_content\Behat\Content\Contact;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
+use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
+use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 
 /**
  * Context to create general contact corporate entities.
  */
 class GeneralContactContext extends RawDrupalContext {
+
+  use EntityReferenceTrait;
+  use EntityLoadingTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -28,6 +33,8 @@ class GeneralContactContext extends RawDrupalContext {
       'Organisation' => 'oe_organisation',
       'Address' => 'oe_address',
       'Email' => 'oe_email',
+      'Image' => 'oe_image',
+      'Image caption' => 'oe_image:caption',
       'Phone number' => 'oe_phone',
       'Mobile number' => 'oe_mobile',
       'Fax number' => 'oe_fax',
@@ -39,6 +46,12 @@ class GeneralContactContext extends RawDrupalContext {
 
     foreach ($scope->getFields() as $key => $value) {
       switch ($key) {
+        // Set Media entity reference fields.
+        case 'Image':
+          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $scope->addFields($fields)->removeField($key);
+          break;
+
         case 'Published':
           $scope->addFields([
             $mapping[$key] => (int) ($value === 'Yes'),
