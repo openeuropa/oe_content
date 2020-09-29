@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.oe_organisation_logo
+    - media.type.av_portal_photo
     - media.type.image
     - node.type.oe_organisation
   module:
@@ -24,9 +25,10 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
+      av_portal_photo: av_portal_photo
       image: image
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: av_portal_photo
 field_type: entity_reference

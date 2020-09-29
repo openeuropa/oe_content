@@ -10,6 +10,9 @@ Feature: Organisation content creation
     And the following images:
       | name    | file            | alt                |
       | Image 1 | placeholder.png | Alternative text 1 |
+    And the following AV Portal photo:
+      | url                                                         |
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
 
     When I visit "the Organisation creation page"
     And I fill in "Page title" with "My Organisation"
@@ -76,3 +79,10 @@ Feature: Organisation content creation
     When I press "Save"
     Then I should see "Organisation type non-EU organisation"
     And I should see "Non-EU organisation type non-governmental organisation"
+
+    # Assert logo with AV portal photo.
+    When I click "Edit"
+    And I fill in "Use existing media" with "Euro with miniature figurines"
+
+    When I press "Save"
+    Then I should see "Euro with miniature figurines"
