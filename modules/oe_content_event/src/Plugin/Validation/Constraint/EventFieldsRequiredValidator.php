@@ -7,7 +7,6 @@ namespace Drupal\oe_content_event\Plugin\Validation\Constraint;
 use Drupal\node\NodeInterface;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 /**
  * Checks if the event fields are provided if required.
@@ -23,7 +22,6 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
       return;
     }
 
-    $this->validateOrganiserGroupFields($constraint, $node);
     $this->validateRegistrationGroupFields($constraint, $node);
 
     $online_required_fields = [
@@ -73,58 +71,6 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
             ->addViolation();
         }
       }
-    }
-  }
-
-  /**
-   * Validate organiser information consistency.
-   *
-   * An organiser can either be a custom string or a reference to a corporate
-   * vocabulary, depending from the value of `oe_event_organiser_is_internal`.
-   *
-   * This tests that, if one is set, the other is always not, depending
-   * whether the organiser is marked as internal or not.
-   *
-   * @param \Symfony\Component\Validator\Constraint $constraint
-   *   The constraint object.
-   * @param \Drupal\node\NodeInterface $node
-   *   The node object.
-   */
-  protected function validateOrganiserGroupFields(Constraint $constraint, NodeInterface $node) {
-    if ($node->get('oe_event_organiser_internal')->isEmpty() && $node->get('oe_event_organiser_name')->isEmpty()) {
-      return;
-    }
-
-    $violation = NULL;
-    $oe_event_organiser_is_internal_value = (bool) $node->get('oe_event_organiser_is_internal')->value;
-
-    if (!$oe_event_organiser_is_internal_value && !$node->get('oe_event_organiser_internal')->isEmpty()) {
-      // If checkbox "Organiser is internal" isn't checked,
-      // field "Internal organiser" has to be empty.
-      $violation = $this->context->buildViolation('When @is_internal field is not checked, @internal field have to be empty.', [
-        '@is_internal' => $node->getFieldDefinition('oe_event_organiser_is_internal')->getLabel(),
-        '@internal' => $node->getFieldDefinition('oe_event_organiser_internal')->getLabel(),
-      ]);
-    }
-
-    if ($oe_event_organiser_is_internal_value && !$node->get('oe_event_organiser_name')->isEmpty()) {
-      // If checkbox "Organiser is internal" is checked,
-      // field "Organiser name" has to be empty.
-      $violation = $this->context->buildViolation('When @is_internal field is checked, @organiser_name field has to be empty.', [
-        '@is_internal' => $node->getFieldDefinition('oe_event_organiser_is_internal')->getLabel(),
-        '@organiser_name' => $node->getFieldDefinition('oe_event_organiser_name')->getLabel(),
-      ]);
-    }
-
-    if ($violation instanceof ConstraintViolationBuilderInterface) {
-      // Highlight both fields because checkbox "Organiser is internal" can not
-      // be highlighted and field with error is hidden.
-      (clone $violation)
-        ->atPath('oe_event_organiser_name')
-        ->addViolation();
-      $violation
-        ->atPath('oe_event_organiser_internal')
-        ->addViolation();
     }
   }
 
