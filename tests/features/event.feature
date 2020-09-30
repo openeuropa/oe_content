@@ -315,26 +315,24 @@ Feature: Event content creation
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
     And I fill in "Teaser" with "Event teaser"
-    # Make sure that errors related to the Organiser fields work properly.
+
+    # Make sure that one value is saved, even if both are filled in.
     When I check "Organiser is internal"
     And I fill in "Internal organiser" with "Audit Board of the European Communities"
     And I uncheck "Organiser is internal"
     And I fill in "Organiser name" with "Organiser external"
     And I press "Save"
-    Then I should see the following error messages:
-      | error messages                                                                              |
-      | When Organiser is internal field is not checked, Internal organiser field have to be empty. |
-    When I check "Organiser is internal"
-    And I press "Save"
-    Then I should see the following error messages:
-      | error messages                                                                     |
-      | When Organiser is internal field is checked, Organiser name field has to be empty. |
-    When I fill in "Internal organiser" with ""
+    Then I should see "Organiser name Organiser external"
+    But I should not see "Internal organiser Audit Board of the European Communities"
+
+    When I click "Edit"
     And I uncheck "Organiser is internal"
+    And I fill in "Organiser name" with "Organiser external"
+    And I check "Organiser is internal"
+    And I fill in "Internal organiser" with "Audit Board of the European Communities"
     And I press "Save"
-    Then I should see the following success messages:
-      | success messages                      |
-      | Event My Event item has been created. |
+    Then I should not see "Organiser name Organiser external"
+    But I should see "Internal organiser Audit Board of the European Communities"
 
     # Make sure that validation of the Online fields group works as expected.
     When I click "Edit"
@@ -343,7 +341,7 @@ Feature: Event content creation
     And I press "Save"
     Then I should see the following error messages:
       | error messages                       |
-      | Online time field is required. |
+      | Online time field is required.       |
       | Online link field is required.       |
     # Make sure that errors related to the Online fields are fixed.
     And I set "22-02-2019 02:30" as the "Start date" of "Online time"
