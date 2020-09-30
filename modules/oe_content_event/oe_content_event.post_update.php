@@ -25,3 +25,12 @@ function oe_content_event_post_update_00001(array &$sandbox) {
     $field_config->save();
   }
 }
+
+/**
+ * Make the Event venue not required.
+ */
+function oe_content_event_post_update_00002(array &$sandbox) {
+  $field_config = FieldConfig::load('node.oe_event.oe_event_venue');
+  $field_config->set('required', FALSE);
+  $field_config->save();
+}
