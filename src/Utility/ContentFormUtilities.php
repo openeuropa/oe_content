@@ -21,7 +21,7 @@ class ContentFormUtilities {
    * @param string $field2
    *   The second dependent field name.
    * @param bool $is_required
-   *   Flag to set field 1 and field 2 required.
+   *   Set to TRUE if both fields are supposed to be required.
    */
   public static function toggleFieldsWithCheckbox(array &$form, string $checkbox_field, string $field1, string $field2, $is_required = FALSE): void {
     $condition_checked = [':input[name="' . $checkbox_field . '[value]"]' => ['checked' => TRUE]];
