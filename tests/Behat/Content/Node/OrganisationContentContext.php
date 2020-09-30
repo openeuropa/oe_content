@@ -55,9 +55,9 @@ class OrganisationContentContext extends RawDrupalContext {
           $scope->addFields($fields)->removeField($key);
           break;
 
-        // Set Contact entity reference fields.
+        // Set Contact entity reference field.
         case 'Contact':
-          $fields = $this->getReferenceField($mapping[$key], 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
