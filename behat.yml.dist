@@ -76,6 +76,8 @@ default:
         Project contact social media links: ".field--name-oe-social-media"
         Project locations: "#edit-oe-project-locations-wrapper"
         Documents: "#edit-oe-documents"
+        News contact: "#edit-oe-news-contacts-wrapper"
+        News contact social media links: ".field--name-oe-social-media"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
