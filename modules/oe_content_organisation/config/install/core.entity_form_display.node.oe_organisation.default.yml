@@ -164,12 +164,9 @@ content:
   oe_organisation_non_eu_org_type:
     weight: 19
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      sort: id
     third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
+    type: skos_concept_entity_reference_options_select
     region: content
   oe_organisation_org_type:
     weight: 16

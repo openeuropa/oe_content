@@ -74,7 +74,7 @@ Feature: Organisation content creation
     # Assert organisation type for non-EU organisations.
     When I click "Edit"
     And I select "Non-EU organisation" from "Organisation type"
-    And I fill in "Non-EU organisation type" with "non-governmental organisation"
+    And I select "non-governmental organisation" from "Non-EU organisation type"
 
     When I press "Save"
     Then I should see "Organisation type non-EU organisation"
