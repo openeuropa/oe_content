@@ -25,7 +25,7 @@ function oe_content_organisation_form_node_form_alter(array &$form, FormStateInt
     return;
   }
 
-  $form['oe_organisation_non_eu_org_type']['widget'][0]['target_id']['#states'] = [
+  $form['oe_organisation_non_eu_org_type']['widget']['#states'] = [
     'visible' => [
       'select[name="oe_organisation_org_type"]' => ['value' => 'non_eu']
     ],
