@@ -3,17 +3,17 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.oe_event
+    - node.type.oe_organisation
   module:
     - text
-id: node.oe_event.body
+id: node.oe_organisation.body
 field_name: body
 entity_type: node
-bundle: oe_event
-label: 'Full text'
+bundle: oe_organisation
+label: 'Body text'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

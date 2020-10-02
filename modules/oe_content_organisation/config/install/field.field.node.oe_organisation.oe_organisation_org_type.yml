@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_organisation_org_type
+    - node.type.oe_organisation
+  module:
+    - options
+id: node.oe_organisation.oe_organisation_org_type
+field_name: oe_organisation_org_type
+entity_type: node
+bundle: oe_organisation
+label: 'Organisation type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
