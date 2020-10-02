@@ -57,6 +57,8 @@ Feature: Event content creation
 
      # The venue group is open by default.
     And I should see the text "Venue"
+    When I press "Add new venue"
+    And I wait for AJAX to finish
     And I should see the text "Name"
     And I should see the text "Capacity"
     And I should see the text "Room"
@@ -169,16 +171,18 @@ Feature: Event content creation
     And I fill in "Subject" with "EU financing"
     And I set "21-02-2019 02:15" as the "Start date" of "Event date"
     And I set "21-02-2019 14:15" as the "End date" of "Event date"
-    # Venue reference by inline entity form.
-    And I fill in "Name" with "Name of the venue"
-    And I fill in "Capacity" with "Capacity of the venue"
-    And I fill in "Room" with "Room of the venue"
-    And I select "Belgium" from "Country"
+    # Venue reference by Inline entity form - Complex.
+    When I press "Add new venue"
     And I wait for AJAX to finish
-    And I fill in "Street address" with "Rue belliard 28"
-    And I fill in "Postal code" with "1000"
-    And I fill in "City" with "Brussels"
-
+    Then I fill in "Name" with "Name of the venue" in the "Event venue" region
+    And I fill in "Capacity" with "Capacity of the venue" in the "Event venue" region
+    And I fill in "Room" with "Room of the venue" in the "Event venue" region
+    And I select "Belgium" from "Country" in the "Event venue" region
+    And I wait for AJAX to finish
+    And I fill in "Street address" with "Rue belliard 28" in the "Event venue" region
+    And I fill in "Postal code" with "1000" in the "Event venue" region
+    And I fill in "City" with "Brussels" in the "Event venue" region
+    And I press "Create venue"
     # Online field group.
     When I press "Online"
     Then I select "Facebook" from "Online type"
@@ -231,8 +235,8 @@ Feature: Event content creation
     And I fill in "Postal code" with "9000" in the "Event contact" region
     And I fill in "City" with "Budapest" in the "Event contact" region
     And I fill in "Office" with "Event contact office" in the "Event contact" region
-    And I fill in "URL" with "mailto:example@email.com" in the "Event contact social media links" region
-    And I fill in "Link text" with "Event contact social link email" in the "Event contact social media links" region
+    And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
+    And I fill in "Link text" with "Event contact social link email" in the "Contact social media links" region
     And I fill in "Media item" with "Contact image" in the "Event contact" region
     And I fill in "Caption" with "Event contact caption" in the "Event contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Event contact" region
@@ -311,29 +315,24 @@ Feature: Event content creation
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
     And I fill in "Teaser" with "Event teaser"
-    And I press "Save"
-    Then I should see the following error messages:
-      | error messages                                                                                 |
-      | You have to fill in at least one of the following fields: Internal organiser or Organiser name |
-    # Make sure that errors related to the Organiser fields are fixed.
+
+    # Make sure that one value is saved, even if both are filled in.
     When I check "Organiser is internal"
     And I fill in "Internal organiser" with "Audit Board of the European Communities"
+    And I uncheck "Organiser is internal"
+    And I fill in "Organiser name" with "Organiser external"
     And I press "Save"
-    Then I should see the following success messages:
-      | success messages                      |
-      | Event My Event item has been created. |
+    Then I should see "Organiser name Organiser external"
+    But I should not see "Internal organiser Audit Board of the European Communities"
 
-    # Make sure that only one organiser field value is stored depending on the "Organiser is internal" checkbox.
     When I click "Edit"
     And I uncheck "Organiser is internal"
-    And I fill in "Organiser name" with "VALUE NOT TO STORE"
+    And I fill in "Organiser name" with "Organiser external"
     And I check "Organiser is internal"
+    And I fill in "Internal organiser" with "Audit Board of the European Communities"
     And I press "Save"
-    Then I should see the following success messages:
-      | success messages                      |
-      | Event My Event item has been updated. |
-    And I should not see the text "Organiser name"
-    And I should not see the text "VALUE NOT TO STORE"
+    Then I should not see "Organiser name Organiser external"
+    But I should see "Internal organiser Audit Board of the European Communities"
 
     # Make sure that validation of the Online fields group works as expected.
     When I click "Edit"
@@ -342,7 +341,7 @@ Feature: Event content creation
     And I press "Save"
     Then I should see the following error messages:
       | error messages                       |
-      | Online time field is required. |
+      | Online time field is required.       |
       | Online link field is required.       |
     # Make sure that errors related to the Online fields are fixed.
     And I set "22-02-2019 02:30" as the "Start date" of "Online time"

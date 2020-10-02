@@ -2,21 +2,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_event_contact
-    - node.type.oe_event
+    - field.storage.node.oe_organisation_contact
+    - node.type.oe_organisation
     - oe_content_entity_contact.oe_contact_type.oe_general
-    - oe_content_entity_contact.oe_contact_type.oe_press
   module:
     - composite_reference
     - entity_reference_revisions
 third_party_settings:
   composite_reference:
     composite: true
-id: node.oe_event.oe_event_contact
-field_name: oe_event_contact
+id: node.oe_organisation.oe_organisation_contact
+field_name: oe_organisation_contact
 entity_type: node
-bundle: oe_event
-label: 'Event contact'
+bundle: oe_organisation
+label: Contact
 description: ''
 required: false
 translatable: false
@@ -27,9 +26,8 @@ settings:
   handler_settings:
     target_bundles:
       oe_general: oe_general
-      oe_press: oe_press
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: oe_general
+    auto_create_bundle: ''
 field_type: entity_reference_revisions

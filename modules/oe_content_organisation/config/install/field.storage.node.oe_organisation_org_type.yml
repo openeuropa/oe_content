@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.oe_organisation_org_type
+field_name: oe_organisation_org_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: eu
+      label: 'EU organisation'
+    -
+      value: non_eu
+      label: 'Non-EU organisation'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
