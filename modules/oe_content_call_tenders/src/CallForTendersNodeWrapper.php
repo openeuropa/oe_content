@@ -85,9 +85,9 @@ class CallForTendersNodeWrapper extends EntityWrapperBase implements CallForTend
       elseif ($opening_date <= $now && $now < $closing_date) {
         $status = static::STATUS_OPEN;
       }
-      else {
-        $status = static::STATUS_CLOSED;
-      }
+    }
+    if ($now > $closing_date) {
+      $status = static::STATUS_CLOSED;
     }
 
     return $status;
