@@ -78,7 +78,7 @@ class CallForTendersNodeWrapper extends EntityWrapperBase implements CallForTend
     $now = $this->getNow();
 
     $status = static::STATUS_NOT_AVAILABLE;
-    if (!empty($opening_date)) {
+    if (isset($opening_date)) {
       if ($now < $opening_date) {
         $status = static::STATUS_UPCOMING;
       }
@@ -86,7 +86,7 @@ class CallForTendersNodeWrapper extends EntityWrapperBase implements CallForTend
         $status = static::STATUS_OPEN;
       }
     }
-    if ($now > $closing_date) {
+    if (isset($closing_date) && $now > $closing_date) {
       $status = static::STATUS_CLOSED;
     }
 
