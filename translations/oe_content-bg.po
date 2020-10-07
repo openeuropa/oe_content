@@ -103,4 +103,122 @@ msgstr "петък"
 msgid "Saturday"
 msgstr "събота"
 
+msgid "Email"
+msgstr "Електронен адрес"
 
+msgid "Phone number"
+msgstr "Телефонен номер"
+
+msgid "Opening date"
+msgstr "Начална дата"
+
+msgid "Deadline date"
+msgstr "Краен срок"
+
+msgid "Publication date"
+msgstr "Дата на публикуване"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Location"
+msgstr "Местоположение"
+
+msgid "News type"
+msgstr "Вид новини"
+
+msgid "Project locations"
+msgstr "Местоположения на проекта"
+
+msgid "Overall budget"
+msgstr "Общ бюджет"
+
+msgid "EU contribution"
+msgstr "Участие на ЕС"
+
+msgid "Departments"
+msgstr "Отдели"
+
+msgid "Results"
+msgstr "Резултати"
+
+msgid "Stakeholders"
+msgstr "Заинтересовани страни"
+
+msgid "Coordinators"
+msgstr "Координатори"
+
+msgid "Participants"
+msgstr "Участници"
+
+msgid "Website"
+msgstr "Уебсайт"
+
+msgid "Country"
+msgstr "Държава"
+
+msgid "EU Organisation"
+msgstr "Организация на ЕС"
+
+msgid "Non-EU organisation"
+msgstr "Организация извън ЕС"
+
+msgid "Website"
+msgstr "Уебсайт"
+
+msgid "Location"
+msgstr "Местоположение"
+
+msgid "Publication date"
+msgstr "Дата на публикуване"
+
+msgid "Reference"
+msgstr "Референция"
+
+msgid "Upcoming"
+msgstr "Предстоящ"
+
+msgid "Open"
+msgstr "Отворено"
+
+msgid "Closed"
+msgstr "приключило"
+
+msgid "Details"
+msgstr "Данни"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Details"
+msgstr "Данни"
+
+msgid "Contact organisation"
+msgstr "Връзка с организацията"
+
+msgid "Publication"
+msgstr "Публикация"
+
+msgid "Publication date"
+msgstr "Дата на публикуване"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Email"
+msgstr "Електронен адрес"
+
+msgid "Upcoming"
+msgstr "Предстоящ"
+
+msgid "Open"
+msgstr "Отворено"
+
+msgid "Closed"
+msgstr "приключило"
+
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "Contacts"
+msgstr "Контакти"

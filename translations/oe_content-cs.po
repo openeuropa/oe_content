@@ -189,3 +189,123 @@ msgstr "Pátek"
 
 msgid "Saturday"
 msgstr "Sobota"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Phone number"
+msgstr "Telefonní číslo"
+
+msgid "Opening date"
+msgstr "Datum zahájení"
+
+msgid "Deadline date"
+msgstr "Lhůta (datum)"
+
+msgid "Publication date"
+msgstr "Datum vydání publikace"
+
+msgid "Author"
+msgstr "Autor /Autorka"
+
+msgid "Location"
+msgstr "Místo konání"
+
+msgid "News type"
+msgstr "Typ aktuality"
+
+msgid "Project locations"
+msgstr "Místa realizace projektu"
+
+msgid "Overall budget"
+msgstr "Celkový rozpočet"
+
+msgid "EU contribution"
+msgstr "Příspěvek EU"
+
+msgid "Departments"
+msgstr "Útvary"
+
+msgid "Results"
+msgstr "Výsledky"
+
+msgid "Stakeholders"
+msgstr "Zúčastněné strany"
+
+msgid "Coordinators"
+msgstr "Koordinátoři"
+
+msgid "Participants"
+msgstr "Účastníci"
+
+msgid "Website"
+msgstr "Internetové stránky"
+
+msgid "Country"
+msgstr "Země"
+
+msgid "EU Organisation"
+msgstr "Organizace EU"
+
+msgid "Non-EU organisation"
+msgstr "Organizace mimo EU"
+
+msgid "Website"
+msgstr "Internetové stránky"
+
+msgid "Location"
+msgstr "Místo konání"
+
+msgid "Publication date"
+msgstr "Datum vydání publikace"
+
+msgid "Reference"
+msgstr "Odkaz"
+
+msgid "Upcoming"
+msgstr "Plánované"
+
+msgid "Open"
+msgstr "Probíhá"
+
+msgid "Closed"
+msgstr "ukončeno"
+
+msgid "Details"
+msgstr "Podrobnosti"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Details"
+msgstr "Podrobnosti"
+
+msgid "Contact organisation"
+msgstr "Kontaktní organizace"
+
+msgid "Publication"
+msgstr "Publikace"
+
+msgid "Publication date"
+msgstr "Datum vydání publikace"
+
+msgid "Description"
+msgstr "Popis"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Upcoming"
+msgstr "Plánované"
+
+msgid "Open"
+msgstr "Probíhá"
+
+msgid "Closed"
+msgstr "ukončeno"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakty"

@@ -189,3 +189,123 @@ msgstr "Vineri"
 
 msgid "Saturday"
 msgstr "Sâmbătă"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone number"
+msgstr "Phone number"
+
+msgid "Opening date"
+msgstr "Opening date"
+
+msgid "Deadline date"
+msgstr "Deadline date"
+
+msgid "Publication date"
+msgstr "Publication date"
+
+msgid "Author"
+msgstr "Author"
+
+msgid "Location"
+msgstr "Location"
+
+msgid "News type"
+msgstr "News type"
+
+msgid "Project locations"
+msgstr "Project locations"
+
+msgid "Overall budget"
+msgstr "Overall budget"
+
+msgid "EU contribution"
+msgstr "EU contribution"
+
+msgid "Departments"
+msgstr "Departments"
+
+msgid "Results"
+msgstr "Results"
+
+msgid "Stakeholders"
+msgstr "Stakeholders"
+
+msgid "Coordinators"
+msgstr "Coordinators"
+
+msgid "Participants"
+msgstr "Participants"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Country"
+msgstr "Country"
+
+msgid "EU Organisation"
+msgstr "EU Organisation"
+
+msgid "Non-EU organisation"
+msgstr "Non EU Organisation"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Location"
+msgstr "Location"
+
+msgid "Publication date"
+msgstr "Publication date"
+
+msgid "Reference"
+msgstr "Reference"
+
+msgid "Upcoming"
+msgstr "Upcoming"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Closed"
+msgstr "Closed"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Contact organisation"
+msgstr "Contact organisation"
+
+msgid "Publication"
+msgstr "Publication"
+
+msgid "Publication date"
+msgstr "Publication date"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Upcoming"
+msgstr "Upcoming"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Closed"
+msgstr "Closed"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Contacts"
