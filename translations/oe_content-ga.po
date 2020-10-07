@@ -102,3 +102,123 @@ msgstr "Dé hAoine"
 
 msgid "Saturday"
 msgstr "Dé Sathairn"
+
+msgid "Email"
+msgstr "Seoladh ríomhphoist"
+
+msgid "Phone number"
+msgstr "Uimhir ghutháin"
+
+msgid "Opening date"
+msgstr "Dáta oscailte"
+
+msgid "Deadline date"
+msgstr "Spriocdháta"
+
+msgid "Publication date"
+msgstr "Dáta foilsithe"
+
+msgid "Author"
+msgstr "Údar"
+
+msgid "Location"
+msgstr "Áit"
+
+msgid "News type"
+msgstr "An cineál nuachta"
+
+msgid "Project locations"
+msgstr "Áiteanna an tionscadail"
+
+msgid "Overall budget"
+msgstr "Buiséad foriomlán"
+
+msgid "EU contribution"
+msgstr "Ranníocaíocht an Aontais"
+
+msgid "Departments"
+msgstr "Ranna"
+
+msgid "Results"
+msgstr "Torthaí"
+
+msgid "Stakeholders"
+msgstr "Páirtithe leasmhara"
+
+msgid "Coordinators"
+msgstr "Comhordaitheoirí"
+
+msgid "Participants"
+msgstr "Rannpháirtithe"
+
+msgid "Website"
+msgstr "Suíomh gréasáin"
+
+msgid "Country"
+msgstr "Tír"
+
+msgid "EU Organisation"
+msgstr "Eagraíocht de chuid an Aontais"
+
+msgid "Non-EU organisation"
+msgstr "Eagraíocht nach Eagraíocht de chuid an Aontais í"
+
+msgid "Website"
+msgstr "Suíomh gréasáin"
+
+msgid "Location"
+msgstr "Áit"
+
+msgid "Publication date"
+msgstr "Dáta foilsithe"
+
+msgid "Reference"
+msgstr "Tagairt"
+
+msgid "Upcoming"
+msgstr "Le teacht"
+
+msgid "Open"
+msgstr "Ar oscailt"
+
+msgid "Closed"
+msgstr "Dúnta"
+
+msgid "Details"
+msgstr "Sonraí"
+
+msgid "Status"
+msgstr "Stádas"
+
+msgid "Details"
+msgstr "Sonraí"
+
+msgid "Contact organisation"
+msgstr "Eagraíocht teagmhála"
+
+msgid "Publication"
+msgstr "Foilseachán"
+
+msgid "Publication date"
+msgstr "Dáta foilsithe"
+
+msgid "Description"
+msgstr "Cur síos"
+
+msgid "Email"
+msgstr "Seoladh ríomhphoist"
+
+msgid "Upcoming"
+msgstr "Le teacht"
+
+msgid "Open"
+msgstr "Ar oscailt"
+
+msgid "Closed"
+msgstr "Dúnta"
+
+msgid "Contact"
+msgstr "Teagmháil"
+
+msgid "Contacts"
+msgstr "Teagmhálacha"

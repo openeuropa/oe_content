@@ -185,3 +185,123 @@ msgstr "Vendredi"
 
 msgid "Saturday"
 msgstr "Samedi"
+
+msgid "Email"
+msgstr "Adresse électronique"
+
+msgid "Phone number"
+msgstr "Numéro de téléphone"
+
+msgid "Opening date"
+msgstr "Date de début"
+
+msgid "Deadline date"
+msgstr "Date limite"
+
+msgid "Publication date"
+msgstr "Date de publication"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Location"
+msgstr "Lieu"
+
+msgid "News type"
+msgstr "Type d’actualité"
+
+msgid "Project locations"
+msgstr "Lieux du projet"
+
+msgid "Overall budget"
+msgstr "Budget global"
+
+msgid "EU contribution"
+msgstr "Contribution de l’UE"
+
+msgid "Departments"
+msgstr "Services"
+
+msgid "Results"
+msgstr "Résultats"
+
+msgid "Stakeholders"
+msgstr "Parties concernées"
+
+msgid "Coordinators"
+msgstr "Coordinateurs"
+
+msgid "Participants"
+msgstr "Participants"
+
+msgid "Website"
+msgstr "Site web"
+
+msgid "Country"
+msgstr "Pays"
+
+msgid "EU Organisation"
+msgstr "Organisation de l’UE"
+
+msgid "Non-EU organisation"
+msgstr "Organisation hors UE"
+
+msgid "Website"
+msgstr "Site web"
+
+msgid "Location"
+msgstr "Lieu"
+
+msgid "Publication date"
+msgstr "Date de publication"
+
+msgid "Reference"
+msgstr "Référence"
+
+msgid "Upcoming"
+msgstr "À venir"
+
+msgid "Open"
+msgstr "En cours"
+
+msgid "Closed"
+msgstr "Clos"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "Contact organisation"
+msgstr "Organisation à contacter"
+
+msgid "Publication"
+msgstr "Publication"
+
+msgid "Publication date"
+msgstr "Date de publication"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Email"
+msgstr "Adresse électronique"
+
+msgid "Upcoming"
+msgstr "À venir"
+
+msgid "Open"
+msgstr "En cours"
+
+msgid "Closed"
+msgstr "Clos"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Personnes de contact"

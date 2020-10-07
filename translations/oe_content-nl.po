@@ -185,3 +185,123 @@ msgstr "vrijdag"
 
 msgid "Saturday"
 msgstr "zaterdag"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Phone number"
+msgstr "Telefoonnummer"
+
+msgid "Opening date"
+msgstr "Begindatum"
+
+msgid "Deadline date"
+msgstr "Deadline"
+
+msgid "Publication date"
+msgstr "Publicatiedatum"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Location"
+msgstr "Locatie"
+
+msgid "News type"
+msgstr "Soort nieuws"
+
+msgid "Project locations"
+msgstr "Projectlocaties"
+
+msgid "Overall budget"
+msgstr "Totaalbudget"
+
+msgid "EU contribution"
+msgstr "EU-bijdrage"
+
+msgid "Departments"
+msgstr "Departementen"
+
+msgid "Results"
+msgstr "Resultaten"
+
+msgid "Stakeholders"
+msgstr "Stakeholders"
+
+msgid "Coordinators"
+msgstr "Coördinatoren"
+
+msgid "Participants"
+msgstr "Deelnemers"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "EU Organisation"
+msgstr "EU-organisatie"
+
+msgid "Non-EU organisation"
+msgstr "Niet-EU-organisatie"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Location"
+msgstr "Locatie"
+
+msgid "Publication date"
+msgstr "Publicatiedatum"
+
+msgid "Reference"
+msgstr "Referentie"
+
+msgid "Upcoming"
+msgstr "Binnenkort"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Closed"
+msgstr "Gesloten"
+
+msgid "Details"
+msgstr "Bijzonderheden"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Details"
+msgstr "Bijzonderheden"
+
+msgid "Contact organisation"
+msgstr "Contact"
+
+msgid "Publication"
+msgstr "Publicatie"
+
+msgid "Publication date"
+msgstr "Publicatiedatum"
+
+msgid "Description"
+msgstr "Beschrijving"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Upcoming"
+msgstr "Binnenkort"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Closed"
+msgstr "Gesloten"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Contact"

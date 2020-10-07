@@ -190,3 +190,123 @@ msgstr "Sexta"
 
 msgid "Saturday"
 msgstr "Sábado"
+
+msgid "Email"
+msgstr "Correio eletrónico"
+
+msgid "Phone number"
+msgstr "Número de telefone"
+
+msgid "Opening date"
+msgstr "Data de abertura"
+
+msgid "Deadline date"
+msgstr "Data-limite"
+
+msgid "Publication date"
+msgstr "Data de publicação"
+
+msgid "Author"
+msgstr "Autor/Autora"
+
+msgid "Location"
+msgstr "Local"
+
+msgid "News type"
+msgstr "Tipo de notícias"
+
+msgid "Project locations"
+msgstr "Locais do projeto"
+
+msgid "Overall budget"
+msgstr "Orçamento global"
+
+msgid "EU contribution"
+msgstr "Contribuição da UE"
+
+msgid "Departments"
+msgstr "Departamentos"
+
+msgid "Results"
+msgstr "Resultados"
+
+msgid "Stakeholders"
+msgstr "Partes interessadas"
+
+msgid "Coordinators"
+msgstr "Coordenadores/Coordenadoras"
+
+msgid "Participants"
+msgstr "Participantes"
+
+msgid "Website"
+msgstr "Sítio Web"
+
+msgid "Country"
+msgstr "País"
+
+msgid "EU Organisation"
+msgstr "Organização da UE"
+
+msgid "Non-EU organisation"
+msgstr "Entidade não UE"
+
+msgid "Website"
+msgstr "Sítio Web"
+
+msgid "Location"
+msgstr "Local"
+
+msgid "Publication date"
+msgstr "Data de publicação"
+
+msgid "Reference"
+msgstr "Referência"
+
+msgid "Upcoming"
+msgstr "Brevemente"
+
+msgid "Open"
+msgstr "Aberto"
+
+msgid "Closed"
+msgstr "Encerrado"
+
+msgid "Details"
+msgstr "Informação detalhada"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Details"
+msgstr "Informação detalhada"
+
+msgid "Contact organisation"
+msgstr "Organização de contacto"
+
+msgid "Publication"
+msgstr "Publicação"
+
+msgid "Publication date"
+msgstr "Data de publicação"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Email"
+msgstr "Correio eletrónico"
+
+msgid "Upcoming"
+msgstr "Brevemente"
+
+msgid "Open"
+msgstr "Aberto"
+
+msgid "Closed"
+msgstr "Encerrado"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Contacts"
+msgstr "Contactos"

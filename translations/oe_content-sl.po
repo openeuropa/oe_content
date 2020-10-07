@@ -105,3 +105,123 @@ msgstr "petek"
 
 msgid "Saturday"
 msgstr "sobota"
+
+msgid "Email"
+msgstr "E-pošta"
+
+msgid "Phone number"
+msgstr "Telefonska številka"
+
+msgid "Opening date"
+msgstr "Datum začetka"
+
+msgid "Deadline date"
+msgstr "Datumski rok"
+
+msgid "Publication date"
+msgstr "Datum objave"
+
+msgid "Author"
+msgstr "Avtor"
+
+msgid "Location"
+msgstr "Lokacija"
+
+msgid "News type"
+msgstr "Vrsta novice"
+
+msgid "Project locations"
+msgstr "Lokacije projekta"
+
+msgid "Overall budget"
+msgstr "Skupni proračun"
+
+msgid "EU contribution"
+msgstr "Prispevek EU"
+
+msgid "Departments"
+msgstr "Službe"
+
+msgid "Results"
+msgstr "Rezultati"
+
+msgid "Stakeholders"
+msgstr "Deležniki"
+
+msgid "Coordinators"
+msgstr "Koordinatorji"
+
+msgid "Participants"
+msgstr "Udeleženci"
+
+msgid "Website"
+msgstr "Spletna stran"
+
+msgid "Country"
+msgstr "Država"
+
+msgid "EU Organisation"
+msgstr "Organizacija EU"
+
+msgid "Non-EU organisation"
+msgstr "Organizacija zunaj EU"
+
+msgid "Website"
+msgstr "Spletna stran"
+
+msgid "Location"
+msgstr "Lokacija"
+
+msgid "Publication date"
+msgstr "Datum objave"
+
+msgid "Reference"
+msgstr "Sklic"
+
+msgid "Upcoming"
+msgstr "Prihodnje"
+
+msgid "Open"
+msgstr "Odprto"
+
+msgid "Closed"
+msgstr "Končano"
+
+msgid "Details"
+msgstr "Več informacij"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Details"
+msgstr "Več informacij"
+
+msgid "Contact organisation"
+msgstr "Kontaktna organizacija"
+
+msgid "Publication"
+msgstr "Objava"
+
+msgid "Publication date"
+msgstr "Datum objave"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Email"
+msgstr "E-pošta"
+
+msgid "Upcoming"
+msgstr "Prihodnje"
+
+msgid "Open"
+msgstr "Odprto"
+
+msgid "Closed"
+msgstr "Končano"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakti"
