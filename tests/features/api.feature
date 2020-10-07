@@ -52,23 +52,46 @@
       And the "Registration capacity" field should contain "Event capacity"
       And the "Entrance fee" field should contain "1234"
       And I should see the text "Facebook"
-      And datetime "1 Mar 2020 12 30" is selected for "Start date" of "Registration date"
-      And datetime "10 Mar 2020 18 30" is selected for "End date" of "Registration date"
+      And the "oe_event_registration_dates[0][value][day]" field should contain "1"
+      And the "oe_event_registration_dates[0][value][month]" field should contain "3"
+      And the "oe_event_registration_dates[0][value][year]" field should contain "2020"
+      And the "oe_event_registration_dates[0][value][hour]" field should contain "12"
+      And the "oe_event_registration_dates[0][value][minute]" field should contain "30"
+      And the "oe_event_registration_dates[0][end_value][day]" field should contain "10"
+      And the "oe_event_registration_dates[0][end_value][month]" field should contain "3"
+      And the "oe_event_registration_dates[0][end_value][year]" field should contain "2020"
+      And the "oe_event_registration_dates[0][end_value][hour]" field should contain "18"
+      And the "oe_event_registration_dates[0][end_value][minute]" field should contain "30"
       And I press "Online"
       And the "Online description" field should contain "Event online description"
-      And datetime "21 Feb 2019 9 15" is selected for "Start date" of "Online time"
-      And datetime "21 Feb 2019 14 00" is selected for "End date" of "Online time"
+      And the "oe_event_online_dates[0][value][day]" field should contain "21"
+      And the "oe_event_online_dates[0][value][month]" field should contain "2"
+      And the "oe_event_online_dates[0][value][year]" field should contain "2019"
+      And the "oe_event_online_dates[0][value][hour]" field should contain "9"
+      And the "oe_event_online_dates[0][value][minute]" field should contain "15"
+      And the "oe_event_online_dates[0][end_value][day]" field should contain "21"
+      And the "oe_event_online_dates[0][end_value][month]" field should contain "2"
+      And the "oe_event_online_dates[0][end_value][year]" field should contain "2019"
+      And the "oe_event_online_dates[0][end_value][hour]" field should contain "14"
+      And the "oe_event_online_dates[0][end_value][minute]" field should contain "0"
       And the "oe_event_online_link[0][title]" field should contain "Info site"
       And the "oe_event_online_link[0][uri]" field should contain "http://ec.europa.eu/info"
       And the "oe_event_languages[0][target_id]" field should contain "Valencian (http://publications.europa.eu/resource/authority/language/0D0)"
       And the "Internal organiser" field should contain "Directorate-General for Informatics (http://publications.europa.eu/resource/authority/corporate-body/DIGIT)"
       And I should see the text "As planned"
-      And I should see the text "INEA"
       And I should see the text "http://example.com"
       And I should see the text "Twitter"
       And the "oe_event_featured_media[0][target_id]" field contains "Image placeholder"
-      And datetime "15 Jun 2020 12 30" is selected for "Start date" of "Event date"
-      And datetime "20 Jun 2020 18 30" is selected for "End date" of "Event date"
+      And the "oe_event_dates[0][value][day]" field should contain "15"
+      And the "oe_event_dates[0][value][month]" field should contain "6"
+      And the "oe_event_dates[0][value][year]" field should contain "2020"
+      And the "oe_event_dates[0][value][hour]" field should contain "12"
+      And the "oe_event_dates[0][value][minute]" field should contain "30"
+      And the "oe_event_dates[0][end_value][day]" field should contain "20"
+      And the "oe_event_dates[0][end_value][month]" field should contain "6"
+      And the "oe_event_dates[0][end_value][year]" field should contain "2020"
+      And the "oe_event_dates[0][end_value][hour]" field should contain "18"
+      And the "oe_event_dates[0][end_value][minute]" field should contain "30"
       And the "oe_subject[0][target_id]" field should contain "financing (http://data.europa.eu/uxp/1000)"
       And the "oe_author[0][target_id]" field should contain "Directorate-General for Communication (http://publications.europa.eu/resource/authority/corporate-body/COMMU)"
       And the "oe_content_content_owner[0][target_id]" field should contain "Directorate-General for Communication (http://publications.europa.eu/resource/authority/corporate-body/COMMU)"
@@ -103,18 +126,134 @@
       And I press "Edit" in the "A general contact" row
       And I wait for AJAX to finish
       And the "Phone number" field should contain "+32477792933"
-#      And "HU" should be selected for "Country" select in the "Event contact" region
-#      And the "Country" field should contain "HU"
+      And the "Country" field should contain "HU"
 #      And the "oe_event_contact[form][inline_entity_form][entities][0][form][oe_address][0][address][locality]" field should contain "Budapest"
 #      And I fill in "Office" with "Office" in the "Event contact" region
 #      And I take a screenshot
 #      And the "City" field should contain "Budapest"
 
+    @javascript
+    Scenario: Test ProjectContentContext and BeforeParseEntityFields alterations are done.
+      Given I am logged in as a user with the "edit any oe_project content, access content, view published skos concept entities, manage corporate content entities, view published oe_organisation" permission
 
-  #, General contact 1, 1011, Hungary""
-#      And I should see the text "general@example.com"
-#      And I should see the link "Instagram"
+      When the following Stakeholder Organisation entity:
+        | Name    | A Stakeholder                                                                            |
+        | Acronym | AAAAA                                                                                    |
+        | Address | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
+        | Website | uri: http://facebook.com - title: Facebook                                               |
 
-#    Scenario: Test ProjectContentContext and BeforeParseEntityFields alterations are done.
-#      Given I am logged in as a user with the "edit any oe_project content, access content, view published skos concept entities, manage corporate content entities" permission
-      # @TODO: finish this.
+      And the following Stakeholder Organisation entity:
+        | Name    | A Participant                                                                            |
+        | Acronym | PPPPP                                                                                    |
+        | Address | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
+        | Website | uri: http://facebook.com - title: Facebook                                               |
+
+      And the following General Contact entity:
+        | Name               | A general contact                                                                            |
+        | Address            | country_code: HU - locality: Budapest - address_line1: General contact 1 - postal_code: 1011 |
+        | Email              | general@example.com                                                                          |
+        | Phone number       | +32477792933                                                                                 |
+        | Social media links | uri: http://instagram.com - title: Instagram - link_type: instagram                          |
+
+      And the following image:
+        | name              | file            |
+        | Image placeholder | example_1.jpeg  |
+
+      And the following document:
+        | name                 | file          |
+        | Document placeholder | document.pdf  |
+
+      And the following Project Content entity:
+        | Title                     | My project                                       |
+        | Summary                   | My Summary                                       |
+        | Reference                 | My Reference                                     |
+        | Project period start date | 2020-01-01                                       |
+        | Project period end date   | 2020-01-02                                       |
+        | Overall budget            | 100000                                           |
+        | EU contribution           | 50000                                            |
+        | Website                   | uri: http://ec.europa.eu/info - title: Info site |
+        | Body text                 | My Body text                                     |
+        | Call for proposals        | uri: http://ec.europa.eu/info - title: Info site |
+        | Results                   | My Results                                       |
+        | Teaser                    | My teaser                                        |
+        | Coordinators              | A Stakeholder                                    |
+        | Departments               | Asian Development Bank                           |
+        | Featured media            | Image placeholder                                |
+        | Funding programme         | Anti Fraud Information System (AFIS)             |
+        | Participants              | A Participant                                    |
+        | Project contact           | A general contact                                |
+        | Documents                 | Document placeholder                             |
+        | Result files              | Document placeholder                             |
+
+      When I visit node "My project" edit page
+      Then I should see the text "My project"
+      And I should see the text "My Summary"
+      And the "Reference" field should contain "My Reference"
+      And the "oe_project_dates[0][value][day]" field should contain "1"
+      And the "oe_project_dates[0][value][month]" field should contain "1"
+      And the "oe_project_dates[0][value][year]" field should contain "2020"
+      And the "oe_project_dates[0][end_value][day]" field should contain "2"
+      And the "oe_project_dates[0][end_value][month]" field should contain "1"
+      And the "oe_project_dates[0][end_value][year]" field should contain "2020"
+      And the "Overall budget" field should contain "100000"
+      And the "EU contribution" field should contain "50000"
+      And the "oe_project_website[0][uri]" field should contain "http://ec.europa.eu/info"
+      And the "oe_project_website[0][title]" field should contain "Info site"
+      And the "Body text" field should contain "My Body text"
+      And the "oe_project_calls[0][uri]" field should contain "http://ec.europa.eu/info"
+      And the "oe_project_calls[0][title]" field should contain "Info site"
+      And the "Results" field should contain "My Results"
+      And the "Teaser" field should contain "My teaser"
+      And I should see the text "A Stakeholder"
+      And I should see the text "A Participant"
+      And I should see the text "A general contact"
+      And the "oe_departments[0][target_id]" field should contain "Asian Development Bank (http://eurovoc.europa.eu/6336)"
+      And the "oe_project_funding_programme[0][target_id]" field should contain "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
+
+    @javascript
+    Scenario: Test CallForTendersContentContext and BeforeParseEntityFields alterations are done.
+      Given I am logged in as a user with the "edit any oe_call_tenders content, access content, view published skos concept entities, manage corporate content entities" permission
+      And the following "Call for tenders" Content entity:
+        | Title            | My Call for tenders |
+        | Body text        | My Body text        |
+        | Publication date | 2020-01-01          |
+        | Opening date     | 2020-01-01          |
+        | Deadline date    | 2020-01-01 10:00:00 |
+        | Introduction     | My Introduction     |
+        | Reference        | My Reference        |
+        | Teaser           | My teaser           |
+
+      When I visit node "My Call for tenders" edit page
+      Then I should see the text "My Call for tenders"
+      And the "Introduction" field should contain "My Introduction"
+      And the "oe_publication_date[0][value][day]" field should contain "1"
+      And the "oe_publication_date[0][value][month]" field should contain "1"
+      And the "oe_publication_date[0][value][year]" field should contain "2020"
+      And the "oe_call_tenders_opening_date[0][value][day]" field should contain "1"
+      And the "oe_call_tenders_opening_date[0][value][month]" field should contain "1"
+      And the "oe_call_tenders_opening_date[0][value][year]" field should contain "2020"
+      And the "oe_call_tenders_deadline[0][value][day]" field should contain "1"
+      And the "oe_call_tenders_deadline[0][value][month]" field should contain "1"
+      And the "oe_call_tenders_deadline[0][value][year]" field should contain "2020"
+      And the "oe_call_tenders_deadline[0][value][hour]" field should contain "10"
+      And the "oe_call_tenders_deadline[0][value][minute]" field should contain "0"
+      And the "Reference" field should contain "My Reference"
+      And the "Body text" field should contain "My Body text"
+      And the "Teaser" field should contain "My teaser"
+
+    @javascript
+    Scenario: Test OrganisationContentContext and BeforeParseEntityFields alterations are done.
+      Given I am logged in as a user with the "edit any oe_organisation content, access content" permission
+      And the following "Organisation" Content entity:
+        | Title             | My Organisation |
+        | Introduction      | My Introduction     |
+        | Body text         | My Body text        |
+        | Acronym           | My acronym                  |
+        | Alternative title | My Alternative Organisation |
+
+      When I visit node "My Organisation" edit page
+      Then I should see the text "My Organisation"
+      And the "Introduction" field should contain "My Introduction"
+      And the "Body text" field should contain "My Body text"
+      And the "Acronym" field should contain "My acronym"
+      And the "Alternative title" field should contain "My Alternative Organisation"
