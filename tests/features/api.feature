@@ -122,15 +122,10 @@
       And I reload the page
       And the "Organiser name" field should contain "Name of the organiser"
 
-      # Assert contacts.
       And I press "Edit" in the "A general contact" row
       And I wait for AJAX to finish
       And the "Phone number" field should contain "+32477792933"
       And the "Country" field should contain "HU"
-#      And the "oe_event_contact[form][inline_entity_form][entities][0][form][oe_address][0][address][locality]" field should contain "Budapest"
-#      And I fill in "Office" with "Office" in the "Event contact" region
-#      And I take a screenshot
-#      And the "City" field should contain "Budapest"
 
     @javascript
     Scenario: Test ProjectContentContext and BeforeParseEntityFields alterations are done.
@@ -213,15 +208,22 @@
     @javascript
     Scenario: Test CallForTendersContentContext and BeforeParseEntityFields alterations are done.
       Given I am logged in as a user with the "edit any oe_call_tenders content, access content, view published skos concept entities, manage corporate content entities" permission
+
+      And the following document:
+        | name                 | file          |
+        | Document placeholder | document.pdf  |
+
       And the following "Call for tenders" Content entity:
-        | Title            | My Call for tenders |
-        | Body text        | My Body text        |
-        | Publication date | 2020-01-01          |
-        | Opening date     | 2020-01-01          |
-        | Deadline date    | 2020-01-01 10:00:00 |
-        | Introduction     | My Introduction     |
-        | Reference        | My Reference        |
-        | Teaser           | My teaser           |
+        | Title                  | My Call for tenders    |
+        | Body text              | My Body text           |
+        | Publication date       | 2020-01-01             |
+        | Opening date           | 2020-01-01             |
+        | Deadline date          | 2020-01-01 10:00:00    |
+        | Introduction           | My Introduction        |
+        | Reference              | My Reference           |
+        | Teaser                 | My teaser              |
+        | Documents              | Document placeholder   |
+        | Responsible department | Asian Development Bank |
 
       When I visit node "My Call for tenders" edit page
       Then I should see the text "My Call for tenders"
@@ -240,16 +242,34 @@
       And the "Reference" field should contain "My Reference"
       And the "Body text" field should contain "My Body text"
       And the "Teaser" field should contain "My teaser"
+      And the "oe_departments[0][target_id]" field should contain "Asian Development Bank (http://eurovoc.europa.eu/6336)"
 
     @javascript
     Scenario: Test OrganisationContentContext and BeforeParseEntityFields alterations are done.
-      Given I am logged in as a user with the "edit any oe_organisation content, access content" permission
+      Given I am logged in as a user with the "edit any oe_organisation content, access content, view published skos concept entities" permission
+
+      And the following General Contact entity:
+        | Name               | A general contact                                                                            |
+        | Address            | country_code: HU - locality: Budapest - address_line1: General contact 1 - postal_code: 1011 |
+        | Email              | general@example.com                                                                          |
+        | Phone number       | +32477792933                                                                                 |
+        | Social media links | uri: http://instagram.com - title: Instagram - link_type: instagram                          |
+
+      And the following image:
+        | name              | file            |
+        | Image placeholder | example_1.jpeg  |
+
       And the following "Organisation" Content entity:
-        | Title             | My Organisation |
-        | Introduction      | My Introduction     |
-        | Body text         | My Body text        |
+        | Title             | My Organisation             |
+        | Introduction      | My Introduction             |
+        | Body text         | My Body text                |
         | Acronym           | My acronym                  |
         | Alternative title | My Alternative Organisation |
+        | Contact           | A general contact           |
+        | EU organisation   | Arab Common Market          |
+        | Organisation type | eu                          |
+        | Logo              | Image placeholder           |
+        | Teaser            | My teaser                   |
 
       When I visit node "My Organisation" edit page
       Then I should see the text "My Organisation"
@@ -257,3 +277,7 @@
       And the "Body text" field should contain "My Body text"
       And the "Acronym" field should contain "My acronym"
       And the "Alternative title" field should contain "My Alternative Organisation"
+      And I should see the text "A general contact"
+      And the "oe_organisation_eu_org[0][target_id]" field should contain "Arab Common Market (http://eurovoc.europa.eu/1793)"
+      And the "oe_organisation_org_type" field should contain "eu"
+      And the "Teaser" field should contain "My teaser"
