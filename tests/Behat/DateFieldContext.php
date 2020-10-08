@@ -176,12 +176,9 @@ class DateFieldContext extends RawDrupalContext {
    *
    * @param string $field
    *   The field name.
-   *
-   * When I set "Field" to the date "22-02-2019"
-   * When I set "Field" to the date "22-02-2019 14:30" using format "d-m-Y H:i"
-   *
-   * @param string $field
-   *   The label of the field.
+   *   When I set "Field" to the date "22-02-2019".
+   *   When I set "Field" to the date "22-02-2019 14:30" using
+   *   format "d-m-Y H:i".
    * @param string $value
    *   The value of the field.
    * @param string $format
