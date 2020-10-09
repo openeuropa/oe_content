@@ -26,7 +26,7 @@
         "drupal/entity_embed": "~1.0",
         "drupal/entity_reference_revisions": "~1.3",
         "drupal/field_group": "~3.0",
-        "drupal/inline_entity_form": "~1.0-rc7",
+        "drupal/inline_entity_form": "~1.0-rc8",
         "drupal/typed_link": "~1.1",
         "drupaltest/behat-traits": "dev-8.x-1.x",
         "drush/drush": "~9.0",
@@ -44,6 +44,9 @@
         "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.4"
     },
+    "_readme": [
+        "We explicitly require drupal/inline_entity_form version to be higher than rc7 to avoid known issues with the module."
+    ],
     "autoload": {
         "psr-4": {
             "Drupal\\oe_content\\": "./src/"
@@ -55,6 +58,9 @@
             "Drupal\\Tests\\oe_content_featured_media_field\\": "./modules/oe_content_featured_media_field/tests/src/",
             "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/"
         }
+    },
+    "conflict": {
+        "drupal/inline_entity_form": "<1.0-rc8"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
