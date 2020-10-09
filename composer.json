@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "drupal/core": "^8.8",
+        "drupal/core": "^8.8.2",
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
@@ -45,7 +45,7 @@
         "symfony/dom-crawler": "~3.4"
     },
     "_readme": [
-        "We explicitly require drupal/inline_entity_form version to be higher than rc7 to avoid known issues with the module."
+        "We explicitly require drupal/inline_entity_form version rc8 or higher as it contains necessary bug fixes."
     ],
     "autoload": {
         "psr-4": {
