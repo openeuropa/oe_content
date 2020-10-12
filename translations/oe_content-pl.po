@@ -190,118 +190,97 @@ msgid "Email"
 msgstr "E-mail"
 
 msgid "Phone number"
-msgstr "Telefoonnummer"
+msgstr "Tel."
 
 msgid "Opening date"
-msgstr "Begindatum"
+msgstr "Data początkowa"
 
 msgid "Deadline date"
-msgstr "Deadline"
+msgstr "Termin"
 
 msgid "Publication date"
-msgstr "Publicatiedatum"
+msgstr "Data publikacji"
 
 msgid "Author"
-msgstr "Auteur"
+msgstr "Autor"
 
 msgid "Location"
-msgstr "Locatie"
+msgstr "Miejsce"
 
 msgid "News type"
-msgstr "Soort nieuws"
+msgstr "Rodzaj aktualności"
 
 msgid "Project locations"
-msgstr "Projectlocaties"
+msgstr "Miejsca realizacji projektu"
 
 msgid "Overall budget"
-msgstr "Totaalbudget"
+msgstr "Budżet całkowity"
 
 msgid "EU contribution"
-msgstr "EU-bijdrage"
+msgstr "Wkład UE"
 
 msgid "Departments"
-msgstr "Departementen"
+msgstr "Departamenty"
 
 msgid "Results"
-msgstr "Resultaten"
+msgstr "Wyniki"
 
 msgid "Stakeholders"
-msgstr "Stakeholders"
+msgstr "Zainteresowane strony"
 
 msgid "Coordinators"
-msgstr "Coördinatoren"
+msgstr "Koordynatorzy"
 
 msgid "Participants"
-msgstr "Deelnemers"
-
-msgid "Website"
-msgstr "Website"
+msgstr "Uczestnicy"
 
 msgid "Country"
-msgstr "Land"
+msgstr "Kraj"
 
 msgid "EU Organisation"
-msgstr "EU-organisatie"
+msgstr "Organizacja z UE"
 
 msgid "Non-EU organisation"
-msgstr "Niet-EU-organisatie"
-
-msgid "Website"
-msgstr "Website"
-
-msgid "Location"
-msgstr "Locatie"
-
-msgid "Publication date"
-msgstr "Publicatiedatum"
+msgstr "Organizacja spoza UE"
 
 msgid "Reference"
-msgstr "Referentie"
+msgstr "Numer"
 
 msgid "Upcoming"
-msgstr "Binnenkort"
+msgstr "Zaplanowano"
 
 msgid "Open"
-msgstr "Open"
+msgstr "W toku"
 
 msgid "Closed"
-msgstr "Gesloten"
+msgstr "Zakończono"
 
 msgid "Details"
-msgstr "Bijzonderheden"
+msgstr "Informacje szczegółowe"
 
 msgid "Status"
 msgstr "Status"
 
 msgid "Details"
-msgstr "Bijzonderheden"
+msgstr "Informacje szczegółowe"
 
 msgid "Contact organisation"
-msgstr "Contact"
+msgstr "Skontaktuj się z organizacją"
 
 msgid "Publication"
-msgstr "Publicatie"
+msgstr "Publikacja"
 
 msgid "Publication date"
-msgstr "Publicatiedatum"
+msgstr "Data publikacji"
 
 msgid "Description"
-msgstr "Beschrijving"
+msgstr "Opis"
 
 msgid "Email"
 msgstr "E-mail"
 
-msgid "Upcoming"
-msgstr "Binnenkort"
-
-msgid "Open"
-msgstr "Open"
-
-msgid "Closed"
-msgstr "Gesloten"
-
 msgid "Contact"
-msgstr "Contact"
+msgstr "Kontakt"
 
 msgid "Contacts"
-msgstr "Contact"
+msgstr "Kontakt"

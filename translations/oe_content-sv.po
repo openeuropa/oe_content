@@ -238,9 +238,6 @@ msgstr "Samordnare"
 msgid "Participants"
 msgstr "Deltagare"
 
-msgid "Website"
-msgstr "Webbplats"
-
 msgid "Country"
 msgstr "Land"
 
@@ -249,15 +246,6 @@ msgstr "EU-organisation"
 
 msgid "Non-EU organisation"
 msgstr "Icke-EU-organisation"
-
-msgid "Website"
-msgstr "Webbplats"
-
-msgid "Location"
-msgstr "Plats"
-
-msgid "Publication date"
-msgstr "Publiceringsdatum"
 
 msgid "Reference"
 msgstr "Referens"
@@ -294,15 +282,6 @@ msgstr "Beskrivning"
 
 msgid "Email"
 msgstr "E-post"
-
-msgid "Upcoming"
-msgstr "Kommande"
-
-msgid "Open"
-msgstr "Aktuell"
-
-msgid "Closed"
-msgstr "Avslutad"
 
 msgid "Contact"
 msgstr "Kontakt"

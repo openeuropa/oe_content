@@ -238,9 +238,6 @@ msgstr "Koordinaturi"
 msgid "Participants"
 msgstr "Parteċipanti"
 
-msgid "Website"
-msgstr "Sit web"
-
 msgid "Country"
 msgstr "Pajjiż"
 
@@ -249,15 +246,6 @@ msgstr "Organizzazzjoni tal-UE"
 
 msgid "Non-EU organisation"
 msgstr "Organizzazzjoni tal-UE"
-
-msgid "Website"
-msgstr "Sit web"
-
-msgid "Location"
-msgstr "Post"
-
-msgid "Publication date"
-msgstr "Data tal-pubblikazzjoni"
 
 msgid "Reference"
 msgstr "Referenza"
@@ -294,15 +282,6 @@ msgstr "Deskrizzjoni"
 
 msgid "Email"
 msgstr "Email"
-
-msgid "Upcoming"
-msgstr "Li jmiss"
-
-msgid "Open"
-msgstr "Miftuħ"
-
-msgid "Closed"
-msgstr "Magħluq"
 
 msgid "Contact"
 msgstr "Kuntatt"

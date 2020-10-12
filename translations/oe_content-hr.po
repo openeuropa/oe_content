@@ -238,9 +238,6 @@ msgstr "Koordinatori"
 msgid "Participants"
 msgstr "Sudionici"
 
-msgid "Website"
-msgstr "Internetska stranica"
-
 msgid "Country"
 msgstr "Zemlja"
 
@@ -249,15 +246,6 @@ msgstr "Organizacija EU-a"
 
 msgid "Non-EU organisation"
 msgstr "Organizacija izvan EU-a"
-
-msgid "Website"
-msgstr "Internetska stranica"
-
-msgid "Location"
-msgstr "Lokacija"
-
-msgid "Publication date"
-msgstr "Datum publikacije"
 
 msgid "Reference"
 msgstr "Referencija"
@@ -294,15 +282,6 @@ msgstr "Opis"
 
 msgid "Email"
 msgstr "E-adresa"
-
-msgid "Upcoming"
-msgstr "Uskoro"
-
-msgid "Open"
-msgstr "Otvoreno"
-
-msgid "Closed"
-msgstr "Zatvoreno"
 
 msgid "Contact"
 msgstr "Kontakt"

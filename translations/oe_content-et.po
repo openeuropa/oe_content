@@ -238,9 +238,6 @@ msgstr "Koordinaatorid"
 msgid "Participants"
 msgstr "Osalejad"
 
-msgid "Website"
-msgstr "Veebisait"
-
 msgid "Country"
 msgstr "Riik"
 
@@ -249,15 +246,6 @@ msgstr "ELi organisatsioon"
 
 msgid "Non-EU organisation"
 msgstr "ELi-väline organisatsioon"
-
-msgid "Website"
-msgstr "Veebisait"
-
-msgid "Location"
-msgstr "Asukoht"
-
-msgid "Publication date"
-msgstr "Avaldamiskuupäev"
 
 msgid "Reference"
 msgstr "Viide"
@@ -294,15 +282,6 @@ msgstr "Kirjeldus"
 
 msgid "Email"
 msgstr "E-post"
-
-msgid "Upcoming"
-msgstr "Tulemas"
-
-msgid "Open"
-msgstr "Kestab"
-
-msgid "Closed"
-msgstr "Lõppenud"
 
 msgid "Contact"
 msgstr "Kontaktandmed"

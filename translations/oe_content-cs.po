@@ -238,9 +238,6 @@ msgstr "Koordinátoři"
 msgid "Participants"
 msgstr "Účastníci"
 
-msgid "Website"
-msgstr "Internetové stránky"
-
 msgid "Country"
 msgstr "Země"
 
@@ -249,15 +246,6 @@ msgstr "Organizace EU"
 
 msgid "Non-EU organisation"
 msgstr "Organizace mimo EU"
-
-msgid "Website"
-msgstr "Internetové stránky"
-
-msgid "Location"
-msgstr "Místo konání"
-
-msgid "Publication date"
-msgstr "Datum vydání publikace"
 
 msgid "Reference"
 msgstr "Odkaz"
@@ -294,15 +282,6 @@ msgstr "Popis"
 
 msgid "Email"
 msgstr "E-mail"
-
-msgid "Upcoming"
-msgstr "Plánované"
-
-msgid "Open"
-msgstr "Probíhá"
-
-msgid "Closed"
-msgstr "ukončeno"
 
 msgid "Contact"
 msgstr "Kontakt"

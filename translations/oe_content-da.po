@@ -238,9 +238,6 @@ msgstr "Koordinatorer"
 msgid "Participants"
 msgstr "Deltagere"
 
-msgid "Website"
-msgstr "Websted"
-
 msgid "Country"
 msgstr "Land"
 
@@ -249,15 +246,6 @@ msgstr "EU-organisation"
 
 msgid "Non-EU organisation"
 msgstr "Ikke-EU-organisation"
-
-msgid "Website"
-msgstr "Websted"
-
-msgid "Location"
-msgstr "Placering"
-
-msgid "Publication date"
-msgstr "Dato for offentliggørelse"
 
 msgid "Reference"
 msgstr "Reference"
@@ -294,15 +282,6 @@ msgstr "Beskrivelse"
 
 msgid "Email"
 msgstr "E-mail"
-
-msgid "Upcoming"
-msgstr "Kommende"
-
-msgid "Open"
-msgstr "Åben"
-
-msgid "Closed"
-msgstr "Lukket"
 
 msgid "Contact"
 msgstr "Kontakt"

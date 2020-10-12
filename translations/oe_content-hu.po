@@ -234,9 +234,6 @@ msgstr "Koordinátorok"
 msgid "Participants"
 msgstr "Résztvevők"
 
-msgid "Website"
-msgstr "Honlap"
-
 msgid "Country"
 msgstr "Ország"
 
@@ -245,15 +242,6 @@ msgstr "EU-szervezet"
 
 msgid "Non-EU organisation"
 msgstr "Nem uniós szervezet"
-
-msgid "Website"
-msgstr "Honlap"
-
-msgid "Location"
-msgstr "Helyszín"
-
-msgid "Publication date"
-msgstr "Közzététel dátuma"
 
 msgid "Reference"
 msgstr "Hivatkozás"
@@ -290,15 +278,6 @@ msgstr "Leírás"
 
 msgid "Email"
 msgstr "E-mail-cím"
-
-msgid "Upcoming"
-msgstr "Nemsokára"
-
-msgid "Open"
-msgstr "Folyamatban"
-
-msgid "Closed"
-msgstr "Lezárva"
 
 msgid "Contact"
 msgstr "Kapcsolat"

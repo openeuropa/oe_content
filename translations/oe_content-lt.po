@@ -234,9 +234,6 @@ msgstr "Koordinatoriai"
 msgid "Participants"
 msgstr "Dalyviai"
 
-msgid "Website"
-msgstr "Interneto svetainė"
-
 msgid "Country"
 msgstr "Šalis"
 
@@ -245,15 +242,6 @@ msgstr "ES organizacija"
 
 msgid "Non-EU organisation"
 msgstr "Ne ES organizacija"
-
-msgid "Website"
-msgstr "Interneto svetainė"
-
-msgid "Location"
-msgstr "Vieta"
-
-msgid "Publication date"
-msgstr "Paskelbimo data"
 
 msgid "Reference"
 msgstr "Nuoroda"
@@ -290,15 +278,6 @@ msgstr "Aprašymas"
 
 msgid "Email"
 msgstr "E. paštas"
-
-msgid "Upcoming"
-msgstr "Netrukus"
-
-msgid "Open"
-msgstr "Vyksta"
-
-msgid "Closed"
-msgstr "Uždaryta"
 
 msgid "Contact"
 msgstr "Kontaktiniai duomenys"

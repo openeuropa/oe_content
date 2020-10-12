@@ -151,9 +151,6 @@ msgstr "Comhordaitheoirí"
 msgid "Participants"
 msgstr "Rannpháirtithe"
 
-msgid "Website"
-msgstr "Suíomh gréasáin"
-
 msgid "Country"
 msgstr "Tír"
 
@@ -162,15 +159,6 @@ msgstr "Eagraíocht de chuid an Aontais"
 
 msgid "Non-EU organisation"
 msgstr "Eagraíocht nach Eagraíocht de chuid an Aontais í"
-
-msgid "Website"
-msgstr "Suíomh gréasáin"
-
-msgid "Location"
-msgstr "Áit"
-
-msgid "Publication date"
-msgstr "Dáta foilsithe"
 
 msgid "Reference"
 msgstr "Tagairt"
@@ -207,15 +195,6 @@ msgstr "Cur síos"
 
 msgid "Email"
 msgstr "Seoladh ríomhphoist"
-
-msgid "Upcoming"
-msgstr "Le teacht"
-
-msgid "Open"
-msgstr "Ar oscailt"
-
-msgid "Closed"
-msgstr "Dúnta"
 
 msgid "Contact"
 msgstr "Teagmháil"

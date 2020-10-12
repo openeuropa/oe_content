@@ -234,9 +234,6 @@ msgstr "Coordinateurs"
 msgid "Participants"
 msgstr "Participants"
 
-msgid "Website"
-msgstr "Site web"
-
 msgid "Country"
 msgstr "Pays"
 
@@ -245,15 +242,6 @@ msgstr "Organisation de l’UE"
 
 msgid "Non-EU organisation"
 msgstr "Organisation hors UE"
-
-msgid "Website"
-msgstr "Site web"
-
-msgid "Location"
-msgstr "Lieu"
-
-msgid "Publication date"
-msgstr "Date de publication"
 
 msgid "Reference"
 msgstr "Référence"
@@ -290,15 +278,6 @@ msgstr "Description"
 
 msgid "Email"
 msgstr "Adresse électronique"
-
-msgid "Upcoming"
-msgstr "À venir"
-
-msgid "Open"
-msgstr "En cours"
-
-msgid "Closed"
-msgstr "Clos"
 
 msgid "Contact"
 msgstr "Contact"
