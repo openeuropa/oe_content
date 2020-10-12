@@ -330,6 +330,16 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
         $value = $form_state->getValue($parents);
         return EntityBrowserElement::processEntityIds($value[$delta]['target_id']);
       }
+      if ($last_parent === 'ief_entity_edit') {
+        $ief_field_name = array_shift($triggering_element['#parents']);
+        $element_path = array_merge($element['#field_parents'], [$this->fieldDefinition->getName()]);
+        foreach ($form_state->get('inline_entity_form') as $ief_widget) {
+          if ($ief_widget['instance']->getName() === $ief_field_name) {
+            $value = $form_state->getValue($element_path);
+            return EntityBrowserElement::processEntityIds($value[$delta]['target_id']);
+          }
+        }
+      }
     }
 
     // We are loading for the first time so we need to load any existing
