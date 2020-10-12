@@ -151,9 +151,6 @@ msgstr "Координатори"
 msgid "Participants"
 msgstr "Участници"
 
-msgid "Website"
-msgstr "Уебсайт"
-
 msgid "Country"
 msgstr "Държава"
 
@@ -162,15 +159,6 @@ msgstr "Организация на ЕС"
 
 msgid "Non-EU organisation"
 msgstr "Организация извън ЕС"
-
-msgid "Website"
-msgstr "Уебсайт"
-
-msgid "Location"
-msgstr "Местоположение"
-
-msgid "Publication date"
-msgstr "Дата на публикуване"
 
 msgid "Reference"
 msgstr "Референция"
@@ -207,15 +195,6 @@ msgstr "Описание"
 
 msgid "Email"
 msgstr "Електронен адрес"
-
-msgid "Upcoming"
-msgstr "Предстоящ"
-
-msgid "Open"
-msgstr "Отворено"
-
-msgid "Closed"
-msgstr "приключило"
 
 msgid "Contact"
 msgstr "Контакт"

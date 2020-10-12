@@ -191,121 +191,100 @@ msgid "Saturday"
 msgstr "Sâmbătă"
 
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 msgid "Phone number"
-msgstr "Phone number"
+msgstr "Număr de telefon"
 
 msgid "Opening date"
-msgstr "Opening date"
+msgstr "Data de deschidere"
 
 msgid "Deadline date"
-msgstr "Deadline date"
+msgstr "Data-limită"
 
 msgid "Publication date"
-msgstr "Publication date"
+msgstr "Data publicării"
 
 msgid "Author"
-msgstr "Author"
+msgstr "Autor"
 
 msgid "Location"
-msgstr "Location"
+msgstr "Locație"
 
 msgid "News type"
-msgstr "News type"
+msgstr "Tip de noutăți"
 
 msgid "Project locations"
-msgstr "Project locations"
+msgstr "Locațiile proiectului"
 
 msgid "Overall budget"
-msgstr "Overall budget"
+msgstr "Buget total"
 
 msgid "EU contribution"
-msgstr "EU contribution"
+msgstr "Contribuția UE"
 
 msgid "Departments"
-msgstr "Departments"
+msgstr "Departamente"
 
 msgid "Results"
-msgstr "Results"
+msgstr "Rezultate"
 
 msgid "Stakeholders"
-msgstr "Stakeholders"
+msgstr "Părți interesate"
 
 msgid "Coordinators"
-msgstr "Coordinators"
+msgstr "Coordonatori"
 
 msgid "Participants"
-msgstr "Participants"
-
-msgid "Website"
-msgstr "Website"
+msgstr "Participanți"
 
 msgid "Country"
-msgstr "Country"
+msgstr "Țara"
 
 msgid "EU Organisation"
-msgstr "EU Organisation"
+msgstr "Organizație UE"
 
 msgid "Non-EU organisation"
-msgstr "Non EU Organisation"
-
-msgid "Website"
-msgstr "Website"
-
-msgid "Location"
-msgstr "Location"
-
-msgid "Publication date"
-msgstr "Publication date"
+msgstr "Organizație non-UE"
 
 msgid "Reference"
-msgstr "Reference"
+msgstr "Referință"
 
 msgid "Upcoming"
-msgstr "Upcoming"
+msgstr "În curând"
 
 msgid "Open"
-msgstr "Open"
+msgstr "Deschis(ă)"
 
 msgid "Closed"
-msgstr "Closed"
+msgstr "Încheiat(ă)"
 
 msgid "Details"
-msgstr "Details"
+msgstr "Detalii"
 
 msgid "Status"
-msgstr "Status"
+msgstr "Statut"
 
 msgid "Details"
-msgstr "Details"
+msgstr "Detalii"
 
 msgid "Contact organisation"
 msgstr "Contact organisation"
 
 msgid "Publication"
-msgstr "Publication"
+msgstr "Publicație"
 
 msgid "Publication date"
-msgstr "Publication date"
+msgstr "Data publicării"
 
 msgid "Description"
-msgstr "Description"
+msgstr "Descriere"
 
 msgid "Email"
-msgstr "Email"
-
-msgid "Upcoming"
-msgstr "Upcoming"
-
-msgid "Open"
-msgstr "Open"
-
-msgid "Closed"
-msgstr "Closed"
+msgstr "E-mail"
 
 msgid "Contact"
 msgstr "Contact"
 
 msgid "Contacts"
-msgstr "Contacts"
+msgstr "Date de contact"

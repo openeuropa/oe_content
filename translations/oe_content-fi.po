@@ -238,9 +238,6 @@ msgstr "Koordinaattorit"
 msgid "Participants"
 msgstr "Osallistujat"
 
-msgid "Website"
-msgstr "Verkkosivusto"
-
 msgid "Country"
 msgstr "Maa"
 
@@ -249,15 +246,6 @@ msgstr "EU:n organisaatio"
 
 msgid "Non-EU organisation"
 msgstr "Ei EU:n organisaatio"
-
-msgid "Website"
-msgstr "Verkkosivusto"
-
-msgid "Location"
-msgstr "Paikka"
-
-msgid "Publication date"
-msgstr "Julkaisupäivä"
 
 msgid "Reference"
 msgstr "Viite"
@@ -294,15 +282,6 @@ msgstr "Kuvaus"
 
 msgid "Email"
 msgstr "Sähköposti"
-
-msgid "Upcoming"
-msgstr "Tulossa"
-
-msgid "Open"
-msgstr "Meneillään"
-
-msgid "Closed"
-msgstr "Päättynyt"
 
 msgid "Contact"
 msgstr "Yhteydenotot"

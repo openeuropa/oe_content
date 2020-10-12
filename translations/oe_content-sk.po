@@ -154,9 +154,6 @@ msgstr "Koordinátori/koordinátorky"
 msgid "Participants"
 msgstr "Účastníci/účastníčky"
 
-msgid "Website"
-msgstr "Webové sídlo"
-
 msgid "Country"
 msgstr "Krajina"
 
@@ -165,15 +162,6 @@ msgstr "Organizácia EÚ"
 
 msgid "Non-EU organisation"
 msgstr "Organizácia mimo EÚ"
-
-msgid "Website"
-msgstr "Webové sídlo"
-
-msgid "Location"
-msgstr "Miesto"
-
-msgid "Publication date"
-msgstr "Dátum publikácie"
 
 msgid "Reference"
 msgstr "Referencia"
@@ -210,15 +198,6 @@ msgstr "Opis"
 
 msgid "Email"
 msgstr "E-mailová adresa"
-
-msgid "Upcoming"
-msgstr "Nadchádzajúce"
-
-msgid "Open"
-msgstr "Otvorené"
-
-msgid "Closed"
-msgstr "Uzavreté"
 
 msgid "Contact"
 msgstr "Kontakt"

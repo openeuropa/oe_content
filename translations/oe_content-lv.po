@@ -238,9 +238,6 @@ msgstr "Koordinatori"
 msgid "Participants"
 msgstr "Dalībnieki"
 
-msgid "Website"
-msgstr "Tīmekļvietne"
-
 msgid "Country"
 msgstr "Valsts"
 
@@ -249,15 +246,6 @@ msgstr "ES organizācija"
 
 msgid "Non-EU organisation"
 msgstr "Organizācija no valsts ārpus ES"
-
-msgid "Website"
-msgstr "Tīmekļvietne"
-
-msgid "Location"
-msgstr "Vieta"
-
-msgid "Publication date"
-msgstr "Publikācijas datums"
 
 msgid "Reference"
 msgstr "Atsauce"
@@ -294,15 +282,6 @@ msgstr "Apraksts"
 
 msgid "Email"
 msgstr "E-pasts"
-
-msgid "Upcoming"
-msgstr "Gaidāms"
-
-msgid "Open"
-msgstr "Sācies"
-
-msgid "Closed"
-msgstr "Beidzies"
 
 msgid "Contact"
 msgstr "Kontaktinformācija"

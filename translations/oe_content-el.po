@@ -187,121 +187,97 @@ msgid "Saturday"
 msgstr "Σάββατο"
 
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 msgid "Phone number"
-msgstr "Phone number"
+msgstr "Αριθμός τηλεφώνου"
 
 msgid "Opening date"
-msgstr "Opening date"
+msgstr "Ημερομηνία έναρξης"
 
 msgid "Deadline date"
-msgstr "Deadline date"
+msgstr "Ημερομηνία προθεσμίας"
 
 msgid "Publication date"
-msgstr "Publication date"
+msgstr "Ημερομηνία δημοσίευσης"
 
 msgid "Author"
-msgstr "Author"
+msgstr "Ημερομηνία δημοσίευσης"
 
 msgid "Location"
-msgstr "Location"
+msgstr "Τόπος"
 
 msgid "News type"
-msgstr "News type"
+msgstr "Είδος ειδήσεων"
 
 msgid "Project locations"
-msgstr "Project locations"
+msgstr "Τόποι έργων"
 
 msgid "Overall budget"
-msgstr "Overall budget"
+msgstr "Συνολικός προϋπολογισμός"
 
 msgid "EU contribution"
-msgstr "EU contribution"
+msgstr "Συνεισφορά ΕΕ"
 
 msgid "Departments"
-msgstr "Departments"
+msgstr "Τμήματα"
 
 msgid "Results"
-msgstr "Results"
+msgstr "Αποτελέσματα"
 
 msgid "Stakeholders"
-msgstr "Stakeholders"
+msgstr "Ενδιαφερόμενα μέρη"
 
 msgid "Coordinators"
-msgstr "Coordinators"
-
-msgid "Participants"
-msgstr "Participants"
-
-msgid "Website"
-msgstr "Website"
+msgstr "Ενδιαφερόμενα μέρη"
 
 msgid "Country"
-msgstr "Country"
+msgstr "Χώρα"
 
 msgid "EU Organisation"
-msgstr "EU Organisation"
+msgstr "Οργανισμός της ΕΕ"
 
 msgid "Non-EU organisation"
-msgstr "Non EU Organisation"
-
-msgid "Website"
-msgstr "Website"
-
-msgid "Location"
-msgstr "Location"
-
-msgid "Publication date"
-msgstr "Publication date"
+msgstr "Οργανισμός εκτός ΕΕ"
 
 msgid "Reference"
-msgstr "Reference"
+msgstr "Στοιχεία αναφοράς"
 
 msgid "Upcoming"
-msgstr "Upcoming"
+msgstr "Προσεχώς"
 
 msgid "Open"
-msgstr "Open"
+msgstr "Ανοικτό"
 
 msgid "Closed"
-msgstr "Closed"
+msgstr "Έχει κλείσει"
 
 msgid "Details"
-msgstr "Details"
+msgstr "Λεπτομέρειες"
 
 msgid "Status"
-msgstr "Status"
+msgstr "Καθεστώς"
 
 msgid "Details"
-msgstr "Details"
+msgstr "Λεπτομέρειες"
 
 msgid "Contact organisation"
 msgstr "Contact organisation"
 
 msgid "Publication"
-msgstr "Publication"
+msgstr "Δημοσίευση"
 
 msgid "Publication date"
-msgstr "Publication date"
+msgstr "Ημερομηνία δημοσίευσης"
 
 msgid "Description"
-msgstr "Description"
+msgstr "Περιγραφή"
 
 msgid "Email"
-msgstr "Email"
-
-msgid "Upcoming"
-msgstr "Upcoming"
-
-msgid "Open"
-msgstr "Open"
-
-msgid "Closed"
-msgstr "Closed"
+msgstr "E-mail"
 
 msgid "Contact"
-msgstr "Contact"
+msgstr "Επικοινωνία"
 
 msgid "Contacts"
-msgstr "Contacts"
+msgstr "Επικοινωνία"

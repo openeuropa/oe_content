@@ -187,121 +187,100 @@ msgid "Saturday"
 msgstr "Sábado"
 
 msgid "Email"
-msgstr "Email"
+msgstr "Correo electrónico"
 
 msgid "Phone number"
-msgstr "Phone number"
+msgstr "Número de teléfono"
 
 msgid "Opening date"
-msgstr "Opening date"
+msgstr "Fecha de apertura"
 
 msgid "Deadline date"
-msgstr "Deadline date"
+msgstr "Fecha límite"
 
 msgid "Publication date"
-msgstr "Publication date"
+msgstr "Fecha de publicación"
 
 msgid "Author"
-msgstr "Author"
+msgstr "Autor"
 
 msgid "Location"
-msgstr "Location"
+msgstr "Lugar"
 
 msgid "News type"
-msgstr "News type"
+msgstr "Tipo de noticia"
 
 msgid "Project locations"
-msgstr "Project locations"
+msgstr "Lugares del proyecto"
 
 msgid "Overall budget"
-msgstr "Overall budget"
+msgstr "Presupuesto total"
 
 msgid "EU contribution"
-msgstr "EU contribution"
+msgstr "Contribución de la UE"
 
 msgid "Departments"
-msgstr "Departments"
+msgstr "Departamentos"
 
 msgid "Results"
-msgstr "Results"
+msgstr "Resultados"
 
 msgid "Stakeholders"
-msgstr "Stakeholders"
+msgstr "Partes interesadas"
 
 msgid "Coordinators"
-msgstr "Coordinators"
+msgstr "Coordinadores"
 
 msgid "Participants"
-msgstr "Participants"
-
-msgid "Website"
-msgstr "Website"
+msgstr "Participantes"
 
 msgid "Country"
-msgstr "Country"
+msgstr "País"
 
 msgid "EU Organisation"
-msgstr "EU Organisation"
+msgstr "Organización de la UE"
 
 msgid "Non-EU organisation"
-msgstr "Non EU Organisation"
-
-msgid "Website"
-msgstr "Website"
-
-msgid "Location"
-msgstr "Location"
-
-msgid "Publication date"
-msgstr "Publication date"
+msgstr "Organización no perteneciente a la UE"
 
 msgid "Reference"
-msgstr "Reference"
+msgstr "Referencia"
 
 msgid "Upcoming"
-msgstr "Upcoming"
+msgstr "Próximamente"
 
 msgid "Open"
-msgstr "Open"
+msgstr "Abierto"
 
 msgid "Closed"
-msgstr "Closed"
+msgstr "Cerrado"
 
 msgid "Details"
-msgstr "Details"
+msgstr "Detalles"
 
 msgid "Status"
-msgstr "Status"
+msgstr "Estado"
 
 msgid "Details"
-msgstr "Details"
+msgstr "Detalles"
 
 msgid "Contact organisation"
 msgstr "Contact organisation"
 
 msgid "Publication"
-msgstr "Publication"
+msgstr "Publicación"
 
 msgid "Publication date"
-msgstr "Publication date"
+msgstr "Fecha de publicación"
 
 msgid "Description"
-msgstr "Description"
+msgstr "Descripción"
 
 msgid "Email"
-msgstr "Email"
-
-msgid "Upcoming"
-msgstr "Upcoming"
-
-msgid "Open"
-msgstr "Open"
-
-msgid "Closed"
-msgstr "Closed"
+msgstr "Correo electrónico"
 
 msgid "Contact"
-msgstr "Contact"
+msgstr "Contacto"
 
 msgid "Contacts"
-msgstr "Contacts"
+msgstr "Contactos"
