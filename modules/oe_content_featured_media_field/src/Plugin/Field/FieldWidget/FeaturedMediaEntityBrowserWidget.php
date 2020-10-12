@@ -142,14 +142,23 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     $hidden_id = Html::getUniqueId('edit-' . $this->fieldDefinition->getName() . '-target-id');
     $details_id = Html::getUniqueId('edit-' . $this->fieldDefinition->getName());
 
+    // Get configuration required to check entity browser availability.
+    $selection_mode = $this->getSetting('selection_mode');
+
+    $display_entity_browser = EntityBrowserElement::isEntityBrowserAvailable($selection_mode, 1, count($entities));
+
     $element += [
       '#id' => $details_id,
       '#type' => 'details',
-      '#open' => !empty($entities) || $this->getSetting('open'),
+      '#open' => !empty($entities) || $this->getSetting('open') || $this->entityBrowserValueUpdated,
       'target_id' => [
         '#type' => 'hidden',
         '#id' => $hidden_id,
-        '#attributes' => ['id' => $hidden_id],
+        '#attributes' => [
+          'id' => $hidden_id,
+          'data-cardinality' => 1,
+          'data-entity-browser-visible' => $display_entity_browser,
+        ],
         '#default_value' => implode(' ', array_map(
           function (EntityInterface $item) {
             return $item->getEntityTypeId() . ':' . $item->id();
@@ -161,13 +170,14 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
           'wrapper' => $details_id,
           'event' => 'entity_browser_value_updated',
         ],
+        '#submit' => [[get_class($this), 'entityBrowserValueUpdated']],
+        '#limit_validation_errors' => [array_merge($element['#field_parents'], [$this->fieldDefinition->getName()])],
+        '#executes_submit_callback' => TRUE,
       ],
     ];
 
-    $selection_mode = $this->getSetting('selection_mode');
-
     // Enable entity browser if requirements for that are fulfilled.
-    if (EntityBrowserElement::isEntityBrowserAvailable($selection_mode, 1, count($entities))) {
+    if ($display_entity_browser) {
       $persistent_data = $this->getPersistentData();
 
       $element['entity_browser'] = [
@@ -184,6 +194,13 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
           [get_called_class(), 'processEntityBrowser'],
         ],
       ];
+
+      $element['target_id']['#attributes']['data-entity-browser-available'] = 1;
+    }
+    else {
+      // Allow non-ajax remove button to trigger ajax refresh when
+      // cardinality.
+      $element['target_id']['#attributes']['data-entity-browser-visible'] = 0;
     }
 
     $element['#attached']['library'][] = 'entity_browser/entity_reference';
@@ -259,8 +276,6 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
    */
   protected function formElementItemsEntities(FieldItemListInterface $items, int $delta, array $element, FormStateInterface $form_state): array {
     $entities = [];
-    $entity_type = $this->fieldDefinition->getFieldStorageDefinition()->getSetting('target_type');
-    $entity_storage = $this->entityTypeManager->getStorage($entity_type);
 
     // Determine if we're submitting and if submit came from this widget.
     $is_relevant_submit = FALSE;
@@ -283,18 +298,14 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
         $is_relevant_submit &= ($triggering_element['#parents'][$field_name_key] === $this->fieldDefinition->getName()) &&
           (array_slice($triggering_element['#parents'], 0, count($element['#field_parents'])) == $element['#field_parents']);
       }
-    };
+    }
 
     if ($is_relevant_submit) {
       // Submit was triggered by hidden "target_id" element when entities were
       // added via entity browser.
       if (!empty($triggering_element['#ajax']['event']) && $triggering_element['#ajax']['event'] == 'entity_browser_value_updated') {
-        $parents = $triggering_element['#parents'];
-      }
-      // Submit was triggered by one of the "Remove" buttons. We need to walk
-      // few levels up to read value of "target_id" element.
-      elseif ($triggering_element['#type'] == 'submit' && strpos($triggering_element['#name'], $this->fieldDefinition->getName() . '_remove_') === 0) {
-        $parents = array_merge(array_slice($triggering_element['#parents'], 0, -static::$deleteDepth), ['target_id']);
+        $parents = array_slice($triggering_element['#parents'], 0, -1);
+        $this->entityBrowserValueUpdated = TRUE;
       }
 
       // Since we are using a delta, replace the second value after the field
@@ -302,9 +313,9 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       $parents[$field_name_key + 1] = $delta;
 
       if ($value = $form_state->getValue($parents)) {
-        return EntityBrowserElement::processEntityIds($value);
+        $items->setValue($value);
+        $entities = $items->referencedEntities();
       }
-
       return $entities;
     }
 
@@ -324,13 +335,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     // We are loading for the first time so we need to load any existing
     // values that might already exist on the entity. Also, remove any leftover
     // data from removed entity references.
-    if (isset($items[$delta]->target_id)) {
-      $entity = $entity_storage->load($items[$delta]->target_id);
-      if (!empty($entity)) {
-        $entities[] = $entity;
-      }
-    }
-    return $entities;
+    return $items->referencedEntities();
   }
 
   /**
