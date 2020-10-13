@@ -231,6 +231,9 @@ msgstr "Ενδιαφερόμενα μέρη"
 msgid "Coordinators"
 msgstr "Ενδιαφερόμενα μέρη"
 
+msgid "Participants"
+msgstr "Teilnehmer"
+
 msgid "Country"
 msgstr "Χώρα"
 
