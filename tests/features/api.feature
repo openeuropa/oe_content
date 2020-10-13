@@ -8,6 +8,7 @@
       And the following image:
         | name              | file            |
         | Image placeholder | example_1.jpeg  |
+
       And the following Event Content entity:
         | Title                   | My event                                                      |
         | Type                    | Exhibitions                                                   |
@@ -36,6 +37,30 @@
         | Status                  | as_planned                                                    |
         | Event website           | uri: https://ec.europa.eu/inea/ - title: INEA                 |
         | Social media links      | uri: http://example.com - title: Twitter - link_type: twitter |
+
+      And the following Default Venue entity:
+        | Name     | DIGIT                                                                                      |
+        | Address  | country_code: BE - locality: Brussels - address_line1: Rue Belliard 28 - postal_code: 1000 |
+        | Capacity | 12 people                                                                                  |
+        | Room     | B-28 03/A150                                                                               |
+
+      And the following Press Contact entity:
+        | Name               | A press contact                                                                          |
+        | Address            | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
+        | Email              | press@example.com                                                                        |
+        | Phone number       | +32477777778                                                                             |
+        | Social media links | uri: http://facebook.com - title: Facebook - link_type: facebook                         |
+
+      And the following General Contact entity:
+        | Name               | A general contact                                                                            |
+        | Address            | country_code: BG - locality: Varna - address_line1: General contact 1 - postal_code: 9009    |
+        | Email              | general@example.com                                                                          |
+        | Phone number       | +359525566778                                                                                 |
+        | Social media links | uri: http://instagram.com - title: Instagram - link_type: instagram                          |
+
+      And the Event Content "My event" is updated as follows:
+        | Venue                 | DIGIT                               |
+        | Contact               | A press contact, A general contact  |
 
       When I visit node "My event" edit page
       Then I should see the text "My event"
@@ -96,36 +121,43 @@
       And the "oe_author[0][target_id]" field should contain "Directorate-General for Communication (http://publications.europa.eu/resource/authority/corporate-body/COMMU)"
       And the "oe_content_content_owner[0][target_id]" field should contain "Directorate-General for Communication (http://publications.europa.eu/resource/authority/corporate-body/COMMU)"
 
-      # Add related entities, such as venues and contacts and reload the page.
-      When the following Default Venue entity:
-        | Name     | DIGIT                                                                                      |
-        | Address  | country_code: BE - locality: Brussels - address_line1: Rue Belliard 28 - postal_code: 1000 |
-        | Capacity | 12 people                                                                                  |
-        | Room     | B-28 03/A150                                                                               |
-      And the following Press Contact entity:
-        | Name               | A press contact                                                                          |
-        | Address            | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
-        | Email              | press@example.com                                                                        |
-        | Phone number       | +32477777778                                                                             |
-        | Social media links | uri: http://facebook.com - title: Facebook - link_type: facebook                         |
-      And the following General Contact entity:
-        | Name               | A general contact                                                                            |
-        | Address            | country_code: HU - locality: Budapest - address_line1: General contact 1 - postal_code: 1011 |
-        | Email              | general@example.com                                                                          |
-        | Phone number       | +32477792933                                                                                 |
-        | Social media links | uri: http://instagram.com - title: Instagram - link_type: instagram                          |
       And the Event Content "My event" is updated as follows:
-        | Venue                 | DIGIT                               |
-        | Contact               | A press contact, A general contact  |
         | Organiser is internal | No                                  |
         | Organiser name        | Name of the organiser               |
+
       And I reload the page
       And the "Organiser name" field should contain "Name of the organiser"
 
-      And I press "Edit" in the "A general contact" row
-      And I wait for AJAX to finish
-      And the "Phone number" field should contain "+32477792933"
-      And the "Country" field should contain "HU"
+      # Fill in the required field
+      And I fill in "oe_teaser[0][value]" with "Alternative teaser"
+      And I press "Save"
+
+      And I should see "DIGIT"
+      And I should see "Belgium"
+      And I should see "Rue Belliard 28"
+      And I should see "1000"
+      And I should see "12 people"
+      And I should see "B-28 03/A150"
+
+      # The Press Contact data
+      And I should see "A press contact"
+      And I should see "Hungary"
+      And I should see "Szeged"
+      And I should see "Press contact 1"
+      And I should see "6700"
+      And I should see "press@example.com"
+      And I should see "+32477777778"
+      And I should see "Facebook"
+
+      # The General Contact data
+      And I should see "A general contact"
+      And I should see "Bulgaria"
+      And I should see "Varna"
+      And I should see "General contact 1"
+      And I should see "9009"
+      And I should see "general@example.com"
+      And I should see "+359525566778"
+      And I should see "Instagram"
 
     @javascript
     Scenario: Test ProjectContentContext and BeforeParseEntityFields alterations are done.
@@ -205,7 +237,7 @@
       And the "oe_departments[0][target_id]" field should contain "Asian Development Bank (http://eurovoc.europa.eu/6336)"
       And the "oe_project_funding_programme[0][target_id]" field should contain "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
 
-    @javascript @aabbcc
+    @javascript
     Scenario: Test CallForTendersContentContext and BeforeParseEntityFields alterations are done.
       Given I am logged in as a user with the "edit any oe_call_tenders content, access content, view published skos concept entities, manage corporate content entities" permission
 
