@@ -43,6 +43,7 @@ class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
     parent::setUp();
 
     $this->createContentType(['type' => 'page']);
+    $this->createContentType(['type' => 'article']);
 
     // Create an image file.
     \Drupal::service('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
@@ -84,10 +85,30 @@ class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
     ])->save();
 
     FieldConfig::create([
-      'label' => 'Featured media field',
+      'label' => 'Page Featured media field',
       'field_name' => 'featured_media_field',
       'entity_type' => 'node',
       'bundle' => 'page',
+      'settings' => [
+        'handler' => 'default:media',
+        'handler_settings' => [
+          'target_bundles' => [
+            'image' => 'image',
+          ],
+        ],
+        'sort' => [
+          'field' => '_none',
+        ],
+        'auto_create' => '0',
+      ],
+      'required' => FALSE,
+    ])->save();
+
+    FieldConfig::create([
+      'label' => 'Article Featured media field',
+      'field_name' => 'featured_media_field',
+      'entity_type' => 'node',
+      'bundle' => 'article',
       'settings' => [
         'handler' => 'default:media',
         'handler_settings' => [

@@ -25,6 +25,8 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     'views_ui',
     'system',
     'oe_content_featured_media_test',
+    'entity_reference_revisions',
+    'inline_entity_form',
   ];
 
   /**
@@ -64,6 +66,36 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
       'required' => FALSE,
     ])->save();
 
+    FieldStorageConfig::create([
+      'field_name' => 'article_field',
+      'entity_type' => 'node',
+      'type' => 'entity_reference_revisions',
+      'cardinality' => 1,
+      'settings' => [
+        'target_type' => 'node',
+      ],
+    ])->save();
+
+    FieldConfig::create([
+      'label' => 'Article IEF',
+      'field_name' => 'article_field',
+      'entity_type' => 'node',
+      'bundle' => 'page',
+      'settings' => [
+        'handler' => 'default:node',
+        'handler_settings' => [
+          'target_bundles' => [
+            'node_type' => 'article',
+          ],
+        ],
+        'sort' => [
+          'field' => '_none',
+        ],
+        'auto_create' => '0',
+      ],
+      'required' => FALSE,
+    ])->save();
+
     $view_display_options = [
       'type' => 'oe_featured_media_label',
       'label' => 'above',
@@ -76,6 +108,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
       ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
       ->save();
 
+    // Update page form display.
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
     $form_display = \Drupal::service('entity_type.manager')
       ->getStorage('entity_form_display')
@@ -96,11 +129,35 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
         'size' => 60,
         'match_limit' => 10,
       ],
+    ]);
+    $form_display->setComponent('article_field', [
+      'type' => 'inline_entity_form_complex',
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+      ],
+    ])->save();
+
+    // Update article form display.
+    /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
+    $form_display = \Drupal::service('entity_type.manager')
+      ->getStorage('entity_form_display')
+      ->load('node.article.default');
+    $form_display->setComponent('featured_media_field', [
+      'type' => 'oe_featured_media_entity_browser',
+      'settings' => [
+        'entity_browser' => 'test_images',
+        'field_widget_display' => 'label',
+        'open' => TRUE,
+      ],
     ])->save();
 
     // Prepare the default view display for rendering.
     $display = \Drupal::service('entity_display.repository')
       ->getViewDisplay('node', 'page')
+      ->setComponent('featured_media_field', $view_display_options);
+    $display->save();
+    $display = \Drupal::service('entity_display.repository')
+      ->getViewDisplay('node', 'article')
       ->setComponent('featured_media_field', $view_display_options);
     $display->save();
 
@@ -133,13 +190,13 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->assertSession()->pageTextContains('News reference field (value 2)');
 
     // Assert that all the entity browser elements are displayed.
-    $featured_media_field_wrapper = $this->xpath('//div[@data-drupal-selector=\'edit-featured-media-field\']');
-    $this->assertCount(1, $featured_media_field_wrapper);
-    $featured_media_field = reset($featured_media_field_wrapper);
-    $this->assertTrue($featured_media_field->hasButton('Select images'));
-    $this->assertTrue($featured_media_field->hasField('Caption'));
+    $page_featured_media_field_wrapper = $this->xpath('//div[@data-drupal-selector=\'edit-featured-media-field\']');
+    $this->assertCount(1, $page_featured_media_field_wrapper);
+    $page_featured_media_field = reset($page_featured_media_field_wrapper);
+    $this->assertTrue($page_featured_media_field->hasButton('Select images'));
+    $this->assertTrue($page_featured_media_field->hasField('Caption'));
     $this->assertSession()->pageTextContains('The caption that goes with the referenced media.');
-    $this->assertTrue($featured_media_field->hasButton('Add another item'));
+    $this->assertTrue($page_featured_media_field->hasButton('Add another item'));
 
     // Assert validation of caption without Media.
     $this->getSession()->getPage()->fillField('featured_media_field[0][caption]', 'Invalid caption');
@@ -150,7 +207,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->drupalGet($node->toUrl('edit-form'));
 
     // Select the first media image from the entity browser.
-    $featured_media_field->pressButton('Select images');
+    $page_featured_media_field->pressButton('Select images');
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
     $this->getSession()->getPage()->checkField('entity_browser_select[media:1]');
@@ -159,30 +216,49 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
 
     // Assert the image was selected and the widget shows the proper buttons.
     $this->assertSession()->pageTextContains('Image 1');
-    $this->assertFalse($featured_media_field->hasButton('Select images'));
-    $this->assertMediaSelectionHasRemoveButton('Image 1');
+    $this->assertFalse($page_featured_media_field->hasButton('Select images'));
+    $this->assertMediaSelectionHasRemoveButton('Image 1', 'Page Featured media field');
 
     // Add the second media image item.
     $this->getSession()->getPage()->pressButton('Add another item');
     $this->assertSession()->assertWaitOnAjaxRequest();
     // Assert that the item was added to the featured media field.
     $this->assertSession()->pageTextContains('Featured media field (value 2)');
-    $featured_media_field->pressButton('Select images');
+    $page_featured_media_field->pressButton('Select images');
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
     $this->getSession()->getPage()->checkField('entity_browser_select[media:2]');
     $this->getSession()->getPage()->pressButton('Select image');
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->assertSession()->pageTextContains('Image 2');
-    $this->assertFalse($featured_media_field->hasButton('Select images'));
-    $this->assertMediaSelectionHasRemoveButton('Image 2');
+    $this->assertFalse($page_featured_media_field->hasButton('Select images'));
+    $this->assertMediaSelectionHasRemoveButton('Image 2', 'Page Featured media field');
 
     // Check that 'Image 1' media item is placed before 'Image 2'.
     $this->assertOrderInPage(['Image 1', 'Image 2']);
 
+    // Add image item in IEF.
+    $this->getSession()->getPage()->pressButton('Add new node');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $article_featured_media_field_wrapper = $this->xpath('//div[@data-drupal-selector=\'edit-article-field-wrapper\']/div/fieldset/div/fieldset/div/div/div[@data-drupal-selector=\'edit-article-field-form-0-featured-media-field-wrapper\']');
+    $this->assertCount(1, $article_featured_media_field_wrapper);
+    $article_featured_media_field = reset($article_featured_media_field_wrapper);
+    $this->assertTrue($article_featured_media_field->hasButton('Select images'));
+    $article_featured_media_field->pressButton('Select images');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
+    $this->getSession()->getPage()->checkField('entity_browser_select[media:1]');
+    $this->getSession()->getPage()->pressButton('Select image');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->assertSession()->pageTextContains('Image 1');
+    $this->assertFalse($article_featured_media_field->hasButton('Select images'));
+    $this->assertMediaSelectionHasRemoveButton('Image 1', 'Article Featured media field');
+
     // Fill in the captions and save the node.
     $this->getSession()->getPage()->fillField('featured_media_field[0][caption]', 'Image 1 caption');
     $this->getSession()->getPage()->fillField('featured_media_field[1][caption]', 'Image 2 caption');
+    $this->getSession()->getPage()->fillField('article_field[form][0][title][0][value]', 'Article node with IEF');
+    $this->getSession()->getPage()->fillField('article_field[form][0][featured_media_field][0][caption]', 'Image 2 caption IEF');
     $this->getSession()->getPage()->pressButton('Save');
 
     // Assert the values were saved correctly in the node.
@@ -282,16 +358,18 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
   }
 
   /**
-   * Asserts that the media selection has the Remove button at a given delta.
+   * Asserts that the media selection has the Remove button in a given field.
    *
-   * @param string $name
+   * @param string $media_name
    *   The name of the media item.
+   * @param string $field_name
+   *   The name of the field.
    */
-  protected function assertMediaSelectionHasRemoveButton(string $name): void {
-    $xpath = '//table//tbody//tr[td//text()[contains(., "' . $name . '")]]';
+  protected function assertMediaSelectionHasRemoveButton(string $media_name, string $field_name): void {
+    $xpath = '//table[thead//tr[th//text()[contains(., "' . $field_name . '")]]][tbody//tr[td//text()[contains(., "' . $media_name . '")]]]';
     $container = $this->getSession()->getPage()->find('xpath', $xpath);
     if (!$container) {
-      $this->fail(sprintf('The media item %s was not found', $name));
+      $this->fail(sprintf('The media item %s was not found', $media_name));
     }
 
     $this->assertSession()->buttonExists('Remove', $container);
