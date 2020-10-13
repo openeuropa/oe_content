@@ -52,28 +52,28 @@
       And the "Registration capacity" field should contain "Event capacity"
       And the "Entrance fee" field should contain "1234"
       And I should see the text "Facebook"
-      And the "oe_event_registration_dates[0][value][day]" field should contain "1"
-      And the "oe_event_registration_dates[0][value][month]" field should contain "3"
-      And the "oe_event_registration_dates[0][value][year]" field should contain "2020"
-      And the "oe_event_registration_dates[0][value][hour]" field should contain "12"
-      And the "oe_event_registration_dates[0][value][minute]" field should contain "30"
-      And the "oe_event_registration_dates[0][end_value][day]" field should contain "10"
-      And the "oe_event_registration_dates[0][end_value][month]" field should contain "3"
-      And the "oe_event_registration_dates[0][end_value][year]" field should contain "2020"
-      And the "oe_event_registration_dates[0][end_value][hour]" field should contain "18"
-      And the "oe_event_registration_dates[0][end_value][minute]" field should contain "30"
+      And "1" should be selected for "oe_event_registration_dates[0][value][day]" select
+      And "3" should be selected for "oe_event_registration_dates[0][value][month]" select
+      And "2020" should be selected for "oe_event_registration_dates[0][value][year]" select
+      And "12" should be selected for "oe_event_registration_dates[0][value][hour]" select
+      And "30" should be selected for "oe_event_registration_dates[0][value][minute]" select
+      And "10" should be selected for "oe_event_registration_dates[0][end_value][day]" select
+      And "3" should be selected for "oe_event_registration_dates[0][end_value][month]" select
+      And "2020" should be selected for "oe_event_registration_dates[0][end_value][year]" select
+      And "18" should be selected for "oe_event_registration_dates[0][end_value][hour]" select
+      And "30" should be selected for "oe_event_registration_dates[0][end_value][minute]" select
       And I press "Online"
       And the "Online description" field should contain "Event online description"
-      And the "oe_event_online_dates[0][value][day]" field should contain "21"
-      And the "oe_event_online_dates[0][value][month]" field should contain "2"
-      And the "oe_event_online_dates[0][value][year]" field should contain "2019"
-      And the "oe_event_online_dates[0][value][hour]" field should contain "9"
-      And the "oe_event_online_dates[0][value][minute]" field should contain "15"
-      And the "oe_event_online_dates[0][end_value][day]" field should contain "21"
-      And the "oe_event_online_dates[0][end_value][month]" field should contain "2"
-      And the "oe_event_online_dates[0][end_value][year]" field should contain "2019"
-      And the "oe_event_online_dates[0][end_value][hour]" field should contain "14"
-      And the "oe_event_online_dates[0][end_value][minute]" field should contain "0"
+      And "21" should be selected for "oe_event_online_dates[0][value][day]" select
+      And "2" should be selected for "oe_event_online_dates[0][value][month]" select
+      And "2019" should be selected for "oe_event_online_dates[0][value][year]" select
+      And "9" should be selected for "oe_event_online_dates[0][value][hour]" select
+      And "15" should be selected for "oe_event_online_dates[0][value][minute]" select
+      And "21" should be selected for "oe_event_online_dates[0][end_value][day]" select
+      And "2" should be selected for "oe_event_online_dates[0][end_value][month]" select
+      And "2019" should be selected for "oe_event_online_dates[0][end_value][year]" select
+      And "14" should be selected for "oe_event_online_dates[0][end_value][hour]" select
+      And "0" should be selected for "oe_event_online_dates[0][end_value][minute]" select
       And the "oe_event_online_link[0][title]" field should contain "Info site"
       And the "oe_event_online_link[0][uri]" field should contain "http://ec.europa.eu/info"
       And the "oe_event_languages[0][target_id]" field should contain "Valencian (http://publications.europa.eu/resource/authority/language/0D0)"
@@ -82,16 +82,16 @@
       And I should see the text "http://example.com"
       And I should see the text "Twitter"
       And the "oe_event_featured_media[0][target_id]" field contains "Image placeholder"
-      And the "oe_event_dates[0][value][day]" field should contain "15"
-      And the "oe_event_dates[0][value][month]" field should contain "6"
-      And the "oe_event_dates[0][value][year]" field should contain "2020"
-      And the "oe_event_dates[0][value][hour]" field should contain "12"
-      And the "oe_event_dates[0][value][minute]" field should contain "30"
-      And the "oe_event_dates[0][end_value][day]" field should contain "20"
-      And the "oe_event_dates[0][end_value][month]" field should contain "6"
-      And the "oe_event_dates[0][end_value][year]" field should contain "2020"
-      And the "oe_event_dates[0][end_value][hour]" field should contain "18"
-      And the "oe_event_dates[0][end_value][minute]" field should contain "30"
+      And "15" should be selected for "oe_event_dates[0][value][day]" select
+      And "6" should be selected for "oe_event_dates[0][value][month]" select
+      And "2020" should be selected for "oe_event_dates[0][value][year]" select
+      And "12" should be selected for "oe_event_dates[0][value][hour]" select
+      And "30" should be selected for "oe_event_dates[0][value][minute]" select
+      And "20" should be selected for "oe_event_dates[0][end_value][day]" select
+      And "6" should be selected for "oe_event_dates[0][end_value][month]" select
+      And "2020" should be selected for "oe_event_dates[0][end_value][year]" select
+      And "18" should be selected for "oe_event_dates[0][end_value][hour]" select
+      And "30" should be selected for "oe_event_dates[0][end_value][minute]" select
       And the "oe_subject[0][target_id]" field should contain "financing (http://data.europa.eu/uxp/1000)"
       And the "oe_author[0][target_id]" field should contain "Directorate-General for Communication (http://publications.europa.eu/resource/authority/corporate-body/COMMU)"
       And the "oe_content_content_owner[0][target_id]" field should contain "Directorate-General for Communication (http://publications.europa.eu/resource/authority/corporate-body/COMMU)"
@@ -184,12 +184,12 @@
       Then I should see the text "My project"
       And I should see the text "My Summary"
       And the "Reference" field should contain "My Reference"
-      And the "oe_project_dates[0][value][day]" field should contain "1"
-      And the "oe_project_dates[0][value][month]" field should contain "1"
-      And the "oe_project_dates[0][value][year]" field should contain "2020"
-      And the "oe_project_dates[0][end_value][day]" field should contain "2"
-      And the "oe_project_dates[0][end_value][month]" field should contain "1"
-      And the "oe_project_dates[0][end_value][year]" field should contain "2020"
+      And "1" should be selected for "oe_project_dates[0][value][day]" select
+      And "1" should be selected for "oe_project_dates[0][value][month]" select
+      And "2020" should be selected for "oe_project_dates[0][value][year]" select
+      And "2" should be selected for "oe_project_dates[0][end_value][day]" select
+      And "1" should be selected for "oe_project_dates[0][end_value][month]" select
+      And "2020" should be selected for "oe_project_dates[0][end_value][year]" select
       And the "Overall budget" field should contain "100000"
       And the "EU contribution" field should contain "50000"
       And the "oe_project_website[0][uri]" field should contain "http://ec.europa.eu/info"
@@ -205,7 +205,7 @@
       And the "oe_departments[0][target_id]" field should contain "Asian Development Bank (http://eurovoc.europa.eu/6336)"
       And the "oe_project_funding_programme[0][target_id]" field should contain "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
 
-    @javascript
+    @javascript @aabbcc
     Scenario: Test CallForTendersContentContext and BeforeParseEntityFields alterations are done.
       Given I am logged in as a user with the "edit any oe_call_tenders content, access content, view published skos concept entities, manage corporate content entities" permission
 
@@ -228,17 +228,17 @@
       When I visit node "My Call for tenders" edit page
       Then I should see the text "My Call for tenders"
       And the "Introduction" field should contain "My Introduction"
-      And the "oe_publication_date[0][value][day]" field should contain "1"
-      And the "oe_publication_date[0][value][month]" field should contain "1"
-      And the "oe_publication_date[0][value][year]" field should contain "2020"
-      And the "oe_call_tenders_opening_date[0][value][day]" field should contain "1"
-      And the "oe_call_tenders_opening_date[0][value][month]" field should contain "1"
-      And the "oe_call_tenders_opening_date[0][value][year]" field should contain "2020"
-      And the "oe_call_tenders_deadline[0][value][day]" field should contain "1"
-      And the "oe_call_tenders_deadline[0][value][month]" field should contain "1"
-      And the "oe_call_tenders_deadline[0][value][year]" field should contain "2020"
-      And the "oe_call_tenders_deadline[0][value][hour]" field should contain "10"
-      And the "oe_call_tenders_deadline[0][value][minute]" field should contain "0"
+      And "1" should be selected for "oe_publication_date[0][value][day]" select
+      And "1" should be selected for "oe_publication_date[0][value][month]" select
+      And "2020" should be selected for "oe_publication_date[0][value][year]" select
+      And "1" should be selected for "oe_call_tenders_opening_date[0][value][day]" select
+      And "1" should be selected for "oe_call_tenders_opening_date[0][value][month]" select
+      And "2020" should be selected for "oe_call_tenders_opening_date[0][value][year]" select
+      And "1" should be selected for "oe_call_tenders_deadline[0][value][day]" select
+      And "1" should be selected for "oe_call_tenders_deadline[0][value][month]" select
+      And "2020" should be selected for "oe_call_tenders_deadline[0][value][year]" select
+      And "10" should be selected for "oe_call_tenders_deadline[0][value][hour]" select
+      And "0" should be selected for "oe_call_tenders_deadline[0][value][minute]" select
       And the "Reference" field should contain "My Reference"
       And the "Body text" field should contain "My Body text"
       And the "Teaser" field should contain "My teaser"
