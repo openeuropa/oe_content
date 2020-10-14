@@ -78,3 +78,18 @@ function oe_content_event_post_update_00004(array &$sandbox): void {
   $field_config->set('settings', $settings);
   $field_config->save();
 }
+
+/**
+ * Set inline entity form widget reference removal policy to keep entities.
+ */
+function oe_content_event_post_update_00005(): void {
+  $form_display = EntityFormDisplay::load('node.oe_event.default');
+
+  foreach (['oe_event_contact', 'oe_event_venue'] as $field_name) {
+    $component = $form_display->getComponent($field_name);
+    $component['settings']['removed_reference'] = 'keep';
+    $form_display->setComponent($field_name, $component);
+  }
+
+  $form_display->save();
+}
