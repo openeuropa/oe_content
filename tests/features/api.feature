@@ -239,6 +239,37 @@
       And the "oe_departments[0][target_id]" field should contain "Asian Development Bank (http://eurovoc.europa.eu/6336)"
       And the "oe_project_funding_programme[0][target_id]" field should contain "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
 
+      And I press "Edit" in the "A Stakeholder" row
+      And I wait for AJAX to finish
+      And the "oe_project_coordinators[form][inline_entity_form][entities][0][form][name][0][value]" field should contain "A Stakeholder"
+      And the "oe_project_coordinators[form][inline_entity_form][entities][0][form][oe_acronym][0][value]" field should contain "AAAAA"
+      And "HU" should be selected for "oe_project_coordinators[form][inline_entity_form][entities][0][form][oe_address][0][address][country_code]" select
+      And the "oe_project_coordinators[form][inline_entity_form][entities][0][form][oe_address][0][address][locality]" field should contain "Szeged"
+      And the "oe_project_coordinators[form][inline_entity_form][entities][0][form][oe_address][0][address][postal_code]" field should contain "6700"
+      And the "oe_project_coordinators[form][inline_entity_form][entities][0][form][oe_website][0][uri]" field should contain "http://facebook.com"
+
+      And I press "Edit" in the "A Participant" row
+      And I wait for AJAX to finish
+      And the "oe_project_participants[form][inline_entity_form][entities][0][form][name][0][value]" field should contain "A Participant"
+      And the "oe_project_participants[form][inline_entity_form][entities][0][form][oe_acronym][0][value]" field should contain "PPPPP"
+      And "HU" should be selected for "oe_project_participants[form][inline_entity_form][entities][0][form][oe_address][0][address][country_code]" select
+      And the "oe_project_participants[form][inline_entity_form][entities][0][form][oe_address][0][address][locality]" field should contain "Szeged"
+      And the "oe_project_participants[form][inline_entity_form][entities][0][form][oe_address][0][address][postal_code]" field should contain "6700"
+      And the "oe_project_participants[form][inline_entity_form][entities][0][form][oe_website][0][uri]" field should contain "http://facebook.com"
+
+      And I press "Edit" in the "A general contact row" row
+      And I wait for AJAX to finish
+      And the "oe_project_contact[form][inline_entity_form][entities][0][form][name][0][value]" field should contain "A general contact"
+      And "HU" should be selected for "oe_project_contact[form][inline_entity_form][entities][0][form][oe_address][0][address][country_code]" select
+      And the "oe_project_contact[form][inline_entity_form][entities][0][form][oe_address][0][address][locality]" field should contain "Budapest"
+      And the "oe_project_contact[form][inline_entity_form][entities][0][form][oe_address][0][address][address_line1]" field should contain "General contact 1"
+      And the "oe_project_contact[form][inline_entity_form][entities][0][form][oe_address][0][address][postal_code]" field should contain "1011"
+      And the "oe_project_contact[form][inline_entity_form][entities][0][form][oe_email][0][value]" field should contain "general@example.com"
+      And the "oe_project_contact[form][inline_entity_form][entities][0][form][oe_phone][0][value]" field should contain "+32477792933"
+      And the "oe_project_contact[form][inline_entity_form][entities][0][form][oe_social_media][0][uri]" field should contain "http://instagram.com"
+      And the "oe_project_contact[form][inline_entity_form][entities][0][form][oe_social_media][0][title]" field should contain "Instagram"
+      And "instagram" should be selected for "oe_project_contact[form][inline_entity_form][entities][0][form][oe_social_media][0][link_type]" select
+
     @javascript
     Scenario: Test CallForTendersContentContext and BeforeParseEntityFields alterations are done.
       Given I am logged in as a user with the "edit any oe_call_tenders content, access content, view published skos concept entities, manage corporate content entities" permission
