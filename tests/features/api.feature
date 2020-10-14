@@ -55,7 +55,7 @@
         | Name               | A general contact                                                                            |
         | Address            | country_code: BG - locality: Varna - address_line1: General contact 1 - postal_code: 9009    |
         | Email              | general@example.com                                                                          |
-        | Phone number       | +359525566778                                                                                 |
+        | Phone number       | +359525566778                                                                                |
         | Social media links | uri: http://instagram.com - title: Instagram - link_type: instagram                          |
 
       And the Event Content "My event" is updated as follows:
@@ -148,6 +148,7 @@
       And I should see "press@example.com"
       And I should see "+32477777778"
       And I should see "Facebook"
+      And I should see the link "Facebook" pointing to "http://facebook.com"
 
       # The General Contact data
       And I should see "A general contact"
@@ -158,6 +159,7 @@
       And I should see "general@example.com"
       And I should see "+359525566778"
       And I should see "Instagram"
+      And I should see the link "Instagram" pointing to "http://instagram.com"
 
     @javascript
     Scenario: Test ProjectContentContext and BeforeParseEntityFields alterations are done.
