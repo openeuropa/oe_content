@@ -88,7 +88,7 @@ class NewsContentContext extends RawDrupalContext {
     $scope->addFields([
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
-      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AGRI',
     ]);
   }
 
