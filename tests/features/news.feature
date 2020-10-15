@@ -117,9 +117,9 @@ Feature: News content creation
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."
 
-  @javascript
+  @javascript @run
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
-    Given I am logged in as a user with the "create oe_news content, access content, edit own oe_news content, view published skos concept entities, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_news content, access content, edit any oe_news content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:
       | Name | A general contact |
     And the following News Content entity:

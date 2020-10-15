@@ -89,7 +89,7 @@ Feature: Organisation content creation
 
   @javascript
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
-    Given I am logged in as a user with the "create oe_organisation content, access content, edit own oe_organisation content, view published skos concept entities, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_organisation content, access content, edit any oe_organisation content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:
       | Name | A general contact |
     And the following Organisation Content entity:
