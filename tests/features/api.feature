@@ -346,3 +346,9 @@
       And the "oe_organisation_eu_org[0][target_id]" field should contain "Arab Common Market (http://eurovoc.europa.eu/1793)"
       And the "oe_organisation_org_type" field should contain "eu"
       And the "Teaser" field should contain "My teaser"
+
+      And the Organisation Content "My Organisation" is updated as follows:
+        | Organisation type | non_eu |
+
+      And I reload the page
+      And the "oe_organisation_org_type" field should contain "non_eu"
