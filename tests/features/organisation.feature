@@ -86,3 +86,25 @@ Feature: Organisation content creation
 
     When I press "Save"
     Then I should see "Euro with miniature figurines"
+
+  @javascript
+  Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
+    Given I am logged in as a user with the "create oe_organisation content, access content, edit own oe_organisation content, view published skos concept entities, manage corporate content entities" permission
+    And the following General Contact entity:
+      | Name | A general contact |
+    And the following Organisation Content entity:
+      | Title             | Organisation demo page         |
+      | Introduction      | Organisation introduction text |
+      | Acronym           | Organisation acronym           |
+      | Body text         | Organisation body text         |
+      | Organisation type | EU organisation                |
+      | EU organisation   | Directorate-General for Budget |
+      | Contact           | A general contact              |
+    When I am visiting the "Organisation demo page" content
+    And I click "Edit"
+    And I press "Remove"
+    Then I should see "Are you sure you want to remove A general contact?"
+    When I press "Remove"
+    And I press "Save"
+    Then I should see "Organisation Organisation demo page has been updated."
+    And the General Contact entity with title "A general contact" exists

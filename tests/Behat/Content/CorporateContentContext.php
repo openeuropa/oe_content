@@ -188,6 +188,29 @@ class CorporateContentContext extends RawDrupalContext {
   }
 
   /**
+   * Assert the entity exists.
+   *
+   * Example:
+   *
+   * Then the News Content entity with title "Test news" exists
+   *
+   * @param string $bundle_label
+   *   Entity bundle label.
+   * @param string $entity_type_label
+   *   Entity type label.
+   * @param string $title
+   *   Entity title.
+   *
+   * @Then the :bundle_label :entity_type_label entity with title :title exists
+   */
+  public function entityExists(string $bundle_label, string $entity_type_label, string $title) {
+    $definition = $this->loadDefinitionByLabel($entity_type_label);
+    $entity_type = $definition->id();
+    $bundle = $this->loadEntityByLabel($definition->getBundleEntityType(), $bundle_label)->id();
+    $this->loadEntityByLabel($entity_type, $title, $bundle);
+  }
+
+  /**
    * Remove any created corporate entities.
    *
    * @AfterScenario

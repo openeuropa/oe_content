@@ -17,10 +17,15 @@ default:
         - Drupal\Tests\oe_media\Behat\FeatureContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
+        - Drupal\Tests\oe_content\Behat\Content\Contact\PressContactContext
+        - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Node\NewsContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\OrganisationContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
+        - Drupal\Tests\oe_content\Behat\Content\Organisation\StakeholderOrganisationContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"

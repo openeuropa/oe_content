@@ -19,8 +19,8 @@ Feature: Project content creation
 
     # Create a document, to be referenced later on.
     And the following document:
-      | name          | file       |
-      | My Document 1 | sample.pdf |
+      | name          | file         |
+      | My Document 1 | sample.pdf   |
       | My Document 2 | document.pdf |
 
     When I visit "the Project creation page"
@@ -187,3 +187,44 @@ Feature: Project content creation
     # When I press "Save"
     # Then I should see "Plant health in the EU" in the "featured media form element" region
     # And I should see "Here is my featured video text caption." in the "featured media form element" region
+
+  @javascript
+  Scenario: By removing stakeholders and contacts from the form only the reference is removed and the entities are not deleted.
+    Given I am logged in as a user with the "create oe_project content, access content, edit own oe_project content, view published skos concept entities, manage corporate content entities" permission
+    And the following General Contact entity:
+      | Name | A general contact |
+    And the following Stakeholder Organisation entity:
+      | Name | Coordinator required |
+    And the following Stakeholder Organisation entity:
+      | Name | Participant required |
+    And the following Stakeholder Organisation entity:
+      | Name | Coordinator to remove |
+    And the following Stakeholder Organisation entity:
+      | Name | Participant to remove |
+    And the following Project Content entity:
+      | Title             | Project demo page                                |
+      | Summary           | Project summary                                  |
+      | Website           | uri: http://example.com - title: Project website |
+      | Teaser            | Project teaser                                   |
+      | Body text         | Project body text                                |
+      | Results           | Results text                                     |
+      | Coordinators      | Coordinator to remove, Coordinator required      |
+      | Participants      | Participant to remove, Participant required      |
+      | Project contact   | A general contact                                |
+      | Project locations | country_code: GB - locality: London              |
+    When I am visiting the "Project demo page" content
+    And I click "Edit"
+    And I press "Remove" in the "Project coordinators" region
+    Then I should see "Are you sure you want to remove Coordinator to remove?"
+    When I press "Remove" in the "Project coordinators" region
+    And I press "Remove" in the "Project participants" region
+    Then I should see "Are you sure you want to remove Participant to remove?"
+    When I press "Remove" in the "Project participants" region
+    And I press "Remove" in the "Project contact" region
+    Then I should see "Are you sure you want to remove A general contact?"
+    When I press "Remove" in the "Project contact" region
+    And I press "Save"
+    Then I should see "Project Project demo page has been updated."
+    And the Stakeholder Organisation entity with title "Coordinator to remove" exists
+    And the Stakeholder Organisation entity with title "Participant to remove" exists
+    And the General Contact entity with title "A general contact" exists
