@@ -257,7 +257,8 @@ class FeatureContext extends RawDrupalContext {
     $selected_option = $element->find('css', "option[selected='selected']");
 
     if ($selected_option === NULL) {
-      throw new \Exception(sprintf('Option "%s" not found for %s select', $option, $field));
+      print_r($element->getHtml());
+      throw new \Exception(sprintf('Option "%s" not selected for %s select', $option, $field));
     }
 
     Assert::assertTrue($selected_option->getValue() === $option);

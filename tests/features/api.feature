@@ -77,28 +77,12 @@
       And the "Registration capacity" field should contain "Event capacity"
       And the "Entrance fee" field should contain "1234"
       And I should see the text "Facebook"
-      And "1" should be selected for "oe_event_registration_dates[0][value][day]" select
-      And "3" should be selected for "oe_event_registration_dates[0][value][month]" select
-      And "2020" should be selected for "oe_event_registration_dates[0][value][year]" select
-      And "12" should be selected for "oe_event_registration_dates[0][value][hour]" select
-      And "30" should be selected for "oe_event_registration_dates[0][value][minute]" select
-      And "10" should be selected for "oe_event_registration_dates[0][end_value][day]" select
-      And "3" should be selected for "oe_event_registration_dates[0][end_value][month]" select
-      And "2020" should be selected for "oe_event_registration_dates[0][end_value][year]" select
-      And "18" should be selected for "oe_event_registration_dates[0][end_value][hour]" select
-      And "30" should be selected for "oe_event_registration_dates[0][end_value][minute]" select
+      And datetime "1 3 2020 12 30" is selected for "Start date" of "Registration date"
+      And datetime "10 3 2020 18 30" is selected for "End date" of "Registration date"
       And I press "Online"
       And the "Online description" field should contain "Event online description"
-      And "21" should be selected for "oe_event_online_dates[0][value][day]" select
-      And "2" should be selected for "oe_event_online_dates[0][value][month]" select
-      And "2019" should be selected for "oe_event_online_dates[0][value][year]" select
-      And "9" should be selected for "oe_event_online_dates[0][value][hour]" select
-      And "15" should be selected for "oe_event_online_dates[0][value][minute]" select
-      And "21" should be selected for "oe_event_online_dates[0][end_value][day]" select
-      And "2" should be selected for "oe_event_online_dates[0][end_value][month]" select
-      And "2019" should be selected for "oe_event_online_dates[0][end_value][year]" select
-      And "14" should be selected for "oe_event_online_dates[0][end_value][hour]" select
-      And "0" should be selected for "oe_event_online_dates[0][end_value][minute]" select
+      And datetime "21 2 2019 9 15" is selected for "Start date" of "Online time"
+      And datetime "21 2 2019 14 0" is selected for "End date" of "Online time"
       And the "oe_event_online_link[0][title]" field should contain "Info site"
       And the "oe_event_online_link[0][uri]" field should contain "http://ec.europa.eu/info"
       And the "oe_event_languages[0][target_id]" field should contain "Valencian (http://publications.europa.eu/resource/authority/language/0D0)"
@@ -107,16 +91,8 @@
       And I should see the text "http://example.com"
       And I should see the text "Twitter"
       And the "oe_event_featured_media[0][target_id]" field contains "Image placeholder"
-      And "15" should be selected for "oe_event_dates[0][value][day]" select
-      And "6" should be selected for "oe_event_dates[0][value][month]" select
-      And "2020" should be selected for "oe_event_dates[0][value][year]" select
-      And "12" should be selected for "oe_event_dates[0][value][hour]" select
-      And "30" should be selected for "oe_event_dates[0][value][minute]" select
-      And "20" should be selected for "oe_event_dates[0][end_value][day]" select
-      And "6" should be selected for "oe_event_dates[0][end_value][month]" select
-      And "2020" should be selected for "oe_event_dates[0][end_value][year]" select
-      And "18" should be selected for "oe_event_dates[0][end_value][hour]" select
-      And "30" should be selected for "oe_event_dates[0][end_value][minute]" select
+      And datetime "15 6 2020 12 30" is selected for "Start date" of "Event date"
+      And datetime "20 6 2020 18 30" is selected for "End date" of "Event date"
       And the "oe_subject[0][target_id]" field should contain "financing (http://data.europa.eu/uxp/1000)"
       And the "oe_author[0][target_id]" field should contain "Directorate-General for Communication (http://publications.europa.eu/resource/authority/corporate-body/COMMU)"
       And the "oe_content_content_owner[0][target_id]" field should contain "Directorate-General for Communication (http://publications.europa.eu/resource/authority/corporate-body/COMMU)"
@@ -218,12 +194,8 @@
       Then I should see the text "My project"
       And I should see the text "My Summary"
       And the "Reference" field should contain "My Reference"
-      And "1" should be selected for "oe_project_dates[0][value][day]" select
-      And "1" should be selected for "oe_project_dates[0][value][month]" select
-      And "2020" should be selected for "oe_project_dates[0][value][year]" select
-      And "2" should be selected for "oe_project_dates[0][end_value][day]" select
-      And "1" should be selected for "oe_project_dates[0][end_value][month]" select
-      And "2020" should be selected for "oe_project_dates[0][end_value][year]" select
+      And date "1 1 2020" is selected for "Start date" of "Project period"
+      And date "2 1 2020" is selected for "End date" of "Project period"
       And the "Overall budget" field should contain "100000"
       And the "EU contribution" field should contain "50000"
       And the "oe_project_website[0][uri]" field should contain "http://ec.europa.eu/info"
@@ -293,17 +265,9 @@
       When I visit node "My Call for tenders" edit page
       Then I should see the text "My Call for tenders"
       And the "Introduction" field should contain "My Introduction"
-      And "1" should be selected for "oe_publication_date[0][value][day]" select
-      And "1" should be selected for "oe_publication_date[0][value][month]" select
-      And "2020" should be selected for "oe_publication_date[0][value][year]" select
-      And "1" should be selected for "oe_call_tenders_opening_date[0][value][day]" select
-      And "1" should be selected for "oe_call_tenders_opening_date[0][value][month]" select
-      And "2020" should be selected for "oe_call_tenders_opening_date[0][value][year]" select
-      And "1" should be selected for "oe_call_tenders_deadline[0][value][day]" select
-      And "1" should be selected for "oe_call_tenders_deadline[0][value][month]" select
-      And "2020" should be selected for "oe_call_tenders_deadline[0][value][year]" select
-      And "10" should be selected for "oe_call_tenders_deadline[0][value][hour]" select
-      And "0" should be selected for "oe_call_tenders_deadline[0][value][minute]" select
+      And date "1 1 2020" is selected for "Start date" of "Publication date"
+      And date "1 1 2020" is selected for "Start date" of "Opening date"
+      And datetime "1 1 2020 10 0" is selected for "Start date" of "Deadline date"
       And the "Reference" field should contain "My Reference"
       And the "Body text" field should contain "My Body text"
       And the "Teaser" field should contain "My teaser"
@@ -348,7 +312,9 @@
       And the "Teaser" field should contain "My teaser"
 
       And the Organisation Content "My Organisation" is updated as follows:
-        | Organisation type | non_eu |
+        | Organisation type               | non_eu                          |
+        | oe_organisation_non_eu_org_type | http://data.europa.eu/uxp/1051  |
 
       And I reload the page
-      And the "oe_organisation_org_type" field should contain "non_eu"
+      And "non_eu" should be selected for "oe_organisation_org_type" select
+      And "http://data.europa.eu/uxp/1051" should be selected for "oe_organisation_non_eu_org_type" select

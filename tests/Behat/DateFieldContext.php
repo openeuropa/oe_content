@@ -121,7 +121,7 @@ class DateFieldContext extends RawDrupalContext {
   /**
    * Check values for list date range fields.
    *
-   * "15 Jun 2020 12 30" is selected for "Start date" of "My date range field"
+   * Then datetime "15 1 2020 12 30" is selected for "Start date" of "Datetime"
    *
    * @param string $value
    *   The value of the field.
@@ -131,42 +131,50 @@ class DateFieldContext extends RawDrupalContext {
    *   The field component's label.
    *
    * @Then datetime :value is selected for :field_item of :field_group
+   * @Then date :value is selected for :field_item of :field_group
    */
   public function isSelectedForOf($value, $field_item, $field_group): void {
+    $page = $this->getSession()->getPage();
     $values = explode(' ', $value);
-    $field_selectors = $this->findDateListRangeFields($field_group);
+    $group = $page->find('named', ['fieldset', $field_group]);
+    $elements = $group->findAll('css', '.container-inline');
 
-    if (count($field_selectors) > 1) {
-      throw new \Exception('More than one elements were found.');
+    if (empty($elements)) {
+      throw new \Exception('Datetime fields not found.');
     }
 
-    $field_selector = reset($field_selectors);
+    $fields = $elements[0];
+
     if ($field_item === 'End date') {
-      $field_selector = $field_selector->findAll('css', 'div[id*="end-value"]');
-      $field_selector = reset($field_selector);
+      $fields = $elements[1];
     }
 
     $date_components = [
       'Day',
       'Month',
       'Year',
-      'Hour',
-      'Minute',
     ];
 
+    if (count($values) > 3) {
+      $date_components += [
+        'Hour',
+        'Minute',
+      ];
+    }
+
     foreach ($date_components as $index => $date_component) {
-      $field = $field_selector->findField($date_component);
+      $field = $fields->findField($date_component);
       $optionField = $field->find('named', [
         'option',
         $values[$index],
       ]);
 
       if ($optionField === NULL) {
-        throw new \Exception('Option not found.');
+        throw new \Exception(sprintf('%s option not found.', $date_component));
       }
 
       if (!$optionField->isSelected()) {
-        throw new \Exception('Option is not selected.');
+        throw new \Exception(sprintf('%s not selected for %s option.', $values[$index], $date_component));
       }
     }
   }
