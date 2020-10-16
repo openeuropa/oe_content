@@ -49,6 +49,42 @@ msgctxt "Long month name"
 msgid "December"
 msgstr "December"
 
+msgid "Jan"
+msgstr "jan"
+
+msgid "Feb"
+msgstr "feb"
+
+msgid "Mar"
+msgstr "mar"
+
+msgid "Apr"
+msgstr "apr"
+
+msgid "May"
+msgstr "maj"
+
+msgid "Jun"
+msgstr "jun"
+
+msgid "Jul"
+msgstr "jul"
+
+msgid "Aug"
+msgstr "avg"
+
+msgid "Sep"
+msgstr "sep"
+
+msgid "Oct"
+msgstr "okt"
+
+msgid "Nov"
+msgstr "nov"
+
+msgid "Dec"
+msgstr "dec"
+
 msgid "Sunday"
 msgstr "nedelja"
 
