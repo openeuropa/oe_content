@@ -19,6 +19,9 @@ config_devel:
     - field.field.node.oe_publication.oe_summary
     - field.field.node.oe_publication.oe_teaser
     - field.storage.node.oe_publication_type
+    - field.field.node.oe_publication.body
+    - field.field.node.oe_publication.oe_publication_thumbnail
+    - field.storage.node.oe_publication_thumbnail
     - node.type.oe_publication
   optional:
     - language.content_settings.node.oe_publication
