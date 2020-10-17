@@ -3,9 +3,9 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_publication.body
-    - field.field.node.oe_publication.oe_publication_country
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_documents
+    - field.field.node.oe_publication.oe_publication_country
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_thumbnail
     - field.field.node.oe_publication.oe_publication_type
@@ -39,16 +39,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_publication_country:
-    weight: 34
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   langcode:
     type: language_select
     weight: 2
@@ -112,6 +102,16 @@ content:
       match_limit: 10
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  oe_publication_country:
+    weight: 34
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
     region: content
   oe_publication_date:
     weight: 3
