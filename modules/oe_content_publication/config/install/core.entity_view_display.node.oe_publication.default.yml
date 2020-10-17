@@ -3,16 +3,18 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_publication.body
-    - field.field.node.oe_publication.oe_publication_thumbnail
+    - field.field.node.oe_publication.oe_publication_country
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_documents
     - field.field.node.oe_publication.oe_publication_date
+    - field.field.node.oe_publication.oe_publication_thumbnail
     - field.field.node.oe_publication.oe_publication_type
     - field.field.node.oe_publication.oe_subject
     - field.field.node.oe_publication.oe_summary
     - field.field.node.oe_publication.oe_teaser
     - node.type.oe_publication
   module:
+    - rdf_skos
     - text
     - user
 id: node.oe_publication.default
@@ -27,13 +29,13 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  oe_publication_thumbnail:
-    weight: 6
+  oe_publication_country:
+    weight: 7
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    type: skos_concept_entity_reference_label
     region: content
   oe_documents:
     type: entity_reference_entity_view
@@ -43,6 +45,14 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
+  oe_publication_thumbnail:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
 hidden:
   langcode: true

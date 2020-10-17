@@ -22,6 +22,8 @@ config_devel:
     - field.field.node.oe_publication.body
     - field.field.node.oe_publication.oe_publication_thumbnail
     - field.storage.node.oe_publication_thumbnail
+    - field.field.node.oe_publication.oe_publication_country
+    - field.storage.node.oe_publication_country
     - node.type.oe_publication
   optional:
     - language.content_settings.node.oe_publication
