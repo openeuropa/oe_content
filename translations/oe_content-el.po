@@ -49,51 +49,39 @@ msgctxt "Long month name"
 msgid "December"
 msgstr "Δεκέμβριος"
 
-msgctxt "Abbreviated month name"
 msgid "Jan"
 msgstr "Ιαν"
 
-msgctxt "Abbreviated month name"
 msgid "Feb"
 msgstr "Φεβ"
 
-msgctxt "Abbreviated month name"
 msgid "Mar"
 msgstr "Μαρ"
 
-msgctxt "Abbreviated month name"
 msgid "Apr"
 msgstr "Απρ"
 
-msgctxt "Abbreviated month name"
 msgid "May"
 msgstr "Μαι"
 
-msgctxt "Abbreviated month name"
 msgid "Jun"
 msgstr "Ιουν"
 
-msgctxt "Abbreviated month name"
 msgid "Jul"
 msgstr "Ιουλ"
 
-msgctxt "Abbreviated month name"
 msgid "Aug"
 msgstr "Αυγ"
 
-msgctxt "Abbreviated month name"
 msgid "Sep"
 msgstr "Σεπ"
 
-msgctxt "Abbreviated month name"
 msgid "Oct"
 msgstr "Οκτ"
 
-msgctxt "Abbreviated month name"
 msgid "Nov"
 msgstr "Νοε"
 
-msgctxt "Abbreviated month name"
 msgid "Dec"
 msgstr "Δεκ"
 

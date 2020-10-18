@@ -49,47 +49,36 @@ msgctxt "Long month name"
 msgid "December"
 msgstr "Nollaig"
 
-msgctxt "Abbreviated month name"
 msgid "Jan"
 msgstr "Ean"
 
-msgctxt "Abbreviated month name"
 msgid "Feb"
 msgstr "Fea"
 
-msgctxt "Abbreviated month name"
 msgid "Mar"
 msgstr "Már"
 
-msgctxt "Abbreviated month name"
 msgid "Apr"
 msgstr "Aib"
 
-msgctxt "Abbreviated month name"
 msgid "Jun"
 msgstr "Mei"
 
-msgctxt "Abbreviated month name"
 msgid "Jul"
 msgstr "Iúil"
 
-msgctxt "Abbreviated month name"
 msgid "Aug"
 msgstr "Lún"
 
-msgctxt "Abbreviated month name"
 msgid "Sep"
 msgstr "MF"
 
-msgctxt "Abbreviated month name"
 msgid "Oct"
 msgstr "DF"
 
-msgctxt "Abbreviated month name"
 msgid "Nov"
 msgstr "Samh"
 
-msgctxt "Abbreviated month name"
 msgid "Dec"
 msgstr "Noll"
 
