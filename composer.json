@@ -91,6 +91,9 @@
             },
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2020-10-05/entity_browser-remove_button_2851580-92.patch"
+            },
+            "drupal/core": {
+                "https://www.drupal.org/project/drupal/issues/2830295": "https://www.drupal.org/files/issues/2020-10-14/2830295-concurrent_ajax_d8-18.patch"
             }
         }
     },
