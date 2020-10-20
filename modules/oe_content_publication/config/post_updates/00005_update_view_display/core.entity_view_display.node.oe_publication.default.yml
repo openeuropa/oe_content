@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.oe_publication.body
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_documents
     - field.field.node.oe_publication.oe_publication_contacts
@@ -13,12 +14,20 @@ dependencies:
     - node.type.oe_publication
   module:
     - entity_reference_revisions
+    - text
     - user
 id: node.oe_publication.default
 targetEntityType: node
 bundle: oe_publication
 mode: default
 content:
+  body:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   oe_documents:
     type: entity_reference_entity_view
     weight: 0
