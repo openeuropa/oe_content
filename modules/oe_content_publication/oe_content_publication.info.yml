@@ -25,6 +25,7 @@ config_devel:
     - field.field.node.oe_publication.oe_teaser
     - field.storage.node.oe_publication_contacts
     - field.storage.node.oe_publication_type
+    - field.field.node.oe_publication.body
     - node.type.oe_publication
   optional:
     - language.content_settings.node.oe_publication
