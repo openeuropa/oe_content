@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.oe_call_proposals
+id: node.oe_call_proposals
+target_entity_type_id: node
+target_bundle: oe_call_proposals
+default_langcode: site_default
+language_alterable: true
