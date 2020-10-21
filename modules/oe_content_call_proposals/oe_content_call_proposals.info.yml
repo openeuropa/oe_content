@@ -11,6 +11,10 @@ config_devel:
   install:
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
     - field.storage.node.oe_call_proposals_journal
+    - field.storage.node.oe_call_proposals_opening_date
+    - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
+    - core.entity_form_display.node.oe_call_proposals.default
+    - core.entity_view_display.node.oe_call_proposals.default
     - node.type.oe_call_proposals
   optional:
     - language.content_settings.node.oe_call_proposals
