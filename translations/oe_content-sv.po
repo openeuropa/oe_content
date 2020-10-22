@@ -282,3 +282,36 @@ msgstr "Kontakt"
 
 msgid "Contacts"
 msgstr "Kontakter"
+
+msgid "Organisation"
+msgstr "Organisation"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Mobil"
+
+msgid "Office"
+msgstr "Kontor"
+
+msgid "Documents"
+msgstr "Dokument"
+
+msgid "Funding"
+msgstr "Finansiering"
+
+msgid "As planned"
+msgstr "Planenligt"
+
+msgid "Cancelled"
+msgstr "Inställt"
+
+msgid "Rescheduled"
+msgstr "Flyttat"
+
+msgid "Postponed"
+msgstr "Uppskjutet"
+
+msgid "Address"
+msgstr "Adress"

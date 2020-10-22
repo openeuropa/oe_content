@@ -278,3 +278,36 @@ msgstr "Επικοινωνία"
 
 msgid "Contacts"
 msgstr "Επικοινωνία"
+
+msgid "Organisation"
+msgstr "Οργανισμός"
+
+msgid "Fax number"
+msgstr "Αριθμός φαξ"
+
+msgid "Mobile number"
+msgstr "Αριθμός κινητού τηλεφώνου"
+
+msgid "Office"
+msgstr "Γραφείο"
+
+msgid "Documents"
+msgstr "Έγγραφα"
+
+msgid "Funding"
+msgstr "Χρηματοδότηση"
+
+msgid "As planned"
+msgstr "Όπως έχει προβλεφθεί"
+
+msgid "Cancelled"
+msgstr "Ακυρώθηκε"
+
+msgid "Rescheduled"
+msgstr "Αναπρογραμματίστηκε"
+
+msgid "Postponed"
+msgstr "Έχει αναβληθεί"
+
+msgid "Address"
+msgstr "Διεύθυνση"

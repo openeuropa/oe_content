@@ -262,6 +262,9 @@ msgstr "Dettalji"
 msgid "Status"
 msgstr "Status"
 
+msgid "Details"
+msgstr "Dettalji"
+
 msgid "Contact organisation"
 msgstr "Organizzazzjoni ta’ kuntatt"
 
@@ -282,3 +285,36 @@ msgstr "Kuntatt"
 
 msgid "Contacts"
 msgstr "Kuntatti"
+
+msgid "Organisation"
+msgstr "Organizzazzjoni"
+
+msgid "Fax number"
+msgstr "Numru tal-faks"
+
+msgid "Mobile number"
+msgstr "Numru tal-mowbajl"
+
+msgid "Office"
+msgstr "Uffiċċju"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Funding"
+msgstr "Finanzjament"
+
+msgid "As planned"
+msgstr "Kif ippjanat"
+
+msgid "Cancelled"
+msgstr "Ikkanċellat"
+
+msgid "Rescheduled"
+msgstr "Riskedat"
+
+msgid "Postponed"
+msgstr "Pospost"
+
+msgid "Address"
+msgstr "Indirizz"

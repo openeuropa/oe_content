@@ -278,3 +278,36 @@ msgstr "Kapcsolat"
 
 msgid "Contacts"
 msgstr "Kapcsolatok"
+
+msgid "Organisation"
+msgstr "Szervezet"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Mobiltelefonszám"
+
+msgid "Office"
+msgstr "Iroda"
+
+msgid "Documents"
+msgstr "Dokumentumok"
+
+msgid "Funding"
+msgstr "Finanszírozás"
+
+msgid "As planned"
+msgstr "Terv szerint"
+
+msgid "Cancelled"
+msgstr "Törölve"
+
+msgid "Rescheduled"
+msgstr "Más időpontra áttéve"
+
+msgid "Postponed"
+msgstr "Elhalasztva"
+
+msgid "Address"
+msgstr "Cím"

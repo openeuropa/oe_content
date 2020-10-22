@@ -258,6 +258,9 @@ msgstr "Bijzonderheden"
 msgid "Status"
 msgstr "Status"
 
+msgid "Details"
+msgstr "Bijzonderheden"
+
 msgid "Contact organisation"
 msgstr "Contact"
 
@@ -278,3 +281,36 @@ msgstr "Contact"
 
 msgid "Contacts"
 msgstr "Contact"
+
+msgid "Organisation"
+msgstr "Organisatie"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Telefoon (mobiel)"
+
+msgid "Office"
+msgstr "Bureau"
+
+msgid "Documents"
+msgstr "Documenten"
+
+msgid "Funding"
+msgstr "Financiering"
+
+msgid "As planned"
+msgstr "Als gepland"
+
+msgid "Cancelled"
+msgstr "Geannuleerd"
+
+msgid "Rescheduled"
+msgstr "Nieuwe datum"
+
+msgid "Postponed"
+msgstr "Uitgesteld"
+
+msgid "Address"
+msgstr "Adres"

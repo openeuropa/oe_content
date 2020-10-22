@@ -282,3 +282,36 @@ msgstr "Contact"
 
 msgid "Contacts"
 msgstr "Date de contact"
+
+msgid "Organisation"
+msgstr "Organizație"
+
+msgid "Fax number"
+msgstr "Număr de fax"
+
+msgid "Mobile number"
+msgstr "Telefon mobil"
+
+msgid "Office"
+msgstr "Birou"
+
+msgid "Documents"
+msgstr "Documente"
+
+msgid "Funding"
+msgstr "Finanțare"
+
+msgid "As planned"
+msgstr "Conform planului"
+
+msgid "Cancelled"
+msgstr "Anulat(ă)"
+
+msgid "Rescheduled"
+msgstr "Reprogramat"
+
+msgid "Postponed"
+msgstr "Amânat"
+
+msgid "Address"
+msgstr "Adresă"

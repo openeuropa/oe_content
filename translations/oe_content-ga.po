@@ -195,3 +195,36 @@ msgstr "Teagmháil"
 
 msgid "Contacts"
 msgstr "Teagmhálacha"
+
+msgid "Organisation"
+msgstr "Eagraíocht"
+
+msgid "Fax number"
+msgstr "Uimhir facs"
+
+msgid "Mobile number"
+msgstr "Uimhir ghutháin póca"
+
+msgid "Office"
+msgstr "Oifig"
+
+msgid "Documents"
+msgstr "Doiciméid"
+
+msgid "Funding"
+msgstr "Maoiniú"
+
+msgid "As planned"
+msgstr "Mar a beartaíodh"
+
+msgid "Cancelled"
+msgstr "Curtha ar ceal"
+
+msgid "Rescheduled"
+msgstr "Athsceidealaithe"
+
+msgid "Postponed"
+msgstr "Curtha ar athló"
+
+msgid "Address"
+msgstr "Seoladh"

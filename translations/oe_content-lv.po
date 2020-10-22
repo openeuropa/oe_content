@@ -282,3 +282,36 @@ msgstr "Kontaktinformācija"
 
 msgid "Contacts"
 msgstr "Kontaktinformācija"
+
+msgid "Organisation"
+msgstr "Organizācija"
+
+msgid "Fax number"
+msgstr "Faksa numurs"
+
+msgid "Mobile number"
+msgstr "Mobilā tālruņa numurs"
+
+msgid "Office"
+msgstr "Birojs"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Funding"
+msgstr "Finansējums"
+
+msgid "As planned"
+msgstr "Kā plānots"
+
+msgid "Cancelled"
+msgstr "Atcelts"
+
+msgid "Rescheduled"
+msgstr "Pārcelts"
+
+msgid "Postponed"
+msgstr "Atlikts"
+
+msgid "Address"
+msgstr "Adrese"

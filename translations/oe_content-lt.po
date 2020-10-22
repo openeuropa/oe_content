@@ -278,3 +278,36 @@ msgstr "Kontaktiniai duomenys"
 
 msgid "Contacts"
 msgstr "Asmenys ryšiams"
+
+msgid "Organisation"
+msgstr "Organizacija"
+
+msgid "Fax number"
+msgstr "Fakso numeris"
+
+msgid "Mobile number"
+msgstr "Mobiliojo telefono numeris"
+
+msgid "Office"
+msgstr "Biuras"
+
+msgid "Documents"
+msgstr "Dokumentai"
+
+msgid "Funding"
+msgstr "Finansavimas"
+
+msgid "As planned"
+msgstr "Pagal planą"
+
+msgid "Cancelled"
+msgstr "Atšaukta"
+
+msgid "Rescheduled"
+msgstr "Pakeistas laikas"
+
+msgid "Postponed"
+msgstr "Atidėta"
+
+msgid "Address"
+msgstr "Adresas"
