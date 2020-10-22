@@ -2,19 +2,64 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.oe_call_proposals.oe_call_proposals_contact
+    - field.field.node.oe_call_proposals.oe_call_proposals_deadline
+    - field.field.node.oe_call_proposals.oe_call_proposals_funding
+    - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
     - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
     - node.type.oe_call_proposals
   module:
     - datetime
+    - entity_reference_revisions
     - link
+    - options
+    - rdf_skos
     - user
 id: node.oe_call_proposals.default
 targetEntityType: node
 bundle: oe_call_proposals
 mode: default
 content:
+  oe_call_proposals_contact:
+    weight: 106
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  oe_call_proposals_deadline:
+    weight: 104
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_call_proposals_funding:
+    weight: 105
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_label
+    region: content
+  oe_call_proposals_model:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   oe_call_proposals_grants_link:
     weight: 102
     label: above
@@ -27,11 +72,6 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  links:
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   oe_call_proposals_journal:
     type: link
     weight: 3

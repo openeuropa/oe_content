@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.oe_call_proposals_model
+field_name: oe_call_proposals_model
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: single_stage
+      label: Single-stage
+    -
+      value: two_stage
+      label: Two-stage
+    -
+      value: multiple_cut_off
+      label: 'Multiple cut-off'
+    -
+      value: permanent
+      label: Permanent
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

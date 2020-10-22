@@ -2,12 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.oe_call_proposals.oe_call_proposals_contact
+    - field.field.node.oe_call_proposals.oe_call_proposals_deadline
+    - field.field.node.oe_call_proposals.oe_call_proposals_funding
+    - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
     - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
     - node.type.oe_call_proposals
   module:
     - datetime
+    - entity_reference_revisions
     - link
     - path
     - rdf_skos
@@ -22,13 +27,40 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_call_proposals_grants_link:
-    weight: 122
+  oe_call_proposals_contact:
+    weight: 126
     settings:
-      placeholder_url: ''
-      placeholder_title: ''
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: link_default
+    type: entity_reference_revisions_autocomplete
+    region: content
+  oe_call_proposals_deadline:
+    weight: 124
+    settings:
+      date_order: DMY
+      time_type: '24'
+      increment: 15
+    third_party_settings: {  }
+    type: datetime_datelist
+    region: content
+  oe_call_proposals_funding:
+    weight: 125
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
+  oe_call_proposals_model:
+    weight: 123
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   langcode:
     type: language_select
@@ -37,6 +69,14 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
+  oe_call_proposals_grants_link:
+    weight: 122
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   oe_call_proposals_journal:
     type: link_default
     weight: 14

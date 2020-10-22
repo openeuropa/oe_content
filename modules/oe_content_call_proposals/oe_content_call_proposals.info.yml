@@ -7,6 +7,7 @@ core: 8.x
 dependencies:
   - link:link
   - datetime:datetime
+  - oe_content:oe_content_entity_contact
 
 config_devel:
   install:
@@ -16,8 +17,18 @@ config_devel:
     - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
     - field.storage.node.oe_call_proposals_grants_link
     - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
+    - field.storage.node.oe_call_proposals_model
+    - field.field.node.oe_call_proposals.oe_call_proposals_model
+    - field.storage.node.oe_call_proposals_deadline
+    - field.field.node.oe_call_proposals.oe_call_proposals_deadline
+    - field.storage.node.oe_call_proposals_funding
+    - field.field.node.oe_call_proposals.oe_call_proposals_funding
+    - field.storage.node.oe_call_proposals_contact
+    - field.field.node.oe_call_proposals.oe_call_proposals_contact
     - core.entity_form_display.node.oe_call_proposals.default
     - core.entity_view_display.node.oe_call_proposals.default
+    - oe_content_entity_contact.oe_contact_type.oe_general
     - node.type.oe_call_proposals
   optional:
+    - language.content_settings.oe_contact.oe_general
     - language.content_settings.node.oe_call_proposals
