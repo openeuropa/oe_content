@@ -198,3 +198,36 @@ msgstr "Kontakt"
 
 msgid "Contacts"
 msgstr "Kontakty"
+
+msgid "Organisation"
+msgstr "Organizácia"
+
+msgid "Fax number"
+msgstr "Faxové číslo"
+
+msgid "Mobile number"
+msgstr "Mobilné číslo"
+
+msgid "Office"
+msgstr "Úrad"
+
+msgid "Documents"
+msgstr "Dokumenty"
+
+msgid "Funding"
+msgstr "Financovanie"
+
+msgid "As planned"
+msgstr "Plánované"
+
+msgid "Cancelled"
+msgstr "Zrušené"
+
+msgid "Rescheduled"
+msgstr "Presunuté"
+
+msgid "Postponed"
+msgstr "Odložené"
+
+msgid "Address"
+msgstr "Adresa"

@@ -282,3 +282,36 @@ msgstr "Kontakt"
 
 msgid "Contacts"
 msgstr "Kontakty"
+
+msgid "Organisation"
+msgstr "Organizace"
+
+msgid "Fax number"
+msgstr "Číslo faxu"
+
+msgid "Mobile number"
+msgstr "Mobilní telefon"
+
+msgid "Office"
+msgstr "Kancelář"
+
+msgid "Documents"
+msgstr "Dokumenty"
+
+msgid "Funding"
+msgstr "Financování"
+
+msgid "As planned"
+msgstr "Plánovaný / Plánovaná / Plánováno"
+
+msgid "Cancelled"
+msgstr "zrušeno"
+
+msgid "Rescheduled"
+msgstr "Změna termínu"
+
+msgid "Postponed"
+msgstr "Odloženo"
+
+msgid "Address"
+msgstr "Adresa"

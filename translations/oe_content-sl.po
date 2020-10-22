@@ -198,3 +198,36 @@ msgstr "Kontakt"
 
 msgid "Contacts"
 msgstr "Kontakti"
+
+msgid "Organisation"
+msgstr "Organizacija"
+
+msgid "Fax number"
+msgstr "Številko telefaksa"
+
+msgid "Mobile number"
+msgstr "Številka mobilnika"
+
+msgid "Office"
+msgstr "Urad"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Funding"
+msgstr "Financiranje"
+
+msgid "As planned"
+msgstr "Po načrtu"
+
+msgid "Cancelled"
+msgstr "Odpovedano"
+
+msgid "Rescheduled"
+msgstr "Prestavljeno"
+
+msgid "Postponed"
+msgstr "Odloženo"
+
+msgid "Address"
+msgstr "Naslov"

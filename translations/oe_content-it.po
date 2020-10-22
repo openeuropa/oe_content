@@ -262,6 +262,9 @@ msgstr "Dettagli"
 msgid "Status"
 msgstr "Stato"
 
+msgid "Details"
+msgstr "Dettagli"
+
 msgid "Contact organisation"
 msgstr "Organizzazione da contattare"
 
@@ -282,3 +285,36 @@ msgstr "Contatti"
 
 msgid "Contacts"
 msgstr "Contatti"
+
+msgid "Organisation"
+msgstr "Organizzazione"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Cellulare"
+
+msgid "Office"
+msgstr "Ufficio"
+
+msgid "Documents"
+msgstr "Documenti"
+
+msgid "Funding"
+msgstr "Finanziamenti"
+
+msgid "As planned"
+msgstr "Come previsto"
+
+msgid "Cancelled"
+msgstr "Annullato"
+
+msgid "Rescheduled"
+msgstr "Riprogrammato / Riprogrammata"
+
+msgid "Postponed"
+msgstr "Rinviato / Rinviata"
+
+msgid "Address"
+msgstr "Indirizzo"

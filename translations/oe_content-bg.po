@@ -195,3 +195,36 @@ msgstr "Контакт"
 
 msgid "Contacts"
 msgstr "Контакти"
+
+msgid "Organisation"
+msgstr "Организация"
+
+msgid "Fax number"
+msgstr "Факс"
+
+msgid "Mobile number"
+msgstr "Мобилен телефон"
+
+msgid "Office"
+msgstr "Офис"
+
+msgid "Documents"
+msgstr "Документи"
+
+msgid "Funding"
+msgstr "Финансиране"
+
+msgid "As planned"
+msgstr "Както е планирано"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Rescheduled"
+msgstr "Променена дата/час"
+
+msgid "Postponed"
+msgstr "Отложен"
+
+msgid "Address"
+msgstr "Адрес"

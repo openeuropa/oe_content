@@ -278,3 +278,36 @@ msgstr "Contact"
 
 msgid "Contacts"
 msgstr "Personnes de contact"
+
+msgid "Organisation"
+msgstr "Organisation"
+
+msgid "Fax number"
+msgstr "Numéro de télécopieur"
+
+msgid "Mobile number"
+msgstr "Numéro de portable"
+
+msgid "Office"
+msgstr "Bureau"
+
+msgid "Documents"
+msgstr "Documents"
+
+msgid "Funding"
+msgstr "Financement"
+
+msgid "As planned"
+msgstr "Comme prévu"
+
+msgid "Cancelled"
+msgstr "Annulé"
+
+msgid "Rescheduled"
+msgstr "Reprogrammé"
+
+msgid "Postponed"
+msgstr "Reporté"
+
+msgid "Address"
+msgstr "Adresse"

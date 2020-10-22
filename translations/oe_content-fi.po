@@ -282,3 +282,36 @@ msgstr "Yhteydenotot"
 
 msgid "Contacts"
 msgstr "Yhteydenotot"
+
+msgid "Organisation"
+msgstr "Organisaatio"
+
+msgid "Fax number"
+msgstr "Faksinumero"
+
+msgid "Mobile number"
+msgstr "Matkapuhelinnumero"
+
+msgid "Office"
+msgstr "Toimisto"
+
+msgid "Documents"
+msgstr "Asiakirjat"
+
+msgid "Funding"
+msgstr "Rahoitus"
+
+msgid "As planned"
+msgstr "Suunnitellusti"
+
+msgid "Cancelled"
+msgstr "Peruutettu"
+
+msgid "Rescheduled"
+msgstr "Siirretty"
+
+msgid "Postponed"
+msgstr "Peruttu toistaiseksi"
+
+msgid "Address"
+msgstr "Osoite"

@@ -282,3 +282,36 @@ msgstr "Kontakt"
 
 msgid "Contacts"
 msgstr "Kontakti"
+
+msgid "Organisation"
+msgstr "Organizacija"
+
+msgid "Fax number"
+msgstr "Broj telefaksa"
+
+msgid "Mobile number"
+msgstr "Broj mobilnog telefona"
+
+msgid "Office"
+msgstr "Ured"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Funding"
+msgstr "Financiranje"
+
+msgid "As planned"
+msgstr "Prema planu"
+
+msgid "Cancelled"
+msgstr "Otkazano"
+
+msgid "Rescheduled"
+msgstr "Odgođeno za drugi datum"
+
+msgid "Postponed"
+msgstr "Odgođeno"
+
+msgid "Address"
+msgstr "Adresa"
