@@ -8,11 +8,13 @@ dependencies:
   - link:link
   - datetime:datetime
   - oe_content:oe_content_entity_contact
+  - oe_content:oe_content_reference_code_field
 
 config_devel:
   install:
     - field.field.node.oe_call_proposals.body
     - field.field.node.oe_call_proposals.oe_publication_date
+    - field.field.node.oe_call_proposals.oe_reference_code
     - field.storage.node.oe_call_proposals_journal
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
     - field.storage.node.oe_call_proposals_opening_date
