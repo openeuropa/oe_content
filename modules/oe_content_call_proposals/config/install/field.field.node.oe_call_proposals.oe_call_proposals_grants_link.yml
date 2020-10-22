@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_call_proposals_grants_link
+    - node.type.oe_call_proposals
+  module:
+    - link
+id: node.oe_call_proposals.oe_call_proposals_grants_link
+field_name: oe_call_proposals_grants_link
+entity_type: node
+bundle: oe_call_proposals
+label: 'Grants awarded link'
+description: "Title: Official Journal reference\r\nURL: link to the Official Journal"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

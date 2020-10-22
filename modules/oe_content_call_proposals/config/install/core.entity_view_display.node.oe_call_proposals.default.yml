@@ -2,19 +2,50 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
+    - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
+    - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
     - node.type.oe_call_proposals
   module:
     - datetime
+    - link
     - user
 id: node.oe_call_proposals.default
 targetEntityType: node
 bundle: oe_call_proposals
 mode: default
 content:
+  oe_call_proposals_grants_link:
+    weight: 102
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_call_proposals_journal:
+    type: link
+    weight: 3
+    region: content
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
   oe_call_proposals_opening_date:
-    weight: 101
+    weight: 1
     label: above
     settings:
       format_type: medium
@@ -22,14 +53,8 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
-    region: content
 hidden:
   langcode: true
-  oe_call_proposals_journal: true
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
