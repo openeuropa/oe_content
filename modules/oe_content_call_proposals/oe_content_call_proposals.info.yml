@@ -12,6 +12,7 @@ dependencies:
 config_devel:
   install:
     - field.field.node.oe_call_proposals.body
+    - field.field.node.oe_call_proposals.oe_publication_date
     - field.storage.node.oe_call_proposals_journal
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
     - field.storage.node.oe_call_proposals_opening_date
