@@ -190,9 +190,6 @@ msgstr "Vineri"
 msgid "Saturday"
 msgstr "Sâmbătă"
 
-msgid "Email"
-msgstr "E-mail"
-
 msgid "Phone number"
 msgstr "Număr de telefon"
 
@@ -264,9 +261,6 @@ msgstr "Detalii"
 
 msgid "Status"
 msgstr "Statut"
-
-msgid "Details"
-msgstr "Detalii"
 
 msgid "Contact organisation"
 msgstr "Contact organisation"

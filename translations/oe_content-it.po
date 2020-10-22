@@ -190,9 +190,6 @@ msgstr "Venerdì"
 msgid "Saturday"
 msgstr "Sabato"
 
-msgid "Email"
-msgstr "E-mail"
-
 msgid "Phone number"
 msgstr "Telefono"
 
@@ -264,9 +261,6 @@ msgstr "Dettagli"
 
 msgid "Status"
 msgstr "Stato"
-
-msgid "Details"
-msgstr "Dettagli"
 
 msgid "Contact organisation"
 msgstr "Organizzazione da contattare"

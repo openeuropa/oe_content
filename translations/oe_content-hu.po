@@ -186,9 +186,6 @@ msgstr "péntek"
 msgid "Saturday"
 msgstr "szombat"
 
-msgid "Email"
-msgstr "E-mail-cím"
-
 msgid "Phone number"
 msgstr "Telefonszám"
 
@@ -260,9 +257,6 @@ msgstr "Leírás"
 
 msgid "Status"
 msgstr "Státusz"
-
-msgid "Details"
-msgstr "Leírás"
 
 msgid "Contact organisation"
 msgstr "Kapcsolattartó szervezet"

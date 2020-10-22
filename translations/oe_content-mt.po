@@ -190,9 +190,6 @@ msgstr "Il-Ġimgħa"
 msgid "Saturday"
 msgstr "Is-Sibt"
 
-msgid "Email"
-msgstr "Email"
-
 msgid "Phone number"
 msgstr "Numru tat-telefown"
 
@@ -264,9 +261,6 @@ msgstr "Dettalji"
 
 msgid "Status"
 msgstr "Status"
-
-msgid "Details"
-msgstr "Dettalji"
 
 msgid "Contact organisation"
 msgstr "Organizzazzjoni ta’ kuntatt"

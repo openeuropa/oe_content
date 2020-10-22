@@ -186,9 +186,6 @@ msgstr "Παρασκευή"
 msgid "Saturday"
 msgstr "Σάββατο"
 
-msgid "Email"
-msgstr "E-mail"
-
 msgid "Phone number"
 msgstr "Αριθμός τηλεφώνου"
 
@@ -260,9 +257,6 @@ msgstr "Λεπτομέρειες"
 
 msgid "Status"
 msgstr "Καθεστώς"
-
-msgid "Details"
-msgstr "Λεπτομέρειες"
 
 msgid "Contact organisation"
 msgstr "Contact organisation"

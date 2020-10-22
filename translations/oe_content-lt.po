@@ -186,9 +186,6 @@ msgstr "Penktadienis"
 msgid "Saturday"
 msgstr "Šeštadienis"
 
-msgid "Email"
-msgstr "E. paštas"
-
 msgid "Phone number"
 msgstr "Telefono numeris"
 
@@ -260,9 +257,6 @@ msgstr "Išsamūs duomenys"
 
 msgid "Status"
 msgstr "Būsena"
-
-msgid "Details"
-msgstr "Išsamūs duomenys"
 
 msgid "Contact organisation"
 msgstr "Organizacija ryšiams"

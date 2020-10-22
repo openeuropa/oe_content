@@ -103,9 +103,6 @@ msgstr "Dé hAoine"
 msgid "Saturday"
 msgstr "Dé Sathairn"
 
-msgid "Email"
-msgstr "Seoladh ríomhphoist"
-
 msgid "Phone number"
 msgstr "Uimhir ghutháin"
 
@@ -177,9 +174,6 @@ msgstr "Sonraí"
 
 msgid "Status"
 msgstr "Stádas"
-
-msgid "Details"
-msgstr "Sonraí"
 
 msgid "Contact organisation"
 msgstr "Eagraíocht teagmhála"

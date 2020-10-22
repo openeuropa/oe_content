@@ -103,9 +103,6 @@ msgstr "петък"
 msgid "Saturday"
 msgstr "събота"
 
-msgid "Email"
-msgstr "Електронен адрес"
-
 msgid "Phone number"
 msgstr "Телефонен номер"
 
@@ -177,9 +174,6 @@ msgstr "Данни"
 
 msgid "Status"
 msgstr "Статус"
-
-msgid "Details"
-msgstr "Данни"
 
 msgid "Contact organisation"
 msgstr "Връзка с организацията"

@@ -106,9 +106,6 @@ msgstr "petek"
 msgid "Saturday"
 msgstr "sobota"
 
-msgid "Email"
-msgstr "E-pošta"
-
 msgid "Phone number"
 msgstr "Telefonska številka"
 
@@ -180,9 +177,6 @@ msgstr "Več informacij"
 
 msgid "Status"
 msgstr "Status"
-
-msgid "Details"
-msgstr "Več informacij"
 
 msgid "Contact organisation"
 msgstr "Kontaktna organizacija"

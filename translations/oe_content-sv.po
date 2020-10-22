@@ -190,9 +190,6 @@ msgstr "fredag"
 msgid "Saturday"
 msgstr "lördag"
 
-msgid "Email"
-msgstr "E-post"
-
 msgid "Phone number"
 msgstr "Telefon"
 
@@ -264,9 +261,6 @@ msgstr "Översikt"
 
 msgid "Status"
 msgstr "Status"
-
-msgid "Details"
-msgstr "Översikt"
 
 msgid "Contact organisation"
 msgstr "Kontaktorganisation"
