@@ -2,12 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.oe_call_proposals.body
     - field.field.node.oe_call_proposals.oe_call_proposals_contact
     - field.field.node.oe_call_proposals.oe_call_proposals_deadline
     - field.field.node.oe_call_proposals.oe_call_proposals_funding
-    - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
+    - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
     - node.type.oe_call_proposals
   module:
@@ -16,19 +17,37 @@ dependencies:
     - link
     - path
     - rdf_skos
+    - text
 id: node.oe_call_proposals.default
 targetEntityType: node
 bundle: oe_call_proposals
 mode: default
 content:
+  body:
+    weight: 1
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   created:
     type: datetime_timestamp
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 6
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   oe_call_proposals_contact:
-    weight: 126
+    weight: 19
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -38,7 +57,7 @@ content:
     type: entity_reference_revisions_autocomplete
     region: content
   oe_call_proposals_deadline:
-    weight: 124
+    weight: 17
     settings:
       date_order: DMY
       time_type: '24'
@@ -47,7 +66,7 @@ content:
     type: datetime_datelist
     region: content
   oe_call_proposals_funding:
-    weight: 125
+    weight: 18
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -56,21 +75,8 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
-  oe_call_proposals_model:
-    weight: 123
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  langcode:
-    type: language_select
-    weight: 5
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
   oe_call_proposals_grants_link:
-    weight: 122
+    weight: 15
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -85,8 +91,14 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  oe_call_proposals_model:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   oe_call_proposals_opening_date:
-    weight: 12
+    weight: 13
     settings:
       date_order: DMY
       time_type: none
@@ -96,7 +108,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 3
+    weight: 4
     region: content
     settings:
       match_operator: CONTAINS
@@ -106,7 +118,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder_url: ''
@@ -114,7 +126,7 @@ content:
     third_party_settings: {  }
   oe_content_navigation_title:
     type: string_textfield
-    weight: 2
+    weight: 3
     region: content
     settings:
       size: 60
@@ -122,7 +134,7 @@ content:
     third_party_settings: {  }
   oe_content_short_title:
     type: string_textfield
-    weight: 1
+    weight: 2
     region: content
     settings:
       size: 60
@@ -130,7 +142,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -138,21 +150,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 9
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 12
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 9
+    weight: 10
     region: content
     third_party_settings: {  }
   title:
@@ -165,7 +177,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60

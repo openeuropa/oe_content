@@ -2,12 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.oe_call_proposals.body
     - field.field.node.oe_call_proposals.oe_call_proposals_contact
     - field.field.node.oe_call_proposals.oe_call_proposals_deadline
     - field.field.node.oe_call_proposals.oe_call_proposals_funding
-    - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
+    - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
     - node.type.oe_call_proposals
   module:
@@ -16,14 +17,27 @@ dependencies:
     - link
     - options
     - rdf_skos
+    - text
     - user
 id: node.oe_call_proposals.default
 targetEntityType: node
 bundle: oe_call_proposals
 mode: default
 content:
+  body:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   oe_call_proposals_contact:
-    weight: 106
+    weight: 8
     label: above
     settings:
       view_mode: default
@@ -32,7 +46,7 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   oe_call_proposals_deadline:
-    weight: 104
+    weight: 6
     label: above
     settings:
       format_type: medium
@@ -41,27 +55,15 @@ content:
     type: datetime_default
     region: content
   oe_call_proposals_funding:
-    weight: 105
+    weight: 7
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: skos_concept_entity_reference_label
     region: content
-  oe_call_proposals_model:
-    weight: 103
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  links:
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   oe_call_proposals_grants_link:
-    weight: 102
+    weight: 4
     label: above
     settings:
       trim_length: 80
@@ -84,8 +86,15 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+  oe_call_proposals_model:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   oe_call_proposals_opening_date:
-    weight: 1
+    weight: 2
     label: above
     settings:
       format_type: medium
