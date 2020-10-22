@@ -186,9 +186,6 @@ msgstr "Viernes"
 msgid "Saturday"
 msgstr "Sábado"
 
-msgid "Email"
-msgstr "Correo electrónico"
-
 msgid "Phone number"
 msgstr "Número de teléfono"
 
@@ -260,9 +257,6 @@ msgstr "Detalles"
 
 msgid "Status"
 msgstr "Estado"
-
-msgid "Details"
-msgstr "Detalles"
 
 msgid "Contact organisation"
 msgstr "Contact organisation"

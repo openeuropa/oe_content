@@ -190,9 +190,6 @@ msgstr "Piektdiena"
 msgid "Saturday"
 msgstr "Sestdiena"
 
-msgid "Email"
-msgstr "E-pasts"
-
 msgid "Phone number"
 msgstr "Tālruņa numurs"
 
@@ -264,9 +261,6 @@ msgstr "Sīkāka informācija"
 
 msgid "Status"
 msgstr "Statuss"
-
-msgid "Details"
-msgstr "Sīkāka informācija"
 
 msgid "Contact organisation"
 msgstr "Sazināties ar organizāciju"

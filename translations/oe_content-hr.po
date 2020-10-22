@@ -190,9 +190,6 @@ msgstr "petak"
 msgid "Saturday"
 msgstr "subota"
 
-msgid "Email"
-msgstr "E-adresa"
-
 msgid "Phone number"
 msgstr "Broj telefona"
 
@@ -264,9 +261,6 @@ msgstr "Pojedinosti"
 
 msgid "Status"
 msgstr "Status"
-
-msgid "Details"
-msgstr "Pojedinosti"
 
 msgid "Contact organisation"
 msgstr "Obratite se organizaciji"

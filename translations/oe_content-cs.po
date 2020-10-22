@@ -190,9 +190,6 @@ msgstr "Pátek"
 msgid "Saturday"
 msgstr "Sobota"
 
-msgid "Email"
-msgstr "E-mail"
-
 msgid "Phone number"
 msgstr "Telefonní číslo"
 
@@ -264,9 +261,6 @@ msgstr "Podrobnosti"
 
 msgid "Status"
 msgstr "Status"
-
-msgid "Details"
-msgstr "Podrobnosti"
 
 msgid "Contact organisation"
 msgstr "Kontaktní organizace"

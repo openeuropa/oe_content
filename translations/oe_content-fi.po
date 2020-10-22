@@ -190,9 +190,6 @@ msgstr "Perjantai"
 msgid "Saturday"
 msgstr "Lauantai"
 
-msgid "Email"
-msgstr "Sähköposti"
-
 msgid "Phone number"
 msgstr "Puhelinnumero"
 
@@ -264,9 +261,6 @@ msgstr "Tiedot"
 
 msgid "Status"
 msgstr "Tila"
-
-msgid "Details"
-msgstr "Tiedot"
 
 msgid "Contact organisation"
 msgstr "Ota yhteyttä organisaatioon"

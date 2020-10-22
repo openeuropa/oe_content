@@ -190,9 +190,6 @@ msgstr "Reede"
 msgid "Saturday"
 msgstr "Laupäev"
 
-msgid "Email"
-msgstr "E-post"
-
 msgid "Phone number"
 msgstr "Telefoninumber"
 
@@ -264,9 +261,6 @@ msgstr "Üksikasjad"
 
 msgid "Status"
 msgstr "Olek"
-
-msgid "Details"
-msgstr "Üksikasjad"
 
 msgid "Contact organisation"
 msgstr "Kontaktorganisatsioon"
