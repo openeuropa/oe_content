@@ -10,8 +10,11 @@ dependencies:
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
     - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
+    - field.field.node.oe_call_proposals.oe_departments
+    - field.field.node.oe_call_proposals.oe_documents
     - field.field.node.oe_call_proposals.oe_publication_date
     - field.field.node.oe_call_proposals.oe_reference_code
+    - field.field.node.oe_call_proposals.oe_related_links
     - node.type.oe_call_proposals
   module:
     - datetime
@@ -37,19 +40,19 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 17
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 15
+    weight: 18
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   oe_call_proposals_contact:
-    weight: 10
+    weight: 12
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -110,7 +113,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 13
+    weight: 16
     region: content
     settings:
       match_operator: CONTAINS
@@ -120,7 +123,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 14
+    weight: 17
     region: content
     settings:
       placeholder_url: ''
@@ -128,7 +131,7 @@ content:
     third_party_settings: {  }
   oe_content_navigation_title:
     type: string_textfield
-    weight: 12
+    weight: 15
     region: content
     settings:
       size: 60
@@ -136,12 +139,32 @@ content:
     third_party_settings: {  }
   oe_content_short_title:
     type: string_textfield
-    weight: 11
+    weight: 14
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  oe_departments:
+    weight: 10
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
+  oe_documents:
+    weight: 11
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   oe_publication_date:
     weight: 2
     settings:
@@ -159,9 +182,17 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  oe_related_links:
+    weight: 13
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   path:
     type: path
-    weight: 20
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -169,21 +200,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 18
+    weight: 21
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 21
+    weight: 24
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 19
+    weight: 22
     region: content
     third_party_settings: {  }
   title:
@@ -196,7 +227,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 16
+    weight: 19
     settings:
       match_operator: CONTAINS
       size: 60
