@@ -282,7 +282,8 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     $value_exists = NestedArray::keyExists($form_state->getValues(), $element_path);
 
     if (!$value_exists && $input_exists && !is_array($input_value['target_id'])) {
-      $data = empty($input_value['target_id']) ? [] : explode(' ', trim($input_value['target_id']));
+      $target_id = $input_value['target_id'];
+      $data = empty($target_id) ? [] : explode(' ', trim($target_id));
       if ($data) {
         $data = reset($data);
         $value['target_id'] = explode(':', $data)[1];
@@ -291,8 +292,9 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
         if (!empty($entity)) {
           $entities[] = $entity;
         }
-        return $entities;
       }
+
+      return $entities;
     }
 
     // Determine if we're submitting and if submit came from this widget.
