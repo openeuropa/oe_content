@@ -172,6 +172,9 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
           'wrapper' => $details_id,
           'event' => 'entity_browser_value_updated',
         ],
+        '#submit' => [[get_class($this), 'updateEntityBrowserValue']],
+        '#limit_validation_errors' => [array_merge($element['#field_parents'], [$this->fieldDefinition->getName()])],
+        '#executes_submit_callback' => TRUE,
       ],
     ];
 
@@ -221,6 +224,40 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     ];
 
     return $element;
+  }
+
+  /**
+   * Submit callback for the entity browser media selection element.
+   *
+   * @param array $form
+   *   The form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   */
+  public static function updateEntityBrowserValue(array &$form, FormStateInterface $form_state) {
+    $triggering_element = $form_state->getTriggeringElement();
+    $parents = array_slice($triggering_element['#parents'], 0, -1);
+    $array_parents = array_slice($triggering_element['#array_parents'], 0, -1);
+
+    $values = $form_state->getValue($parents);
+
+    $entities = empty($values['target_id']) ? [] : explode(' ', trim($values['target_id']));
+    $value = [];
+    if ($entities) {
+      // We expect only 1 as it's considered a delta of 1.
+      $entity = reset($entities);
+      $value['target_id'] = $entity;
+    }
+    else {
+      $value['target_id'] = NULL;
+    }
+
+    // Set new value for this widget in the form_state.
+    $element = &NestedArray::getValue($form, $array_parents);
+    $form_state->setValueForElement($element, $value);
+
+    // Rebuild form.
+    $form_state->setRebuild();
   }
 
   /**
@@ -276,25 +313,19 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     $entity_type = $this->fieldDefinition->getFieldStorageDefinition()->getSetting('target_type');
     $entity_storage = $this->entityTypeManager->getStorage($entity_type);
 
+    // Check if we have any values in the form state for this element.
     $element_path = array_merge($element['#field_parents'], [$this->fieldDefinition->getName(), $delta]);
-    $input_exists = NULL;
     $input_value = NestedArray::getValue($form_state->getUserInput(), $element_path, $input_exists);
     $value_exists = NestedArray::keyExists($form_state->getValues(), $element_path);
 
     if (!$value_exists && $input_exists && !is_array($input_value['target_id'])) {
-      $target_id = $input_value['target_id'];
-      $data = empty($target_id) ? [] : explode(' ', trim($target_id));
-      if ($data) {
-        $data = reset($data);
-        $value['target_id'] = explode(':', $data)[1];
-        $items->get($delta)->setValue($value);
-        $entity = $entity_storage->load($items[$delta]->target_id);
-        if (!empty($entity)) {
-          $entities[] = $entity;
-        }
+      // If we have a value for this element but it's NULL, it means it was
+      // removed consciously so we don't want to default to the one in the
+      // field items.
+      $data = empty($input_value['target_id']) ? [] : explode(' ', trim($input_value['target_id']));
+      if (!$data) {
+        return $entities;
       }
-
-      return $entities;
     }
 
     // Determine if we're submitting and if submit came from this widget.
