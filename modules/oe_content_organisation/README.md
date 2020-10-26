@@ -12,7 +12,7 @@ Before enabling this module, make sure that the following modules are present in
     "drupal/composite_reference": "~1.0-alpha2",
     "drupal/entity_reference_revisions": "~1.3",
     "drupal/field_group": "~3.0",
-    "drupal/inline_entity_form": "~1.0-rc7"
+    "drupal/inline_entity_form": "~1.0-rc9"
 }
 ```
 
@@ -23,16 +23,6 @@ The `field_group` module requires the following patches to be applied:
     "drupal/field_group": {
         "https://www.drupal.org/project/field_group/issues/2787179#comment-13467953": "https://www.drupal.org/files/issues/2020-02-17/2787179-highlight-html5-validation-45.patch",
         "https://www.drupal.org/node/3072732": "https://www.drupal.org/files/issues/2019-08-06/3072732-6.patch"
-    }
-}
-```
-
-The `inline_entity_form` module requires the following patches to be applied:
-
-```json
-"patches": {
-    "drupal/inline_entity_form": {
-        "https://www.drupal.org/project/inline_entity_form/issues/3162384": "https://www.drupal.org/files/issues/2020-08-13/fixed_duplicate_rows-3162384-16.patch"
     }
 }
 ```
