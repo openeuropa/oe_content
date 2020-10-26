@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.oe_call_proposals.oe_documents
     - field.field.node.oe_call_proposals.oe_publication_date
     - field.field.node.oe_call_proposals.oe_reference_code
-    - field.field.node.oe_call_proposals.oe_related_links
     - node.type.oe_call_proposals
   module:
     - datetime
@@ -139,18 +138,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  oe_related_links:
-    weight: 13
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
     region: content
 hidden:
   langcode: true
