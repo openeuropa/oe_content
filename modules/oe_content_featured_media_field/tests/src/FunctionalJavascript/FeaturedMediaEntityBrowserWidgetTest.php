@@ -472,6 +472,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
 
     // Assert the image was removed from the field.
     $this->assertSession()->pageTextNotContains('Image 1');
+    $this->assertSession()->elementExists('css', 'input[data-drupal-selector="edit-article-field-form-inline-entity-form-entities-0-form-featured-media-field-0-entity-browser-entity-browser-open-modal"]');
     $this->getSession()->getPage()->pressButton('Save');
 
     // Assert the remaining caption can't be saved when the image is removed.
