@@ -55,7 +55,7 @@ Feature: Call for proposals content creation and editing.
 
     # Call for proposals contact field group.
     When I press "Add new contact" in the "Call for proposals contact" region
-    And I wait for AJAX to finish
+    And I wait 10 seconds
     And I fill in "Name" with "Name of the call for proposals contact" in the "Call for proposals contact" region
     And I fill in "Organisation" with "Call for proposals contact organisation" in the "Call for proposals contact" region
     And I fill in "Body text" with "Call for proposals contact body text" in the "Call for proposals contact" region
