@@ -1,4 +1,4 @@
-@api @aabbcc
+@api
 Feature: Call for proposals content creation and editing.
   In order to have Calls for proposals on the site
   As an editor
@@ -25,7 +25,12 @@ Feature: Call for proposals content creation and editing.
       | Permanent          |
     And I fill in "Title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
+
+    # Test that no Deadline Date field is visible when the Permanent model is selected
     And I select "Permanent" from "Deadline model"
+    And I should not see "Deadline date"
+
+    And I select "Two-stage" from "Deadline model"
     And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
 
@@ -34,7 +39,7 @@ Feature: Call for proposals content creation and editing.
     Then I should see "Call for proposals My Call for proposals 1 has been created."
     And I should see "My call for proposals 1"
     And I should see "10/24/2020"
-    And I should see "Permanent"
+    And I should see "Two-stage"
     And I should see "12/31/2020 - 23:45"
 
     When I click "Edit"
@@ -43,12 +48,10 @@ Feature: Call for proposals content creation and editing.
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
     And I fill in "Link text" with "Official Journal publication 1" in the "Publication in the official journal" region
     And I set "Opening date" to the date "25-10-2020"
-    And I fill in "URL" with "http://example.com/2" in the "Grants awarded link" region
-    And I fill in "Link text" with "Grants awarded link 1" in the "Grants awarded link" region
+    And I fill in "Grants awarded link" with "http://example.com/2"
     And I fill in "Funding programme" with "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
     And I fill in "Responsible department" with "Audit Board of the European Communities (http://publications.europa.eu/resource/authority/corporate-body/ABEC)"
     And I fill in "Use existing media" with "My Document 1" in the "Documents" region
-    # And I wait 10 seconds
 
     # Call for proposals contact field group.
     When I press "Add new contact" in the "Call for proposals contact" region
@@ -82,7 +85,7 @@ Feature: Call for proposals content creation and editing.
     And I should see "My Call for proposals 1 reference"
     And I should see the link "Official Journal publication 1"
     And I should see "10/25/2020"
-    And I should see the link "Grants awarded link 1"
+    And I should see the link "http://example.com/2"
     And I should see "Anti Fraud Information System (AFIS)"
     And I should see "Audit Board of the European Communities"
     And I should see "My Document 1"
