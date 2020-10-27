@@ -44,6 +44,9 @@
         "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.4"
     },
+    "_readme": [
+        "We explicitly require drupal/inline_entity_form version rc8 or higher as it contains necessary bug fixes."
+    ],
     "autoload": {
         "psr-4": {
             "Drupal\\oe_content\\": "./src/"
@@ -55,6 +58,9 @@
             "Drupal\\Tests\\oe_content_featured_media_field\\": "./modules/oe_content_featured_media_field/tests/src/",
             "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/"
         }
+    },
+    "conflict": {
+        "drupal/inline_entity_form": "<1.0-rc8"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
@@ -78,7 +84,7 @@
         },
         "patches": {
             "drupal/field_group": {
-                "https://www.drupal.org/project/field_group/issues/2787179#comment-13467953": "https://www.drupal.org/files/issues/2020-02-17/2787179-highlight-html5-validation-45.patch"
+                "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2020-05-19/2787179-highlight-html5-validation-52.patch"
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/2723917#comment-13844025": "https://www.drupal.org/files/issues/2020-10-02/address-multiple_value-2723917-13.patch"

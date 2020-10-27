@@ -49,51 +49,39 @@ msgctxt "Long month name"
 msgid "December"
 msgstr "joulukuu"
 
-msgctxt "Abbreviated month name"
 msgid "Jan"
 msgstr "Tam"
 
-msgctxt "Abbreviated month name"
 msgid "Feb"
 msgstr "Hel"
 
-msgctxt "Abbreviated month name"
 msgid "Mar"
 msgstr "Maa"
 
-msgctxt "Abbreviated month name"
 msgid "Apr"
 msgstr "Huh"
 
-msgctxt "Abbreviated month name"
 msgid "May"
 msgstr "Tou"
 
-msgctxt "Abbreviated month name"
 msgid "Jun"
 msgstr "Kes"
 
-msgctxt "Abbreviated month name"
 msgid "Jul"
 msgstr "Hei"
 
-msgctxt "Abbreviated month name"
 msgid "Aug"
 msgstr "Elo"
 
-msgctxt "Abbreviated month name"
 msgid "Sep"
 msgstr "Syy"
 
-msgctxt "Abbreviated month name"
 msgid "Oct"
 msgstr "Lok"
 
-msgctxt "Abbreviated month name"
 msgid "Nov"
 msgstr "Mar"
 
-msgctxt "Abbreviated month name"
 msgid "Dec"
 msgstr "Jou"
 
