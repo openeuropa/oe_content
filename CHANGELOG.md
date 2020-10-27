@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.1](https://github.com/openeuropa/oe_content/tree/1.11.1) (2020-10-27)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.11.0...1.11.1)
+
+**Merged pull requests:**
+
+- EWPP-443: Fixing Media PURL matcher dependency calculation. [\#333](https://github.com/openeuropa/oe_content/pull/333) ([ademarco](https://github.com/ademarco))
+
 ## [1.11.0](https://github.com/openeuropa/oe_content/tree/1.11.0) (2020-10-08)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.10.0...1.11.0)
 
