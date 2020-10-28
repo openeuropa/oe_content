@@ -11,7 +11,7 @@ field_name: oe_call_proposals_grants_link
 entity_type: node
 bundle: oe_call_proposals
 label: 'Grants awarded link'
-description: "Title: Official Journal reference\r\nURL: link to the Official Journal"
+description: "Title: Official Journal reference.\r\nURL: link to the Official Journal"
 required: false
 translatable: false
 default_value: {  }
