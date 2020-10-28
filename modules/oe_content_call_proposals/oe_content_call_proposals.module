@@ -8,8 +8,6 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\Component\Utility\Unicode;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter for the node form.
@@ -26,34 +24,12 @@ function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateI
       'select[name="oe_call_proposals_model"]' => ['value' => 'permanent']
     ],
   ];
-
-  $form['#validate'][] = 'oe_content_call_proposals_node_validate';
 }
 
 /**
- * Custom validator for the Call For Proposals node form.
- *
- * @param array $form
- *   The form.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The form state.
+ * Implements hook_entity_type_alter().
  */
-function oe_content_call_proposals_node_validate(array $form, FormStateInterface $form_state) {
-  $deadline_model = $form_state->getValue(['oe_call_proposals_model', 0, 'value']);
-  /** @var \Drupal\Core\Datetime\DrupalDateTime $deadline_date */
-  $deadline_date = $form_state->getValue(['oe_call_proposals_deadline', 0, 'value']);
-
-  if ($deadline_model !== 'permanent' && !($deadline_date instanceof DrupalDateTime)) {
-    // A valid Deadline date should be submitted.
-    $form_state->setErrorByName('oe_call_proposals_deadline', t('Please select a valid date!'));
-  }
-
-  $length = 128;
-  $journal_link_title = $form_state->getValue(['oe_call_proposals_journal', 0, 'title']);
-  if (Unicode::strlen($journal_link_title) > $length) {
-    $form_state->setErrorByName('oe_call_proposals_journal',
-      t('The link title should be less than @length characters!', [
-        '@length' => $length,
-      ]));
-  }
+function oe_content_call_proposals_entity_type_alter(array &$entity_types) {
+  $entity_types['node']->addConstraint('CallProposalsJournalTitleLength');
+  $entity_types['node']->addConstraint('CallProposalsDeadlineDate');
 }
