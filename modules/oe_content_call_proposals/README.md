@@ -1,4 +1,4 @@
-# OpenEuropa content Call for proposals
+# OpenEuropa Call for proposals Content
 
 This module provides the Call for proposals content type.
 
