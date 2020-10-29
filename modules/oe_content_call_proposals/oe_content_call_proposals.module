@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter for the node form.
@@ -39,12 +40,10 @@ function oe_content_call_proposals_entity_type_alter(array &$entity_types) {
 
 /**
  * Returns the Model's allowed values.
+ *
+ * @return array
+ *   The model values.
  */
-function oe_content_call_proposals_model_allowed_values() {
-  return [
-    CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE => 'Single-stage',
-    CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE => 'Two-stage',
-    CallForProposalsNodeWrapperInterface::MODEL_MULTIPLE_CUT_OFF => 'Multiple cut-off',
-    CallForProposalsNodeWrapperInterface::MODEL_PERMANENT => 'Permanent',
-  ];
+function oe_content_call_proposals_model_allowed_values(): array {
+  return CallForProposalsNodeWrapper::getModelsList();
 }

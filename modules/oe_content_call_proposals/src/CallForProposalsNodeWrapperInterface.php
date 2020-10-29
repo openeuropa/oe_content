@@ -132,4 +132,28 @@ interface CallForProposalsNodeWrapperInterface {
    */
   public function getStatusLabel(): MarkupInterface;
 
+  /**
+   * Gets the models list.
+   *
+   * @return array
+   *   The models list.
+   */
+  public static function getModelsList(): array;
+
+  /**
+   * Gets the deadline model value.
+   *
+   * @return string
+   *   The model value.
+   */
+  public function getModel(): string;
+
+  /**
+   * Gets the Deadline model label.
+   *
+   * @return string
+   *   The model label.
+   */
+  public function getModelLabel(): string;
+
 }

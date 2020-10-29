@@ -156,4 +156,34 @@ class CallForProposalsNodeWrapper extends EntityWrapperBase implements CallForPr
     return DrupalDateTime::createFromTimestamp($request_time);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public static function getModelsList(): array {
+    return [
+      CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE => t('Single-stage'),
+      CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE => t('Two-stage'),
+      CallForProposalsNodeWrapperInterface::MODEL_MULTIPLE_CUT_OFF => t('Multiple cut-off'),
+      CallForProposalsNodeWrapperInterface::MODEL_PERMANENT => t('Permanent'),
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getModel(): string {
+    return $this->entity->get('oe_call_proposals_model')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getModelLabel(): string {
+    $model = $this->getModel();
+
+    $list = $this->getModelsList();
+
+    return $list[$model];
+  }
+
 }
