@@ -33,6 +33,26 @@ interface CallForProposalsNodeWrapperInterface {
   const STATUS_CLOSED = 'closed';
 
   /**
+   * The model is "Single-stage".
+   */
+  const MODEL_SINGLE_STAGE = 'single_stage';
+
+  /**
+   * The model is "Two-stage".
+   */
+  const MODEL_TWO_STAGE = 'two_stage';
+
+  /**
+   * The model is "Multiple cut-off".
+   */
+  const MODEL_MULTIPLE_CUT_OFF = 'multiple_cut_off';
+
+  /**
+   * The model is "Permanent".
+   */
+  const MODEL_PERMANENT = 'permanent';
+
+  /**
    * Check whether the call for tenders status is 'open'.
    *
    * @return bool

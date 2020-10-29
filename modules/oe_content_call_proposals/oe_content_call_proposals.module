@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter for the node form.
@@ -21,7 +22,9 @@ function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateI
 
   $form['oe_call_proposals_deadline']['widget']['#states'] = [
     'invisible' => [
-      'select[name="oe_call_proposals_model"]' => ['value' => 'permanent']
+      'select[name="oe_call_proposals_model"]' => [
+        'value' => CallForProposalsNodeWrapperInterface::MODEL_PERMANENT,
+      ],
     ],
   ];
 }
@@ -32,4 +35,16 @@ function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateI
 function oe_content_call_proposals_entity_type_alter(array &$entity_types) {
   $entity_types['node']->addConstraint('CallProposalsJournalTitleLength');
   $entity_types['node']->addConstraint('CallProposalsDeadlineDate');
+}
+
+/**
+ * Returns the Model's allowed values.
+ */
+function oe_content_call_proposals_model_allowed_values() {
+  return [
+    CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE => 'Single-stage',
+    CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE => 'Two-stage',
+    CallForProposalsNodeWrapperInterface::MODEL_MULTIPLE_CUT_OFF => 'Multiple cut-off',
+    CallForProposalsNodeWrapperInterface::MODEL_PERMANENT => 'Permanent',
+  ];
 }
