@@ -3,6 +3,11 @@ status: true
 dependencies:
   config:
     - node.type.oe_call_proposals
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
 id: node.oe_call_proposals
 target_entity_type_id: node
 target_bundle: oe_call_proposals
