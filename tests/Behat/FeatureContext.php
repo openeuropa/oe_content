@@ -298,16 +298,4 @@ class FeatureContext extends RawDrupalContext {
     $this->assertVisuallyVisible($node);
   }
 
-  /**
-   * Waits a while, for debugging.
-   *
-   * @param int $seconds
-   *   How long to wait.
-   *
-   * @When I wait :seconds second(s)
-   */
-  public function wait($seconds) {
-    sleep(intval($seconds));
-  }
-
 }
