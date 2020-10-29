@@ -493,6 +493,21 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     ];
     $actual_values = $node->get('featured_media_field')->getValue();
     $this->assertEquals($expected_values, $actual_values);
+
+    // Edit the node to remove the remaining media (but leave the caption).
+    $node = $this->drupalGetNodeByTitle('Node with featured media', TRUE);
+    $this->drupalGet($node->toUrl('edit-form'));
+    // Open the IEF form of the embedded article.
+    $this->getSession()->getPage()->pressButton('Edit');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+
+    $remove = $this->getSession()->getPage()->find('css', 'input[data-drupal-selector="edit-article-field-form-inline-entity-form-entities-0-form-featured-media-field-0-current-items-0-remove-button"]');
+    $remove->press();
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains('Please either remove the caption or select a Media entity');
+    // Assert that if the validation fails, the media selection remains empty.
+    $this->assertSession()->pageTextNotContains('Image 2');
   }
 
   /**
