@@ -6,6 +6,7 @@ namespace Drupal\oe_content_call_proposals\Plugin\Validation\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 
 /**
  * Validates the Call For Proposals Deadline date constraint.
@@ -23,7 +24,7 @@ class CallProposalsDeadlineDateValidator extends ConstraintValidator {
 
     $deadline_model = $node->oe_call_proposals_model->value;
     $deadline_date = $node->oe_call_proposals_deadline->value;
-    if ($deadline_model !== 'permanent' && empty($deadline_date)) {
+    if ($deadline_model !== CallForProposalsNodeWrapperInterface::MODEL_PERMANENT && empty($deadline_date)) {
       $this->context->buildViolation($constraint->errorMessage)
         ->atPath('oe_call_proposals_deadline')
         ->addViolation();
