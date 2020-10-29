@@ -38,5 +38,4 @@ config_devel:
     - field.field.node.oe_call_proposals.oe_documents
     - node.type.oe_call_proposals
   optional:
-    - language.content_settings.oe_contact.oe_general
     - language.content_settings.node.oe_call_proposals
