@@ -146,14 +146,14 @@ interface CallForProposalsNodeWrapperInterface {
    * @return string
    *   The model value.
    */
-  public function getModel(): string;
+  public function getModel(): ?string;
 
   /**
    * Gets the Deadline model label.
    *
-   * @return string
-   *   The model label.
+   * @return \Drupal\Component\Render\MarkupInterface
+   *   The translated model label.
    */
-  public function getModelLabel(): string;
+  public function getModelLabel(): MarkupInterface;
 
 }

@@ -171,19 +171,23 @@ class CallForProposalsNodeWrapper extends EntityWrapperBase implements CallForPr
   /**
    * {@inheritdoc}
    */
-  public function getModel(): string {
+  public function getModel(): ?string {
     return $this->entity->get('oe_call_proposals_model')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getModelLabel(): string {
+  public function getModelLabel(): MarkupInterface {
     $model = $this->getModel();
+    if (!empty($model)) {
+      $list = static::getModelsList();
+      if (isset($list[$model])) {
+        return $list[$model];
+      }
+    }
 
-    $list = $this->getModelsList();
-
-    return $list[$model];
+    return $this->t('N/A');
   }
 
 }
