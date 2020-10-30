@@ -17,20 +17,19 @@ Feature: Call for proposals content creation and editing.
       | Contact image | example_1.jpeg | Contact image alternative text |
 
     When I visit "the Call for proposals creation page"
-    Then I should have the following options for the "Deadline model" select:
-      | - Select a value - |
-      | Single-stage       |
-      | Two-stage          |
-      | Multiple cut-off   |
-      | Permanent          |
+    Then I should see "Single-stage" in the "Deadline model"
+    And I should see "Two-stage" in the "Deadline model"
+    And I should see "Multiple cut-off" in the "Deadline model"
+    And I should see "Permanent" in the "Deadline model"
+
     And I fill in "Title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
 
     # Test that no Deadline Date field is visible when the Permanent model is selected
-    And I select "Permanent" from "Deadline model"
+    And I select "permanent" from "oe_call_proposals_model"
     And I should not see "Deadline date"
 
-    And I select "Two-stage" from "Deadline model"
+    And I select "two_stage" from "oe_call_proposals_model"
     And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
 
@@ -118,7 +117,7 @@ Feature: Call for proposals content creation and editing.
     When I visit "the Call for proposals creation page"
     And I fill in "Title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
-    And I select "Two-stage" from "Deadline model"
+    And I select "two_stage" from "oe_call_proposals_model"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
 
     And I press "Save"
