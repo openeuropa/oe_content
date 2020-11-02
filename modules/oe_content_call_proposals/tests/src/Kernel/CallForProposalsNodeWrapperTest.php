@@ -8,7 +8,6 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\oe_content\EntityWrapperInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 
@@ -89,7 +88,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
    * @return \Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper
    *   Wrapper object.
    */
-  protected function createWrapper(array $values): EntityWrapperInterface {
+  protected function createWrapper(array $values): CallForProposalsNodeWrapperInterface {
     // Create wrapper.
     $node = Node::create($values + [
       'type' => 'oe_call_proposals',
