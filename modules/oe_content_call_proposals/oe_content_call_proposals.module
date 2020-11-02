@@ -21,7 +21,7 @@ function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateI
     return;
   }
 
-  $form['oe_call_proposals_deadline']['widget']['#states'] = [
+  $form['oe_call_proposals_deadline']['#states'] = [
     'invisible' => [
       'input[name="oe_call_proposals_model"]' => [
         'value' => CallForProposalsNodeWrapperInterface::MODEL_PERMANENT,
