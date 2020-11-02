@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
@@ -46,4 +47,19 @@ function oe_content_call_proposals_entity_type_alter(array &$entity_types) {
  */
 function oe_content_call_proposals_model_allowed_values(): array {
   return CallForProposalsNodeWrapper::getModelsList();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function oe_call_proposals_node_presave(EntityInterface $entity) {
+  if ($entity->bundle() !== 'oe_call_proposals') {
+    return;
+  }
+
+  $deadline_model = $entity->get('oe_call_proposals_model')->value;
+
+  if ($deadline_model === CallForProposalsNodeWrapperInterface::MODEL_PERMANENT) {
+    $entity->set('oe_call_proposals_deadline', NULL);
+  }
 }
