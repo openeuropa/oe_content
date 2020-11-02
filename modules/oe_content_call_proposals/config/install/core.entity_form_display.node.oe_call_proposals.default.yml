@@ -17,11 +17,29 @@ dependencies:
     - node.type.oe_call_proposals
   module:
     - datetime
+    - field_group
     - inline_entity_form
     - link
     - path
     - rdf_skos
     - text
+third_party_settings:
+  field_group:
+    group_alternative_titles:
+      children:
+        - oe_content_short_title
+        - oe_content_navigation_title
+      parent_name: ''
+      weight: 12
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+        required_fields: true
+      label: 'Alternative titles'
 id: node.oe_call_proposals.default
 targetEntityType: node
 bundle: oe_call_proposals
@@ -51,7 +69,7 @@ content:
       include_locked: true
     third_party_settings: {  }
   oe_call_proposals_contact:
-    weight: 12
+    weight: 13
     settings:
       form_mode: default
       revision: true

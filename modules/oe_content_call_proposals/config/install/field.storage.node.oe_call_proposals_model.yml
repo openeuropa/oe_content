@@ -9,8 +9,8 @@ field_name: oe_call_proposals_model
 entity_type: node
 type: list_string
 settings:
-  allowed_values: { }
-  allowed_values_function: 'oe_content_call_proposals_model_allowed_values'
+  allowed_values: {  }
+  allowed_values_function: oe_content_call_proposals_model_allowed_values
 module: options
 locked: false
 cardinality: 1
