@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\Entity\EntityViewMode;
 
 /**
  * Enable dependencies: oe_content_featured_media_field, oe_media.
@@ -100,4 +101,16 @@ function oe_content_entity_contact_post_update_00006(): void {
       }
     }
   }
+}
+
+/**
+ * Create the Contact view mode.
+ */
+function oe_content_entity_contact_post_update_00007(): void {
+  $entity_view_mode = EntityViewMode::create([
+    'id' => 'oe_contact.oe_contact',
+    'label' => 'Contact',
+    'targetEntityType' => 'oe_contact',
+  ]);
+  $entity_view_mode->save();
 }

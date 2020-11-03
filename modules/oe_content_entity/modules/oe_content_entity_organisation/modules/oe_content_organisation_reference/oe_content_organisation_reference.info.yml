@@ -1,0 +1,20 @@
+name: OpenEuropa Organisation Reference
+description: Allows to reference organisations in very specific cases, such as as a contact information.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - oe_content:oe_content
+  - oe_content:oe_content_entity
+  - oe_content:oe_content_entity_contact
+  - oe_content:oe_content_organisation
+
+config_devel:
+  install:
+    - core.entity_form_display.oe_contact.oe_organisation_reference.default
+    - field.field.oe_contact.oe_organisation_reference.oe_organisation_ref
+    - field.storage.oe_contact.oe_organisation_ref
+    - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
+  optional:
+    - language.content_settings.oe_contact.oe_organisation_reference
