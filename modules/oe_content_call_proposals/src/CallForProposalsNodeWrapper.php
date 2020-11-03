@@ -66,7 +66,18 @@ class CallForProposalsNodeWrapper extends EntityWrapperBase implements CallForPr
     if (!$this->hasDeadlineDate()) {
       return NULL;
     }
-    return $this->entity->get('oe_call_proposals_deadline')->date;
+
+    $dates = $this->entity->get('oe_call_proposals_deadline')->getValue();
+
+    if (!is_array($dates)) {
+      return NULL;
+    }
+
+    // Get the latest date in relation to the "closed" proposal's status.
+    array_multisort(array_column($dates, 'value'), SORT_DESC, $dates);
+
+    $date = current($dates);
+    return new DrupalDateTime($date['value']);
   }
 
   /**
