@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_reference_code
+    - node.type.oe_publication
+id: node.oe_publication.oe_reference_code
+field_name: oe_reference_code
+entity_type: node
+bundle: oe_publication
+label: 'Identifier code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
