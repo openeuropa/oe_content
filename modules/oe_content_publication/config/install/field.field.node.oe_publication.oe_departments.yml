@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_publication_type
+    - field.storage.node.oe_departments
     - node.type.oe_publication
   module:
     - rdf_skos
-id: node.oe_publication.oe_publication_type
-field_name: oe_publication_type
+id: node.oe_publication.oe_departments
+field_name: oe_departments
 entity_type: node
 bundle: oe_publication
-label: 'Resource type'
+label: 'Related department'
 description: ''
-required: true
-translatable: false
+required: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -23,13 +23,10 @@ settings:
     sort:
       field: _none
     auto_create: false
-    concept_schemes:
-      - 'http://publications.europa.eu/resource/authority/resource-type'
-    concept_subset: null
+    concept_schemes: {  }
     field:
-      field_name: oe_publication_type
+      field_name: oe_departments
       entity_type: node
       bundle: oe_publication
-      concept_schemes:
-        - 'http://publications.europa.eu/resource/authority/resource-type'
+      concept_schemes: {  }
 field_type: skos_concept_entity_reference
