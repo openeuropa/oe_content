@@ -13,8 +13,7 @@ dependencies:
 config_devel:
   install:
     - core.entity_form_display.oe_contact.oe_organisation_reference.default
-    - field.field.oe_contact.oe_organisation_reference.oe_organisation_ref
-    - field.storage.oe_contact.oe_organisation_ref
+    - field.field.oe_contact.oe_organisation_reference.oe_node_reference
     - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
   optional:
     - language.content_settings.oe_contact.oe_organisation_reference

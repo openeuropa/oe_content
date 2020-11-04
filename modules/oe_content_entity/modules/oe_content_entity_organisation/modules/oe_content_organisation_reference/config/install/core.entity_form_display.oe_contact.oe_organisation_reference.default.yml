@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_contact.oe_organisation_reference.oe_organisation_ref
+    - field.field.oe_contact.oe_organisation_reference.oe_node_reference
     - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
   module:
     - entity_reference_revisions
@@ -19,7 +19,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  oe_organisation_ref:
+  oe_node_reference:
     weight: 1
     settings:
       match_operator: CONTAINS

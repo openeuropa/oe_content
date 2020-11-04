@@ -49,6 +49,7 @@ config_devel:
     - field.storage.oe_contact.oe_fax
     - field.storage.oe_contact.oe_image
     - field.storage.oe_contact.oe_mobile
+    - field.storage.oe_contact.oe_node_reference
     - field.storage.oe_contact.oe_organisation
     - field.storage.oe_contact.oe_office
     - field.storage.oe_contact.oe_phone

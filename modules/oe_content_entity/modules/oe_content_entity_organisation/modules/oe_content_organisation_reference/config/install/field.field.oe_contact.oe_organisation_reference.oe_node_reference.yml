@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.oe_contact.oe_organisation_ref
+    - field.storage.oe_contact.oe_node_reference
     - node.type.oe_organisation
     - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
   module:
@@ -11,8 +11,8 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
-id: oe_contact.oe_organisation_reference.oe_organisation_ref
-field_name: oe_organisation_ref
+id: oe_contact.oe_organisation_reference.oe_node_reference
+field_name: oe_node_reference
 entity_type: oe_contact
 bundle: oe_organisation_reference
 label: Organisation

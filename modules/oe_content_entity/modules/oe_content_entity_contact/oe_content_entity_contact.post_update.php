@@ -104,7 +104,7 @@ function oe_content_entity_contact_post_update_00006(): void {
 }
 
 /**
- * Create the Contact view mode.
+ * Create the Contact view mode and reference field storage.
  */
 function oe_content_entity_contact_post_update_00007(): void {
   $entity_view_mode = EntityViewMode::create([
@@ -113,4 +113,16 @@ function oe_content_entity_contact_post_update_00007(): void {
     'targetEntityType' => 'node',
   ]);
   $entity_view_mode->save();
+
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00007_node_reference_field');
+
+  // Clear the cached plugin definitions of the field types.
+  \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
+
+  // Create the field storage for the reference field.
+  $field_storage_config = \Drupal::service('entity_type.manager')->getStorage('field_storage_config');
+  if (!$field_storage_config->load('oe_contact.oe_node_reference')) {
+    $reference_field = $storage->read('field.storage.oe_contact.oe_node_reference');
+    $field_storage_config->create($reference_field)->save();
+  }
 }

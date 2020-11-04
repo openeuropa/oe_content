@@ -4,9 +4,8 @@ dependencies:
   module:
     - entity_reference_revisions
     - node
-    - oe_content_entity_contact
-id: oe_contact.oe_organisation_ref
-field_name: oe_organisation_ref
+id: oe_contact.oe_node_reference
+field_name: oe_node_reference
 entity_type: oe_contact
 type: entity_reference_revisions
 settings:
