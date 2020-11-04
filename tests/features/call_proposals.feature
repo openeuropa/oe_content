@@ -137,3 +137,29 @@ Feature: Call for proposals content creation and editing.
     And I press "Save"
 
     Then I should see "Call for proposals My Call for proposals 1 has been created."
+
+  @javascript @aabbcc
+  Scenario: Multiple Deadline Date values.
+    Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
+
+    When I visit "the Call for proposals creation page"
+    And I fill in "Title" with "My Call for proposals 1"
+    And I set "Publication date" to the date "24-10-2020"
+    And I select "two_stage" from "oe_call_proposals_model"
+    And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
+    And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
+    And I press "Add another item" in the "Deadline date" region
+    And I wait for AJAX to finish
+    And I select "15" from "oe_call_proposals_deadline[1][value][day]"
+    And I select "1" from "oe_call_proposals_deadline[1][value][month]"
+    And I select "2021" from "oe_call_proposals_deadline[1][value][year]"
+    And I select "12" from "oe_call_proposals_deadline[1][value][hour]"
+    And I select "0" from "oe_call_proposals_deadline[1][value][minute]"
+    And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
+    And I fill in "Link text" with "Official Journal publication 1" in the "Publication in the official journal" region
+
+    And I press "Save"
+
+    Then I should see "Call for proposals My Call for proposals 1 has been created."
+    And I should see "Thu, 12/31/2020 - 23:45"
+    And I should see "Fri, 01/15/2021 - 12:00"

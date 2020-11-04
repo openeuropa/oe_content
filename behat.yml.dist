@@ -89,6 +89,7 @@ default:
         Grants awarded link: ".field--name-oe-call-proposals-grants-link"
         Related links: ".field--name-oe-related-links"
         Deadline model: "#edit-oe-call-proposals-model-wrapper"
+        Deadline date: "#edit-oe-call-proposals-deadline-wrapper"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
