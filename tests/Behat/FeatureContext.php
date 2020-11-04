@@ -279,6 +279,20 @@ class FeatureContext extends RawDrupalContext {
   }
 
   /**
+   * Selects option in select field with specified selector.
+   *
+   * @param string $element
+   *   The element selector.
+   * @param string $option
+   *   The option to select.
+   *
+   * @When I select :option from :element form element
+   */
+  public function selectOptionFromFormElement(string $element, string $option): void {
+    $this->getSession()->getPage()->find('css', $element)->selectOption($option);
+  }
+
+  /**
    * Assert non visibility of given element.
    *
    * @Then the :element is not visible

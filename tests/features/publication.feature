@@ -4,20 +4,28 @@ Feature: Publication content creation
   As an editor
   I need to be able to create and see publication items
 
+  @javascript
   Scenario: Creation of a Publication content through the UI.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
-    # Create a "Document".
+    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, manage corporate content entities, view published skos concept entities" permission
     And the following documents:
     | name          | file       |
     | My Document 1 | sample.pdf |
-    # Create a "Publication" content.
+    And the following "Organisation" Content entity:
+      | Title             | Organisation demo page         |
+      | Organisation type | EU organisation                |
+      | EU organisation   | Directorate-General for Budget |
     And I visit "the Publication creation page"
     And I fill in "Page title" with "My Publication item"
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
-    And I fill in "Publication date" with the date "2019-02-21"
+    And I should see "Publication date"
     And I fill in "Use existing media" with "My Document 1"
+    And I select "Organisation" from "publication contact type" form element
+    And I press "Add new contact"
+    And I fill in "Name" with "Organisation contact"
+    And I fill in "Organisation" with "Organisation demo page"
+    And I press "Create contact"
     And I fill in "Type" with "Acknowledgement receipt"
     And I fill in "Responsible department" with "European Patent Office"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
