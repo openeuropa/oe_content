@@ -353,6 +353,45 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           ],
         ],
       ],
+      [
+        'case' => 'Test open status with Two-stage model and two Deadline dates',
+        'values' => [
+          'oe_call_proposals_opening_date' => [
+            'value' => '2020-09-01',
+          ],
+          'oe_call_proposals_deadline' => [
+            [
+              'value' => date('Y') + 1 . '-09-01T00:00:00',
+            ],
+            [
+              'value' => '2020-09-01 00:00:00',
+            ],
+          ],
+          'oe_call_proposals_model' => [
+            'value' => CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE,
+          ],
+        ],
+        'assertions' => [
+          'hasStatus' => TRUE,
+          'isUpcoming' => FALSE,
+          'isOpen' => TRUE,
+          'isClosed' => FALSE,
+          'getStatus' => CallForProposalsNodeWrapperInterface::STATUS_OPEN,
+          'getStatusLabel' => 'Open',
+          'hasOpeningDate' => TRUE,
+          'hasDeadlineDate' => TRUE,
+          'getOpeningDate' => '2020-09-01 00:00:00',
+          'getDeadlineDate' => date('Y') + 1 . '-09-01 00:00:00',
+          'getModel' => CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE,
+          'getModelLabel' => 'Two-stage',
+          'getModelsList' => [
+            CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE => t('Single-stage'),
+            CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE => t('Two-stage'),
+            CallForProposalsNodeWrapperInterface::MODEL_MULTIPLE_CUT_OFF => t('Multiple cut-off'),
+            CallForProposalsNodeWrapperInterface::MODEL_PERMANENT => t('Permanent'),
+          ],
+        ],
+      ],
     ];
   }
 
