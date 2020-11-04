@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.oe_call_proposals.oe_documents
     - field.field.node.oe_call_proposals.oe_publication_date
     - field.field.node.oe_call_proposals.oe_reference_code
+    - field.field.node.oe_call_proposals.oe_summary
     - node.type.oe_call_proposals
   module:
     - datetime
@@ -145,3 +146,4 @@ hidden:
   oe_content_legacy_link: true
   oe_content_navigation_title: true
   oe_content_short_title: true
+  oe_summary: true

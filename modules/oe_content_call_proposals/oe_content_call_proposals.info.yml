@@ -36,6 +36,7 @@ config_devel:
     - oe_content_entity_contact.oe_contact_type.oe_general
     - field.field.node.oe_call_proposals.oe_departments
     - field.field.node.oe_call_proposals.oe_documents
+    - field.field.node.oe_call_proposals.oe_summary
     - node.type.oe_call_proposals
   optional:
     - language.content_settings.node.oe_call_proposals

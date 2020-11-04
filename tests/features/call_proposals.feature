@@ -43,6 +43,7 @@ Feature: Call for proposals content creation and editing.
 
     When I click "Edit"
     And I fill in "Body text" with "My Call for proposals 1 body"
+    And I fill in "Introduction" with "My Introduction text"
     And I fill in "Reference" with "My Call for proposals 1 reference"
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
     And I fill in "Link text" with "Official Journal publication 1" in the "Publication in the official journal" region
@@ -138,7 +139,7 @@ Feature: Call for proposals content creation and editing.
 
     Then I should see "Call for proposals My Call for proposals 1 has been created."
 
-  @javascript @aabbcc
+  @javascript
   Scenario: Multiple Deadline Date values.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
 
