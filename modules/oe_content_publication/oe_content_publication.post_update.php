@@ -10,7 +10,6 @@ declare(strict_types = 1);
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
-use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Update body and summary labels.
@@ -46,12 +45,14 @@ function oe_content_publication_post_update_00003() {
   // Clear the cached plugin definitions of the field types.
   \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
 
+  // Create the field storage for the reference field.
   $field_storage_config = \Drupal::service('entity_type.manager')->getStorage('field_storage_config');
   if (!$field_storage_config->load('node.oe_publication_contact')) {
     $reference_field = $storage->read('field.storage.node.oe_publication_contact');
     $field_storage_config->create($reference_field)->save();
   }
 
+  // Create the field config for the reference field.
   $field_config = \Drupal::service('entity_type.manager')->getStorage('field_config');
   if (!$field_config->load('node.oe_publication.oe_publication_contact')) {
     $reference_field = $storage->read('field.field.node.oe_publication.oe_publication_contact');
