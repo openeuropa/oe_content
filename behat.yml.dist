@@ -14,6 +14,7 @@ default:
         - Drupal\Tests\oe_content\Behat\MinkContext
         - Drupal\Tests\oe_media\Behat\AvPortalContext
         - Drupal\Tests\oe_media\Behat\MediaContext
+        - Drupal\Tests\oe_media\Behat\FeatureContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
@@ -78,6 +79,8 @@ default:
         Event venue: "#edit-oe-event-venue-wrapper"
         Contact social media links: ".field--name-oe-social-media"
         Organisation contact: "#edit-oe-organisation-contact-wrapper"
+        News contact: "#edit-oe-news-contacts-wrapper"
+        News contact social media links: ".field--name-oe-social-media"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'

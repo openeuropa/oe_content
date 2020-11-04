@@ -52,6 +52,7 @@ class OrganisationFieldTest extends RdfKernelTestBase {
       'node',
       'oe_content',
       'oe_content_organisation',
+      'rdf_skos',
     ]);
     module_load_include('install', 'oe_content');
     oe_content_install();

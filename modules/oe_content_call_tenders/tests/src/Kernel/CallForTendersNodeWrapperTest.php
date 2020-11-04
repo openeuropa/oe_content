@@ -173,7 +173,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
         ],
       ],
       [
-        'case' => 'Test closed status',
+        'case' => 'Test closed status with opening date set',
         'values' => [
           'oe_call_tenders_opening_date' => [
             'value' => '2020-09-01',
@@ -192,6 +192,26 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => TRUE,
           'getOpeningDate' => '2020-09-01 00:00:00',
+          'getDeadlineDate' => '2020-09-10 00:00:00',
+        ],
+      ],
+      [
+        'case' => 'Test closed status without opening date set',
+        'values' => [
+          'oe_call_tenders_deadline' => [
+            'value' => '2020-09-10T00:00:00',
+          ],
+        ],
+        'assertions' => [
+          'hasStatus' => TRUE,
+          'isUpcoming' => FALSE,
+          'isOpen' => FALSE,
+          'isClosed' => TRUE,
+          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_CLOSED,
+          'getStatusLabel' => 'Closed',
+          'hasOpeningDate' => FALSE,
+          'hasDeadlineDate' => TRUE,
+          'getOpeningDate' => NULL,
           'getDeadlineDate' => '2020-09-10 00:00:00',
         ],
       ],

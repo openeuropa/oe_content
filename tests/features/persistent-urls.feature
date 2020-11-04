@@ -13,6 +13,7 @@ Feature: Persistent URLs
       | fr        |
     When I visit "the News creation page"
     And I fill in "Page title" with "News 1"
+    And I select "Factsheet" from "News type"
     And I enter "Teaser text" in the "Teaser" wysiwyg editor
     And I enter "Summary text" in the "Introduction" wysiwyg editor
     And I enter "Body text" in the "Body text" wysiwyg editor
@@ -32,6 +33,7 @@ Feature: Persistent URLs
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I click the fieldset "URL alias"
     And I fill in "URL alias" with "/news-2"
+    And I select "Factsheet" from "News type"
     And I press "Save"
     Then I should see "News 2"
     # Check link to first node.
