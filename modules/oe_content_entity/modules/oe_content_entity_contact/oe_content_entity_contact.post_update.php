@@ -110,7 +110,7 @@ function oe_content_entity_contact_post_update_00007(): void {
   $entity_view_mode = EntityViewMode::create([
     'id' => 'oe_contact.oe_contact',
     'label' => 'Contact',
-    'targetEntityType' => 'oe_contact',
+    'targetEntityType' => 'node',
   ]);
   $entity_view_mode->save();
 }
