@@ -6,6 +6,10 @@ core: 8.x
 
 dependencies:
   - link:link
+  - composite_reference:composite_reference
+  - entity_reference_revisions:entity_reference_revisions
+  - inline_entity_form:inline_entity_form
+  - field_group:field_group
   - datetime:datetime
   - oe_content:oe_content_entity_contact
   - oe_content:oe_content_reference_code_field
