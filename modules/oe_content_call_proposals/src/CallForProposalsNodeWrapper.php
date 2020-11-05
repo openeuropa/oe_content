@@ -73,8 +73,9 @@ class CallForProposalsNodeWrapper extends EntityWrapperBase implements CallForPr
       return NULL;
     }
 
+    $values_column = array_column($dates, 'value');
     // Get the latest date in relation to the "closed" proposal's status.
-    array_multisort(array_column($dates, 'value'), SORT_DESC, $dates);
+    array_multisort($values_column, SORT_DESC, $dates);
 
     $date = current($dates);
     return new DrupalDateTime($date['value']);
