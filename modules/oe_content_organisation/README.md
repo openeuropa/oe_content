@@ -12,7 +12,7 @@ Before enabling this module, make sure that the following modules are present in
     "drupal/composite_reference": "~1.0-alpha2",
     "drupal/entity_reference_revisions": "~1.3",
     "drupal/field_group": "~3.0",
-    "drupal/inline_entity_form": "~1.0-rc7"
+    "drupal/inline_entity_form": "~1.0-rc8"
 }
 ```
 
@@ -32,7 +32,7 @@ The `inline_entity_form` module requires the following patches to be applied:
 ```json
 "patches": {
     "drupal/inline_entity_form": {
-        "https://www.drupal.org/project/inline_entity_form/issues/2875716#comment-13859519": "https://www.drupal.org/files/issues/2020-10-14/ief_removed_references_2875716-84.patch"
+        "https://www.drupal.org/project/inline_entity_form/issues/2875716": "https://www.drupal.org/files/issues/2020-11-05/ief_removed_references_2875716-89.patch"
     }
 }
 ```
