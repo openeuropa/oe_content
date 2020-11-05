@@ -52,7 +52,7 @@ function oe_content_call_proposals_model_allowed_values(): array {
 /**
  * Implements hook_ENTITY_TYPE_presave().
  */
-function oe_call_proposals_node_presave(EntityInterface $entity) {
+function oe_content_call_proposals_node_presave(EntityInterface $entity) {
   if ($entity->bundle() !== 'oe_call_proposals') {
     return;
   }
