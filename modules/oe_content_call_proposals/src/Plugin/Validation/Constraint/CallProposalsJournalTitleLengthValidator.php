@@ -6,7 +6,6 @@ namespace Drupal\oe_content_call_proposals\Plugin\Validation\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Drupal\Component\Utility\Unicode;
 
 /**
  * Validates the Call For Proposals journal title length constraint.
@@ -25,7 +24,7 @@ class CallProposalsJournalTitleLengthValidator extends ConstraintValidator {
     $length = 128;
 
     $title = $node->oe_call_proposals_journal->title;
-    if (!empty($title) && Unicode::strlen($title) > $length) {
+    if (!empty($title) && mb_strlen($title) > $length) {
       $this->context->buildViolation($constraint->errorMessage, ['@length' => $length])
         ->atPath('oe_call_proposals_journal')
         ->addViolation();
