@@ -11,7 +11,6 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
-use Drupal\Core\Datetime\Element\Datelist;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter for the node form.
@@ -30,24 +29,6 @@ function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateI
       ],
     ],
   ];
-
-  foreach ($form['oe_call_proposals_deadline']['widget'] as $key => $value) {
-    if (is_array($value) && is_numeric($key)) {
-      $form['oe_call_proposals_deadline']['widget'][$key]['value']['#value_callback'] = 'oe_content_call_proposals_deadline_value_callback';
-    }
-  }
-}
-
-/**
- * Deadline date optional hour/minute value callback.
- */
-function oe_content_call_proposals_deadline_value_callback(&$element, $input, FormStateInterface $form_state) {
-  if (!empty($input['day']) && !empty($input['month']) && !empty($input['year']) && empty($input['hour']) && empty($input['minute'])) {
-    $input['hour'] = "0";
-    $input['minute'] = "00";
-  }
-
-  return Datelist::valueCallback($element, $input, $form_state);
 }
 
 /**
