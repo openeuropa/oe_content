@@ -13,22 +13,22 @@ use Drupal\Core\Datetime\DrupalDateTime;
 interface CallForProposalsNodeWrapperInterface {
 
   /**
-   * Call for tenders not available, used when opening date isn not defined.
+   * Call for proposals not available, used when opening date isn not defined.
    */
   const STATUS_NOT_AVAILABLE = 'not_available';
 
   /**
-   * Call for tenders is upcoming.
+   * Call for proposals is upcoming.
    */
   const STATUS_UPCOMING = 'upcoming';
 
   /**
-   * Call for tenders is open.
+   * Call for proposals is open.
    */
   const STATUS_OPEN = 'open';
 
   /**
-   * Tenser is closed.
+   * Call for proposals is closed.
    */
   const STATUS_CLOSED = 'closed';
 
@@ -53,39 +53,39 @@ interface CallForProposalsNodeWrapperInterface {
   const MODEL_PERMANENT = 'permanent';
 
   /**
-   * Check whether the call for tenders status is 'open'.
+   * Check whether the call for proposals status is 'open'.
    *
    * @return bool
-   *   Whereas the call for tenders status is 'open'.
+   *   Whereas the call for proposals status is 'open'.
    */
   public function isOpen(): bool;
 
   /**
-   * Check whether the call for tenders status is 'upcoming'.
+   * Check whether the call for proposals status is 'upcoming'.
    *
    * @return bool
-   *   Whereas the call for tenders status is 'upcoming'.
+   *   Whereas the call for proposals status is 'upcoming'.
    */
   public function isUpcoming(): bool;
 
   /**
-   * Check whether the call for tenders status is 'closed'.
+   * Check whether the call for proposals status is 'closed'.
    *
    * @return bool
-   *   Whereas the call for tenders status is 'closed'.
+   *   Whereas the call for proposals status is 'closed'.
    */
   public function isClosed(): bool;
 
   /**
-   * Check whether the call for tenders status is not available.
+   * Check whether the call for proposals status is not available.
    *
    * @return bool
-   *   Whereas the call for tenders status is not available.
+   *   Whereas the call for proposals status is not available.
    */
   public function hasStatus(): bool;
 
   /**
-   * Get call for tenders opening date.
+   * Get call for proposals opening date.
    *
    * @return \Drupal\Core\Datetime\DrupalDateTime|null
    *   Opening date as Drupal datetime object, NULL if none is set.
@@ -93,7 +93,7 @@ interface CallForProposalsNodeWrapperInterface {
   public function getOpeningDate(): ?DrupalDateTime;
 
   /**
-   * Get call for tenders deadline date.
+   * Get call for proposals deadline date.
    *
    * @return \Drupal\Core\Datetime\DrupalDateTime|null
    *   Deadline date as Drupal datetime object.
@@ -101,31 +101,31 @@ interface CallForProposalsNodeWrapperInterface {
   public function getDeadlineDate(): ?DrupalDateTime;
 
   /**
-   * Check whether the call for tenders has opening date.
+   * Check whether the call for proposals has opening date.
    *
    * @return bool
-   *   Whereas the call for tenders has opening date.
+   *   Whereas the call for proposals has opening date.
    */
   public function hasOpeningDate(): bool;
 
   /**
-   * Check whether the call for tenders has deadline date.
+   * Check whether the call for proposals has deadline date.
    *
    * @return bool
-   *   Whereas the call for tenders has deadline date.
+   *   Whereas the call for proposals has deadline date.
    */
   public function hasDeadlineDate(): bool;
 
   /**
-   * Gets status of the call for tenders.
+   * Gets status of the call for proposals.
    *
    * @return string
-   *   Call for tenders status.
+   *   Call for proposals status.
    */
   public function getStatus(): string;
 
   /**
-   * Gets label of the call for tenders status.
+   * Gets label of the call for proposals status.
    *
    * @return \Drupal\Component\Render\MarkupInterface
    *   Translated label.
