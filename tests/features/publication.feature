@@ -59,7 +59,7 @@ Feature: Publication content creation
     And I fill in "Identifier code" with "123456789"
     And I fill in "Related department" with "Other agency"
     And I fill in "Country" with "Hungary"
-    And I fill in "Contacts" with "A general contact"
+    And I fill in "Contact" with "A general contact"
 
     When I press "Save"
     Then I should see "My Publication item"
@@ -86,7 +86,16 @@ Feature: Publication content creation
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities" permission
+    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities, manage corporate content entities" permission
+
+    And the following documents:
+    | name          | file       |
+    | My Document 1 | sample.pdf |
+
+    And the following images:
+    | name         | file           | alt          |
+    | Sample image | example_1.jpeg | example text |
+
     When I visit "the Publication creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
@@ -97,6 +106,9 @@ Feature: Publication content creation
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
     And I fill in "Subject" with "financing"
     And I fill in "Responsible department" with "European Patent Office"
+    And I fill in "Resource type" with "Acknowledgement receipt"
+    And I fill in "Use existing media" with "Sample image"
+    And I fill in "oe_documents[0][target_id]" with "My Document 1"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."

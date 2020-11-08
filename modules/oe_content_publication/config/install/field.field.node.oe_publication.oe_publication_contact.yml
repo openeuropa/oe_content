@@ -15,7 +15,7 @@ id: node.oe_publication.oe_publication_contact
 field_name: oe_publication_contact
 entity_type: node
 bundle: oe_publication
-label: Contacts
+label: Contact
 description: ''
 required: false
 translatable: false

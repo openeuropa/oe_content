@@ -5,6 +5,9 @@ package: OpenEuropa
 type: module
 core: 8.x
 dependencies:
+  - link:link
+  - composite_reference:composite_reference
+  - entity_reference_revisions:entity_reference_revisions
   - datetime:datetime
   - oe_content:oe_content
   - oe_content:oe_content_entity_contact
