@@ -18,6 +18,7 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
