@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_call_proposals_grants_link
+    - field.storage.node.oe_call_proposals_grants
     - node.type.oe_call_proposals
   module:
     - link
-id: node.oe_call_proposals.oe_call_proposals_grants_link
-field_name: oe_call_proposals_grants_link
+id: node.oe_call_proposals.oe_call_proposals_grants
+field_name: oe_call_proposals_grants
 entity_type: node
 bundle: oe_call_proposals
-label: 'Grants awarded link'
+label: 'Awarded grants'
 description: ''
 required: false
 translatable: false

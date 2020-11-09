@@ -57,9 +57,8 @@ function oe_content_call_proposals_node_presave(EntityInterface $entity) {
   }
 
   $wrapper = CallForProposalsNodeWrapper::getInstance($entity);
-  $deadline_model = $wrapper->getModel();
 
-  if ($deadline_model === CallForProposalsNodeWrapperInterface::MODEL_PERMANENT) {
+  if ($wrapper->isDeadlineModelPermanent()) {
     $entity->set('oe_call_proposals_deadline', NULL);
   }
 }

@@ -202,4 +202,11 @@ class CallForProposalsNodeWrapper extends EntityWrapperBase implements CallForPr
     return $this->t('N/A');
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function isDeadlineModelPermanent(): bool {
+    return $this->getModel() === CallForProposalsNodeWrapperInterface::MODEL_PERMANENT;
+  }
+
 }

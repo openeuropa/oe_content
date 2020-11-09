@@ -4,8 +4,8 @@ dependencies:
   module:
     - link
     - node
-id: node.oe_call_proposals_grants_link
-field_name: oe_call_proposals_grants_link
+id: node.oe_call_proposals_grants
+field_name: oe_call_proposals_grants
 entity_type: node
 type: link
 settings: {  }

@@ -48,7 +48,7 @@ Feature: Call for proposals content creation and editing.
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
     And I fill in "Link text" with "Official Journal publication 1" in the "Publication in the official journal" region
     And I set "Opening date" to the date "25-10-2020"
-    And I fill in "Grants awarded link" with "http://example.com/2"
+    And I fill in "Awarded grants" with "http://example.com/2"
     And I fill in "Funding programme" with "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
     And I fill in "Responsible department" with "Audit Board of the European Communities (http://publications.europa.eu/resource/authority/corporate-body/ABEC)"
     And I fill in "Use existing media" with "My Document 1" in the "Documents" region
@@ -111,8 +111,8 @@ Feature: Call for proposals content creation and editing.
     And I should not see "Alternative title 1"
     And I should not see "Navi title 1"
 
-  @javascript @aabbcc
-  Scenario: Constraints validation of a Call for proposals content through the UI.
+  @javascript
+  Scenario: Test the maximum string length and the valid date requirements of the Call for proposals content type.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
 
     When I visit "the Call for proposals creation page"
@@ -138,7 +138,7 @@ Feature: Call for proposals content creation and editing.
     And I should not see "The text to remove."
 
   @javascript
-  Scenario: Multiple Deadline Date values.
+  Scenario: Test multiple Deadline Date values for the "Two-stage" model.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
 
     When I visit "the Call for proposals creation page"

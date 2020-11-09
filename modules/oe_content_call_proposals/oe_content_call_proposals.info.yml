@@ -25,8 +25,8 @@ config_devel:
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
     - field.storage.node.oe_call_proposals_opening_date
     - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
-    - field.storage.node.oe_call_proposals_grants_link
-    - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
+    - field.storage.node.oe_call_proposals_grants
+    - field.field.node.oe_call_proposals.oe_call_proposals_grants
     - field.storage.node.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.storage.node.oe_call_proposals_deadline

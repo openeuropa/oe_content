@@ -156,4 +156,12 @@ interface CallForProposalsNodeWrapperInterface {
    */
   public function getModelLabel(): MarkupInterface;
 
+  /**
+   * Check if the deadline model is "permanent".
+   *
+   * @return bool
+   *   Whereas the call for proposals model is 'permanent'.
+   */
+  public function isDeadlineModelPermanent(): bool;
+
 }

@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.oe_call_proposals.oe_call_proposals_contact
     - field.field.node.oe_call_proposals.oe_call_proposals_deadline
     - field.field.node.oe_call_proposals.oe_call_proposals_funding
-    - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
+    - field.field.node.oe_call_proposals.oe_call_proposals_grants
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
     - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
@@ -106,7 +106,7 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
-  oe_call_proposals_grants_link:
+  oe_call_proposals_grants:
     weight: 7
     settings:
       placeholder_url: ''
