@@ -111,33 +111,31 @@ Feature: Call for proposals content creation and editing.
     And I should not see "Alternative title 1"
     And I should not see "Navi title 1"
 
-  @javascript
+  @javascript @aabbcc
   Scenario: Constraints validation of a Call for proposals content through the UI.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
 
     When I visit "the Call for proposals creation page"
+    Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
+    And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
+    And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
+    And I should see the text "Content limited to 128 characters, remaining: 128" in the "Publication in the official journal"
     And I fill in "Title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
     And I select "two_stage" from "oe_call_proposals_model"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
+    And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
+    And I fill in "Link text" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove" in the "Publication in the official journal" region
 
     And I press "Save"
 
-    Then I should see "Please select a valid date!"
+    Then I should see "The selected \"Two-stage\" model requires a valid date!"
     And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
-
-    And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
-    And I fill in "Link text" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales euismod nulla, sed semper velit pulvinar sed. Nulla egestas." in the "Publication in the official journal" region
-
-    And I press "Save"
-
-    Then I should see "The link title should be less than 128 characters!"
-    And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
-    And I fill in "Link text" with "Official Journal publication 1" in the "Publication in the official journal" region
 
     And I press "Save"
 
     Then I should see "Call for proposals My Call for proposals 1 has been created."
+    And I should not see "The text to remove."
 
   @javascript
   Scenario: Multiple Deadline Date values.

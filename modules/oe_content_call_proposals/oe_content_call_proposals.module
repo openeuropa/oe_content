@@ -35,7 +35,6 @@ function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateI
  * Implements hook_entity_type_alter().
  */
 function oe_content_call_proposals_entity_type_alter(array &$entity_types) {
-  $entity_types['node']->addConstraint('CallProposalsJournalTitleLength');
   $entity_types['node']->addConstraint('CallProposalsDeadlineDate');
 }
 

@@ -21,6 +21,6 @@ class CallProposalsDeadlineDate extends Constraint {
    *
    * @var string
    */
-  public $errorMessage = 'Please select a valid date!';
+  public $errorMessage = 'The selected "@model" model requires a valid date!';
 
 }
