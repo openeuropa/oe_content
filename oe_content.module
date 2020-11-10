@@ -17,8 +17,17 @@ use Drupal\link\LinkItemInterface;
  */
 function oe_content_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
   $fields = [];
-  // Not alter non-coporate node bundles.
-  if ($entity_type->id() !== 'node' || strpos($bundle, 'oe_') !== 0) {
+  // Not alter non-corporate node bundles.
+  if ($entity_type->id() !== 'node' || !(in_array($bundle, array(
+      'oe_call_tenders',
+      'oe_event',
+      'oe_news',
+      'oe_organisation',
+      'oe_page',
+      'oe_policy',
+      'oe_project',
+      'oe_publication',
+  )))) {
     return $fields;
   }
 
