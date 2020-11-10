@@ -10,7 +10,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\oe_content\EntityWrapperInterface;
 use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
-use Drupal\oe_content_call_tenders\CallForTendersNodeWrapperInterface;
+use Drupal\oe_content\CallEntityWrapperInterface;
 
 /**
  * Tests "Call for tenders" wrapper class.
@@ -121,7 +121,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
           'isUpcoming' => FALSE,
           'isOpen' => FALSE,
           'isClosed' => FALSE,
-          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_NOT_AVAILABLE,
+          'getStatus' => CallEntityWrapperInterface::STATUS_NOT_AVAILABLE,
           'getStatusLabel' => 'N/A',
           'hasOpeningDate' => FALSE,
           'hasDeadlineDate' => FALSE,
@@ -141,7 +141,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
           'isUpcoming' => TRUE,
           'isOpen' => FALSE,
           'isClosed' => FALSE,
-          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_UPCOMING,
+          'getStatus' => CallEntityWrapperInterface::STATUS_UPCOMING,
           'getStatusLabel' => 'Upcoming',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => FALSE,
@@ -164,7 +164,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
           'isUpcoming' => FALSE,
           'isOpen' => TRUE,
           'isClosed' => FALSE,
-          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_OPEN,
+          'getStatus' => CallEntityWrapperInterface::STATUS_OPEN,
           'getStatusLabel' => 'Open',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => TRUE,
@@ -187,7 +187,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
           'isUpcoming' => FALSE,
           'isOpen' => FALSE,
           'isClosed' => TRUE,
-          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_CLOSED,
+          'getStatus' => CallEntityWrapperInterface::STATUS_CLOSED,
           'getStatusLabel' => 'Closed',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => TRUE,
@@ -207,7 +207,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
           'isUpcoming' => FALSE,
           'isOpen' => FALSE,
           'isClosed' => TRUE,
-          'getStatus' => CallForTendersNodeWrapperInterface::STATUS_CLOSED,
+          'getStatus' => CallEntityWrapperInterface::STATUS_CLOSED,
           'getStatusLabel' => 'Closed',
           'hasOpeningDate' => FALSE,
           'hasDeadlineDate' => TRUE,
