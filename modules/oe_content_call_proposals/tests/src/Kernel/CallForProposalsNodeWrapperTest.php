@@ -128,6 +128,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'isClosed' => FALSE,
           'getStatusLabel' => 'N/A',
           'getModelLabel' => 'N/A',
+          'isDeadlineModelPermanent' => FALSE,
         ],
       ],
       [
@@ -149,6 +150,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'getOpeningDate' => date('Y') + 1 . '-11-26 00:00:00',
           'getDeadlineDate' => NULL,
           'getModelLabel' => 'N/A',
+          'isDeadlineModelPermanent' => FALSE,
         ],
       ],
       [
@@ -173,6 +175,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'getOpeningDate' => '2020-09-01 00:00:00',
           'getDeadlineDate' => date('Y') + 1 . '-09-01 00:00:00',
           'getModelLabel' => 'N/A',
+          'isDeadlineModelPermanent' => FALSE,
         ],
       ],
       [
@@ -197,6 +200,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'getOpeningDate' => '2020-09-01 00:00:00',
           'getDeadlineDate' => '2020-09-10 00:00:00',
           'getModelLabel' => 'N/A',
+          'isDeadlineModelPermanent' => FALSE,
         ],
       ],
       [
@@ -219,6 +223,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'getDeadlineDate' => '2020-09-10 00:00:00',
           'getModel' => NULL,
           'getModelLabel' => 'N/A',
+          'isDeadlineModelPermanent' => FALSE,
         ],
       ],
       [
@@ -247,6 +252,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'getDeadlineDate' => date('Y') + 1 . '-09-01 00:00:00',
           'getModel' => CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE,
           'getModelLabel' => 'Single-stage',
+          'isDeadlineModelPermanent' => FALSE,
           'getModelsList' => [
             CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE => t('Single-stage'),
             CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE => t('Two-stage'),
@@ -281,6 +287,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'getDeadlineDate' => date('Y') + 1 . '-09-01 00:00:00',
           'getModel' => CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE,
           'getModelLabel' => 'Two-stage',
+          'isDeadlineModelPermanent' => FALSE,
           'getModelsList' => [
             CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE => t('Single-stage'),
             CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE => t('Two-stage'),
@@ -315,6 +322,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'getDeadlineDate' => date('Y') + 1 . '-09-01 00:00:00',
           'getModel' => CallForProposalsNodeWrapperInterface::MODEL_MULTIPLE_CUT_OFF,
           'getModelLabel' => 'Multiple cut-off',
+          'isDeadlineModelPermanent' => FALSE,
           'getModelsList' => [
             CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE => t('Single-stage'),
             CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE => t('Two-stage'),
@@ -346,6 +354,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'getDeadlineDate' => NULL,
           'getModel' => CallForProposalsNodeWrapperInterface::MODEL_PERMANENT,
           'getModelLabel' => 'Permanent',
+          'isDeadlineModelPermanent' => TRUE,
           'getModelsList' => [
             CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE => t('Single-stage'),
             CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE => t('Two-stage'),
@@ -385,6 +394,7 @@ class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
           'getDeadlineDate' => date('Y') + 1 . '-09-01 00:00:00',
           'getModel' => CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE,
           'getModelLabel' => 'Two-stage',
+          'isDeadlineModelPermanent' => FALSE,
           'getModelsList' => [
             CallForProposalsNodeWrapperInterface::MODEL_SINGLE_STAGE => t('Single-stage'),
             CallForProposalsNodeWrapperInterface::MODEL_TWO_STAGE => t('Two-stage'),

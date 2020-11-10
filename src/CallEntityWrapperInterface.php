@@ -13,22 +13,22 @@ use Drupal\Component\Render\MarkupInterface;
 interface CallEntityWrapperInterface {
 
   /**
-   * Call for proposals not available, used when opening date isn not defined.
+   * The status is "Not available", used when opening date is not defined.
    */
   const STATUS_NOT_AVAILABLE = 'not_available';
 
   /**
-   * Call for proposals is upcoming.
+   * The status is "upcoming".
    */
   const STATUS_UPCOMING = 'upcoming';
 
   /**
-   * Call for proposals is open.
+   * The status is "Open".
    */
   const STATUS_OPEN = 'open';
 
   /**
-   * Call for proposals is closed.
+   * The status is "closed".
    */
   const STATUS_CLOSED = 'closed';
 
@@ -49,39 +49,39 @@ interface CallEntityWrapperInterface {
   public function getEntityBundle(): string;
 
   /**
-   * Check whether the call for proposals status is 'open'.
+   * Check whether the entity status is 'open'.
    *
    * @return bool
-   *   Whereas the call for proposals status is 'open'.
+   *   Whereas the entity status is 'open'.
    */
   public function isOpen(): bool;
 
   /**
-   * Check whether the call for proposals status is 'upcoming'.
+   * Check whether the entity status is 'upcoming'.
    *
    * @return bool
-   *   Whereas the call for proposals status is 'upcoming'.
+   *   Whereas the entity status is 'upcoming'.
    */
   public function isUpcoming(): bool;
 
   /**
-   * Check whether the call for proposals status is 'closed'.
+   * Check whether the entity status is 'closed'.
    *
    * @return bool
-   *   Whereas the call for proposals status is 'closed'.
+   *   Whereas the entity status is 'closed'.
    */
   public function isClosed(): bool;
 
   /**
-   * Check whether the call for proposals status is not available.
+   * Check whether the entity status is not available.
    *
    * @return bool
-   *   Whereas the call for proposals status is not available.
+   *   Whereas the entity status is not available.
    */
   public function hasStatus(): bool;
 
   /**
-   * Get call for proposals opening date.
+   * Get entity opening date.
    *
    * @return \Drupal\Core\Datetime\DrupalDateTime|null
    *   Opening date as Drupal datetime object, NULL if none is set.
@@ -89,7 +89,7 @@ interface CallEntityWrapperInterface {
   public function getOpeningDate(): ?DrupalDateTime;
 
   /**
-   * Get call for proposals deadline date.
+   * Get entity deadline date.
    *
    * @return \Drupal\Core\Datetime\DrupalDateTime|null
    *   Deadline date as Drupal datetime object.
@@ -97,31 +97,31 @@ interface CallEntityWrapperInterface {
   public function getDeadlineDate(): ?DrupalDateTime;
 
   /**
-   * Check whether the call for proposals has opening date.
+   * Check whether the entity has opening date.
    *
    * @return bool
-   *   Whereas the call for proposals has opening date.
+   *   Whereas the entity has opening date.
    */
   public function hasOpeningDate(): bool;
 
   /**
-   * Check whether the call for proposals has deadline date.
+   * Check whether the entity has deadline date.
    *
    * @return bool
-   *   Whereas the call for proposals has deadline date.
+   *   Whereas the entity has deadline date.
    */
   public function hasDeadlineDate(): bool;
 
   /**
-   * Gets status of the call for proposals.
+   * Gets status of the entity.
    *
    * @return string
-   *   Call for proposals status.
+   *   The entity status.
    */
   public function getStatus(): string;
 
   /**
-   * Gets label of the call for proposals status.
+   * Gets label of the entity status.
    *
    * @return \Drupal\Component\Render\MarkupInterface
    *   Translated label.

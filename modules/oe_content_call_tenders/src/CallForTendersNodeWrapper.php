@@ -7,9 +7,9 @@ namespace Drupal\oe_content_call_tenders;
 use Drupal\oe_content\CallEntityWrapperBase;
 
 /**
- * Wrap the "Call for tenders" content type by adding business specific methods.
+ * Wrap the "Call for tenders" content type by adding default properties.
  *
- * @method static CallForTendersNodeWrapperInterface getInstance(\Drupal\Core\Entity\ContentEntityInterface $entity)
+ * @method static CallForTendersNodeWrapper getInstance(\Drupal\Core\Entity\ContentEntityInterface $entity)
  */
 class CallForTendersNodeWrapper extends CallEntityWrapperBase {
 

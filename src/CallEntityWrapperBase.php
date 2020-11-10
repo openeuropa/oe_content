@@ -9,9 +9,9 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Component\Render\MarkupInterface;
 
 /**
- * Base class for "Call for proposals" and "Call for tenders" content wrappers.
+ * Base class for "Call" style content type wrappers.
  */
-class CallEntityWrapperBase extends EntityWrapperBase implements CallEntityWrapperInterface {
+abstract class CallEntityWrapperBase extends EntityWrapperBase implements CallEntityWrapperInterface {
 
   use StringTranslationTrait;
 
