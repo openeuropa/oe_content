@@ -35,6 +35,8 @@ Feature: Publication content creation
     When I press "Save"
     Then I should see "My Publication item"
     And I should see "sample.pdf"
+    And I should see "Contact"
+    And I should see "Organisation contact"
     And I should not see "Acknowledgement receipt"
     And I should not see "Summary text"
     And I should not see "Navi title"
