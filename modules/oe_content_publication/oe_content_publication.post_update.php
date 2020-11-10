@@ -36,9 +36,11 @@ function oe_content_publication_post_update_00002() {
  * Create Contact reference field and update form display.
  */
 function oe_content_publication_post_update_00003() {
+  $module_installer = \Drupal::service('module_installer');
   if (!\Drupal::service('module_handler')->moduleExists('oe_content_organisation_reference')) {
-    \Drupal::service('module_installer')->install(['oe_content_organisation_reference']);
+    $module_installer->install(['oe_content_organisation_reference']);
   }
+  $module_installer->install(['path', 'inline_entity_form']);
 
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00003_contact_reference');
 

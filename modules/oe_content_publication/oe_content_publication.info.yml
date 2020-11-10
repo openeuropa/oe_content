@@ -9,6 +9,8 @@ dependencies:
   - oe_content:oe_content_entity_contact
   - oe_content:oe_content_organisation_reference
   - oe_content:oe_content_documents_field
+  - drupal:path
+  - inline_entity_form:inline_entity_form
 
 config_devel:
   install:
