@@ -2,8 +2,8 @@ langcode: en
 status: true
 dependencies:
   module:
-    - oe_content_entity_contact
-id: oe_contact.oe_contact
+    - node
+id: node.oe_contact
 label: Contact
 targetEntityType: node
 cache: true

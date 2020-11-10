@@ -18,7 +18,7 @@ config_devel:
     - core.entity_form_display.oe_contact.oe_press.default
     - core.entity_view_display.oe_contact.oe_general.default
     - core.entity_view_display.oe_contact.oe_press.default
-    - core.entity_view_mode.oe_contact.oe_contact
+    - core.entity_view_mode.node.oe_contact
     - core.entity_view_mode.oe_contact.oe_details
     - field.field.oe_contact.oe_general.oe_address
     - field.field.oe_contact.oe_general.oe_body
