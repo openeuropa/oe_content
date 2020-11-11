@@ -15,7 +15,7 @@ use Drupal\field\Entity\FieldConfig;
 /**
  * Update body and summary labels.
  */
-function oe_content_publication_post_update_00001_update_field_labels(array &$sandbox): void {
+function oe_content_publication_post_update_00001_update_field_labels(): void {
   $new_field_labels = [
     'node.oe_publication.oe_summary' => 'Introduction',
   ];
@@ -76,7 +76,7 @@ function oe_content_publication_post_update_00003() {
 /**
  * Update field labels.
  */
-function oe_content_publication_post_update_00004(array &$sandbox): void {
+function oe_content_publication_post_update_00004(): void {
   $new_field_labels = [
     'node.oe_publication.oe_publication_type' => 'Resource type',
     'node.oe_publication.oe_documents' => 'Files',
@@ -90,6 +90,7 @@ function oe_content_publication_post_update_00004(array &$sandbox): void {
   $new_translatable_settings = [
     'node.oe_publication.oe_summary' => FALSE,
     'node.oe_publication.oe_teaser' => FALSE,
+    'node.oe_publication.oe_publication_type' => TRUE,
   ];
   foreach ($new_translatable_settings as $id => $value) {
     $field_config = FieldConfig::load($id);
@@ -102,8 +103,7 @@ function oe_content_publication_post_update_00004(array &$sandbox): void {
  * Update Publication node form display.
  */
 function oe_content_publication_post_update_00005(): void {
-  $path = drupal_get_path('module', 'oe_content_publication');
-  $storage = new FileStorage($path . '/config/post_updates/00005_update_form_display');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00005_update_form_display');
 
   // Form display configurations to update.
   $form_display_values = $storage->read('core.entity_form_display.node.oe_publication.default');
@@ -120,8 +120,7 @@ function oe_content_publication_post_update_00005(): void {
  * Update Publication node view display.
  */
 function oe_content_publication_post_update_00006(): void {
-  $path = drupal_get_path('module', 'oe_content_publication');
-  $storage = new FileStorage($path . '/config/post_updates/00006_update_view_display');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00006_update_view_display');
 
   // View display configurations to update.
   $view_display_values = $storage->read('core.entity_view_display.node.oe_publication.default');
