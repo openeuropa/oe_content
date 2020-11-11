@@ -50,40 +50,40 @@ msgid "December"
 msgstr "december"
 
 msgid "Jan"
-msgstr "Jan"
+msgstr "jan"
 
 msgid "Feb"
-msgstr "Feb"
+msgstr "feb"
 
 msgid "Mar"
-msgstr "Mar"
+msgstr "mar"
 
 msgid "Apr"
-msgstr "Apr"
+msgstr "apr"
 
 msgid "May"
-msgstr "Máj"
+msgstr "máj"
 
 msgid "Jun"
-msgstr "Jún"
+msgstr "jún"
 
 msgid "Jul"
-msgstr "Júl"
+msgstr "júl"
 
 msgid "Aug"
-msgstr "Aug"
+msgstr "aug"
 
 msgid "Sep"
-msgstr "Sep"
+msgstr "sep"
 
 msgid "Oct"
-msgstr "Okt"
+msgstr "okt"
 
 msgid "Nov"
-msgstr "Nov"
+msgstr "nov"
 
 msgid "Dec"
-msgstr "Dec"
+msgstr "dec"
 
 msgid "Sunday"
 msgstr "nedeľa"

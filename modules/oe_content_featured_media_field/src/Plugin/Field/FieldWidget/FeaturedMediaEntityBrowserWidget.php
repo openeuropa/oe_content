@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_featured_media_field\Plugin\Field\FieldWidget;
 
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -24,6 +25,8 @@ use Drupal\entity_browser\Plugin\Field\FieldWidget\EntityReferenceBrowserWidget;
  *     "oe_featured_media"
  *   }
  * )
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
 
@@ -142,14 +145,22 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     $hidden_id = Html::getUniqueId('edit-' . $this->fieldDefinition->getName() . '-target-id');
     $details_id = Html::getUniqueId('edit-' . $this->fieldDefinition->getName());
 
+    $selection_mode = $this->getSetting('selection_mode');
+
+    $display_entity_browser = EntityBrowserElement::isEntityBrowserAvailable($selection_mode, 1, count($entities));
+
     $element += [
       '#id' => $details_id,
       '#type' => 'details',
-      '#open' => !empty($entities) || $this->getSetting('open'),
+      '#open' => !empty($entities) || $this->getSetting('open') || $this->entityBrowserValueUpdated,
       'target_id' => [
         '#type' => 'hidden',
         '#id' => $hidden_id,
-        '#attributes' => ['id' => $hidden_id],
+        '#attributes' => [
+          'id' => $hidden_id,
+          'data-cardinality' => 1,
+          'data-entity-browser-visible' => $display_entity_browser,
+        ],
         '#default_value' => implode(' ', array_map(
           function (EntityInterface $item) {
             return $item->getEntityTypeId() . ':' . $item->id();
@@ -161,13 +172,14 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
           'wrapper' => $details_id,
           'event' => 'entity_browser_value_updated',
         ],
+        '#submit' => [[get_class($this), 'updateEntityBrowserValue']],
+        '#limit_validation_errors' => [array_merge($element['#field_parents'], [$this->fieldDefinition->getName()])],
+        '#executes_submit_callback' => TRUE,
       ],
     ];
 
-    $selection_mode = $this->getSetting('selection_mode');
-
     // Enable entity browser if requirements for that are fulfilled.
-    if (EntityBrowserElement::isEntityBrowserAvailable($selection_mode, 1, count($entities))) {
+    if ($display_entity_browser) {
       $persistent_data = $this->getPersistentData();
 
       $element['entity_browser'] = [
@@ -184,6 +196,11 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
           [get_called_class(), 'processEntityBrowser'],
         ],
       ];
+
+      $element['target_id']['#attributes']['data-entity-browser-available'] = 1;
+    }
+    else {
+      $element['target_id']['#attributes']['data-entity-browser-visible'] = 0;
     }
 
     $element['#attached']['library'][] = 'entity_browser/entity_reference';
@@ -207,6 +224,40 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     ];
 
     return $element;
+  }
+
+  /**
+   * Submit callback for the entity browser media selection element.
+   *
+   * @param array $form
+   *   The form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   */
+  public static function updateEntityBrowserValue(array &$form, FormStateInterface $form_state) {
+    $triggering_element = $form_state->getTriggeringElement();
+    $parents = array_slice($triggering_element['#parents'], 0, -1);
+    $array_parents = array_slice($triggering_element['#array_parents'], 0, -1);
+
+    $values = $form_state->getValue($parents);
+
+    $entities = empty($values['target_id']) ? [] : explode(' ', trim($values['target_id']));
+    $value = [];
+    if ($entities) {
+      // We expect only 1 as it's considered a delta of 1.
+      $entity = reset($entities);
+      $value['target_id'] = $entity;
+    }
+    else {
+      $value['target_id'] = NULL;
+    }
+
+    // Set new value for this widget in the form_state.
+    $element = &NestedArray::getValue($form, $array_parents);
+    $form_state->setValueForElement($element, $value);
+
+    // Rebuild form.
+    $form_state->setRebuild();
   }
 
   /**
@@ -262,6 +313,21 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     $entity_type = $this->fieldDefinition->getFieldStorageDefinition()->getSetting('target_type');
     $entity_storage = $this->entityTypeManager->getStorage($entity_type);
 
+    // Check if we have any values in the form state for this element.
+    $element_path = array_merge($element['#field_parents'], [$this->fieldDefinition->getName(), $delta]);
+    $input_value = NestedArray::getValue($form_state->getUserInput(), $element_path, $input_exists);
+    $value_exists = NestedArray::keyExists($form_state->getValues(), $element_path);
+
+    if (!$value_exists && $input_exists && !is_array($input_value['target_id'])) {
+      // If we have a value for this element but it's NULL, it means it was
+      // removed consciously so we don't want to default to the one in the
+      // field items.
+      $data = empty($input_value['target_id']) ? [] : explode(' ', trim($input_value['target_id']));
+      if (!$data) {
+        return $entities;
+      }
+    }
+
     // Determine if we're submitting and if submit came from this widget.
     $is_relevant_submit = FALSE;
     $triggering_element = $form_state->getTriggeringElement();
@@ -290,11 +356,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       // added via entity browser.
       if (!empty($triggering_element['#ajax']['event']) && $triggering_element['#ajax']['event'] == 'entity_browser_value_updated') {
         $parents = $triggering_element['#parents'];
-      }
-      // Submit was triggered by one of the "Remove" buttons. We need to walk
-      // few levels up to read value of "target_id" element.
-      elseif ($triggering_element['#type'] == 'submit' && strpos($triggering_element['#name'], $this->fieldDefinition->getName() . '_remove_') === 0) {
-        $parents = array_merge(array_slice($triggering_element['#parents'], 0, -static::$deleteDepth), ['target_id']);
+        $this->entityBrowserValueUpdated = TRUE;
       }
 
       // Since we are using a delta, replace the second value after the field
