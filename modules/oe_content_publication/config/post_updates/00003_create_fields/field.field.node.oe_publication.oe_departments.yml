@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_departments
+    - node.type.oe_publication
+  module:
+    - rdf_skos
+id: node.oe_publication.oe_departments
+field_name: oe_departments
+entity_type: node
+bundle: oe_publication
+label: 'Related department'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:skos_concept'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+    concept_schemes: {  }
+    field:
+      field_name: oe_departments
+      entity_type: node
+      bundle: oe_publication
+      concept_schemes: {  }
+field_type: skos_concept_entity_reference
