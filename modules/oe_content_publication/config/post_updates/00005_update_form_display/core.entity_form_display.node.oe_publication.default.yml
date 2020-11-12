@@ -24,6 +24,24 @@ dependencies:
     - path
     - rdf_skos
     - text
+third_party_settings:
+  field_group:
+    group_alternative_titles_and_tea:
+      children:
+        - oe_content_short_title
+        - oe_content_navigation_title
+        - oe_teaser
+      parent_name: ''
+      weight: 12
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+        required_fields: true
+      label: 'Alternative titles and teaser'
 id: node.oe_publication.default
 targetEntityType: node
 bundle: oe_publication
@@ -39,7 +57,7 @@ content:
     type: language_select
     weight: 3
   body:
-    weight: 6
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -48,13 +66,13 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 21
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 18
+    weight: 16
     region: content
     settings:
       include_locked: true
@@ -107,7 +125,7 @@ content:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_departments:
-    weight: 10
+    weight: 9
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -117,7 +135,7 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_documents:
-    weight: 8
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -147,16 +165,19 @@ content:
     weight: 4
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
+    type: datetime_datelist
     region: content
   oe_publication_last_updated:
-    weight: 17
-    settings: {  }
+    weight: 15
+    settings:
+      date_order: DMY
+      time_type: none
+      increment: 15
     third_party_settings: {  }
-    type: datetime_default
+    type: datetime_datelist
     region: content
   oe_publication_thumbnail:
-    weight: 4
+    weight: 6
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -176,7 +197,7 @@ content:
       match_limit: 10
     third_party_settings: {  }
   oe_reference_code:
-    weight: 9
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -197,7 +218,7 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_summary:
-    weight: 5
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -210,7 +231,7 @@ content:
     type: text_textarea
     region: content
   oe_teaser:
-    weight: 1
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -224,7 +245,7 @@ content:
     region: content
   path:
     type: path
-    weight: 25
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -251,7 +272,7 @@ content:
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
