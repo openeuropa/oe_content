@@ -90,6 +90,7 @@ default:
         Related links: ".field--name-oe-related-links"
         Deadline model: "#edit-oe-call-proposals-model-wrapper"
         Deadline date: "#edit-oe-call-proposals-deadline-wrapper"
+        Reference code form element: ".field--name-oe-reference-code"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'

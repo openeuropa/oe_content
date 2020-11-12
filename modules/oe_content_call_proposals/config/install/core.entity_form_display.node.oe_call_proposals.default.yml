@@ -213,7 +213,7 @@ content:
       placeholder: ''
     third_party_settings:
       maxlength:
-        maxlength_js: 250
+        maxlength_js: 150
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
     type: string_textfield
     region: content
