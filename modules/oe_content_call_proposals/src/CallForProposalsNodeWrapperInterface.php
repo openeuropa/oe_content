@@ -42,7 +42,7 @@ interface CallForProposalsNodeWrapperInterface {
   /**
    * Gets the deadline model value.
    *
-   * @return string
+   * @return string|null
    *   The model value.
    */
   public function getModel(): ?string;

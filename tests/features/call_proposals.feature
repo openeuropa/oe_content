@@ -7,11 +7,9 @@ Feature: Call for proposals content creation and editing.
   @javascript
   Scenario: Creation of a Call for proposals content through the UI.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
-
     And the following document:
       | name          | file       |
       | My Document 1 | sample.pdf |
-
     And the following images:
       | name          | file           | alt                            |
       | Contact image | example_1.jpeg | Contact image alternative text |
@@ -26,14 +24,14 @@ Feature: Call for proposals content creation and editing.
     And I set "Publication date" to the date "24-10-2020"
 
     # Test that no Deadline Date field is visible when the Permanent model is selected
-    And I select "permanent" from "oe_call_proposals_model"
+    And I select the radio button "Permanent"
     And I should not see "Deadline date"
 
-    And I select "two_stage" from "oe_call_proposals_model"
+    And I select the radio button "Two-stage"
     And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
 
-    And I press "Save"
+    When I press "Save"
 
     Then I should see "Call for proposals My Call for proposals 1 has been created."
     And I should see "My call for proposals 1"
@@ -75,13 +73,13 @@ Feature: Call for proposals content creation and editing.
     And I fill in "Media item" with "Contact image" in the "Call for proposals contact" region
     And I fill in "Caption" with "Call for proposals contact caption" in the "Call for proposals contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Call for proposals contact" region
-
     And I fill in "Alternative title" with "Alternative title 1"
     And I fill in "Navigation title" with "Navi title 1"
     And I fill in "Redirect link" with "http://example.com"
 
-    And I press "Save"
-    And I should see "My Call for proposals 1 body"
+    When I press "Save"
+
+    Then I should see "My Call for proposals 1 body"
     And I should see "My Call for proposals 1 reference"
     And I should see the link "Official Journal publication 1"
     And I should see "10/25/2020"
@@ -89,7 +87,6 @@ Feature: Call for proposals content creation and editing.
     And I should see "Anti Fraud Information System (AFIS)"
     And I should see "Audit Board of the European Communities"
     And I should see "My Document 1"
-
     And I should see the text "Name of the call for proposals contact"
     And I should see the text "Call for proposals contact body text"
     And I should see the text "Call for proposals contact organisation"
@@ -107,14 +104,12 @@ Feature: Call for proposals content creation and editing.
     And I should see the link "Contact image"
     And I should see the text "Call for proposals contact caption"
     And I should see the link "http://example.com/press_contacts"
-
     And I should not see "Alternative title 1"
     And I should not see "Navi title 1"
 
   @javascript
   Scenario: Test the maximum string length and the valid date requirements of the Call for proposals content type.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
-
     When I visit "the Call for proposals creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
@@ -122,17 +117,17 @@ Feature: Call for proposals content creation and editing.
     And I should see the text "Content limited to 128 characters, remaining: 128" in the "Publication in the official journal"
     And I fill in "Title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
-    And I select "two_stage" from "oe_call_proposals_model"
+    And I select the radio button "Two-stage"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
     And I fill in "Link text" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove" in the "Publication in the official journal" region
 
-    And I press "Save"
+    When I press "Save"
 
     Then I should see "The selected \"Two-stage\" model requires a valid date!"
     And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
 
-    And I press "Save"
+    When I press "Save"
 
     Then I should see "Call for proposals My Call for proposals 1 has been created."
     And I should not see "The text to remove."
@@ -144,7 +139,7 @@ Feature: Call for proposals content creation and editing.
     When I visit "the Call for proposals creation page"
     And I fill in "Title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
-    And I select "two_stage" from "oe_call_proposals_model"
+    And I select the radio button "Two-stage"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
     And I press "Add another item" in the "Deadline date" region

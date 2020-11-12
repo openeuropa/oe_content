@@ -44,7 +44,7 @@ function oe_content_call_proposals_entity_type_alter(array &$entity_types) {
  * @return array
  *   The model values.
  */
-function oe_content_call_proposals_model_allowed_values(): array {
+function _oe_content_call_proposals_model_allowed_values(): array {
   return CallForProposalsNodeWrapper::getModelsList();
 }
 

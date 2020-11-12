@@ -27,12 +27,8 @@ class CallProposalsDeadlineDateValidator extends ConstraintValidator {
 
     $deadline_model = $wrapper->getModel();
     $has_deadline_date = $wrapper->hasDeadlineDate();
-    if ($deadline_model !== CallForProposalsNodeWrapperInterface::MODEL_PERMANENT
-        && $has_deadline_date === FALSE) {
-      $this->context->buildViolation(
-        $constraint->errorMessage,
-        ['@model' => $wrapper->getModelLabel()]
-      )
+    if ($deadline_model !== CallForProposalsNodeWrapperInterface::MODEL_PERMANENT && $has_deadline_date === FALSE) {
+      $this->context->buildViolation($constraint->errorMessage, ['@model' => $wrapper->getModelLabel()])
         ->atPath('oe_call_proposals_deadline')
         ->addViolation();
     }

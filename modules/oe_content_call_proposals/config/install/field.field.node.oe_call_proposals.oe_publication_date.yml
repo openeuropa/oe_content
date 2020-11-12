@@ -11,7 +11,7 @@ field_name: oe_publication_date
 entity_type: node
 bundle: oe_call_proposals
 label: 'Publication date'
-description: 'Use to manually define the publication date printed on the page and metadata'
+description: 'Use to manually define the publication date printed on the page and metadata.'
 required: true
 translatable: false
 default_value:
