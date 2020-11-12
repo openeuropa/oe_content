@@ -28,7 +28,7 @@ Feature: Publication content creation
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
-    And I fill in "Publication date" with the date "02-21-2019"
+    And I set "Publication date" to the date "21-02-2019"
     And I fill in "oe_documents[0][target_id]" with "My Document 1"
     And I fill in "Resource type" with "Acknowledgement receipt"
     And I fill in "Use existing media" with "Sample image"
@@ -38,12 +38,34 @@ Feature: Publication content creation
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Alternative title" with "Shorter title"
 
-    And I fill in "Last update date" with the date "11-04-2020"
+    And I set "Publication date" to the date "04-11-2019"
     And I fill in "Body" with "Body text"
     And I fill in "Identifier code" with "123456789"
     And I fill in "Related department" with "Other agency"
     And I fill in "Country" with "Hungary"
-    And I fill in "Contact" with "A general contact"
+
+    # Publication contact field group.
+    When I press "Add new contact"
+    And I wait for AJAX to finish
+    Then I fill in "Name" with "Name of the publication contact" in the "Publication contact" region
+    And I fill in "Organisation" with "Publication contact organisation" in the "Publication contact" region
+    And I fill in "Body text" with "Publication contact body text" in the "Publication contact" region
+    And I fill in "Website" with "http://www.example.com/publication_contact" in the "Publication contact" region
+    And I fill in "Email" with "test@example.com" in the "Publication contact" region
+    And I fill in "Phone number" with "0488779033" in the "Publication contact" region
+    And I fill in "Mobile number" with "0488779034" in the "Publication contact" region
+    And I fill in "Fax number" with "0488779035" in the "Publication contact" region
+    And I select "Hungary" from "Country" in the "Publication contact" region
+    And I wait for AJAX to finish
+    And I fill in "Street address" with "Back street 3" in the "Publication contact" region
+    And I fill in "Postal code" with "9000" in the "Publication contact" region
+    And I fill in "City" with "Budapest" in the "Publication contact" region
+    And I fill in "Office" with "Publication contact office" in the "Publication contact" region
+    And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
+    And I fill in "Link text" with "Publication contact social link email" in the "Contact social media links" region
+    And I fill in "Media item" with "Sample image" in the "Publication contact" region
+    And I fill in "Caption" with "Publication contact caption" in the "Publication contact" region
+    And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Publication contact" region
 
     When I press "Save"
     Then I should see "My Publication item"
@@ -52,12 +74,25 @@ Feature: Publication content creation
     And I should see "123456789"
     And I should see "Other agency"
     And I should see "Hungary"
-    And I should see "A general contact"
-    And I should see "general@example.com"
-    And I should see "+359525566778"
-    And I should see "General contact 1"
-    And I should see "9009 Varna"
-    And I should see "Bulgaria"
+
+    And I should see the text "Name of the publication contact"
+    And I should see the text "Publication contact body text"
+    And I should see the text "Publication contact organisation"
+    And I should see the link "http://www.example.com/publication_contact"
+    And I should see the text "test@example.com"
+    And I should see the text "0488779033"
+    And I should see the text "0488779034"
+    And I should see the text "0488779035"
+    And I should see the text "Back street 3"
+    And I should see the text "Budapest"
+    And I should see the text "9000"
+    And I should see the text "Hungary"
+    And I should see the link "Publication contact social link email"
+    And I should see the text "Publication contact office"
+    And I should see the link "Sample image"
+    And I should see the text "Publication contact caption"
+    And I should see the link "http://example.com/press_contacts"
+
     And I should not see "Acknowledgement receipt"
     And I should not see "Summary text"
     And I should not see "Navi title"

@@ -19,19 +19,38 @@ dependencies:
     - node.type.oe_publication
   module:
     - datetime
-    - entity_reference_revisions
+    - field_group
+    - inline_entity_form
     - link
     - maxlength
     - path
     - rdf_skos
     - text
+third_party_settings:
+  field_group:
+    group_alternative_titles_and_tea:
+      children:
+        - oe_content_short_title
+        - oe_content_navigation_title
+        - oe_teaser
+      parent_name: ''
+      weight: 12
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+        required_fields: true
+      label: 'Alternative titles and teaser'
 id: node.oe_publication.default
 targetEntityType: node
 bundle: oe_publication
 mode: default
 content:
   body:
-    weight: 6
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -40,19 +59,19 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 21
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 18
+    weight: 16
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   oe_author:
-    weight: 11
+    weight: 13
     settings:
       match_operator: CONTAINS
       size: 60
@@ -63,7 +82,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 15
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -73,7 +92,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 19
+    weight: 17
     region: content
     settings:
       placeholder_url: ''
@@ -99,7 +118,7 @@ content:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_departments:
-    weight: 10
+    weight: 9
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -109,7 +128,7 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_documents:
-    weight: 8
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -119,17 +138,24 @@ content:
     type: entity_reference_autocomplete
     region: content
   oe_publication_contact:
-    weight: 14
+    weight: 11
     settings:
+      form_mode: default
+      revision: true
+      override_labels: true
+      label_singular: contact
+      label_plural: contacts
+      collapsible: true
+      allow_new: true
       match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
     third_party_settings: {  }
-    type: entity_reference_revisions_autocomplete
+    type: inline_entity_form_complex
     region: content
   oe_publication_country:
-    weight: 12
+    weight: 10
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -139,19 +165,25 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_publication_date:
-    weight: 16
-    settings: {  }
+    weight: 5
+    settings:
+      date_order: DMY
+      time_type: none
+      increment: 15
     third_party_settings: {  }
-    type: datetime_default
+    type: datetime_datelist
     region: content
   oe_publication_last_updated:
-    weight: 17
-    settings: {  }
+    weight: 15
+    settings:
+      date_order: DMY
+      time_type: none
+      increment: 15
     third_party_settings: {  }
-    type: datetime_default
+    type: datetime_datelist
     region: content
   oe_publication_thumbnail:
-    weight: 4
+    weight: 6
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -162,7 +194,7 @@ content:
     region: content
   oe_publication_type:
     type: skos_concept_entity_reference_autocomplete
-    weight: 7
+    weight: 0
     region: content
     settings:
       match_operator: CONTAINS
@@ -171,7 +203,7 @@ content:
       match_limit: 10
     third_party_settings: {  }
   oe_reference_code:
-    weight: 9
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -182,7 +214,7 @@ content:
     type: string_textfield
     region: content
   oe_subject:
-    weight: 13
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -192,7 +224,7 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_summary:
-    weight: 5
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -205,7 +237,7 @@ content:
     type: text_textarea
     region: content
   oe_teaser:
-    weight: 1
+    weight: 4
     settings:
       rows: 5
       placeholder: ''
@@ -219,7 +251,7 @@ content:
     region: content
   path:
     type: path
-    weight: 25
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -227,26 +259,26 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 22
+    weight: 20
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 24
+    weight: 22
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 23
+    weight: 21
     region: content
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -257,7 +289,7 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   uid:
     type: entity_reference_autocomplete
-    weight: 20
+    weight: 18
     settings:
       match_operator: CONTAINS
       size: 60
