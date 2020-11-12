@@ -90,7 +90,6 @@ function oe_content_publication_post_update_00004(): void {
   $new_translatable_settings = [
     'node.oe_publication.oe_summary' => FALSE,
     'node.oe_publication.oe_teaser' => FALSE,
-    'node.oe_publication.oe_publication_type' => TRUE,
   ];
   foreach ($new_translatable_settings as $id => $value) {
     $field_config = FieldConfig::load($id);
