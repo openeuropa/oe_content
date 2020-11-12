@@ -1,0 +1,281 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oe_call_proposals.body
+    - field.field.node.oe_call_proposals.oe_call_proposals_contact
+    - field.field.node.oe_call_proposals.oe_call_proposals_deadline
+    - field.field.node.oe_call_proposals.oe_call_proposals_funding
+    - field.field.node.oe_call_proposals.oe_call_proposals_grants
+    - field.field.node.oe_call_proposals.oe_call_proposals_journal
+    - field.field.node.oe_call_proposals.oe_call_proposals_model
+    - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
+    - field.field.node.oe_call_proposals.oe_departments
+    - field.field.node.oe_call_proposals.oe_documents
+    - field.field.node.oe_call_proposals.oe_publication_date
+    - field.field.node.oe_call_proposals.oe_reference_code
+    - field.field.node.oe_call_proposals.oe_summary
+    - node.type.oe_call_proposals
+  module:
+    - datetime
+    - field_group
+    - inline_entity_form
+    - link
+    - maxlength
+    - path
+    - rdf_skos
+    - text
+third_party_settings:
+  field_group:
+    group_alternative_titles:
+      children:
+        - oe_content_short_title
+        - oe_content_navigation_title
+      parent_name: ''
+      weight: 13
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+        required_fields: true
+      label: 'Alternative titles'
+id: node.oe_call_proposals.default
+targetEntityType: node
+bundle: oe_call_proposals
+mode: default
+content:
+  body:
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 19
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 17
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  oe_call_proposals_contact:
+    weight: 14
+    settings:
+      form_mode: default
+      revision: true
+      override_labels: true
+      label_singular: contact
+      label_plural: contacts
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
+  oe_call_proposals_deadline:
+    weight: 9
+    settings:
+      date_order: DMY
+      time_type: '24'
+      increment: 15
+    third_party_settings: {  }
+    type: datetime_datelist
+    region: content
+  oe_call_proposals_funding:
+    weight: 10
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
+  oe_call_proposals_grants:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  oe_call_proposals_journal:
+    type: link_default
+    weight: 5
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 128
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+  oe_call_proposals_model:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  oe_call_proposals_opening_date:
+    weight: 6
+    settings:
+      date_order: DMY
+      time_type: none
+      increment: 15
+    third_party_settings: {  }
+    type: datetime_datelist
+    region: content
+  oe_content_content_owner:
+    type: skos_concept_entity_reference_autocomplete
+    weight: 15
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_content_legacy_link:
+    type: link_default
+    weight: 16
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  oe_content_navigation_title:
+    type: string_textfield
+    weight: 15
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_content_short_title:
+    type: string_textfield
+    weight: 14
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 170
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+  oe_departments:
+    weight: 11
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
+  oe_documents:
+    weight: 12
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  oe_publication_date:
+    weight: 3
+    settings:
+      date_order: DMY
+      time_type: none
+      increment: 15
+    third_party_settings: {  }
+    type: datetime_datelist
+    region: content
+  oe_reference_code:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 150
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+    type: string_textfield
+    region: content
+  oe_summary:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 250
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: false
+        maxlength_js_truncate_html: false
+    type: text_textarea
+    region: content
+  path:
+    type: path
+    weight: 22
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 20
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 23
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 21
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 170
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+  uid:
+    type: entity_reference_autocomplete
+    weight: 18
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden: {  }

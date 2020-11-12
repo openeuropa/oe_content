@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.oe_call_proposals_model
+field_name: oe_call_proposals_model
+entity_type: node
+type: list_string
+settings:
+  allowed_values: {  }
+  allowed_values_function: _oe_content_call_proposals_model_allowed_values
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
