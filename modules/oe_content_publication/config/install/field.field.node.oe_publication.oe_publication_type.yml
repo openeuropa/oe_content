@@ -25,7 +25,6 @@ settings:
     auto_create: false
     concept_schemes:
       - 'http://publications.europa.eu/resource/authority/resource-type'
-    concept_subset: null
     field:
       field_name: oe_publication_type
       entity_type: node
