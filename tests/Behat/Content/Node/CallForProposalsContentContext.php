@@ -44,6 +44,7 @@ class CallForProposalsContentContext extends RawDrupalContext {
       'Deadline date' => 'oe_call_proposals_deadline',
       'Alternative title' => 'oe_content_short_title',
       'Documents' => 'oe_documents',
+      'Contacts' => 'oe_call_proposals_contact',
       'Responsible department' => 'oe_departments',
       'Published' => 'status',
       'Funding programme' => 'oe_call_proposals_funding',
