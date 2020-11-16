@@ -83,7 +83,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $this->assertResponse(404);
 
     // Not valid uuid.
-    $this->drupalGet('/content/' . $this->randomString());
+    $this->drupalGet('/content/' . $this->randomMachineName());
     $this->assertResponse(404);
 
     // Create a new node that will be sent to the home page by the controller.

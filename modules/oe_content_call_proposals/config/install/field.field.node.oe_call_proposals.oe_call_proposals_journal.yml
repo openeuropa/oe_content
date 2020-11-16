@@ -13,7 +13,7 @@ bundle: oe_call_proposals
 label: 'Publication in the official journal'
 description: "The link title is limited to 128 characters maximum.\r\nTitle: Official Journal reference.\r\nURL: link to the Official Journal."
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
