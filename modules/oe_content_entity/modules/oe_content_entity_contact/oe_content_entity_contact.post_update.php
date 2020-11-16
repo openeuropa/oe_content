@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityViewMode;
@@ -109,12 +110,17 @@ function oe_content_entity_contact_post_update_00006(): void {
 function oe_content_entity_contact_post_update_00007(): void {
   \Drupal::service('module_installer')->install(['entity_reference_revisions']);
 
-  $entity_view_mode = EntityViewMode::create([
+  $view_mode_config = [
     'id' => 'node.oe_contact',
     'label' => 'Contact',
     'targetEntityType' => 'node',
-  ]);
-  $entity_view_mode->save();
+  ];
+  // We are creating the config which means that we are also shipping
+  // it in the config/install folder so we want to make sure it gets the hash
+  // so Drupal treats it as a shipped config. This means that it gets exposed
+  // to be translated via the locale system as well.
+  $view_mode_config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($view_mode_config));
+  EntityViewMode::create($view_mode_config)->save();
 
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00007_node_reference_field');
 
