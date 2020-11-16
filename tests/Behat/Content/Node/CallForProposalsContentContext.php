@@ -74,7 +74,7 @@ class CallForProposalsContentContext extends RawDrupalContext {
           break;
 
         case 'Contacts':
-          $fields = $this->getReferenceRevisionField('oe_call_proposals_contact', 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
