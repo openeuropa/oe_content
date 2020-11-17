@@ -5,8 +5,6 @@ type: module
 core: 8.x
 
 dependencies:
-  - oe_content:oe_content
-  - oe_content:oe_content_entity
   - oe_content:oe_content_entity_contact
   - oe_content:oe_content_organisation
 
