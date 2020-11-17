@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_publication_contact
+    - field.storage.node.oe_publication_contacts
     - node.type.oe_publication
     - oe_content_entity_contact.oe_contact_type.oe_general
     - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
@@ -12,8 +12,8 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
-id: node.oe_publication.oe_publication_contact
-field_name: oe_publication_contact
+id: node.oe_publication.oe_publication_contacts
+field_name: oe_publication_contacts
 entity_type: node
 bundle: oe_publication
 label: Contact

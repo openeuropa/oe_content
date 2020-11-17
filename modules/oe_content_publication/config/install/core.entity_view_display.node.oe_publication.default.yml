@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_documents
-    - field.field.node.oe_publication.oe_publication_contact
+    - field.field.node.oe_publication.oe_publication_contacts
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_type
     - field.field.node.oe_publication.oe_subject
@@ -28,7 +28,7 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-  oe_publication_contact:
+  oe_publication_contacts:
     type: entity_reference_revisions_entity_view
     weight: 1
     region: content

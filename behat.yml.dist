@@ -22,7 +22,7 @@ default:
         - OpenEuropa\Behat\TransformationContext:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
-              publication contact type: "#edit-oe-publication-contact-actions-bundle"
+              publication contact type: "#edit-oe-publication-contacts-actions-bundle"
             pages:
               Page creation: 'node/add/oe_page'
               News creation: 'node/add/oe_news'

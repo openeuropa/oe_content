@@ -5,8 +5,8 @@ dependencies:
     - entity_reference_revisions
     - node
     - oe_content_entity_contact
-id: node.oe_publication_contact
-field_name: oe_publication_contact
+id: node.oe_publication_contacts
+field_name: oe_publication_contacts
 entity_type: node
 type: entity_reference_revisions
 settings:

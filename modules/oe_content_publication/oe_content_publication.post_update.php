@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
@@ -42,22 +43,28 @@ function oe_content_publication_post_update_00003() {
   }
   $module_installer->install(['path', 'inline_entity_form']);
 
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00003_contact_reference');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00003_add_contact_reference');
 
   // Clear the cached plugin definitions of the field types.
   \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
 
   // Create the field storage for the reference field.
   $field_storage_config = \Drupal::service('entity_type.manager')->getStorage('field_storage_config');
-  if (!$field_storage_config->load('node.oe_publication_contact')) {
-    $reference_field = $storage->read('field.storage.node.oe_publication_contact');
+  if (!$field_storage_config->load('node.oe_publication_contacts')) {
+    $reference_field = $storage->read('field.storage.node.oe_publication_contacts');
+    // We are creating the config which means that we are also shipping
+    // it in the config/install folder so we want to make sure it gets the hash
+    // so Drupal treats it as a shipped config. This means that it gets exposed
+    // to be translated via the locale system as well.
+    $reference_field['_core']['default_config_hash'] = Crypt::hashBase64(serialize($reference_field));
     $field_storage_config->create($reference_field)->save();
   }
 
   // Create the field config for the reference field.
   $field_config = \Drupal::service('entity_type.manager')->getStorage('field_config');
-  if (!$field_config->load('node.oe_publication.oe_publication_contact')) {
-    $reference_field = $storage->read('field.field.node.oe_publication.oe_publication_contact');
+  if (!$field_config->load('node.oe_publication.oe_publication_contacts')) {
+    $reference_field = $storage->read('field.field.node.oe_publication.oe_publication_contacts');
+    $reference_field['_core']['default_config_hash'] = Crypt::hashBase64(serialize($reference_field));
     $field_config->create($reference_field)->save();
   }
 
