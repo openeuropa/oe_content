@@ -10,10 +10,10 @@ id: node.oe_publication.body
 field_name: body
 entity_type: node
 bundle: oe_publication
-label: Body
+label: Body text
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:

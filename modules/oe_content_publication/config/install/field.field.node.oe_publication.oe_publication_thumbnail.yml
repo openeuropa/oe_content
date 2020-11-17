@@ -30,5 +30,5 @@ settings:
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: av_portal_photo
+    auto_create_bundle: ''
 field_type: entity_reference
