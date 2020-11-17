@@ -5,6 +5,8 @@ dependencies:
     - entity_reference_revisions
     - node
     - oe_content_entity_contact
+_core:
+  default_config_hash: vs0u2FLyjrmbJNovX2wzeFLyYjBIFNr_dxZcCzGjOME
 id: node.oe_publication_contact
 field_name: oe_publication_contact
 entity_type: node

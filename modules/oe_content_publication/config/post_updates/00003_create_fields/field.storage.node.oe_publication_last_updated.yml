@@ -4,6 +4,8 @@ dependencies:
   module:
     - datetime
     - node
+_core:
+  default_config_hash: _9QEg00FpRfqY6-FVtaVCd2b6ahl3bhlUMJDuRVIGo4
 id: node.oe_publication_last_updated
 field_name: oe_publication_last_updated
 entity_type: node
