@@ -4,6 +4,8 @@ dependencies:
   module:
     - media
     - node
+_core:
+  default_config_hash: VagpG47XRy3fyId28JEaXCpBFcJSSZ1UuVHnQfEigH4
 id: node.oe_publication_thumbnail
 field_name: oe_publication_thumbnail
 entity_type: node

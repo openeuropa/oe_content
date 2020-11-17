@@ -5,6 +5,8 @@ dependencies:
     - field.storage.node.oe_documents
     - media.type.document
     - node.type.oe_publication
+_core:
+  default_config_hash: VsBD8iuXNfoZccKn7tB0-Fc2RTe6-gtcTU7kcemy0A0
 id: node.oe_publication.oe_documents
 field_name: oe_documents
 entity_type: node
