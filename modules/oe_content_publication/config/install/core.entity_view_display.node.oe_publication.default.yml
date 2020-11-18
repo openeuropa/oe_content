@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_documents
+    - field.field.node.oe_publication.oe_publication_contacts
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_type
     - field.field.node.oe_publication.oe_subject
@@ -11,9 +12,7 @@ dependencies:
     - field.field.node.oe_publication.oe_teaser
     - node.type.oe_publication
   module:
-    - datetime
-    - rdf_skos
-    - text
+    - entity_reference_revisions
     - user
 id: node.oe_publication.default
 targetEntityType: node
@@ -22,14 +21,24 @@ mode: default
 content:
   oe_documents:
     type: entity_reference_entity_view
-    weight: 3
+    weight: 0
     label: hidden
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
     region: content
+  oe_publication_contacts:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
 hidden:
+  langcode: true
   links: true
   oe_author: true
   oe_content_content_owner: true
@@ -38,6 +47,6 @@ hidden:
   oe_content_short_title: true
   oe_publication_date: true
   oe_publication_type: true
-  oe_summary: true
   oe_subject: true
+  oe_summary: true
   oe_teaser: true

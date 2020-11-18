@@ -1,0 +1,6 @@
+langcode: en
+status: true
+dependencies: {  }
+id: oe_organisation_reference
+label: Organisation
+description: 'Provides the Organisation reference contact type.'
