@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_reference_revisions
+    - node
+id: oe_contact.oe_node_reference
+field_name: oe_node_reference
+entity_type: oe_contact
+type: entity_reference_revisions
+settings:
+  target_type: node
+module: entity_reference_revisions
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
