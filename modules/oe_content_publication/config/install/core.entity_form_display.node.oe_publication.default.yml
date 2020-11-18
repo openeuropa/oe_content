@@ -83,9 +83,12 @@ content:
     region: content
   oe_publication_date:
     weight: 3
-    settings: {  }
+    settings:
+      date_order: DMY
+      time_type: none
+      increment: 15
     third_party_settings: {  }
-    type: datetime_default
+    type: datetime_datelist
     region: content
   oe_publication_type:
     type: skos_concept_entity_reference_autocomplete
