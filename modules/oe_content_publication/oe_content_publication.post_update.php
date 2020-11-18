@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
 
 /**
@@ -28,4 +29,24 @@ function oe_content_publication_post_update_00001_update_field_labels(array &$sa
  */
 function oe_content_publication_post_update_00002() {
   \Drupal::service('module_installer')->install(['oe_content_documents_field']);
+}
+
+/**
+ * Change publication date widget to select list.
+ */
+function oe_content_publication_post_update_00005(): void {
+  $form_display = EntityFormDisplay::load('node.oe_publication.default');
+  $content = $form_display->get('content') ?: [];
+  if (!isset($content['oe_publication_date'])) {
+    return;
+  }
+
+  $content['oe_publication_date']['type'] = 'datetime_datelist';
+  $content['oe_publication_date']['settings'] = [
+    'date_order' => 'DMY',
+    'time_type' => 'none',
+    'increment' => 15,
+  ];
+  $form_display->set('content', $content);
+  $form_display->save();
 }
