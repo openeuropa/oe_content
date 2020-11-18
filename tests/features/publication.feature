@@ -6,14 +6,6 @@ Feature: Publication content creation
 
   @javascript
   Scenario: Creation of a Publication content through the UI.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, manage corporate content entities, view published skos concept entities" permission
-    And the following documents:
-    | name          | file       |
-    | My Document 1 | sample.pdf |
-    And the following "Organisation" Content entity:
-      | Title             | Organisation demo page         |
-      | Organisation type | EU organisation                |
-      | EU organisation   | Directorate-General for Budget |
     Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities, manage corporate content entities" permission
 
     And the following documents:
@@ -72,7 +64,6 @@ Feature: Publication content creation
     Then I should see "My Publication item"
     And I should see "sample.pdf"
     And I should see "Contact"
-    And I should see "Organisation contact"
     And I should see "Body text"
     And I should see "123456789"
     And I should see "Other agency"

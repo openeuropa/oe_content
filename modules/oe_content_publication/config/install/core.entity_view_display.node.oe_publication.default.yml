@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_departments
     - field.field.node.oe_publication.oe_documents
-    - field.field.node.oe_publication.oe_publication_contact
+    - field.field.node.oe_publication.oe_publication_contacts
     - field.field.node.oe_publication.oe_publication_country
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_last_updated
@@ -19,7 +19,6 @@ dependencies:
     - node.type.oe_publication
   module:
     - datetime
-    - entity_reference_revisions
     - link
     - rdf_skos
     - text
@@ -143,6 +142,7 @@ hidden:
   oe_author: true
   oe_content_navigation_title: true
   oe_content_short_title: true
+  oe_publication_contacts: true
   oe_publication_type: true
   oe_subject: true
   oe_summary: true

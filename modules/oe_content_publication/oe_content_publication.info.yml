@@ -40,8 +40,6 @@ config_devel:
     - field.field.node.oe_publication.oe_departments
     - field.storage.node.oe_publication_country
     - field.field.node.oe_publication.oe_publication_country
-    - field.storage.node.oe_publication_contact
-    - field.field.node.oe_publication.oe_publication_contact
     - node.type.oe_publication
   optional:
     - language.content_settings.node.oe_publication

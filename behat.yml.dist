@@ -84,7 +84,7 @@ default:
         Organisation contact: "#edit-oe-organisation-contact-wrapper"
         News contact: "#edit-oe-news-contacts-wrapper"
         News contact social media links: ".field--name-oe-social-media"
-        Publication contact: "#edit-oe-publication-contact-wrapper"
+        Publication contact: ".field--name-oe-publication-contacts"
         Publication thumbnail: "#edit-oe-publication-thumbnail"
       selectors:
         message_selector: '.messages'

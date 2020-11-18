@@ -67,16 +67,20 @@ function oe_content_publication_post_update_00003() {
     $reference_field['_core']['default_config_hash'] = Crypt::hashBase64(serialize($reference_field));
     $field_config->create($reference_field)->save();
   }
-  $path = drupal_get_path('module', 'oe_content_publication');
+}
 
-  $storage = new FileStorage($path . '/config/post_updates/00003_create_fields');
+/**
+ * Create the new fields in the Publication content type.
+ */
+function oe_content_publication_post_update_00004(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00004_create_fields');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 
 /**
  * Update field settings.
  */
-function oe_content_publication_post_update_00004(): void {
+function oe_content_publication_post_update_00005(): void {
   $new_field_labels = [
     'node.oe_publication.oe_publication_type' => 'Resource type',
     'node.oe_publication.oe_documents' => 'Files',
@@ -101,8 +105,8 @@ function oe_content_publication_post_update_00004(): void {
 /**
  * Update Publication node form display.
  */
-function oe_content_publication_post_update_00005(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00005_update_form_display');
+function oe_content_publication_post_update_00006(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00006_update_form_display');
 
   // Form display configurations to update.
   $form_display_values = $storage->read('core.entity_form_display.node.oe_publication.default');
@@ -112,22 +116,5 @@ function oe_content_publication_post_update_00005(): void {
       ->getStorage($form_display->getEntityTypeId())
       ->updateFromStorageRecord($form_display, $form_display_values);
     $updated_form_display->save();
-  }
-}
-
-/**
- * Update Publication node view display.
- */
-function oe_content_publication_post_update_00006(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00006_update_view_display');
-
-  // View display configurations to update.
-  $view_display_values = $storage->read('core.entity_view_display.node.oe_publication.default');
-  $view_display = EntityViewDisplay::load($view_display_values['id']);
-  if ($view_display) {
-    $updated_view_display = \Drupal::entityTypeManager()
-      ->getStorage($view_display->getEntityTypeId())
-      ->updateFromStorageRecord($view_display, $view_display_values);
-    $updated_view_display->save();
   }
 }
