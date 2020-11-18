@@ -19,6 +19,7 @@ dependencies:
     - node.type.oe_publication
   module:
     - datetime
+    - entity_reference_revisions
     - link
     - rdf_skos
     - text
@@ -95,6 +96,15 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: content
+  oe_publication_contacts:
+    type: entity_reference_revisions_entity_view
+    weight: 7
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   oe_publication_country:
     weight: 6
     label: above
@@ -142,7 +152,6 @@ hidden:
   oe_author: true
   oe_content_navigation_title: true
   oe_content_short_title: true
-  oe_publication_contacts: true
   oe_publication_type: true
   oe_subject: true
   oe_summary: true
