@@ -6,7 +6,11 @@ type: module
 core: 8.x
 dependencies:
   - oe_content:oe_content
+  - oe_content:oe_content_entity_contact
+  - oe_content:oe_content_organisation_reference
   - oe_content:oe_content_documents_field
+  - drupal:path
+  - inline_entity_form:inline_entity_form
 
 config_devel:
   install:
@@ -14,10 +18,12 @@ config_devel:
     - core.entity_view_display.node.oe_publication.default
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_publication_date
+    - field.field.node.oe_publication.oe_publication_contacts
     - field.field.node.oe_publication.oe_publication_type
     - field.field.node.oe_publication.oe_subject
     - field.field.node.oe_publication.oe_summary
     - field.field.node.oe_publication.oe_teaser
+    - field.storage.node.oe_publication_contacts
     - field.storage.node.oe_publication_type
     - node.type.oe_publication
   optional:

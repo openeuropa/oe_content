@@ -17,10 +17,12 @@ default:
         - Drupal\Tests\oe_media\Behat\FeatureContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Node\OrganisationContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
+              publication contact type: "#edit-oe-publication-contacts-actions-bundle"
             pages:
               Page creation: 'node/add/oe_page'
               News creation: 'node/add/oe_news'
