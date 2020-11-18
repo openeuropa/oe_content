@@ -24,29 +24,22 @@ Feature: Publication content creation
     | name         | file           | alt          |
     | Sample image | example_1.jpeg | example text |
 
-    And the following General Contact entity:
-    | Name               | A general contact                                                                         |
-    | Address            | country_code: BG - locality: Varna - address_line1: General contact 1 - postal_code: 9009 |
-    | Email              | general@example.com                                                                       |
-    | Phone number       | +359525566778                                                                             |
-    | Social media links | uri: http://instagram.com - title: Instagram - link_type: instagram                       |
-
     And I visit "the Publication creation page"
     And I fill in "Page title" with "My Publication item"
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
     And I set "Publication date" to the date "21-02-2019"
-    And I fill in "oe_documents[0][target_id]" with "My Document 1"
+    And I fill in "Use existing media" with "My Document 1" in the "Documents" region
     And I fill in "Resource type" with "Acknowledgement receipt"
-    And I fill in "Use existing media" with "Sample image"
+    And I fill in "Use existing media" with "Sample image" in the "Publication thumbnail" region
     And I fill in "Responsible department" with "European Patent Office"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Redirect link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Alternative title" with "Shorter title"
 
-    And I set "Publication date" to the date "04-11-2019"
+    And I set "Last update date" to the date "04-11-2019"
     And I fill in "Body" with "Body text"
     And I fill in "Identifier code" with "123456789"
     And I fill in "Related department" with "Other agency"
@@ -119,9 +112,6 @@ Feature: Publication content creation
     | name          | file       |
     | My Document 1 | sample.pdf |
 
-    And the following images:
-    | name         | file           | alt          |
-    | Sample image | example_1.jpeg | example text |
 
     When I visit "the Publication creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
@@ -134,8 +124,7 @@ Feature: Publication content creation
     And I fill in "Subject" with "financing"
     And I fill in "Responsible department" with "European Patent Office"
     And I fill in "Resource type" with "Acknowledgement receipt"
-    And I fill in "Use existing media" with "Sample image"
-    And I fill in "oe_documents[0][target_id]" with "My Document 1"
+    And I fill in "Use existing media" with "My Document 1" in the "Documents" region
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."

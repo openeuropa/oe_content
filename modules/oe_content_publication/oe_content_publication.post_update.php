@@ -74,7 +74,7 @@ function oe_content_publication_post_update_00003() {
 }
 
 /**
- * Update field labels.
+ * Update field settings.
  */
 function oe_content_publication_post_update_00004(): void {
   $new_field_labels = [
