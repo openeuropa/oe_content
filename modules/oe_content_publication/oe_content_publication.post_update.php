@@ -66,14 +66,6 @@ function oe_content_publication_post_update_00003() {
     $reference_field['_core']['default_config_hash'] = Crypt::hashBase64(serialize($reference_field));
     $field_storage_config->create($reference_field)->save();
   }
-
-  // Create the field config for the reference field.
-  $field_config = \Drupal::service('entity_type.manager')->getStorage('field_config');
-  if (!$field_config->load('node.oe_publication.oe_publication_contacts')) {
-    $reference_field = $storage->read('field.field.node.oe_publication.oe_publication_contacts');
-    $reference_field['_core']['default_config_hash'] = Crypt::hashBase64(serialize($reference_field));
-    $field_config->create($reference_field)->save();
-  }
 }
 
 /**

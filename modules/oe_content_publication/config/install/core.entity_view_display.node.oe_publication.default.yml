@@ -87,15 +87,6 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-  oe_publication_contact:
-    weight: 7
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
-    region: content
   oe_publication_contacts:
     type: entity_reference_revisions_entity_view
     weight: 7
