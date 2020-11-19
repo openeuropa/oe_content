@@ -48,6 +48,13 @@ function oe_content_publication_post_update_00003() {
     'inline_entity_form',
     'link',
     'path',
+    'oe_content',
+    'oe_content_departments_field',
+    'oe_content_documents_field',
+    'oe_content_entity_contact',
+    'oe_content_organisation_reference',
+    'oe_content_reference_code_field',
+    'oe_media_avportal',
   ]);
 
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00003_add_contact_reference');
