@@ -34,7 +34,7 @@ Feature: Publication content creation
     And I set "Last update date" to the date "04-11-2019"
     And I fill in "Body" with "Body text"
     And I fill in "Identifier code" with "123456789"
-    And I fill in "Related department" with "Other agency"
+    And I fill in "Related department" with "European Labour Authority"
     And I fill in "Country" with "Hungary"
 
     # Publication contact field group.
@@ -66,7 +66,7 @@ Feature: Publication content creation
     And I should see "Contact"
     And I should see "Body text"
     And I should see "123456789"
-    And I should see "Other agency"
+    And I should see "European Labour Authority"
     And I should see "Hungary"
 
     And I should see the text "Name of the publication contact"
