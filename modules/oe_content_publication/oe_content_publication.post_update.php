@@ -41,7 +41,14 @@ function oe_content_publication_post_update_00003() {
   if (!\Drupal::service('module_handler')->moduleExists('oe_content_organisation_reference')) {
     $module_installer->install(['oe_content_organisation_reference']);
   }
-  $module_installer->install(['path', 'inline_entity_form']);
+  $module_installer->install([
+    'composite_reference',
+    'datetime',
+    'entity_reference_revisions',
+    'inline_entity_form',
+    'link',
+    'path',
+  ]);
 
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00003_add_contact_reference');
 

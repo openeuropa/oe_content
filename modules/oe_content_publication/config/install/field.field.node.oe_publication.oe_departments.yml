@@ -23,10 +23,12 @@ settings:
     sort:
       field: _none
     auto_create: false
-    concept_schemes: {  }
+    concept_schemes:
+      - 'http://publications.europa.eu/resource/authority/corporate-body'
     field:
       field_name: oe_departments
       entity_type: node
       bundle: oe_publication
-      concept_schemes: {  }
+      concept_schemes:
+        - 'http://publications.europa.eu/resource/authority/corporate-body'
 field_type: skos_concept_entity_reference

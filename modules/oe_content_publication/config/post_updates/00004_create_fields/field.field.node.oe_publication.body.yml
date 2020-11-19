@@ -19,6 +19,6 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  display_summary: 0
+  display_summary: false
   required_summary: false
-field_type: text_long
+field_type: text_with_summary

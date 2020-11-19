@@ -5,41 +5,42 @@ package: OpenEuropa
 type: module
 core: 8.x
 dependencies:
-  - link:link
   - composite_reference:composite_reference
-  - entity_reference_revisions:entity_reference_revisions
   - datetime:datetime
+  - drupal:path
+  - entity_reference_revisions:entity_reference_revisions
+  - inline_entity_form:inline_entity_form
+  - link:link
   - oe_content:oe_content
+  - oe_content:oe_content_departments_field
+  - oe_content:oe_content_documents_field
   - oe_content:oe_content_entity_contact
   - oe_content:oe_content_organisation_reference
-  - oe_content:oe_content_documents_field
-  - inline_entity_form:inline_entity_form
   - oe_content:oe_content_reference_code_field
-  - oe_content:oe_content_departments_field
-  - drupal:path
+  - oe_media_avportal:oe_media_avportal
 
 config_devel:
   install:
     - core.entity_form_display.node.oe_publication.default
     - core.entity_view_display.node.oe_publication.default
+    - field.field.node.oe_publication.body
     - field.field.node.oe_publication.oe_author
-    - field.field.node.oe_publication.oe_publication_date
+    - field.field.node.oe_publication.oe_departments
     - field.field.node.oe_publication.oe_publication_contacts
+    - field.field.node.oe_publication.oe_publication_country
+    - field.field.node.oe_publication.oe_publication_date
+    - field.field.node.oe_publication.oe_publication_last_updated
+    - field.field.node.oe_publication.oe_publication_thumbnail
     - field.field.node.oe_publication.oe_publication_type
+    - field.field.node.oe_publication.oe_reference_code
     - field.field.node.oe_publication.oe_subject
     - field.field.node.oe_publication.oe_summary
     - field.field.node.oe_publication.oe_teaser
     - field.storage.node.oe_publication_contacts
-    - field.storage.node.oe_publication_type
-    - field.field.node.oe_publication.body
-    - field.storage.node.oe_publication_last_updated
-    - field.field.node.oe_publication.oe_publication_last_updated
-    - field.storage.node.oe_publication_thumbnail
-    - field.field.node.oe_publication.oe_publication_thumbnail
-    - field.field.node.oe_publication.oe_reference_code
-    - field.field.node.oe_publication.oe_departments
     - field.storage.node.oe_publication_country
-    - field.field.node.oe_publication.oe_publication_country
+    - field.storage.node.oe_publication_last_updated
+    - field.storage.node.oe_publication_thumbnail
+    - field.storage.node.oe_publication_type
     - node.type.oe_publication
   optional:
     - language.content_settings.node.oe_publication
