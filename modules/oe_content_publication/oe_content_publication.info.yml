@@ -6,7 +6,6 @@ type: module
 core: 8.x
 dependencies:
   - composite_reference:composite_reference
-  - datetime:datetime
   - drupal:path
   - entity_reference_revisions:entity_reference_revisions
   - inline_entity_form:inline_entity_form
