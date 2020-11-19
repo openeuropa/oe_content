@@ -16,7 +16,7 @@ Feature: Publication content creation
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
-    And I set "Publication date" to the date "21-02-2019"
+    And I fill in "Publication date" with the date "2019-02-21"
     And I fill in "Use existing media" with "My Document 1"
     And I fill in "Type" with "Acknowledgement receipt"
     And I fill in "Responsible department" with "European Patent Office"
