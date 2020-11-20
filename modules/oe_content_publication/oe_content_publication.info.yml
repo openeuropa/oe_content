@@ -8,6 +8,7 @@ dependencies:
   - composite_reference:composite_reference
   - drupal:path
   - entity_reference_revisions:entity_reference_revisions
+  - field_group:field_group
   - inline_entity_form:inline_entity_form
   - link:link
   - oe_content:oe_content

@@ -74,6 +74,7 @@ function oe_content_publication_post_update_00005(): void {
   $new_field_labels = [
     'node.oe_publication.oe_publication_type' => 'Resource type',
     'node.oe_publication.oe_documents' => 'Files',
+    'node.oe_publication.title' => 'Title',
   ];
   foreach ($new_field_labels as $id => $new_label) {
     $field_config = FieldConfig::load($id);
