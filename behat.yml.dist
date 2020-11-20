@@ -24,6 +24,7 @@ default:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
               publication contact type: "#edit-oe-publication-contacts-actions-bundle"
+              Reference code second field: "input[name='oe_reference_codes[1][value]']"
             pages:
               Page creation: 'node/add/oe_page'
               News creation: 'node/add/oe_news'
@@ -86,6 +87,7 @@ default:
         News contact social media links: ".field--name-oe-social-media"
         Publication contact: ".field--name-oe-publication-contacts"
         Publication thumbnail: "#edit-oe-publication-thumbnail"
+        Reference codes: "#edit-oe-reference-codes-wrapper"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'

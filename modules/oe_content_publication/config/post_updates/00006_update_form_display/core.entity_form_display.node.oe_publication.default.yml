@@ -12,7 +12,7 @@ dependencies:
     - field.field.node.oe_publication.oe_publication_last_updated
     - field.field.node.oe_publication.oe_publication_thumbnail
     - field.field.node.oe_publication.oe_publication_type
-    - field.field.node.oe_publication.oe_reference_code
+    - field.field.node.oe_publication.oe_reference_codes
     - field.field.node.oe_publication.oe_subject
     - field.field.node.oe_publication.oe_summary
     - field.field.node.oe_publication.oe_teaser
@@ -204,7 +204,7 @@ content:
       placeholder: ''
       match_limit: 10
     third_party_settings: {  }
-  oe_reference_code:
+  oe_reference_codes:
     weight: 2
     settings:
       size: 60

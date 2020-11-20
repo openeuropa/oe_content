@@ -30,7 +30,10 @@ Feature: Publication content creation
     And I fill in "Alternative title" with "Shorter title"
     And I set "Last update date" to the date "04-11-2019"
     And I fill in "Body" with "Body text"
-    And I fill in "Identifier code" with "123456789"
+    And I fill in "Identifier code" with "123456789" in the "Reference codes" region
+    And I press "Add another item" in the "Reference codes" region
+    And I wait for AJAX to finish
+    And the "Reference code second field" is visible
     And I fill in "Related department" with "European Labour Authority"
     And I fill in "Country" with "Hungary"
 
