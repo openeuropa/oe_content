@@ -43,6 +43,7 @@ function oe_content_publication_post_update_00003() {
   $module_installer->install([
     'composite_reference',
     'entity_reference_revisions',
+    'field_group',
     'inline_entity_form',
     'link',
     'path',
