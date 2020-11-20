@@ -15,7 +15,7 @@ id: node.oe_call_proposals.oe_call_proposals_contact
 field_name: oe_call_proposals_contact
 entity_type: node
 bundle: oe_call_proposals
-label: Contacts
+label: Contact
 description: ''
 required: false
 translatable: false

@@ -36,15 +36,18 @@ class CallForProposalsContentContext extends RawDrupalContext {
     // Map human readable field names to their Behat parsable machine names.
     $mapping = [
       'Title' => 'title',
-      'Body' => 'body',
+      'Body text' => 'body',
+      'Introduction' => 'oe_summary',
       'Publication date' => 'oe_publication_date',
       'Reference' => 'oe_reference_code',
       'Opening date' => 'oe_call_proposals_opening_date',
       'Deadline model' => 'oe_call_proposals_model',
       'Deadline date' => 'oe_call_proposals_deadline',
+      'Awarded grants' => 'oe_call_proposals_grants',
+      'Publication in the official journal' => 'oe_call_proposals_journal',
       'Alternative title' => 'oe_content_short_title',
       'Documents' => 'oe_documents',
-      'Contacts' => 'oe_call_proposals_contact',
+      'Contact' => 'oe_call_proposals_contact',
       'Responsible department' => 'oe_departments',
       'Published' => 'status',
       'Funding programme' => 'oe_call_proposals_funding',
@@ -74,7 +77,7 @@ class CallForProposalsContentContext extends RawDrupalContext {
           $scope->addFields([$mapping[$key] => $date])->removeField($key);
           break;
 
-        case 'Contacts':
+        case 'Contact':
           $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
           break;
