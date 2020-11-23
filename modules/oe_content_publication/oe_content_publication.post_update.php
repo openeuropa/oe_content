@@ -10,6 +10,8 @@ declare(strict_types = 1);
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\Core\Field\Entity\BaseFieldOverride;
 
 /**
  * Update body and summary labels.
@@ -36,11 +38,13 @@ function oe_content_publication_post_update_00002() {
  * Install modules and clear cached plugin definitions.
  */
 function oe_content_publication_post_update_00003() {
+  /** @var \Drupal\Core\Extension\ModuleHandlerInterface $module_handler */
+  $module_handler = \Drupal::service('module_handler');
+
+  /** @var \Drupal\Core\Extension\ModuleInstallerInterface $module_installer */
   $module_installer = \Drupal::service('module_installer');
-  if (!\Drupal::service('module_handler')->moduleExists('oe_content_organisation_reference')) {
-    $module_installer->install(['oe_content_organisation_reference']);
-  }
-  $module_installer->install([
+
+  $modules = [
     'composite_reference',
     'entity_reference_revisions',
     'field_group',
@@ -54,7 +58,13 @@ function oe_content_publication_post_update_00003() {
     'oe_content_organisation_reference',
     'oe_content_reference_code_field',
     'oe_media_avportal',
-  ]);
+  ];
+
+  foreach ($modules as $module) {
+    if (!$module_handler->moduleExists($module)) {
+      $module_installer->install([$module]);
+    }
+  }
 
   // Clear the cached plugin definitions of the field types.
   \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
@@ -75,7 +85,6 @@ function oe_content_publication_post_update_00005(): void {
   $new_field_labels = [
     'node.oe_publication.oe_publication_type' => 'Resource type',
     'node.oe_publication.oe_documents' => 'Files',
-    'node.oe_publication.title' => 'Title',
   ];
   foreach ($new_field_labels as $id => $new_label) {
     $field_config = FieldConfig::load($id);
@@ -92,15 +101,21 @@ function oe_content_publication_post_update_00005(): void {
     $field_config->setTranslatable($value);
     $field_config->save();
   }
+
+  // Alter the Title field's label.
+  $title_config = BaseFieldOverride::load('node.oe_publication.title');
+  $title_config->setLabel('Title');
+  $title_config->save();
+
 }
 
 /**
- * Update Publication node form display.
+ * Update Publication node form displays.
  */
 function oe_content_publication_post_update_00006(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00006_update_form_display');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00006_update_display');
 
-  // Form display configurations to update.
+  // Form display configuration to update.
   $form_display_values = $storage->read('core.entity_form_display.node.oe_publication.default');
   $form_display = EntityFormDisplay::load($form_display_values['id']);
   if ($form_display) {
@@ -108,5 +123,15 @@ function oe_content_publication_post_update_00006(): void {
       ->getStorage($form_display->getEntityTypeId())
       ->updateFromStorageRecord($form_display, $form_display_values);
     $updated_form_display->save();
+  }
+
+  // View display configuration to update.
+  $view_display_values = $storage->read('core.entity_view_display.node.oe_publication.default');
+  $view_display = EntityViewDisplay::load($view_display_values['id']);
+  if ($view_display) {
+    $updated_view_display = \Drupal::entityTypeManager()
+      ->getStorage($view_display->getEntityTypeId())
+      ->updateFromStorageRecord($view_display, $view_display_values);
+    $updated_view_display->save();
   }
 }
