@@ -13,7 +13,7 @@ bundle: oe_publication
 label: Teaser
 description: 'A short overview of the information on this page. The teaser will be displayed in list views and search engine results, not on the page itself. Limited to 150 characters for SEO purposes.'
 required: true
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }

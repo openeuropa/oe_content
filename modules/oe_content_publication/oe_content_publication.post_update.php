@@ -92,21 +92,10 @@ function oe_content_publication_post_update_00005(): void {
     $field_config->save();
   }
 
-  $new_translatable_settings = [
-    'node.oe_publication.oe_summary' => FALSE,
-    'node.oe_publication.oe_teaser' => FALSE,
-  ];
-  foreach ($new_translatable_settings as $id => $value) {
-    $field_config = FieldConfig::load($id);
-    $field_config->setTranslatable($value);
-    $field_config->save();
-  }
-
   // Alter the Title field's label.
   $title_config = BaseFieldOverride::load('node.oe_publication.title');
   $title_config->setLabel('Title');
   $title_config->save();
-
 }
 
 /**
