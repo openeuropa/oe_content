@@ -4,8 +4,6 @@ dependencies:
   config:
     - field.storage.node.oe_reference_codes
     - node.type.oe_publication
-_core:
-  default_config_hash: EHKhh_oFFfRm1x5sSIDLBzoTN7WjW4mvm7ELyt4ciYA
 id: node.oe_publication.oe_reference_codes
 field_name: oe_reference_codes
 entity_type: node

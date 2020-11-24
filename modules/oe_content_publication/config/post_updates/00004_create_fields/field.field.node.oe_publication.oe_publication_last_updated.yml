@@ -6,8 +6,6 @@ dependencies:
     - node.type.oe_publication
   module:
     - datetime
-_core:
-  default_config_hash: h5geJtyjim_wVIkrf0YZWyYetj1S5I6EzSn-OVBRtW0
 id: node.oe_publication.oe_publication_last_updated
 field_name: oe_publication_last_updated
 entity_type: node

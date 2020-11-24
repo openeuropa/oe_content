@@ -12,6 +12,7 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Field\Entity\BaseFieldOverride;
+use Drupal\Component\Utility\Crypt;
 
 /**
  * Update body and summary labels.
@@ -75,7 +76,41 @@ function oe_content_publication_post_update_00003() {
  */
 function oe_content_publication_post_update_00004(): void {
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00004_create_fields');
-  \Drupal::service('config.installer')->installOptionalConfig($storage);
+
+  $configs = [
+    'field_storage_config' => [
+      'field.storage.node.oe_publication_contacts' => 'node.oe_publication_contacts',
+      'field.storage.node.oe_publication_country' => 'node.oe_publication_country',
+      'field.storage.node.oe_publication_last_updated' => 'node.oe_publication_last_updated',
+      'field.storage.node.oe_publication_thumbnail' => 'node.oe_publication_thumbnail',
+      'field.storage.node.oe_reference_codes' => 'node.oe_reference_codes',
+    ],
+
+    'field_config' => [
+      'field.field.node.oe_publication.body' => 'node.oe_publication.body',
+      'field.field.node.oe_publication.oe_departments' => 'node.oe_publication.oe_departments',
+      'field.field.node.oe_publication.oe_publication_contacts' => 'node.oe_publication.oe_publication_contacts',
+      'field.field.node.oe_publication.oe_publication_country' => 'node.oe_publication.oe_publication_country',
+      'field.field.node.oe_publication.oe_publication_last_updated' => 'node.oe_publication.oe_publication_last_updated',
+      'field.field.node.oe_publication.oe_publication_thumbnail' => 'node.oe_publication.oe_publication_thumbnail',
+      'field.field.node.oe_publication.oe_reference_codes' => 'node.oe_publication.oe_reference_codes',
+    ],
+  ];
+
+  foreach ($configs as $key => $ids) {
+    $config_storage = \Drupal::entityTypeManager()->getStorage($key);
+    foreach ($ids as $id => $reference) {
+      if (!$config_storage->load($reference)) {
+        $config_data = $storage->read($id);
+        // We are creating the config which means that we are also shipping
+        // it in the install folder so we want to make sure it gets the hash
+        // so Drupal treats it as a shipped config. This means that it gets
+        // exposed to be translated via the locale system as well.
+        $config_data['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config_data));
+        $config_storage->create($config_data)->save();
+      }
+    }
+  }
 }
 
 /**

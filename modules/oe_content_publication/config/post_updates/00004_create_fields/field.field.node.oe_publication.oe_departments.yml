@@ -6,8 +6,6 @@ dependencies:
     - node.type.oe_publication
   module:
     - rdf_skos
-_core:
-  default_config_hash: l0I7G6TgMBCSa_rCRA5P2qly9lFT7xc2KoBk364ERhs
 id: node.oe_publication.oe_departments
 field_name: oe_departments
 entity_type: node

@@ -12,8 +12,6 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
-_core:
-  default_config_hash: mw10fc6DKrNd5zMhtKe1b0yo-_cUPhHMTbSZJtjDwbY
 id: node.oe_publication.oe_publication_contacts
 field_name: oe_publication_contacts
 entity_type: node
