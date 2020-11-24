@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - rdf_skos
-id: node.oe_publication_country
-field_name: oe_publication_country
+id: node.oe_publication_countries
+field_name: oe_publication_countries
 entity_type: node
 type: skos_concept_entity_reference
 settings:

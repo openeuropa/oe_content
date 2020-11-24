@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_publication_country
+    - field.storage.node.oe_publication_countries
     - node.type.oe_publication
   module:
     - rdf_skos
-id: node.oe_publication.oe_publication_country
-field_name: oe_publication_country
+id: node.oe_publication.oe_publication_countries
+field_name: oe_publication_countries
 entity_type: node
 bundle: oe_publication
 label: Country
@@ -27,7 +27,7 @@ settings:
       - 'http://publications.europa.eu/resource/authority/country'
     concept_subset: null
     field:
-      field_name: oe_publication_country
+      field_name: oe_publication_countries
       entity_type: node
       bundle: oe_publication
       concept_schemes:

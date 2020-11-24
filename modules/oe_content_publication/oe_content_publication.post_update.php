@@ -80,7 +80,7 @@ function oe_content_publication_post_update_00004(): void {
   $configs = [
     'field_storage_config' => [
       'field.storage.node.oe_publication_contacts' => 'node.oe_publication_contacts',
-      'field.storage.node.oe_publication_country' => 'node.oe_publication_country',
+      'field.storage.node.oe_publication_countries' => 'node.oe_publication_countries',
       'field.storage.node.oe_publication_last_updated' => 'node.oe_publication_last_updated',
       'field.storage.node.oe_publication_thumbnail' => 'node.oe_publication_thumbnail',
       'field.storage.node.oe_reference_codes' => 'node.oe_reference_codes',
@@ -90,7 +90,7 @@ function oe_content_publication_post_update_00004(): void {
       'field.field.node.oe_publication.body' => 'node.oe_publication.body',
       'field.field.node.oe_publication.oe_departments' => 'node.oe_publication.oe_departments',
       'field.field.node.oe_publication.oe_publication_contacts' => 'node.oe_publication.oe_publication_contacts',
-      'field.field.node.oe_publication.oe_publication_country' => 'node.oe_publication.oe_publication_country',
+      'field.field.node.oe_publication.oe_publication_countries' => 'node.oe_publication.oe_publication_countries',
       'field.field.node.oe_publication.oe_publication_last_updated' => 'node.oe_publication.oe_publication_last_updated',
       'field.field.node.oe_publication.oe_publication_thumbnail' => 'node.oe_publication.oe_publication_thumbnail',
       'field.field.node.oe_publication.oe_reference_codes' => 'node.oe_publication.oe_reference_codes',
@@ -141,6 +141,7 @@ function oe_content_publication_post_update_00006(): void {
 
   // Form display configuration to update.
   $form_display_values = $storage->read('core.entity_form_display.node.oe_publication.default');
+  $form_display_values['_core']['default_config_hash'] = Crypt::hashBase64(serialize($form_display_values));
   $form_display = EntityFormDisplay::load($form_display_values['id']);
   if ($form_display) {
     $updated_form_display = \Drupal::entityTypeManager()
@@ -151,6 +152,7 @@ function oe_content_publication_post_update_00006(): void {
 
   // View display configuration to update.
   $view_display_values = $storage->read('core.entity_view_display.node.oe_publication.default');
+  $view_display_values['_core']['default_config_hash'] = Crypt::hashBase64(serialize($view_display_values));
   $view_display = EntityViewDisplay::load($view_display_values['id']);
   if ($view_display) {
     $updated_view_display = \Drupal::entityTypeManager()

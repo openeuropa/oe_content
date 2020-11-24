@@ -7,7 +7,7 @@ dependencies:
     - field.field.node.oe_publication.oe_departments
     - field.field.node.oe_publication.oe_documents
     - field.field.node.oe_publication.oe_publication_contacts
-    - field.field.node.oe_publication.oe_publication_country
+    - field.field.node.oe_publication.oe_publication_countries
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_last_updated
     - field.field.node.oe_publication.oe_publication_thumbnail
@@ -96,7 +96,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-  oe_publication_country:
+  oe_publication_countries:
     weight: 6
     label: above
     settings:
