@@ -42,6 +42,5 @@ config_devel:
     - field.storage.node.oe_call_proposals_model
     - field.storage.node.oe_call_proposals_opening_date
     - node.type.oe_call_proposals
-    - oe_content_entity_contact.oe_contact_type.oe_general
   optional:
     - language.content_settings.node.oe_call_proposals
