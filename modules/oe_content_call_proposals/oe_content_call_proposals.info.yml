@@ -18,29 +18,29 @@ dependencies:
 
 config_devel:
   install:
-    - field.field.node.oe_call_proposals.body
-    - field.field.node.oe_call_proposals.oe_publication_date
-    - field.field.node.oe_call_proposals.oe_reference_code
-    - field.storage.node.oe_call_proposals_journal
-    - field.field.node.oe_call_proposals.oe_call_proposals_journal
-    - field.storage.node.oe_call_proposals_opening_date
-    - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
-    - field.storage.node.oe_call_proposals_grants
-    - field.field.node.oe_call_proposals.oe_call_proposals_grants
-    - field.storage.node.oe_call_proposals_model
-    - field.field.node.oe_call_proposals.oe_call_proposals_model
-    - field.storage.node.oe_call_proposals_deadline
-    - field.field.node.oe_call_proposals.oe_call_proposals_deadline
-    - field.storage.node.oe_call_proposals_funding
-    - field.field.node.oe_call_proposals.oe_call_proposals_funding
-    - field.storage.node.oe_call_proposals_contact
-    - field.field.node.oe_call_proposals.oe_call_proposals_contact
+    - core.base_field_override.node.oe_call_proposals.title
     - core.entity_form_display.node.oe_call_proposals.default
     - core.entity_view_display.node.oe_call_proposals.default
-    - oe_content_entity_contact.oe_contact_type.oe_general
+    - field.field.node.oe_call_proposals.body
+    - field.field.node.oe_call_proposals.oe_call_proposals_contact
+    - field.field.node.oe_call_proposals.oe_call_proposals_deadline
+    - field.field.node.oe_call_proposals.oe_call_proposals_funding
+    - field.field.node.oe_call_proposals.oe_call_proposals_grants
+    - field.field.node.oe_call_proposals.oe_call_proposals_journal
+    - field.field.node.oe_call_proposals.oe_call_proposals_model
+    - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
     - field.field.node.oe_call_proposals.oe_departments
     - field.field.node.oe_call_proposals.oe_documents
+    - field.field.node.oe_call_proposals.oe_publication_date
+    - field.field.node.oe_call_proposals.oe_reference_code
     - field.field.node.oe_call_proposals.oe_summary
+    - field.storage.node.oe_call_proposals_contact
+    - field.storage.node.oe_call_proposals_deadline
+    - field.storage.node.oe_call_proposals_funding
+    - field.storage.node.oe_call_proposals_grants
+    - field.storage.node.oe_call_proposals_journal
+    - field.storage.node.oe_call_proposals_model
+    - field.storage.node.oe_call_proposals_opening_date
     - node.type.oe_call_proposals
   optional:
     - language.content_settings.node.oe_call_proposals
