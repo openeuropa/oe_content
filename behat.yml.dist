@@ -19,10 +19,12 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\OrganisationContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
               publication contact type: "#edit-oe-publication-contacts-actions-bundle"
+              Reference code second field: "input[name='oe_reference_codes[1][value]']"
             pages:
               Page creation: 'node/add/oe_page'
               News creation: 'node/add/oe_news'
@@ -83,6 +85,9 @@ default:
         Organisation contact: "#edit-oe-organisation-contact-wrapper"
         News contact: "#edit-oe-news-contacts-wrapper"
         News contact social media links: ".field--name-oe-social-media"
+        Publication contact: ".field--name-oe-publication-contacts"
+        Publication thumbnail: "#edit-oe-publication-thumbnail"
+        Reference codes: "#edit-oe-reference-codes-wrapper"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
