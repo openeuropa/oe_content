@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\Element;
 
 /**
@@ -43,9 +44,23 @@ function oe_content_entity_default_preprocess(array &$variables, string $hook): 
  *   List of template suggestions.
  */
 function oe_content_entity_default_theme_suggestion(array &$variables, string $hook): array {
+  // We assume that the entity name and the theme hook are the same.
+  $entity_key = '#' . $hook;
+  if (isset($variables['elements'][$entity_key])) {
+    $entity = $variables['elements'][$entity_key];
+  }
   $suggestions = [];
   $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
   $suggestions[] = $hook . '__' . $sanitized_view_mode;
+  if (!$entity instanceof EntityInterface) {
+    return $suggestions;
+  }
+  if ($entity->bundle() !== $entity->getEntityTypeId()) {
+    $suggestions[] = $hook . '__' . $entity->bundle();
+    $suggestions[] = $hook . '__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  }
 
+  $suggestions[] = $hook . '__' . $entity->id();
+  $suggestions[] = $hook . '__' . $entity->id() . '__' . $sanitized_view_mode;
   return $suggestions;
 }
