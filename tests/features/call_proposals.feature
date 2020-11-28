@@ -30,6 +30,8 @@ Feature: Call for proposals content creation and editing.
     And I select the radio button "Two-stage"
     And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
+    And I fill in "Teaser" with "Teaser text"
+    And I fill in "Subject" with "financing"
 
     When I press "Save"
 
@@ -38,6 +40,8 @@ Feature: Call for proposals content creation and editing.
     And I should see "10/24/2020"
     And I should see "Two-stage"
     And I should see "12/31/2020 - 23:45"
+    And I should see "Teaser text"
+    And I should see the link "financing"
 
     When I click "Edit"
     And I fill in "Body text" with "My Call for proposals 1 body"
@@ -122,6 +126,8 @@ Feature: Call for proposals content creation and editing.
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
     And I fill in "Link text" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove" in the "Publication in the official journal" region
+    And I fill in "Teaser" with "Teaser text"
+    And I fill in "Subject" with "financing"
 
     When I press "Save"
 
@@ -152,6 +158,8 @@ Feature: Call for proposals content creation and editing.
     And I select "0" from "oe_call_proposals_deadline[1][value][minute]"
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
     And I fill in "Link text" with "Official Journal publication 1" in the "Publication in the official journal" region
+    And I fill in "Teaser" with "Teaser text"
+    And I fill in "Subject" with "financing"
 
     And I press "Save"
 
