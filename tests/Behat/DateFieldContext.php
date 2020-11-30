@@ -119,13 +119,74 @@ class DateFieldContext extends RawDrupalContext {
   }
 
   /**
-   * Set the date and time value of a date list widget.
+   * Check values for list date range fields.
    *
-   * When I set "Field" to the date "22-02-2019"
-   * When I set "Field" to the date "22-02-2019 14:30" using format "d-m-Y H:i"
+   * Then datetime "15 1 2020 12 30" is selected for "Start date" of "Datetime"
+   *
+   * @param string $value
+   *   The value of the field.
+   * @param string $field_item
+   *   The date field item inside the field component.
+   * @param string $field_group
+   *   The field component's label.
+   *
+   * @Then datetime :value is selected for :field_item of :field_group
+   * @Then date :value is selected for :field_item of :field_group
+   */
+  public function isSelectedForOf($value, $field_item, $field_group): void {
+    $page = $this->getSession()->getPage();
+    $values = explode(' ', $value);
+    $group = $page->find('named', ['fieldset', $field_group]);
+    $elements = $group->findAll('css', '.container-inline');
+
+    if (empty($elements)) {
+      throw new \Exception('Datetime fields not found.');
+    }
+
+    $fields = $elements[0];
+
+    if ($field_item === 'End date') {
+      $fields = $elements[1];
+    }
+
+    $date_components = [
+      'Day',
+      'Month',
+      'Year',
+    ];
+
+    if (count($values) > 3) {
+      $date_components += [
+        'Hour',
+        'Minute',
+      ];
+    }
+
+    foreach ($date_components as $index => $date_component) {
+      $field = $fields->findField($date_component);
+      $optionField = $field->find('named', [
+        'option',
+        $values[$index],
+      ]);
+
+      if ($optionField === NULL) {
+        throw new \Exception(sprintf('%s option not found.', $date_component));
+      }
+
+      if (!$optionField->isSelected()) {
+        throw new \Exception(sprintf('%s not selected for %s option.', $values[$index], $date_component));
+      }
+    }
+  }
+
+  /**
+   * Finds a datetime field.
    *
    * @param string $field
-   *   The label of the field.
+   *   The field name.
+   *   When I set "Field" to the date "22-02-2019".
+   *   When I set "Field" to the date "22-02-2019 14:30" using
+   *   format "d-m-Y H:i".
    * @param string $value
    *   The value of the field.
    * @param string $format
