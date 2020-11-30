@@ -33,7 +33,9 @@ config_devel:
     - field.field.node.oe_call_proposals.oe_documents
     - field.field.node.oe_call_proposals.oe_publication_date
     - field.field.node.oe_call_proposals.oe_reference_code
+    - field.field.node.oe_call_proposals.oe_subject
     - field.field.node.oe_call_proposals.oe_summary
+    - field.field.node.oe_call_proposals.oe_teaser
     - field.storage.node.oe_call_proposals_contact
     - field.storage.node.oe_call_proposals_deadline
     - field.storage.node.oe_call_proposals_funding
