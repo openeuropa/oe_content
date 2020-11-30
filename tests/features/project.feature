@@ -32,6 +32,8 @@ Feature: Project content creation
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
 
     # Fill in Stakeholder fields by inline entity form for Coordinators field.
+    And I press "Add new coordinator"
+    And I wait for AJAX to finish
     And I fill in "Name" with "Coordinators stakeholder" in the "Project coordinators" region
     And I fill in "Acronym" with "Acronym of the Coordinator" in the "Project coordinators" region
     And I fill in "Use existing media" with "Image 1" in the "Project coordinators" region
@@ -44,6 +46,8 @@ Feature: Project content creation
     And I fill in "Contact page URL" with "https://ec.europa.eu/contact" in the "Project coordinators" region
 
     # Fill in Stakeholder fields by inline entity form for Participants field.
+    And I press "Add new participant"
+    And I wait for AJAX to finish
     And I fill in "Name" with "Participants stakeholder" in the "Project participants" region
     And I fill in "Acronym" with "Acronym of the Participant" in the "Project participants" region
     And I fill in "Use existing media" with "Image 2" in the "Project participants" region

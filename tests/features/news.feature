@@ -32,7 +32,7 @@ Feature: News content creation
     And I fill in "Body text" with "Body text"
     And I fill in "Location" with "Budapest"
     And I fill in "Reference" with "Reference text"
-    And I fill in "Publication date" with the date "21/02/2019"
+    And I set "Publication date" to the date "21-02-2019"
     And I fill in "Subject" with "financing"
     And I fill in "Author" with "European Patent Office"
     # Reference the media photo to the news item.
