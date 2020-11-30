@@ -9,9 +9,6 @@ declare(strict_types = 1);
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
-use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\field\Entity\FieldConfig;
 
 /**
@@ -89,28 +86,4 @@ function oe_content_news_post_update_00005(): void {
   ];
   $form_display->set('content', $content);
   $form_display->save();
-}
-
-/**
- * Install the newly defined SKOS Concept defined fields.
- */
-function oe_content_news_post_update_00006(): TranslatableMarkup {
-  // Invalidate the container to try to ensure the new service definition gets
-  // picked up.
-  \Drupal::service('kernel')->invalidateContainer();
-  /** @var \Drupal\rdf_skos\SkosEntityDefinitionUpdateManager $update_manager */
-  $update_manager = \Drupal::service('rdf_skos.skos_entity_definition_update_manager');
-  $definitions = [];
-  $definitions['oe_content_news_resource_types_news'] = BaseFieldDefinition::create('string')
-    ->setLabel(t('Resource type contexts'))
-    ->setDescription(t('Potential contexts of the resource type.'))
-    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
-    ->setProvider('rdf_skos');
-
-  $installed = $update_manager->installFieldDefinitions('skos_concept', $definitions);
-  if (!$installed) {
-    return t('No SKOS field definitions had to be updated.');
-  }
-
-  return t('The following SKOS field definitions have been installed: @definitions.', ['@definitions' => implode(', ', $installed)]);
 }
