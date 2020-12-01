@@ -69,7 +69,7 @@ function oe_content_news_update_8001() {
  * defined, we need to check if they have not been already installed. If they
  * have, we bail out and don't fail the update path.
  */
-function oe_content_news_update_8102(): TranslatableMarkup {
+function oe_content_news_update_8101(): TranslatableMarkup {
   $manager = \Drupal::entityDefinitionUpdateManager();
   $change_list = $manager->getChangeList();
   $changed_definitions = $change_list['skos_concept']['field_storage_definitions'] ?? [];
