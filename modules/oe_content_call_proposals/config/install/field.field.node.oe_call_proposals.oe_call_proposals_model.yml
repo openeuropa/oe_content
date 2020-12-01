@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_call_proposals_model
+    - node.type.oe_call_proposals
+  module:
+    - options
+id: node.oe_call_proposals.oe_call_proposals_model
+field_name: oe_call_proposals_model
+entity_type: node
+bundle: oe_call_proposals
+label: 'Deadline model'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

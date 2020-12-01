@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_call_proposals_opening_date
+    - node.type.oe_call_proposals
+  module:
+    - datetime
+id: node.oe_call_proposals.oe_call_proposals_opening_date
+field_name: oe_call_proposals_opening_date
+entity_type: node
+bundle: oe_call_proposals
+label: 'Opening date'
+description: 'When does/did the call open for applications? E.g.: 20/02/2020'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

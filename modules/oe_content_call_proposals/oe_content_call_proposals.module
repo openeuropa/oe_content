@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for OpenEuropa Call For Proposals content module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter for the node form.
+ */
+function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateInterface $form_state) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+  if ($node->bundle() !== 'oe_call_proposals') {
+    return;
+  }
+
+  $form['oe_call_proposals_deadline']['#states'] = [
+    'invisible' => [
+      'input[name="oe_call_proposals_model"]' => [
+        'value' => CallForProposalsNodeWrapperInterface::MODEL_PERMANENT,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function oe_content_call_proposals_entity_type_alter(array &$entity_types) {
+  $entity_types['node']->addConstraint('CallProposalsDeadlineDate');
+}
+
+/**
+ * Returns the Model's allowed values.
+ *
+ * @return array
+ *   The model values.
+ */
+function _oe_content_call_proposals_model_allowed_values(): array {
+  return CallForProposalsNodeWrapper::getModelsList();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function oe_content_call_proposals_node_presave(EntityInterface $entity) {
+  if ($entity->bundle() !== 'oe_call_proposals') {
+    return;
+  }
+
+  $wrapper = CallForProposalsNodeWrapper::getInstance($entity);
+
+  if ($wrapper->isDeadlineModelPermanent()) {
+    $entity->set('oe_call_proposals_deadline', NULL);
+  }
+}
