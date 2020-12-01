@@ -128,7 +128,7 @@ content:
     weight: 6
     settings:
       form_mode: default
-      revision: false
+      revision: true
       override_labels: true
       label_singular: contact
       label_plural: contacts

@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   module:
-    - entity_reference_revisions
     - node
+    - oe_content_entity_contact
 id: oe_contact.oe_node_reference
 field_name: oe_node_reference
 entity_type: oe_contact
-type: entity_reference_revisions
+type: entity_reference
 settings:
   target_type: node
-module: entity_reference_revisions
+module: core
 locked: false
 cardinality: 1
 translatable: false
