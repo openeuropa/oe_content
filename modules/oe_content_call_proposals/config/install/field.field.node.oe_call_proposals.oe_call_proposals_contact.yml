@@ -2,30 +2,30 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_project_coordinators
-    - node.type.oe_project
-    - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
+    - field.storage.node.oe_call_proposals_contact
+    - node.type.oe_call_proposals
+    - oe_content_entity_contact.oe_contact_type.oe_general
   module:
     - composite_reference
     - entity_reference_revisions
 third_party_settings:
   composite_reference:
     composite: true
-id: node.oe_project.oe_project_coordinators
-field_name: oe_project_coordinators
+id: node.oe_call_proposals.oe_call_proposals_contact
+field_name: oe_call_proposals_contact
 entity_type: node
-bundle: oe_project
-label: Coordinators
+bundle: oe_call_proposals
+label: Contact
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:oe_organisation'
+  handler: 'default:oe_contact'
   handler_settings:
     target_bundles:
-      oe_stakeholder: oe_stakeholder
+      oe_general: oe_general
     sort:
       field: _none
     auto_create: false

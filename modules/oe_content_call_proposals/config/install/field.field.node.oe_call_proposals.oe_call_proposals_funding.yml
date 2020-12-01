@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_author
-    - node.type.oe_news
+    - field.storage.node.oe_call_proposals_funding
+    - node.type.oe_call_proposals
   module:
     - rdf_skos
-id: node.oe_news.oe_author
-field_name: oe_author
+id: node.oe_call_proposals.oe_call_proposals_funding
+field_name: oe_call_proposals_funding
 entity_type: node
-bundle: oe_news
-label: Author
+bundle: oe_call_proposals
+label: 'Funding programme'
 description: ''
 required: false
 translatable: false
@@ -24,11 +24,11 @@ settings:
       field: _none
     auto_create: false
     concept_schemes:
-      - 'http://publications.europa.eu/resource/authority/corporate-body'
+      - 'http://publications.europa.eu/resource/authority/eu-programme'
     field:
-      field_name: oe_author
+      field_name: oe_call_proposals_funding
       entity_type: node
-      bundle: oe_news
+      bundle: oe_call_proposals
       concept_schemes:
-        - 'http://publications.europa.eu/resource/authority/corporate-body'
+        - 'http://publications.europa.eu/resource/authority/eu-programme'
 field_type: skos_concept_entity_reference

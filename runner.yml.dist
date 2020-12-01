@@ -27,7 +27,7 @@ drupal:
     - "./vendor/bin/drush -y config-set system.performance css.preprocess 0"
     - "./vendor/bin/drush -y config-set system.performance js.preprocess 0"
     # Enable the modules.
-    - "./vendor/bin/drush en oe_multilingual oe_content oe_content_event oe_content_page oe_content_news oe_content_policy oe_content_publication oe_content_persistent oe_content_project oe_content_call_tenders oe_content_organisation oe_content_organisation_reference -y"
+    - "./vendor/bin/drush en oe_multilingual oe_content oe_content_event oe_content_page oe_content_news oe_content_policy oe_content_publication oe_content_persistent oe_content_project oe_content_call_tenders oe_content_organisation oe_content_organisation_reference oe_content_call_proposals -y"
     - "./vendor/bin/drush cr"
     - "./vendor/bin/drush oe-multilingual:import-local-translations"
   settings:

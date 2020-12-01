@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_call_proposals_deadline
+    - node.type.oe_call_proposals
+  module:
+    - datetime
+id: node.oe_call_proposals.oe_call_proposals_deadline
+field_name: oe_call_proposals_deadline
+entity_type: node
+bundle: oe_call_proposals
+label: 'Deadline date'
+description: "Enter the deadline for submission of applications.\r\nNote: the status of the calls change from open to closed when the last deadline has passed.\r\nDate and time follow the CET timezone."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
