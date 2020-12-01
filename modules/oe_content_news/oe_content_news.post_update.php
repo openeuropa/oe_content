@@ -67,3 +67,23 @@ function oe_content_news_post_update_00004(): void {
     $updated_form_display->save();
   }
 }
+
+/**
+ * Change publication date widget to select list.
+ */
+function oe_content_news_post_update_00005(): void {
+  $form_display = EntityFormDisplay::load('node.oe_news.default');
+  $content = $form_display->get('content') ?: [];
+  if (!isset($content['oe_publication_date'])) {
+    return;
+  }
+
+  $content['oe_publication_date']['type'] = 'datetime_datelist';
+  $content['oe_publication_date']['settings'] = [
+    'date_order' => 'DMY',
+    'time_type' => 'none',
+    'increment' => 15,
+  ];
+  $form_display->set('content', $content);
+  $form_display->save();
+}
