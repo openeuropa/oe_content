@@ -1,26 +1,35 @@
+clone:
+  git:
+    image: registry.fpfis.eu/drone-plugins/git:next
+    when:
+      event: [ push, pull_request, tag ]
+  git:
+    image: registry.fpfis.eu/drone-plugins/git
+    when:
+      event: [ deployment ]
+
 workspace:
   base: /test
   path: oe_content
 
 services:
   web:
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     environment:
       - DOCUMENT_ROOT=/test/oe_content
   mysql:
-    # @todo: change this back to percona as soon as FPFISSUPP-8617 is resolved.
-    # image: percona/percona-server:5.6
-    image: mariadb
+    image: registry.fpfis.eu/fpfis/sql:percona-5.7
+    command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
   sparql:
-    image: openeuropa/triple-store-dev:1.4.0
+    image: registry.fpfis.eu/openeuropa/triple-store-dev
     pull: true
     environment:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba
   selenium:
-    image: selenium/standalone-chrome:3.141.59-oxygen
+    image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-3.141.59-oxygen
     pull: true
     shm_size: 2g
     environment:
@@ -32,7 +41,7 @@ services:
 pipeline:
   composer-install-lowest:
     group: prepare
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
       - /cache:/cache
     commands:
@@ -46,7 +55,7 @@ pipeline:
 
   composer-install-highest:
     group: prepare
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
       - /cache:/cache
     commands:
@@ -56,30 +65,30 @@ pipeline:
         COMPOSER_BOUNDARY: highest
 
   site-install:
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/run drupal:site-install
 
   grumphp:
     group: test
-    image: fpfis/httpd-php-dev:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/grumphp run
 
   phpunit:
     group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/phpunit
 
   behat:
     group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/behat --strict
 
   debug:
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/drush ws --count 500
     when:
