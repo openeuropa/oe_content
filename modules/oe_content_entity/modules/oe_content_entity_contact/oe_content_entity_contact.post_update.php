@@ -108,7 +108,6 @@ function oe_content_entity_contact_post_update_00006(): void {
  * Create the Contact view mode and reference field storage.
  */
 function oe_content_entity_contact_post_update_00007(): void {
-  \Drupal::service('module_installer')->install(['entity_reference_revisions']);
 
   $view_mode_config = [
     'id' => 'node.oe_contact',
