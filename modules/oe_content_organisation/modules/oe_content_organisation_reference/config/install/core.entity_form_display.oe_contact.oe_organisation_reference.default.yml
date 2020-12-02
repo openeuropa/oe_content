@@ -4,8 +4,6 @@ dependencies:
   config:
     - field.field.oe_contact.oe_organisation_reference.oe_node_reference
     - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
-  module:
-    - entity_reference_revisions
 id: oe_contact.oe_organisation_reference.default
 targetEntityType: oe_contact
 bundle: oe_organisation_reference
@@ -27,7 +25,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_autocomplete
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true

@@ -9,7 +9,7 @@ dependencies:
   - oe_content:oe_content_featured_media_field
   - oe_media:oe_media
   - address:address
-  - entity_reference_revisions:entity_reference_revisions
+  - drupal:entity_reference
   - typed_link:typed_link
 
 config_devel:
