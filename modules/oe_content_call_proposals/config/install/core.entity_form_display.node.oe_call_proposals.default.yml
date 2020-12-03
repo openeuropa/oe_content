@@ -87,6 +87,7 @@ content:
       collapsed: false
       allow_existing: false
       allow_duplicate: false
+      removed_reference: keep
     third_party_settings: {  }
     type: inline_entity_form_complex
     region: content
