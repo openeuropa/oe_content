@@ -14,6 +14,7 @@ Check out the [README](/modules/oe_content_entity/README.md) of the module.
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Upgrade to 1.12.0](#upgrade-to-1120)
 - [Usage](#usage)
 - [Development setup](#development-setup)
 - [Contributing](#contributing)
@@ -75,7 +76,7 @@ Otherwise, ensure that in your site's `setting.php` file you have the connection
 ```
 $databases["sparql_default"] = array(
   'default' => array(
-    'prefix' => '', 
+    'prefix' => '',
     'host' => 'your-triple-store-host',
     'port' => '8890',
     'namespace' => 'Drupal\\Driver\\Database\\sparql',
@@ -83,6 +84,20 @@ $databases["sparql_default"] = array(
   )
 );
 ```
+
+### Upgrade to 1.12.0
+
+#### OpenEuropa Call for tenders Content
+
+In 1.12.0 we add maxlength settings for the oe_content_short_title, oe_summary, oe_teaser and title fields:
+
+- `oe_content_short_title`: 170 characters
+- `oe_summary`: 250 characters
+- `oe_teaser`: 150 characters
+- `title`: 170 characters
+
+As a result content loss might occur for existing content while editing if the length of above fields
+is greater then the specified length.
 
 ## Usage
 
@@ -128,10 +143,10 @@ Your test site will be available at `./build`.
 
 ### Using Docker Compose
 
-Alternatively, you can build a development site using [Docker](https://www.docker.com/get-docker) and 
+Alternatively, you can build a development site using [Docker](https://www.docker.com/get-docker) and
 [Docker Compose](https://docs.docker.com/compose/) with the provided configuration.
 
-Docker provides the necessary services and tools such as a web server and a database server to get the site running, 
+Docker provides the necessary services and tools such as a web server and a database server to get the site running,
 regardless of your local host configuration.
 
 #### Requirements:
@@ -143,7 +158,7 @@ regardless of your local host configuration.
 
 By default, Docker Compose reads two files, a `docker-compose.yml` and an optional `docker-compose.override.yml` file.
 By convention, the `docker-compose.yml` contains your base configuration and it's provided by default.
-The override file, as its name implies, can contain configuration overrides for existing services or entirely new 
+The override file, as its name implies, can contain configuration overrides for existing services or entirely new
 services.
 If a service is defined in both files, Docker Compose merges the configurations.
 
