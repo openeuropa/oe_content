@@ -29,6 +29,7 @@ class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
     'media_test_source',
     'oe_media',
     'oe_content_featured_media_field',
+    'options',
   ];
 
   /**
