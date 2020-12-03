@@ -23,7 +23,7 @@ Feature: Publication content creation
     And I fill in "Use existing media" with "My Document 1" in the "Documents" region
     And I fill in "Resource type" with "Acknowledgement receipt"
     And I fill in "Use existing media" with "Sample image" in the "Publication thumbnail" region
-    And I fill in "Responsible department" with "European Patent Office"
+    And I fill in "Author" with "European Patent Office"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Redirect link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
@@ -112,7 +112,7 @@ Feature: Publication content creation
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
     And I fill in "Subject" with "financing"
-    And I fill in "Responsible department" with "European Patent Office"
+    And I fill in "Author" with "European Patent Office"
     And I fill in "Resource type" with "Acknowledgement receipt"
     And I fill in "Use existing media" with "My Document 1" in the "Documents" region
     And I press "Save"

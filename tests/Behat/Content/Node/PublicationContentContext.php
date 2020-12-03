@@ -35,7 +35,7 @@ class PublicationContentContext extends RawDrupalContext {
       'Alternative title' => 'oe_content_short_title',
       'Body text' => 'body',
       'Related department' => 'oe_departments',
-      'Responsible department' => 'oe_author',
+      'Author' => 'oe_author',
       'Last update date' => 'oe_publication_last_updated',
       'Publication date' => 'oe_publication_date',
       'Published' => 'status',
@@ -53,9 +53,9 @@ class PublicationContentContext extends RawDrupalContext {
     foreach ($scope->getFields() as $key => $value) {
       switch ($key) {
         // Set SKOS Concept entity reference fields.
+        case 'Author':
         case 'Country':
         case 'Related department':
-        case 'Responsible department':
         case 'Resource type':
           $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
           $scope->addFields($fields)->removeField($key);

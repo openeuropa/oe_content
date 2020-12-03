@@ -10,7 +10,7 @@ id: node.oe_publication.oe_author
 field_name: oe_author
 entity_type: node
 bundle: oe_publication
-label: 'Responsible department'
+label: 'Author'
 description: ''
 required: true
 translatable: false
