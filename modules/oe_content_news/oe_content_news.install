@@ -8,6 +8,25 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\Core\Entity\EntityDefinitionUpdateManager;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_news_install() {
+  // Install the newly defined SKOS Concept defined fields.
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $definition = BaseFieldDefinition::create('string')
+    ->setLabel(t('Resource type contexts'))
+    ->setDescription(t('Potential contexts of the resource type.'))
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
+
+  $manager->installFieldStorageDefinition('oe_content_news_resource_types_news', 'skos_concept', 'rdf_skos', $definition);
+  \Drupal::logger('oe_content')->info('The following SKOS field definition has been installed: @definition.', ['@definition' => 'oe_content_news_resource_types_news']);
+}
 
 /**
  * Update the News default view display.
@@ -41,4 +60,29 @@ function oe_content_news_update_8001() {
   ]);
 
   $view_display->save();
+}
+
+/**
+ * Install the newly defined SKOS Concept defined fields.
+ *
+ * Since we are running this update hook after the SKOS fields have been
+ * defined, we need to check if they have not been already installed. If they
+ * have, we bail out and don't fail the update path.
+ */
+function oe_content_news_update_8101(): TranslatableMarkup {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $change_list = $manager->getChangeList();
+  $changed_definitions = $change_list['skos_concept']['field_storage_definitions'] ?? [];
+  if (!$changed_definitions || !isset($changed_definitions['oe_content_news_resource_types_news']) || $changed_definitions['oe_content_news_resource_types_news'] !== EntityDefinitionUpdateManager::DEFINITION_CREATED) {
+    return t('No SKOS field definitions had to be updated.');
+  }
+
+  $definition = BaseFieldDefinition::create('string')
+    ->setLabel(t('Resource type contexts'))
+    ->setDescription(t('Potential contexts of the resource type.'))
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
+
+  $manager->installFieldStorageDefinition('oe_content_news_resource_types_news', 'skos_concept', 'rdf_skos', $definition);
+
+  return t('The following SKOS field definition has been installed: @definition.', ['@definition' => 'oe_content_news_resource_types_news']);
 }
