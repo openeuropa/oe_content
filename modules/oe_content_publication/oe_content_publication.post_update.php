@@ -116,19 +116,15 @@ function oe_content_publication_post_update_00004(): void {
  * Update field settings.
  */
 function oe_content_publication_post_update_00005(): void {
+  // Change field labels.
   $new_field_labels = [
     'node.oe_publication.oe_publication_type' => 'Resource type',
     'node.oe_publication.oe_documents' => 'Files',
-  ];
-  $default_value = [
-    ['target_id' => 'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN'],
+    'node.oe_publication.oe_author' => 'Author',
   ];
   foreach ($new_field_labels as $id => $new_label) {
     $field_config = FieldConfig::load($id);
     $field_config->setLabel($new_label);
-    if ($id === 'node.oe_publication.oe_publication_type') {
-      $field_config->set('default_value', $default_value);
-    }
     $field_config->save();
   }
 
@@ -137,9 +133,11 @@ function oe_content_publication_post_update_00005(): void {
   $title_config->setLabel('Title');
   $title_config->save();
 
-  // Change the title of author field.
-  $field_config = FieldConfig::load('node.oe_publication.oe_author');
-  $field_config->setLabel('Author');
+  // Set default publication type value.
+  $field_config = FieldConfig::load('node.oe_publication.oe_publication_type');
+  $field_config->set('default_value', [
+    ['target_id' => 'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN'],
+  ]);
   $field_config->save();
 }
 
