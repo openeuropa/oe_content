@@ -119,3 +119,34 @@ Feature: Publication content creation
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."
 
+  @javascript
+  Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
+    Given I am logged in as a user with the "create oe_publication content, access content, edit any oe_publication content, view published skos concept entities, manage corporate content entities" permission
+    And the following documents:
+      | name       | file       |
+      | Document 1 | sample.pdf |
+    And the following General Contact entity:
+      | Name          | A general contact |
+    And the following "Publication" Content entity:
+      | Title                  | Publication demo page                 |
+      | Introduction           | Publication introduction text         |
+      | Identifier code        | PUB/100/1                             |
+      | Country                | Belgium                               |
+      | Resource type          | Agenda                                |
+      | Publication date       | 2019-02-21                            |
+      | Last update date       | 2019-02-22                            |
+      | Files                  | Document 1                            |
+      | Body text              | Publication body text                 |
+      | Contact                | A general contact                     |
+      | Author                 | Directorate-General for Budget        |
+      | Related department     | Directorate-General for Communication |
+      | Teaser                 | Teaser                                |
+    When I am visiting the "Publication demo page" content
+    And I click "Edit"
+    And I press "Remove"
+    Then I should see "Are you sure you want to remove A general contact?"
+    When I press "Remove"
+    And I press "Save"
+    And I break
+    Then I should see "Publication Publication demo page has been updated."
+    And the General Contact entity with title "A general contact" exists
