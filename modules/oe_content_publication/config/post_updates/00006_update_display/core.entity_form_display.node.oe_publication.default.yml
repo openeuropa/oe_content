@@ -155,6 +155,7 @@ content:
       collapsed: false
       allow_existing: false
       allow_duplicate: false
+      removed_reference: keep
     third_party_settings: {  }
   oe_publication_countries:
     weight: 10
