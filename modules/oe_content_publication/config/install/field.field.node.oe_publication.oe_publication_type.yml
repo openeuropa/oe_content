@@ -14,7 +14,9 @@ label: 'Resource type'
 description: ''
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_id: 'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN'
 default_value_callback: ''
 settings:
   handler: 'default:skos_concept'
@@ -25,6 +27,7 @@ settings:
     auto_create: false
     concept_schemes:
       - 'http://publications.europa.eu/resource/authority/resource-type'
+    concept_subset: null
     field:
       field_name: oe_publication_type
       entity_type: node
