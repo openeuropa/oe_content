@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.12.0](https://github.com/openeuropa/oe_content/tree/1.12.0) (2020-12-04)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.11.1...1.12.0)
+
+**Merged pull requests:**
+
+- EWPP-484: EPIC-Publication v2. [\#362](https://github.com/openeuropa/oe_content/pull/362) ([nagyad](https://github.com/nagyad))
+- EWPP-484: Update publication epic. [\#361](https://github.com/openeuropa/oe_content/pull/361) ([nagyad](https://github.com/nagyad))
+- EWPP-483: Make sure that the publication content type does not depend on the organisation content type. [\#360](https://github.com/openeuropa/oe_content/pull/360) ([ademarco](https://github.com/ademarco))
+- EWPP-442: Update publication epic. [\#358](https://github.com/openeuropa/oe_content/pull/358) ([nagyad](https://github.com/nagyad))
+- Calls for proposals epic [\#357](https://github.com/openeuropa/oe_content/pull/357) ([upchuk](https://github.com/upchuk))
+- EWPP-484: Rename author field and add default value for resource type. [\#356](https://github.com/openeuropa/oe_content/pull/356) ([nagyad](https://github.com/nagyad))
+- Update "Call for proposals" epic with latest master [\#355](https://github.com/openeuropa/oe_content/pull/355) ([ademarco](https://github.com/ademarco))
+- EWPP-483: Make publication contact field composite and prevent organisation contact revisions from being created. [\#354](https://github.com/openeuropa/oe_content/pull/354) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-445: Add teaser and subject common fields. [\#353](https://github.com/openeuropa/oe_content/pull/353) ([ademarco](https://github.com/ademarco))
+- EWPP-552: Set coordinators and participants fields optional for Project. [\#352](https://github.com/openeuropa/oe_content/pull/352) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-551: Set author field optional for News. [\#351](https://github.com/openeuropa/oe_content/pull/351) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-564: Installing the newly created SKOS field definitions. [\#350](https://github.com/openeuropa/oe_content/pull/350) ([upchuk](https://github.com/upchuk))
+- EWPP-434: Provide suggestions for entities and fix submodule placement [\#349](https://github.com/openeuropa/oe_content/pull/349) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-446: Call for proposal fixes. [\#348](https://github.com/openeuropa/oe_content/pull/348) ([nagyad](https://github.com/nagyad))
+- Epic organisation [\#347](https://github.com/openeuropa/oe_content/pull/347) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-518: Publication date field widget has to be Select list in News CT. [\#345](https://github.com/openeuropa/oe_content/pull/345) ([sergepavle](https://github.com/sergepavle))
+- EWPP-436: Fix oe\_call\_proposals\_journal, body instance config. [\#344](https://github.com/openeuropa/oe_content/pull/344) ([drishu](https://github.com/drishu))
+- EWPP-516: Update docker images. [\#343](https://github.com/openeuropa/oe_content/pull/343) ([22Alexandra](https://github.com/22Alexandra))
+- Merge master to EPIC-Publication 11.11.2020 [\#342](https://github.com/openeuropa/oe_content/pull/342) ([yenyasinn](https://github.com/yenyasinn))
+- Align organisation epic branch with latest master [\#341](https://github.com/openeuropa/oe_content/pull/341) ([ademarco](https://github.com/ademarco))
+- Merge master to EPIC-Proposals 10.11.2020 [\#340](https://github.com/openeuropa/oe_content/pull/340) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-0000: Rebase organisation epic over master. [\#338](https://github.com/openeuropa/oe_content/pull/338) ([nagyad](https://github.com/nagyad))
+- EWPP-466: Create oe\_content\_organsiation\_reference module. [\#337](https://github.com/openeuropa/oe_content/pull/337) ([nagyad](https://github.com/nagyad))
+- EWPP-436: Create "Call for proposals" content type [\#336](https://github.com/openeuropa/oe_content/pull/336) ([georgebaev](https://github.com/georgebaev))
+- Merge release branch 1.11.x into master [\#335](https://github.com/openeuropa/oe_content/pull/335) ([ademarco](https://github.com/ademarco))
+- EWPP-373: Ensure the browser widget works also inside IEF. [\#329](https://github.com/openeuropa/oe_content/pull/329) ([upchuk](https://github.com/upchuk))
+- EWPP-430: Update "Publication Content Type" content type [\#328](https://github.com/openeuropa/oe_content/pull/328) ([georgebaev](https://github.com/georgebaev))
+- EWPP-354: Fixing display exports. [\#314](https://github.com/openeuropa/oe_content/pull/314) ([sergepavle](https://github.com/sergepavle))
+
 ## [1.11.1](https://github.com/openeuropa/oe_content/tree/1.11.1) (2020-10-27)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.11.0...1.11.1)
 
