@@ -147,6 +147,5 @@ Feature: Publication content creation
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove"
     And I press "Save"
-    And I break
     Then I should see "Publication Publication demo page has been updated."
     And the General Contact entity with title "A general contact" exists
