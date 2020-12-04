@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_publication_last_updated
+    - node.type.oe_publication
+  module:
+    - datetime
+id: node.oe_publication.oe_publication_last_updated
+field_name: oe_publication_last_updated
+entity_type: node
+bundle: oe_publication
+label: 'Last update date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

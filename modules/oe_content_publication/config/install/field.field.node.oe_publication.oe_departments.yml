@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_author
+    - field.storage.node.oe_departments
     - node.type.oe_publication
   module:
     - rdf_skos
-id: node.oe_publication.oe_author
-field_name: oe_author
+id: node.oe_publication.oe_departments
+field_name: oe_departments
 entity_type: node
 bundle: oe_publication
-label: 'Author'
+label: 'Related department'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -26,7 +26,7 @@ settings:
     concept_schemes:
       - 'http://publications.europa.eu/resource/authority/corporate-body'
     field:
-      field_name: oe_author
+      field_name: oe_departments
       entity_type: node
       bundle: oe_publication
       concept_schemes:

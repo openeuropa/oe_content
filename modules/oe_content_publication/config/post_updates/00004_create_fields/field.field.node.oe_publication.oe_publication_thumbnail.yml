@@ -2,16 +2,22 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_documents
-    - media.type.document
+    - field.storage.node.oe_publication_thumbnail
+    - media.type.av_portal_photo
+    - media.type.image
     - node.type.oe_publication
-id: node.oe_publication.oe_documents
-field_name: oe_documents
+  module:
+    - composite_reference
+third_party_settings:
+  composite_reference:
+    composite: false
+id: node.oe_publication.oe_publication_thumbnail
+field_name: oe_publication_thumbnail
 entity_type: node
 bundle: oe_publication
-label: Files
+label: Thumbnail
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -19,7 +25,8 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      document: document
+      av_portal_photo: av_portal_photo
+      image: image
     sort:
       field: _none
     auto_create: false
