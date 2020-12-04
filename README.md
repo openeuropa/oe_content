@@ -14,7 +14,6 @@ Check out the [README](/modules/oe_content_entity/README.md) of the module.
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-  - [Upgrade to 1.12.0](#upgrade-to-1120)
 - [Usage](#usage)
 - [Development setup](#development-setup)
 - [Contributing](#contributing)
@@ -84,20 +83,6 @@ $databases["sparql_default"] = array(
   )
 );
 ```
-
-### Upgrade to 1.12.0
-
-#### OpenEuropa Call for tenders Content
-
-In 1.12.0 we add maxlength settings for the oe_content_short_title, oe_summary, oe_teaser and title fields:
-
-- `oe_content_short_title`: 170 characters
-- `oe_summary`: 250 characters
-- `oe_teaser`: 150 characters
-- `title`: 170 characters
-
-As a result content loss might occur for existing content while editing if the length of above fields
-is greater then the specified length.
 
 ## Usage
 
