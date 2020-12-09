@@ -50,6 +50,7 @@ class PublicationsOfficeSkosGraphSetup {
       'country' => 'http://publications.europa.eu/resource/authority/country',
       'language' => 'http://publications.europa.eu/resource/authority/language',
       'eu-programme' => 'http://publications.europa.eu/resource/authority/eu-programme',
+      'sdg' => 'http://publications.europa.eu/resource/dataset/sdg',
     ];
   }
 
