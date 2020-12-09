@@ -389,7 +389,6 @@ Feature: Event content creation
       | success messages                      |
       | Event My Event item has been updated. |
 
-  @javascript
   Scenario: By removing venue and contact from the form only the reference is removed and the entities are not deleted.
     Given I am logged in as a user with the "create oe_event content, access content, edit any oe_event content, view published skos concept entities, manage corporate content entities" permission
     And the following Default Venue entity:
