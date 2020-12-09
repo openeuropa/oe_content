@@ -4,7 +4,7 @@ Feature: Project content creation
   As an editor
   I need to be able to create and see project items
 
-  @javascript
+  @javascript @remote-video
   Scenario: Creation of a Project content through the UI.
     Given I am logged in as a user with the "create oe_project content, access content, edit own oe_project content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
@@ -180,13 +180,12 @@ Feature: Project content creation
     And I should see the text "Burgos"
 
     # Test remote video for Featured media.
-    # Temporarily disable the test until youtube API becomes stable again.
-    # When I click "Edit"
-    # Then I fill in "Media item" with "Plant health in the EU" in the "featured media form element"
-    # And I fill in "Caption" with "Here is my featured video text caption." in the "featured media form element"
-    # When I press "Save"
-    # Then I should see "Plant health in the EU" in the "featured media form element" region
-    # And I should see "Here is my featured video text caption." in the "featured media form element" region
+    When I click "Edit"
+    Then I fill in "Media item" with "Plant health in the EU" in the "featured media form element"
+    And I fill in "Caption" with "Here is my featured video text caption." in the "featured media form element"
+    When I press "Save"
+    Then I should see "Plant health in the EU" in the "featured media form element" region
+    And I should see "Here is my featured video text caption." in the "featured media form element" region
 
   @javascript
   Scenario: By removing stakeholders and contacts from the form only the reference is removed and the entities are not deleted.
