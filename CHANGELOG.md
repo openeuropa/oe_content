@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.1](https://github.com/openeuropa/oe_content/tree/1.12.1) (2020-12-10)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.12.0...1.12.1)
+
+**Merged pull requests:**
+
+- EWPP-405: Ensure referenced entities are not deleted upon removal. [\#323](https://github.com/openeuropa/oe_content/pull/323) ([nagyad](https://github.com/nagyad))
+
 ## [1.12.0](https://github.com/openeuropa/oe_content/tree/1.12.0) (2020-12-04)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.11.1...1.12.0)
 
