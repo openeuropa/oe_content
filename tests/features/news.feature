@@ -100,7 +100,7 @@ Feature: News content creation
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
-    Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media" permission
+    Given I am logged in as a user with the "create oe_news content, access content, edit own oe_news content, view published skos concept entities, create av_portal_photo media" permission
     When I visit "the News creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
@@ -116,3 +116,25 @@ Feature: News content creation
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."
+
+  @javascript
+  Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
+    Given I am logged in as a user with the "create oe_news content, access content, edit any oe_news content, view published skos concept entities, manage corporate content entities" permission
+    And the following General Contact entity:
+      | Name | A general contact |
+    And the following News Content entity:
+      | Title     | Test news         |
+      | News type | News article      |
+      | Body text | Some text         |
+      | Reference | Some reference    |
+      | Contacts  | A general contact |
+      | Teaser    | Some teaser       |
+    When I am visiting the "Test news" content
+    And I click "Edit"
+    And I press "Remove"
+    Then I should see "Are you sure you want to remove A general contact?"
+    When I press "Remove"
+    And I wait for AJAX to finish
+    And I press "Save"
+    Then I should see "News Test news has been updated."
+    And the General Contact entity with title "A general contact" exists

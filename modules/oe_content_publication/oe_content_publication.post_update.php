@@ -169,3 +169,13 @@ function oe_content_publication_post_update_00006(): void {
     $updated_view_display->save();
   }
 }
+
+/**
+ * Set inline entity form widgets reference removal policy to keep entities.
+ */
+function oe_content_publication_post_update_00007(): void {
+  $form_display = EntityFormDisplay::load('node.oe_publication.default');
+  $component = $form_display->getComponent('oe_publication_contacts');
+  $component['settings']['removed_reference'] = 'keep';
+  $form_display->setComponent('oe_publication_contacts', $component)->save();
+}

@@ -167,3 +167,35 @@ Feature: Call for proposals content creation and editing.
     Then I should see "Call for proposals My Call for proposals 1 has been created."
     And I should see "Thu, 12/31/2020 - 23:45"
     And I should see "Fri, 01/15/2021 - 12:00"
+
+  @javascript
+  Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
+    Given I am logged in as a user with the "create oe_call_proposals content, access content, edit any oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
+    And the following General Contact entity:
+      | Name | A general contact |
+    And the following "Call for proposals" Content entity:
+      | Title                               | Proposals demo page                               |
+      | Introduction                        | Call for proposals introduction text              |
+      | Body text                           | Call for proposals body text                      |
+      | Opening date                        | 2019-02-22                                        |
+      | Deadline model                      | Single-stage                                      |
+      | Deadline date                       | 2019-03-21 18:30:00                               |
+      | Awarded grants                      | http://example.com                                |
+      | Funding programme                   | Connecting Europe Facility (CEF)                  |
+      | Publication in the official journal | uri: http://example.com - title: Publication link |
+      | Contact                             | A general contact                                 |
+      | Publication date                    | 2019-02-21                                        |
+      | Reference                           | CALL/100/10                                       |
+      | Responsible department              | Directorate-General for Budget                    |
+      | Subject                             | export financing                                  |
+      | Teaser                              | Teaser                                            |
+    When I am visiting the "Proposals demo page" content
+    And I click "Edit"
+    And I select the radio button "Single-stage"
+    And I press "Remove"
+    Then I should see "Are you sure you want to remove A general contact?"
+    When I press "Remove"
+    And I wait for AJAX to finish
+    And I press "Save"
+    Then I should see "Call for proposals Proposals demo page has been updated."
+    And the General Contact entity with title "A general contact" exists

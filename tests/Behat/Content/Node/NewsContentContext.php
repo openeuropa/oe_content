@@ -14,11 +14,11 @@ use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 
 /**
- * Context to create event content entities.
+ * Context to create news content entities.
  *
  * @SuppressWarnings(PHPMD)
  */
-class EventContentContext extends RawDrupalContext {
+class NewsContentContext extends RawDrupalContext {
 
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
@@ -30,39 +30,21 @@ class EventContentContext extends RawDrupalContext {
    * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope $scope
    *   Behat hook scope.
    *
-   * @BeforeParseEntityFields(node,oe_event)
+   * @BeforeParseEntityFields(node,oe_news)
    */
   public function alterEventFields(BeforeParseEntityFieldsScope $scope): void {
     // Map human readable field names to their Behat parsable machine names.
     $mapping = [
       'Title' => 'title',
-      'Type' => 'oe_event_type',
+      'News type' => 'oe_news_types',
+      'Reference' => 'oe_reference_code',
+      'Location' => 'oe_news_location',
+      'Body text' => 'body',
+      'Featured media' => 'oe_news_featured_media',
+      'Related links' => 'oe_related_links',
+      'Contacts' => 'oe_news_contacts',
       'Introduction' => 'oe_summary',
-      'Description summary' => 'oe_event_description_summary',
-      'Description' => 'body',
-      'Featured media legend' => 'oe_event_featured_media_legend',
-      'Summary for report' => 'oe_event_report_summary',
-      'Report text' => 'oe_event_report_text',
-      'Start date' => 'oe_event_dates:value',
-      'End date' => 'oe_event_dates:end_value',
-      'Registration start date' => 'oe_event_registration_dates:value',
-      'Registration end date' => 'oe_event_registration_dates:end_value',
-      'Registration URL' => 'oe_event_registration_url:uri',
-      'Registration capacity' => 'oe_event_registration_capacity',
-      'Entrance fee' => 'oe_event_entrance_fee',
-      'Online type' => 'oe_event_online_type',
-      'Online time start' => 'oe_event_online_dates:value',
-      'Online time end' => 'oe_event_online_dates:end_value',
-      'Online description' => 'oe_event_online_description',
-      'Online link' => 'oe_event_online_link',
-      'Languages' => 'oe_event_languages',
-      'Internal organiser' => 'oe_event_organiser_internal',
-      'Featured media' => 'oe_event_featured_media',
-      'Status' => 'oe_event_status',
-      'Organiser is internal' => 'oe_event_organiser_is_internal',
-      'Organiser name' => 'oe_event_organiser_name',
-      'Event website' => 'oe_event_website',
-      'Social media links' => 'oe_social_media_links',
+      'Publication date' => 'oe_publication_date',
       'Teaser' => 'oe_teaser',
     ];
 
@@ -70,13 +52,8 @@ class EventContentContext extends RawDrupalContext {
 
       // Handle entity references.
       switch ($key) {
-        case 'Venue':
-          $fields = $this->getReferenceRevisionField('oe_event_venue', 'oe_venue', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
-        case 'Contact':
-          $fields = $this->getReferenceRevisionField('oe_event_contact', 'oe_contact', $value);
+        case 'Contacts':
+          $fields = $this->getReferenceRevisionField('oe_news_contacts', 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -85,26 +62,14 @@ class EventContentContext extends RawDrupalContext {
           $scope->addFields($fields)->removeField($key);
           break;
 
-        case 'Organiser is internal':
-          $scope->addFields([
-            $mapping[$key] => (int) ($value === 'Yes'),
-          ])->removeField($key);
-          break;
-
-        case 'Type':
-        case 'Languages':
-        case 'Internal organiser':
+        case 'News type':
+        case 'Location':
           $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         // Convert dates to UTC so that they can be expressed in site timezone.
-        case 'Start date':
-        case 'End date':
-        case 'Registration start date':
-        case 'Registration end date':
-        case 'Online time start':
-        case 'Online time end':
+        case 'Publication date':
           $date = DrupalDateTime::createFromFormat(DateTimePlus::FORMAT, $value)
             ->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, [
               'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
@@ -123,7 +88,7 @@ class EventContentContext extends RawDrupalContext {
     $scope->addFields([
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
-      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AGRI',
     ]);
   }
 

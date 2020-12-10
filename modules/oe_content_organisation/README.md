@@ -27,6 +27,16 @@ The `field_group` module requires the following patches to be applied:
 }
 ```
 
+The `inline_entity_form` module requires the following patches to be applied:
+
+```json
+"patches": {
+    "drupal/inline_entity_form": {
+        "https://www.drupal.org/project/inline_entity_form/issues/2875716": "https://www.drupal.org/files/issues/2020-11-05/ief_removed_references_2875716-89.patch"
+    }
+}
+```
+
 In order to apply the patches above add the following to your project's `composer.json` file:
 
 ```json

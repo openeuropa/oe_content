@@ -87,3 +87,13 @@ function oe_content_news_post_update_00005(): void {
   $form_display->set('content', $content);
   $form_display->save();
 }
+
+/**
+ * Set inline entity form widgets reference removal policy to keep entities.
+ */
+function oe_content_news_post_update_00006(): void {
+  $form_display = EntityFormDisplay::load('node.oe_news.default');
+  $component = $form_display->getComponent('oe_news_contacts');
+  $component['settings']['removed_reference'] = 'keep';
+  $form_display->setComponent('oe_news_contacts', $component)->save();
+}
