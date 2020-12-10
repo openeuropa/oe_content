@@ -188,6 +188,7 @@ Feature: Project content creation
     # Then I should see "Plant health in the EU" in the "featured media form element" region
     # And I should see "Here is my featured video text caption." in the "featured media form element" region
 
+  @javascript
   Scenario: By removing stakeholders and contacts from the form only the reference is removed and the entities are not deleted.
     Given I am logged in as a user with the "create oe_project content, access content, edit any oe_project content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:
@@ -222,6 +223,7 @@ Feature: Project content creation
     And I press "Remove" in the "Project contact" region
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove" in the "Project contact" region
+    And I wait for AJAX to finish
     And I press "Save"
     Then I should see "Project Project demo page has been updated."
     And the Stakeholder Organisation entity with title "Coordinator to remove" exists

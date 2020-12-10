@@ -87,6 +87,7 @@ Feature: Organisation content creation
     When I press "Save"
     Then I should see "Euro with miniature figurines"
 
+  @javascript
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
     Given I am logged in as a user with the "create oe_organisation content, access content, edit any oe_organisation content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:
@@ -104,6 +105,7 @@ Feature: Organisation content creation
     And I press "Remove"
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove"
+    And I wait for AJAX to finish
     And I press "Save"
     Then I should see "Organisation Organisation demo page has been updated."
     And the General Contact entity with title "A general contact" exists

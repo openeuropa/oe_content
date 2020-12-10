@@ -168,6 +168,7 @@ Feature: Call for proposals content creation and editing.
     And I should see "Thu, 12/31/2020 - 23:45"
     And I should see "Fri, 01/15/2021 - 12:00"
 
+  @javascript
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit any oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:
@@ -194,6 +195,7 @@ Feature: Call for proposals content creation and editing.
     And I press "Remove"
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove"
+    And I wait for AJAX to finish
     And I press "Save"
     Then I should see "Call for proposals Proposals demo page has been updated."
     And the General Contact entity with title "A general contact" exists

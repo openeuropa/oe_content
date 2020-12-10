@@ -389,6 +389,7 @@ Feature: Event content creation
       | success messages                      |
       | Event My Event item has been updated. |
 
+  @javascript
   Scenario: By removing venue and contact from the form only the reference is removed and the entities are not deleted.
     Given I am logged in as a user with the "create oe_event content, access content, edit any oe_event content, view published skos concept entities, manage corporate content entities" permission
     And the following Default Venue entity:
@@ -414,6 +415,7 @@ Feature: Event content creation
     And I press "Remove" in the "Event contact" region
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove" in the "Event contact" region
+    And I wait for AJAX to finish
     And I press "Save"
     Then I should see "Event Event demo page has been updated."
     And the Default Venue entity with title "A venue" exists
