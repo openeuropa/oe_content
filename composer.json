@@ -93,7 +93,7 @@
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2020-10-05/entity_browser-remove_button_2851580-92.patch"
             },
             "drupal/inline_entity_form": {
-                "https://www.drupal.org/project/inline_entity_form/issues/2875716#comment-13859519": "https://www.drupal.org/files/issues/2020-11-05/ief_removed_references_2875716-89.patch"
+                "https://www.drupal.org/project/inline_entity_form/issues/2875716": "https://www.drupal.org/files/issues/2020-11-05/ief_removed_references_2875716-89.patch"
             }
         }
     },
