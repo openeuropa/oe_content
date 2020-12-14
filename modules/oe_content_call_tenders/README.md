@@ -36,3 +36,15 @@ In order to apply the patches above add the following to your project's `compose
 ```
 
 For more information check `cweagans/composer-patches` documentation [here](https://github.com/cweagans/composer-patches).
+
+### Upgrade from 1.12.0
+
+We add maxlength settings for the oe_content_short_title, oe_summary, oe_teaser and title fields:
+
+- `oe_content_short_title`: 170 characters
+- `oe_summary`: 250 characters
+- `oe_teaser`: 150 characters
+- `title`: 170 characters
+
+As a result content loss might occur for existing content while editing if the length of above fields
+is greater than the specified length.

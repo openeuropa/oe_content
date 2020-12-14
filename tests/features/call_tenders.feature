@@ -36,3 +36,23 @@ Feature: Call for tenders content creation
     And I should see "My Body text"
     And I should see "My Document 1"
     And I should not see "Committee on Agriculture and Rural Development"
+
+  @javascript
+  Scenario: Length limited fields are truncating characters exceeding the configured limit.
+    Given I am logged in as a user with the "create oe_call_tenders content, access content, edit own oe_call_tenders content, view published skos concept entities" permission
+    When I visit "the Call for tenders creation page"
+    Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
+    And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
+    And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
+    And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
+    When I fill in "Page title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Nam eleifend ipsum. Text to remove"
+    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non nibh vitae diam hendrerit porta eu a mi. Nam porta tortor sed ante efficitur, ac suscipit metus tincidunt. Donec a nisi condimentum, iaculis nunc ac, bibendum tortor. Curabitur feugiat. Text to remove"
+    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
+    And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Nam eleifend ipsum. Text to remove"
+    And I fill in "Subject" with "EU financing"
+    And I set "Publication date" to the date "14-07-2020"
+    And I set "Deadline date" to the date "31-07-2020 23:45" using format "d-m-Y H:i"
+    And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
+    And I press "Save"
+    # We assert that the extra characters are actually truncated from the end of the string.
+    Then I should not see "Text to remove"

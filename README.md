@@ -75,7 +75,7 @@ Otherwise, ensure that in your site's `setting.php` file you have the connection
 ```
 $databases["sparql_default"] = array(
   'default' => array(
-    'prefix' => '', 
+    'prefix' => '',
     'host' => 'your-triple-store-host',
     'port' => '8890',
     'namespace' => 'Drupal\\Driver\\Database\\sparql',
@@ -128,10 +128,10 @@ Your test site will be available at `./build`.
 
 ### Using Docker Compose
 
-Alternatively, you can build a development site using [Docker](https://www.docker.com/get-docker) and 
+Alternatively, you can build a development site using [Docker](https://www.docker.com/get-docker) and
 [Docker Compose](https://docs.docker.com/compose/) with the provided configuration.
 
-Docker provides the necessary services and tools such as a web server and a database server to get the site running, 
+Docker provides the necessary services and tools such as a web server and a database server to get the site running,
 regardless of your local host configuration.
 
 #### Requirements:
@@ -143,7 +143,7 @@ regardless of your local host configuration.
 
 By default, Docker Compose reads two files, a `docker-compose.yml` and an optional `docker-compose.override.yml` file.
 By convention, the `docker-compose.yml` contains your base configuration and it's provided by default.
-The override file, as its name implies, can contain configuration overrides for existing services or entirely new 
+The override file, as its name implies, can contain configuration overrides for existing services or entirely new
 services.
 If a service is defined in both files, Docker Compose merges the configurations.
 
