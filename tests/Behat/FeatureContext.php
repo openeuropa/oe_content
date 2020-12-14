@@ -141,6 +141,20 @@ class FeatureContext extends RawDrupalContext {
   }
 
   /**
+   * Navigate to a the canonical path of an entity by its title.
+   *
+   * @param string $title
+   *   Content title.
+   *
+   * @Given I am visiting the :title content
+   * @Given I visit the :title content
+   */
+  public function iAmViewingTheContent(string $title): void {
+    $nid = $this->getNodeByTitle($title)->id();
+    $this->visitPath('/node/' . $nid);
+  }
+
+  /**
    * Retrieves a node by its title.
    *
    * @param string $title

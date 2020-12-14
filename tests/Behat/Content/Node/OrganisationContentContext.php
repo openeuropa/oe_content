@@ -82,7 +82,7 @@ class OrganisationContentContext extends RawDrupalContext {
 
     // Set default fields.
     $scope->addFields([
-      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AGRI',
     ]);
   }
 

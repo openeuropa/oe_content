@@ -51,6 +51,8 @@ class CallForProposalsContentContext extends RawDrupalContext {
       'Responsible department' => 'oe_departments',
       'Published' => 'status',
       'Funding programme' => 'oe_call_proposals_funding',
+      'Teaser' => 'oe_teaser',
+      'Subject' => 'oe_subject',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -58,6 +60,7 @@ class CallForProposalsContentContext extends RawDrupalContext {
         // Set SKOS Concept entity reference fields.
         case 'Responsible department':
         case 'Funding programme':
+        case 'Subject':
           $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
           $scope->addFields($fields)->removeField($key);
           break;

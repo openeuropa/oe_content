@@ -25,6 +25,8 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     'block',
     'views_ui',
     'system',
+    'options',
+    'oe_media',
     'oe_content_featured_media_test',
     'entity_reference_revisions',
     'inline_entity_form',

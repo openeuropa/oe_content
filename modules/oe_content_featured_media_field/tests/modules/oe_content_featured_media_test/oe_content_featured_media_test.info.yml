@@ -9,3 +9,4 @@ dependencies:
   - entity_browser_entity_form:entity_browser_entity_form
   - drupal:views
   - drupal:media
+  - oe_media:oe_media

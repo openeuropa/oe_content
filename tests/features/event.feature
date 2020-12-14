@@ -133,10 +133,10 @@ Feature: Event content creation
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     When I visit "the Event creation page"
     Then I should have the following options for the "Status" select:
-      | As planned         |
-      | Cancelled          |
-      | Rescheduled        |
-      | Postponed          |
+      | As planned  |
+      | Cancelled   |
+      | Rescheduled |
+      | Postponed   |
     When I press "Online"
     Then I should have the following options for the "Online type" select:
       | - None -   |
@@ -151,9 +151,9 @@ Feature: Event content creation
       | Contact image | example_1.jpeg | Contact image alternative text |
     # Create a "Media AV portal photo".
     And the following AV Portal photos:
-      | url                                                         |
-      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
-      | https://audiovisual.ec.europa.eu/en/photo/P-039321~2F00-04  |
+      | url                                                        |
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15 |
+      | https://audiovisual.ec.europa.eu/en/photo/P-039321~2F00-04 |
     # Create a "Event" content.
     When I visit "the Event creation page"
     Then I select "Info days" from "Type"
@@ -302,8 +302,8 @@ Feature: Event content creation
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     # Create a "Media AV portal photo".
     And the following AV Portal photos:
-      | url                                                         |
-      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
+      | url                                                        |
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15 |
 
     # Create a "Event" content.
     When I visit "the Event creation page"
@@ -340,9 +340,9 @@ Feature: Event content creation
     And I select "Facebook" from "Online type"
     And I press "Save"
     Then I should see the following error messages:
-      | error messages                       |
-      | Online time field is required.       |
-      | Online link field is required.       |
+      | error messages                 |
+      | Online time field is required. |
+      | Online link field is required. |
     # Make sure that errors related to the Online fields are fixed.
     And I set "22-02-2019 02:30" as the "Start date" of "Online time"
     And I set "22-02-2019 14:30" as the "End date" of "Online time"
@@ -388,3 +388,35 @@ Feature: Event content creation
     Then I should see the following success messages:
       | success messages                      |
       | Event My Event item has been updated. |
+
+  @javascript
+  Scenario: By removing venue and contact from the form only the reference is removed and the entities are not deleted.
+    Given I am logged in as a user with the "create oe_event content, access content, edit any oe_event content, view published skos concept entities, manage corporate content entities" permission
+    And the following Default Venue entity:
+      | Name | A venue |
+    And the following General Contact entity:
+      | Name | A general contact |
+    And the following Event Content entity:
+      | Title               | Event demo page          |
+      | Type                | Exhibitions              |
+      | Introduction        | Event introduction text  |
+      | Languages           | Valencian                |
+      | Start date          | 2019-02-21 02:21:00      |
+      | End date            | 2019-02-21 14:21:00      |
+      | Status              | as_planned               |
+      | Teaser              | Event teaser             |
+      | Venue               | A venue                  |
+      | Contact             | A general contact        |
+    When I am visiting the "Event demo page" content
+    And I click "Edit"
+    And I press "Remove" in the "Event venue" region
+    Then I should see "Are you sure you want to remove A venue?"
+    When I press "Remove" in the "Event venue" region
+    And I press "Remove" in the "Event contact" region
+    Then I should see "Are you sure you want to remove A general contact?"
+    When I press "Remove" in the "Event contact" region
+    And I wait for AJAX to finish
+    And I press "Save"
+    Then I should see "Event Event demo page has been updated."
+    And the Default Venue entity with title "A venue" exists
+    And the General Contact entity with title "A general contact" exists
