@@ -4,7 +4,7 @@ Feature: News content creation
   As an editor
   I need to be able to create and see news items
 
-  @javascript @cleanup:media
+  @javascript @cleanup:media @av_portal
   Scenario: Creation of a News content through the UI.
     Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media, manage corporate content entities" permission
     And the following images:

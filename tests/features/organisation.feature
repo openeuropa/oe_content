@@ -4,7 +4,7 @@ Feature: Organisation content creation
   As an editor
   I need to be able to create and see organisation items
 
-  @javascript @disable-browser-required-field-validation
+  @javascript @disable-browser-required-field-validation @av_portal
   Scenario: Creation of a Organisation content through the UI.
     Given I am logged in as a user with the "create oe_organisation content, access content, edit own oe_organisation content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
@@ -49,7 +49,8 @@ Feature: Organisation content creation
     And I fill in "Link text" with "Email" in the "Contact social media links" region
 
     When I press "Save"
-    Then I should see "My Organisation"
+    Then I should see "Organisation My organisation has been created."
+    And I should see "My Organisation"
     And I should see "Organisation introduction"
     And I should see "Body text"
     And I should see "Image 1"
@@ -85,7 +86,8 @@ Feature: Organisation content creation
     And I fill in "Use existing media" with "Euro with miniature figurines"
 
     When I press "Save"
-    Then I should see "Euro with miniature figurines"
+    Then I should see "Organisation My organisation has been updated."
+    And I should see "Euro with miniature figurines"
 
   @javascript
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.

@@ -139,8 +139,8 @@ Feature: Project content creation
 
     # Assert project field values.
     And I should see "Summary text"
-    And I should see "Image 3" in the "featured media form element" region
-    And I should see "Here is my featured image text caption." in the "featured media form element" region
+    And I should see "Image 3" in the "featured media field" region
+    And I should see "Here is my featured image text caption." in the "featured media field" region
     And I should see "Reference text"
     And I should see "2019-02-23"
     And I should see "2019-02-24"
@@ -184,8 +184,8 @@ Feature: Project content creation
     Then I fill in "Media item" with "Plant health in the EU" in the "featured media form element"
     And I fill in "Caption" with "Here is my featured video text caption." in the "featured media form element"
     When I press "Save"
-    Then I should see "Plant health in the EU" in the "featured media form element" region
-    And I should see "Here is my featured video text caption." in the "featured media form element" region
+    Then I should see "Plant health in the EU" in the "featured media field" region
+    And I should see "Here is my featured video text caption." in the "featured media field" region
 
   @javascript
   Scenario: By removing stakeholders and contacts from the form only the reference is removed and the entities are not deleted.
