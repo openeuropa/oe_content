@@ -20,22 +20,32 @@ Feature: Call for proposals content creation and editing.
     And I should see "Multiple cut-off" in the "Deadline model"
     And I should see "Permanent" in the "Deadline model"
 
+    # Fill in the mandatory fields.
     And I fill in "Title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
-
-    # Test that no Deadline Date field is visible when the Permanent model is selected
-    And I select the radio button "Permanent"
-    And I should not see "Deadline date"
-
-    And I select the radio button "Two-stage"
-    And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
 
+    # Fill in an invalid deadline date and switch to Permanent.
+    And I select the radio button "Single-stage"
+    And I select "15" from "oe_call_proposals_deadline[0][value][day]"
+    # Test also that no Deadline Date field is visible when the Permanent model is selected.
+    And I select the radio button "Permanent"
+    And I should not see "Deadline date"
+
+    When I press "Save"
+    Then I should not see the error message "A value must be selected for month."
+    But I should see "Call for proposals My Call for proposals 1 has been created."
+
+    When I click "Edit"
+
+    And I select the radio button "Two-stage"
+    And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
+
     When I press "Save"
 
-    Then I should see "Call for proposals My Call for proposals 1 has been created."
+    Then I should see "Call for proposals My Call for proposals 1 has been updated."
     And I should see "My call for proposals 1"
     And I should see "10/24/2020"
     And I should see "Two-stage"
