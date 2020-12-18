@@ -43,7 +43,7 @@ Feature: Call for proposals content creation and editing.
     And I select the radio button "Two-stage"
     And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
 
-    When I press "Save"
+    And I press "Save"
 
     Then I should see "Call for proposals My Call for proposals 1 has been updated."
     And I should see "My call for proposals 1"

@@ -57,21 +57,19 @@ function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateI
  *   The complete form structure.
  */
 function oe_content_call_proposals_deadline_validate(array &$element, FormStateInterface $form_state, array &$complete_form) {
-  $model = $form_state->getValue('oe_call_proposals_model')[0]['value'] ?? NULL;
+  $model = $form_state->getValue(['oe_call_proposals_model', 0, 'value']);
   if (!$model || $model !== 'permanent') {
     return;
   }
 
-  $deadline = $form_state->getValue('oe_call_proposals_deadline');
-  $deadline[0]['value'] = [
+  $form_state->setValue(['oe_call_proposals_deadline', 0, 'value'], [
     'day' => '',
     'month' => '',
     'year' => '',
     'hour' => '',
     'minute' => '',
     'object' => NULL,
-  ];
-  $form_state->setValue('oe_call_proposals_deadline', $deadline);
+  ]);
 }
 
 /**
