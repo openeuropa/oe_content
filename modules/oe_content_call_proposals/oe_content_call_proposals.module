@@ -63,7 +63,14 @@ function oe_content_call_proposals_deadline_validate(array &$element, FormStateI
   }
 
   $deadline = $form_state->getValue('oe_call_proposals_deadline');
-  $deadline[0]['value'] = NULL;
+  $deadline[0]['value'] = [
+    'day' => '',
+    'month' => '',
+    'year' => '',
+    'hour' => '',
+    'minute' => '',
+    'object' => NULL,
+  ];
   $form_state->setValue('oe_call_proposals_deadline', $deadline);
 }
 
