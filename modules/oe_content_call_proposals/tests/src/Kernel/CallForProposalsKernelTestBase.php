@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_call_proposals\Kernel;
 
-use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
+use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Base test class for "Call for proposals" content type kernel tests.
  */
-abstract class CallForProposalsKernelTestBase extends RdfKernelTestBase {
+abstract class CallForProposalsKernelTestBase extends SparqlKernelTestBase {
 
   /**
    * Modules to enable.
@@ -17,9 +17,11 @@ abstract class CallForProposalsKernelTestBase extends RdfKernelTestBase {
    * @var array
    */
   public static $modules = [
+    'datetime',
     'field',
     'field_group',
     'entity_reference_revisions',
+    'entity_test',
     'inline_entity_form',
     'link',
     'image',
@@ -55,6 +57,7 @@ abstract class CallForProposalsKernelTestBase extends RdfKernelTestBase {
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
     $this->installEntitySchema('media');
+    $this->installEntitySchema('entity_test');
     module_load_include('install', 'oe_content_documents_field');
     oe_content_documents_field_install();
     $this->installConfig([
