@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Datetime\Element\Datelist;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
@@ -29,6 +30,46 @@ function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateI
       ],
     ],
   ];
+
+  $form['oe_call_proposals_deadline']['widget'][0]['value']['#element_validate'] = [
+    'oe_content_call_proposals_deadline_validate',
+    [Datelist::class, 'validateDatelist']
+  ];
+}
+
+/**
+ * Validation callback for a "oe_call_proposals_deadline" datelist element.
+ *
+ * If the chosen CFP model is permanent, it means there is no deadline needed.
+ * But in case the user first had set a deadline (or part of the deadline), we
+ * need to clear the deadline value. The reason this happens in the validate
+ * is so that the Datelist::validateDatelist() doesn't fail the submission in
+ * case of an invalid deadline value.
+ *
+ * If a CFP is saved programmatically with a deadline and a permanent model, the
+ * deadline value gets removed in oe_content_call_proposals_node_presave().
+ *
+ * @param array $element
+ *   The element being processed.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $complete_form
+ *   The complete form structure.
+ */
+function oe_content_call_proposals_deadline_validate(array &$element, FormStateInterface $form_state, array &$complete_form) {
+  $model = $form_state->getValue(['oe_call_proposals_model', 0, 'value']);
+  if (!$model || $model !== 'permanent') {
+    return;
+  }
+
+  $form_state->setValue(['oe_call_proposals_deadline', 0, 'value'], [
+    'day' => '',
+    'month' => '',
+    'year' => '',
+    'hour' => '',
+    'minute' => '',
+    'object' => NULL,
+  ]);
 }
 
 /**

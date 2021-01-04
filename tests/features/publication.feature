@@ -144,6 +144,7 @@ Feature: Publication content creation
     When I am visiting the "Publication demo page" content
     And I click "Edit"
     And I press "Remove"
+    And I wait for AJAX to finish
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove"
     And I wait for AJAX to finish
