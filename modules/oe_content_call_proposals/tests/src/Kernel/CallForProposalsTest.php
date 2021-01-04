@@ -29,7 +29,7 @@ class CallForProposalsTest extends CallForProposalsKernelTestBase {
 
     /** @var \Drupal\node\NodeInterface $node */
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($node->id());
-    $this->assertTrue(!$node->get('oe_call_proposals_deadline')->isEmpty());
+    $this->assertFalse($node->get('oe_call_proposals_deadline')->isEmpty());
 
     // Switch the deadline model to permanent and assert the deadline gets
     // cleared.
