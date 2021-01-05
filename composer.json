@@ -37,6 +37,7 @@
         "openeuropa/code-review": "~1.5.0",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
+        "openeuropa/oe_corporate_site_info": "^0.1.0",
         "openeuropa/oe_link_lists": "~0.5.0",
         "openeuropa/oe_multilingual": "~1.5",
         "openeuropa/oe_time_caching": "^1.0.0",
@@ -97,6 +98,9 @@
             },
             "openeuropa/oe_media": {
                 "latest-master": "https://github.com/openeuropa/oe_media/compare/1.10.1...master.diff"
+            },
+            "openeuropa/oe_corporate_site_info": {
+                "EWPP-615": "https://github.com/openeuropa/oe_corporate_site_info/compare/master...EWPP-615.diff"
             }
         }
     },

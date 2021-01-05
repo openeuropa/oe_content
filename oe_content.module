@@ -11,6 +11,8 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\link\LinkItemInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements hook_entity_base_field_info().
@@ -106,3 +108,38 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
 function oe_content_locale_translation_projects_alter(&$projects) {
   $projects['oe_content']['info']['interface translation server pattern'] = drupal_get_path('module', 'oe_content') . '/translations/%project-%language.po';
 }
+
+
+/**
+ * Implements hook_ENTITY_TYPE_prepare_form().
+ */
+function oe_content_node_prepare_form(EntityInterface $entity, $operation, FormStateInterface $form_state) {
+  /** @var \Drupal\node\Entity\Node $entity */
+  if ($entity->isNew() === FALSE) {
+    return;
+  }
+
+  if ($entity->hasField('oe_content_content_owner') === FALSE) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Extension\ModuleHandlerInterface $module_handler */
+  $module_handler = \Drupal::service('module_handler');
+  if ($module_handler->moduleExists('oe_corporate_site_info') === FALSE) {
+    return;
+  }
+
+  /** @var \Drupal\oe_corporate_site_info\SiteInformationInterface $site_information */
+  $site_information = \Drupal::service('oe_corporate_site_info.site_information');
+  if (!$site_information->hasContentOwners()) {
+    // No content owner(s) defined.
+    return;
+  }
+
+  $content_owners = $site_information->getContentOwners();
+
+  if (!empty($content_owners)) {
+    $entity->set('oe_content_content_owner', array_values($content_owners));
+  }
+}
+
