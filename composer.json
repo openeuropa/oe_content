@@ -46,7 +46,8 @@
         "symfony/dom-crawler": "~3.4"
     },
     "_readme": [
-        "We explicitly require drupal/inline_entity_form version rc8 or higher as it contains necessary bug fixes."
+        "We explicitly require drupal/inline_entity_form version rc8 or higher as it contains necessary bug fixes.",
+        "We apply the changes from \"openeuropa/oe_corporate_site_info\" as a patch until they are merged in the master branch."
     ],
     "autoload": {
         "psr-4": {
