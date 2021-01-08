@@ -123,20 +123,18 @@ function oe_content_node_prepare_form(EntityInterface $entity, $operation, FormS
     return;
   }
 
-  /** @var \Drupal\Core\Extension\ModuleHandlerInterface $module_handler */
-  $module_handler = \Drupal::service('module_handler');
-  if ($module_handler->moduleExists('oe_corporate_site_info') === FALSE) {
+  if (\Drupal::service('module_handler')->moduleExists('oe_corporate_site_info') === FALSE) {
     return;
   }
 
   /** @var \Drupal\oe_corporate_site_info\SiteInformationInterface $site_information */
   $site_information = \Drupal::service('oe_corporate_site_info.site_information');
-  if (!$site_information->hasContentOwners()) {
+  if (!$site_information->hasDefaultContentOwners()) {
     // No content owner(s) defined.
     return;
   }
 
-  $content_owners = $site_information->getContentOwners();
+  $content_owners = $site_information->getDefaultContentOwners();
 
   if (!empty($content_owners)) {
     $entity->set('oe_content_content_owner', array_values($content_owners));
