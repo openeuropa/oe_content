@@ -114,7 +114,7 @@ function oe_content_locale_translation_projects_alter(&$projects) {
  * Implements hook_ENTITY_TYPE_prepare_form().
  */
 function oe_content_node_prepare_form(EntityInterface $entity, $operation, FormStateInterface $form_state) {
-  /** @var \Drupal\node\Entity\Node $entity */
+  /** @var \Drupal\node\NodeInterface $entity */
   if ($entity->isNew() === FALSE) {
     return;
   }
