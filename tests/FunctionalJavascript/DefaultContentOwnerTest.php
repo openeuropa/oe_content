@@ -17,7 +17,7 @@ class DefaultContentOwnerTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_content',
     'oe_content_page',
     'oe_corporate_site_info',
