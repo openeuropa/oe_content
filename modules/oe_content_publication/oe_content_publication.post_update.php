@@ -179,3 +179,13 @@ function oe_content_publication_post_update_00007(): void {
   $component['settings']['removed_reference'] = 'keep';
   $form_display->setComponent('oe_publication_contacts', $component)->save();
 }
+
+/**
+ * Update Publication node title label.
+ */
+function oe_content_publication_post_update_00008() {
+  $fields = \Drupal::service('entity_field.manager')->getBaseFieldDefinitions('node', 'oe_publication');
+  $field_config = $fields['title']->getConfig('oe_publication');
+  $field_config->setLabel('Page title');
+  $field_config->save();
+}

@@ -47,7 +47,7 @@ class PublicationContentContext extends RawDrupalContext {
       'Files' => 'oe_documents',
       'Introduction' => 'oe_summary',
       'Teaser' => 'oe_teaser',
-      'Title' => 'title',
+      'Page title' => 'title',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
