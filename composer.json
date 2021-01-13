@@ -6,13 +6,13 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": ">=7.2",
         "drupal/core": "^8.8.2",
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
-        "openeuropa/rdf_skos": "~0.11",
         "openeuropa/oe_media": "~1.10.1",
-        "php": ">=7.2"
+        "openeuropa/rdf_skos": "~0.11"
     },
     "require-dev": {
         "composer/installers": "~1.5",
@@ -37,7 +37,7 @@
         "openeuropa/code-review": "~1.5.0",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
-        "openeuropa/oe_corporate_site_info": "^0.1.0",
+        "openeuropa/oe_corporate_site_info": "dev-master",
         "openeuropa/oe_link_lists": "~0.5.0",
         "openeuropa/oe_multilingual": "~1.5",
         "openeuropa/oe_time_caching": "^1.0.0",
@@ -99,9 +99,6 @@
             },
             "openeuropa/oe_media": {
                 "latest-master": "https://github.com/openeuropa/oe_media/compare/1.10.1...master.diff"
-            },
-            "openeuropa/oe_corporate_site_info": {
-                "latest-master": "https://github.com/openeuropa/oe_corporate_site_info/compare/0.1.0..master.diff"
             }
         }
     },
