@@ -17,8 +17,9 @@ abstract class ConsultationKernelTestBase extends RdfKernelTestBase {
    * @var array
    */
   public static $modules = [
-    'field',
+    'field_group',
     'entity_reference_revisions',
+    'inline_entity_form',
     'link',
     'node',
     'maxlength',
@@ -31,9 +32,6 @@ abstract class ConsultationKernelTestBase extends RdfKernelTestBase {
     'oe_content_entity_contact',
     'oe_content_consultation',
     'rdf_skos',
-    'system',
-    'text',
-    'user',
     'composite_reference',
   ];
 

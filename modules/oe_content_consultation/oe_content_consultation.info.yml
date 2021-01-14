@@ -5,7 +5,7 @@ type: module
 core: 8.x
 
 dependencies:
-  - drupal:composite_reference
+  - composite_reference:composite_reference
   - oe_content:oe_content
   - oe_content:oe_content_entity_contact
   - oe_media:oe_media

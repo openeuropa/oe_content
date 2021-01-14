@@ -57,7 +57,7 @@ Feature: Consultation content creation
     And I should see "sample.pdf"
 
   @javascript
-  Scenario: Test the maximum string length and the valid date requirements of the Call for proposals content type.
+  Scenario: Test the maximum string length and the valid date requirements of the Consultation content type.
     Given I am logged in as a user with the "create oe_consultation content, access content, edit own oe_consultation content, view published skos concept entities, manage corporate content entities" permission
     When I visit "the Consultation creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
