@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_consultation_closed_text
+    - node.type.oe_consultation
+  module:
+    - text
+id: node.oe_consultation.oe_consultation_closed_text
+field_name: oe_consultation_closed_text
+entity_type: node
+bundle: oe_consultation
+label: 'Respond to the consultation (closed status text)'
+description: 'Specify the text that is displayed once the consultation is closed.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

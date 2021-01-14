@@ -1,0 +1,21 @@
+uuid: 532bfae4-460f-4147-bb0a-1f9b95b78281
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_teaser
+    - node.type.oe_consultation
+  module:
+    - text
+id: node.oe_consultation.oe_teaser
+field_name: oe_teaser
+entity_type: node
+bundle: oe_consultation
+label: Teaser
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

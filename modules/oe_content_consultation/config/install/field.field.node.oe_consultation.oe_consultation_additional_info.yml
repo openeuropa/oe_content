@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_consultation_additional_info
+    - node.type.oe_consultation
+  module:
+    - text
+id: node.oe_consultation.oe_consultation_additional_info
+field_name: oe_consultation_additional_info
+entity_type: node
+bundle: oe_consultation
+label: 'Additional information'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

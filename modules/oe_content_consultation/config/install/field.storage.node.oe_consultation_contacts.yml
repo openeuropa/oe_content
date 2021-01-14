@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - oe_content_entity_contact
+id: node.oe_consultation_contacts
+field_name: oe_consultation_contacts
+entity_type: node
+type: entity_reference
+settings:
+  target_type: oe_contact
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
