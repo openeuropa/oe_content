@@ -95,6 +95,7 @@ If you want to use OpenEuropa Content, enable the module:
 ```bash
 drush en oe_content
 ```
+To avoid stack overflow issues set "Seven" as Administration theme and check the "Use the administration theme when editing or creating content" option in the Appearance settings page.
 
 ## Development setup
 
