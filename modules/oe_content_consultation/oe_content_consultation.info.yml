@@ -10,7 +10,6 @@ dependencies:
   - oe_content:oe_content_entity_contact
   - oe_content:oe_content_departments_field
   - oe_media:oe_media
-  - drupal:datetime_range
   - drupal:link
   - drupal:path
 
