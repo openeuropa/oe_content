@@ -15,7 +15,6 @@ class CorporateEntityUiTest extends CorporateEntityUiTestBase {
   protected static $modules = [
     'oe_content',
     'oe_content_entity',
-    'oe_content_entity_document_reference',
     'oe_content_entity_contact',
     'oe_content_entity_organisation',
     'oe_content_entity_venue',

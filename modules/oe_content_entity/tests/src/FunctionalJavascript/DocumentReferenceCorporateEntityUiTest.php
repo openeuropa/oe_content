@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_entity\FunctionalJavascript;
 
 /**
- * Test corporate content entity UIs.
+ * Test Document reference content entity UIs.
  */
 class DocumentReferenceCorporateEntityUiTest extends CorporateEntityUiTestBase {
 
