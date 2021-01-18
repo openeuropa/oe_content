@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.oe_consultation.oe_author
     - field.field.node.oe_consultation.oe_consultation_additional_info
     - field.field.node.oe_consultation.oe_consultation_aim
     - field.field.node.oe_consultation.oe_consultation_closed_text
@@ -65,16 +64,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  oe_author:
-    weight: 29
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   oe_consultation_additional_info:
     weight: 12
     settings:
@@ -251,7 +240,7 @@ content:
       maxlength:
         maxlength_js: 250
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
-        maxlength_js_enforce: false
+        maxlength_js_enforce: true
         maxlength_js_truncate_html: false
     type: text_textarea
     region: content
@@ -264,7 +253,7 @@ content:
       maxlength:
         maxlength_js: 150
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
-        maxlength_js_enforce: false
+        maxlength_js_enforce: true
         maxlength_js_truncate_html: false
     type: text_textarea
     region: content

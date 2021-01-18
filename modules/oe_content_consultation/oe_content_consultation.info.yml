@@ -18,7 +18,6 @@ config_devel:
   install:
     - core.entity_form_display.node.oe_consultation.default
     - core.entity_view_display.node.oe_consultation.default
-    - field.field.node.oe_consultation.oe_author
     - field.field.node.oe_consultation.oe_consultation_additional_info
     - field.field.node.oe_consultation.oe_consultation_aim
     - field.field.node.oe_consultation.oe_consultation_closed_text
