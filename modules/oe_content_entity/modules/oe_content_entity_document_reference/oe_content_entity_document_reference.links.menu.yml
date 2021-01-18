@@ -1,0 +1,5 @@
+entity.oe_document_reference_type.collection:
+  title: 'Document reference types'
+  route_name: entity.oe_document_reference_type.collection
+  description: 'Create and manage types of document reference entities'
+  parent: system.admin_structure

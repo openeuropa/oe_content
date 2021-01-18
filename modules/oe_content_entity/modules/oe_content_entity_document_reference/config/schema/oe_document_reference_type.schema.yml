@@ -1,0 +1,13 @@
+oe_content_entity_document_reference.oe_document_reference_type.*:
+  type: config_entity
+  label: 'Document reference Type settings'
+  mapping:
+    id:
+      type: string
+      label: 'Machine-readable name'
+    label:
+      type: label
+      label: 'Label'
+    description:
+      type: text
+      label: 'Description'
