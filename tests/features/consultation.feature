@@ -32,9 +32,6 @@ Feature: Consultation content creation
     And I press "Add new Contact"
     And I wait for AJAX to finish
     And I fill in "Name" with "General contact"
-    And I fill in "Organisation" with "General contact organisation"
-    And I fill in "Body text" with "General contact body text"
-    And I fill in "Website" with "https://general-contact.com"
     And I press "Create Contact"
 
     And I fill in "Teaser" with "Teaser text"
@@ -55,6 +52,7 @@ Feature: Consultation content creation
     And I should see the text "Additional information text"
     And I should see the text "Legal notice text"
     And I should see "sample.pdf"
+    And I should see the text "General contact"
 
   @javascript
   Scenario: Test the maximum string length and the valid date requirements of the Consultation content type.
