@@ -7,11 +7,9 @@ Feature: Consultation content creation
   @javascript
   Scenario: Creation of a Consultation content through the UI.
     Given I am logged in as a user with the "create oe_consultation content, access content, edit own oe_consultation content, view published skos concept entities, manage corporate content entities" permission
-    And the following document:
-      | name          | file       |
-      | My Document 1 | sample.pdf |
-    And the following document:
+    And the following documents:
       | name          | file         |
+      | My Document 1 | sample.pdf   |
       | My Document 2 | document.pdf |
     And the following "Publication" Content entity:
       | Title | Publication node |
