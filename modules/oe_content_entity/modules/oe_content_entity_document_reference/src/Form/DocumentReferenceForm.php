@@ -9,8 +9,6 @@ use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Form controller for document reference entity edit forms.
- *
- * @package Drupal\oe_content_entity_document_reference\Entity
  */
 class DocumentReferenceForm extends CorporateEntityForm {
 
