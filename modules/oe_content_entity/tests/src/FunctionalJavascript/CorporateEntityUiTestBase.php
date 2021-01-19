@@ -18,10 +18,10 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
    *   Entity type id.
    * @param string $label
    *   Entity type label.
-   * @param string $machine_name
-   *   Entity type machine name.
+   * @param string $bundle
+   *   Entity type bundle.
    */
-  protected function createCorporateEntityType(string $entity_type_id, string $label, string $machine_name): void {
+  protected function createCorporateEntityType(string $entity_type_id, string $label, string $bundle): void {
     $user = $this->drupalCreateUser([
       'manage corporate content entities',
       'manage corporate content entity types',
@@ -38,7 +38,7 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
 
     // Set the label.
     $this->getSession()->getPage()->findField('Label')->setValue("{$label} type name");
-    $this->getSession()->getPage()->findField('Machine-readable name')->setValue($machine_name);
+    $this->getSession()->getPage()->findField('Machine-readable name')->setValue($bundle);
     $this->getSession()->getPage()->fillField('Description', "{$label} type description");
     // Assert that fields description is correct.
     $this->assertSession()->pageTextContains('Label for the ' . $entity_type_id . ' entity type (bundle).');
@@ -49,7 +49,7 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
     $this->assertSession()->pageTextContains("Created the {$label} type name {$entity_type_id} entity type.");
     $this->assertSession()->elementContains('css', 'div.region-content table', "{$label} type name");
     $this->assertSession()->elementContains('css', 'div.region-content table', "{$label} type description");
-    $this->assertSession()->elementContains('css', 'div.region-content table', $machine_name);
+    $this->assertSession()->elementContains('css', 'div.region-content table', $bundle);
   }
 
   /**
@@ -59,12 +59,12 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
    *   Entity type id.
    * @param string $label
    *   Entity type label.
-   * @param string $machine_name
-   *   Entity type machine name.
+   * @param string $bundle
+   *   Entity type bundle.
    */
-  protected function removeCorporateEntityType(string $entity_type_id, string $label, string $machine_name): void {
+  protected function removeCorporateEntityType(string $entity_type_id, string $label, string $bundle): void {
     // Delete bundle.
-    $this->drupalGet("/admin/structure/{$entity_type_id}_type/$machine_name/edit");
+    $this->drupalGet("/admin/structure/{$entity_type_id}_type/$bundle/edit");
     $this->assertSession()->pageTextContains("Edit {$label} type name");
     $this->clickLink('Delete');
 
@@ -79,19 +79,19 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
    *
    * @param string $entity_type_id
    *   Entity type id.
-   * @param string $machine_name
-   *   Entity type machine name.
+   * @param string $bundle
+   *   Entity type bundle.
    */
-  protected function loginAdminUser(string $entity_type_id, string $machine_name): void {
+  protected function loginAdminUser(string $entity_type_id, string $bundle): void {
     $user = $this->drupalCreateUser([
       'manage corporate content entity types',
       'access ' . $entity_type_id . ' overview',
       'access ' . $entity_type_id . ' canonical page',
       'view published ' . $entity_type_id,
       'view unpublished ' . $entity_type_id,
-      'create ' . $entity_type_id . ' ' . $machine_name . ' corporate entity',
-      'edit ' . $entity_type_id . ' ' . $machine_name . ' corporate entity',
-      'delete ' . $entity_type_id . ' ' . $machine_name . ' corporate entity',
+      'create ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
+      'edit ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
+      'delete ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
       'access administration pages',
     ]);
     $this->drupalLogin($user);

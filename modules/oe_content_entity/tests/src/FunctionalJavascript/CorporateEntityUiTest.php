@@ -26,10 +26,10 @@ class CorporateEntityUiTest extends CorporateEntityUiTestBase {
   public function testCorporateEntityUi(): void {
     foreach ($this->corporateEntityDataTestCases() as $info) {
       list($entity_type_id, $label) = $info;
-      $machine_name = str_replace(' ', '_', $label) . '_type_name';
-      $this->createCorporateEntityType($entity_type_id, $label, $machine_name);
+      $bundle = str_replace(' ', '_', $label) . '_type_name';
+      $this->createCorporateEntityType($entity_type_id, $label, $bundle);
 
-      $this->loginAdminUser($entity_type_id, $machine_name);
+      $this->loginAdminUser($entity_type_id, $bundle);
 
       // Assert that we have no entities.
       $this->drupalGet("/admin/content/{$entity_type_id}");
@@ -84,7 +84,7 @@ class CorporateEntityUiTest extends CorporateEntityUiTestBase {
       $this->assertSession()->pageTextContains("There are no {$label} entities yet.");
 
       // Delete bundle.
-      $this->removeCorporateEntityType($entity_type_id, $label, $machine_name);
+      $this->removeCorporateEntityType($entity_type_id, $label, $bundle);
     }
   }
 
