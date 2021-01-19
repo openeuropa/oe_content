@@ -38,6 +38,7 @@ default:
               publication contact type: "#edit-oe-publication-contacts-actions-bundle"
               Reference code second field: "input[name='oe_reference_codes[1][value]']"
             pages:
+              Person creation: 'node/add/oe_person'
               Page creation: 'node/add/oe_page'
               News creation: 'node/add/oe_news'
               Event creation: 'node/add/oe_event'
@@ -110,6 +111,13 @@ default:
         Publication contact: ".field--name-oe-publication-contacts"
         Publication thumbnail: "#edit-oe-publication-thumbnail"
         Reference codes: "#edit-oe-reference-codes-wrapper"
+        Portrait photo: "#edit-oe-person-photo"
+        Person Media: "#edit-oe-person-media"
+        CV upload: "#edit-oe-person-cv"
+        Declaration of interests file: "#edit-oe-person-interests-file"
+        Person contact: "#edit-oe-person-contacts-wrapper"
+        Transparency links: "#edit-oe-person-transparency-links-wrapper"
+        Timeline: "#edit-oe-timeline-wrapper"
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
       selectors:

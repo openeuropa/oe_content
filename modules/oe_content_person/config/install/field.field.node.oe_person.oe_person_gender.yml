@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_person_gender
+    - node.type.oe_person
+  module:
+    - rdf_skos
+id: node.oe_person.oe_person_gender
+field_name: oe_person_gender
+entity_type: node
+bundle: oe_person
+label: Gender
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:skos_concept'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+    concept_schemes:
+      - 'http://publications.europa.eu/resource/authority/human-sex'
+    concept_subset: oe_content_person_human_sex_person
+    field:
+      field_name: oe_person_gender
+      entity_type: node
+      bundle: oe_person
+      concept_schemes:
+        - 'http://publications.europa.eu/resource/authority/human-sex'
+field_type: skos_concept_entity_reference

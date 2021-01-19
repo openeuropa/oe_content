@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Person Content module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter for the node form.
+ */
+function oe_content_person_form_node_form_alter(array &$form, FormStateInterface $form_state) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+
+  if ($node->bundle() !== 'oe_person') {
+    return;
+  }
+
+  $form['oe_departments']['#states'] = [
+    'visible' => [
+      ':input[name="oe_person_type"]' => [
+        'value' => 'eu',
+      ],
+    ],
+  ];
+
+  $form['oe_person_organisation']['#states'] = [
+    'visible' => [
+      ':input[name="oe_person_type"]' => [
+        'value' => 'non_eu',
+      ],
+    ],
+  ];
+
+  $form['oe_departments']['#element_validate'] = [
+    'oe_content_person_oe_departments_validate',
+  ];
+
+  $form['oe_person_organisation']['#element_validate'] = [
+    'oe_content_person_oe_person_organisation_validate',
+  ];
+}
+
+/**
+ * Validation callback for a "oe_departments" reference element.
+ *
+ * @param array $element
+ *   The element being processed.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $complete_form
+ *   The complete form structure.
+ */
+function oe_content_person_oe_departments_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
+  $type = $form_state->getValue(['oe_person_type', 0, 'value']);
+
+  if ($type === 'eu') {
+    return;
+  }
+
+  $values = $form_state->getValue('oe_departments');
+
+  foreach ($values as $key => $value) {
+    if (is_object($value) || empty($value['target_id'])) {
+      continue;
+    }
+    $form_state->unsetValue(['oe_departments', $key, 'target_id']);
+  }
+}
+
+/**
+ * Validation callback for a "oe_person_organisation" reference element.
+ *
+ * @param array $element
+ *   The element being processed.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $complete_form
+ *   The complete form structure.
+ */
+function oe_content_person_oe_person_organisation_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
+  $type = $form_state->getValue(['oe_person_type', 0, 'value']);
+
+  if ($type === 'non_eu') {
+    return;
+  }
+
+  $value = $form_state->getValue(['oe_person_organisation', 0, 'target_id']);
+
+  if (empty($value)) {
+    return;
+  }
+
+  $form_state->unsetValue(['oe_person_organisation', 0, 'target_id']);
+}

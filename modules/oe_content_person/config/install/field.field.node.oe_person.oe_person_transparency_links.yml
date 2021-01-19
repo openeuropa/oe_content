@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_person_transparency_links
+    - node.type.oe_person
+  module:
+    - link
+id: node.oe_person.oe_person_transparency_links
+field_name: oe_person_transparency_links
+entity_type: node
+bundle: oe_person
+label: 'Transparency links'
+description: 'Add links to details on the agenda or agenda items. For example "Meetings with organisations and self-employed individuals" (which links to transparency site).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

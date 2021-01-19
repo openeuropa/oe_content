@@ -216,13 +216,13 @@ class FeatureContext extends RawDrupalContext {
       'fifth' => '5',
       'sixth' => '6',
     ];
+    $tr = $table->find('xpath', "//tbody//tr[position()={$row_map[$row]}]");
 
-    $row = $table->find('xpath', "//tbody//tr[position()={$row_map[$row]}]");
-    if (!$row) {
-      throw new \Exception(sprintf('The %s row for the field %field could not be found.', $row, $field));
+    if (!$tr) {
+      throw new \Exception(sprintf('The %s row for the field %s could not be found.', $row, $field));
     }
 
-    $row->fillField($column, $value);
+    $tr->fillField($column, $value);
   }
 
   /**
@@ -235,10 +235,15 @@ class FeatureContext extends RawDrupalContext {
    *   The table element.
    */
   protected function getMultiColumnFieldTable(string $field): ?NodeElement {
-    $xpath = '//table[contains(concat(" ", normalize-space(@class), " "), " field-multiple-table ")]/descendant::h4[contains(text(), ' . $field . ')]';
-    $heading = $this->getSession()->getPage()->find('xpath', $xpath);
-
-    if (!$heading) {
+    $headings = $this->getSession()->getPage()->findAll('css', 'table.field-multiple-table h4.label');
+    $found = FALSE;
+    foreach ($headings as $heading) {
+      if ($heading->getText() === $field) {
+        $found = TRUE;
+        break;
+      }
+    }
+    if (!$found) {
       throw new \Exception(sprintf('Table for %s field not found', $field));
     }
 

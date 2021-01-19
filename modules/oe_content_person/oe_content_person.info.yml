@@ -1,0 +1,57 @@
+name: OpenEuropa Person Content
+description: Contains the EC corporate Person content type.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - link:link
+  - field_group:field_group
+  - oe_content:oe_content
+  - oe_content:oe_content_entity_contact
+  - oe_content:oe_content_departments_field
+  - oe_content:oe_content_timeline_field
+
+config_devel:
+  install:
+    - core.entity_form_display.node.oe_person.default
+    - core.entity_view_display.node.oe_person.default
+    - field.field.node.oe_person.oe_subject
+    - field.field.node.oe_person.oe_summary
+    - field.field.node.oe_person.oe_teaser
+    - field.field.node.oe_person.oe_timeline
+    - field.field.node.oe_person.oe_person_biography_intro
+    - field.field.node.oe_person.oe_person_contacts
+    - field.field.node.oe_person.oe_person_cv
+    - field.field.node.oe_person.oe_person_interests_file
+    - field.field.node.oe_person.oe_person_interests_intro
+    - field.field.node.oe_person.oe_person_displayed_name
+    - field.field.node.oe_person.oe_person_first_name
+    - field.field.node.oe_person.oe_person_last_name
+    - field.field.node.oe_person.oe_person_media
+    - field.field.node.oe_person.oe_person_organisation
+    - field.field.node.oe_person.oe_person_photo
+    - field.field.node.oe_person.oe_departments
+    - field.field.node.oe_person.oe_social_media_links
+    - field.field.node.oe_person.oe_person_transparency_intro
+    - field.field.node.oe_person.oe_person_transparency_links
+    - field.field.node.oe_person.oe_person_type
+    - field.field.node.oe_person.oe_person_gender
+    - field.storage.node.oe_person_biography_intro
+    - field.storage.node.oe_person_contacts
+    - field.storage.node.oe_person_cv
+    - field.storage.node.oe_person_interests_file
+    - field.storage.node.oe_person_interests_intro
+    - field.storage.node.oe_person_displayed_name
+    - field.storage.node.oe_person_first_name
+    - field.storage.node.oe_person_last_name
+    - field.storage.node.oe_person_media
+    - field.storage.node.oe_person_organisation
+    - field.storage.node.oe_person_photo
+    - field.storage.node.oe_person_transparency_intro
+    - field.storage.node.oe_person_transparency_links
+    - field.storage.node.oe_person_type
+    - field.storage.node.oe_person_gender
+    - node.type.oe_person
+  optional:
+    - language.content_settings.node.oe_person

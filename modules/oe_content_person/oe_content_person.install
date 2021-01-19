@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Person Content installation file.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_person_install() {
+  // Configure the RDF SKOS graphs.
+  if (!\Drupal::service('config.installer')->isSyncing()) {
+    $graphs = [
+      'human-sex' => 'http://publications.europa.eu/resource/dataset/human-sex',
+    ];
+    \Drupal::service('rdf_skos.skos_graph_configurator')->addGraphs($graphs);
+  }
+}
