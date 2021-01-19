@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.oe_consultation.oe_consultation_closed_text
     - field.field.node.oe_consultation.oe_consultation_contacts
     - field.field.node.oe_consultation.oe_consultation_deadline
+    - field.field.node.oe_consultation.oe_consultation_documents
     - field.field.node.oe_consultation.oe_consultation_guidelines
     - field.field.node.oe_consultation.oe_consultation_legal_info
     - field.field.node.oe_consultation.oe_consultation_opening_date
@@ -36,7 +37,7 @@ third_party_settings:
         - oe_content_navigation_title
         - oe_teaser
       parent_name: ''
-      weight: 15
+      weight: 16
       format_type: tab
       region: content
       format_settings:
@@ -53,13 +54,13 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 24
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 22
+    weight: 20
     region: content
     settings:
       include_locked: true
@@ -114,6 +115,24 @@ content:
       increment: 15
     third_party_settings: {  }
     type: datetime_datelist
+    region: content
+  oe_consultation_documents:
+    weight: 15
+    settings:
+      match_operator: CONTAINS
+      form_mode: default
+      revision: false
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      collapsible: false
+      collapsed: false
+      allow_new: true
+      allow_existing: false
+      removed_reference: optional
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
     region: content
   oe_consultation_guidelines:
     weight: 7
@@ -176,7 +195,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 19
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
@@ -186,7 +205,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 21
+    weight: 19
     region: content
     settings:
       placeholder_url: ''
@@ -222,7 +241,7 @@ content:
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_subject:
-    weight: 20
+    weight: 18
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -259,7 +278,7 @@ content:
     region: content
   path:
     type: path
-    weight: 27
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -267,21 +286,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 25
+    weight: 23
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 28
+    weight: 26
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 26
+    weight: 24
     region: content
     third_party_settings: {  }
   title:
@@ -297,7 +316,7 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   uid:
     type: entity_reference_autocomplete
-    weight: 23
+    weight: 21
     settings:
       match_operator: CONTAINS
       size: 60

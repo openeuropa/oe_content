@@ -73,7 +73,11 @@ use Drupal\Core\Field\FieldConfigInterface;
 class DocumentReference extends CorporateEntityBase implements DocumentReferenceInterface {
 
   /**
-   * {@inheritdoc}
+   * Gets the label of the entity.
+   *
+   * Since document reference doesn't have name field, label is generated.
+   * Pattern: Document reference bundle name > referenced entity 1 label,
+   * referenced entity 2 label.
    */
   public function label() {
     $entity_type = \Drupal::entityTypeManager()
@@ -91,7 +95,7 @@ class DocumentReference extends CorporateEntityBase implements DocumentReference
    * Gets labels of referenced entities.
    *
    * @return string
-   *   Labels separated by colon.
+   *   Labels separated by comma.
    */
   protected function getReferencedEntityLabels(): string {
     $fields = \Drupal::service('entity_field.manager')->getFieldDefinitions('oe_document_reference', $this->bundle());
@@ -112,7 +116,7 @@ class DocumentReference extends CorporateEntityBase implements DocumentReference
       $labels[] = $this->get($field_name)->entity->label();
     }
 
-    return implode(' : ', $labels);
+    return implode(', ', $labels);
   }
 
 }

@@ -106,6 +106,7 @@ default:
         Publication contact: ".field--name-oe-publication-contacts"
         Publication thumbnail: "#edit-oe-publication-thumbnail"
         Reference codes: "#edit-oe-reference-codes-wrapper"
+        Consultation documents: "#edit-oe-consultation-documents-wrapper"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'

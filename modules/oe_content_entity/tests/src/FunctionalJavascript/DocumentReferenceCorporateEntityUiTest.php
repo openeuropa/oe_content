@@ -31,6 +31,9 @@ class DocumentReferenceCorporateEntityUiTest extends CorporateEntityUiTestBase {
 
     // Create two revisions of the same entity.
     $this->drupalGet('/admin/content/oe_document_reference/add/document_reference_type_name');
+
+    // Label field is absent.
+    $this->assertFalse($this->getSession()->getPage()->hasField('Name'));
     $this->getSession()->getPage()->fillField('Revision log message', "Revision log message 1.");
     $this->getSession()->getPage()->pressButton('Save');
 

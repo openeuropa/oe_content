@@ -10,6 +10,11 @@ Feature: Consultation content creation
     And the following document:
       | name          | file       |
       | My Document 1 | sample.pdf |
+    And the following document:
+      | name          | file         |
+      | My Document 2 | document.pdf |
+    And the following "Publication" Content entity:
+      | Title | Publication node |
 
     When I visit "the Consultation creation page"
     And I fill in "Page title" with "Consultation title"
@@ -34,6 +39,21 @@ Feature: Consultation content creation
     And I fill in "Name" with "General contact"
     And I press "Create Contact"
 
+    # Create document reference to Document media.
+    And I press "Add new document reference"
+    And I wait for AJAX to finish
+    And I fill in "Use existing media" with "My Document 2" in the "Consultation documents" region
+    And I press "Create document reference"
+    And I wait for AJAX to finish
+
+    # Create document reference to Publication node.
+    And I select "Publication" from "oe_consultation_documents[actions][bundle]"
+    And I press "Add new document reference"
+    And I wait for AJAX to finish
+    And I fill in "Publication" with "Publication node" in the "Consultation documents" region
+    And I press "Create document reference"
+    And I wait for AJAX to finish
+
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Content owner" with "Audit Board of the European Communities"
     And I fill in "Subject" with "export financing"
@@ -53,6 +73,11 @@ Feature: Consultation content creation
     And I should see the text "Legal notice text"
     And I should see "sample.pdf"
     And I should see the text "General contact"
+    # Document from document reference is shown.
+    And I should see "document.pdf"
+    # Publication from document reference is shown.
+    And I should see "Publication node"
+
 
   @javascript
   Scenario: Test the maximum string length and the valid date requirements of the Consultation content type.

@@ -9,33 +9,17 @@ targetEntityType: oe_document_reference
 bundle: oe_document
 mode: default
 content:
-  created:
-    label: hidden
-    type: timestamp
-    weight: 0
-    region: content
-    settings:
-      date_format: medium
-      custom_date_format: ''
-      timezone: ''
-    third_party_settings: {  }
   oe_document:
     type: entity_reference_entity_view
-    weight: 1
+    weight: 0
     label: above
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
     region: content
-  name:
-    label: hidden
-    type: string
-    weight: -5
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
 hidden:
+  created: true
   langcode: true
+  name: true
   status: true

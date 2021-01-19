@@ -9,8 +9,15 @@ targetEntityType: oe_document_reference
 bundle: oe_document
 mode: default
 content:
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   oe_document:
-    weight: 3
+    weight: 0
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -19,21 +26,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  langcode:
-    type: language_select
-    weight: 1
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
-  name:
-    type: string_textfield
-    weight: 0
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
@@ -43,3 +35,4 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  name: true
