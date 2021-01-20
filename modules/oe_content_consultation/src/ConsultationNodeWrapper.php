@@ -28,7 +28,7 @@ class ConsultationNodeWrapper extends CallEntityWrapperBase {
   protected $openingDate = 'oe_consultation_opening_date';
 
   /**
-   * Contains the Deadline date field id.
+   * Contains the Deadline field id.
    *
    * @var string
    */

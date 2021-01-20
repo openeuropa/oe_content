@@ -15,6 +15,7 @@ dependencies:
 
 config_devel:
   install:
+    - core.base_field_override.node.oe_consultation.title
     - core.entity_form_display.node.oe_consultation.default
     - core.entity_view_display.node.oe_consultation.default
     - field.field.node.oe_consultation.oe_consultation_additional_info

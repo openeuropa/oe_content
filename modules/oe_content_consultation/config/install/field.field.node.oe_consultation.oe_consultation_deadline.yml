@@ -10,7 +10,7 @@ id: node.oe_consultation.oe_consultation_deadline
 field_name: oe_consultation_deadline
 entity_type: node
 bundle: oe_consultation
-label: 'Deadline date'
+label: 'Deadline'
 description: ''
 required: true
 translatable: false
