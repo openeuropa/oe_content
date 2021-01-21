@@ -1,0 +1,51 @@
+name: OpenEuropa Consultation Content
+description: Contains the EC corporate Consultation content type.
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - composite_reference:composite_reference
+  - oe_content:oe_content
+  - oe_content:oe_content_entity_contact
+  - oe_content:oe_content_departments_field
+  - oe_media:oe_media
+  - drupal:link
+  - drupal:path
+
+config_devel:
+  install:
+    - core.base_field_override.node.oe_consultation.title
+    - core.entity_form_display.node.oe_consultation.default
+    - core.entity_view_display.node.oe_consultation.default
+    - field.field.node.oe_consultation.oe_consultation_additional_info
+    - field.field.node.oe_consultation.oe_consultation_aim
+    - field.field.node.oe_consultation.oe_consultation_closed_text
+    - field.field.node.oe_consultation.oe_consultation_contacts
+    - field.field.node.oe_consultation.oe_consultation_deadline
+    - field.field.node.oe_consultation.oe_consultation_guidelines
+    - field.field.node.oe_consultation.oe_consultation_legal_info
+    - field.field.node.oe_consultation.oe_consultation_opening_date
+    - field.field.node.oe_consultation.oe_consultation_outcome
+    - field.field.node.oe_consultation.oe_consultation_outcome_files
+    - field.field.node.oe_consultation.oe_consultation_response_button
+    - field.field.node.oe_consultation.oe_consultation_target_audience
+    - field.field.node.oe_consultation.oe_departments
+    - field.field.node.oe_consultation.oe_subject
+    - field.field.node.oe_consultation.oe_summary
+    - field.field.node.oe_consultation.oe_teaser
+    - field.storage.node.oe_consultation_additional_info
+    - field.storage.node.oe_consultation_aim
+    - field.storage.node.oe_consultation_closed_text
+    - field.storage.node.oe_consultation_contacts
+    - field.storage.node.oe_consultation_deadline
+    - field.storage.node.oe_consultation_guidelines
+    - field.storage.node.oe_consultation_legal_info
+    - field.storage.node.oe_consultation_opening_date
+    - field.storage.node.oe_consultation_outcome
+    - field.storage.node.oe_consultation_outcome_files
+    - field.storage.node.oe_consultation_response_button
+    - field.storage.node.oe_consultation_target_audience
+    - node.type.oe_consultation
+  optional:
+    - language.content_settings.node.oe_consultation

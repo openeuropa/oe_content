@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_consultation_target_audience
+    - node.type.oe_consultation
+  module:
+    - text
+id: node.oe_consultation.oe_consultation_target_audience
+field_name: oe_consultation_target_audience
+entity_type: node
+bundle: oe_consultation
+label: 'Target audience'
+description: 'Specify who should contribute to this consultation.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
