@@ -12,7 +12,7 @@ use Drupal\Tests\BrowserTestBase;
 abstract class CorporateEntityUiTestBase extends BrowserTestBase {
 
   /**
-   * Creates corporate entity type.
+   * Creates corporate entity type bundle.
    *
    * @param string $entity_type_id
    *   Entity type id.
@@ -21,7 +21,7 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
    * @param string $bundle
    *   Entity type bundle.
    */
-  protected function createCorporateEntityType(string $entity_type_id, string $label, string $bundle): void {
+  protected function createCorporateEntityTypeBundle(string $entity_type_id, string $label, string $bundle): void {
     $user = $this->drupalCreateUser([
       'manage corporate content entities',
       'manage corporate content entity types',
@@ -53,7 +53,7 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
   }
 
   /**
-   * Removes corporate entity type.
+   * Removes corporate entity type bundle.
    *
    * @param string $entity_type_id
    *   Entity type id.

@@ -13,8 +13,6 @@ class CorporateEntityUiTest extends CorporateEntityUiTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'oe_content',
-    'oe_content_entity',
     'oe_content_entity_contact',
     'oe_content_entity_organisation',
     'oe_content_entity_venue',
@@ -27,7 +25,7 @@ class CorporateEntityUiTest extends CorporateEntityUiTestBase {
     foreach ($this->corporateEntityDataTestCases() as $info) {
       list($entity_type_id, $label) = $info;
       $bundle = str_replace(' ', '_', $label) . '_type_name';
-      $this->createCorporateEntityType($entity_type_id, $label, $bundle);
+      $this->createCorporateEntityTypeBundle($entity_type_id, $label, $bundle);
 
       $this->loginAdminUser($entity_type_id, $bundle);
 

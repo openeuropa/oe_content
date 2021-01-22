@@ -45,7 +45,6 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  *     "bundle" = "bundle",
  *     "uuid" = "uuid",
  *     "label" = "name",
- *     "uuid" = "uuid",
  *     "langcode" = "langcode",
  *     "published" = "status",
  *     "created" = "created",

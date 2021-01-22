@@ -13,8 +13,6 @@ class DocumentReferenceCorporateEntityUiTest extends CorporateEntityUiTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'oe_content',
-    'oe_content_entity',
     'oe_content_entity_document_reference',
   ];
 
@@ -22,7 +20,7 @@ class DocumentReferenceCorporateEntityUiTest extends CorporateEntityUiTestBase {
    * Tests Document reference UIs.
    */
   public function testDocumentReferenceCorporateEntityUi(): void {
-    $this->createCorporateEntityType('oe_document_reference', 'document reference', 'document_reference_type_name');
+    $this->createCorporateEntityTypeBundle('oe_document_reference', 'document reference', 'document_reference_type_name');
     $this->loginAdminUser('oe_document_reference', 'document_reference_type_name');
 
     // Assert that we have no entities.
@@ -36,6 +34,10 @@ class DocumentReferenceCorporateEntityUiTest extends CorporateEntityUiTestBase {
     $this->assertFalse($this->getSession()->getPage()->hasField('Name'));
     $this->getSession()->getPage()->fillField('Revision log message', "Revision log message 1.");
     $this->getSession()->getPage()->pressButton('Save');
+
+    // Assert document reference label.
+    $this->drupalGet('admin/content/oe_document_reference');
+    $this->assertSession()->pageTextContains('document reference type name');
 
     $this->drupalGet('/admin/content/oe_document_reference/1/edit');
     $this->getSession()->getPage()->checkField('Create new revision');

@@ -1,7 +1,6 @@
 # Corporate Document reference entity type
 
-The Document reference entity type is used as an intermediate when reference to the entity types of different types has
-to be set in one field.
+The Document reference entity type is used as an intermediate when reference to the entity types of different types has to be set in one field.
 
 This module provides the following bundles:
 

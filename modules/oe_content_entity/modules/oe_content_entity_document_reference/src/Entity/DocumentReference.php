@@ -5,7 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_entity_document_reference\Entity;
 
 use Drupal\oe_content_entity\Entity\CorporateEntityBase;
-use Drupal\Core\Field\FieldConfigInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Defines the Document reference entity.
@@ -46,7 +47,6 @@ use Drupal\Core\Field\FieldConfigInterface;
  *     "bundle" = "bundle",
  *     "uuid" = "uuid",
  *     "label" = "name",
- *     "uuid" = "uuid",
  *     "langcode" = "langcode",
  *     "published" = "status",
  *     "created" = "created",
@@ -80,15 +80,15 @@ class DocumentReference extends CorporateEntityBase implements DocumentReference
    * referenced entity 2 label.
    */
   public function label() {
-    $entity_type = \Drupal::entityTypeManager()
+    $bundle_label = \Drupal::entityTypeManager()
       ->getStorage('oe_document_reference_type')
-      ->load($this->bundle());
+      ->load($this->bundle())->label();
 
     $labels = $this->getReferencedEntityLabels();
     if (!empty($labels)) {
-      return $entity_type->label() . ' > ' . $labels;
+      return $bundle_label . ' > ' . $labels;
     }
-    return $entity_type->label();
+    return $bundle_label;
   }
 
   /**
@@ -98,24 +98,19 @@ class DocumentReference extends CorporateEntityBase implements DocumentReference
    *   Labels separated by comma.
    */
   protected function getReferencedEntityLabels(): string {
-    $fields = \Drupal::service('entity_field.manager')->getFieldDefinitions('oe_document_reference', $this->bundle());
-    $entity_reference_fields = [];
-    /** @var \Drupal\Core\Field\FieldDefinitionInterface $field_definition */
-    foreach ($fields as $field_name => $field_definition) {
-      if ($field_definition instanceof FieldConfigInterface && $field_definition->getType() === 'entity_reference') {
-        $entity_reference_fields[] = $field_name;
+    // Load referenced entities.
+    $entities = $this->referencedEntities();
+
+    $labels = [];
+    foreach ($entities as $entity) {
+      if ($entity instanceof ContentEntityInterface && !($entity instanceof UserInterface)) {
+        $labels[] = $entity->label();
       }
     }
 
-    if (empty($entity_reference_fields)) {
+    if (!$labels) {
       return '';
     }
-
-    $labels = [];
-    foreach ($entity_reference_fields as $field_name) {
-      $labels[] = $this->get($field_name)->entity->label();
-    }
-
     return implode(', ', $labels);
   }
 
