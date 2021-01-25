@@ -11,7 +11,7 @@
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
-        "openeuropa/oe_media": "^1.10.1",
+        "openeuropa/oe_media": "~1.11",
         "openeuropa/rdf_skos": "~0.11"
     },
     "require-dev": {
@@ -37,7 +37,7 @@
         "openeuropa/code-review": "~1.5.0",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
-        "openeuropa/oe_corporate_site_info": "dev-master",
+        "openeuropa/oe_corporate_site_info": "~0.2.0",
         "openeuropa/oe_link_lists": "~0.5.0",
         "openeuropa/oe_multilingual": "~1.5",
         "openeuropa/oe_time_caching": "^1.0.0",
@@ -45,12 +45,8 @@
         "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.4"
     },
-    "conflict": {
-        "openeuropa/oe_corporate_site_info": "<0.2.0"
-    },
     "_readme": [
-        "We explicitly require drupal/inline_entity_form version rc8 or higher as it contains necessary bug fixes.",
-        "We apply the changes from \"openeuropa/oe_corporate_site_info\" as a patch until they are merged in the master branch."
+        "We explicitly require drupal/inline_entity_form version rc8 or higher as it contains necessary bug fixes."
     ],
     "autoload": {
         "psr-4": {
@@ -65,6 +61,7 @@
         }
     },
     "conflict": {
+        "openeuropa/oe_corporate_site_info": "<0.2.0",
         "drupal/inline_entity_form": "<1.0-rc8"
     },
     "scripts": {
@@ -98,9 +95,6 @@
             },
             "drupal/inline_entity_form": {
                 "https://www.drupal.org/project/inline_entity_form/issues/2875716": "https://www.drupal.org/files/issues/2020-11-05/ief_removed_references_2875716-89.patch"
-            },
-            "openeuropa/oe_media": {
-                "latest-master": "https://github.com/openeuropa/oe_media/compare/1.10.1...master.diff"
             }
         },
         "drupal-scaffold": {
