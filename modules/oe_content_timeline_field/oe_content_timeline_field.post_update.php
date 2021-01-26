@@ -10,7 +10,7 @@ declare(strict_types = 1);
 /**
  * Update table field charset to default.
  */
-function oe_content_timeline_field_post_update_00004(&$sandbox) {
+function oe_content_timeline_field_post_update_00001(&$sandbox) {
   /** @var \Drupal\Core\Entity\EntityFieldManager $entity_field_manager */
   $entity_field_manager = \Drupal::service('entity_field.manager');
   $timelines = $entity_field_manager->getFieldMapByFieldType('timeline_field');
