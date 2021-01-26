@@ -31,7 +31,12 @@ Feature: Person content creation
     And I select "EU institutions related person" from "What type of person are you adding?"
     And I fill in "First name" with "Firstname"
     And I fill in "Last name" with "Lastname"
-    And I select "not known" from "Gender" form element
+    And I should have the following options for the "Gender" select:
+      | - Select a value -  |
+      | female              |
+      | male                |
+      | not stated          |
+    And I select "not stated" from "Gender"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     When I press "Save"
     Then I should see "My person item"
@@ -40,7 +45,7 @@ Feature: Person content creation
     Then I should see "EU institutions related person"
     Then I should see "Firstname"
     Then I should see "Lastname"
-    Then I should see "not known"
+    Then I should see "not stated"
     And I should see the link "Committee on Agriculture and Rural Development"
     # Optional fields.
     When I click "Edit"
@@ -160,7 +165,7 @@ Feature: Person content creation
     And I select "EU institutions related person" from "What type of person are you adding?"
     And I fill in "First name" with "Firstname"
     And I fill in "Last name" with "Lastname"
-    And I select "not known" from "Gender" form element
+    And I select "male" from "Gender"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_person\Plugin\ConceptSubset;
+namespace Drupal\oe_content\Plugin\ConceptSubset;
 
 use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -15,22 +15,22 @@ use Drupal\rdf_skos\Plugin\PredicateMapperInterface;
  * Human sex subset for person gender.
  *
  * @ConceptSubset(
- *   id = "oe_content_person_human_sex_person",
- *   label = @Translation("Human Sex Gender"),
- *   description = @Translation("Human Sex to be used with the COM_WEB context."),
+ *   id = "oe_content_gender",
+ *   label = @Translation("Gender"),
+ *   description = @Translation("A gender subset from the Human Sex vocabulary."),
  *   predicate_mapping = TRUE,
  *   concept_schemes = {
  *     "http://publications.europa.eu/resource/authority/human-sex"
  *   }
  * )
  */
-class HumanSexPerson extends ConceptSubsetPluginBase implements PredicateMapperInterface {
+class Gender extends ConceptSubsetPluginBase implements PredicateMapperInterface {
 
   /**
    * {@inheritdoc}
    */
   public function alterQuery(QueryInterface $query, $match_operator, array $concept_schemes = [], string $match = NULL): void {
-    $query->condition('oe_content_person_human_sex_person', 'http://publications.europa.eu/resource/authority/use-context/COM_WEB');
+    $query->condition('oe_content_human_sex_contexts', 'http://publications.europa.eu/resource/authority/use-context/COM_WEB');
   }
 
   /**
@@ -39,7 +39,7 @@ class HumanSexPerson extends ConceptSubsetPluginBase implements PredicateMapperI
   public function getPredicateMapping(): array {
     $mapping = [];
 
-    $mapping['oe_content_person_human_sex_person'] = [
+    $mapping['oe_content_human_sex_contexts'] = [
       'column' => 'value',
       'predicate' => ['http://lemon-model.net/lemon#context'],
       'format' => RdfFieldHandlerInterface::RESOURCE,
@@ -54,9 +54,9 @@ class HumanSexPerson extends ConceptSubsetPluginBase implements PredicateMapperI
   public function getBaseFieldDefinitions(): array {
     $fields = [];
 
-    $fields['oe_content_person_human_sex_person'] = BaseFieldDefinition::create('string')
+    $fields['oe_content_human_sex_contexts'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Human sex contexts'))
-      ->setDescription(t('Potential contexts of the human sex.'))
+      ->setDescription(t('Potential contexts of the human sex vocabulary.'))
       ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
 
     return $fields;

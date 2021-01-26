@@ -25,7 +25,7 @@ settings:
     auto_create: false
     concept_schemes:
       - 'http://publications.europa.eu/resource/authority/human-sex'
-    concept_subset: oe_content_person_human_sex_person
+    concept_subset: oe_content_gender
     field:
       field_name: oe_person_gender
       entity_type: node
