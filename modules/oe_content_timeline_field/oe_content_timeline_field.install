@@ -2,7 +2,7 @@
 
 /**
  * @file
- * OpenEuropa Content Timeline Field post updates.
+ * Install, update and uninstall functions for the OpenEuropa Content Timeline Field module.
  */
 
 declare(strict_types = 1);
@@ -10,7 +10,7 @@ declare(strict_types = 1);
 /**
  * Update table field charset to default.
  */
-function oe_content_timeline_field_post_update_00001(&$sandbox) {
+function oe_content_timeline_field_update_8101(): void {
   /** @var \Drupal\Core\Entity\EntityFieldManager $entity_field_manager */
   $entity_field_manager = \Drupal::service('entity_field.manager');
   $timelines = $entity_field_manager->getFieldMapByFieldType('timeline_field');
