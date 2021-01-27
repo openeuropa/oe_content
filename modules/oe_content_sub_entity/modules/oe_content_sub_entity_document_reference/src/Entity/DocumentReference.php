@@ -48,4 +48,4 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class DocumentReference extends SubEntityBase {}
+class DocumentReference extends SubEntityBase implements DocumentReferenceInterface {}
