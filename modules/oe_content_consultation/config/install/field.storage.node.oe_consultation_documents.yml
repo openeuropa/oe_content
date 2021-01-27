@@ -4,7 +4,7 @@ dependencies:
   module:
     - entity_reference_revisions
     - node
-    - oe_content_entity_document_reference
+    - oe_content_sub_entity_document_reference
 id: node.oe_consultation_documents
 field_name: oe_consultation_documents
 entity_type: node

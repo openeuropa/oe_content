@@ -1,2 +1,0 @@
-permission_callbacks:
-  - \Drupal\oe_content_entity_document_reference\PermissionCallbacks::buildPermissions

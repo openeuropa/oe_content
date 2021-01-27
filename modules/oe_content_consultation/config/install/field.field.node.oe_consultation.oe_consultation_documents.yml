@@ -4,8 +4,8 @@ dependencies:
   config:
     - field.storage.node.oe_consultation_documents
     - node.type.oe_consultation
-    - oe_content_entity_document_reference.oe_document_reference_type.oe_document
-    - oe_content_entity_document_reference.oe_document_reference_type.oe_publication
+    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_document
+    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_publication
   module:
     - composite_reference
     - entity_reference_revisions
