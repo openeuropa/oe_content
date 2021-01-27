@@ -4,7 +4,7 @@ dependencies:
   module:
     - media
     - oe_content_sub_entity_document_reference
-id: oe_document_reference.field_oe_document
+id: oe_document_reference.oe_document
 field_name: oe_document
 entity_type: oe_document_reference
 type: entity_reference

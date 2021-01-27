@@ -4,7 +4,7 @@ dependencies:
   module:
     - node
     - oe_content_sub_entity_document_reference
-id: oe_document_reference.field_oe_publication
+id: oe_document_reference.oe_publication
 field_name: oe_publication
 entity_type: oe_document_reference
 type: entity_reference
