@@ -1,17 +1,41 @@
 # Changelog
 
+## [1.13.0](https://github.com/openeuropa/oe_content/tree/1.13.0) (2021-01-25)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.12.1...1.13.0)
+
+**Closed issues:**
+
+- Adding items to a multiple entities field not working [\#370](https://github.com/openeuropa/oe_content/issues/370)
+
+**Merged pull requests:**
+
+- EWPP-683: Update oe\_corporate\_site\_info and oe\_media dependencies. [\#378](https://github.com/openeuropa/oe_content/pull/378) ([ademarco](https://github.com/ademarco))
+- EWPP-586: Fix oe\_media version constraint. [\#377](https://github.com/openeuropa/oe_content/pull/377) ([ademarco](https://github.com/ademarco))
+- EWPP-615: Adding a conflict to previous versions of oe\_corporate\_site\_info. [\#373](https://github.com/openeuropa/oe_content/pull/373) ([upchuk](https://github.com/upchuk))
+- EWPP-529: Replace scaffold library. [\#372](https://github.com/openeuropa/oe_content/pull/372) ([sergepavle](https://github.com/sergepavle))
+- EWPP-615: Set default content owner values when creating new content [\#371](https://github.com/openeuropa/oe_content/pull/371) ([georgebaev](https://github.com/georgebaev))
+- EWPP-589: Fix the Deadline form validation for permanent deadline model. [\#369](https://github.com/openeuropa/oe_content/pull/369) ([upchuk](https://github.com/upchuk))
+- Release 1.12.x to master [\#367](https://github.com/openeuropa/oe_content/pull/367) ([nagyad](https://github.com/nagyad))
+- EWPP-586: Restore tests with youtube videos. [\#364](https://github.com/openeuropa/oe_content/pull/364) ([sergepavle](https://github.com/sergepavle))
+- EWPP-517: Add maxlength to call for tenders. [\#359](https://github.com/openeuropa/oe_content/pull/359) ([drishu](https://github.com/drishu))
+
 ## [1.12.1](https://github.com/openeuropa/oe_content/tree/1.12.1) (2020-12-10)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.12.0...1.12.1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 1.12.1. [\#366](https://github.com/openeuropa/oe_content/pull/366) ([ademarco](https://github.com/ademarco))
 - EWPP-405: Ensure referenced entities are not deleted upon removal. [\#323](https://github.com/openeuropa/oe_content/pull/323) ([nagyad](https://github.com/nagyad))
 
 ## [1.12.0](https://github.com/openeuropa/oe_content/tree/1.12.0) (2020-12-04)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.11.1...1.12.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 1.12.0. [\#363](https://github.com/openeuropa/oe_content/pull/363) ([ademarco](https://github.com/ademarco))
 - EWPP-484: EPIC-Publication v2. [\#362](https://github.com/openeuropa/oe_content/pull/362) ([nagyad](https://github.com/nagyad))
 - EWPP-484: Update publication epic. [\#361](https://github.com/openeuropa/oe_content/pull/361) ([nagyad](https://github.com/nagyad))
 - EWPP-483: Make sure that the publication content type does not depend on the organisation content type. [\#360](https://github.com/openeuropa/oe_content/pull/360) ([ademarco](https://github.com/ademarco))
@@ -44,15 +68,22 @@
 ## [1.11.1](https://github.com/openeuropa/oe_content/tree/1.11.1) (2020-10-27)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.11.0...1.11.1)
 
+**Closed issues:**
+
+- EasyRdf\Exception: Unsupported URI scheme [\#322](https://github.com/openeuropa/oe_content/issues/322)
+
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 1.11.1. [\#334](https://github.com/openeuropa/oe_content/pull/334) ([ademarco](https://github.com/ademarco))
 - EWPP-443: Fixing Media PURL matcher dependency calculation. [\#333](https://github.com/openeuropa/oe_content/pull/333) ([ademarco](https://github.com/ademarco))
 
 ## [1.11.0](https://github.com/openeuropa/oe_content/tree/1.11.0) (2020-10-08)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.10.0...1.11.0)
 
 **Merged pull requests:**
 
+- Release 1.11.0 [\#316](https://github.com/openeuropa/oe_content/pull/316) ([ademarco](https://github.com/ademarco))
 - EWPP-330: Call for Tenders closed status should not depend on the opening date. [\#313](https://github.com/openeuropa/oe_content/pull/313) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-269: Epic news. [\#312](https://github.com/openeuropa/oe_content/pull/312) ([nagyad](https://github.com/nagyad))
 - Update news epic [\#311](https://github.com/openeuropa/oe_content/pull/311) ([nagyad](https://github.com/nagyad))
@@ -127,6 +158,7 @@
 
 **Merged pull requests:**
 
+- Release-1.10.0: Update changelog. [\#242](https://github.com/openeuropa/oe_content/pull/242) ([nagyad](https://github.com/nagyad))
 - EWPP-94: Refactor the PURL module to allow for other entity types [\#239](https://github.com/openeuropa/oe_content/pull/239) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-3380: Use base hook for templates of corporate entities. [\#235](https://github.com/openeuropa/oe_content/pull/235) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-31: Create 'Departments' shared field. [\#230](https://github.com/openeuropa/oe_content/pull/230) ([julien-](https://github.com/julien-))
