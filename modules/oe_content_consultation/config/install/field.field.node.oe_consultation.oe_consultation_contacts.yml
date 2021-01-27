@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_consultation_contacts
+    - node.type.oe_consultation
+    - oe_content_entity_contact.oe_contact_type.oe_general
+  module:
+    - composite_reference
+third_party_settings:
+  composite_reference:
+    composite: false
+id: node.oe_consultation.oe_consultation_contacts
+field_name: oe_consultation_contacts
+entity_type: node
+bundle: oe_consultation
+label: Contacts
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:oe_contact'
+  handler_settings:
+    target_bundles:
+      oe_general: oe_general
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
