@@ -119,17 +119,17 @@ content:
   oe_consultation_documents:
     weight: 15
     settings:
-      match_operator: CONTAINS
       form_mode: default
-      revision: false
-      override_labels: false
+      revision: true
       label_singular: ''
       label_plural: ''
-      collapsible: false
-      collapsed: false
+      collapsible: true
       allow_new: true
+      match_operator: CONTAINS
+      removed_reference: keep
+      override_labels: false
+      collapsed: false
       allow_existing: false
-      removed_reference: optional
       allow_duplicate: false
     third_party_settings: {  }
     type: inline_entity_form_complex

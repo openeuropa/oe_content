@@ -27,26 +27,8 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
    * {@inheritdoc}
    */
   public function label() {
-    if (($parent = $this->getParentEntity()) && $parent->hasField($this->get('parent_field_name')->value)) {
-      $parent_field = $this->get('parent_field_name')->value;
-      $field = $parent->get($parent_field);
-      $label = $parent->label() . ' > ' . $field->getFieldDefinition()->getLabel();
-      // A previous or draft revision or a deleted stale entity.
-      $postfix = ' (previous revision)';
-      foreach ($field as $value) {
-        if ($value->entity && $value->entity->getRevisionId() == $this->getRevisionId()) {
-          $postfix = '';
-          break;
-        }
-      }
-      if ($postfix) {
-        $label .= $postfix;
-      }
-    }
-    else {
-      $label = $this->get('type')->entity->label();
-    }
-    return $label;
+    // Since label isn't stored in DB return bundle label bu default.
+    return $this->get('type')->entity->label();
   }
 
   /**
