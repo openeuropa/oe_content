@@ -2,17 +2,15 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_entity\FunctionalJavascript;
-
-use Drupal\Tests\BrowserTestBase;
+namespace Drupal\Tests\oe_content\Traits;
 
 /**
- * Base class to test corporate content entity UIs.
+ * Helper trait to test entity type UI.
  */
-abstract class CorporateEntityUiTestBase extends BrowserTestBase {
+trait EntityTypeUiTrait {
 
   /**
-   * Creates corporate entity type bundle.
+   * Creates entity type bundle.
    *
    * @param string $entity_type_id
    *   Entity type id.
@@ -20,15 +18,10 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
    *   Entity type label.
    * @param string $bundle
    *   Entity type bundle.
+   *
+   * @see \Drupal\oe_content\Form\EntityTypeForm
    */
-  protected function createCorporateEntityTypeBundle(string $entity_type_id, string $label, string $bundle): void {
-    $user = $this->drupalCreateUser([
-      'manage corporate content entities',
-      'manage corporate content entity types',
-      'access administration pages',
-    ]);
-    $this->drupalLogin($user);
-
+  protected function createEntityTypeBundle(string $entity_type_id, string $label, string $bundle): void {
     // Create a new bundle.
     $this->drupalGet("/admin/structure/{$entity_type_id}_type");
     $this->assertSession()->pageTextContains("{$label} type entities");
@@ -53,7 +46,7 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
   }
 
   /**
-   * Removes corporate entity type bundle.
+   * Removes entity type bundle.
    *
    * @param string $entity_type_id
    *   Entity type id.
@@ -61,8 +54,10 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
    *   Entity type label.
    * @param string $bundle
    *   Entity type bundle.
+   *
+   * @see \Drupal\oe_content\Form\EntityTypeDeleteForm
    */
-  protected function removeCorporateEntityType(string $entity_type_id, string $label, string $bundle): void {
+  protected function removeEntityTypeBundle(string $entity_type_id, string $label, string $bundle): void {
     // Delete bundle.
     $this->drupalGet("/admin/structure/{$entity_type_id}_type/$bundle/edit");
     $this->assertSession()->pageTextContains("Edit {$label} type name");
@@ -72,29 +67,6 @@ abstract class CorporateEntityUiTestBase extends BrowserTestBase {
     $this->getSession()->getPage()->pressButton('Delete');
 
     $this->assertSession()->pageTextContains("The {$label} type {$label} type name has been deleted.");
-  }
-
-  /**
-   * Login as admin user.
-   *
-   * @param string $entity_type_id
-   *   Entity type id.
-   * @param string $bundle
-   *   Entity type bundle.
-   */
-  protected function loginAdminUser(string $entity_type_id, string $bundle): void {
-    $user = $this->drupalCreateUser([
-      'manage corporate content entity types',
-      'access ' . $entity_type_id . ' overview',
-      'access ' . $entity_type_id . ' canonical page',
-      'view published ' . $entity_type_id,
-      'view unpublished ' . $entity_type_id,
-      'create ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
-      'edit ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
-      'delete ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
-      'access administration pages',
-    ]);
-    $this->drupalLogin($user);
   }
 
 }

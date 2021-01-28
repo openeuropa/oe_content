@@ -46,8 +46,9 @@ class EntityTypeDeleteForm extends EntityDeleteForm {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $entity_type_id = $this->getEntity()->getEntityType()->getBundleOf();
     $query_aggregator = $this->entityTypeManager->getStorage($entity_type_id)->getAggregateQuery();
+    $entity_type = $this->entityTypeManager->getDefinition($entity_type_id);
     $num_lists = $query_aggregator
-      ->condition('bundle', $this->entity->id())
+      ->condition($entity_type->getKey('bundle'), $this->entity->id())
       ->count()
       ->execute();
     if ($num_lists) {

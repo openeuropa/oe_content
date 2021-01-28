@@ -2,12 +2,17 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_entity\FunctionalJavascript;
+namespace Drupal\Tests\oe_content_entity\Functional;
+
+use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\oe_content\Traits\EntityTypeUiTrait;
 
 /**
  * Test corporate content entity UIs.
  */
-class CorporateEntityUiTest extends CorporateEntityUiTestBase {
+class CorporateEntityUiTest extends BrowserTestBase {
+
+  use EntityTypeUiTrait;
 
   /**
    * {@inheritdoc}
@@ -24,8 +29,13 @@ class CorporateEntityUiTest extends CorporateEntityUiTestBase {
   public function testCorporateEntityUi(): void {
     foreach ($this->corporateEntityDataTestCases() as $info) {
       list($entity_type_id, $label) = $info;
-      $bundle = str_replace(' ', '_', $label) . '_type_name';
-      $this->createCorporateEntityTypeBundle($entity_type_id, $label, $bundle);
+      $bundle = str_replace(' ', '_', $label) . '_type_bundle';
+      $user = $this->drupalCreateUser([
+        'manage corporate content entity types',
+        'access administration pages',
+      ]);
+      $this->drupalLogin($user);
+      $this->createEntityTypeBundle($entity_type_id, $label, $bundle);
 
       $this->loginAdminUser($entity_type_id, $bundle);
 
@@ -34,7 +44,7 @@ class CorporateEntityUiTest extends CorporateEntityUiTestBase {
       $this->assertSession()->pageTextContains("There are no {$label} entities yet.");
 
       // Create two revisions of the same entity.
-      $this->drupalGet("/admin/content/{$entity_type_id}/add/{$label}_type_name");
+      $this->drupalGet("/admin/content/{$entity_type_id}/add/{$bundle}");
       $this->getSession()->getPage()->fillField('Name', "{$label} entity name 1");
       $this->getSession()->getPage()->fillField('Revision log message', "Revision log message 1.");
       $this->getSession()->getPage()->pressButton('Save');
@@ -82,7 +92,7 @@ class CorporateEntityUiTest extends CorporateEntityUiTestBase {
       $this->assertSession()->pageTextContains("There are no {$label} entities yet.");
 
       // Delete bundle.
-      $this->removeCorporateEntityType($entity_type_id, $label, $bundle);
+      $this->removeEntityTypeBundle($entity_type_id, $label, $bundle);
     }
   }
 
@@ -103,6 +113,29 @@ class CorporateEntityUiTest extends CorporateEntityUiTestBase {
       ['oe_organisation', 'organisation'],
       ['oe_venue', 'venue'],
     ];
+  }
+
+  /**
+   * Login as admin user.
+   *
+   * @param string $entity_type_id
+   *   Entity type id.
+   * @param string $bundle
+   *   Entity type bundle.
+   */
+  protected function loginAdminUser(string $entity_type_id, string $bundle): void {
+    $user = $this->drupalCreateUser([
+      'manage corporate content entity types',
+      'access ' . $entity_type_id . ' overview',
+      'access ' . $entity_type_id . ' canonical page',
+      'view published ' . $entity_type_id,
+      'view unpublished ' . $entity_type_id,
+      'create ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
+      'edit ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
+      'delete ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
+      'access administration pages',
+    ]);
+    $this->drupalLogin($user);
   }
 
 }

@@ -9,13 +9,6 @@ targetEntityType: oe_document_reference
 bundle: oe_document
 mode: default
 content:
-  langcode:
-    type: language_select
-    weight: 1
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
   oe_document:
     weight: 0
     settings:
