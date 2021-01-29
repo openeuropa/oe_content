@@ -43,16 +43,18 @@ Feature: Consultation content creation
     And I fill in "Use existing media" with "My Document 2" in the "Consultation documents" region
     And I press "Create document reference"
     And I wait for AJAX to finish
+    Then I should see the text "My document 2"
 
     # Create document reference to Publication node.
-    And I select "Publication" from "oe_consultation_documents[actions][bundle]"
+    When I select the "Publication" document reference
     And I press "Add new document reference"
     And I wait for AJAX to finish
     And I fill in "Publication" with "Publication node" in the "Consultation documents" region
     And I press "Create document reference"
     And I wait for AJAX to finish
+    Then I should see the text "Publication node"
 
-    And I fill in "Teaser" with "Teaser text"
+    When I fill in "Teaser" with "Teaser text"
     And I fill in "Content owner" with "Audit Board of the European Communities"
     And I fill in "Subject" with "export financing"
     And I press "Save"
@@ -76,7 +78,6 @@ Feature: Consultation content creation
     # Publication from document reference is shown.
     And I should see "Publication node"
 
-
   @javascript
   Scenario: Test the maximum string length and the valid date requirements of the Consultation content type.
     Given I am logged in as a user with the "create oe_consultation content, access content, edit own oe_consultation content, view published skos concept entities, manage corporate content entities" permission
@@ -96,3 +97,52 @@ Feature: Consultation content creation
     And I fill in "Subject" with "export financing"
     And I press "Save"
     Then I should not see the text "The text to remove."
+
+  @javascript
+  Scenario: Test visibility of document references and ensure that document reference and contact is not deleted after removing from the node.
+    Given I am an anonymous user
+    And the following General Contact entity:
+      | Name | A general contact |
+    And the following document:
+      | name          | file       |
+      | My Document 3 | sample.pdf |
+    And the following Document "Document reference" entity:
+      | Name     | Document reference to My Document 3 |
+      | Document | My Document 3                       |
+    And the following Consultation Content entity:
+      | Title             | Consultation demo page              |
+      | Summary           | Consultation summary                |
+      | Teaser            | Consultation teaser                 |
+      | Contacts          | A general contact                   |
+      | Opening date      | 2019-02-22                          |
+      | Deadline          | 2019-03-21 18:30:00                 |
+      | Target audience   | Target audience text                |
+      | Documents         | Document reference to My Document 3 |
+    When I am visiting the "Consultation demo page" content
+    Then I should see "sample.pdf"
+
+    When the Document "Document reference" "Document reference to My Document 3" is updated as follows:
+    | Name      | Document reference to My Document 3 |
+    | Published | No                                  |
+    And I am visiting the "Consultation demo page" content
+    Then I should not see "sample.pdf"
+
+    When I am logged in as a user with the "view unpublished sub entities" permission
+    And I am visiting the "Consultation demo page" content
+    Then I should see "sample.pdf"
+
+    When I am logged in as a user with the "create oe_consultation content, access content, edit any oe_consultation content, view published skos concept entities, manage corporate content entities, view unpublished sub entities" permission
+    And I am visiting the "Consultation demo page" content
+    And I click "Edit"
+    And I press "Remove" in the "Consultation contacts" region
+    Then I should see "Are you sure you want to remove A general contact?"
+    When I press "Remove" in the "Consultation contacts" region
+    And I wait for AJAX to finish
+    And I press "Remove" in the "Consultation documents" region
+    Then I should see "Are you sure you want to remove My Document 3?"
+    And I press "Remove" in the "Consultation documents" region
+    And I wait for AJAX to finish
+    And I press "Save"
+    Then I should see "Consultation Consultation demo page has been updated."
+    And the General Contact entity with title "A general contact" exists
+    And the Document "Document reference" entity with title "Document reference to My Document 3" exists

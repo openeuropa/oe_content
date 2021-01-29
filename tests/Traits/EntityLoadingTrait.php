@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_content\Traits;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Tests\oe_content\Behat\Content\ContentStorage;
 
 /**
  * Helper trait to load entities by different criteria.
@@ -26,11 +27,24 @@ trait EntityLoadingTrait {
    *   Entity object, if any.
    */
   protected function loadEntityByLabel(string $entity_type, string $label, string $bundle = NULL): EntityInterface {
+    $exception_message = "No '$entity_type' entity of type '$bundle' with label '$label' has been found.";
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
     $label_key = $storage->getEntityType()->getKey('label');
-    $properties = [
-      $label_key => $label,
-    ];
+    if (!$label_key) {
+      // Find entity in content storage if entity doesn't support labels.
+      $entity = ContentStorage::getInstance()->getEntity($label);
+      if (!$entity) {
+        throw new \InvalidArgumentException($exception_message);
+      }
+      $properties = [
+        'id' => $entity->id(),
+      ];
+    }
+    else {
+      $properties = [
+        $label_key => $label,
+      ];
+    }
 
     // If bundle is set then add it to the query properties.
     if ($bundle) {
@@ -40,7 +54,7 @@ trait EntityLoadingTrait {
     $entities = $storage->loadByProperties($properties);
 
     if (empty($entities)) {
-      throw new \InvalidArgumentException("No '$entity_type' entity of type '$bundle' with label '$label' has been found.");
+      throw new \InvalidArgumentException($exception_message);
     }
 
     return reset($entities);
