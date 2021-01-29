@@ -7,9 +7,10 @@ dependencies:
     - oe_content_entity_contact.oe_contact_type.oe_general
   module:
     - composite_reference
+    - entity_reference_revisions
 third_party_settings:
   composite_reference:
-    composite: false
+    composite: true
 id: node.oe_consultation.oe_consultation_contacts
 field_name: oe_consultation_contacts
 entity_type: node
@@ -29,4 +30,4 @@ settings:
       field: _none
     auto_create: false
     auto_create_bundle: ''
-field_type: entity_reference
+field_type: entity_reference_revisions
