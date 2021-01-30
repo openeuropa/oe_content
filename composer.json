@@ -91,6 +91,9 @@
             },
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2020-10-05/entity_browser-remove_button_2851580-92.patch"
+            },
+            "openeuropa/rdf_skos": {
+                "EWPP-727": "https://github.com/openeuropa/rdf_skos/compare/0.11.0..EWPP-727.diff"
             }
         }
     },
