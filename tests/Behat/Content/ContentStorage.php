@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content\Behat\Content;
 
+use Drupal\Core\Entity\EntityInterface;
+
 /**
  * Content storage for entities without labels.
  */
