@@ -29,7 +29,7 @@ class PersonContentContext extends RawDrupalContext {
    *
    * @BeforeParseEntityFields(node,oe_call_proposals)
    */
-  public function alterCallForProposalsFields(BeforeParseEntityFieldsScope $scope): void {
+  public function alterPersonFields(BeforeParseEntityFieldsScope $scope): void {
     // Map human readable field names to their Behat parsable machine names.
     $mapping = [
       'Title' => 'title',
@@ -47,7 +47,7 @@ class PersonContentContext extends RawDrupalContext {
       'Media' => 'oe_person_media',
       'Organisation' => 'oe_person_organisation',
       'Portrait photo' => 'oe_person_photo',
-      'Responsible department' => 'oe_departments',
+      'Departments' => 'oe_departments',
       'Social media links' => 'oe_social_media_links',
       'Subject' => 'oe_subject',
       'Teaser' => 'oe_teaser',

@@ -118,6 +118,7 @@ default:
         Declaration of interests file: "#edit-oe-person-interests-file"
         Person contact: "#edit-oe-person-contacts-wrapper"
         Transparency links: "#edit-oe-person-transparency-links-wrapper"
+        Biography: "#edit-oe-person-biography-timeline-wrapper"
         Timeline: "#edit-oe-timeline-wrapper"
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
