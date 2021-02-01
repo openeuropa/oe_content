@@ -10,7 +10,7 @@ id: node.oe_person.oe_departments
 field_name: oe_departments
 entity_type: node
 bundle: oe_person
-label: 'Responsible department'
+label: Departments
 description: ''
 required: false
 translatable: false

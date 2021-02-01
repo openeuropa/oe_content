@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.node.oe_person.oe_departments
     - field.field.node.oe_person.oe_person_biography_intro
+    - field.field.node.oe_person.oe_person_biography_timeline
     - field.field.node.oe_person.oe_person_contacts
     - field.field.node.oe_person.oe_person_cv
     - field.field.node.oe_person.oe_person_displayed_name
@@ -22,7 +23,6 @@ dependencies:
     - field.field.node.oe_person.oe_subject
     - field.field.node.oe_person.oe_summary
     - field.field.node.oe_person.oe_teaser
-    - field.field.node.oe_person.oe_timeline
     - node.type.oe_person
   module:
     - entity_reference_revisions
@@ -54,7 +54,7 @@ content:
     third_party_settings: {  }
   oe_content_content_owner:
     type: skos_concept_entity_reference_label
-    weight: 24
+    weight: 25
     region: content
     label: above
     settings:
@@ -62,7 +62,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link
-    weight: 23
+    weight: 24
     region: content
     label: above
     settings:
@@ -74,7 +74,7 @@ content:
     third_party_settings: {  }
   oe_content_navigation_title:
     type: string
-    weight: 25
+    weight: 26
     region: content
     label: above
     settings:
@@ -90,7 +90,7 @@ content:
     third_party_settings: {  }
   oe_departments:
     type: skos_concept_entity_reference_label
-    weight: 22
+    weight: 23
     region: content
     label: above
     settings:
@@ -98,11 +98,20 @@ content:
     third_party_settings: {  }
   oe_person_biography_intro:
     type: text_default
-    weight: 21
+    weight: 22
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
+  oe_person_biography_timeline:
+    weight: 21
+    label: above
+    settings:
+      limit: '0'
+      show_more: 'Show full timeline'
+    third_party_settings: {  }
+    type: timeline_formatter
+    region: content
   oe_person_contacts:
     type: entity_reference_revisions_entity_view
     weight: 19
@@ -246,18 +255,9 @@ content:
     third_party_settings: {  }
   oe_teaser:
     type: text_default
-    weight: 26
+    weight: 27
     region: content
     label: above
     settings: {  }
-    third_party_settings: {  }
-  oe_timeline:
-    type: timeline_formatter
-    weight: 20
-    region: content
-    label: above
-    settings:
-      limit: '5'
-      show_more: 'Show full timeline'
     third_party_settings: {  }
 hidden: {  }

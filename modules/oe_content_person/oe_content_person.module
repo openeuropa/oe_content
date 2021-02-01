@@ -57,19 +57,13 @@ function oe_content_person_form_node_form_alter(array &$form, FormStateInterface
  */
 function oe_content_person_oe_departments_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
   $type = $form_state->getValue(['oe_person_type', 0, 'value']);
+  $department_is_empty = $form_state->isValueEmpty(['oe_departments', 0, 'target_id']);
 
-  if ($type === 'eu') {
+  if ($type === 'eu' || $department_is_empty) {
     return;
   }
 
-  $values = $form_state->getValue('oe_departments');
-
-  foreach ($values as $key => $value) {
-    if (is_object($value) || empty($value['target_id'])) {
-      continue;
-    }
-    $form_state->unsetValue(['oe_departments', $key, 'target_id']);
-  }
+  $form_state->setValue(['oe_departments'], []);
 }
 
 /**
@@ -86,12 +80,6 @@ function oe_content_person_oe_person_organisation_validate(array &$element, Form
   $type = $form_state->getValue(['oe_person_type', 0, 'value']);
 
   if ($type === 'non_eu') {
-    return;
-  }
-
-  $value = $form_state->getValue(['oe_person_organisation', 0, 'target_id']);
-
-  if (empty($value)) {
     return;
   }
 

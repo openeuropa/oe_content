@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.node.oe_person.oe_departments
     - field.field.node.oe_person.oe_person_biography_intro
+    - field.field.node.oe_person.oe_person_biography_timeline
     - field.field.node.oe_person.oe_person_contacts
     - field.field.node.oe_person.oe_person_cv
     - field.field.node.oe_person.oe_person_displayed_name
@@ -22,7 +23,6 @@ dependencies:
     - field.field.node.oe_person.oe_subject
     - field.field.node.oe_person.oe_summary
     - field.field.node.oe_person.oe_teaser
-    - field.field.node.oe_person.oe_timeline
     - node.type.oe_person
   module:
     - field_group
@@ -42,7 +42,7 @@ third_party_settings:
         - oe_content_navigation_title
         - oe_teaser
       parent_name: ''
-      weight: 21
+      weight: 22
       format_type: tab
       region: content
       format_settings:
@@ -59,20 +59,20 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 26
+    weight: 27
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 24
+    weight: 25
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 22
+    weight: 23
     region: content
     settings:
       match_operator: CONTAINS
@@ -82,7 +82,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 23
+    weight: 24
     region: content
     settings:
       placeholder_url: ''
@@ -125,6 +125,12 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  oe_person_biography_timeline:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: timeline_widget
+    region: content
   oe_person_contacts:
     type: inline_entity_form_complex
     weight: 12
@@ -145,7 +151,7 @@ content:
     third_party_settings: {  }
   oe_person_cv:
     type: entity_reference_autocomplete
-    weight: 18
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -178,7 +184,7 @@ content:
     third_party_settings: {  }
   oe_person_interests_file:
     type: entity_reference_autocomplete
-    weight: 20
+    weight: 21
     region: content
     settings:
       match_operator: CONTAINS
@@ -188,7 +194,7 @@ content:
     third_party_settings: {  }
   oe_person_interests_intro:
     type: text_textarea
-    weight: 19
+    weight: 20
     region: content
     settings:
       rows: 5
@@ -298,15 +304,9 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
         maxlength_js_truncate_html: true
-  oe_timeline:
-    type: timeline_widget
-    weight: 17
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   path:
     type: path
-    weight: 29
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -314,21 +314,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 27
+    weight: 28
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 30
+    weight: 31
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 28
+    weight: 29
     region: content
     third_party_settings: {  }
   title:
@@ -344,7 +344,7 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   uid:
     type: entity_reference_autocomplete
-    weight: 25
+    weight: 26
     settings:
       match_operator: CONTAINS
       size: 60

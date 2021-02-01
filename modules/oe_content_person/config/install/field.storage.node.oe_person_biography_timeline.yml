@@ -3,15 +3,13 @@ status: true
 dependencies:
   module:
     - node
-id: node.oe_person_displayed_name
-field_name: oe_person_displayed_name
+    - oe_content_timeline_field
+id: node.oe_person_biography_timeline
+field_name: oe_person_biography_timeline
 entity_type: node
-type: string
-settings:
-  max_length: 511
-  is_ascii: false
-  case_sensitive: false
-module: core
+type: timeline_field
+settings: {  }
+module: oe_content_timeline_field
 locked: false
 cardinality: 1
 translatable: true

@@ -7,6 +7,7 @@ namespace Drupal\oe_content\Plugin\ConceptSubset;
 use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\rdf_entity\RdfFieldHandlerInterface;
 use Drupal\rdf_skos\ConceptSubsetPluginBase;
 use Drupal\rdf_skos\Plugin\PredicateMapperInterface;
@@ -25,6 +26,8 @@ use Drupal\rdf_skos\Plugin\PredicateMapperInterface;
  * )
  */
 class Gender extends ConceptSubsetPluginBase implements PredicateMapperInterface {
+
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -55,8 +58,8 @@ class Gender extends ConceptSubsetPluginBase implements PredicateMapperInterface
     $fields = [];
 
     $fields['oe_content_human_sex_contexts'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Human sex contexts'))
-      ->setDescription(t('Potential contexts of the human sex vocabulary.'))
+      ->setLabel($this->t('Human sex contexts'))
+      ->setDescription($this->t('Potential contexts of the human sex vocabulary.'))
       ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
 
     return $fields;

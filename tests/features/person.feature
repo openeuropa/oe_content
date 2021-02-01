@@ -38,7 +38,7 @@ Feature: Person content creation
       | not stated          |
     And I select "not stated" from "Gender"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    When I press "Save"
+    And I press "Save"
     Then I should see "My person item"
     And I should see the link "financing"
     And I should see "Teaser text"
@@ -55,7 +55,7 @@ Feature: Person content creation
     And I fill in "Displayed name" with "Altered name"
     And I fill in "Use existing media" with "Image 1" in the "Portrait photo" region
     And I fill in "Use existing media" with "Image 2" in the "Person Media" region
-    And I fill in "Responsible department" with "European Patent Office"
+    And I fill in "Departments" with "European Patent Office"
     And I fill in "Transparency introduction" with "transparency-introduction text"
     And I fill in "URL" with "http://transparency.example.com" in the "Transparency links" region
     And I fill in "Link text" with "Example link" in the "Transparency links" region
@@ -63,11 +63,11 @@ Feature: Person content creation
     And I fill in "Label" with "Label 1" in the "first" "Biography" field element
     And I fill in "Title" with "Title 1" in the "first" "Biography" field element
     And I fill in "Content" with "Body 1" in the "first" "Biography" field element
-    And I press "Add another item" in the "Timeline" region
+    And I press "Add another item" in the "Biography" region
     And I fill in "Label" with "Label 2" in the "second" "Biography" field element
     And I fill in "Title" with "Title 2" in the "second" "Biography" field element
     And I fill in "Content" with "Body 2" in the "second" "Biography" field element
-    And I press "Add another item" in the "Timeline" region
+    And I press "Add another item" in the "Biography" region
     And I fill in "Label" with "Label 3" in the "third" "Biography" field element
     And I fill in "Title" with "Title 3" in the "third" "Biography" field element
     And I fill in "Content" with "Body 3" in the "third" "Biography" field element
@@ -147,7 +147,7 @@ Feature: Person content creation
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
     And I fill in "Organisation" with "Organisation demo page"
     When I press "Save"
-    And I should see "Organisation demo page"
+    Then I should see "Organisation demo page"
     And I should not see the link "European Patent Office"
 
   @javascript

@@ -33,7 +33,7 @@ class PersonContentContext extends RawDrupalContext {
     // Map human readable field names to their Behat parsable machine names.
     $mapping = [
       'Title' => 'title',
-      'Biography' => 'oe_timeline',
+      'Biography' => 'oe_person_biography_timeline',
       'Biography introduction' => 'oe_person_biography_intro',
       'Contact' => 'oe_call_proposals_contact',
       'CV upload' => 'oe_person_cv',
@@ -62,7 +62,7 @@ class PersonContentContext extends RawDrupalContext {
       switch ($key) {
         // Set SKOS Concept entity reference fields.
         case 'Gender':
-        case 'Responsible department':
+        case 'Departments':
         case 'Subject':
           $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
           $scope->addFields($fields)->removeField($key);
