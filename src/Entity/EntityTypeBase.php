@@ -44,7 +44,7 @@ abstract class EntityTypeBase extends ConfigEntityBundleBase {
   /**
    * {@inheritdoc}
    */
-  public function setDescription($description): self {
+  public function setDescription($description): EntityTypeBase {
     $this->description = $description;
     return $this;
   }

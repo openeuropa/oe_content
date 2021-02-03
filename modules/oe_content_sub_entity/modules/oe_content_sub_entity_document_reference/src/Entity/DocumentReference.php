@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_sub_entity_document_reference\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\user\UserInterface;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 
 /**
@@ -79,7 +78,8 @@ class DocumentReference extends SubEntityBase implements DocumentReferenceInterf
 
     $labels = [];
     foreach ($entities as $entity) {
-      if ($entity instanceof ContentEntityInterface && !($entity instanceof UserInterface)) {
+      $label_key = $entity->getEntityType()->getKey('label');
+      if ($entity instanceof ContentEntityInterface && $label_key) {
         $labels[] = $entity->label();
       }
     }

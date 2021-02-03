@@ -9,7 +9,7 @@ use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityPublishedInterface;
 
 /**
- * Provides an interface for EntityBase class.
+ * Interface for sub entity classes.
  *
  * @ingroup oe_content_entity
  */

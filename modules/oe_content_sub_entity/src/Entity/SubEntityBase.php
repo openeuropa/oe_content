@@ -27,7 +27,7 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
    * {@inheritdoc}
    */
   public function label() {
-    // Since label isn't stored in DB return bundle label bu default.
+    // Return the entity's bundle label by default.
     return $this->get('type')->entity->label();
   }
 
@@ -119,7 +119,7 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
     $parent = \Drupal::entityTypeManager()->getStorage($this->get('parent_type')->value)->load($this->get('parent_id')->value);
 
     // Return current translation of parent entity, if it exists.
-    if ($parent != NULL && ($parent instanceof TranslatableInterface) && $parent->hasTranslation($this->language()->getId())) {
+    if ($parent !== NULL && ($parent instanceof TranslatableInterface) && $parent->hasTranslation($this->language()->getId())) {
       return $parent->getTranslation($this->language()->getId());
     }
 
