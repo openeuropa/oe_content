@@ -279,4 +279,135 @@ class CorporateContentContext extends RawDrupalContext {
     return $results;
   }
 
+  /**
+   * Update an existing sub entity, given its bundle, entity type and title.
+   *
+   * Example:
+   *
+   * Given the sub entity Document "Document reference" "Document reference to
+   * My Document " is updated as follows:
+   * | Published | No |
+   *
+   * Use entity type and bundle labels to refer to the entity.
+   *
+   * Field names and/or values can be transformed by using the following hooks:
+   *
+   *  - @BeforeParseEntityFields(ENTITY_TYPE, ENTITY_BUNDLE)
+   *  - @AfterParseEntityFields(ENTITY_TYPE, ENTITY_BUNDLE)
+   *
+   * For an example of field transformations refer to:
+   *
+   * - @see \Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext::alterEventFields()
+   * - @see \Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext::alterVenueFields()
+   *
+   * This step also fires a @BeforeSaveEntity(ENTITY_TYPE, ENTITY_BUNDLE) right
+   * before saving the entity.
+   *
+   * @param string $bundle_label
+   *   Entity bundle label.
+   * @param string $entity_type_label
+   *   Entity type label.
+   * @param string $label
+   *   Entity label.
+   * @param \Behat\Gherkin\Node\TableNode $table
+   *   List of fields.
+   *
+   * @Given the sub entity :bundle_label :entity_type_label :name is updated as follows:
+   */
+  public function updateSubEntity(string $bundle_label, string $entity_type_label, string $label, TableNode $table): void {
+    $definition = $this->loadDefinitionByLabel($entity_type_label);
+    $entity_type = $definition->id();
+
+    // Get and alter fields.
+    $fields = $table->getRowsHash();
+    if (!isset($fields['Name'])) {
+      $fields['Name'] = $label;
+    }
+    $bundle = $this->loadEntityByLabel($definition->getBundleEntityType(), $bundle_label)->id();
+    $fields = $this->parseFields($entity_type, $bundle, $fields);
+
+    // Set field value and save the entity.
+    $entity = $this->loadSubEntityByName($entity_type, $label, $bundle);
+    foreach ($fields as $name => $value) {
+      $entity->set($name, $value);
+    }
+
+    // Dispatch before save hook.
+    $scope = new BeforeSaveEntityScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $entity);
+    $this->dispatchEntityAwareHook($scope);
+
+    $entity->save();
+
+    // Dispatch after save hook.
+    $scope = new AfterSaveEntityScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $entity);
+    $this->dispatchEntityAwareHook($scope);
+
+    // Clears the static cache of DatabaseCacheTagsChecksum.
+    \Drupal::service('cache_tags.invalidator')->resetCheckSums();
+  }
+
+  /**
+   * Load a sub entity by type, label and, optionally, by bundle.
+   *
+   * @param string $entity_type
+   *   Entity type ID.
+   * @param string $label
+   *   Entity label.
+   * @param string $bundle
+   *   Entity bundle ID.
+   *
+   * @return \Drupal\Core\Entity\EntityInterface
+   *   Entity object, if any.
+   */
+  protected function loadSubEntityByName(string $entity_type, string $label, string $bundle) {
+    $exception_message = "No '$entity_type' entity of type '$bundle' with label '$label' has been found.";
+    $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
+    // Find entity in the content storage.
+    $entity = ContentStorage::getInstance()->getEntity($label);
+    if (!$entity) {
+      throw new \InvalidArgumentException($exception_message);
+    }
+    $properties = [
+      'id' => $entity->id(),
+    ];
+
+    // If bundle is set then add it to the query properties.
+    if ($bundle) {
+      $bundle_key = $storage->getEntityType()->getKey('bundle');
+      $properties[$bundle_key] = $bundle;
+    }
+    // Load the sub entity from the database.
+    $entities = $storage->loadByProperties($properties);
+
+    if (empty($entities)) {
+      throw new \InvalidArgumentException($exception_message);
+    }
+
+    return reset($entities);
+  }
+
+  /**
+   * Assert the sub entity exists.
+   *
+   * Example:
+   *
+   * Then the sub entity Document "Document reference" entity with name
+   * "Document reference to My Document" exists
+   *
+   * @param string $bundle_label
+   *   Entity bundle label.
+   * @param string $entity_type_label
+   *   Entity type label.
+   * @param string $name
+   *   Fake entity label.
+   *
+   * @Then the sub entity :bundle_label :entity_type_label entity with name :name exists
+   */
+  public function subEntityExists(string $bundle_label, string $entity_type_label, string $name) {
+    $definition = $this->loadDefinitionByLabel($entity_type_label);
+    $entity_type = $definition->id();
+    $bundle = $this->loadEntityByLabel($definition->getBundleEntityType(), $bundle_label)->id();
+    $this->loadSubEntityByName($entity_type, $name, $bundle);
+  }
+
 }

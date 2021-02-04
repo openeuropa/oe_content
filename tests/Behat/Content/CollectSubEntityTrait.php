@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content\Behat\Content;
 
-use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterSaveEntityScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 
 /**
- * Context to create sub entities.
+ * Trait to collect sub entities to content storage.
+ *
+ * Sub entities don't have labels, so we can't load them by label. Instead of it
+ * they will be collected in ContentStorage where we can take them from.
  */
-class SubEntityContext extends RawDrupalContext {
+trait CollectSubEntityTrait {
 
   /**
    * Name of the entity that is about to be saved.
    *
    * @var string
    */
-  protected $entityName;
+  protected $subEntityName;
 
   /**
    * Run before sub entity fields are parsed.
@@ -30,8 +32,6 @@ class SubEntityContext extends RawDrupalContext {
    *   Behat hook scope.
    *
    * @see \Drupal\Tests\oe_content\Behat\Content\CorporateContentContext::parseFields()
-   *
-   * @BeforeParseEntityFields(oe_document_reference,oe_document)
    */
   public function collectSubEntityName(BeforeParseEntityFieldsScope $scope): void {
     $fields = $scope->getFields();
@@ -40,28 +40,27 @@ class SubEntityContext extends RawDrupalContext {
     }
 
     // Store name field.
-    // We will use this to store the paragraph object in the after save hook.
-    $this->entityName = $fields['Name'];
+    // We will use this to store the sub entity object in the after save hook.
+    $this->subEntityName = $fields['Name'];
     $scope->removeField('Name');
   }
 
   /**
    * Store sub entities using the name we have just collected.
    *
-   * We use this to collect sub entities that are created elsewhere.
-   * We have to add a before parse hook entry for each supported sub entity.
+   * We use this to collect sub entities that are created by
+   * CorporateContentContext::createEntity().
+   * We have to add it for each supported sub entity.
    *
    * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\AfterSaveEntityScope $scope
    *   Behat hook scope.
    *
    * @see \Drupal\Tests\oe_content\Behat\Content\CorporateContentContext::createEntity()
-   *
-   * @AfterSaveEntity(oe_document_reference,oe_document)
    */
   public function storeSubEntityObject(AfterSaveEntityScope $scope): void {
     $content_storage = ContentStorage::getInstance();
-    $content_storage->addEntity($this->entityName, $scope->getEntity());
-    $this->entityName = NULL;
+    $content_storage->addEntity($this->subEntityName, $scope->getEntity());
+    $this->subEntityName = NULL;
   }
 
 }

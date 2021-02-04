@@ -121,9 +121,8 @@ Feature: Consultation content creation
     When I am visiting the "Consultation demo page" content
     Then I should see "sample.pdf"
 
-    When the Document "Document reference" "Document reference to My Document 3" is updated as follows:
-    | Name      | Document reference to My Document 3 |
-    | Published | No                                  |
+    When the sub entity Document "Document reference" "Document reference to My Document 3" is updated as follows:
+    | Published | No |
     And I am visiting the "Consultation demo page" content
     Then I should not see "sample.pdf"
 
@@ -145,4 +144,4 @@ Feature: Consultation content creation
     And I press "Save"
     Then I should see "Consultation Consultation demo page has been updated."
     And the General Contact entity with title "A general contact" exists
-    And the Document "Document reference" entity with title "Document reference to My Document 3" exists
+    And the sub entity Document "Document reference" entity with name "Document reference to My Document 3" exists

@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content\DocumentReference;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\Tests\oe_content\Behat\Content\CollectSubEntityTrait;
+use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterSaveEntityScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
@@ -16,6 +18,7 @@ class PublicationDocumentReferenceContext extends RawDrupalContext {
 
   use EntityReferenceTrait;
   use EntityLoadingTrait;
+  use CollectSubEntityTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -26,6 +29,9 @@ class PublicationDocumentReferenceContext extends RawDrupalContext {
    * @BeforeParseEntityFields(oe_document_reference,oe_publication)
    */
   public function alterDocumentReferenceFields(BeforeParseEntityFieldsScope $scope): void {
+    // Process name field if it exists to store entity in the content storage.
+    $this->collectSubEntityName($scope);
+
     // Maps human readable field names to their Behat parsable machine names.
     $mapping = [
       'Publication' => 'oe_publication',
@@ -52,6 +58,15 @@ class PublicationDocumentReferenceContext extends RawDrupalContext {
           }
       }
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @AfterSaveEntity(oe_document_reference,oe_publication)
+   */
+  public function entitySaved(AfterSaveEntityScope $scope): void {
+    $this->storeSubEntityObject($scope);
   }
 
 }
