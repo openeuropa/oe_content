@@ -62,7 +62,7 @@ class SubEntityAccessControlHandler extends EntityAccessControlHandler implement
     if ($entity->getParentEntity() != NULL) {
       // Delete permission on the entity, should just depend on 'update'
       // access permissions on the parent.
-      $operation = ($operation == 'delete') ? 'update' : $operation;
+      $operation = ($operation === 'delete') ? 'update' : $operation;
       $parent_access = $entity->getParentEntity()->access($operation, $account, TRUE);
       $access_result = $access_result->andIf($parent_access);
     }

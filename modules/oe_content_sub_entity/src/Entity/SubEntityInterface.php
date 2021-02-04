@@ -57,6 +57,10 @@ interface SubEntityInterface extends ContentEntityInterface, EntityChangedInterf
   /**
    * Set the parent entity.
    *
+   * Entity reference revision field sets these values itself, but if entity
+   * reference field type is used need to set parent entity in the widget.
+   * See \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem.
+   *
    * @param \Drupal\Core\Entity\ContentEntityInterface $parent
    *   The parent entity.
    * @param string $parent_field_name
