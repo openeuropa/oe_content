@@ -9,26 +9,26 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
 /**
  * Provides the EntityTypeBase class for content entity types.
  *
- * @ingroup oe_content_entity
+ * @ingroup oe_content
  */
 abstract class EntityTypeBase extends ConfigEntityBundleBase {
 
   /**
-   * The machine name of the corporate content entity type.
+   * The machine name of the content entity type.
    *
    * @var string
    */
   protected $id;
 
   /**
-   * The human-readable name of the corporate content entity type.
+   * The human-readable name of the content entity type.
    *
    * @var string
    */
   protected $label;
 
   /**
-   * A brief description of the corporate content entity type.
+   * A brief description of the content entity type.
    *
    * @var string
    */

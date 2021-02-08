@@ -16,7 +16,7 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *   id = "oe_document_reference",
  *   label = @Translation("Document reference"),
  *   label_collection = @Translation("Document references"),
- *   bundle_label = @Translation("Document reference type"),
+ *   bundle_label = @Translation("Type"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "access" = "Drupal\oe_content_sub_entity\SubEntityAccessControlHandler",
@@ -78,15 +78,11 @@ class DocumentReference extends SubEntityBase implements DocumentReferenceInterf
 
     $labels = [];
     foreach ($entities as $entity) {
-      $label_key = $entity->getEntityType()->getKey('label');
-      if ($entity instanceof ContentEntityInterface && $label_key) {
+      if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
         $labels[] = $entity->label();
       }
     }
 
-    if (!$labels) {
-      return '';
-    }
     return implode(', ', $labels);
   }
 

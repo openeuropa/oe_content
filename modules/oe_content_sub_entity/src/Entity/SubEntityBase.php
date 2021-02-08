@@ -14,9 +14,9 @@ use Drupal\Core\TypedData\TranslatableInterface;
 use Drupal\field\Entity\FieldStorageConfig;
 
 /**
- * Provides the EntityBase class for content sub entities.
+ * Provides the SubEntityBase class for content sub entities.
  *
- * @ingroup oe_content_entity
+ * @ingroup oe_content_sub_entity
  */
 abstract class SubEntityBase extends ContentEntityBase implements SubEntityInterface {
 
@@ -101,7 +101,7 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
   /**
    * {@inheritdoc}
    */
-  public function setParentEntity(ContentEntityInterface $parent, $parent_field_name) {
+  public function setParentEntity(ContentEntityInterface $parent, string $parent_field_name): SubEntityInterface {
     $this->set('parent_type', $parent->getEntityTypeId());
     $this->set('parent_id', $parent->id());
     $this->set('parent_field_name', $parent_field_name);
@@ -111,7 +111,7 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
   /**
    * {@inheritdoc}
    */
-  public function getParentEntity() {
+  public function getParentEntity(): ?ContentEntityInterface {
     if (!isset($this->get('parent_type')->value) || !isset($this->get('parent_id')->value)) {
       return NULL;
     }

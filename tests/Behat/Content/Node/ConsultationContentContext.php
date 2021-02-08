@@ -33,7 +33,7 @@ class ConsultationContentContext extends RawDrupalContext {
    *
    * @BeforeParseEntityFields(node,oe_consultation)
    */
-  public function alterProjectFields(BeforeParseEntityFieldsScope $scope): void {
+  public function alterConsultationFields(BeforeParseEntityFieldsScope $scope): void {
     // Map human readable field names to their Behat parsable machine names.
     $mapping = [
       'Alternative title' => 'oe_content_short_title',
@@ -75,7 +75,7 @@ class ConsultationContentContext extends RawDrupalContext {
           $content_storage = ContentStorage::getInstance();
           $ids = [];
           $revision_ids = [];
-          $names = explode(',', $value);
+          $names = explode(', ', $value);
           foreach ($names as $name) {
             $entity = $content_storage->getEntity($name);
             $ids[] = $entity->id();

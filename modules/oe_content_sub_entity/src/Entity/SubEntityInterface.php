@@ -11,7 +11,7 @@ use Drupal\Core\Entity\EntityPublishedInterface;
 /**
  * Interface for sub entity classes.
  *
- * @ingroup oe_content_entity
+ * @ingroup oe_content_sub_entity
  */
 interface SubEntityInterface extends ContentEntityInterface, EntityChangedInterface, EntityPublishedInterface {
 
@@ -49,25 +49,28 @@ interface SubEntityInterface extends ContentEntityInterface, EntityChangedInterf
    *
    * Preserves language context with translated entities.
    *
-   * @return \Drupal\Core\Entity\ContentEntityInterface
+   * @return \Drupal\Core\Entity\ContentEntityInterface|null
    *   The parent entity.
    */
-  public function getParentEntity();
+  public function getParentEntity(): ?ContentEntityInterface;
 
   /**
    * Set the parent entity.
    *
-   * Entity reference revision field sets these values itself, but if entity
-   * reference field type is used need to set parent entity in the widget.
-   * See \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem.
+   * Entity reference revision fields will set parent entity information
+   * automatically but, if we use a simple entity reference field type, then we
+   * need to set them in the widget by using this method.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $parent
    *   The parent entity.
    * @param string $parent_field_name
    *   The parent field name.
    *
-   * @return $this
+   * @return \Drupal\oe_content_sub_entity\Entity\SubEntityInterface
+   *   Class instance.
+   *
+   * @see \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem
    */
-  public function setParentEntity(ContentEntityInterface $parent, $parent_field_name);
+  public function setParentEntity(ContentEntityInterface $parent, string $parent_field_name): SubEntityInterface;
 
 }

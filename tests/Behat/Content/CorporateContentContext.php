@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_content\Behat\Content;
 
 use Behat\Gherkin\Node\TableNode;
 use Behat\Testwork\Call\CallResults;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterSaveEntityScope;
@@ -203,7 +204,7 @@ class CorporateContentContext extends RawDrupalContext {
    *
    * @Then the :bundle_label :entity_type_label entity with title :title exists
    */
-  public function entityExists(string $bundle_label, string $entity_type_label, string $title) {
+  public function entityExists(string $bundle_label, string $entity_type_label, string $title): void {
     $definition = $this->loadDefinitionByLabel($entity_type_label);
     $entity_type = $definition->id();
     $bundle = $this->loadEntityByLabel($definition->getBundleEntityType(), $bundle_label)->id();
@@ -285,7 +286,7 @@ class CorporateContentContext extends RawDrupalContext {
    * Example:
    *
    * Given the sub entity Document "Document reference" "Document reference to
-   * My Document " is updated as follows:
+   * My Document" is updated as follows:
    * | Published | No |
    *
    * Use entity type and bundle labels to refer to the entity.
@@ -359,7 +360,7 @@ class CorporateContentContext extends RawDrupalContext {
    * @return \Drupal\Core\Entity\EntityInterface
    *   Entity object, if any.
    */
-  protected function loadSubEntityByName(string $entity_type, string $label, string $bundle) {
+  protected function loadSubEntityByName(string $entity_type, string $label, string $bundle): EntityInterface {
     $exception_message = "No '$entity_type' entity of type '$bundle' with label '$label' has been found.";
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
     // Find entity in the content storage.
@@ -403,7 +404,7 @@ class CorporateContentContext extends RawDrupalContext {
    *
    * @Then the sub entity :bundle_label :entity_type_label entity with name :name exists
    */
-  public function subEntityExists(string $bundle_label, string $entity_type_label, string $name) {
+  public function subEntityExists(string $bundle_label, string $entity_type_label, string $name): void {
     $definition = $this->loadDefinitionByLabel($entity_type_label);
     $entity_type = $definition->id();
     $bundle = $this->loadEntityByLabel($definition->getBundleEntityType(), $bundle_label)->id();

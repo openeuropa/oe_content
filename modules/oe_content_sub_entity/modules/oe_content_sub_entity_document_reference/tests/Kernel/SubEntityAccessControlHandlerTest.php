@@ -137,11 +137,16 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
   /**
    * Tests create access.
    *
+   * @param string $request_format
+   *   Request format.
+   * @param array $expected_result
+   *   Expected results.
+   *
    * @covers ::checkCreateAccess
    *
    * @dataProvider createAccessTestCases
    */
-  public function testCreateAccess($request_format, $expected_result) {
+  public function testCreateAccess(string $request_format, array $expected_result): void {
     $request = new Request();
     $request->setRequestFormat($request_format);
     $this->container->get('request_stack')->push($request);
@@ -180,7 +185,7 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
    *
    * @covers ::checkAccess
    */
-  public function testAccess() {
+  public function testAccess(): void {
     $scenarios = $this->accessTestScenarios();
     // Run through the scenarios and assert the expectations.
     foreach ($scenarios as $scenario => $test_data) {

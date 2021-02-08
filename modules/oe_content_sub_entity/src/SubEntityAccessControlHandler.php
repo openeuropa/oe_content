@@ -26,7 +26,7 @@ class SubEntityAccessControlHandler extends EntityAccessControlHandler implement
   protected $configFactory;
 
   /**
-   * Constructs a TranslatorAccessControlHandler object.
+   * Constructs a SubEntityAccessControlHandler object.
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type definition.
@@ -59,7 +59,7 @@ class SubEntityAccessControlHandler extends EntityAccessControlHandler implement
     else {
       $access_result = AccessResult::allowed();
     }
-    if ($entity->getParentEntity() != NULL) {
+    if ($entity->getParentEntity() !== NULL) {
       // Delete permission on the entity, should just depend on 'update'
       // access permissions on the parent.
       $operation = ($operation === 'delete') ? 'update' : $operation;
