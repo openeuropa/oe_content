@@ -30,6 +30,7 @@ abstract class ConsultationKernelTestBase extends RdfKernelTestBase {
     'oe_content_departments_field',
     'oe_content_entity',
     'oe_content_entity_contact',
+    'oe_content_sub_entity_document_reference',
     'oe_content_consultation',
     'rdf_skos',
     'composite_reference',
@@ -47,6 +48,7 @@ abstract class ConsultationKernelTestBase extends RdfKernelTestBase {
     $this->installEntitySchema('node');
     $this->installEntitySchema('media');
     $this->installEntitySchema('oe_contact');
+    $this->installEntitySchema('oe_document_reference');
     $this->installConfig([
       'field',
       'node',

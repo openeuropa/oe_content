@@ -2,17 +2,17 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_entity;
+namespace Drupal\oe_content\Entity;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 
 /**
- * Defines a class to build a listing of corporate content entity type entities.
+ * Defines a class to build a listing of content entity type entities.
  *
  * @ingroup oe_content_entity
  */
-class CorporateEntityTypeListBuilder extends EntityListBuilder {
+class EntityTypeListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}

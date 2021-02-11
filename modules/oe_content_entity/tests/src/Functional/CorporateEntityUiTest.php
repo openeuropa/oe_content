@@ -2,21 +2,22 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_entity\FunctionalJavascript;
+namespace Drupal\Tests\oe_content_entity\Functional;
 
 use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\oe_content\Traits\EntityTypeUiTrait;
 
 /**
  * Test corporate content entity UIs.
  */
-class ContentEntityUiTest extends BrowserTestBase {
+class CorporateEntityUiTest extends BrowserTestBase {
+
+  use EntityTypeUiTrait;
 
   /**
    * {@inheritdoc}
    */
   protected static $modules = [
-    'oe_content',
-    'oe_content_entity',
     'oe_content_entity_contact',
     'oe_content_entity_organisation',
     'oe_content_entity_venue',
@@ -26,58 +27,24 @@ class ContentEntityUiTest extends BrowserTestBase {
    * Tests corporate UIs, such as creation of a new bundle, actual content, etc.
    */
   public function testCorporateEntityUi(): void {
-    $user = $this->drupalCreateUser([
-      'manage corporate content entities',
-      'manage corporate content entity types',
-      'access administration pages',
-    ]);
-
-    $this->drupalLogin($user);
-
     foreach ($this->corporateEntityDataTestCases() as $info) {
       list($entity_type_id, $label) = $info;
-
-      // Create a new bundle.
-      $this->drupalGet("/admin/structure/{$entity_type_id}_type");
-      $this->assertSession()->pageTextContains("{$label} type entities");
-
-      $this->drupalGet("/admin/structure/{$entity_type_id}_type/add");
-      $this->assertSession()->pageTextContains("Add {$label} type");
-
-      // Set the label.
-      $this->getSession()->getPage()->findField('Label')->setValue("{$label} type name");
-      $this->getSession()->getPage()->findField('Machine-readable name')->setValue("{$label}_type_name");
-      $this->getSession()->getPage()->fillField('Description', "{$label} type description");
-      // Assert that fields description is correct.
-      $this->assertSession()->pageTextContains('Label for the ' . $entity_type_id . ' entity type (bundle).');
-      $this->assertSession()->pageTextContains('This text will be displayed on the "Add ' . $entity_type_id . '" page.');
-      $this->getSession()->getPage()->pressButton('Save');
-
-      // Assert that the bundle has been created and it's listed correctly.
-      $this->assertSession()->pageTextContains("Created the {$label} type name {$entity_type_id} entity type.");
-      $this->assertSession()->elementContains('css', 'div.region-content table', "{$label} type name");
-      $this->assertSession()->elementContains('css', 'div.region-content table', "{$label} type description");
-      $this->assertSession()->elementContains('css', 'div.region-content table', "{$label}_type_name");
-
+      $bundle = str_replace(' ', '_', $label) . '_type_bundle';
       $user = $this->drupalCreateUser([
         'manage corporate content entity types',
-        'access ' . $entity_type_id . ' overview',
-        'access ' . $entity_type_id . ' canonical page',
-        'view published ' . $entity_type_id,
-        'view unpublished ' . $entity_type_id,
-        'create ' . $entity_type_id . ' ' . $label . '_type_name corporate entity',
-        'edit ' . $entity_type_id . ' ' . $label . '_type_name corporate entity',
-        'delete ' . $entity_type_id . ' ' . $label . '_type_name corporate entity',
         'access administration pages',
       ]);
       $this->drupalLogin($user);
+      $this->createEntityTypeBundle($entity_type_id, $label, $bundle);
+
+      $this->loginAdminUser($entity_type_id, $bundle);
 
       // Assert that we have no entities.
       $this->drupalGet("/admin/content/{$entity_type_id}");
       $this->assertSession()->pageTextContains("There are no {$label} entities yet.");
 
       // Create two revisions of the same entity.
-      $this->drupalGet("/admin/content/{$entity_type_id}/add/{$label}_type_name");
+      $this->drupalGet("/admin/content/{$entity_type_id}/add/{$bundle}");
       $this->getSession()->getPage()->fillField('Name', "{$label} entity name 1");
       $this->getSession()->getPage()->fillField('Revision log message', "Revision log message 1.");
       $this->getSession()->getPage()->pressButton('Save');
@@ -117,7 +84,7 @@ class ContentEntityUiTest extends BrowserTestBase {
       $this->assertEquals("{$label} entity name 3", $entity->getName());
       $this->assertNull($entity_storage->loadRevision(3));
 
-      // Edit the entity without creating a new revision.
+      // Remove entity.
       $this->drupalGet("/admin/content/{$entity_type_id}/1/delete");
       $this->getSession()->getPage()->pressButton('Delete');
 
@@ -125,14 +92,7 @@ class ContentEntityUiTest extends BrowserTestBase {
       $this->assertSession()->pageTextContains("There are no {$label} entities yet.");
 
       // Delete bundle.
-      $this->drupalGet("/admin/structure/{$entity_type_id}_type/{$label}_type_name/edit");
-      $this->assertSession()->pageTextContains("Edit {$label} type name");
-      $this->clickLink('Delete');
-
-      $this->assertSession()->pageTextContains("Are you sure you want to delete the {$label} type {$label} type name?");
-      $this->getSession()->getPage()->pressButton('Delete');
-
-      $this->assertSession()->pageTextContains("The {$label} type {$label} type name has been deleted.");
+      $this->removeEntityTypeBundle($entity_type_id, $label, $bundle);
     }
   }
 
@@ -153,6 +113,29 @@ class ContentEntityUiTest extends BrowserTestBase {
       ['oe_organisation', 'organisation'],
       ['oe_venue', 'venue'],
     ];
+  }
+
+  /**
+   * Login as admin user.
+   *
+   * @param string $entity_type_id
+   *   Entity type id.
+   * @param string $bundle
+   *   Entity type bundle.
+   */
+  protected function loginAdminUser(string $entity_type_id, string $bundle): void {
+    $user = $this->drupalCreateUser([
+      'manage corporate content entity types',
+      'access ' . $entity_type_id . ' overview',
+      'access ' . $entity_type_id . ' canonical page',
+      'view published ' . $entity_type_id,
+      'view unpublished ' . $entity_type_id,
+      'create ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
+      'edit ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
+      'delete ' . $entity_type_id . ' ' . $bundle . ' corporate entity',
+      'access administration pages',
+    ]);
+    $this->drupalLogin($user);
   }
 
 }

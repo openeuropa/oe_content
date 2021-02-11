@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_entity\Form;
+namespace Drupal\oe_content\Form;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityDeleteForm;
@@ -10,11 +10,11 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for corporate content entity type deletion.
+ * Provides a form for content entity type deletion.
  *
  * @ingroup oe_content_entity
  */
-class CorporateEntityTypeDeleteForm extends EntityDeleteForm {
+class EntityTypeDeleteForm extends EntityDeleteForm {
 
   /**
    * The entity type manager.
@@ -46,8 +46,9 @@ class CorporateEntityTypeDeleteForm extends EntityDeleteForm {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $entity_type_id = $this->getEntity()->getEntityType()->getBundleOf();
     $query_aggregator = $this->entityTypeManager->getStorage($entity_type_id)->getAggregateQuery();
+    $entity_type = $this->entityTypeManager->getDefinition($entity_type_id);
     $num_lists = $query_aggregator
-      ->condition('bundle', $this->entity->id())
+      ->condition($entity_type->getKey('bundle'), $this->entity->id())
       ->count()
       ->execute();
     if ($num_lists) {

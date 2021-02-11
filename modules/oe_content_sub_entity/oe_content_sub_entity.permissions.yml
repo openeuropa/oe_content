@@ -1,0 +1,7 @@
+administer sub entity types:
+  title: 'Manage content sub entity types'
+  description: 'Allow to administer Sub entity types and their fields'
+
+view unpublished sub entities:
+  title: 'View unpublished sub entities'
+  description: 'Users with this permission can view sub entities that are unpublished'
