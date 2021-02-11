@@ -73,7 +73,8 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the list was last edited.'))
-      ->setRevisionable(TRUE);
+      ->setRevisionable(TRUE)
+      ->setTranslatable(TRUE);
 
     $fields['parent_id'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Parent ID'))
