@@ -9,7 +9,11 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 
 /**
- * Context to create corporate entities.
+ * Context to create sub-entities.
+ *
+ * Use this context should to retrieve sub-entities from other contexts too.
+ *
+ * @see \Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait
  */
 class SubEntityContext extends RawEntityContext {
 
@@ -102,7 +106,7 @@ class SubEntityContext extends RawEntityContext {
   }
 
   /**
-   * Assert the sub entity exists.
+   * Assert that a sub-entity does exist.
    *
    * Example:
    *
