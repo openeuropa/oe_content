@@ -8,7 +8,7 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\Tests\oe_content\Behat\Content\ContentStorage;
+use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -24,6 +24,7 @@ class ConsultationContentContext extends RawDrupalContext {
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
   use EntityLoadingTrait;
+  use GatherSubEntityContextTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -72,12 +73,11 @@ class ConsultationContentContext extends RawDrupalContext {
 
         // Set Document reference entity reference fields.
         case 'Documents':
-          $content_storage = ContentStorage::getInstance();
           $ids = [];
           $revision_ids = [];
           $names = explode(', ', $value);
           foreach ($names as $name) {
-            $entity = $content_storage->getEntity($name);
+            $entity = $this->subEntityContext->getSubEntityByName($name);
             $ids[] = $entity->id();
             $revision_ids[] = $entity->getRevisionId();
           }
