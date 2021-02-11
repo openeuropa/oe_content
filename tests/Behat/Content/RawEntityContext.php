@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content;
 
 use Behat\Testwork\Call\CallResults;
-use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\AfterSaveEntityScope;
@@ -48,6 +48,54 @@ class RawEntityContext extends RawDrupalContext {
       $this->getDriver()->getCore()->entityDelete($entity->id(), $entity);
     }
     $this->entities = [];
+  }
+
+  /**
+   * Create an entity given its type, bundle and fields.
+   *
+   * @param string $entity_type
+   *   Entity type machine name.
+   * @param string $bundle
+   *   Bundle machine name.
+   * @param array $fields
+   *   Entity fields, as specified in the Behat scenario.
+   *
+   * @return \Drupal\Core\Entity\ContentEntityInterface
+   *   The created entity.
+   */
+  protected function createEntity(string $entity_type, string $bundle, array $fields): ContentEntityInterface {
+    // Get and alter fields.
+    $fields = $this->parseFields($entity_type, $bundle, $fields);
+
+    // Create and save entity.
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create($fields);
+
+    return $this->saveEntity($entity);
+  }
+
+  /**
+   * Update a given entity with given fields.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Entity object to be saved.
+   * @param array $fields
+   *   Entity fields, as specified in the Behat scenario.
+   *
+   * @return \Drupal\Core\Entity\EntityInterface
+   *   The created entity.
+   */
+  protected function updateEntity(ContentEntityInterface $entity, array $fields) {
+    $entity_type = $entity->getEntityType()->id();
+    $bundle = $entity->bundle();
+    $fields = $this->parseFields($entity_type, $bundle, $fields);
+
+    foreach ($fields as $name => $value) {
+      $entity->set($name, $value);
+    }
+
+    // Update entity.
+    return $this->saveEntity($entity);
   }
 
   /**
@@ -100,16 +148,16 @@ class RawEntityContext extends RawDrupalContext {
    * This step also fires a @BeforeSaveEntity(ENTITY_TYPE, ENTITY_BUNDLE) right
    * before saving the entity.
    *
-   * @param string $entity_type
-   *   Entity type machine name.
-   * @param string $bundle
-   *   Bundle machine name.
-   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   Entity object to be saved.
    *
-   * @throws \Drupal\Core\Entity\EntityStorageException
+   * @return \Drupal\Core\Entity\ContentEntityInterface
+   *   Returned saved entity.
    */
-  protected function saveEntity(string $entity_type, string $bundle, EntityInterface $entity) {
+  protected function saveEntity(ContentEntityInterface $entity): ContentEntityInterface {
+    $entity_type = $entity->getEntityType()->id();
+    $bundle = $entity->bundle();
+
     // Dispatch before save hook.
     $scope = new BeforeSaveEntityScope($entity_type, $bundle, $this->getDrupal()->getEnvironment(), $entity);
     $this->dispatchEntityAwareHook($scope);
@@ -138,6 +186,8 @@ class RawEntityContext extends RawDrupalContext {
     // storage of which cache tags were invalidated, and this is not reset in
     // time.
     \Drupal::service('cache_tags.invalidator')->resetCheckSums();
+
+    return $entity;
   }
 
   /**
