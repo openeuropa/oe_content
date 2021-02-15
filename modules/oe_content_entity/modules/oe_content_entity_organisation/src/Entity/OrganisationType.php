@@ -24,12 +24,12 @@ use Drupal\oe_content_entity\Entity\CorporateEntityTypeBase;
  *     "description",
  *   },
  *   handlers = {
- *     "list_builder" = "Drupal\oe_content_entity\CorporateEntityTypeListBuilder",
+ *     "list_builder" = "Drupal\oe_content\Entity\EntityTypeListBuilder",
  *     "form" = {
- *       "default" = "Drupal\oe_content_entity\Form\CorporateEntityTypeForm",
- *       "add" = "Drupal\oe_content_entity\Form\CorporateEntityTypeForm",
- *       "edit" = "Drupal\oe_content_entity\Form\CorporateEntityTypeForm",
- *       "delete" = "Drupal\oe_content_entity\Form\CorporateEntityTypeDeleteForm",
+ *       "default" = "Drupal\oe_content\Form\EntityTypeForm",
+ *       "add" = "Drupal\oe_content\Form\EntityTypeForm",
+ *       "edit" = "Drupal\oe_content\Form\EntityTypeForm",
+ *       "delete" = "Drupal\oe_content\Form\EntityTypeDeleteForm",
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
