@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Description List Field module.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_theme().
+ */
+function oe_content_description_list_field_theme() {
+  return [
+    'description_list' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
+  ];
+}

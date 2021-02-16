@@ -1,0 +1,13 @@
+field.value.description_list_field:
+  type: mapping
+  label: 'Default value'
+  mapping:
+    term:
+      type: label
+      label: 'Description list term'
+    description:
+      type: text
+      label: 'Description list description'
+    format:
+      type: string
+      label: 'Description list description format'

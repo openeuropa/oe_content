@@ -1,0 +1,6 @@
+name: OpenEuropa Content Description List Field
+description: Contains the Description list field type.
+package: OpenEuropa
+
+type: module
+core: 8.x
