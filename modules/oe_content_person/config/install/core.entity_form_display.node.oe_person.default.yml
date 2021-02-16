@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.oe_person.oe_person_jobs
     - field.field.node.oe_person.oe_departments
     - field.field.node.oe_person.oe_person_biography_intro
     - field.field.node.oe_person.oe_person_biography_timeline
@@ -65,6 +66,24 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_person_jobs:
+    weight: 11
+    settings:
+      form_mode: default
+      revision: true
+      label_singular: ''
+      label_plural: ''
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
+      removed_reference: keep
+      override_labels: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
   langcode:
     type: language_select
     weight: 25
@@ -121,7 +140,7 @@ content:
     third_party_settings: {  }
   oe_person_biography_intro:
     type: text_textarea
-    weight: 16
+    weight: 17
     region: content
     settings:
       rows: 5
@@ -135,7 +154,7 @@ content:
     region: content
   oe_person_contacts:
     type: inline_entity_form_complex
-    weight: 12
+    weight: 13
     region: content
     settings:
       form_mode: default
@@ -230,7 +249,7 @@ content:
     third_party_settings: {  }
   oe_person_media:
     type: entity_reference_autocomplete
-    weight: 13
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -260,7 +279,7 @@ content:
     third_party_settings: {  }
   oe_person_transparency_intro:
     type: text_textarea
-    weight: 14
+    weight: 15
     region: content
     settings:
       rows: 5
@@ -268,7 +287,7 @@ content:
     third_party_settings: {  }
   oe_person_transparency_links:
     type: link_default
-    weight: 15
+    weight: 16
     region: content
     settings:
       placeholder_url: ''
@@ -282,7 +301,7 @@ content:
     third_party_settings: {  }
   oe_social_media_links:
     type: typed_link
-    weight: 11
+    weight: 12
     region: content
     settings:
       placeholder_url: ''

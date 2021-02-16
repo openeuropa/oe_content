@@ -1,0 +1,5 @@
+entity.oe_person_job_type.collection:
+  title: 'Person job types'
+  route_name: entity.oe_person_job_type.collection
+  description: 'Create and manage types of person job entities'
+  parent: system.admin_structure
