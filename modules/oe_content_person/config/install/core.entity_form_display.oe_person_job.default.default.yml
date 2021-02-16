@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_person_job.default.oe_acting
+    - field.field.oe_person_job.default.oe_description
+    - field.field.oe_person_job.default.oe_role_name
+    - field.field.oe_person_job.default.oe_role_reference
+    - oe_content_person.oe_person_job_type.default
+  module:
+    - rdf_skos
+    - text
+id: oe_person_job.default.default
+targetEntityType: oe_person_job
+bundle: default
+mode: default
+content:
+  oe_acting:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  oe_description:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  oe_role_name:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  oe_role_reference:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
+hidden:
+  status: true

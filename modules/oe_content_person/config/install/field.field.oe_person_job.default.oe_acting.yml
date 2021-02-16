@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_person_job.oe_acting
+    - oe_content_person.oe_person_job_type.default
+id: oe_person_job.default.oe_acting
+field_name: oe_acting
+entity_type: oe_person_job
+bundle: default
+label: 'Acting role'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
