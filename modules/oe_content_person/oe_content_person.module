@@ -7,7 +7,9 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\oe_content\Utility\ContentFormUtilities;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter for the node form.
@@ -20,67 +22,23 @@ function oe_content_person_form_node_form_alter(array &$form, FormStateInterface
     return;
   }
 
-  $form['oe_departments']['#states'] = [
-    'visible' => [
-      ':input[name="oe_person_type"]' => [
-        'value' => 'eu',
-      ],
-    ],
-  ];
-
-  $form['oe_person_organisation']['#states'] = [
-    'visible' => [
-      ':input[name="oe_person_type"]' => [
-        'value' => 'non_eu',
-      ],
-    ],
-  ];
-
-  $form['oe_departments']['#element_validate'] = [
-    'oe_content_person_oe_departments_validate',
-  ];
-
-  $form['oe_person_organisation']['#element_validate'] = [
-    'oe_content_person_oe_person_organisation_validate',
-  ];
+  ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', 'oe_departments', 'eu');
+  ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', 'oe_person_organisation', 'non_eu');
 }
 
 /**
- * Validation callback for a "oe_departments" reference element.
- *
- * @param array $element
- *   The element being processed.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The current state of the form.
- * @param array $complete_form
- *   The complete form structure.
+ * Implements hook_ENTITY_TYPE_presave().
  */
-function oe_content_person_oe_departments_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
-  $type = $form_state->getValue(['oe_person_type', 0, 'value']);
+function oe_content_person_node_presave(EntityInterface $entity) {
+  // Make sure that we don't save both concurrent field values.
+  if ($entity->bundle() === 'oe_person') {
+    $type = $entity->get('oe_person_type')->value;
 
-  if ($type === 'eu') {
-    return;
+    if ($type === 'eu') {
+      $entity->get('oe_person_organisation')->setValue(NULL);
+    }
+    else {
+      $entity->get('oe_departments')->setValue(NULL);
+    }
   }
-
-  $form_state->setValue(['oe_departments'], []);
-}
-
-/**
- * Validation callback for a "oe_person_organisation" reference element.
- *
- * @param array $element
- *   The element being processed.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The current state of the form.
- * @param array $complete_form
- *   The complete form structure.
- */
-function oe_content_person_oe_person_organisation_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
-  $type = $form_state->getValue(['oe_person_type', 0, 'value']);
-
-  if ($type === 'non_eu') {
-    return;
-  }
-
-  $form_state->setValue(['oe_person_organisation'], []);
 }

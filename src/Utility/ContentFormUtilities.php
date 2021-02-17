@@ -38,4 +38,34 @@ class ContentFormUtilities {
     }
   }
 
+  /**
+   * Toggle visibility of a field, depending on the value of another field.
+   *
+   * @param array $form
+   *   The form array.
+   * @param string $toggle_field
+   *   The toggle field name.
+   * @param string $field
+   *   The dependent field name.
+   * @param string $value
+   *   The value that makes the dependent field visible.
+   */
+  public static function toggleFieldByValue(array &$form, string $toggle_field, string $field, string $value): void {
+    if (!isset($form[$toggle_field])) {
+      throw new \InvalidArgumentException("Invalid argument, '$toggle_field' does not exist in the form.");
+    }
+
+    if (!isset($form[$field])) {
+      throw new \InvalidArgumentException("Invalid argument, '$field' does not exist in the form.");
+    }
+
+    $form[$field]['#states'] = [
+      'visible' => [
+        ':input[name="' . $toggle_field . '"]' => [
+          'value' => $value,
+        ],
+      ],
+    ];
+  }
+
 }
