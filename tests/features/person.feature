@@ -24,7 +24,7 @@ Feature: Person content creation
       | Organisation type | EU organisation                |
       | EU organisation   | Directorate-General for Budget |
     # Create a "person" content, mandatory fields first.
-    And I visit "the Person creation page"
+    When I visit "the Person creation page"
     And I fill in "Title" with "My person item"
     And I fill in "Subject" with "financing"
     And I fill in "Teaser" with "Teaser text"
@@ -42,10 +42,10 @@ Feature: Person content creation
     Then I should see "My person item"
     And I should see the link "financing"
     And I should see "Teaser text"
-    Then I should see "EU institutions related person"
-    Then I should see "Firstname"
-    Then I should see "Lastname"
-    Then I should see "not stated"
+    And I should see "EU institutions related person"
+    And I should see "Firstname"
+    And I should see "Lastname"
+    And I should see "not stated"
     And I should see the link "Committee on Agriculture and Rural Development"
     # Optional fields.
     When I click "Edit"
@@ -79,9 +79,9 @@ Feature: Person content creation
     And I select "Twitter" from "Link type"
     And I fill in "Redirect link" with "http://example.com"
     # Contact field.
-    When I press "Add new contact"
+    And I press "Add new contact"
     And I wait for AJAX to finish
-    Then I fill in "Name" with "Name of the contact" in the "Person contact" region
+    And I fill in "Name" with "Name of the contact" in the "Person contact" region
     And I fill in "Organisation" with "Person contact organisation" in the "Person contact" region
     And I fill in "Body text" with "Person contact body text" in the "Person contact" region
     And I fill in "Website" with "http://www.example.com/person_contact" in the "Person contact" region
@@ -100,7 +100,7 @@ Feature: Person content creation
     And I fill in "Media item" with "Contact image" in the "Person contact" region
     And I fill in "Caption" with "Person contact caption" in the "Person contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Person contact" region
-    When I press "Save"
+    And I press "Save"
     Then I should see "My person item"
     And I should see "Navi title"
     And I should see "Shorter title"
@@ -146,7 +146,7 @@ Feature: Person content creation
     When I click "Edit"
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
     And I fill in "Organisation" with "Organisation demo page"
-    When I press "Save"
+    And I press "Save"
     Then I should see "Organisation demo page"
     And I should not see the link "European Patent Office"
 
@@ -158,7 +158,7 @@ Feature: Person content creation
     And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
-    And I fill in "Title" with "My person item"
+    When I fill in "Title" with "My person item"
     And I fill in "Subject" with "financing"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
