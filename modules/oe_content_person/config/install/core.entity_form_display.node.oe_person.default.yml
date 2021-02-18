@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.oe_person.oe_person_jobs
     - field.field.node.oe_person.oe_departments
     - field.field.node.oe_person.oe_person_biography_intro
     - field.field.node.oe_person.oe_person_biography_timeline
@@ -14,6 +13,7 @@ dependencies:
     - field.field.node.oe_person.oe_person_gender
     - field.field.node.oe_person.oe_person_interests_file
     - field.field.node.oe_person.oe_person_interests_intro
+    - field.field.node.oe_person.oe_person_jobs
     - field.field.node.oe_person.oe_person_last_name
     - field.field.node.oe_person.oe_person_media
     - field.field.node.oe_person.oe_person_organisation
@@ -66,24 +66,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_person_jobs:
-    weight: 11
-    settings:
-      form_mode: default
-      revision: true
-      label_singular: ''
-      label_plural: ''
-      collapsible: true
-      allow_new: true
-      match_operator: CONTAINS
-      removed_reference: keep
-      override_labels: false
-      collapsed: false
-      allow_existing: false
-      allow_duplicate: false
-    third_party_settings: {  }
-    type: inline_entity_form_complex
-    region: content
   langcode:
     type: language_select
     weight: 25
@@ -239,6 +221,24 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  oe_person_jobs:
+    weight: 11
+    settings:
+      form_mode: default
+      revision: true
+      label_singular: ''
+      label_plural: ''
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
+      removed_reference: keep
+      override_labels: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
   oe_person_last_name:
     type: string_textfield
     weight: 5

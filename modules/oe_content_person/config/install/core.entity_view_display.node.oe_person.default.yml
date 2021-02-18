@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.oe_person.oe_person_jobs
     - field.field.node.oe_person.oe_departments
     - field.field.node.oe_person.oe_person_biography_intro
     - field.field.node.oe_person.oe_person_biography_timeline
@@ -14,6 +13,7 @@ dependencies:
     - field.field.node.oe_person.oe_person_gender
     - field.field.node.oe_person.oe_person_interests_file
     - field.field.node.oe_person.oe_person_interests_intro
+    - field.field.node.oe_person.oe_person_jobs
     - field.field.node.oe_person.oe_person_last_name
     - field.field.node.oe_person.oe_person_media
     - field.field.node.oe_person.oe_person_organisation
@@ -40,15 +40,6 @@ targetEntityType: node
 bundle: oe_person
 mode: default
 content:
-  oe_person_jobs:
-    weight: 28
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
-    region: content
   langcode:
     type: language
     weight: 1
@@ -188,6 +179,15 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+  oe_person_jobs:
+    weight: 28
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
   oe_person_last_name:
     type: string
     weight: 12

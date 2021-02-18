@@ -28,6 +28,8 @@ function oe_content_person_form_node_form_alter(array &$form, FormStateInterface
   // Hide the title field as we auto-generate it based on the first and last
   // name.
   $form['title']['#access'] = FALSE;
+
+  $form['oe_person_jobs']['#element_validate'][] = 'oe_content_person_oe_person_jobs_validate';
 }
 
 /**
@@ -57,3 +59,99 @@ function oe_content_person_node_presave(EntityInterface $entity) {
   $entity->setTitle($title);
 }
 
+/**
+ * Implements hook_inline_entity_form_entity_form_alter().
+ */
+function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_form, FormStateInterface &$form_state) {
+  if ($entity_form['#entity_type'] !== 'oe_person_job') {
+    return;
+  }
+
+  // Set initial state when form is loaded. If field
+  // "What type of person are you adding?" is not set then all fields will
+  // be hidden.
+  $type = NULL;
+  $user_input = $form_state->getUserInput();
+  if (isset($user_input['oe_person_type'])) {
+    $type = $user_input['oe_person_type'];
+  }
+  if ($type !== 'eu') {
+    $entity_form['oe_role_reference']['#attributes']['style'] = 'display:none';
+    $entity_form['oe_acting']['#attributes']['style'] = 'display:none';
+    $entity_form['oe_role_name']['widget'][0]['value']['#required'] = TRUE;
+  }
+  if ($type !== 'non_eu') {
+    $entity_form['oe_role_name']['#attributes']['style'] = 'display:none';
+    $entity_form['oe_role_reference']['widget'][0]['target_id']['#required'] = TRUE;
+  }
+
+
+  // Set states based on "What type of person are you adding?" field.
+  $entity_form['oe_role_name']['#states'] = [
+    'visible' => [
+      ':input[name="oe_person_type"]' => [
+        'value' => 'non_eu',
+      ],
+    ],
+  ];
+  $entity_form['oe_role_name']['widget'][0]['value']['#states'] = [
+    'required' => [
+      ':input[name="oe_person_type"]' => [
+        'value' => 'non_eu',
+      ],
+    ],
+  ];
+  $entity_form['oe_role_name']['widget'][0]['value']['#element_validate'][] = 'oe_content_person_oe_role_name_validate';
+  $entity_form['oe_role_reference']['#states'] = [
+    'visible' => [
+      ':input[name="oe_person_type"]' => [
+        'value' => 'eu',
+      ],
+    ],
+  ];
+  $entity_form['oe_role_reference']['widget'][0]['target_id']['#states'] = [
+    'required' => [
+      ':input[name="oe_person_type"]' => [
+        'value' => 'eu',
+      ],
+    ]
+  ];
+  $entity_form['oe_role_reference']['widget'][0]['target_id']['#element_validate'][] = 'oe_content_person_oe_role_reference_validate';
+  $entity_form['oe_acting']['#states'] = [
+    'visible' => [
+      ':input[name="oe_person_type"]' => [
+        'value' => 'eu',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Validation callback for a "oe_person_jobs" element.
+ *
+ * @param array $element
+ *   The element being processed.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $complete_form
+ *   The complete form structure.
+ */
+function oe_content_person_oe_person_jobs_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
+  $type = $form_state->getValue(['oe_person_type', 0, 'value']);
+
+  $field_values = $form_state->getValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities']);
+  if (empty($field_values)) {
+    // Inline entity form doesn't exist yet.
+    return;
+  }
+
+  // Clear hidden fields. Otherwise these fields will be validated.
+  $delta = key($field_values);
+  if ($type !== 'non_eu') {
+    $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_role_name'], []);
+  }
+  if ($type !== 'eu') {
+    $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_role_reference'], []);
+    $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_acting'], []);
+  }
+}

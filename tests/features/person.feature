@@ -128,6 +128,12 @@ Feature: Person content creation
     And I fill in "Publication" with "Publication node in Person" in the "Person documents" region
     And I press "Create document reference"
     And I wait for AJAX to finish
+    # Jobs field.
+    And I press "Add new person job"
+    And I wait for AJAX to finish
+    And I fill in "Responsibilities assigned to the job" with "Responsibilities text" in the "Peron jobs" region
+    And I check "Acting role"
+    And I fill in "Role" with "Associated African States and Madagascar" in the "Peron jobs" region
     And I press "Save"
     Then I should see "Altered name"
     And I should see "Navi title"
@@ -175,6 +181,10 @@ Feature: Person content creation
     # Document references are shown.
     And I should see "document2.pdf"
     And I should see "Publication node in Person"
+    And I should see the text "Associated African States and Madagascar"
+    And I should see the text "Responsibilities text"
+    And I should see the text "On"
+
     When I click "Edit"
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
     And I fill in "Organisation" with "Organisation demo page"
