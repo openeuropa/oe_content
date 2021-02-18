@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content\Node;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -20,6 +21,7 @@ class PersonContentContext extends RawDrupalContext {
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
   use EntityLoadingTrait;
+  use GatherSubEntityContextTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -35,7 +37,7 @@ class PersonContentContext extends RawDrupalContext {
       'Title' => 'title',
       'Biography' => 'oe_person_biography_timeline',
       'Biography introduction' => 'oe_person_biography_intro',
-      'Contact' => 'oe_person_contacts',
+      'Contacts' => 'oe_person_contacts',
       'CV upload' => 'oe_person_cv',
       'Declaration of interests file' => 'oe_person_interests_file',
       'Declaration of interests introduction' => 'oe_person_interests_intro',
@@ -83,7 +85,7 @@ class PersonContentContext extends RawDrupalContext {
           $scope->addFields($fields)->removeField($key);
           break;
 
-        case 'Contact':
+        case 'Contacts':
           $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
           break;
@@ -123,6 +125,24 @@ class PersonContentContext extends RawDrupalContext {
     $scope->addFields([
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
     ]);
+  }
+
+  /**
+   * Fills in a oe_role_reference field.
+   *
+   * @When I fill in :delta person job role reference field with :value
+   */
+  public function fillPersonJobRoleReferenceField($row, $value): void {
+    $row_map = [
+      'first' => '0',
+      'second' => '1',
+      'third' => '2',
+      'fourth' => '3',
+      'fifth' => '4',
+      'sixth' => '5',
+    ];
+    $delta = $row_map[$row];
+    $this->getSession()->getPage()->fillField("oe_person_jobs[form][$delta][oe_role_reference][0][target_id]", $value);
   }
 
 }

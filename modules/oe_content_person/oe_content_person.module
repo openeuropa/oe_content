@@ -80,48 +80,25 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
     $entity_form['oe_acting']['#attributes']['style'] = 'display:none';
     $entity_form['oe_role_name']['widget'][0]['value']['#required'] = TRUE;
   }
+
   if ($type !== 'non_eu') {
     $entity_form['oe_role_name']['#attributes']['style'] = 'display:none';
     $entity_form['oe_role_reference']['widget'][0]['target_id']['#required'] = TRUE;
   }
 
-
   // Set states based on "What type of person are you adding?" field.
-  $entity_form['oe_role_name']['#states'] = [
-    'visible' => [
-      ':input[name="oe_person_type"]' => [
-        'value' => 'non_eu',
-      ],
+  ContentFormUtilities::toggleFieldByValue($entity_form, 'oe_person_type', 'oe_role_name', 'non_eu');
+  ContentFormUtilities::toggleFieldByValue($entity_form, 'oe_person_type', 'oe_role_reference', 'eu');
+  ContentFormUtilities::toggleFieldByValue($entity_form, 'oe_person_type', 'oe_acting', 'eu');
+
+  $entity_form['oe_role_name']['widget'][0]['value']['#states']['required'] = [
+    ':input[name="oe_person_type"]' => [
+      'value' => 'non_eu',
     ],
   ];
-  $entity_form['oe_role_name']['widget'][0]['value']['#states'] = [
-    'required' => [
-      ':input[name="oe_person_type"]' => [
-        'value' => 'non_eu',
-      ],
-    ],
-  ];
-  $entity_form['oe_role_name']['widget'][0]['value']['#element_validate'][] = 'oe_content_person_oe_role_name_validate';
-  $entity_form['oe_role_reference']['#states'] = [
-    'visible' => [
-      ':input[name="oe_person_type"]' => [
-        'value' => 'eu',
-      ],
-    ],
-  ];
-  $entity_form['oe_role_reference']['widget'][0]['target_id']['#states'] = [
-    'required' => [
-      ':input[name="oe_person_type"]' => [
-        'value' => 'eu',
-      ],
-    ]
-  ];
-  $entity_form['oe_role_reference']['widget'][0]['target_id']['#element_validate'][] = 'oe_content_person_oe_role_reference_validate';
-  $entity_form['oe_acting']['#states'] = [
-    'visible' => [
-      ':input[name="oe_person_type"]' => [
-        'value' => 'eu',
-      ],
+  $entity_form['oe_role_reference']['widget'][0]['target_id']['#states']['required'] = [
+    ':input[name="oe_person_type"]' => [
+      'value' => 'eu',
     ],
   ];
 }
