@@ -32,6 +32,7 @@ class DefaultPersonJobContext extends RawDrupalContext {
       'Role reference' => 'oe_role_reference',
       'Acting role' => 'oe_acting',
       'Responsibilities' => 'oe_description',
+      'Published' => 'status',
     ];
 
     foreach ($scope->getFields() as $key => $value) {

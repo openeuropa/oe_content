@@ -131,7 +131,7 @@ Feature: Person content creation
     # Jobs field.
     And I press "Add new person job"
     And I wait for AJAX to finish
-    And I fill in "first" person job role reference field with "Associated African States and Madagascar"
+    And I fill in "first" person job role reference field with "Asia-Pacific Economic Cooperation"
     And I fill in "Responsibilities assigned to the job" with "Responsibilities text"
     And I check "Acting role"
     And I press "Save"
@@ -182,6 +182,7 @@ Feature: Person content creation
     And I should see "document2.pdf"
     And I should see "Publication node in Person"
     And I should see the text "Associated African States and Madagascar"
+    And I should see the text "Asia-Pacific Economic Cooperation"
     And I should see the text "Responsibilities text"
     And I should see the text "Acting role"
 
@@ -193,7 +194,7 @@ Feature: Person content creation
     And I press "Save"
     Then I should see "Organisation demo page"
     And I should not see the link "European Patent Office"
-    And I should not see "Associated African States and Madagascar"
+    And I should not see "Asia-Pacific Economic Cooperation"
     And I should see "Person job role"
     And I should not see "Acting role"
 
@@ -218,15 +219,13 @@ Feature: Person content creation
 
   @javascript
   Scenario: Ensure that person job and contact are not deleted after removing from the node.
-    Given I am an anonymous user
+    #Given I am an anonymous user
+    Given I am logged in as a user with the "access content, view published skos concept entities, view published oe_contact" permission
     And the following General Contact entity:
       | Name | A general contact |
-    And the following document:
-      | name          | file       |
-      | My Document 3 | sample.pdf |
     And the following Default "Person job" sub-entity:
       | Name             | Default person job 1                     |
-      | Role reference   | Associated African States and Madagascar |
+      | Role reference   | Asia-Pacific Economic Cooperation |
       | Acting role      | Yes                                      |
       | Responsibilities | Responsibilities text                    |
     And the following Person Content entity:
@@ -242,6 +241,8 @@ Feature: Person content creation
       | Jobs                                | Default person job 1 |
     When I am visiting the "Person demo page" content
     Then I should see "Person demo page"
+    And I should see "A general contact"
+    And I should see "Asia-Pacific Economic Cooperation"
 
     When I am logged in as a user with the "create oe_person content, access content, edit any oe_person content, view published skos concept entities, manage corporate content entities" permission
     And I am visiting the "Person demo page" content
@@ -251,10 +252,12 @@ Feature: Person content creation
     When I press "Remove" in the "Person contacts" region
     And I wait for AJAX to finish
     And I press "Remove" in the "Person jobs" region
-    Then I should see "Are you sure you want to remove Default?"
+    Then I should see "Are you sure you want to remove Asia-Pacific Economic Cooperation?"
     And I press "Remove" in the "Person jobs" region
     And I wait for AJAX to finish
     And I press "Save"
     Then I should see "Person Person demo page has been updated."
+    And I should not see "A general contact"
+    And I should not see "Asia-Pacific Economic Cooperation"
     And the General Contact entity with title "A general contact" exists
     And the "Person job" sub-entity "Default person job 1" exists

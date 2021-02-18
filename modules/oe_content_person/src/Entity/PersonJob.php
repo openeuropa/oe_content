@@ -48,4 +48,21 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class PersonJob extends SubEntityBase implements PersonJobInterface {}
+class PersonJob extends SubEntityBase implements PersonJobInterface {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function label() {
+    $label = $this->get('oe_role_name')->value;
+    if (!$this->get('oe_role_reference')->isEmpty()) {
+      $label = $this->get('oe_role_reference')->entity->label();
+    }
+    if (!empty($label)) {
+      return $label;
+    }
+
+    return parent::label();
+  }
+
+}
