@@ -42,10 +42,10 @@ config_devel:
     - field.field.node.oe_person.oe_person_transparency_links
     - field.field.node.oe_person.oe_person_type
     - field.field.node.oe_person.oe_person_gender
-    - field.field.oe_person_job.default.field_oe_acting
-    - field.field.oe_person_job.default.field_oe_description
-    - field.field.oe_person_job.default.field_oe_role_name
-    - field.field.oe_person_job.default.field_oe_role_reference
+    - field.field.oe_person_job.default.oe_acting
+    - field.field.oe_person_job.default.oe_description
+    - field.field.oe_person_job.default.oe_role_name
+    - field.field.oe_person_job.default.oe_role_reference
     - field.storage.node.oe_person_biography_intro
     - field.storage.node.oe_person_biography_timeline
     - field.storage.node.oe_person_contacts
@@ -64,10 +64,10 @@ config_devel:
     - field.storage.node.oe_person_transparency_links
     - field.storage.node.oe_person_type
     - field.storage.node.oe_person_gender
-    - field.storage.oe_person_job.field_oe_acting
-    - field.storage.oe_person_job.field_oe_description
-    - field.storage.oe_person_job.field_oe_role_name
-    - field.storage.oe_person_job.field_oe_role_reference
+    - field.storage.oe_person_job.oe_acting
+    - field.storage.oe_person_job.oe_description
+    - field.storage.oe_person_job.oe_role_name
+    - field.storage.oe_person_job.oe_role_reference
     - node.type.oe_person
     - oe_content_person.oe_person_job_type.default
   optional:

@@ -43,6 +43,7 @@ class PersonContentContext extends RawDrupalContext {
       'First name' => 'oe_person_first_name',
       'Gender' => 'oe_person_gender',
       'Introduction' => 'oe_summary',
+      'Jobs' => 'oe_person_jobs',
       'Last name' => 'oe_person_last_name',
       'Media' => 'oe_person_media',
       'Organisation' => 'oe_person_organisation',
@@ -85,6 +86,23 @@ class PersonContentContext extends RawDrupalContext {
         case 'Contact':
           $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
+          break;
+
+        // Set Person jobs entity reference revision fields.
+        case 'Jobs':
+          $ids = [];
+          $revision_ids = [];
+          $names = explode(', ', $value);
+          foreach ($names as $name) {
+            $entity = $this->subEntityContext->getSubEntityByName($name);
+            $ids[] = $entity->id();
+            $revision_ids[] = $entity->getRevisionId();
+          }
+          $scope->addFields([
+            $mapping[$key] . ':target_id' => implode(',', $ids),
+            $mapping[$key] . ':target_revision_id' => implode(',', $revision_ids),
+          ]);
+          $scope->removeField($key);
           break;
 
         // Set content published status.
