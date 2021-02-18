@@ -51,10 +51,6 @@ class ContentFormUtilities {
    *   The value that makes the dependent field visible.
    */
   public static function toggleFieldByValue(array &$form, string $toggle_field, string $field, string $value): void {
-    if (!isset($form[$toggle_field])) {
-      return;
-    }
-
     if (!isset($form[$field])) {
       return;
     }

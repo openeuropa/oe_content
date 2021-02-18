@@ -89,25 +89,25 @@ Feature: Person content creation
     # Contact field.
     And I press "Add new contact"
     And I wait for AJAX to finish
-    And I fill in "Name" with "Name of the contact" in the "Person contact" region
-    And I fill in "Organisation" with "Person contact organisation" in the "Person contact" region
-    And I fill in "Body text" with "Person contact body text" in the "Person contact" region
-    And I fill in "Website" with "http://www.example.com/person_contact" in the "Person contact" region
-    And I fill in "Email" with "person_contact@example.com" in the "Person contact" region
-    And I fill in "Phone number" with "0488779033" in the "Person contact" region
-    And I fill in "Mobile number" with "0488779034" in the "Person contact" region
-    And I fill in "Fax number" with "0488779035" in the "Person contact" region
-    And I select "Hungary" from "Country" in the "Person contact" region
+    And I fill in "Name" with "Name of the contact" in the "Person contacts" region
+    And I fill in "Organisation" with "Person contact organisation" in the "Person contacts" region
+    And I fill in "Body text" with "Person contact body text" in the "Person contacts" region
+    And I fill in "Website" with "http://www.example.com/person_contact" in the "Person contacts" region
+    And I fill in "Email" with "person_contact@example.com" in the "Person contacts" region
+    And I fill in "Phone number" with "0488779033" in the "Person contacts" region
+    And I fill in "Mobile number" with "0488779034" in the "Person contacts" region
+    And I fill in "Fax number" with "0488779035" in the "Person contacts" region
+    And I select "Hungary" from "Country" in the "Person contacts" region
     And I wait for AJAX to finish
-    And I fill in "Street address" with "Person contact street" in the "Person contact" region
-    And I fill in "Postal code" with "9000" in the "Person contact" region
-    And I fill in "City" with "Budapest" in the "Person contact" region
-    And I fill in "Office" with "Person contact office" in the "Person contact" region
+    And I fill in "Street address" with "Person contact street" in the "Person contacts" region
+    And I fill in "Postal code" with "9000" in the "Person contacts" region
+    And I fill in "City" with "Budapest" in the "Person contacts" region
+    And I fill in "Office" with "Person contact office" in the "Person contacts" region
     And I fill in "URL" with "mailto:person_contact_social@example.com" in the "Contact social media links" region
     And I fill in "Link text" with "Person contact social link email" in the "Contact social media links" region
-    And I fill in "Media item" with "Contact image" in the "Person contact" region
-    And I fill in "Caption" with "Person contact caption" in the "Person contact" region
-    And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Person contact" region
+    And I fill in "Media item" with "Contact image" in the "Person contacts" region
+    And I fill in "Caption" with "Person contact caption" in the "Person contacts" region
+    And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Person contacts" region
     And I press "Create contact"
     And I wait for AJAX to finish
     # Add an organisation as contact.
@@ -131,9 +131,9 @@ Feature: Person content creation
     # Jobs field.
     And I press "Add new person job"
     And I wait for AJAX to finish
-    And I fill in "Responsibilities assigned to the job" with "Responsibilities text" in the "Peron jobs" region
+    And I fill in "first" person job role reference field with "Associated African States and Madagascar"
+    And I fill in "Responsibilities assigned to the job" with "Responsibilities text"
     And I check "Acting role"
-    And I fill in "Role" with "Associated African States and Madagascar" in the "Peron jobs" region
     And I press "Save"
     Then I should see "Altered name"
     And I should see "Navi title"
@@ -159,7 +159,7 @@ Feature: Person content creation
     And I should see the link "Twitter"
     And I should see "http://example.com"
     And I should see the link "Example link"
-    # Assert person contact values.
+    # Assert person contacts values.
     And I should see the text "Name of the contact"
     And I should see the text "Person contact body text"
     And I should see the text "Person contact organisation"
@@ -183,14 +183,19 @@ Feature: Person content creation
     And I should see "Publication node in Person"
     And I should see the text "Associated African States and Madagascar"
     And I should see the text "Responsibilities text"
-    And I should see the text "On"
+    And I should see the text "Acting role"
 
     When I click "Edit"
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
     And I fill in "Organisation" with "Organisation demo page"
+    And I press "Edit" in the "Person jobs" region
+    And I fill in "Role" with "Person job role"
     And I press "Save"
     Then I should see "Organisation demo page"
     And I should not see the link "European Patent Office"
+    And I should not see "Associated African States and Madagascar"
+    And I should see "Person job role"
+    And I should not see "Acting role"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
@@ -210,3 +215,46 @@ Feature: Person content creation
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."
+
+  @javascript
+  Scenario: Ensure that person job and contact are not deleted after removing from the node.
+    Given I am an anonymous user
+    And the following General Contact entity:
+      | Name | A general contact |
+    And the following document:
+      | name          | file       |
+      | My Document 3 | sample.pdf |
+    And the following Default "Person job" sub-entity:
+      | Name             | Default person job 1                     |
+      | Role reference   | Associated African States and Madagascar |
+      | Acting role      | Yes                                      |
+      | Responsibilities | Responsibilities text                    |
+    And the following Person Content entity:
+      | Title                               | Person demo page     |
+      | Summary                             | Person summary       |
+      | Teaser                              | Person teaser        |
+      | Contacts                            | A general contact    |
+      | Subject                             | export financing     |
+      | What type of person are you adding? | eu                   |
+      | First name                          | First                |
+      | Last name                           | Last                 |
+      | Gender                              | not stated           |
+      | Jobs                                | Default person job 1 |
+    When I am visiting the "Person demo page" content
+    Then I should see "Person demo page"
+
+    When I am logged in as a user with the "create oe_person content, access content, edit any oe_person content, view published skos concept entities, manage corporate content entities" permission
+    And I am visiting the "Person demo page" content
+    And I click "Edit"
+    And I press "Remove" in the "Person contacts" region
+    Then I should see "Are you sure you want to remove A general contact?"
+    When I press "Remove" in the "Person contacts" region
+    And I wait for AJAX to finish
+    And I press "Remove" in the "Person jobs" region
+    Then I should see "Are you sure you want to remove Default?"
+    And I press "Remove" in the "Person jobs" region
+    And I wait for AJAX to finish
+    And I press "Save"
+    Then I should see "Person Person demo page has been updated."
+    And the General Contact entity with title "A general contact" exists
+    And the "Person job" sub-entity "Default person job 1" exists

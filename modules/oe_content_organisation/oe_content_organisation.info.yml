@@ -5,8 +5,9 @@ type: module
 core: 8.x
 
 dependencies:
+  - drupal:path
   - oe_content:oe_content
-  - drupal:composite_reference
+  - composite_reference:composite_reference
   - oe_content:oe_content_entity_contact
   - field_group:field_group
   - entity_reference_revisions:entity_reference_revisions
