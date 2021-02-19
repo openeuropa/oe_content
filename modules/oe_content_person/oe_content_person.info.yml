@@ -71,3 +71,4 @@ config_devel:
     - oe_content_person.oe_person_job_type.default
   optional:
     - language.content_settings.node.oe_person
+    - language.content_settings.oe_person_job.default
