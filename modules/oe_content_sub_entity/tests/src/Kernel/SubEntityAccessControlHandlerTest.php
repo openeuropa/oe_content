@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_sub_entity_document_reference\Kernel;
+namespace Drupal\Tests\oe_content_sub_entity\Kernel;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;
@@ -55,7 +55,7 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
     'entity_reference_revisions',
     'node',
     'oe_content_sub_entity',
-    'oe_content_sub_entity_document_reference',
+    'oe_content_sub_entity_test',
   ];
 
   /**
@@ -64,15 +64,13 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
   protected function setUp() {
     parent::setUp();
 
-    // @todo: better to create test sub entity type and avoid using
-    // Document reference type.
-    $this->installEntitySchema('oe_document_reference');
+    $this->installEntitySchema('oe_sub_entity_test');
     $this->installEntitySchema('node');
     $this->installConfig(['node', 'filter']);
     $this->installSchema('node', ['node_access']);
 
-    $this->accessControlHandler = $this->entityTypeManager->getAccessControlHandler('oe_document_reference');
-    $this->subEntityStorage = $this->entityTypeManager->getStorage('oe_document_reference');
+    $this->accessControlHandler = $this->entityTypeManager->getAccessControlHandler('oe_sub_entity_test');
+    $this->subEntityStorage = $this->entityTypeManager->getStorage('oe_sub_entity_test');
 
     // Create Page node type.
     $this->createContentType([
@@ -80,13 +78,13 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
       'name' => 'Basic page',
     ]);
 
-    // Create test bundle of Document reference entity.
-    $type_storage = $this->container->get('entity_type.manager')->getStorage('oe_document_reference_type');
+    // Create test bundle of Sub entity test.
+    $type_storage = $this->container->get('entity_type.manager')->getStorage('oe_sub_entity_type_test');
     $type_storage->create([
       'id' => 'test_bundle',
       'label' => 'Test bundle',
     ])->save();
-    $this->createEntityReferenceField('oe_document_reference', 'test_bundle', 'field_reference', 'Node reference', 'node');
+    $this->createEntityReferenceField('oe_sub_entity_test', 'test_bundle', 'field_reference', 'Node reference', 'node');
 
     // Create Article node type.
     $this->createContentType([
@@ -95,14 +93,13 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
     ]);
     $this->createEntityReferenceField('node', 'article', 'field_reference', 'Node reference 1', 'node');
 
-    // Create the entity reference revision field to the document reference
-    // entity in the Article node.
+    // Create the entity reference revision field to the sub entity in Article.
     $field_storage = FieldStorageConfig::create([
       'field_name' => 'field_sub_entity_reference',
       'entity_type' => 'node',
       'type' => 'entity_reference_revisions',
       'settings' => [
-        'target_type' => 'oe_document_reference',
+        'target_type' => 'oe_sub_entity_test',
       ],
     ]);
     $field_storage->save();
@@ -117,21 +114,21 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
     $page_node = $this->createNode([
       'title' => 'Page node label. Child node.',
     ]);
-    $document_reference = $this->subEntityStorage->create([
+    $sub_entity = $this->subEntityStorage->create([
       'type' => 'test_bundle',
       'field_reference' => [$page_node],
       'status' => 1,
     ]);
-    $document_reference->save();
+    $sub_entity->save();
     $article_node = $this->createNode([
       'title' => 'Article node label. Parent node.',
       'type' => 'article',
-      'field_sub_entity_reference' => [$document_reference],
+      'field_sub_entity_reference' => [$sub_entity],
     ]);
     $article_node->save();
 
     // Save sub entity for further processing.
-    $this->subEntity = $this->subEntityStorage->load($document_reference->id());
+    $this->subEntity = $this->subEntityStorage->load($sub_entity->id());
   }
 
   /**
@@ -139,14 +136,14 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
    *
    * @param string $request_format
    *   Request format.
-   * @param array $expected_result
+   * @param \Drupal\Core\Access\AccessResultInterface $expected_result
    *   Expected results.
    *
    * @covers ::checkCreateAccess
    *
    * @dataProvider createAccessTestCases
    */
-  public function testCreateAccess(string $request_format, array $expected_result): void {
+  public function testCreateAccess(string $request_format, AccessResultInterface $expected_result): void {
     $request = new Request();
     $request->setRequestFormat($request_format);
     $this->container->get('request_stack')->push($request);
