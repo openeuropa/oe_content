@@ -1,6 +1,6 @@
-oe_content_sub_entity_document_reference.oe_document_reference_type.*:
+oe_content_person.oe_person_job_type.*:
   type: config_entity
-  label: 'Document reference type settings'
+  label: 'Person job type settings'
   mapping:
     id:
       type: string
