@@ -1,0 +1,13 @@
+oe_content_sub_entity_test.oe_sub_entity_type_test.*:
+  type: config_entity
+  label: 'Sub entity type settings'
+  mapping:
+    id:
+      type: string
+      label: 'Machine-readable name'
+    label:
+      type: label
+      label: 'Label'
+    description:
+      type: text
+      label: 'Description'
