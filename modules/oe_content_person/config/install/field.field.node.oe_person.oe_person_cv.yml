@@ -15,7 +15,7 @@ field_name: oe_person_cv
 entity_type: node
 bundle: oe_person
 label: 'CV upload'
-description: ''
+description: 'The full CV in PDF format.'
 required: false
 translatable: false
 default_value: {  }

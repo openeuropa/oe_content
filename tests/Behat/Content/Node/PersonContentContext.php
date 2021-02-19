@@ -27,7 +27,7 @@ class PersonContentContext extends RawDrupalContext {
    * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope $scope
    *   Behat hook scope.
    *
-   * @BeforeParseEntityFields(node,oe_call_proposals)
+   * @BeforeParseEntityFields(node,oe_person)
    */
   public function alterPersonFields(BeforeParseEntityFieldsScope $scope): void {
     // Map human readable field names to their Behat parsable machine names.
@@ -35,7 +35,7 @@ class PersonContentContext extends RawDrupalContext {
       'Title' => 'title',
       'Biography' => 'oe_person_biography_timeline',
       'Biography introduction' => 'oe_person_biography_intro',
-      'Contact' => 'oe_call_proposals_contact',
+      'Contact' => 'oe_person_contacts',
       'CV upload' => 'oe_person_cv',
       'Declaration of interests file' => 'oe_person_interests_file',
       'Declaration of interests introduction' => 'oe_person_interests_intro',
@@ -78,7 +78,7 @@ class PersonContentContext extends RawDrupalContext {
           break;
 
         case 'Organisation':
-          $fields = $this->getReferenceField($mapping[$key], 'oe_organisation', $value);
+          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_organisation', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
