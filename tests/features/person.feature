@@ -61,27 +61,27 @@ Feature: Person content creation
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Alternative title" with "Shorter title"
     And I fill in "Displayed name" with "Altered name"
-    And I fill in "Use existing media" with "Image 1" in the "Portrait photo" region
+    And I fill in "Use existing media" with "Image 1" in the "Person portrait photo" region
     And I fill in "Use existing media" with "Image 2" in the "Person Media" region
     And I fill in "Departments" with "European Patent Office"
     And I fill in "Transparency introduction" with "transparency-introduction text"
-    And I fill in "URL" with "http://transparency.example.com" in the "Transparency links" region
-    And I fill in "Link text" with "Example link" in the "Transparency links" region
+    And I fill in "URL" with "http://transparency.example.com" in the "Person transparency links" region
+    And I fill in "Link text" with "Example link" in the "Person transparency links" region
     And I fill in "Biography introduction" with "Bio-intro"
     And I fill in "Label" with "Label 1" in the "first" "Biography" field element
     And I fill in "Title" with "Title 1" in the "first" "Biography" field element
     And I fill in "Content" with "Body 1" in the "first" "Biography" field element
-    And I press "Add another item" in the "Biography" region
+    And I press "Add another item" in the "Person biography" region
     And I fill in "Label" with "Label 2" in the "second" "Biography" field element
     And I fill in "Title" with "Title 2" in the "second" "Biography" field element
     And I fill in "Content" with "Body 2" in the "second" "Biography" field element
-    And I press "Add another item" in the "Biography" region
+    And I press "Add another item" in the "Person biography" region
     And I fill in "Label" with "Label 3" in the "third" "Biography" field element
     And I fill in "Title" with "Title 3" in the "third" "Biography" field element
     And I fill in "Content" with "Body 3" in the "third" "Biography" field element
-    And I fill in "Use existing media" with "My Document 1" in the "CV upload" region
+    And I fill in "Use existing media" with "My Document 1" in the "Person CV upload" region
     And I fill in "Declaration of interests introduction" with "declaration text"
-    And I fill in "Use existing media" with "My Document 2" in the "Declaration of interests file" region
+    And I fill in "Use existing media" with "My Document 2" in the "Person declaration of interests file" region
     And I fill in "URL" with "http://twitter.com" in the "Social media links" region
     And I fill in "Link text" with "Twitter" in the "Social media links" region
     And I select "Twitter" from "Link type"
