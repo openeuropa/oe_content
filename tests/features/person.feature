@@ -16,13 +16,21 @@ Feature: Person content creation
       | name          | file         |
       | My Document 1 | sample.pdf   |
       | My Document 2 | document.pdf |
+      | My Document 3 | document2.pdf |
+    And the following General Contact entity:
+      | Name | A general contact in Organisation |
+    And the following "Organisation" Content entity:
+      | Title             | Organisation as a contact         |
+      | Organisation type | EU organisation                   |
+      | EU organisation   | Directorate-General for Budget    |
+      | Contact           | A general contact in Organisation |
     And the following "Organisation" Content entity:
       | Title             | Organisation demo page         |
-      | Introduction      | Organisation introduction text |
-      | Acronym           | Organisation acronym           |
-      | Body text         | Organisation body text         |
       | Organisation type | EU organisation                |
       | EU organisation   | Directorate-General for Budget |
+    And the following "Publication" Content entity:
+      | Title | Publication node in Person |
+
     # Create a "person" content, mandatory fields first.
     When I visit "the Person creation page"
     And I fill in "Title" with "My person item"
@@ -100,6 +108,26 @@ Feature: Person content creation
     And I fill in "Media item" with "Contact image" in the "Person contact" region
     And I fill in "Caption" with "Person contact caption" in the "Person contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Person contact" region
+    And I press "Create contact"
+    And I wait for AJAX to finish
+    # Add an organisation as contact.
+    And I select "Organisation" in the "Person contact" region
+    And I press "Add new contact"
+    And I fill in "Name" with "Organisation contact name" in the "Person contact" region
+    And I fill in "Organisation" with "Organisation as a contact" in the "Person contact" region
+    # Create document reference to Document media.
+    And I press "Add new document reference"
+    And I wait for AJAX to finish
+    And I fill in "Use existing media" with "My Document 3" in the "Person documents" region
+    And I press "Create document reference"
+    And I wait for AJAX to finish
+    # Create document reference to Publication node.
+    And I select "Publication" in the "Person documents" region
+    And I press "Add new document reference"
+    And I wait for AJAX to finish
+    And I fill in "Publication" with "Publication node in Person" in the "Person documents" region
+    And I press "Create document reference"
+    And I wait for AJAX to finish
     And I press "Save"
     Then I should see "My person item"
     And I should see "Navi title"
@@ -143,6 +171,10 @@ Feature: Person content creation
     And I should see the link "Contact image"
     And I should see the text "Person contact caption"
     And I should see the link "http://example.com/press_contacts"
+    And I should see the text "Organisation contact name"
+    # Document references are shown.
+    And I should see "document2.pdf"
+    And I should see "Publication node in Person"
     When I click "Edit"
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
     And I fill in "Organisation" with "Organisation demo page"

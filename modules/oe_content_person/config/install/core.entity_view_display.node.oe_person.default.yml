@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.oe_person.oe_person_contacts
     - field.field.node.oe_person.oe_person_cv
     - field.field.node.oe_person.oe_person_displayed_name
+    - field.field.node.oe_person.oe_person_documents
     - field.field.node.oe_person.oe_person_first_name
     - field.field.node.oe_person.oe_person_gender
     - field.field.node.oe_person.oe_person_interests_file
@@ -137,6 +138,15 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  oe_person_documents:
+    weight: 28
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
   oe_person_first_name:
     type: string
     weight: 15
@@ -185,12 +195,13 @@ content:
       link: true
     third_party_settings: {  }
   oe_person_organisation:
-    type: entity_reference_label
+    type: entity_reference_revisions_entity_view
     weight: 10
     region: content
     label: above
     settings:
-      link: true
+      link: ''
+      view_mode: default
     third_party_settings: {  }
   oe_person_photo:
     type: entity_reference_label

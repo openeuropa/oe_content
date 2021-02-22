@@ -298,6 +298,20 @@ class FeatureContext extends RawDrupalContext {
   }
 
   /**
+   * Selects an option in a single select field in a region.
+   *
+   * @When I select :option in the :region region
+   */
+  public function selectOptionSingleSelectInRegion(string $option, string $region): void {
+    $session = $this->getSession();
+    $regionObj = $session->getPage()->find('region', $region);
+    if (!$regionObj) {
+      throw new \Exception(sprintf('No region "%s" found on the page %s.', $region, $session->getCurrentUrl()));
+    }
+    $regionObj->find('css', 'select')->selectOption($option);
+  }
+
+  /**
    * Selects option in select field with specified selector.
    *
    * @param string $element

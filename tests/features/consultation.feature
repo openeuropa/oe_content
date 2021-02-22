@@ -46,7 +46,7 @@ Feature: Consultation content creation
     Then I should see the text "My document 2"
 
     # Create document reference to Publication node.
-    When I select the "Publication" document reference
+    When I select "Publication" in the "Consultation documents" region
     And I press "Add new document reference"
     And I wait for AJAX to finish
     And I fill in "Publication" with "Publication node" in the "Consultation documents" region

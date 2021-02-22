@@ -114,6 +114,7 @@ default:
         Reference codes: "#edit-oe-reference-codes-wrapper"
         Portrait photo: "#edit-oe-person-photo"
         Person Media: "#edit-oe-person-media"
+        Person documents: "#edit-oe-person-documents-wrapper"
         CV upload: "#edit-oe-person-cv"
         Declaration of interests file: "#edit-oe-person-interests-file"
         Person contact: "#edit-oe-person-contacts-wrapper"
