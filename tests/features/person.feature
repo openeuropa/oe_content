@@ -13,9 +13,9 @@ Feature: Person content creation
       | Image 2       | example_1.jpeg | Alternative text 2 |
       | Contact image | example_1.jpeg | Alternative text 4 |
     And the following document:
-      | name          | file         |
-      | My Document 1 | sample.pdf   |
-      | My Document 2 | document.pdf |
+      | name          | file          |
+      | My Document 1 | sample.pdf    |
+      | My Document 2 | document.pdf  |
       | My Document 3 | document2.pdf |
     And the following General Contact entity:
       | Name | A general contact in Organisation |
@@ -111,10 +111,10 @@ Feature: Person content creation
     And I press "Create contact"
     And I wait for AJAX to finish
     # Add an organisation as contact.
-    And I select "Organisation" in the "Person contact" region
+    And I select "Organisation" in the "Person contacts" region
     And I press "Add new contact"
-    And I fill in "Name" with "Organisation contact name" in the "Person contact" region
-    And I fill in "Organisation" with "Organisation as a contact" in the "Person contact" region
+    And I fill in "Name" with "Organisation contact name" in the "Person contacts" region
+    And I fill in "Organisation" with "Organisation as a contact" in the "Person contacts" region
     # Create document reference to Document media.
     And I press "Add new document reference"
     And I wait for AJAX to finish
@@ -131,7 +131,7 @@ Feature: Person content creation
     # Jobs field.
     And I press "Add new person job"
     And I wait for AJAX to finish
-    And I fill in "first" person job role reference field with "Asia-Pacific Economic Cooperation"
+    And I fill in "first" person job role reference field with "Advocate-General"
     And I fill in "Responsibilities assigned to the job" with "Responsibilities text"
     And I check "Acting role"
     And I press "Save"
@@ -181,8 +181,7 @@ Feature: Person content creation
     # Document references are shown.
     And I should see "document2.pdf"
     And I should see "Publication node in Person"
-    And I should see the text "Associated African States and Madagascar"
-    And I should see the text "Asia-Pacific Economic Cooperation"
+    And I should see the text "Advocate-General"
     And I should see the text "Responsibilities text"
     And I should see the text "Acting role"
 
@@ -194,7 +193,7 @@ Feature: Person content creation
     And I press "Save"
     Then I should see "Organisation demo page"
     And I should not see the link "European Patent Office"
-    And I should not see "Asia-Pacific Economic Cooperation"
+    And I should not see "Advocate-General"
     And I should see "Person job role"
     And I should not see "Acting role"
 
@@ -218,31 +217,38 @@ Feature: Person content creation
     Then I should not see "The text to remove."
 
   @javascript
-  Scenario: Ensure that person job and contact are not deleted after removing from the node.
-    #Given I am an anonymous user
+  Scenario: Ensure that person job, contact and document reference entities are not deleted after removing from the node.
     Given I am logged in as a user with the "access content, view published skos concept entities, view published oe_contact" permission
     And the following General Contact entity:
       | Name | A general contact |
     And the following Default "Person job" sub-entity:
-      | Name             | Default person job 1                     |
-      | Role reference   | Asia-Pacific Economic Cooperation |
-      | Acting role      | Yes                                      |
-      | Responsibilities | Responsibilities text                    |
+      | Name             | Default person job 1  |
+      | Role reference   | Advocate-General      |
+      | Acting role      | Yes                   |
+      | Responsibilities | Responsibilities text |
+    And the following document:
+      | name        | file       |
+      | My Document | sample.pdf |
+    And the following Document "Document reference" sub-entity:
+      | Name     | Document reference to My Document |
+      | Document | My Document                       |
     And the following Person Content entity:
-      | Title                               | Person demo page     |
-      | Summary                             | Person summary       |
-      | Teaser                              | Person teaser        |
-      | Contacts                            | A general contact    |
-      | Subject                             | export financing     |
-      | What type of person are you adding? | eu                   |
-      | First name                          | First                |
-      | Last name                           | Last                 |
-      | Gender                              | not stated           |
-      | Jobs                                | Default person job 1 |
+      | Title                               | Person demo page                  |
+      | Summary                             | Person summary                    |
+      | Teaser                              | Person teaser                     |
+      | Contacts                            | A general contact                 |
+      | Subject                             | export financing                  |
+      | What type of person are you adding? | eu                                |
+      | First name                          | First                             |
+      | Last name                           | Last                              |
+      | Gender                              | not stated                        |
+      | Jobs                                | Default person job 1              |
+      | Documents                           | Document reference to My Document |
     When I am visiting the "Person demo page" content
     Then I should see "Person demo page"
     And I should see "A general contact"
-    And I should see "Asia-Pacific Economic Cooperation"
+    And I should see "Advocate-General"
+    And I should see "sample.pdf"
 
     When I am logged in as a user with the "create oe_person content, access content, edit any oe_person content, view published skos concept entities, manage corporate content entities" permission
     And I am visiting the "Person demo page" content
@@ -252,12 +258,18 @@ Feature: Person content creation
     When I press "Remove" in the "Person contacts" region
     And I wait for AJAX to finish
     And I press "Remove" in the "Person jobs" region
-    Then I should see "Are you sure you want to remove Asia-Pacific Economic Cooperation?"
-    And I press "Remove" in the "Person jobs" region
+    Then I should see "Are you sure you want to remove Advocate-General?"
+    When I press "Remove" in the "Person jobs" region
     And I wait for AJAX to finish
+    And I press "Remove" in the "Person documents" region
+    And I wait for AJAX to finish
+    Then I should see "Are you sure you want to remove My Document?"
+    When I press "Remove" in the "Person documents" region
     And I press "Save"
     Then I should see "Person Person demo page has been updated."
     And I should not see "A general contact"
-    And I should not see "Asia-Pacific Economic Cooperation"
+    And I should not see "Advocate-General"
+    And I should not see "sample.pdf"
     And the General Contact entity with title "A general contact" exists
     And the "Person job" sub-entity "Default person job 1" exists
+    And the "Document reference" sub-entity "Document reference to My Document" exists

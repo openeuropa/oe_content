@@ -18,6 +18,7 @@ function oe_content_person_install() {
 
   $graphs = [
     'human-sex' => 'http://publications.europa.eu/resource/dataset/human-sex',
+    'role' => 'http://publications.europa.eu/resource/dataset/role',
   ];
   \Drupal::service('rdf_skos.skos_graph_configurator')->addGraphs($graphs);
 }
