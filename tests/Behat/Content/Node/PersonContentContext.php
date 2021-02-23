@@ -42,6 +42,7 @@ class PersonContentContext extends RawDrupalContext {
       'Declaration of interests file' => 'oe_person_interests_file',
       'Declaration of interests introduction' => 'oe_person_interests_intro',
       'Displayed name' => 'oe_person_displayed_name',
+      'Documents' => 'oe_person_documents',
       'First name' => 'oe_person_first_name',
       'Gender' => 'oe_person_gender',
       'Introduction' => 'oe_summary',
@@ -90,7 +91,8 @@ class PersonContentContext extends RawDrupalContext {
           $scope->addFields($fields)->removeField($key);
           break;
 
-        // Set Person jobs entity reference revision fields.
+        // Set entity reference revision fields for sub entities.
+        case 'Documents':
         case 'Jobs':
           $ids = [];
           $revision_ids = [];

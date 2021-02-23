@@ -24,11 +24,11 @@ settings:
       field: _none
     auto_create: false
     concept_schemes:
-      - 'http://publications.europa.eu/resource/authority/corporate-body'
+      - 'http://publications.europa.eu/resource/authority/role'
     field:
       field_name: oe_role_reference
       entity_type: oe_person_job
       bundle: default
       concept_schemes:
-        - 'http://publications.europa.eu/resource/authority/corporate-body'
+        - 'http://publications.europa.eu/resource/authority/role'
 field_type: skos_concept_entity_reference

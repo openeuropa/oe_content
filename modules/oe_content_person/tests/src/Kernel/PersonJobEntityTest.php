@@ -8,7 +8,7 @@ use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
 
 /**
- * Tests document reference entity.
+ * Tests Person job entity.
  */
 class PersonJobEntityTest extends EntityKernelTestBase {
 
