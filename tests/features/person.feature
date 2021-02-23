@@ -187,7 +187,9 @@ Feature: Person content creation
 
     When I click "Edit"
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
-    And I fill in "Organisation" with "Organisation demo page"
+    And I press "Save"
+    Then I should see "Role field is required in the job Advocate-General"
+    When I fill in "Organisation" with "Organisation demo page"
     And I press "Edit" in the "Person jobs" region
     And I fill in "Role" with "Person job role"
     And I press "Save"

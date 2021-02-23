@@ -14,7 +14,9 @@ label: 'What type of person are you adding?'
 description: 'If EU official, Commissioner or MEP, choose "EU institutions related person". Otherwise, choose "Person not part of the EU institutions"'
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: eu
 default_value_callback: ''
 settings: {  }
 field_type: list_string
