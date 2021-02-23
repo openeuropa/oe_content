@@ -9,7 +9,9 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 use Drupal\oe_content\Utility\ContentFormUtilities;
+use Drupal\oe_content_person\Entity\PersonJobInterface;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter for the node form.
@@ -67,9 +69,7 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
     return;
   }
 
-  // Set initial state when form is loaded. If field
-  // "What type of person are you adding?" is not set then all fields will
-  // be hidden.
+  // Set initial state when form is loaded.
   $type = NULL;
   $user_input = $form_state->getUserInput();
   if (isset($user_input['oe_person_type'])) {
@@ -117,18 +117,45 @@ function oe_content_person_oe_person_jobs_validate(array &$element, FormStateInt
   $type = $form_state->getValue(['oe_person_type', 0, 'value']);
 
   $field_values = $form_state->getValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities']);
-  if (empty($field_values)) {
-    // Inline entity form doesn't exist yet.
-    return;
+  if (!empty($field_values)) {
+    // Clear hidden fields.
+    $delta = key($field_values);
+    if ($type !== 'non_eu') {
+      $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_role_name'], []);
+    }
+    if ($type !== 'eu') {
+      $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_role_reference'], []);
+      $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_acting'], []);
+    }
   }
 
-  // Clear hidden fields. Otherwise these fields will be validated.
-  $delta = key($field_values);
-  if ($type !== 'non_eu') {
-    $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_role_name'], []);
+  // Enforce to update Role field on the existing jobs if person type has been
+  // changed.
+  foreach (Element::children($complete_form['oe_person_jobs']['widget']['entities']) as $key) {
+    $item = $complete_form['oe_person_jobs']['widget']['entities'][$key];
+    if (!empty($item['#entity']) && !_oe_content_person_validate_person_job_entity($item['#entity'], $type)) {
+      $form_state->setError($element, t('Role field is required in the job @label', ['@label' => $item['#entity']->label()]));
+    }
   }
-  if ($type !== 'eu') {
-    $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_role_reference'], []);
-    $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_acting'], []);
+}
+
+/**
+ * Validation of Person job entity based on the person type.
+ *
+ * @param \Drupal\oe_content_person\Entity\PersonJobInterface $entity
+ *   Person job entity
+ * @param string $type
+ *
+ * @return bool
+ *   FALSE if entity's role field is empty.
+ */
+function _oe_content_person_validate_person_job_entity(PersonJobInterface $entity, string $type): bool {
+  if ($type === 'eu' && $entity->get('oe_role_reference')->isEmpty()) {
+    return FALSE;
   }
+  if ($type === 'non_eu' && $entity->get('oe_role_name')->isEmpty()) {
+    return FALSE;
+  }
+
+  return TRUE;
 }

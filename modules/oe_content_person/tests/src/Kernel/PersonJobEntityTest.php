@@ -37,6 +37,7 @@ class PersonJobEntityTest extends EntityKernelTestBase {
     'oe_content_entity_contact',
     'oe_content_person',
     'oe_content_social_media_links_field',
+    'oe_content_sub_entity_document_reference',
     'oe_content_timeline_field',
     'typed_link',
   ];
@@ -49,7 +50,15 @@ class PersonJobEntityTest extends EntityKernelTestBase {
 
     $this->setUpSparql();
 
-    foreach (['node', 'media', 'file', 'oe_contact', 'oe_person_job'] as $entity) {
+    $entities = [
+      'node',
+      'media',
+      'file',
+      'oe_contact',
+      'oe_person_job',
+      'oe_document_reference',
+    ];
+    foreach ($entities as $entity) {
       $this->installEntitySchema($entity);
     }
 
