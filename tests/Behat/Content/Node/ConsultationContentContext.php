@@ -123,16 +123,4 @@ class ConsultationContentContext extends RawDrupalContext {
     ]);
   }
 
-  /**
-   * Selects one of the document reference types.
-   *
-   * @param string $document_reference_type
-   *   The document reference type.
-   *
-   * @When I select the :document_reference_type document reference
-   */
-  public function iSelectTheDocumentReferenceType(string $document_reference_type): void {
-    $this->getSession()->getPage()->selectFieldOption('oe_consultation_documents[actions][bundle]', $document_reference_type);
-  }
-
 }

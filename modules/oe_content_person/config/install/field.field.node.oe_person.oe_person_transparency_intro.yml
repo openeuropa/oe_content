@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_person_transparency_intro
+    - node.type.oe_person
+  module:
+    - text
+id: node.oe_person.oe_person_transparency_intro
+field_name: oe_person_transparency_intro
+entity_type: node
+bundle: oe_person
+label: 'Transparency introduction'
+description: 'If possible, use the standard text for Commissioners and Directors-General.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,375 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oe_person.oe_departments
+    - field.field.node.oe_person.oe_person_biography_intro
+    - field.field.node.oe_person.oe_person_biography_timeline
+    - field.field.node.oe_person.oe_person_contacts
+    - field.field.node.oe_person.oe_person_cv
+    - field.field.node.oe_person.oe_person_displayed_name
+    - field.field.node.oe_person.oe_person_documents
+    - field.field.node.oe_person.oe_person_first_name
+    - field.field.node.oe_person.oe_person_gender
+    - field.field.node.oe_person.oe_person_interests_file
+    - field.field.node.oe_person.oe_person_interests_intro
+    - field.field.node.oe_person.oe_person_last_name
+    - field.field.node.oe_person.oe_person_media
+    - field.field.node.oe_person.oe_person_organisation
+    - field.field.node.oe_person.oe_person_photo
+    - field.field.node.oe_person.oe_person_transparency_intro
+    - field.field.node.oe_person.oe_person_transparency_links
+    - field.field.node.oe_person.oe_person_type
+    - field.field.node.oe_person.oe_social_media_links
+    - field.field.node.oe_person.oe_subject
+    - field.field.node.oe_person.oe_summary
+    - field.field.node.oe_person.oe_teaser
+    - node.type.oe_person
+  module:
+    - entity_reference_revisions
+    - field_group
+    - inline_entity_form
+    - link
+    - maxlength
+    - oe_content_timeline_field
+    - path
+    - rdf_skos
+    - text
+    - typed_link
+third_party_settings:
+  field_group:
+    group_alternative_titles_and_tea:
+      children:
+        - oe_content_short_title
+        - oe_content_navigation_title
+        - oe_teaser
+      parent_name: ''
+      weight: 22
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+        required_fields: true
+      label: 'Alternative titles and teaser'
+id: node.oe_person.default
+targetEntityType: node
+bundle: oe_person
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 27
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 25
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  oe_content_content_owner:
+    type: skos_concept_entity_reference_autocomplete
+    weight: 23
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_content_legacy_link:
+    type: link_default
+    weight: 24
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  oe_content_navigation_title:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_content_short_title:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 170
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+  oe_departments:
+    type: skos_concept_entity_reference_autocomplete
+    weight: 9
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_biography_intro:
+    type: text_textarea
+    weight: 16
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_biography_timeline:
+    weight: 17
+    settings: {  }
+    third_party_settings: {  }
+    type: timeline_widget
+    region: content
+  oe_person_contacts:
+    type: inline_entity_form_complex
+    weight: 12
+    region: content
+    settings:
+      form_mode: default
+      revision: true
+      override_labels: true
+      label_singular: contact
+      label_plural: contacts
+      allow_new: true
+      match_operator: CONTAINS
+      removed_reference: keep
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+  oe_person_cv:
+    type: entity_reference_autocomplete
+    weight: 18
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_displayed_name:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_documents:
+    weight: 21
+    settings:
+      form_mode: default
+      revision: true
+      label_singular: ''
+      label_plural: ''
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
+      removed_reference: keep
+      override_labels: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
+  oe_person_first_name:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_gender:
+    type: skos_concept_entity_reference_options_select
+    weight: 6
+    region: content
+    settings:
+      sort: id
+    third_party_settings: {  }
+  oe_person_interests_file:
+    type: entity_reference_autocomplete
+    weight: 20
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_interests_intro:
+    type: text_textarea
+    weight: 19
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_last_name:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_media:
+    type: entity_reference_autocomplete
+    weight: 13
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_organisation:
+    type: entity_reference_revisions_autocomplete
+    weight: 10
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_photo:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_transparency_intro:
+    type: text_textarea
+    weight: 14
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  oe_person_transparency_links:
+    type: link_default
+    weight: 15
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  oe_person_type:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_social_media_links:
+    type: typed_link
+    weight: 11
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  oe_subject:
+    type: skos_concept_entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_summary:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 250
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
+        maxlength_js_truncate_html: true
+  oe_teaser:
+    type: text_textarea
+    weight: 8
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 150
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
+        maxlength_js_truncate_html: true
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 28
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 31
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 29
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 170
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+  uid:
+    type: entity_reference_autocomplete
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden: {  }

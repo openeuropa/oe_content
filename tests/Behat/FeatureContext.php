@@ -216,13 +216,13 @@ class FeatureContext extends RawDrupalContext {
       'fifth' => '5',
       'sixth' => '6',
     ];
+    $tr = $table->find('xpath', "//tbody//tr[position()={$row_map[$row]}]");
 
-    $row = $table->find('xpath', "//tbody//tr[position()={$row_map[$row]}]");
-    if (!$row) {
-      throw new \Exception(sprintf('The %s row for the field %field could not be found.', $row, $field));
+    if (!$tr) {
+      throw new \Exception(sprintf('The %s row for the field %s could not be found.', $row, $field));
     }
 
-    $row->fillField($column, $value);
+    $tr->fillField($column, $value);
   }
 
   /**
@@ -235,10 +235,15 @@ class FeatureContext extends RawDrupalContext {
    *   The table element.
    */
   protected function getMultiColumnFieldTable(string $field): ?NodeElement {
-    $xpath = '//table[contains(concat(" ", normalize-space(@class), " "), " field-multiple-table ")]/descendant::h4[contains(text(), ' . $field . ')]';
-    $heading = $this->getSession()->getPage()->find('xpath', $xpath);
-
-    if (!$heading) {
+    $headings = $this->getSession()->getPage()->findAll('css', 'table.field-multiple-table h4.label');
+    $found = FALSE;
+    foreach ($headings as $heading) {
+      if ($heading->getText() === $field) {
+        $found = TRUE;
+        break;
+      }
+    }
+    if (!$found) {
       throw new \Exception(sprintf('Table for %s field not found', $field));
     }
 
@@ -293,6 +298,20 @@ class FeatureContext extends RawDrupalContext {
   }
 
   /**
+   * Selects an option in a single select field in a region.
+   *
+   * @When I select :option in the :region region
+   */
+  public function selectOptionSingleSelectInRegion(string $option, string $region): void {
+    $session = $this->getSession();
+    $regionObj = $session->getPage()->find('region', $region);
+    if (!$regionObj) {
+      throw new \Exception(sprintf('No region "%s" found on the page %s.', $region, $session->getCurrentUrl()));
+    }
+    $regionObj->find('css', 'select')->selectOption($option);
+  }
+
+  /**
    * Selects option in select field with specified selector.
    *
    * @param string $element
@@ -324,6 +343,18 @@ class FeatureContext extends RawDrupalContext {
   public function assertVisibility($element): void {
     $node = $this->getSession()->getPage()->find('css', $element);
     $this->assertVisuallyVisible($node);
+  }
+
+  /**
+   * Asserts that the node title field doesn't exist.
+   *
+   * @Then the Node title field should not exist
+   */
+  public function assertTitleNotExists(): void {
+    $element = $this->getSession()->getPage()->find('css', 'input[name="title[0][value]"]');
+    if ($element) {
+      throw new \Exception('The title field "%s" was found but it should not be.');
+    }
   }
 
 }

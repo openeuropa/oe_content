@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_person_type
+    - node.type.oe_person
+  module:
+    - options
+id: node.oe_person.oe_person_type
+field_name: oe_person_type
+entity_type: node
+bundle: oe_person
+label: 'What type of person are you adding?'
+description: 'If EU official, Commissioner or MEP, choose "EU institutions related person". Otherwise, choose "Person not part of the EU institutions"'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

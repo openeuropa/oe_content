@@ -32,12 +32,14 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
         - Drupal\Tests\oe_content\Behat\Content\Organisation\StakeholderOrganisationContext
         - Drupal\Tests\oe_content\Behat\Content\SubEntityContext
+        - Drupal\Tests\oe_content\Behat\Content\Node\PersonContentContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
               publication contact type: "#edit-oe-publication-contacts-actions-bundle"
               Reference code second field: "input[name='oe_reference_codes[1][value]']"
             pages:
+              Person creation: 'node/add/oe_person'
               Page creation: 'node/add/oe_page'
               News creation: 'node/add/oe_news'
               Event creation: 'node/add/oe_event'
@@ -110,6 +112,15 @@ default:
         Publication contact: ".field--name-oe-publication-contacts"
         Publication thumbnail: "#edit-oe-publication-thumbnail"
         Reference codes: "#edit-oe-reference-codes-wrapper"
+        Person portrait photo: "#edit-oe-person-photo"
+        Person Media: "#edit-oe-person-media"
+        Person documents: "#edit-oe-person-documents-wrapper"
+        Person CV upload: "#edit-oe-person-cv"
+        Person declaration of interests file: "#edit-oe-person-interests-file"
+        Person contact: "#edit-oe-person-contacts-wrapper"
+        Person transparency links: "#edit-oe-person-transparency-links-wrapper"
+        Person biography: "#edit-oe-person-biography-timeline-wrapper"
+        Timeline: "#edit-oe-timeline-wrapper"
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
       selectors:

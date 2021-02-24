@@ -12,3 +12,4 @@ phpunit.xml
 vendor
 yarn.lock
 docker-compose.*.yml
+/.gitattributes
