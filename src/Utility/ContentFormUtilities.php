@@ -52,11 +52,11 @@ class ContentFormUtilities {
    */
   public static function toggleFieldByValue(array &$form, string $toggle_field, string $field, string $value): void {
     if (!isset($form[$toggle_field])) {
-      throw new \InvalidArgumentException("Invalid argument, '$toggle_field' does not exist in the form.");
+      return;
     }
 
     if (!isset($form[$field])) {
-      throw new \InvalidArgumentException("Invalid argument, '$field' does not exist in the form.");
+      return;
     }
 
     $form[$field]['#states'] = [

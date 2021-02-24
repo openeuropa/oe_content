@@ -345,4 +345,16 @@ class FeatureContext extends RawDrupalContext {
     $this->assertVisuallyVisible($node);
   }
 
+  /**
+   * Asserts that the node title field doesn't exist.
+   *
+   * @Then the Node title field should not exist
+   */
+  public function assertTitleNotExists(): void {
+    $element = $this->getSession()->getPage()->find('css', 'input[name="title[0][value]"]');
+    if ($element) {
+      throw new \Exception('The title field "%s" was found but it should not be.');
+    }
+  }
+
 }

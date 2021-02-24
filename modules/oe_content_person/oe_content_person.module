@@ -24,21 +24,36 @@ function oe_content_person_form_node_form_alter(array &$form, FormStateInterface
 
   ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', 'oe_departments', 'eu');
   ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', 'oe_person_organisation', 'non_eu');
+
+  // Hide the title field as we auto-generate it based on the first and last
+  // name.
+  $form['title']['#access'] = FALSE;
 }
 
 /**
  * Implements hook_ENTITY_TYPE_presave().
  */
 function oe_content_person_node_presave(EntityInterface $entity) {
-  // Make sure that we don't save both concurrent field values.
-  if ($entity->bundle() === 'oe_person') {
-    $type = $entity->get('oe_person_type')->value;
-
-    if ($type === 'eu') {
-      $entity->get('oe_person_organisation')->setValue(NULL);
-    }
-    else {
-      $entity->get('oe_departments')->setValue(NULL);
-    }
+  if ($entity->bundle() !== 'oe_person') {
+    return;
   }
+
+  // Clear out some values depending on the chosen person type.
+  $type = $entity->get('oe_person_type')->value;
+
+  if ($type === 'eu') {
+    $entity->get('oe_person_organisation')->setValue(NULL);
+  }
+  else {
+    $entity->get('oe_departments')->setValue(NULL);
+  }
+
+  // Set the node title based on some field values.
+  $title = $entity->get('oe_person_first_name')->value . ' ' . $entity->get('oe_person_last_name')->value;
+  if (!$entity->get('oe_person_displayed_name')->isEmpty()) {
+    $title = $entity->get('oe_person_displayed_name')->value;
+  }
+
+  $entity->setTitle($title);
 }
+

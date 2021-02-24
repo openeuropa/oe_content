@@ -2,7 +2,7 @@
 Feature: Person content creation
   In order to have "Person" on the site
   As an editor
-  I need to be able to create and see oe_person items
+  I need to be able to create and see content of type "Person"
 
   @javascript
   Scenario: Creation of a Person content through the UI.
@@ -33,7 +33,7 @@ Feature: Person content creation
 
     # Create a "person" content, mandatory fields first.
     When I visit "the Person creation page"
-    And I fill in "Title" with "My person item"
+    Then the Node title field should not exist
     And I fill in "Subject" with "financing"
     And I fill in "Teaser" with "Teaser text"
     And I select "EU institutions related person" from "What type of person are you adding?"
@@ -47,7 +47,7 @@ Feature: Person content creation
     And I select "not stated" from "Gender"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I press "Save"
-    Then I should see "My person item"
+    Then I should see "Firstname Lastname"
     And I should see the link "financing"
     And I should see "Teaser text"
     And I should see "EU institutions related person"
@@ -129,7 +129,7 @@ Feature: Person content creation
     And I press "Create document reference"
     And I wait for AJAX to finish
     And I press "Save"
-    Then I should see "My person item"
+    Then I should see "Altered name"
     And I should see "Navi title"
     And I should see "Shorter title"
     And I should see "Altered name"
@@ -186,11 +186,9 @@ Feature: Person content creation
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_person content, access content, edit own oe_person content, view published skos concept entities, manage corporate content entities" permission
     When I visit "the Person creation page"
-    Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
-    When I fill in "Title" with "My person item"
     And I fill in "Subject" with "financing"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
