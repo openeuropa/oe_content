@@ -188,7 +188,7 @@ Feature: Person content creation
     When I click "Edit"
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
     And I press "Save"
-    Then I should see "Role field is required in the job Advocate-General"
+    Then I should see "The role \"Advocate-General\" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly."
     When I fill in "Organisation" with "Organisation demo page"
     And I press "Edit" in the "Person jobs" region
     And I fill in "Role" with "Person job role"
@@ -246,14 +246,14 @@ Feature: Person content creation
       | Gender                              | not stated                        |
       | Jobs                                | Default person job 1              |
       | Documents                           | Document reference to My Document |
-    When I am visiting the "Person demo page" content
-    Then I should see "Person demo page"
+    When I am visiting the "First Last" content
+    Then I should see "First Last"
     And I should see "A general contact"
     And I should see "Advocate-General"
     And I should see "sample.pdf"
 
     When I am logged in as a user with the "create oe_person content, access content, edit any oe_person content, view published skos concept entities, manage corporate content entities" permission
-    And I am visiting the "Person demo page" content
+    And I am visiting the "First Last" content
     And I click "Edit"
     And I press "Remove" in the "Person contacts" region
     Then I should see "Are you sure you want to remove A general contact?"
@@ -268,7 +268,7 @@ Feature: Person content creation
     Then I should see "Are you sure you want to remove My Document?"
     When I press "Remove" in the "Person documents" region
     And I press "Save"
-    Then I should see "Person Person demo page has been updated."
+    Then I should see "Person First Last has been updated."
     And I should not see "A general contact"
     And I should not see "Advocate-General"
     And I should not see "sample.pdf"
