@@ -139,7 +139,7 @@ class TimelineFieldTest extends EntityKernelTestBase {
           'label' => 'Test € — ☺',
           'title' => 'Item 4',
           'body' => 'Item 4 body',
-          'format' => 'format_☺',
+          'format' => 'my_text_format',
         ],
       ],
     ];
@@ -176,7 +176,7 @@ class TimelineFieldTest extends EntityKernelTestBase {
         'label' => 'Test € — ☺',
         'title' => 'Item 4',
         'body' => 'Item 4 body',
-        'format' => 'format_☺',
+        'format' => 'my_text_format',
       ],
     ];
     // Assert the base field values.
