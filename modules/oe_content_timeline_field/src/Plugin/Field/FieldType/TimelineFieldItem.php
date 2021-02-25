@@ -42,7 +42,7 @@ class TimelineFieldItem extends FieldItemBase {
           'size' => 'big',
         ],
         'format' => [
-          'type' => 'varchar',
+          'type' => 'varchar_ascii',
           'length' => 255,
         ],
       ],
