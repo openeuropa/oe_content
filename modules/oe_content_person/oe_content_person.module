@@ -70,6 +70,7 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
   }
 
   // Set initial state when form is loaded.
+  // @todo: cover visible and required states by functional test.
   $type = NULL;
   $user_input = $form_state->getUserInput();
   if (isset($user_input['oe_person_type'])) {
@@ -134,7 +135,7 @@ function oe_content_person_oe_person_jobs_validate(array &$element, FormStateInt
   foreach (Element::children($complete_form['oe_person_jobs']['widget']['entities']) as $key) {
     $item = $complete_form['oe_person_jobs']['widget']['entities'][$key];
     if (!empty($item['#entity']) && !_oe_content_person_validate_person_job_entity($item['#entity'], $type)) {
-      $form_state->setError($element, t('Role field is required in the job @label', ['@label' => $item['#entity']->label()]));
+      $form_state->setError($element, t('The role "@label" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly.', ['@label' => $item['#entity']->label()]));
     }
   }
 }
