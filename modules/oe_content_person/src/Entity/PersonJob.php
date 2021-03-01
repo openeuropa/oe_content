@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_person\Entity;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 
 /**
@@ -50,6 +51,8 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  */
 class PersonJob extends SubEntityBase implements PersonJobInterface {
 
+  use StringTranslationTrait;
+
   /**
    * {@inheritdoc}
    */
@@ -59,6 +62,10 @@ class PersonJob extends SubEntityBase implements PersonJobInterface {
       $label = $this->get('oe_role_name')->value;
       if (!$this->get('oe_role_reference')->isEmpty()) {
         $label = $this->get('oe_role_reference')->entity->label();
+
+        if ($this->get('oe_acting')->value) {
+          $label = $this->t('(Acting) @role', ['@role' => $label]);
+        }
       }
 
       if (!empty($label)) {
