@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_entity\Form;
+namespace Drupal\oe_content\Form;
 
 use Drupal\Core\Entity\BundleEntityFormBase;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -11,11 +11,11 @@ use Drupal\field_ui\FieldUI;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form controller for corporate content entity type edit forms.
+ * Form controller for content entity type edit forms.
  *
  * @ingroup oe_content_entity
  */
-class CorporateEntityTypeForm extends BundleEntityFormBase {
+class EntityTypeForm extends BundleEntityFormBase {
 
   /**
    * The module handler.
