@@ -10,7 +10,7 @@ use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
 /**
  * Tests the Person content type.
  */
-class PersonTest extends EntityKernelTestBase {
+class PersonEntityTest extends EntityKernelTestBase {
 
   use RdfDatabaseConnectionTrait;
 
