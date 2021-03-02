@@ -27,10 +27,10 @@ function oe_content_person_form_node_form_alter(array &$form, FormStateInterface
 
   // Hide fields based on the person type.
   foreach (PersonNodeWrapper::EU_ONLY_FIELDS as $field) {
-    ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', $field, 'eu');
+    ContentFormUtilities::toggleFieldVisibilityByValue($form, 'oe_person_type', $field, 'eu');
   }
   foreach (PersonNodeWrapper::NON_EU_ONLY_FIELDS as $field) {
-    ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', $field, 'non_eu');
+    ContentFormUtilities::toggleFieldVisibilityByValue($form, 'oe_person_type', $field, 'non_eu');
   }
 
   // Hide the title field as we auto-generate it based on the first and last
@@ -98,20 +98,11 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
   }
 
   // Set states based on person type field.
-  ContentFormUtilities::toggleFieldByValue($entity_form, 'oe_person_type', 'oe_role_name', 'non_eu');
-  ContentFormUtilities::toggleFieldByValue($entity_form, 'oe_person_type', 'oe_role_reference', 'eu');
-  ContentFormUtilities::toggleFieldByValue($entity_form, 'oe_person_type', 'oe_acting', 'eu');
-
-  $entity_form['oe_role_name']['widget'][0]['value']['#states']['required'] = [
-    ':input[name="oe_person_type"]' => [
-      'value' => 'non_eu',
-    ],
-  ];
-  $entity_form['oe_role_reference']['widget'][0]['target_id']['#states']['required'] = [
-    ':input[name="oe_person_type"]' => [
-      'value' => 'eu',
-    ],
-  ];
+  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_name', 'non_eu');
+  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_reference', 'eu');
+  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_acting', 'eu');
+  ContentFormUtilities::toggleFieldRequiredByValue($entity_form, 'oe_person_type', 'value', 'non_eu', ['oe_role_name', 'widget', 0]);
+  ContentFormUtilities::toggleFieldRequiredByValue($entity_form, 'oe_person_type', 'target_id', 'eu', ['oe_role_reference', 'widget', 0]);
 }
 
 /**
