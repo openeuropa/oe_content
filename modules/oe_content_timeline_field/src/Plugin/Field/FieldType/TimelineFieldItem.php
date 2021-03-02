@@ -30,7 +30,7 @@ class TimelineFieldItem extends FieldItemBase {
     return [
       'columns' => [
         'label' => [
-          'type' => 'varchar_ascii',
+          'type' => 'varchar',
           'length' => 255,
         ],
         'title' => [

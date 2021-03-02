@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the OpenEuropa Content Timeline Field module.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Change timeline "label" column type from "varchar_ascii" to "varchar".
+ */
+function oe_content_timeline_field_update_8101(): void {
+  /** @var \Drupal\Core\Entity\EntityFieldManager $entity_field_manager */
+  $entity_field_manager = \Drupal::service('entity_field.manager');
+  /** @var \Drupal\Core\KeyValueStore\DatabaseStorage $key_value */
+  $key_value = \Drupal::keyValue('entity.storage_schema.sql');
+  $db = \Drupal::database();
+
+  $timeline_fields = $entity_field_manager->getFieldMapByFieldType('timeline_field');
+  foreach ($timeline_fields as $entity_type => $fields) {
+    foreach (array_keys($fields) as $field_name) {
+      $key_name = $entity_type . '.field_schema_data.' . $field_name;
+      $storage_schema = $key_value->get($key_name);
+      $schema_field = $field_name . '_label';
+      // Update all tables where the field is present.
+      foreach ($storage_schema as $table_name => $table_schema) {
+        $table_schema['fields'][$schema_field]['type'] = 'varchar';
+        $storage_schema[$table_name] = $table_schema;
+        $db->schema()->changeField($table_name, $schema_field, $schema_field, $table_schema['fields'][$schema_field]);
+      }
+      $key_value->set($key_name, $storage_schema);
+    }
+  }
+}
