@@ -12,6 +12,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\oe_content\Utility\ContentFormUtilities;
 use Drupal\oe_content_person\Entity\PersonJobInterface;
+use Drupal\oe_content_person\PersonNodeWrapper;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter for the node form.
@@ -24,8 +25,13 @@ function oe_content_person_form_node_form_alter(array &$form, FormStateInterface
     return;
   }
 
-  ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', 'oe_departments', 'eu');
-  ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', 'oe_person_organisation', 'non_eu');
+  // Hide fields based on the person type.
+  foreach (PersonNodeWrapper::EU_ONLY_FIELDS as $field) {
+    ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', $field, 'eu');
+  }
+  foreach (PersonNodeWrapper::NON_EU_ONLY_FIELDS as $field) {
+    ContentFormUtilities::toggleFieldByValue($form, 'oe_person_type', $field, 'non_eu');
+  }
 
   // Hide the title field as we auto-generate it based on the first and last
   // name.
@@ -46,10 +52,14 @@ function oe_content_person_node_presave(EntityInterface $entity) {
   $type = $entity->get('oe_person_type')->value;
 
   if ($type === 'eu') {
-    $entity->get('oe_person_organisation')->setValue(NULL);
+    foreach (PersonNodeWrapper::EU_ONLY_FIELDS as $field) {
+      $entity->get($field)->setValue(NULL);
+    }
   }
   else {
-    $entity->get('oe_departments')->setValue(NULL);
+    foreach (PersonNodeWrapper::NON_EU_ONLY_FIELDS as $field) {
+      $entity->get($field)->setValue(NULL);
+    }
   }
 
   // Set the node title based on some field values.
@@ -87,7 +97,7 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
     $entity_form['oe_role_reference']['widget'][0]['target_id']['#required'] = TRUE;
   }
 
-  // Set states based on "What type of person are you adding?" field.
+  // Set states based on person type field.
   ContentFormUtilities::toggleFieldByValue($entity_form, 'oe_person_type', 'oe_role_name', 'non_eu');
   ContentFormUtilities::toggleFieldByValue($entity_form, 'oe_person_type', 'oe_role_reference', 'eu');
   ContentFormUtilities::toggleFieldByValue($entity_form, 'oe_person_type', 'oe_acting', 'eu');
