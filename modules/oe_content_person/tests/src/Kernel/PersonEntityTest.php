@@ -4,79 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_person\Kernel;
 
-use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
-use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
-
 /**
  * Tests the Person content type.
  */
-class PersonEntityTest extends EntityKernelTestBase {
-
-  use RdfDatabaseConnectionTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static $modules = [
-    'composite_reference',
-    'datetime',
-    'entity_reference_revisions',
-    'field_group',
-    'file',
-    'node',
-    'link',
-    'maxlength',
-    'media',
-    'options',
-    'rdf_entity',
-    'rdf_skos',
-    'image',
-    'inline_entity_form',
-    'oe_content',
-    'oe_content_departments_field',
-    'oe_content_entity_contact',
-    'oe_content_person',
-    'oe_content_social_media_links_field',
-    'oe_content_sub_entity_document_reference',
-    'oe_content_timeline_field',
-    'file_link',
-    'oe_media',
-    'typed_link',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    $this->setUpSparql();
-
-    $entities = [
-      'node',
-      'media',
-      'file',
-      'oe_contact',
-      'oe_document_reference',
-    ];
-    foreach ($entities as $entity) {
-      $this->installEntitySchema($entity);
-    }
-
-    $this->installConfig([
-      'oe_content',
-      'oe_content_departments_field',
-      'oe_content_social_media_links_field',
-      'oe_content_person',
-      'oe_media',
-    ]);
-
-    $this->installSchema('node', ['node_access']);
-    $this->installSchema('file', ['file_usage']);
-
-    module_load_include('install', 'oe_content');
-    oe_content_install();
-  }
+class PersonEntityTest extends PersonEntityTestBase {
 
   /**
    * Tests the label of the Person content type is generated automatically.
@@ -188,14 +119,14 @@ class PersonEntityTest extends EntityKernelTestBase {
       ],
       'oe_person_organisation' => [
         'target_id' => $organisation->id(),
-        'revision_id' => $organisation->getRevisionId(),
+        'target_revision_id' => $organisation->getRevisionId(),
       ],
     ]);
     $person->save();
 
     // Assert the values of a UE person are saved properly.
     $this->assertEquals('John Doe', $person->label());
-    $this->assertEmpty($person->get('oe_person_organisation')->target_id);
+    $this->assertEmpty($person->get('oe_person_organisation')->entity);
     $this->assertEquals('http://publications.europa.eu/resource/authority/corporate-body/ABEC', $person->get('oe_departments')->target_id);
     $this->assertEquals($image_media->id(), $person->get('oe_person_media')->target_id);
     $this->assertEquals('http://example.com', $person->get('oe_social_media_links')->uri);
@@ -211,10 +142,10 @@ class PersonEntityTest extends EntityKernelTestBase {
     $person->set('oe_person_type', 'non_eu');
     $person->set('oe_person_organisation', [
       'target_id' => $organisation->id(),
-      'revision_id' => $organisation->getRevisionId(),
+      'target_revision_id' => $organisation->getRevisionId(),
     ]);
     $person->save();
-    $this->assertEquals($organisation->id, $person->get('oe_person_organisation')->target_id);
+    $this->assertEquals('Organisation title', $person->get('oe_person_organisation')->entity->label());
     $this->assertEmpty($person->get('oe_departments')->target_id);
     $this->assertEmpty($person->get('oe_person_media')->target_id);
     $this->assertEmpty($person->get('oe_social_media_links')->uri);
@@ -224,7 +155,6 @@ class PersonEntityTest extends EntityKernelTestBase {
     $this->assertEmpty($person->get('oe_person_biography_timeline')->value);
     $this->assertEmpty($person->get('oe_person_cv')->target_id);
     $this->assertEmpty($person->get('oe_person_interests_intro')->value);
-
   }
 
 }
