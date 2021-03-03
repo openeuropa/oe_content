@@ -188,7 +188,7 @@ Feature: Person content creation
     When I click "Edit"
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
     And I press "Save"
-    Then I should see "The role \"Advocate-General\" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly."
+    Then I should see "The role \"(Acting) Advocate-General\" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly."
     When I fill in "Organisation" with "Organisation demo page"
     And I press "Edit" in the "Person jobs" region
     And I fill in "Role" with "Person job role"
@@ -260,7 +260,7 @@ Feature: Person content creation
     When I press "Remove" in the "Person contacts" region
     And I wait for AJAX to finish
     And I press "Remove" in the "Person jobs" region
-    Then I should see "Are you sure you want to remove Advocate-General?"
+    Then I should see "Are you sure you want to remove (Acting) Advocate-General?"
     When I press "Remove" in the "Person jobs" region
     And I wait for AJAX to finish
     And I press "Remove" in the "Person documents" region

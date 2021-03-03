@@ -52,12 +52,12 @@ function oe_content_person_node_presave(EntityInterface $entity) {
   $type = $entity->get('oe_person_type')->value;
 
   if ($type === 'eu') {
-    foreach (PersonNodeWrapper::EU_ONLY_FIELDS as $field) {
+    foreach (PersonNodeWrapper::NON_EU_ONLY_FIELDS as $field) {
       $entity->get($field)->setValue(NULL);
     }
   }
   else {
-    foreach (PersonNodeWrapper::NON_EU_ONLY_FIELDS as $field) {
+    foreach (PersonNodeWrapper::EU_ONLY_FIELDS as $field) {
       $entity->get($field)->setValue(NULL);
     }
   }
