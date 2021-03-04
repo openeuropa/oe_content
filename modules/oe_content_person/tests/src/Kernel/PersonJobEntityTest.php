@@ -91,6 +91,9 @@ class PersonJobEntityTest extends EntityKernelTestBase {
     $person_job->set('oe_role_reference', ['http://publications.europa.eu/resource/authority/corporate-body/APEC'])->save();
     $this->assertEquals('Asia-Pacific Economic Cooperation', $person_job->label());
 
+    $person_job->set('oe_acting', TRUE)->save();
+    $this->assertEquals('(Acting) Asia-Pacific Economic Cooperation', $person_job->label());
+
   }
 
 }
