@@ -133,3 +133,18 @@ function oe_content_entity_contact_post_update_00007(): void {
     $field_storage_config->create($reference_field)->save();
   }
 }
+
+/**
+ * Set translatable "Social media" field.
+ */
+function oe_content_entity_contact_post_update_00008(): void {
+  $social_media_fields = \Drupal::entityTypeManager()->getStorage('field_config')->loadMultiple([
+    'oe_contact.oe_general.oe_social_media',
+    'oe_contact.oe_press.oe_social_media',
+  ]);
+  /** @var \Drupal\Core\Field\FieldConfigInterface $social_media_field */
+  foreach ($social_media_fields as $social_media_field) {
+    $social_media_field->setTranslatable(TRUE);
+    $social_media_field->save();
+  }
+}
