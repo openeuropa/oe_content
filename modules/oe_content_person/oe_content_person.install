@@ -7,6 +7,9 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+
 /**
  * Implements hook_install().
  */
@@ -21,4 +24,15 @@ function oe_content_person_install() {
     'role' => 'http://publications.europa.eu/resource/dataset/role',
   ];
   \Drupal::service('rdf_skos.skos_graph_configurator')->addGraphs($graphs);
+
+  // Install the Gender SKOS Concept subset defined fields.
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $definition = BaseFieldDefinition::create('string')
+    ->setLabel(t('Human sex contexts'))
+    ->setDescription(t('Potential contexts of the human sex vocabulary.'))
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
+
+  $manager->installFieldStorageDefinition('oe_content_human_sex_contexts', 'skos_concept', 'rdf_skos', $definition);
+  \Drupal::logger('oe_content')->info('The following SKOS field definition has been installed: @definition.', ['@definition' => 'oe_content_human_sex_contexts']);
+
 }
