@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.14.0](https://github.com/openeuropa/oe_content/tree/1.14.0) (2021-03-11)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/1.13.0...1.14.0)
+
+**Merged pull requests:**
+
+- EWPP-657: Consultation content type [\#389](https://github.com/openeuropa/oe_content/pull/389) ([upchuk](https://github.com/upchuk))
+- EPIC-Consultation-update: Update epic branch. [\#382](https://github.com/openeuropa/oe_content/pull/382) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-686: Change timeline "label" column type from "varchar\_ascii" to "varchar" [\#381](https://github.com/openeuropa/oe_content/pull/381) ([sergepavle](https://github.com/sergepavle))
+- EWPP-667: Add possibility to reference different type of documents. [\#376](https://github.com/openeuropa/oe_content/pull/376) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-658: Add Consultation content type. [\#374](https://github.com/openeuropa/oe_content/pull/374) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [1.13.0](https://github.com/openeuropa/oe_content/tree/1.13.0) (2021-01-25)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.12.1...1.13.0)
@@ -10,6 +22,7 @@
 
 **Merged pull requests:**
 
+- Release-1.13.0: Update changelog. [\#379](https://github.com/openeuropa/oe_content/pull/379) ([nagyad](https://github.com/nagyad))
 - EWPP-683: Update oe\_corporate\_site\_info and oe\_media dependencies. [\#378](https://github.com/openeuropa/oe_content/pull/378) ([ademarco](https://github.com/ademarco))
 - EWPP-586: Fix oe\_media version constraint. [\#377](https://github.com/openeuropa/oe_content/pull/377) ([ademarco](https://github.com/ademarco))
 - EWPP-615: Adding a conflict to previous versions of oe\_corporate\_site\_info. [\#373](https://github.com/openeuropa/oe_content/pull/373) ([upchuk](https://github.com/upchuk))
