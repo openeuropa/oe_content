@@ -80,7 +80,6 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
   }
 
   // Set initial state when form is loaded.
-  // @todo: cover visible and required states by functional test.
   $type = NULL;
   $user_input = $form_state->getUserInput();
   if (isset($user_input['oe_person_type'])) {
@@ -147,6 +146,7 @@ function oe_content_person_oe_person_jobs_validate(array &$element, FormStateInt
  * @param \Drupal\oe_content_person\Entity\PersonJobInterface $entity
  *   Person job entity
  * @param string $type
+ *   Person type.
  *
  * @return bool
  *   FALSE if entity's role field is empty.
