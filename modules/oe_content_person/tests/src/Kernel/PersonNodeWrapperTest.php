@@ -7,7 +7,9 @@ namespace Drupal\Tests\oe_content_person\Kernel;
 use Drupal\oe_content_person\PersonNodeWrapper;
 
 /**
- * Tests the Person content type.
+ * Tests the PersonNodeWrapper.
+ *
+ * @coversDefaultClass \Drupal\oe_content_person\PersonNodeWrapper
  */
 class PersonNodeWrapperTest extends PersonEntityTestBase {
 
@@ -21,6 +23,8 @@ class PersonNodeWrapperTest extends PersonEntityTestBase {
 
   /**
    * Tests the getPersonJobLabels method of the PersonNodeWrapper class.
+   *
+   * @covers ::getPersonJobLabels
    */
   public function testGetPersonJobLabels(): void {
     $default_label_job = $this->entityTypeManager->getStorage('oe_person_job')->create([

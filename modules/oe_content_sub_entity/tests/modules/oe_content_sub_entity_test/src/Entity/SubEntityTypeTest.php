@@ -7,7 +7,7 @@ namespace Drupal\oe_content_sub_entity_test\Entity;
 use Drupal\oe_content_sub_entity\Entity\SubEntityTypeBase;
 
 /**
- * Defines the sub entity type text entity.
+ * Defines the sub entity type test entity.
  *
  * @ConfigEntityType(
  *   id = "oe_sub_entity_type_test",
