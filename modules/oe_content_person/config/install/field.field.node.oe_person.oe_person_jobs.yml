@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.storage.node.oe_person_jobs
     - node.type.oe_person
-    - oe_content_person.oe_person_job_type.default
+    - oe_content_person.oe_person_job_type.oe_default
   module:
     - composite_reference
     - entity_reference_revisions
@@ -25,7 +25,7 @@ settings:
   handler: 'default:oe_person_job'
   handler_settings:
     target_bundles:
-      default: default
+      oe_default: oe_default
     sort:
       field: _none
     auto_create: false
