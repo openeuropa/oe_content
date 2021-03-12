@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_person_job.default.oe_acting
-    - field.field.oe_person_job.default.oe_description
-    - field.field.oe_person_job.default.oe_role_name
-    - field.field.oe_person_job.default.oe_role_reference
-    - oe_content_person.oe_person_job_type.default
+    - field.field.oe_person_job.oe_default.oe_acting
+    - field.field.oe_person_job.oe_default.oe_description
+    - field.field.oe_person_job.oe_default.oe_role_name
+    - field.field.oe_person_job.oe_default.oe_role_reference
+    - oe_content_person.oe_person_job_type.oe_default
   module:
     - rdf_skos
     - text
-id: oe_person_job.default.default
+id: oe_person_job.oe_default.default
 targetEntityType: oe_person_job
-bundle: default
+bundle: oe_default
 mode: default
 content:
   oe_acting:

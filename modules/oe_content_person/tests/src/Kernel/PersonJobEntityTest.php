@@ -79,7 +79,7 @@ class PersonJobEntityTest extends EntityKernelTestBase {
   public function testDefaulPersonJobLabel() {
     // Show bundle label by default.
     $person_job = $this->entityTypeManager->getStorage('oe_person_job')->create([
-      'type' => 'default',
+      'type' => 'oe_default',
     ]);
     $person_job->save();
     $this->assertEquals('Default', $person_job->label());

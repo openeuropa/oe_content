@@ -57,7 +57,7 @@ class PersonJob extends SubEntityBase implements PersonJobInterface {
    * {@inheritdoc}
    */
   public function label() {
-    if ($this->bundle() === 'default') {
+    if ($this->bundle() === 'oe_default') {
       // Define label for Default Person job.
       $label = $this->get('oe_role_name')->value;
       if (!$this->get('oe_role_reference')->isEmpty()) {
