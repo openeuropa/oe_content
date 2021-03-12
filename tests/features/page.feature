@@ -32,7 +32,7 @@ Feature: Page content creation
     Given I am logged in as a user with the "create oe_page content, access content, edit own oe_page content, view published skos concept entities" permission
     When I visit "the Page creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
-    And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
+    And I should see the text "Content limited to 300 characters, remaining: 300" in the "teaser form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
     When I fill in "Page title" with "My page"
@@ -41,4 +41,4 @@ Feature: Page content creation
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
-    Then I should not see "The text to remove."
+    Then I should not see "Text to remove"

@@ -85,7 +85,7 @@ Feature: Consultation content creation
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
-    And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
+    And I should see the text "Content limited to 300 characters, remaining: 300" in the "teaser form element"
     When I fill in "Page title" with "Consultation title scelerisque eros mi, eget tempus nibh finibus sed. Praesent id ex bibendum, luctus nisl ut, suscipit lectus. Nullam vitae neque mi. Aliquam eleifend d Text to remove."
     And I set "Opening" to the date "14-01-2021"
     And I set "Deadline" to the date "31-01-2021 00:00" using format "d-m-Y H:i"
@@ -96,7 +96,7 @@ Feature: Consultation content creation
     And I fill in "Content owner" with "Audit Board of the European Communities"
     And I fill in "Subject" with "export financing"
     And I press "Save"
-    Then I should not see the text "The text to remove."
+    Then I should not see the text "Text to remove"
 
   @javascript
   Scenario: Test visibility of document references and ensure that document reference and contact is not deleted after removing from the node.

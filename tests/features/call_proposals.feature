@@ -130,7 +130,7 @@ Feature: Call for proposals content creation and editing.
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
     And I should see the text "Content limited to 128 characters, remaining: 128" in the "Publication in the official journal"
     And I should see the text "Content limited to 150 characters, remaining: 150" in the "Reference code form element"
-    And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
+    And I should see the text "Content limited to 300 characters, remaining: 300" in the "teaser form element"
     And I fill in "Title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
     And I select the radio button "Two-stage"
@@ -148,7 +148,7 @@ Feature: Call for proposals content creation and editing.
     When I press "Save"
 
     Then I should see "Call for proposals My Call for proposals 1 has been created."
-    And I should not see "The text to remove."
+    And I should not see "Text to remove"
 
   @javascript
   Scenario: Test multiple Deadline Date values for the "Two-stage" model.

@@ -44,7 +44,7 @@ Feature: Call for tenders content creation
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
-    And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
+    And I should see the text "Content limited to 300 characters, remaining: 300" in the "teaser form element"
     When I fill in "Page title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Nam eleifend ipsum. Text to remove"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non nibh vitae diam hendrerit porta eu a mi. Nam porta tortor sed ante efficitur, ac suscipit metus tincidunt. Donec a nisi condimentum, iaculis nunc ac, bibendum tortor. Curabitur feugiat. Text to remove"
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"

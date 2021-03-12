@@ -12,7 +12,7 @@ Feature: Event content creation
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     And I should see the text "Content limited to 150 characters, remaining: 150" in the "featured media legend form element"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
-    And I should see the text "Content limited to 150 characters, remaining: 150" in the "teaser form element"
+    And I should see the text "Content limited to 300 characters, remaining: 300" in the "teaser form element"
     When I fill in "Page title" with "My Event"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non nibh vitae diam hendrerit porta eu a mi. Nam porta tortor sed ante efficitur, ac suscipit metus tincidunt. Donec a nisi condimentum, iaculis nunc ac, bibendum tortor. Curabitur feugiat. Text to remove"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
@@ -23,7 +23,7 @@ Feature: Event content creation
     And I fill in "Responsible department" with "European Patent Office"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
-    Then I should not see "The text to remove."
+    Then I should not see "Text to remove"
 
   @javascript
   Scenario: Fields on the event content creation forms should be grouped logically.
