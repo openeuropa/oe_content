@@ -244,7 +244,6 @@ Feature: Person content creation
       | Title                               | Person demo page                  |
       | Summary                             | Person summary                    |
       | Contacts                            | A general contact                 |
-      | Subject                             | export financing                  |
       | What type of person are you adding? | eu                                |
       | First name                          | First                             |
       | Last name                           | Last                              |
