@@ -67,7 +67,6 @@ class PersonContentContext extends RawDrupalContext {
         // Set SKOS Concept entity reference fields.
         case 'Gender':
         case 'Departments':
-        case 'Subject':
           $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
           $scope->addFields($fields)->removeField($key);
           break;
@@ -125,6 +124,7 @@ class PersonContentContext extends RawDrupalContext {
 
     // Set default fields.
     $scope->addFields([
+      'oe_subject' => 'http://data.europa.eu/uxp/1010',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
     ]);
   }
