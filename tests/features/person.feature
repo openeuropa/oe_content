@@ -72,10 +72,12 @@ Feature: Person content creation
     And I fill in "Title" with "Title 1" in the "first" "Biography" field element
     And I fill in "Content" with "Body 1" in the "first" "Biography" field element
     And I press "Add another item" in the "Person biography" region
+    And I wait for AJAX to finish
     And I fill in "Label" with "Label 2" in the "second" "Biography" field element
     And I fill in "Title" with "Title 2" in the "second" "Biography" field element
     And I fill in "Content" with "Body 2" in the "second" "Biography" field element
     And I press "Add another item" in the "Person biography" region
+    And I wait for AJAX to finish
     And I fill in "Label" with "Label 3" in the "third" "Biography" field element
     And I fill in "Title" with "Title 3" in the "third" "Biography" field element
     And I fill in "Content" with "Body 3" in the "third" "Biography" field element

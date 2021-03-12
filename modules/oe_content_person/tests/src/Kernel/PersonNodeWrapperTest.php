@@ -28,24 +28,24 @@ class PersonNodeWrapperTest extends PersonEntityTestBase {
    */
   public function testGetPersonJobLabels(): void {
     $default_label_job = $this->entityTypeManager->getStorage('oe_person_job')->create([
-      'type' => 'default',
+      'type' => 'oe_default',
     ]);
     $default_label_job->save();
 
     $name_role_job = $this->entityTypeManager->getStorage('oe_person_job')->create([
-      'type' => 'default',
+      'type' => 'oe_default',
       'oe_role_name' => 'Role name label',
     ]);
     $name_role_job->save();
 
     $referenced_role_job = $this->entityTypeManager->getStorage('oe_person_job')->create([
-      'type' => 'default',
+      'type' => 'oe_default',
       'oe_role_reference' => 'http://publications.europa.eu/resource/authority/corporate-body/APEC',
     ]);
     $referenced_role_job->save();
 
     $acting_role_job = $this->entityTypeManager->getStorage('oe_person_job')->create([
-      'type' => 'default',
+      'type' => 'oe_default',
       'oe_role_reference' => 'http://publications.europa.eu/resource/authority/corporate-body/APEC',
       'oe_acting' => TRUE,
     ]);
