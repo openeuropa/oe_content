@@ -23,7 +23,7 @@ class DefaultPersonJobContext extends RawDrupalContext {
    * @param \Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope $scope
    *   Behat scope.
    *
-   * @BeforeParseEntityFields(oe_person_job,default)
+   * @BeforeParseEntityFields(oe_person_job,oe_default)
    */
   public function alterPersonJobFields(BeforeParseEntityFieldsScope $scope): void {
     // Maps human readable field names to their Behat parsable machine names.

@@ -209,8 +209,9 @@ Feature: Person content creation
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
     And I fill in "Subject" with "financing"
-    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
-    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
+    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
+    And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
+    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet Teaser. Text to remove"
     And I select "EU institutions related person" from "What type of person are you adding?"
     And I fill in "First name" with "Firstname"
     And I fill in "Last name" with "Lastname"
@@ -218,7 +219,10 @@ Feature: Person content creation
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
-    Then I should not see "The text to remove."
+    Then I should not see "Text to remove"
+    And I should see "ametas Introduction."
+    And I should see "nullamsa Alternative title."
+    And I should see "amet Teaser."
 
   @javascript
   Scenario: Ensure that person job, contact and document reference entities are not deleted after removing from the node.
@@ -239,7 +243,6 @@ Feature: Person content creation
     And the following Person Content entity:
       | Title                               | Person demo page                  |
       | Summary                             | Person summary                    |
-      | Teaser                              | Person teaser                     |
       | Contacts                            | A general contact                 |
       | Subject                             | export financing                  |
       | What type of person are you adding? | eu                                |
