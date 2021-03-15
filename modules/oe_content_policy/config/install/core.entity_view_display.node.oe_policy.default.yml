@@ -3,11 +3,11 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_policy.body
-    - field.field.node.oe_policy.oe_timeline
     - field.field.node.oe_policy.oe_author
     - field.field.node.oe_policy.oe_subject
     - field.field.node.oe_policy.oe_summary
     - field.field.node.oe_policy.oe_teaser
+    - field.field.node.oe_policy.oe_timeline
     - node.type.oe_policy
   module:
     - oe_content_timeline_field
@@ -25,6 +25,28 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  oe_content_short_title:
+    type: string
+    weight: 4
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_summary:
+    type: text_default
+    weight: 2
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  oe_teaser:
+    type: text_default
+    weight: 3
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   oe_timeline:
     weight: 1
     label: above
@@ -35,12 +57,10 @@ content:
     type: timeline_formatter
     region: content
 hidden:
+  langcode: true
   links: true
   oe_author: true
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
-  oe_content_short_title: true
   oe_subject: true
-  oe_summary: true
-  oe_teaser: true

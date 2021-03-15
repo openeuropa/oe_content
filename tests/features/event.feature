@@ -7,6 +7,9 @@ Feature: Event content creation
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
+    And the following AV Portal photo:
+      | url                                                         |
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
     When I visit "the Event creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
@@ -14,16 +17,25 @@ Feature: Event content creation
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
     And I should see the text "Content limited to 300 characters, remaining: 300" in the "teaser form element"
     When I fill in "Page title" with "My Event"
-    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non nibh vitae diam hendrerit porta eu a mi. Nam porta tortor sed ante efficitur, ac suscipit metus tincidunt. Donec a nisi condimentum, iaculis nunc ac, bibendum tortor. Curabitur feugiat. Text to remove"
+    And I select "Info days" from "Type"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I fill in "Featured media legend" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
-    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
-    And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Nam eleifend ipsum. Text to remove"
+    And I fill in "Description summary" with "Description summary text"
+    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
+    And I fill in "Featured media legend" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendr Featured media legend. Text to remove"
+    And I fill in "Full text" with "Full text paragraph"
+    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet Teaser. Text to remove"
+    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
+    And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
     And I fill in "Subject" with "financing"
     And I fill in "Responsible department" with "European Patent Office"
+    And I fill in "Languages" with "English"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "Text to remove"
+    And I should see the text "hendr Featured media legend."
+    And I should see the text "ametas Introduction."
+    And I should see the text "nullamsa Alternative title."
+    And I should see the text "amet Teaser."
 
   @javascript
   Scenario: Fields on the event content creation forms should be grouped logically.

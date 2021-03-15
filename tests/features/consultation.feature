@@ -90,13 +90,16 @@ Feature: Consultation content creation
     And I set "Opening" to the date "14-01-2021"
     And I set "Deadline" to the date "31-01-2021 00:00" using format "d-m-Y H:i"
     And I fill in "Target audience" with "Target audience text"
-    And I fill in "Introduction" with "Nulla consectetur eleifend mi id pretium. Donec dapibus, nunc vel ullamcorper condimentum, ipsum massa vehicula mauris, a iaculis massa magna pharetra ipsum. Sed laoreet augue bibendum nulla sagittis, nec tempus est viverra. Fusce tempus massa trist Text to remove."
-    And I fill in "Alternative title" with "Phasellus scelerisque eros mi, eget tempus nibh finibus sed. Praesent id ex bibendum, luctus nisl ut, suscipit lectus. Nullam vitae neque mi. Aliquam eleifend dolor puru Text to remove."
-    And I fill in "Teaser" with "Ut sollicitudin lectus in turpis scelerisque elementum. Pellentesque ullamcorper ullamcorper erat, volutpat vehicula sem facilisis sed. Nunc vestibul Text to remove."
+    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet Teaser. Text to remove"
+    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
+    And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
     And I fill in "Content owner" with "Audit Board of the European Communities"
     And I fill in "Subject" with "export financing"
     And I press "Save"
-    Then I should not see the text "Text to remove"
+    Then I should not see "Text to remove"
+    And I should see "ametas Introduction."
+    And I should see "nullamsa Alternative title."
+    And I should see "amet Teaser."
 
   @javascript
   Scenario: Test visibility of document references and ensure that document reference and contact is not deleted after removing from the node.

@@ -87,12 +87,12 @@ Feature: News content creation
     And I should see the link "http://example.com/press_contacts"
 
     Then I should see "My News item"
+    And I should see "Shorter title"
+    And I should see "Teaser text"
+    And I should see "Summary text"
     And I should not see "Navi title"
-    And I should not see "Shorter title"
-    And I should not see "Summary text"
     And I should not see the link "Budapest"
     And I should not see "Thu, 02/21/2019"
-    And I should not see "Teaser text"
     And I should not see the link "financing"
     And I should not see the link "European Patent Office"
     And I should see the link "My link"
@@ -108,14 +108,18 @@ Feature: News content creation
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
     When I fill in "Page title" with "My news"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Text to remove"
-    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove"
+    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet Teaser. Text to remove"
+    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
+    And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
     And I fill in "Body text" with "Body text"
     And I fill in "Subject" with "financing"
     And I fill in "Author" with "European Patent Office"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "Text to remove"
+    And I should see "ametas Introduction."
+    And I should see "nullamsa Alternative title."
+    And I should see "amet Teaser."
 
   @javascript
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.

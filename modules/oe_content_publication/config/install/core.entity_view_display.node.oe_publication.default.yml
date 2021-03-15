@@ -70,6 +70,14 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+  oe_content_short_title:
+    type: string
+    weight: 13
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_departments:
     weight: 5
     label: above
@@ -139,11 +147,22 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  oe_summary:
+    type: text_default
+    weight: 14
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  oe_teaser:
+    type: text_default
+    weight: 15
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   oe_author: true
   oe_content_navigation_title: true
-  oe_content_short_title: true
   oe_publication_type: true
   oe_subject: true
-  oe_summary: true
-  oe_teaser: true

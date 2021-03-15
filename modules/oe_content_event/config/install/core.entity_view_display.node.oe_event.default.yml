@@ -53,6 +53,14 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  oe_content_short_title:
+    type: string
+    weight: 26
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_event_contact:
     weight: 22
     label: above
@@ -273,6 +281,13 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  oe_teaser:
+    type: text_default
+    weight: 27
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
   links: true
@@ -280,6 +295,4 @@ hidden:
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
-  oe_content_short_title: true
   oe_subject: true
-  oe_teaser: true

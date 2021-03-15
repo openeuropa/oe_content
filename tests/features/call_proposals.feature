@@ -118,7 +118,7 @@ Feature: Call for proposals content creation and editing.
     And I should see the link "Contact image"
     And I should see the text "Call for proposals contact caption"
     And I should see the link "http://example.com/press_contacts"
-    And I should not see "Alternative title 1"
+    And I should see the text "Alternative title 1"
     And I should not see "Navi title 1"
 
   @javascript
@@ -136,8 +136,11 @@ Feature: Call for proposals content creation and editing.
     And I select the radio button "Two-stage"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
-    And I fill in "Link text" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit amet, tincidunt amet. Text to remove" in the "Publication in the official journal" region
-    And I fill in "Teaser" with "Teaser text"
+    And I fill in "Link text" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempora Link text. Text to remove" in the "Publication in the official journal" region
+    And I fill in "Reference" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hedrerit a magna Reference. Text to remove"
+    And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet Teaser. Text to remove"
+    And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
+    And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
     And I fill in "Subject" with "financing"
 
     When I press "Save"
@@ -149,6 +152,11 @@ Feature: Call for proposals content creation and editing.
 
     Then I should see "Call for proposals My Call for proposals 1 has been created."
     And I should not see "Text to remove"
+    And I should see "consequat tempora Link text"
+    And I should see "hedrerit a magna Reference"
+    And I should see "ametas Introduction."
+    And I should see "nullamsa Alternative title."
+    And I should see "amet Teaser."
 
   @javascript
   Scenario: Test multiple Deadline Date values for the "Two-stage" model.
