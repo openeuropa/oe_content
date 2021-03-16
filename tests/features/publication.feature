@@ -119,7 +119,7 @@ Feature: Publication content creation
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "The text to remove."
 
-  @javascript
+  @javascript @run
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
     Given I am logged in as a user with the "create oe_publication content, access content, edit any oe_publication content, view published skos concept entities, manage corporate content entities" permission
     And the following documents:
@@ -131,7 +131,7 @@ Feature: Publication content creation
       | Title                  | Publication demo page                 |
       | Introduction           | Publication introduction text         |
       | Identifier code        | PUB/100/1                             |
-      | Country                | Belgium                               |
+      | Country                | Hungary                               |
       | Resource type          | Agenda                                |
       | Publication date       | 2019-02-21                            |
       | Last update date       | 2019-02-22                            |
@@ -149,5 +149,6 @@ Feature: Publication content creation
     When I press "Remove"
     And I wait for AJAX to finish
     And I press "Save"
+    And print last response
     Then I should see "Publication Publication demo page has been updated."
     And the General Contact entity with title "A general contact" exists
