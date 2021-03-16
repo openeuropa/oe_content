@@ -4,7 +4,7 @@ Feature: Call for proposals content creation and editing.
   As an editor
   I need to be able to create, edit and see the call for proposals items
 
-  @javascript
+  @javascript @run
   Scenario: Creation of a Call for proposals content through the UI.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
     And the following document:
@@ -66,7 +66,9 @@ Feature: Call for proposals content creation and editing.
     And I fill in "Use existing media" with "My Document 1" in the "Documents" region
 
     # Call for proposals contact field group.
+    And print last response
     When I press "Add new contact" in the "Call for proposals contact" region
+    And print last response
     And I wait for AJAX to finish
     And I fill in "Name" with "Name of the call for proposals contact" in the "Call for proposals contact" region
     And I fill in "Organisation" with "Call for proposals contact organisation" in the "Call for proposals contact" region

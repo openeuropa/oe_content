@@ -69,23 +69,23 @@ pipeline:
     commands:
       - ./vendor/bin/run drupal:site-install
 
-  grumphp:
-    group: test
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
-    commands:
-      - ./vendor/bin/grumphp run
+#  grumphp:
+#    group: test
+#    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+#    commands:
+#      - ./vendor/bin/grumphp run
 
-  phpunit:
-    group: test
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
-    commands:
-      - ./vendor/bin/phpunit
+#  phpunit:
+#    group: test
+#    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+#    commands:
+#      - ./vendor/bin/phpunit
 
   behat:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
-      - ./vendor/bin/behat --strict
+      - ./vendor/bin/behat --tags @run --strict --format=pretty
 
   debug:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
