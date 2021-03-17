@@ -131,7 +131,6 @@ Feature: Publication content creation
       | Title                  | Publication demo page                 |
       | Introduction           | Publication introduction text         |
       | Identifier code        | PUB/100/1                             |
-      | Country                | Belgium                               |
       | Resource type          | Agenda                                |
       | Publication date       | 2019-02-21                            |
       | Last update date       | 2019-02-22                            |
