@@ -37,7 +37,7 @@ function oe_content_person_form_node_form_alter(array &$form, FormStateInterface
   // name.
   $form['title']['#access'] = FALSE;
 
-  $form['oe_person_jobs']['#element_validate'][] = 'oe_content_person_oe_person_jobs_validate';
+  $form['oe_person_jobs']['#element_validate'][] = '_oe_content_person_oe_person_jobs_validate';
 }
 
 /**
@@ -114,21 +114,34 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
  * @param array $complete_form
  *   The complete form structure.
  */
-function oe_content_person_oe_person_jobs_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
+function _oe_content_person_oe_person_jobs_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
   $type = $form_state->getValue(['oe_person_type', 0, 'value']);
 
-  $field_values = $form_state->getValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities']);
-  if (!empty($field_values)) {
-    // Clear hidden fields.
-    $delta = key($field_values);
-    if ($type !== 'non_eu') {
-      $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_role_name'], []);
+
+  $person_jobs = $form_state->getValue(['oe_person_jobs', 'form']);
+  foreach ($person_jobs as $key => $person_job_values) {
+    if ($key === 'inline_entity_form') {
+      foreach ($person_job_values['entities'] as $delta => $values) {
+        if ($type !== 'non_eu') {
+          $person_jobs[$key]['entities'][$delta]['form']['oe_role_name'] = [];
+        }
+        if ($type !== 'eu') {
+          $person_jobs[$key]['entities'][$delta]['form']['oe_role_reference'] = [];
+          $person_jobs[$key]['entities'][$delta]['form']['oe_acting'] = [];
+        }
+      }
     }
-    if ($type !== 'eu') {
-      $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_role_reference'], []);
-      $form_state->setValue(['oe_person_jobs', 'form', 'inline_entity_form', 'entities', $delta, 'form', 'oe_acting'], []);
+    else {
+      if ($type !== 'non_eu') {
+        $person_jobs[$key]['oe_role_name'] = [];
+      }
+      if ($type !== 'eu') {
+        $person_jobs[$key]['oe_role_reference'] = [];
+        $person_jobs[$key]['oe_acting'] = [];
+      }
     }
   }
+  $form_state->setValue(['oe_person_jobs', 'form'], $person_jobs);
 
   // Enforce to update Role field on the existing jobs if person type has been
   // changed.
