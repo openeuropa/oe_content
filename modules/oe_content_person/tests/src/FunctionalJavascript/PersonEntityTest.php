@@ -73,6 +73,10 @@ class PersonEntityTest extends WebDriverTestBase {
     $this->assertEquals('required', $this->getSession()->getPage()->findField('oe_person_jobs[form][0][oe_role_reference][0][target_id]')->getAttribute('required'));
     $this->assertFalse($this->getSession()->getPage()->findField('oe_person_jobs[form][0][oe_acting][value]')->hasAttribute('required'));
 
+    // Fill in the job fields, they should not be saved after
+    // we change the type to non-eu.
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][0][oe_role_reference][0][target_id]', 'Addressee (http://publications.europa.eu/resource/authority/role/ADDRESSEE)');
+
     // Change the person type to non-eu
     // and assert the available fields have changed.
     $this->getSession()->getPage()->selectFieldOption('oe_person_type', 'non_eu');
@@ -130,6 +134,9 @@ class PersonEntityTest extends WebDriverTestBase {
     $this->assertFalse($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]')->isVisible());
     $this->assertFalse($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]')->hasAttribute('required'));
     $this->assertEquals('required', $this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]')->getAttribute('required'));
+
+    // Assert the job does not have a reference role.
+    $this->assertEmpty($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]')->getValue());
 
     // Update the job with a reference role and set it to be an acting role.
     $this->getSession()->getPage()->fillField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Addressee (http://publications.europa.eu/resource/authority/role/ADDRESSEE)');
