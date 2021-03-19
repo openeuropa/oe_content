@@ -34,5 +34,4 @@ function oe_content_person_install() {
 
   $manager->installFieldStorageDefinition('oe_content_human_sex_contexts', 'skos_concept', 'rdf_skos', $definition);
   \Drupal::logger('oe_content')->info('The following SKOS field definition has been installed: @definition.', ['@definition' => 'oe_content_human_sex_contexts']);
-
 }

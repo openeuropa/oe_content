@@ -46,7 +46,7 @@ Feature: Person content creation
       | not stated          |
     And I select "not stated" from "Gender"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I press "Save"
+    When I press "Save"
     Then I should see "Firstname Lastname"
     And I should see the link "financing"
     And I should see "Teaser text"
@@ -277,5 +277,5 @@ Feature: Person content creation
     And I should not see "Advocate-General"
     And I should not see "sample.pdf"
     And the General Contact entity with title "A general contact" exists
-    And the "Person job" sub-entity "Default person job 1" exists
-    And the "Document reference" sub-entity "Document reference to My Document" exists
+    And the "Person job" sub-entity with title "Default person job 1" exists
+    And the "Document reference" sub-entity with title "Document reference to My Document" exists

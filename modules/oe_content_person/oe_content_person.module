@@ -117,7 +117,6 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
 function _oe_content_person_oe_person_jobs_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
   $type = $form_state->getValue(['oe_person_type', 0, 'value']);
 
-
   $person_jobs = $form_state->getValue(['oe_person_jobs', 'form']);
   foreach ($person_jobs as $key => $person_job_values) {
     if ($key === 'inline_entity_form') {

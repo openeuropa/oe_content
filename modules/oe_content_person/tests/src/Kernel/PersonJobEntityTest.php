@@ -93,7 +93,6 @@ class PersonJobEntityTest extends EntityKernelTestBase {
 
     $person_job->set('oe_acting', TRUE)->save();
     $this->assertEquals('(Acting) Asia-Pacific Economic Cooperation', $person_job->label());
-
   }
 
 }
