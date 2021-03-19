@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content\Node;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -20,6 +21,7 @@ class PersonContentContext extends RawDrupalContext {
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
   use EntityLoadingTrait;
+  use GatherSubEntityContextTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -35,14 +37,16 @@ class PersonContentContext extends RawDrupalContext {
       'Title' => 'title',
       'Biography' => 'oe_person_biography_timeline',
       'Biography introduction' => 'oe_person_biography_intro',
-      'Contact' => 'oe_person_contacts',
+      'Contacts' => 'oe_person_contacts',
       'CV upload' => 'oe_person_cv',
       'Declaration of interests file' => 'oe_person_interests_file',
       'Declaration of interests introduction' => 'oe_person_interests_intro',
       'Displayed name' => 'oe_person_displayed_name',
+      'Documents' => 'oe_person_documents',
       'First name' => 'oe_person_first_name',
       'Gender' => 'oe_person_gender',
       'Introduction' => 'oe_summary',
+      'Jobs' => 'oe_person_jobs',
       'Last name' => 'oe_person_last_name',
       'Media' => 'oe_person_media',
       'Organisation' => 'oe_person_organisation',
@@ -63,7 +67,6 @@ class PersonContentContext extends RawDrupalContext {
         // Set SKOS Concept entity reference fields.
         case 'Gender':
         case 'Departments':
-        case 'Subject':
           $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
           $scope->addFields($fields)->removeField($key);
           break;
@@ -82,9 +85,27 @@ class PersonContentContext extends RawDrupalContext {
           $scope->addFields($fields)->removeField($key);
           break;
 
-        case 'Contact':
+        case 'Contacts':
           $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
+          break;
+
+        // Set entity reference revision fields for sub entities.
+        case 'Documents':
+        case 'Jobs':
+          $ids = [];
+          $revision_ids = [];
+          $names = explode(', ', $value);
+          foreach ($names as $name) {
+            $entity = $this->subEntityContext->getSubEntityByName($name);
+            $ids[] = $entity->id();
+            $revision_ids[] = $entity->getRevisionId();
+          }
+          $scope->addFields([
+            $mapping[$key] . ':target_id' => implode(',', $ids),
+            $mapping[$key] . ':target_revision_id' => implode(',', $revision_ids),
+          ]);
+          $scope->removeField($key);
           break;
 
         // Set content published status.
@@ -103,8 +124,27 @@ class PersonContentContext extends RawDrupalContext {
 
     // Set default fields.
     $scope->addFields([
+      'oe_subject' => 'http://data.europa.eu/uxp/1010',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
     ]);
+  }
+
+  /**
+   * Fills in a oe_role_reference field.
+   *
+   * @When I fill in :delta person job role reference field with :value
+   */
+  public function fillPersonJobRoleReferenceField($row, $value): void {
+    $row_map = [
+      'first' => '0',
+      'second' => '1',
+      'third' => '2',
+      'fourth' => '3',
+      'fifth' => '4',
+      'sixth' => '5',
+    ];
+    $delta = $row_map[$row];
+    $this->getSession()->getPage()->fillField("oe_person_jobs[form][$delta][oe_role_reference][0][target_id]", $value);
   }
 
 }

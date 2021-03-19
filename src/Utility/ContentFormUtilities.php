@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content\Utility;
 
+use Drupal\Component\Utility\NestedArray;
+
 /**
  * Provides helper methods to manipulate content forms.
  */
@@ -45,27 +47,58 @@ class ContentFormUtilities {
    *   The form array.
    * @param string $toggle_field
    *   The toggle field name.
-   * @param string $field
+   * @param string $dependent_field
    *   The dependent field name.
    * @param string $value
    *   The value that makes the dependent field visible.
+   * @param array $dependent_parents
+   *   An array of parents for the dependent field.
    */
-  public static function toggleFieldByValue(array &$form, string $toggle_field, string $field, string $value): void {
-    if (!isset($form[$toggle_field])) {
+  public static function toggleFieldVisibilityByValue(array &$form, string $toggle_field, string $dependent_field, string $value, array $dependent_parents = []): void {
+    if (!isset($form[$dependent_field])) {
       return;
     }
-
-    if (!isset($form[$field])) {
+    $parents_array = array_merge($dependent_parents, [$dependent_field]);
+    if (!NestedArray::keyExists($form, $parents_array)) {
       return;
     }
-
-    $form[$field]['#states'] = [
+    $states_array = array_merge($parents_array, ['#states']);
+    NestedArray::setValue($form, $states_array, [
       'visible' => [
         ':input[name="' . $toggle_field . '"]' => [
           'value' => $value,
         ],
       ],
-    ];
+    ]);
+  }
+
+  /**
+   * Toggle required state of a field, depending on the value of another field.
+   *
+   * @param array $form
+   *   The form array.
+   * @param string $toggle_field
+   *   The toggle field name.
+   * @param string $dependent_field
+   *   The dependent field name.
+   * @param string $value
+   *   The value that makes the dependent field required.
+   * @param array $dependent_parents
+   *   An array of parents for the dependent field.
+   */
+  public static function toggleFieldRequiredByValue(array &$form, string $toggle_field, string $dependent_field, string $value, array $dependent_parents = []): void {
+    $parents_array = array_merge($dependent_parents, [$dependent_field]);
+    if (!NestedArray::keyExists($form, $parents_array)) {
+      return;
+    }
+    $states_array = array_merge($parents_array, ['#states']);
+    NestedArray::setValue($form, $states_array, [
+      'required' => [
+        ':input[name="' . $toggle_field . '"]' => [
+          'value' => $value,
+        ],
+      ],
+    ]);
   }
 
 }

@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - node.type.oe_person
+    - oe_content_person.oe_person_job_type.oe_default
   module:
     - content_translation
 third_party_settings:
@@ -10,8 +10,8 @@ third_party_settings:
     enabled: false
     bundle_settings:
       untranslatable_fields_hide: '0'
-id: node.oe_person
-target_entity_type_id: node
-target_bundle: oe_person
+id: oe_person_job.oe_default
+target_entity_type_id: oe_person_job
+target_bundle: oe_default
 default_langcode: site_default
 language_alterable: true

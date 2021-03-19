@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content\Plugin\ConceptSubset;
+namespace Drupal\oe_content_person\Plugin\ConceptSubset;
 
 use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Core\Field\BaseFieldDefinition;

@@ -5,7 +5,6 @@ type: module
 core: 8.x
 
 dependencies:
-  - drupal:path
   - oe_content:oe_content_departments_field
   - oe_content:oe_content_timeline_field
   - oe_content:oe_content_social_media_links_field
@@ -16,7 +15,9 @@ config_devel:
   install:
     - core.base_field_override.node.oe_person.title
     - core.entity_form_display.node.oe_person.default
+    - core.entity_form_display.oe_person_job.oe_default.default
     - core.entity_view_display.node.oe_person.default
+    - core.entity_view_display.oe_person_job.oe_default.default
     - field.field.node.oe_person.oe_subject
     - field.field.node.oe_person.oe_summary
     - field.field.node.oe_person.oe_teaser
@@ -39,6 +40,11 @@ config_devel:
     - field.field.node.oe_person.oe_person_transparency_intro
     - field.field.node.oe_person.oe_person_transparency_links
     - field.field.node.oe_person.oe_person_type
+    - field.field.node.oe_person.oe_person_gender
+    - field.field.oe_person_job.oe_default.oe_acting
+    - field.field.oe_person_job.oe_default.oe_description
+    - field.field.oe_person_job.oe_default.oe_role_name
+    - field.field.oe_person_job.oe_default.oe_role_reference
     - field.storage.node.oe_person_biography_intro
     - field.storage.node.oe_person_biography_timeline
     - field.storage.node.oe_person_contacts
@@ -56,6 +62,13 @@ config_devel:
     - field.storage.node.oe_person_transparency_intro
     - field.storage.node.oe_person_transparency_links
     - field.storage.node.oe_person_type
+    - field.storage.node.oe_person_gender
+    - field.storage.oe_person_job.oe_acting
+    - field.storage.oe_person_job.oe_description
+    - field.storage.oe_person_job.oe_role_name
+    - field.storage.oe_person_job.oe_role_reference
     - node.type.oe_person
+    - oe_content_person.oe_person_job_type.oe_default
   optional:
     - language.content_settings.node.oe_person
+    - language.content_settings.oe_person_job.oe_default

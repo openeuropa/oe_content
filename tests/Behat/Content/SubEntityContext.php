@@ -106,7 +106,7 @@ class SubEntityContext extends RawEntityContext {
   }
 
   /**
-   * Assert that a sub-entity does exist.
+   * Assert that a sub-entity does exist with the given type and title.
    *
    * Example:
    *
@@ -117,7 +117,7 @@ class SubEntityContext extends RawEntityContext {
    * @param string $name
    *   Fake entity label.
    *
-   * @Then the :entity_type_label sub-entity :name exists
+   * @Then the :entity_type_label sub-entity with title :name exists
    */
   public function subEntityExists(string $entity_type_label, string $name): void {
     $entity_type = $this->loadDefinitionByLabel($entity_type_label)->id();

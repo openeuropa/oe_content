@@ -144,4 +144,4 @@ Feature: Consultation content creation
     And I press "Save"
     Then I should see "Consultation Consultation demo page has been updated."
     And the General Contact entity with title "A general contact" exists
-    And the "Document reference" sub-entity "Document reference to My Document 3" exists
+    And the "Document reference" sub-entity with title "Document reference to My Document 3" exists

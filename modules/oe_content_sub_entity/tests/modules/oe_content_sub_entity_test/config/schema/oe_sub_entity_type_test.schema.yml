@@ -1,6 +1,6 @@
-oe_content_sub_entity_document_reference.oe_document_reference_type.*:
+oe_content_sub_entity_test.oe_sub_entity_type_test.*:
   type: config_entity
-  label: 'Document reference type settings'
+  label: 'Sub entity type settings'
   mapping:
     id:
       type: string

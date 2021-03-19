@@ -8,9 +8,9 @@ use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
 
 /**
- * Tests the Person content type.
+ * Tests Person job entities.
  */
-class PersonTest extends EntityKernelTestBase {
+class PersonJobEntityTest extends EntityKernelTestBase {
 
   use RdfDatabaseConnectionTrait;
 
@@ -55,6 +55,7 @@ class PersonTest extends EntityKernelTestBase {
       'media',
       'file',
       'oe_contact',
+      'oe_person_job',
       'oe_document_reference',
     ];
     foreach ($entities as $entity) {
@@ -68,40 +69,30 @@ class PersonTest extends EntityKernelTestBase {
       'oe_content_person',
     ]);
 
-    $this->installSchema('node', ['node_access']);
-
     module_load_include('install', 'oe_content');
     oe_content_install();
   }
 
   /**
-   * Tests the label of the Person content type is generated automatically.
+   * Tests label of Person job entity default bundle.
    */
-  public function testAutoLabel() {
-    $person = $this->entityTypeManager->getStorage('node')->create([
-      'type' => 'oe_person',
+  public function testDefaulPersonJobLabel() {
+    // Show bundle label by default.
+    $person_job = $this->entityTypeManager->getStorage('oe_person_job')->create([
+      'type' => 'oe_default',
     ]);
-    $person->save();
-    // We are missing the first and last name.
-    $this->assertEquals(' ', $person->label());
+    $person_job->save();
+    $this->assertEquals('Default', $person_job->label());
 
-    // Set a first and last name.
-    $person->set('oe_person_first_name', 'Jacques');
-    $person->set('oe_person_last_name', 'Delors');
-    $person->save();
+    // Show role as a label if they are defined.
+    $person_job->set('oe_role_name', 'Role name label')->save();
+    $this->assertEquals('Role name label', $person_job->label());
 
-    $this->assertEquals('Jacques Delors', $person->label());
+    $person_job->set('oe_role_reference', ['http://publications.europa.eu/resource/authority/corporate-body/APEC'])->save();
+    $this->assertEquals('Asia-Pacific Economic Cooperation', $person_job->label());
 
-    // Set a displayed name.
-    $person->set('oe_person_displayed_name', 'Delors Jacques');
-    $person->save();
-
-    $this->assertEquals('Delors Jacques', $person->label());
-
-    // Remove the displayed name.
-    $person->set('oe_person_displayed_name', NULL);
-    $person->save();
-    $this->assertEquals('Jacques Delors', $person->label());
+    $person_job->set('oe_acting', TRUE)->save();
+    $this->assertEquals('(Acting) Asia-Pacific Economic Cooperation', $person_job->label());
   }
 
 }

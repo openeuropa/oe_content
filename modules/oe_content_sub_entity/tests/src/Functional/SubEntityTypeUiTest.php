@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_entity\Functional;
+namespace Drupal\Tests\oe_content_sub_entity\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\oe_content\Traits\EntityTypeUiTrait;
