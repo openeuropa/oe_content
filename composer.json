@@ -12,7 +12,7 @@
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "1.0.0 as 0.9.2",
         "openeuropa/oe_media": "~1.11",
-        "openeuropa/rdf_skos": "dev-OPENEUROPA-3048"
+        "openeuropa/rdf_skos": "~1.0"
     },
     "require-dev": {
         "composer/installers": "~1.5",
@@ -35,9 +35,9 @@
         "nikic/php-parser": "^3.1.5",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.5.0",
-        "openeuropa/drupal-core-require-dev": "dev-EWPP-109",
-        "openeuropa/oe_corporate_countries": "dev-OPENEUROPA-3048",
-        "openeuropa/oe_corporate_site_info": "dev-EWPP-109",
+        "openeuropa/drupal-core-require-dev": "^8.9.13",
+        "openeuropa/oe_corporate_countries": "~2.0",
+        "openeuropa/oe_corporate_site_info": "~1.0",
         "openeuropa/oe_link_lists": "~0.5.0",
         "openeuropa/oe_multilingual": "~1.5",
         "openeuropa/oe_time_caching": "^1.0.0",
