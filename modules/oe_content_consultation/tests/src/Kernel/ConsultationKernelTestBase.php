@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_consultation\Kernel;
 
-use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
+use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Base test class for "Consultation" content type kernel tests.
  */
-abstract class ConsultationKernelTestBase extends RdfKernelTestBase {
+abstract class ConsultationKernelTestBase extends SparqlKernelTestBase {
 
   /**
    * Modules to enable.
@@ -17,8 +17,11 @@ abstract class ConsultationKernelTestBase extends RdfKernelTestBase {
    * @var array
    */
   public static $modules = [
+    'datetime',
+    'field',
     'field_group',
     'entity_reference_revisions',
+    'entity_test',
     'inline_entity_form',
     'link',
     'node',
@@ -34,6 +37,8 @@ abstract class ConsultationKernelTestBase extends RdfKernelTestBase {
     'oe_content_consultation',
     'rdf_skos',
     'composite_reference',
+    'user',
+    'system',
   ];
 
   /**
