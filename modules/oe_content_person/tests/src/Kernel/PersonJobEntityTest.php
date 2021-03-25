@@ -5,14 +5,14 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_person\Kernel;
 
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
-use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
+use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 
 /**
  * Tests Person job entities.
  */
 class PersonJobEntityTest extends EntityKernelTestBase {
 
-  use RdfDatabaseConnectionTrait;
+  use SparqlConnectionTrait;
 
   /**
    * {@inheritdoc}
@@ -28,7 +28,6 @@ class PersonJobEntityTest extends EntityKernelTestBase {
     'maxlength',
     'media',
     'options',
-    'rdf_entity',
     'rdf_skos',
     'image',
     'inline_entity_form',
@@ -40,6 +39,7 @@ class PersonJobEntityTest extends EntityKernelTestBase {
     'oe_content_sub_entity_document_reference',
     'oe_content_timeline_field',
     'typed_link',
+    'sparql_entity_storage',
   ];
 
   /**
