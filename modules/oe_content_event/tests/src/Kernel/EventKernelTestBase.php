@@ -4,12 +4,19 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_event\Kernel;
 
-use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
+use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Base test class for event content type kernel tests.
  */
-abstract class EventKernelTestBase extends RdfKernelTestBase {
+abstract class EventKernelTestBase extends SparqlKernelTestBase {
+
+  /**
+   * The entity type manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
 
   /**
    * Modules to enable.
@@ -19,8 +26,10 @@ abstract class EventKernelTestBase extends RdfKernelTestBase {
   public static $modules = [
     'field',
     'field_group',
+    'datetime',
     'datetime_range',
     'entity_reference_revisions',
+    'entity_test',
     'link',
     'image',
     'inline_entity_form',
@@ -50,6 +59,7 @@ abstract class EventKernelTestBase extends RdfKernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
+    $this->entityTypeManager = $this->container->get('entity_type.manager');
     $this->installSchema('user', 'users_data');
     $this->installSchema('node', 'node_access');
     $this->installEntitySchema('user');

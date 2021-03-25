@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_call_tenders\Kernel;
 
-use Drupal\Tests\rdf_entity\Kernel\RdfKernelTestBase;
+use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Base test class for "Call for tenders" content type kernel tests.
  */
-abstract class CallForTendersKernelTestBase extends RdfKernelTestBase {
+abstract class CallForTendersKernelTestBase extends SparqlKernelTestBase {
 
   /**
    * Modules to enable.
@@ -17,9 +17,11 @@ abstract class CallForTendersKernelTestBase extends RdfKernelTestBase {
    * @var array
    */
   public static $modules = [
+    'datetime',
     'field',
     'field_group',
     'entity_reference_revisions',
+    'entity_test',
     'link',
     'image',
     'node',
@@ -53,6 +55,7 @@ abstract class CallForTendersKernelTestBase extends RdfKernelTestBase {
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
     $this->installEntitySchema('media');
+    $this->installEntitySchema('entity_test');
     module_load_include('install', 'oe_content_documents_field');
     oe_content_documents_field_install();
     $this->installConfig([
