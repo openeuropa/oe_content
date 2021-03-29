@@ -42,21 +42,4 @@ class PersonNodeWrapper extends EntityWrapperBase {
     return 'oe_person';
   }
 
-  /**
-   * Provides list of labels of referenced Person jobs.
-   *
-   * @return array
-   *   List of labels.
-   */
-  public function getPersonJobLabels(): array {
-    $labels = [];
-    if (!$this->entity->get('oe_person_jobs')->isEmpty()) {
-      foreach ($this->entity->get('oe_person_jobs')->referencedEntities() as $person_job_entity) {
-        $labels[] = $person_job_entity->label();
-      }
-    }
-
-    return $labels;
-  }
-
 }
