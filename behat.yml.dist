@@ -39,6 +39,7 @@ default:
               Internal organiser field: "#edit-oe-event-organiser-internal-0-target-id"
               publication contact type: "#edit-oe-publication-contacts-actions-bundle"
               Reference code second field: "input[name='oe_reference_codes[1][value]']"
+              Acting role field: ".field--name-oe-acting"
             pages:
               Person creation: 'node/add/oe_person'
               Page creation: 'node/add/oe_page'
