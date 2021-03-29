@@ -51,6 +51,7 @@ class PersonNodeWrapperTest extends PersonEntityTestBase {
     ]);
     $acting_role_job->save();
 
+    // Assert EU labels.
     $person = $this->entityTypeManager->getStorage('node')->create([
       'type' => 'oe_person',
       'oe_person_type' => 'eu',
@@ -60,10 +61,6 @@ class PersonNodeWrapperTest extends PersonEntityTestBase {
         [
           'target_id' => $default_label_job->id(),
           'target_revision_id' => $default_label_job->getRevisionId(),
-        ],
-        [
-          'target_id' => $name_role_job->id(),
-          'target_revision_id' => $name_role_job->getRevisionId(),
         ],
         [
           'target_id' => $referenced_role_job->id(),
@@ -80,9 +77,24 @@ class PersonNodeWrapperTest extends PersonEntityTestBase {
     $wrapper = PersonNodeWrapper::getInstance($person);
     $expected_labels = [
       'Default',
-      'Role name label',
       'Asia-Pacific Economic Cooperation',
       '(Acting) Asia-Pacific Economic Cooperation',
+    ];
+    $this->assertEquals($expected_labels, $wrapper->getPersonJobLabels());
+
+    // Assert non-EU labels.
+    $person->set('oe_person_type', 'non_eu');
+    $person->set('oe_person_jobs', [
+      [
+        'target_id' => $name_role_job->id(),
+        'target_revision_id' => $name_role_job->getRevisionId(),
+      ],
+    ]);
+    $person->save();
+
+    $wrapper = PersonNodeWrapper::getInstance($person);
+    $expected_labels = [
+      'Role name label',
     ];
     $this->assertEquals($expected_labels, $wrapper->getPersonJobLabels());
   }
