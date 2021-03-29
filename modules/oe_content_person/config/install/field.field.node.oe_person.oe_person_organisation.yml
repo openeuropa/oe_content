@@ -7,7 +7,6 @@ dependencies:
     - node.type.oe_person
   module:
     - composite_reference
-    - entity_reference_revisions
 third_party_settings:
   composite_reference:
     composite: false
@@ -30,4 +29,4 @@ settings:
       field: _none
     auto_create: false
     auto_create_bundle: ''
-field_type: entity_reference_revisions
+field_type: entity_reference
