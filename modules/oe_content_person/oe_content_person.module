@@ -78,7 +78,7 @@ function oe_content_person_node_presave(EntityInterface $entity) {
         $job->set('oe_role_reference', NULL);
         $changed = TRUE;
       }
-      if ($job->get('oe_acting')->getValue()) {
+      if ($job->get('oe_acting')->value) {
         $job->set('oe_acting', 0);
         $changed = TRUE;
       }

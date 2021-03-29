@@ -185,7 +185,7 @@ Feature: Person content creation
     And I should see "Publication node in Person"
     And I should see the text "Advocate-General"
     And I should see the text "Responsibilities text"
-    And I should see the text "Acting role"
+    And the "Acting role field" element should contain "On"
 
     When I click "Edit"
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
@@ -199,7 +199,7 @@ Feature: Person content creation
     And I should not see the link "European Patent Office"
     And I should not see "Advocate-General"
     And I should see "Person job role"
-    And I should not see "Acting role"
+    Then the "Acting role field" element should contain "Off"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
