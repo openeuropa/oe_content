@@ -63,22 +63,23 @@ function oe_content_person_node_presave(EntityInterface $entity) {
   }
 
   // When a person is saved we need to empty some values
-  // from the associated jobs as well.
+  // from the associated jobs as well. This is necessary to keep data consistency
+  // depending on the parent node's field "Person type" value.
   /** @var PersonJobInterface $job */
   foreach ($entity->get('oe_person_jobs')->referencedEntities() as $job) {
     $changed = FALSE;
     if ($type !== 'non_eu') {
-      if ($job->get('oe_role_name')->getValue()) {
+      if (!$job->get('oe_role_name')->isEmpty()) {
         $job->set('oe_role_name', '');
         $changed = TRUE;
       }
     }
     if ($type !== 'eu') {
-      if ($job->get('oe_role_reference')->getValue()) {
+      if (!$job->get('oe_role_reference')->isEmpty()) {
         $job->set('oe_role_reference', NULL);
         $changed = TRUE;
       }
-      if ($job->get('oe_acting')->value) {
+      if (!$job->get('oe_acting')->isEmpty()) {
         $job->set('oe_acting', 0);
         $changed = TRUE;
       }
