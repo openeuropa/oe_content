@@ -8,9 +8,9 @@ use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\rdf_entity\RdfFieldHandlerInterface;
 use Drupal\rdf_skos\ConceptSubsetPluginBase;
 use Drupal\rdf_skos\Plugin\PredicateMapperInterface;
+use Drupal\sparql_entity_storage\SparqlEntityStorageFieldHandlerInterface;
 
 /**
  * Human sex subset for person gender.
@@ -45,7 +45,7 @@ class Gender extends ConceptSubsetPluginBase implements PredicateMapperInterface
     $mapping['oe_content_human_sex_contexts'] = [
       'column' => 'value',
       'predicate' => ['http://lemon-model.net/lemon#context'],
-      'format' => RdfFieldHandlerInterface::RESOURCE,
+      'format' => SparqlEntityStorageFieldHandlerInterface::RESOURCE,
     ];
 
     return $mapping;
