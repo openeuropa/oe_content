@@ -59,11 +59,10 @@ class PersonJob extends SubEntityBase implements PersonJobInterface {
   public function label() {
     if ($this->bundle() === 'oe_default') {
       // Define label for Default Person job.
-      $entity_repository = \Drupal::service('entity.repository');
       $label = $this->get('oe_role_name')->value;
       if (!$this->get('oe_role_reference')->isEmpty()) {
         $vocabulary = $this->get('oe_role_reference')->entity;
-        $label = $entity_repository->getTranslationFromContext($vocabulary)->label();
+        $label = \Drupal::service('entity.repository')->getTranslationFromContext($vocabulary)->label();
         if ($this->get('oe_acting')->value) {
           $label = $this->t('(Acting) @role', ['@role' => $label]);
         }
