@@ -13,7 +13,7 @@ Feature: Common fields across the content types
     And I should see the text "If the page title is longer than 60 characters, you can add a shorter title here." in the "alternative title form element"
     And I should see the text "A short overview of the information on this page. The teaser will be displayed in list views and search engine results, not on the page itself." in the "teaser form element"
     And I should see the text "Limited to 300 characters for SEO purposes." in the "teaser form element"
-    And I should see the text "A short text that will be displayed in the blue header, below the page title." in the "summary form element"
+    And I should see the text "A short text that will be displayed below the page title. This should be a brief summary of the content on the page that tells the user what information they will find on this page." in the "summary form element"
     And I should see the text "This should be a brief summary of the content on the page that tells the user what information they will find on this page." in the "summary form element"
     And I should see the text "The topics mentioned on this page. These will be used by search engines and dynamic lists to determine their relevance to a user." in the "subject form element"
     And I should see the text "Add a link to this field to automatically redirect the user to a different page. Use this to prevent duplication of content." in the "redirect link form element"
