@@ -199,7 +199,7 @@ Feature: Person content creation
     And I should not see the link "European Patent Office"
     And I should not see "Advocate-General"
     And I should see "Person job role"
-    Then the "Acting role field" element should contain "Off"
+    Then I should not see "Acting role"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
