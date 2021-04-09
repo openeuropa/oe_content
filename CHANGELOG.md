@@ -1,11 +1,29 @@
 # Changelog
 
+## [2.1.0](https://github.com/openeuropa/oe_content/tree/2.1.0) (2021-04-09)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/2.0.0...2.1.0)
+
+**Merged pull requests:**
+
+- EWPP-649: Epic person. [\#404](https://github.com/openeuropa/oe_content/pull/404) ([nagyad](https://github.com/nagyad))
+- EWPP-947:  Improve person job validation. [\#403](https://github.com/openeuropa/oe_content/pull/403) ([nagyad](https://github.com/nagyad))
+- EWPP-697: Remove rdf\_entity classes. [\#401](https://github.com/openeuropa/oe_content/pull/401) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Merge 2.x into EPIC-Person [\#400](https://github.com/openeuropa/oe_content/pull/400) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-883: Composer lowest drone fails on multiple components. [\#399](https://github.com/openeuropa/oe_content/pull/399) ([yenyasinn](https://github.com/yenyasinn))
+- Merge master into EPIC-Person [\#395](https://github.com/openeuropa/oe_content/pull/395) ([yenyasinn](https://github.com/yenyasinn))
+- Rebase epic person [\#390](https://github.com/openeuropa/oe_content/pull/390) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-684: Add jobs to a person content type [\#388](https://github.com/openeuropa/oe_content/pull/388) ([yenyasinn](https://github.com/yenyasinn))
+- EPIC-Consultation to EPIC-Person [\#386](https://github.com/openeuropa/oe_content/pull/386) ([nagyad](https://github.com/nagyad))
+- EWPP-650: Add person content type. [\#380](https://github.com/openeuropa/oe_content/pull/380) ([drishu](https://github.com/drishu))
+
 ## [2.0.0](https://github.com/openeuropa/oe_content/tree/2.0.0) (2021-03-23)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/1.14.0...2.0.0)
 
 **Merged pull requests:**
 
+- Prepare release 2.0.0. [\#398](https://github.com/openeuropa/oe_content/pull/398) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-000: Temp fix for publication fail. [\#397](https://github.com/openeuropa/oe_content/pull/397) ([nagyad](https://github.com/nagyad))
 - EWPP-000: Set subject using default value in Call for proposals. [\#396](https://github.com/openeuropa/oe_content/pull/396) ([yenyasinn](https://github.com/yenyasinn))
 - OPENEUROPA-3048: Use sparql storage. [\#222](https://github.com/openeuropa/oe_content/pull/222) ([imanoleguskiza](https://github.com/imanoleguskiza))
