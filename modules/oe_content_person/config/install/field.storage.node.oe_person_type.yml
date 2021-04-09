@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.oe_person_type
+field_name: oe_person_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: eu
+      label: 'EU institutions related person'
+    -
+      value: non_eu
+      label: 'Person not part of the EU institutions'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

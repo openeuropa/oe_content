@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_content_person
+    - rdf_skos
+id: oe_person_job.oe_role_reference
+field_name: oe_role_reference
+entity_type: oe_person_job
+type: skos_concept_entity_reference
+settings:
+  target_type: skos_concept
+module: rdf_skos
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

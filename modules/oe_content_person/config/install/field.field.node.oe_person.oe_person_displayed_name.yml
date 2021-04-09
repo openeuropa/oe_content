@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_person_displayed_name
+    - node.type.oe_person
+id: node.oe_person.oe_person_displayed_name
+field_name: oe_person_displayed_name
+entity_type: node
+bundle: oe_person
+label: 'Displayed name'
+description: 'Use only if you wish to replace the mention of "Last name + First name" in the different display modes.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

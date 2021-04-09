@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_person_media
+    - media.type.av_portal_photo
+    - media.type.av_portal_video
+    - media.type.image
+    - node.type.oe_person
+  module:
+    - composite_reference
+third_party_settings:
+  composite_reference:
+    composite: false
+id: node.oe_person.oe_person_media
+field_name: oe_person_media
+entity_type: node
+bundle: oe_person
+label: Media
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      av_portal_photo: av_portal_photo
+      av_portal_video: av_portal_video
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

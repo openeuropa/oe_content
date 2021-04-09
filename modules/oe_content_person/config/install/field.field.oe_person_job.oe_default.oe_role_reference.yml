@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_person_job.oe_role_reference
+    - oe_content_person.oe_person_job_type.oe_default
+  module:
+    - rdf_skos
+id: oe_person_job.oe_default.oe_role_reference
+field_name: oe_role_reference
+entity_type: oe_person_job
+bundle: oe_default
+label: Role
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:skos_concept'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+    concept_schemes:
+      - 'http://publications.europa.eu/resource/authority/role'
+    field:
+      field_name: oe_role_reference
+      entity_type: oe_person_job
+      bundle: oe_default
+      concept_schemes:
+        - 'http://publications.europa.eu/resource/authority/role'
+field_type: skos_concept_entity_reference

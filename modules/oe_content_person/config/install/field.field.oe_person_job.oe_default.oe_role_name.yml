@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_person_job.oe_role_name
+    - oe_content_person.oe_person_job_type.oe_default
+id: oe_person_job.oe_default.oe_role_name
+field_name: oe_role_name
+entity_type: oe_person_job
+bundle: oe_default
+label: Role
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

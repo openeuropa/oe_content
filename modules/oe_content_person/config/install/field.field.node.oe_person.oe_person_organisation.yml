@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_person_organisation
+    - node.type.oe_organisation
+    - node.type.oe_person
+  module:
+    - composite_reference
+third_party_settings:
+  composite_reference:
+    composite: false
+id: node.oe_person.oe_person_organisation
+field_name: oe_person_organisation
+entity_type: node
+bundle: oe_person
+label: Organisation
+description: 'Organisation name the person is part of.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      oe_organisation: oe_organisation
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

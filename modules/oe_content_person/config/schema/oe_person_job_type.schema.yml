@@ -1,0 +1,13 @@
+oe_content_person.oe_person_job_type.*:
+  type: config_entity
+  label: 'Person job type settings'
+  mapping:
+    id:
+      type: string
+      label: 'Machine-readable name'
+    label:
+      type: label
+      label: 'Label'
+    description:
+      type: text
+      label: 'Description'

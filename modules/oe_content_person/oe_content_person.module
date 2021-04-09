@@ -1,0 +1,177 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Person Content module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\oe_content\Utility\ContentFormUtilities;
+use Drupal\oe_content_person\Entity\PersonJobInterface;
+use Drupal\oe_content_person\PersonNodeWrapper;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter for the node form.
+ */
+function oe_content_person_form_node_form_alter(array &$form, FormStateInterface $form_state) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+
+  if ($node->bundle() !== 'oe_person') {
+    return;
+  }
+
+  // Hide fields based on the person type.
+  foreach (PersonNodeWrapper::EU_ONLY_FIELDS as $field) {
+    ContentFormUtilities::toggleFieldVisibilityByValue($form, 'oe_person_type', $field, 'eu');
+  }
+  foreach (PersonNodeWrapper::NON_EU_ONLY_FIELDS as $field) {
+    ContentFormUtilities::toggleFieldVisibilityByValue($form, 'oe_person_type', $field, 'non_eu');
+  }
+
+  // Hide the title field as we auto-generate it based on the first and last
+  // name.
+  $form['title']['#access'] = FALSE;
+
+  $form['oe_person_jobs']['#element_validate'][] = '_oe_content_person_oe_person_jobs_validate';
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function oe_content_person_node_presave(EntityInterface $entity) {
+  if ($entity->bundle() !== 'oe_person') {
+    return;
+  }
+
+  // Clear out some values depending on the chosen person type.
+  $type = $entity->get('oe_person_type')->value;
+
+  if ($type === 'eu') {
+    foreach (PersonNodeWrapper::NON_EU_ONLY_FIELDS as $field) {
+      $entity->get($field)->setValue(NULL);
+    }
+  }
+  else {
+    foreach (PersonNodeWrapper::EU_ONLY_FIELDS as $field) {
+      $entity->get($field)->setValue(NULL);
+    }
+  }
+
+  // Set the node title based on some field values.
+  $title = $entity->get('oe_person_first_name')->value . ' ' . $entity->get('oe_person_last_name')->value;
+  if (!$entity->get('oe_person_displayed_name')->isEmpty()) {
+    $title = $entity->get('oe_person_displayed_name')->value;
+  }
+
+  $entity->setTitle($title);
+}
+
+/**
+ * Implements hook_inline_entity_form_entity_form_alter().
+ */
+function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_form, FormStateInterface &$form_state) {
+  if ($entity_form['#entity_type'] !== 'oe_person_job') {
+    return;
+  }
+
+  // Set initial state when form is loaded.
+  $type = NULL;
+  $user_input = $form_state->getUserInput();
+  if (isset($user_input['oe_person_type'])) {
+    $type = $user_input['oe_person_type'];
+  }
+  if ($type !== 'eu') {
+    $entity_form['oe_role_reference']['#attributes']['style'] = 'display:none';
+    $entity_form['oe_acting']['#attributes']['style'] = 'display:none';
+    $entity_form['oe_role_name']['widget'][0]['value']['#required'] = TRUE;
+  }
+
+  if ($type !== 'non_eu') {
+    $entity_form['oe_role_name']['#attributes']['style'] = 'display:none';
+    $entity_form['oe_role_reference']['widget'][0]['target_id']['#required'] = TRUE;
+  }
+
+  // Set states based on person type field.
+  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_name', 'non_eu');
+  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_reference', 'eu');
+  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_acting', 'eu');
+  ContentFormUtilities::toggleFieldRequiredByValue($entity_form, 'oe_person_type', 'value', 'non_eu', ['oe_role_name', 'widget', 0]);
+  ContentFormUtilities::toggleFieldRequiredByValue($entity_form, 'oe_person_type', 'target_id', 'eu', ['oe_role_reference', 'widget', 0]);
+}
+
+/**
+ * Validation callback for a "oe_person_jobs" element.
+ *
+ * @param array $element
+ *   The element being processed.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $complete_form
+ *   The complete form structure.
+ */
+function _oe_content_person_oe_person_jobs_validate(array &$element, FormStateInterface $form_state, array &$complete_form): void {
+  $type = $form_state->getValue(['oe_person_type', 0, 'value']);
+
+  $person_jobs = $form_state->getValue(['oe_person_jobs', 'form']);
+  if (is_array($person_jobs)) {
+    foreach ($person_jobs as $key => $person_job_values) {
+      if ($key === 'inline_entity_form') {
+        foreach ($person_job_values['entities'] as $delta => $values) {
+          if ($type !== 'non_eu') {
+            $person_jobs[$key]['entities'][$delta]['form']['oe_role_name'] = [];
+          }
+          if ($type !== 'eu') {
+            $person_jobs[$key]['entities'][$delta]['form']['oe_role_reference'] = [];
+            $person_jobs[$key]['entities'][$delta]['form']['oe_acting'] = [];
+          }
+        }
+      }
+      else {
+        if ($type !== 'non_eu') {
+          $person_jobs[$key]['oe_role_name'] = [];
+        }
+        if ($type !== 'eu') {
+          $person_jobs[$key]['oe_role_reference'] = [];
+          $person_jobs[$key]['oe_acting'] = [];
+        }
+      }
+    }
+    $form_state->setValue(['oe_person_jobs', 'form'], $person_jobs);
+  }
+
+  // Enforce to update Role field on the existing jobs if person type has been
+  // changed.
+  foreach (Element::children($complete_form['oe_person_jobs']['widget']['entities']) as $key) {
+    $item = $complete_form['oe_person_jobs']['widget']['entities'][$key];
+    if (!empty($item['#entity']) && !_oe_content_person_validate_person_job_entity($item['#entity'], $type)) {
+      $form_state->setError($element, t('The role "@label" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly.', ['@label' => $item['#entity']->label()]));
+    }
+  }
+}
+
+/**
+ * Validation of Person job entity based on the person type.
+ *
+ * @param \Drupal\oe_content_person\Entity\PersonJobInterface $entity
+ *   Person job entity
+ * @param string $type
+ *   Person type.
+ *
+ * @return bool
+ *   FALSE if entity's role field is empty.
+ */
+function _oe_content_person_validate_person_job_entity(PersonJobInterface $entity, string $type): bool {
+  if ($type === 'eu' && $entity->get('oe_role_reference')->isEmpty()) {
+    return FALSE;
+  }
+  if ($type === 'non_eu' && $entity->get('oe_role_name')->isEmpty()) {
+    return FALSE;
+  }
+
+  return TRUE;
+}
