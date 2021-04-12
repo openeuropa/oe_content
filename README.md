@@ -86,6 +86,24 @@ $databases["sparql_default"] = array(
 );
 ```
 
+#### OpenEuropa site template setup
+
+If you are working on a project using the OpenEuropa site template you should add the following to the runner.yml.dist file:
+
+```
+drupal:
+  additional_settings: |
+    $databases['sparql_default']['default'] = [
+      'prefix' => '',
+      'host' => getenv('DRUPAL_SPARQL_HOSTNAME'),
+      'port' => getenv('DRUPAL_SPARQL_PORT'),
+      'namespace' => 'Drupal\\Driver\\Database\\sparql',
+      'driver' => 'sparql',
+    ];
+```
+
+This ensures that the config is in place before the installation and by doing so you no longer have to modify the settings.php manually.
+
 ## Usage
 
 ### OpenEuropa Content
