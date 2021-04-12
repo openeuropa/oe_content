@@ -195,7 +195,10 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
+    third_party_settings:
+      maxlength:
+        maxlength_js: 125
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_person_gender:
     type: skos_concept_entity_reference_options_select
     weight: 6
@@ -246,7 +249,10 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
+    third_party_settings:
+      maxlength:
+        maxlength_js: 125
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_person_media:
     type: entity_reference_autocomplete
     weight: 14
