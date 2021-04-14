@@ -5,8 +5,8 @@ Feature: Common fields across the content types
   I should have common fields configured the same for each content type.
 
   Scenario Outline: Common fields have the correct description.
-    Given I am logged in as a user with the "create oe_event content, create oe_news content, create oe_page content, create oe_policy content, create oe_project content, create oe_publication content, create oe_call_tenders content, create oe_call_proposals content, create oe_organisation content, create oe_person content, create oe_consultation content, access content" permission    When I visit "the <content_type> creation page"
-    And I should see the text "If it must be longer, make sure you fill in a shorter version in the Alternative title field." in the "title form element"
+    Given I am logged in as a user with the "create oe_event content, create oe_news content, create oe_page content, create oe_policy content, create oe_project content, create oe_publication content, create oe_call_tenders content, create oe_call_proposals content, create oe_organisation content, create oe_person content, create oe_consultation content, access content" permission
+    When I visit "the <content_type> creation page"
     And I should see the text "Use this field to create an alternative title for use in the URL and in list views." in the "alternative title form element"
     And I should see the text "If the page title is longer than 60 characters, you can add a shorter title here." in the "alternative title form element"
     And I should see the text "A short overview of the information on this page. The teaser will be displayed in list views and search engine results, not on the page itself." in the "teaser form element"
@@ -25,6 +25,7 @@ Feature: Common fields across the content types
       | News               |
       | Organisation       |
       | Page               |
+      | Person             |
       | Project            |
       | Policy             |
       | Publication        |
@@ -33,6 +34,7 @@ Feature: Common fields across the content types
     Given I am logged in as a user with the "create oe_event content, create oe_news content, create oe_page content, create oe_policy content, create oe_project content, create oe_publication content, create oe_call_tenders content, create oe_call_proposals content, create oe_organisation content, create oe_consultation content, access content" permission
     When I visit "the <content_type> creation page"
     Then I should see the text "The ideal length is 50 to 60 characters including spaces." in the "title form element"
+    And I should see the text "If it must be longer, make sure you fill in a shorter version in the Alternative title field." in the "title form element"
 
     Examples:
       | content_type       |
