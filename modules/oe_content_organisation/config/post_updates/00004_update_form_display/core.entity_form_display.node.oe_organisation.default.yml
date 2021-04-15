@@ -1,0 +1,248 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oe_organisation.body
+    - field.field.node.oe_organisation.oe_organisation_overivew
+    - field.field.node.oe_organisation.oe_organisation_acronym
+    - field.field.node.oe_organisation.oe_organisation_contact
+    - field.field.node.oe_organisation.oe_organisation_eu_org
+    - field.field.node.oe_organisation.oe_organisation_eu_org_type
+    - field.field.node.oe_organisation.oe_organisation_logo
+    - field.field.node.oe_organisation.oe_organisation_non_eu_org_type
+    - field.field.node.oe_organisation.oe_organisation_org_type
+    - field.field.node.oe_organisation.oe_summary
+    - field.field.node.oe_organisation.oe_teaser
+    - node.type.oe_organisation
+  module:
+    - description_list_field
+    - field_group
+    - inline_entity_form
+    - link
+    - path
+    - rdf_skos
+    - text
+third_party_settings:
+  field_group:
+    group_alternative_titles_and_tea:
+      children:
+        - oe_content_short_title
+        - oe_content_navigation_title
+        - oe_teaser
+      parent_name: ''
+      weight: 7
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: open
+        required_fields: true
+      label: 'Alternative titles and teaser'
+    group_organisation_type:
+      children:
+        - oe_organisation_org_type
+        - oe_organisation_eu_org
+        - oe_organisation_non_eu_org_type
+      parent_name: ''
+      weight: 5
+      format_type: details
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        open: true
+        required_fields: true
+      label: 'Organisation type'
+id: node.oe_organisation.default
+targetEntityType: node
+bundle: oe_organisation
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_organisation_overivew:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: description_list_widget
+    region: content
+  langcode:
+    type: language_select
+    weight: 10
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  oe_content_content_owner:
+    type: skos_concept_entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_content_legacy_link:
+    type: link_default
+    weight: 9
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  oe_content_navigation_title:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_content_short_title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_organisation_acronym:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  oe_organisation_contact:
+    weight: 6
+    settings:
+      form_mode: default
+      revision: true
+      override_labels: true
+      label_singular: contact
+      label_plural: contacts
+      allow_new: true
+      match_operator: CONTAINS
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+      removed_reference: keep
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
+  oe_organisation_eu_org:
+    weight: 17
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
+  oe_organisation_logo:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  oe_organisation_non_eu_org_type:
+    weight: 19
+    settings:
+      sort: id
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_options_select
+    region: content
+  oe_organisation_org_type:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  oe_summary:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  oe_teaser:
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  path:
+    type: path
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 14
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 16
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 15
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 12
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden:
+  oe_organisation_eu_org_type: true
