@@ -48,6 +48,9 @@ Feature: Organisation content creation
     And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
     And I fill in "Link text" with "Email" in the "Contact social media links" region
 
+    And I fill in "Term" with "Overview Term text"
+    And I fill in "Description" with "Overview Description text"
+
     When I press "Save"
     Then I should see "Organisation My organisation has been created."
     And I should see "My Organisation"
@@ -71,6 +74,10 @@ Feature: Organisation content creation
     And I should see "Organisation type EU organisation"
     And I should see "EU organisation Audit Board of the European Communities"
     And I should see "EU organisation type European Union corporate body"
+
+    # Assert overview field values.
+    And I should see the text "Overview Term text"
+    And I should see the text "Overview Description text"
 
     # Assert organisation type for non-EU organisations.
     When I click "Edit"
