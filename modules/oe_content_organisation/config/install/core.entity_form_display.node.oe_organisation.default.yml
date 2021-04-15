@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_organisation.body
+    - field.field.node.oe_organisation.oe_organisation_overivew
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
     - field.field.node.oe_organisation.oe_organisation_eu_org
@@ -14,6 +15,7 @@ dependencies:
     - field.field.node.oe_organisation.oe_teaser
     - node.type.oe_organisation
   module:
+    - description_list_field
     - field_group
     - inline_entity_form
     - link
@@ -76,6 +78,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_organisation_overivew:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: description_list_widget
+    region: content
   langcode:
     type: language_select
     weight: 10
