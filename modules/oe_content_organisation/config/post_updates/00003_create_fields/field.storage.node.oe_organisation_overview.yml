@@ -4,8 +4,8 @@ dependencies:
   module:
     - description_list_field
     - node
-id: node.oe_organisation_overivew
-field_name: oe_organisation_overivew
+id: node.oe_organisation_overview
+field_name: oe_organisation_overview
 entity_type: node
 type: description_list_field
 settings: {  }

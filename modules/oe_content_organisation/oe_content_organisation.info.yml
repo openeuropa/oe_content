@@ -29,7 +29,7 @@ config_devel:
     - field.field.node.oe_organisation.oe_organisation_eu_org_type
     - field.field.node.oe_organisation.oe_organisation_non_eu_org_type
     - field.field.node.oe_organisation.oe_organisation_org_type
-    - field.field.node.oe_organisation.oe_organisation_overivew
+    - field.field.node.oe_organisation.oe_organisation_overview
     - field.storage.node.oe_organisation_acronym
     - field.storage.node.oe_organisation_contact
     - field.storage.node.oe_organisation_logo
@@ -37,7 +37,7 @@ config_devel:
     - field.storage.node.oe_organisation_eu_org_type
     - field.storage.node.oe_organisation_non_eu_org_type
     - field.storage.node.oe_organisation_org_type
-    - field.storage.node.oe_organisation_overivew
+    - field.storage.node.oe_organisation_overview
     - node.type.oe_organisation
   optional:
     - language.content_settings.node.oe_organisation
