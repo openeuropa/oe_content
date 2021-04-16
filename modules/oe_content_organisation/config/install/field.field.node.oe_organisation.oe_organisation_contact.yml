@@ -15,7 +15,7 @@ id: node.oe_organisation.oe_organisation_contact
 field_name: oe_organisation_contact
 entity_type: node
 bundle: oe_organisation
-label: Contact
+label: Contacts
 description: ''
 required: false
 translatable: false
