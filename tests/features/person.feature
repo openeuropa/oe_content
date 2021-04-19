@@ -1,4 +1,4 @@
-@api @test
+@api
 Feature: Person content creation
   In order to have "Person" on the site
   As an editor
