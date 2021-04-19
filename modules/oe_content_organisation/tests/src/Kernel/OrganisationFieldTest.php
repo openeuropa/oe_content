@@ -37,6 +37,7 @@ class OrganisationFieldTest extends SparqlKernelTestBase {
     'text',
     'user',
     'composite_reference',
+    'description_list_field',
   ];
 
   /**
