@@ -81,6 +81,8 @@ default:
         subject form element: ".field--name-oe-subject"
         redirect link form element: ".field--name-oe-content-legacy-link"
         content owner form element: ".field--name-oe-content-content-owner"
+        first name form element: "#edit-oe-person-first-name-wrapper"
+        last name form element: "#edit-oe-person-last-name-wrapper"
         Online link: "#edit-oe-event-online-link-0"
         Website: "#edit-oe-event-website-0"
         Project Website: "#edit-oe-project-website-0"
