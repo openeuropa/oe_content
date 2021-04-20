@@ -31,3 +31,22 @@ function oe_content_person_post_update_20001(): void {
   $field_storage->set('settings', $settings);
   $field_storage->save();
 }
+
+/**
+ * Use role qualifier vocabulary on person job role.
+ */
+function oe_content_person_post_update_20002(): void {
+  // Add the new role qualifier vocabulary.
+  $graphs = [
+    'role-qualifier' => 'http://publications.europa.eu/resource/dataset/role-qualifier',
+  ];
+  \Drupal::service('rdf_skos.skos_graph_configurator')->addGraphs($graphs);
+
+  // Use the new vocabulary on the role reference field.
+  $field_storage = \Drupal::entityTypeManager()->getStorage('field_config')->load('oe_person_job.oe_default.oe_role_reference');
+  $settings = $field_storage->get('settings');
+  $settings['handler_settings']['concept_schemes'] = ['http://publications.europa.eu/resource/authority/role-qualifier'];
+  $settings['handler_settings']['field']['concept_schemes'] = ['http://publications.europa.eu/resource/authority/role-qualifier'];
+  $field_storage->set('settings', $settings);
+  $field_storage->save();
+}
