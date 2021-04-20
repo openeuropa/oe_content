@@ -9,6 +9,8 @@ declare(strict_types = 1);
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Set inline entity form widgets reference removal policy to keep entities.
@@ -49,4 +51,17 @@ function oe_content_organisation_post_update_00004(): void {
       ->updateFromStorageRecord($form_display, $form_display_values);
     $updated_form_display->save();
   }
+}
+
+/**
+ * Set contact field cardinality to unlimited.
+ */
+function oe_content_organisation_post_update_00005(): void {
+  $field_storage = FieldStorageConfig::load('node.oe_organisation_contact');
+  $field_storage->set('cardinality', '-1');
+  $field_storage->save();
+  // Update field label.
+  $field_config = FieldConfig::load('node.oe_organisation.oe_organisation_contact');
+  $field_config->set('label', 'Contacts');
+  $field_config->save();
 }
