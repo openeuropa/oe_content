@@ -105,6 +105,7 @@ default:
         Event venue: "#edit-oe-event-venue-wrapper"
         Contact social media links: ".field--name-oe-social-media"
         Organisation contact: "#edit-oe-organisation-contact-wrapper"
+        Organisation chart: ".field--name-oe-organisation-org-chart"
         News contact: "#edit-oe-news-contacts-wrapper"
         News contact social media links: ".field--name-oe-social-media"
         Publication in the official journal: ".field--name-oe-call-proposals-journal"
