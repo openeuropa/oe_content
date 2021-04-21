@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_contact.oe_general.oe_link
     - field.field.oe_contact.oe_general.oe_address
     - field.field.oe_contact.oe_general.oe_body
     - field.field.oe_contact.oe_general.oe_email
     - field.field.oe_contact.oe_general.oe_fax
     - field.field.oe_contact.oe_general.oe_image
+    - field.field.oe_contact.oe_general.oe_link
     - field.field.oe_contact.oe_general.oe_mobile
     - field.field.oe_contact.oe_general.oe_office
     - field.field.oe_contact.oe_general.oe_organisation
@@ -27,14 +27,6 @@ targetEntityType: oe_contact
 bundle: oe_general
 mode: default
 content:
-  oe_link:
-    weight: 14
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
   langcode:
     type: language_select
     weight: 0
@@ -89,6 +81,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: oe_featured_media_autocomplete
+    region: content
+  oe_link:
+    weight: 14
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   oe_mobile:
     weight: 7

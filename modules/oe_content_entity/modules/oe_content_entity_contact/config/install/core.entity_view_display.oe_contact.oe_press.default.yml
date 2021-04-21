@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_contact.oe_press.oe_link
     - field.field.oe_contact.oe_press.oe_address
     - field.field.oe_contact.oe_press.oe_body
     - field.field.oe_contact.oe_press.oe_email
     - field.field.oe_contact.oe_press.oe_fax
     - field.field.oe_contact.oe_press.oe_image
+    - field.field.oe_contact.oe_press.oe_link
     - field.field.oe_contact.oe_press.oe_mobile
     - field.field.oe_contact.oe_press.oe_office
     - field.field.oe_contact.oe_press.oe_organisation
@@ -37,18 +37,6 @@ content:
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
-  oe_link:
-    weight: 14
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
   name:
     label: hidden
     type: string
@@ -94,6 +82,18 @@ content:
     settings:
       link: true
     third_party_settings: {  }
+  oe_link:
+    weight: 14
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   oe_mobile:
     type: string
     weight: 7
