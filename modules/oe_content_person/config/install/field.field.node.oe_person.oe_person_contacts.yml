@@ -5,7 +5,6 @@ dependencies:
     - field.storage.node.oe_person_contacts
     - node.type.oe_person
     - oe_content_entity_contact.oe_contact_type.oe_general
-    - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
   module:
     - composite_reference
     - entity_reference_revisions
@@ -27,7 +26,6 @@ settings:
   handler_settings:
     target_bundles:
       oe_general: oe_general
-      oe_organisation_reference: oe_organisation_reference
     sort:
       field: _none
     auto_create: false

@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.storage.node.oe_person_organisation
-    - node.type.oe_organisation
     - node.type.oe_person
   module:
     - composite_reference
@@ -23,8 +22,7 @@ default_value_callback: ''
 settings:
   handler: 'default:node'
   handler_settings:
-    target_bundles:
-      oe_organisation: oe_organisation
+    target_bundles: {  }
     sort:
       field: _none
     auto_create: false
