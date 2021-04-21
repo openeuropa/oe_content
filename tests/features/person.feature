@@ -133,7 +133,7 @@ Feature: Person content creation
     # Jobs field.
     And I press "Add new person job"
     And I wait for AJAX to finish
-    And I fill in "first" person job role reference field with "Advocate-General"
+    And I fill in "first" person job role reference field with "Advisor"
     And I fill in "Responsibilities assigned to the job" with "Responsibilities text"
     And I check "Acting role"
     And I press "Save"
@@ -183,21 +183,21 @@ Feature: Person content creation
     # Document references are shown.
     And I should see "document2.pdf"
     And I should see "Publication node in Person"
-    And I should see the text "Advocate-General"
+    And I should see the text "Advisor"
     And I should see the text "Responsibilities text"
     And the "Acting role field" element should contain "On"
 
     When I click "Edit"
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
     And I press "Save"
-    Then I should see "The role \"(Acting) Advocate-General\" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly."
+    Then I should see "The role \"(Acting) Advisor\" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly."
     When I fill in "Organisation" with "Organisation demo page"
     And I press "Edit" in the "Person jobs" region
     And I fill in "Role" with "Person job role"
     And I press "Save"
     Then I should see "Organisation demo page"
     And I should not see the link "European Patent Office"
-    And I should not see "Advocate-General"
+    And I should not see "Advisor"
     And I should see "Person job role"
     Then I should not see "Acting role"
 
@@ -208,6 +208,8 @@ Feature: Person content creation
     And I should see the text "Content limited to 300 characters, remaining: 300" in the "teaser form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
+    And I should see the text "Content limited to 125 characters, remaining: 125" in the "first name form element"
+    And I should see the text "Content limited to 125 characters, remaining: 125" in the "last name form element"
     And I fill in "Subject" with "financing"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
     And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
@@ -231,7 +233,7 @@ Feature: Person content creation
       | Name | A general contact |
     And the following Default "Person job" sub-entity:
       | Name             | Default person job 1  |
-      | Role reference   | Advocate-General      |
+      | Role reference   | Advisor      |
       | Acting role      | Yes                   |
       | Responsibilities | Responsibilities text |
     And the following document:
@@ -253,7 +255,7 @@ Feature: Person content creation
     When I am visiting the "First Last" content
     Then I should see "First Last"
     And I should see "A general contact"
-    And I should see "Advocate-General"
+    And I should see "Advisor"
     And I should see "sample.pdf"
 
     When I am logged in as a user with the "create oe_person content, access content, edit any oe_person content, view published skos concept entities, manage corporate content entities" permission
@@ -264,7 +266,7 @@ Feature: Person content creation
     When I press "Remove" in the "Person contacts" region
     And I wait for AJAX to finish
     And I press "Remove" in the "Person jobs" region
-    Then I should see "Are you sure you want to remove (Acting) Advocate-General?"
+    Then I should see "Are you sure you want to remove (Acting) Advisor?"
     When I press "Remove" in the "Person jobs" region
     And I wait for AJAX to finish
     And I press "Remove" in the "Person documents" region
@@ -274,7 +276,7 @@ Feature: Person content creation
     And I press "Save"
     Then I should see "Person First Last has been updated."
     And I should not see "A general contact"
-    And I should not see "Advocate-General"
+    And I should not see "Advisor"
     And I should not see "sample.pdf"
     And the General Contact entity with title "A general contact" exists
     And the "Person job" sub-entity with title "Default person job 1" exists

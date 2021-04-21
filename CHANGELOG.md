@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.1](https://github.com/openeuropa/oe_content/tree/2.1.1) (2021-04-20)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/2.1.0...2.1.1)
+
+**Merged pull requests:**
+
+- EWPP-1031: Use role qualifier vocabulary [\#411](https://github.com/openeuropa/oe_content/pull/411) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-970: Add char limit to first name and last name fields. [\#407](https://github.com/openeuropa/oe_content/pull/407) ([nagyad](https://github.com/nagyad))
+
 ## [2.1.0](https://github.com/openeuropa/oe_content/tree/2.1.0) (2021-04-09)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/2.0.0...2.1.0)
