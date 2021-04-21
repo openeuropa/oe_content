@@ -23,16 +23,21 @@ function oe_content_organisation_post_update_00001(): void {
 }
 
 /**
- * Enable new dependency.
+ * Enable new dependencies.
  */
 function oe_content_organisation_post_update_00002(): void {
-  \Drupal::service('module_installer')->install(['description_list_field']);
+  \Drupal::service('module_installer')->install([
+    'description_list_field',
+    'oe_media',
+    'oe_content_person',
+  ]);
 }
 
 /**
- * Create overview field.
+ * Create new fields.
  */
 function oe_content_organisation_post_update_00003(): void {
+  // Create Overview and "Leadership and organisation" related fields.
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_organisation') . '/config/post_updates/00003_create_fields');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
