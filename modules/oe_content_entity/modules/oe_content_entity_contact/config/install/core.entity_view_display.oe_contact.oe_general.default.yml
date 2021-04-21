@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.oe_contact.oe_general.oe_link
     - field.field.oe_contact.oe_general.oe_address
     - field.field.oe_contact.oe_general.oe_body
     - field.field.oe_contact.oe_general.oe_email
@@ -36,6 +37,18 @@ content:
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
+  oe_link:
+    weight: 14
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   name:
     label: hidden
     type: string

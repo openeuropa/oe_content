@@ -59,6 +59,8 @@ Feature: Publication content creation
     And I fill in "Media item" with "Sample image" in the "Publication contact" region
     And I fill in "Caption" with "Publication contact caption" in the "Publication contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Publication contact" region
+    And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
+    And I fill in "Link text" with "Contact link" in the "Contact link" region
 
     And I press "Save"
     Then I should see "My Publication item"
@@ -87,6 +89,7 @@ Feature: Publication content creation
     And I should see the link "Sample image"
     And I should see the text "Publication contact caption"
     And I should see the link "http://example.com/press_contacts"
+    And I should see the link "Contact link"
 
     And I should not see "Acknowledgement receipt"
     And I should not see "Summary text"
