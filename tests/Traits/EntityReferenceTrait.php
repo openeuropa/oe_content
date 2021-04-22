@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Traits;
 
+use Drupal\field\FieldConfigInterface;
+
 /**
  * Helper trait to handle entity reference fields in Behat tests.
  */
@@ -12,7 +14,7 @@ trait EntityReferenceTrait {
   /**
    * Get reference field in a multi-value, parsable format.
    *
-   * @param string $field_name
+   * @param \Drupal\field\FieldConfigInterface $field_config
    *   Reference field name.
    * @param string $entity_type
    *   Entity type machine name.
@@ -22,17 +24,19 @@ trait EntityReferenceTrait {
    * @return array
    *   Expanded field name with comma separated list of target IDs.
    */
-  protected function getReferenceField(string $field_name, string $entity_type, string $labels): array {
+  protected function getReferenceField(FieldConfigInterface $field_config, string $entity_type, string $labels): array {
+    /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface $handler */
+    $handler = \Drupal::service('plugin.manager.entity_reference_selection')->getSelectionHandler($field_config);
     // Transform titles to ids and maintain the comma separated format.
     $items = explode(',', $labels);
     $items = array_map('trim', $items);
     $ids = [];
     foreach ($items as $item) {
-      $ids[] = $this->loadEntityByLabel($entity_type, $item)->id();
+      $ids[] = key($handler->getReferenceableEntities($item)[$entity_type]);
     }
 
     return [
-      "{$field_name}:target_id" => implode(',', $ids),
+      "{$field_config->getName()}:target_id" => implode(',', $ids),
     ];
   }
 

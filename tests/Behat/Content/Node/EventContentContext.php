@@ -8,6 +8,7 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -67,7 +68,10 @@ class EventContentContext extends RawDrupalContext {
     ];
 
     foreach ($scope->getFields() as $key => $value) {
-
+      $field_config = NULL;
+      if (isset($mapping[$key])) {
+        $field_config = FieldConfig::loadByName($scope->getEntityType(), $scope->getBundle(), $mapping[$key]);
+      }
       // Handle entity references.
       switch ($key) {
         case 'Venue':
@@ -81,7 +85,7 @@ class EventContentContext extends RawDrupalContext {
           break;
 
         case 'Featured media':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($field_config, 'media', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -94,7 +98,7 @@ class EventContentContext extends RawDrupalContext {
         case 'Type':
         case 'Languages':
         case 'Internal organiser':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

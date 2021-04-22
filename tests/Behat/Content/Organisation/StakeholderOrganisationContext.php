@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content\Organisation;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
@@ -38,10 +39,14 @@ class StakeholderOrganisationContext extends RawDrupalContext {
     ];
 
     foreach ($scope->getFields() as $key => $value) {
+      $field_config = NULL;
+      if (isset($mapping[$key])) {
+        $field_config = FieldConfig::loadByName($scope->getEntityType(), $scope->getBundle(), $mapping[$key]);
+      }
       switch ($key) {
         // Set Media entity reference fields.
         case 'Logo':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($field_config, 'media', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

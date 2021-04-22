@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content\Node;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -51,13 +52,17 @@ class PublicationContentContext extends RawDrupalContext {
     ];
 
     foreach ($scope->getFields() as $key => $value) {
+      $field_config = NULL;
+      if (isset($mapping[$key])) {
+        $field_config = FieldConfig::loadByName($scope->getEntityType(), $scope->getBundle(), $mapping[$key]);
+      }
       switch ($key) {
         // Set SKOS Concept entity reference fields.
         case 'Author':
         case 'Country':
         case 'Related department':
         case 'Resource type':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -70,7 +75,7 @@ class PublicationContentContext extends RawDrupalContext {
         // Set Media entity reference fields.
         case 'Files':
         case 'Thumbnail':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($field_config, 'media', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

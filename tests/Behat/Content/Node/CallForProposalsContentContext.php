@@ -8,6 +8,7 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -52,20 +53,26 @@ class CallForProposalsContentContext extends RawDrupalContext {
       'Published' => 'status',
       'Funding programme' => 'oe_call_proposals_funding',
       'Teaser' => 'oe_teaser',
+      'Subject' => 'oe_subject',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
+      $field_config = NULL;
+      if (isset($mapping[$key])) {
+        $field_config = FieldConfig::loadByName($scope->getEntityType(), $scope->getBundle(), $mapping[$key]);
+      }
       switch ($key) {
         // Set SKOS Concept entity reference fields.
         case 'Responsible department':
         case 'Funding programme':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
+        case 'Subject':
+          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         // Set Media entity reference fields.
         case 'Documents':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($field_config, 'media', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -99,7 +106,6 @@ class CallForProposalsContentContext extends RawDrupalContext {
 
     // Set default fields.
     $scope->addFields([
-      'oe_subject' => 'http://data.europa.eu/uxp/1010',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
     ]);
   }
