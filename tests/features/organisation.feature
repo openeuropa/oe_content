@@ -23,7 +23,7 @@ Feature: Organisation content creation
     And I fill in "Teaser" with "Organisation teaser text"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I should not see "Non-EU organisation type"
-    When I select "Non-EU organisation" from "Organisation type"
+    And I select "Non-EU organisation" from "Organisation type"
     Then I should see "Non-EU organisation type"
     When I select "EU organisation" from "Organisation type"
     And I press "Save"
@@ -32,12 +32,12 @@ Feature: Organisation content creation
     And I press "Save"
     Then I should see the error message "Please select a non-EU organisation type."
     When I select "EU organisation" from "Organisation type"
-    Then I fill in "EU organisation" with "Audit Board of the European Communities"
+    And I fill in "EU organisation" with "Audit Board of the European Communities"
 
     # Organisation contact field group.
-    When I press "Add new contact"
+    And I press "Add new contact"
     And I wait for AJAX to finish
-    Then I fill in "Name" with "Name of the organisation contact" in the "Organisation contact" region
+    And I fill in "Name" with "Name of the organisation contact 1" in the "Organisation contact" region
     And I select "Hungary" from "Country" in the "Organisation contact" region
     And I wait for AJAX to finish
     And I fill in "Street address" with "Back street 3" in the "Organisation contact" region
@@ -47,8 +47,17 @@ Feature: Organisation content creation
     And I fill in "Phone number" with "0488779033" in the "Organisation contact" region
     And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
     And I fill in "Link text" with "Email" in the "Contact social media links" region
+    And I press "Create contact"
+    And I wait for AJAX to finish
+    # Add another contact.
+    And I press "Add new contact"
+    And I wait for AJAX to finish
+    And I fill in "Name" with "Name of the organisation contact 2" in the "Organisation contact" region
 
-    When I press "Save"
+    And I fill in "Term" with "Overview Term text"
+    And I fill in "Description" with "Overview Description text"
+
+    And I press "Save"
     Then I should see "Organisation My organisation has been created."
     And I should see "My Organisation"
     And I should see "Organisation introduction"
@@ -57,8 +66,8 @@ Feature: Organisation content creation
     And I should see "Organisation Acronym"
     And I should see "Organisation teaser text"
 
-    # Organisation contact values.
-    And I should see the text "Name of the organisation contact"
+    # Organisation contacts values.
+    And I should see the text "Name of the organisation contact 1"
     And I should see the text "Back street 3"
     And I should see the text "Budapest"
     And I should see the text "9000"
@@ -66,18 +75,23 @@ Feature: Organisation content creation
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
     And I should see the link "Email"
+    And I should see the text "Name of the organisation contact 2"
 
     # Assert organisation type for EU organisations.
     And I should see "Organisation type EU organisation"
     And I should see "EU organisation Audit Board of the European Communities"
     And I should see "EU organisation type European Union corporate body"
 
+    # Assert overview field values.
+    And I should see the text "Overview Term text"
+    And I should see the text "Overview Description text"
+
     # Assert organisation type for non-EU organisations.
     When I click "Edit"
     And I select "Non-EU organisation" from "Organisation type"
     And I select "non-governmental organisation" from "Non-EU organisation type"
 
-    When I press "Save"
+    And I press "Save"
     Then I should see "Organisation type non-EU organisation"
     And I should see "Non-EU organisation type non-governmental organisation"
 
@@ -85,7 +99,7 @@ Feature: Organisation content creation
     When I click "Edit"
     And I fill in "Use existing media" with "Euro with miniature figurines"
 
-    When I press "Save"
+    And I press "Save"
     Then I should see "Organisation My organisation has been updated."
     And I should see "Euro with miniature figurines"
 
