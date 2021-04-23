@@ -75,7 +75,7 @@ class PublicationContentContext extends RawDrupalContext {
         // Set Media entity reference fields.
         case 'Files':
         case 'Thumbnail':
-          $fields = $this->getReferenceField($field_config, 'media', $value);
+          $fields = $this->getReferenceField($field_config, 'document', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
