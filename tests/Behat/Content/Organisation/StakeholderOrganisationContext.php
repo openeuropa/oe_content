@@ -46,7 +46,7 @@ class StakeholderOrganisationContext extends RawDrupalContext {
       switch ($key) {
         // Set Media entity reference fields.
         case 'Logo':
-          $fields = $this->getReferenceField($field_config, 'media', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

@@ -41,7 +41,7 @@ class DocumentDocumentReferenceContext extends RawDrupalContext {
       switch ($key) {
         // Set Media entity reference fields.
         case 'Document':
-          $fields = $this->getReferenceField($field_config, 'document', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

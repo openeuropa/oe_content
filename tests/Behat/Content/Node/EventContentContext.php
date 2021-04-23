@@ -85,7 +85,7 @@ class EventContentContext extends RawDrupalContext {
           break;
 
         case 'Featured media':
-          $fields = $this->getReferenceField($field_config, 'media', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -98,7 +98,7 @@ class EventContentContext extends RawDrupalContext {
         case 'Type':
         case 'Languages':
         case 'Internal organiser':
-          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

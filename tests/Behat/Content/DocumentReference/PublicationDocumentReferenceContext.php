@@ -41,7 +41,7 @@ class PublicationDocumentReferenceContext extends RawDrupalContext {
       switch ($key) {
         // Set Node entity reference fields.
         case 'Publication':
-          $fields = $this->getReferenceField($field_config, 'node', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

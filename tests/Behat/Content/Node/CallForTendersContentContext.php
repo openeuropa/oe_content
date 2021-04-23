@@ -58,13 +58,13 @@ class CallForTendersContentContext extends RawDrupalContext {
       switch ($key) {
         // Set SKOS Concept entity reference fields.
         case 'Responsible department':
-          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         // Set Media entity reference fields.
         case 'Documents':
-          $fields = $this->getReferenceField($field_config, 'media', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

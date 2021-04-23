@@ -72,7 +72,7 @@ class ConsultationContentContext extends RawDrupalContext {
 
         // Set SKOS Concept entity reference fields.
         case 'Departments':
-          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -103,7 +103,7 @@ class ConsultationContentContext extends RawDrupalContext {
           break;
 
         case 'Outcome files':
-          $fields = $this->getReferenceField($field_config, 'media', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

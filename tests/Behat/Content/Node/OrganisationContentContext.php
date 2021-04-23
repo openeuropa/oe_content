@@ -56,7 +56,7 @@ class OrganisationContentContext extends RawDrupalContext {
         // Set SKOS Concept entity reference fields.
         case 'EU organisation':
         case 'Non-EU organisation':
-          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -67,7 +67,7 @@ class OrganisationContentContext extends RawDrupalContext {
           break;
 
         case 'Logo':
-          $fields = $this->getReferenceField($field_config, 'media', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

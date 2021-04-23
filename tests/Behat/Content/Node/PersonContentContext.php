@@ -72,7 +72,7 @@ class PersonContentContext extends RawDrupalContext {
         // Set SKOS Concept entity reference fields.
         case 'Gender':
         case 'Departments':
-          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -81,7 +81,7 @@ class PersonContentContext extends RawDrupalContext {
         case 'Declaration of interests file':
         case 'Media':
         case 'Portrait photo':
-          $fields = $this->getReferenceField($field_config, 'media', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

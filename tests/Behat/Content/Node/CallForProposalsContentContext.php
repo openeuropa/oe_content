@@ -66,13 +66,13 @@ class CallForProposalsContentContext extends RawDrupalContext {
         case 'Responsible department':
         case 'Funding programme':
         case 'Subject':
-          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         // Set Media entity reference fields.
         case 'Documents':
-          $fields = $this->getReferenceField($field_config, 'media', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

@@ -62,7 +62,7 @@ class PublicationContentContext extends RawDrupalContext {
         case 'Country':
         case 'Related department':
         case 'Resource type':
-          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -75,7 +75,7 @@ class PublicationContentContext extends RawDrupalContext {
         // Set Media entity reference fields.
         case 'Files':
         case 'Thumbnail':
-          $fields = $this->getReferenceField($field_config, 'document', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

@@ -68,14 +68,14 @@ class ProjectContentContext extends RawDrupalContext {
         // Set SKOS Concept entity reference fields.
         case 'Departments':
         case 'Funding programme':
-          $fields = $this->getReferenceField($field_config, 'skos_concept', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         // Set Media entity reference fields.
         case 'Documents':
         case 'Featured media':
-          $fields = $this->getReferenceField($field_config, 'media', $value);
+          $fields = $this->getReferenceField($field_config, $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

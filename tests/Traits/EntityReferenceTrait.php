@@ -15,16 +15,14 @@ trait EntityReferenceTrait {
    * Get reference field in a multi-value, parsable format.
    *
    * @param \Drupal\field\FieldConfigInterface $field_config
-   *   Reference field name.
-   * @param string $entity_type
-   *   Entity type machine name.
+   *   Reference field config.
    * @param string $labels
    *   Entity labels, comma separated.
    *
    * @return array
    *   Expanded field name with comma separated list of target IDs.
    */
-  protected function getReferenceField(FieldConfigInterface $field_config, string $entity_type, string $labels): array {
+  protected function getReferenceField(FieldConfigInterface $field_config, string $labels): array {
     /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface $handler */
     $handler = \Drupal::service('plugin.manager.entity_reference_selection')->getSelectionHandler($field_config);
     // Transform titles to ids and maintain the comma separated format.
@@ -32,7 +30,8 @@ trait EntityReferenceTrait {
     $items = array_map('trim', $items);
     $ids = [];
     foreach ($items as $item) {
-      $ids[] = key($handler->getReferenceableEntities($item)[$entity_type]);
+      $found_entities = $handler->getReferenceableEntities($item);
+      $ids[] = key(reset($found_entities));
     }
 
     return [
