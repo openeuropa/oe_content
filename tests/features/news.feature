@@ -60,11 +60,13 @@ Feature: News content creation
     And I fill in "Postal code" with "9000" in the "News contact" region
     And I fill in "City" with "Budapest" in the "News contact" region
     And I fill in "Office" with "News contact office" in the "News contact" region
-    And I fill in "URL" with "mailto:example@email.com" in the "News contact social media links" region
-    And I fill in "Link text" with "News contact social link email" in the "News contact social media links" region
+    And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
+    And I fill in "Link text" with "News contact social link email" in the "Contact social media links" region
     And I fill in "Media item" with "Contact image" in the "News contact" region
     And I fill in "Caption" with "News contact caption" in the "News contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "News contact" region
+    And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
+    And I fill in "Link text" with "Contact link" in the "Contact link" region
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     When I press "Save"
     # News contact values.
@@ -85,6 +87,7 @@ Feature: News content creation
     And I should see the link "Contact image"
     And I should see the text "News contact caption"
     And I should see the link "http://example.com/press_contacts"
+    And I should see the link "Contact link"
 
     Then I should see "My News item"
     And I should not see "Navi title"

@@ -87,6 +87,8 @@ Feature: Call for proposals content creation and editing.
     And I fill in "Media item" with "Contact image" in the "Call for proposals contact" region
     And I fill in "Caption" with "Call for proposals contact caption" in the "Call for proposals contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Call for proposals contact" region
+    And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
+    And I fill in "Link text" with "Contact link" in the "Contact link" region
     And I fill in "Alternative title" with "Alternative title 1"
     And I fill in "Navigation title" with "Navi title 1"
     And I fill in "Redirect link" with "http://example.com"
@@ -118,6 +120,7 @@ Feature: Call for proposals content creation and editing.
     And I should see the link "Contact image"
     And I should see the text "Call for proposals contact caption"
     And I should see the link "http://example.com/press_contacts"
+    And I should see the link "Contact link"
     And I should not see "Alternative title 1"
     And I should not see "Navi title 1"
 

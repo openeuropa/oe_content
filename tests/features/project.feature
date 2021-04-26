@@ -102,6 +102,8 @@ Feature: Project content creation
     And I fill in "Media item" with "Contact image" in the "Project contact" region
     And I fill in "Caption" with "Project contact caption" in the "Project contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Project contact" region
+    And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
+    And I fill in "Link text" with "Contact link" in the "Contact link" region
 
     # Fill in Project locations field.
     And I select "Spain" from "Country" in the "Project locations" region
@@ -172,6 +174,7 @@ Feature: Project content creation
     And I should see the link "Contact image"
     And I should see the text "Project contact caption"
     And I should see the link "http://example.com/press_contacts"
+    And I should see the link "Contact link"
 
     # Assert project locations values.
     And I should see the text "Spain"
