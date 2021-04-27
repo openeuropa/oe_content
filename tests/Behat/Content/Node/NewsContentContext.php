@@ -52,7 +52,7 @@ class NewsContentContext extends RawDrupalContext {
       // Handle entity references.
       switch ($key) {
         case 'Contacts':
-          $fields = $this->getReferenceRevisionField('oe_news_contacts', 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

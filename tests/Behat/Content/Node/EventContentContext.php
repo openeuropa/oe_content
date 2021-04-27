@@ -64,18 +64,16 @@ class EventContentContext extends RawDrupalContext {
       'Event website' => 'oe_event_website',
       'Social media links' => 'oe_social_media_links',
       'Teaser' => 'oe_teaser',
+      'Venue' => 'oe_event_venue',
+      'Contact' => 'oe_event_contact',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
       // Handle entity references.
       switch ($key) {
         case 'Venue':
-          $fields = $this->getReferenceRevisionField('oe_event_venue', 'oe_venue', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
         case 'Contact':
-          $fields = $this->getReferenceRevisionField('oe_event_contact', 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

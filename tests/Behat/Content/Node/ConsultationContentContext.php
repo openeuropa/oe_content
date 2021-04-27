@@ -61,7 +61,7 @@ class ConsultationContentContext extends RawDrupalContext {
     foreach ($scope->getFields() as $key => $value) {
       switch ($key) {
         case 'Contacts':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

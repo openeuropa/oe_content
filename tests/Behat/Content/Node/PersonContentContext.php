@@ -76,12 +76,8 @@ class PersonContentContext extends RawDrupalContext {
           break;
 
         case 'Organisation':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_organisation', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
         case 'Contacts':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

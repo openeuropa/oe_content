@@ -65,7 +65,7 @@ class PublicationContentContext extends RawDrupalContext {
 
         // Set Contact entity reference field.
         case 'Contact':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

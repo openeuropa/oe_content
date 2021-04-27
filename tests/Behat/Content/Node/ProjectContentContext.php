@@ -71,18 +71,10 @@ class ProjectContentContext extends RawDrupalContext {
 
         // Set entity_reference_revisions fields.
         case 'Result files':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'media', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
         case 'Coordinators':
         case 'Participants':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_organisation', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
         case 'Project contact':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

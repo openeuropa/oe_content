@@ -20,7 +20,6 @@ trait EntityReferenceTrait {
    *   The bundle.
    * @param string $field_name
    *   The field name.
-   *   Reference field config.
    * @param string $labels
    *   Entity labels, comma separated.
    *
