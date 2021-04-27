@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content\Node;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
@@ -64,24 +63,15 @@ class PersonContentContext extends RawDrupalContext {
     ];
 
     foreach ($scope->getFields() as $key => $value) {
-      $field_config = NULL;
-      if (isset($mapping[$key])) {
-        $field_config = FieldConfig::loadByName($scope->getEntityType(), $scope->getBundle(), $mapping[$key]);
-      }
       switch ($key) {
-        // Set SKOS Concept entity reference fields.
+        // Set entity reference fields.
         case 'Gender':
         case 'Departments':
-          $fields = $this->getReferenceField($field_config, $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
-        // Set Media entity reference fields.
         case 'CV upload':
         case 'Declaration of interests file':
         case 'Media':
         case 'Portrait photo':
-          $fields = $this->getReferenceField($field_config, $value);
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

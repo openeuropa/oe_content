@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content\PersonJob;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
@@ -37,14 +36,10 @@ class DefaultPersonJobContext extends RawDrupalContext {
     ];
 
     foreach ($scope->getFields() as $key => $value) {
-      $field_config = NULL;
-      if (isset($mapping[$key])) {
-        $field_config = FieldConfig::loadByName($scope->getEntityType(), $scope->getBundle(), $mapping[$key]);
-      }
       switch ($key) {
         // Set SKOS Concept entity reference fields.
         case 'Role reference':
-          $fields = $this->getReferenceField($field_config, $value);
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

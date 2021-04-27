@@ -8,7 +8,6 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
@@ -60,19 +59,16 @@ class ConsultationContentContext extends RawDrupalContext {
     ];
 
     foreach ($scope->getFields() as $key => $value) {
-      $field_config = NULL;
-      if (isset($mapping[$key])) {
-        $field_config = FieldConfig::loadByName($scope->getEntityType(), $scope->getBundle(), $mapping[$key]);
-      }
       switch ($key) {
         case 'Contacts':
           $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
-        // Set SKOS Concept entity reference fields.
+        // Set entity reference fields.
         case 'Departments':
-          $fields = $this->getReferenceField($field_config, $value);
+        case 'Outcome files':
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -100,11 +96,6 @@ class ConsultationContentContext extends RawDrupalContext {
               'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
             ]);
           $scope->addFields([$mapping[$key] => $date])->removeField($key);
-          break;
-
-        case 'Outcome files':
-          $fields = $this->getReferenceField($field_config, $value);
-          $scope->addFields($fields)->removeField($key);
           break;
 
         // Set content published status.

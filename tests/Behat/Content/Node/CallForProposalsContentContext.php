@@ -8,7 +8,6 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -57,22 +56,13 @@ class CallForProposalsContentContext extends RawDrupalContext {
     ];
 
     foreach ($scope->getFields() as $key => $value) {
-      $field_config = NULL;
-      if (isset($mapping[$key])) {
-        $field_config = FieldConfig::loadByName($scope->getEntityType(), $scope->getBundle(), $mapping[$key]);
-      }
       switch ($key) {
-        // Set SKOS Concept entity reference fields.
+        // Set entity reference fields.
         case 'Responsible department':
         case 'Funding programme':
         case 'Subject':
-          $fields = $this->getReferenceField($field_config, $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
-        // Set Media entity reference fields.
         case 'Documents':
-          $fields = $this->getReferenceField($field_config, $value);
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
