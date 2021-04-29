@@ -176,27 +176,3 @@ function _oe_content_person_validate_person_job_entity(PersonJobInterface $entit
 
   return TRUE;
 }
-
-/**
- * Implements hook_modules_installed().
- */
-function oe_content_person_modules_installed($modules, $is_syncing) {
-  if (in_array('oe_content_organisation', $modules)) {
-    // Add oe_organisation bundle to organisation field.
-    /** @var \Drupal\Core\Field\FieldConfigInterface $field */
-    $field = FieldConfig::load('node.oe_person.oe_person_organisation');
-    $handler_settings = $field->getSetting('handler_settings');
-    $handler_settings['target_bundles']['oe_organisation'] = 'oe_organisation';
-    $field->setSetting('handler_settings', $handler_settings);
-    $field->save();
-    if (!in_array('oe_content_organisation_reference', $modules)) {
-      // Add oe_organisation_reference bundle to contacts field.
-      \Drupal::service('module_installer')->install(['oe_content_organisation_reference']);
-      $field = FieldConfig::load('node.oe_person.oe_person_contacts');
-      $handler_settings = $field->getSetting('handler_settings');
-      $handler_settings['target_bundles']['oe_organisation_reference'] = 'oe_organisation_reference';
-      $field->setSetting('handler_settings', $handler_settings);
-      $field->save();
-    }
-  }
-}
