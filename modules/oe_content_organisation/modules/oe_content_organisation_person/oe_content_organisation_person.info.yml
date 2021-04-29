@@ -1,0 +1,14 @@
+name: OpenEuropa Organisation Person Reference
+description: Allows to reference persons inside organisation nodes.
+package: OpenEuropa
+type: module
+core_version_requirement: ^8 || ^9
+
+dependencies:
+  - oe_content:oe_content_person
+  - oe_content:oe_content_organisation
+
+config_devel:
+  install:
+    - field.field.node.oe_organisation.oe_organisation_persons
+    - field.storage.node.oe_organisation_persons

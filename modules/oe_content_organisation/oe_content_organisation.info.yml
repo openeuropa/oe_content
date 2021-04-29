@@ -15,7 +15,7 @@ dependencies:
   - oe_media:oe_media_avportal
   - description_list_field:description_list_field
   - oe_media:oe_media
-  - oe_content:oe_content_person
+  - oe_content:oe_content_organisation_person
 
 config_devel:
   install:
@@ -33,7 +33,6 @@ config_devel:
     - field.field.node.oe_organisation.oe_organisation_org_chart
     - field.field.node.oe_organisation.oe_organisation_org_type
     - field.field.node.oe_organisation.oe_organisation_overview
-    - field.field.node.oe_organisation.oe_organisation_persons
     - field.field.node.oe_organisation.oe_organisation_staff_search_link
     - field.storage.node.oe_organisation_acronym
     - field.storage.node.oe_organisation_contact
@@ -44,7 +43,6 @@ config_devel:
     - field.storage.node.oe_organisation_org_chart
     - field.storage.node.oe_organisation_org_type
     - field.storage.node.oe_organisation_overview
-    - field.storage.node.oe_organisation_persons
     - field.storage.node.oe_organisation_staff_search_link
     - node.type.oe_organisation
   optional:
