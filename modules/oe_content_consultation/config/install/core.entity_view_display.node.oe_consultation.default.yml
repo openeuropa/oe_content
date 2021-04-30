@@ -33,33 +33,33 @@ bundle: oe_consultation
 mode: default
 content:
   links:
-    weight: 100
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
   oe_consultation_additional_info:
-    weight: 115
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   oe_consultation_aim:
-    weight: 111
+    weight: 9
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   oe_consultation_closed_text:
-    weight: 112
+    weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   oe_consultation_contacts:
-    weight: 117
+    weight: 15
     label: above
     settings:
       view_mode: default
@@ -68,7 +68,7 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   oe_consultation_deadline:
-    weight: 106
+    weight: 5
     label: above
     settings:
       format_type: medium
@@ -77,7 +77,7 @@ content:
     type: datetime_default
     region: content
   oe_consultation_documents:
-    weight: 119
+    weight: 17
     label: above
     settings:
       view_mode: default
@@ -86,21 +86,21 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   oe_consultation_guidelines:
-    weight: 110
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   oe_consultation_legal_info:
-    weight: 116
+    weight: 14
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   oe_consultation_opening_date:
-    weight: 105
+    weight: 4
     label: above
     settings:
       format_type: medium
@@ -109,7 +109,7 @@ content:
     type: datetime_default
     region: content
   oe_consultation_outcome:
-    weight: 114
+    weight: 12
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -117,7 +117,7 @@ content:
     region: content
   oe_consultation_outcome_files:
     type: entity_reference_entity_view
-    weight: 118
+    weight: 16
     label: above
     settings:
       view_mode: default
@@ -125,7 +125,7 @@ content:
     third_party_settings: {  }
     region: content
   oe_consultation_response_button:
-    weight: 113
+    weight: 11
     label: above
     settings:
       trim_length: 80
@@ -137,14 +137,22 @@ content:
     type: link
     region: content
   oe_consultation_target_audience:
-    weight: 108
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
+  oe_content_short_title:
+    type: string
+    weight: 18
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_departments:
-    weight: 107
+    weight: 6
     label: above
     settings:
       link: true
@@ -152,7 +160,7 @@ content:
     type: skos_concept_entity_reference_label
     region: content
   oe_subject:
-    weight: 101
+    weight: 1
     label: above
     settings:
       link: true
@@ -160,14 +168,14 @@ content:
     type: skos_concept_entity_reference_label
     region: content
   oe_summary:
-    weight: 103
+    weight: 3
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   oe_teaser:
-    weight: 102
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -178,4 +186,3 @@ hidden:
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
-  oe_content_short_title: true
