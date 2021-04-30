@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.field.node.oe_organisation.body
     - field.field.node.oe_organisation.oe_organisation_org_chart
-    - field.field.node.oe_organisation.oe_organisation_persons
     - field.field.node.oe_organisation.oe_org_staff_search_link
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
@@ -89,12 +88,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  oe_organisation_persons:
-    weight: 29
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   oe_org_staff_search_link:
     weight: 28

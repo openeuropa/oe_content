@@ -89,12 +89,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  oe_organisation_persons:
-    weight: 29
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   oe_org_staff_search_link:
     weight: 28
     settings:

@@ -30,7 +30,6 @@ function oe_content_organisation_post_update_00002(): void {
     'description_list_field',
     'oe_media',
     'oe_content_person',
-    'oe_content_organisation_person',
   ]);
 }
 

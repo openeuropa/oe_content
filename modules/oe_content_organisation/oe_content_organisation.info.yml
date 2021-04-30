@@ -15,7 +15,6 @@ dependencies:
   - oe_media:oe_media_avportal
   - description_list_field:description_list_field
   - oe_media:oe_media
-  - oe_content:oe_content_organisation_person
 
 config_devel:
   install:
