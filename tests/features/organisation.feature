@@ -66,7 +66,7 @@ Feature: Organisation content creation
     And I fill in "Use existing media" with "My Document 1" in the "Organisation chart" region
     And I fill in "URL" with "http://example.com"
     And I fill in "Link text" with "Staff search"
-    And I select "Jane Doe" from "Persons"
+    And I fill in "Persons" with "Jane Doe"
 
     And I press "Save"
     Then I should see "Organisation My organisation has been created."

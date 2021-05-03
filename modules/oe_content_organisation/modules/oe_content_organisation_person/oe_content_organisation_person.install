@@ -20,9 +20,14 @@ function oe_content_organisation_person_install(): void {
   if ($form_display) {
     $oe_organisation_persons = [
       'weight' => 29,
-      'settings' => [],
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+        'match_limit' => 10,
+        'size' => 60,
+        'placeholder' => '',
+      ],
       'third_party_settings' => [],
-      'type' => 'options_select',
+      'type' => 'entity_reference_autocomplete',
       'region' => 'content',
     ];
     $content = $form_display->get('content');
