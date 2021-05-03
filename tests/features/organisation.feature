@@ -135,7 +135,7 @@ Feature: Organisation content creation
       | Body text         | Organisation body text         |
       | Organisation type | EU organisation                |
       | EU organisation   | Directorate-General for Budget |
-      | Contact           | A general contact              |
+      | Contacts          | A general contact              |
     When I am visiting the "Organisation demo page" content
     And I click "Edit"
     And I press "Remove"
