@@ -44,10 +44,8 @@ trait EntityReferenceRevisionTrait {
         $query->condition($group);
       }
     }
-    else {
-      if (!empty($configuration['target_bundles']) && is_array($configuration['target_bundles'])) {
-        $query->condition($target_entity_type->getKey('bundle'), $configuration['target_bundles'], 'IN');
-      }
+    elseif (!empty($configuration['target_bundles']) && is_array($configuration['target_bundles'])) {
+      $query->condition($target_entity_type->getKey('bundle'), $configuration['target_bundles'], 'IN');
     }
     // Transform titles to ids and maintain the comma separated format.
     $items = explode(',', $labels);
@@ -55,14 +53,12 @@ trait EntityReferenceRevisionTrait {
     $ids = [];
     $revision_ids = [];
     foreach ($items as $item) {
-      if ($label_key = $target_entity_type->getKey('label')) {
-        $query_instance = clone $query;
-        $query_instance->condition($label_key, $item, 'CONTAINS');
-        $results = $query->execute();
-        $entity = $entity_type_manager->getStorage($target_entity_type->id())->load(reset($results));
-        $ids[] = $entity->id();
-        $revision_ids[] = $entity->getRevisionId();
-      }
+      $query_instance = clone $query;
+      $query_instance->condition($target_entity_type->getKey('label'), $item, '=');
+      $results = $query_instance->execute();
+      $entity = $entity_type_manager->getStorage($target_entity_type->id())->load(reset($results));
+      $ids[] = $entity->id();
+      $revision_ids[] = $entity->getRevisionId();
     }
 
     // For revision reference field we have give the target_revision_id.
