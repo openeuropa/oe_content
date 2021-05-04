@@ -3,8 +3,8 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_organisation.body
-    - field.field.node.oe_organisation.oe_organisation_org_chart
-    - field.field.node.oe_organisation.oe_org_staff_search_link
+    - field.field.node.oe_organisation.oe_organisation_chart
+    - field.field.node.oe_organisation.oe_organisation_staff_link
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
     - field.field.node.oe_organisation.oe_organisation_eu_org
@@ -79,7 +79,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_organisation_org_chart:
+  oe_organisation_chart:
     weight: 27
     settings:
       match_operator: CONTAINS
@@ -89,7 +89,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  oe_org_staff_search_link:
+  oe_organisation_staff_link:
     weight: 28
     settings:
       placeholder_url: ''

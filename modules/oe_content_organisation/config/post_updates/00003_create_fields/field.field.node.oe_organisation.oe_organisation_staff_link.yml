@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_org_staff_search_link
+    - field.storage.node.oe_organisation_staff_link
     - node.type.oe_organisation
   module:
     - link
-id: node.oe_organisation.oe_org_staff_search_link
-field_name: oe_org_staff_search_link
+id: node.oe_organisation.oe_organisation_staff_link
+field_name: oe_organisation_staff_link
 entity_type: node
 bundle: oe_organisation
 label: 'Staff search link'

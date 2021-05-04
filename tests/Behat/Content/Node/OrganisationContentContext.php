@@ -45,8 +45,8 @@ class OrganisationContentContext extends RawDrupalContext {
       'Teaser' => 'oe_teaser',
       'Title' => 'title',
       'Persons' => 'oe_organisation_persons',
-      'Organisation chart' => 'oe_organisation_org_chart',
-      'Staff search link' => 'oe_org_staff_search_link',
+      'Organisation chart' => 'oe_organisation_chart',
+      'Staff search link' => 'oe_organisation_staff_link',
     ];
 
     foreach ($scope->getFields() as $key => $value) {

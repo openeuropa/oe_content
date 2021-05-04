@@ -10,7 +10,6 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\oe_content\Utility\ContentFormUtilities;
 use Drupal\oe_content_person\Entity\PersonJobInterface;
 use Drupal\oe_content_person\PersonNodeWrapper;

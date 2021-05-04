@@ -4,8 +4,8 @@ dependencies:
   module:
     - link
     - node
-id: node.oe_org_staff_search_link
-field_name: oe_org_staff_search_link
+id: node.oe_organisation_staff_link
+field_name: oe_organisation_staff_link
 entity_type: node
 type: link
 settings: {  }

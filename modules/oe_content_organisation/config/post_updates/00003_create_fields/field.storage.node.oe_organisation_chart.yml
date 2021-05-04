@@ -4,8 +4,8 @@ dependencies:
   module:
     - media
     - node
-id: node.oe_organisation_org_chart
-field_name: oe_organisation_org_chart
+id: node.oe_organisation_chart
+field_name: oe_organisation_chart
 entity_type: node
 type: entity_reference
 settings:
@@ -13,7 +13,7 @@ settings:
 module: core
 locked: false
 cardinality: -1
-translatable: true
+translatable: false
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_organisation_org_chart
+    - field.storage.node.oe_organisation_chart
     - media.type.document
     - node.type.oe_organisation
   module:
@@ -10,8 +10,8 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
-id: node.oe_organisation.oe_organisation_org_chart
-field_name: oe_organisation_org_chart
+id: node.oe_organisation.oe_organisation_chart
+field_name: oe_organisation_chart
 entity_type: node
 bundle: oe_organisation
 label: 'Organisation chart'
