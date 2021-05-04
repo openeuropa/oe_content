@@ -21,7 +21,7 @@
         "drupal/composite_reference": "~1.0-alpha2",
         "drupal/config_devel": "~1.2",
         "drupal/datetime_testing": "1.x-dev",
-        "drupal/description_list_field": "~1.0.x-dev",
+        "drupal/description_list_field": "1.0.x-dev",
         "drupal/drupal-extension": "~4.0",
         "drupal/entity_browser": "^2.5",
         "drupal/entity_embed": "~1.0",
