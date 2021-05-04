@@ -3,8 +3,8 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_page.body
-    - field.field.node.oe_page.oe_related_links
     - field.field.node.oe_page.oe_author
+    - field.field.node.oe_page.oe_related_links
     - field.field.node.oe_page.oe_subject
     - field.field.node.oe_page.oe_summary
     - field.field.node.oe_page.oe_teaser
@@ -25,9 +25,17 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  oe_content_short_title:
+    type: string
+    weight: 3
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_related_links:
     type: link
-    weight: 1
+    weight: 4
     region: content
     label: hidden
     settings:
@@ -37,13 +45,25 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
+  oe_summary:
+    type: text_default
+    weight: 1
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  oe_teaser:
+    type: text_default
+    weight: 2
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
 hidden:
+  langcode: true
   links: true
+  oe_author: true
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
-  oe_content_short_title: true
-  oe_author: true
   oe_subject: true
-  oe_summary: true
-  oe_teaser: true
