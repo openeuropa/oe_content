@@ -43,7 +43,7 @@ function oe_content_organisation_post_update_00003(): void {
 }
 
 /**
- * Update entity form display.
+ * Allow Persons to be referenced and update the form display.
  */
 function oe_content_organisation_post_update_00004(): void {
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_organisation') . '/config/post_updates/00004_update_form_display');
@@ -56,6 +56,11 @@ function oe_content_organisation_post_update_00004(): void {
       ->updateFromStorageRecord($form_display, $form_display_values);
     $updated_form_display->save();
   }
+
+  // Install submodule to allow referencing Person content types.
+  \Drupal::service('module_installer')->install([
+    'oe_content_organisation_person',
+  ]);
 }
 
 /**
