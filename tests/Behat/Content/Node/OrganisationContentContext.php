@@ -39,11 +39,14 @@ class OrganisationContentContext extends RawDrupalContext {
       'Non-EU organisation' => 'oe_organisation_non_eu_org_type',
       'Published' => 'status',
       'Acronym' => 'oe_organisation_acronym',
-      'Contact' => 'oe_organisation_contact',
+      'Contacts' => 'oe_organisation_contact',
       'Logo' => 'oe_organisation_logo',
       'Introduction' => 'oe_summary',
       'Teaser' => 'oe_teaser',
       'Title' => 'title',
+      'Persons' => 'oe_organisation_persons',
+      'Organisation chart' => 'oe_organisation_chart',
+      'Staff search link' => 'oe_organisation_staff_link',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -56,13 +59,21 @@ class OrganisationContentContext extends RawDrupalContext {
           break;
 
         // Set Contact entity reference field.
-        case 'Contact':
+        case 'Contacts':
           $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
+        // Set Media entity reference fields.
         case 'Logo':
+        case 'Organisation chart':
           $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $scope->addFields($fields)->removeField($key);
+          break;
+
+        // Set Person entity reference field.
+        case 'Persons':
+          $fields = $this->getReferenceRevisionField($mapping[$key], 'node', $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

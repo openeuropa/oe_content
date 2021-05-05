@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Organisation Person installation file.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_organisation_person_reference_install(): void {
+  // Add the persons entity reference field to the entity form display.
+  /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
+  $form_display = EntityFormDisplay::load('node.oe_organisation.default');
+  if ($form_display instanceof EntityFormDisplayInterface) {
+    $oe_organisation_persons = [
+      'weight' => 29,
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+        'match_limit' => 10,
+        'size' => 60,
+        'placeholder' => '',
+      ],
+      'third_party_settings' => [],
+      'type' => 'entity_reference_autocomplete',
+      'region' => 'content',
+    ];
+    $content = $form_display->get('content');
+    if (!isset($content['oe_organisation_persons'])) {
+      $content['oe_organisation_persons'] = $oe_organisation_persons;
+    }
+    $form_display->set('content', $content);
+    $form_display->save();
+  }
+  // Add the persons entity reference field to the entity view display.
+  /** @var \Drupal\Core\Entity\Display\EntityViewDisplayInterface $view_display */
+  $view_display = EntityViewDisplay::load('node.oe_organisation.default');
+  if (!$view_display) {
+    return;
+  }
+  $oe_organisation_persons =[
+    'weight' => 14,
+    'label' => 'above',
+    'settings' => [
+      'link' => TRUE,
+      'view_mode' => 'default',
+    ],
+    'third_party_settings' => [],
+    'type' => 'entity_reference_entity_view',
+    'region' => 'content',
+  ];
+  $content = $view_display->get('content');
+  if (!isset($content['oe_organisation_persons'])) {
+    $content['oe_organisation_persons'] = $oe_organisation_persons;
+  }
+  $view_display->set('content', $content);
+  $view_display->save();
+}

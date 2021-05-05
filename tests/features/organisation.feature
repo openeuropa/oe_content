@@ -13,6 +13,13 @@ Feature: Organisation content creation
     And the following AV Portal photo:
       | url                                                         |
       | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
+    And the following Person Content entity:
+      | First name | Jane   |
+      | Last name  | Doe    |
+      | Gender     | female |
+    And the following document:
+      | name          | file       |
+      | My Document 1 | sample.pdf |
 
     When I visit "the Organisation creation page"
     And I fill in "Page title" with "My Organisation"
@@ -56,6 +63,10 @@ Feature: Organisation content creation
 
     And I fill in "Term" with "Overview Term text"
     And I fill in "Description" with "Overview Description text"
+    And I fill in "Use existing media" with "My Document 1" in the "Organisation chart" region
+    And I fill in "URL" with "http://example.com"
+    And I fill in "Link text" with "Staff search"
+    And I fill in "Persons" with "Jane Doe"
 
     And I press "Save"
     Then I should see "Organisation My organisation has been created."
@@ -86,6 +97,15 @@ Feature: Organisation content creation
     And I should see the text "Overview Term text"
     And I should see the text "Overview Description text"
 
+    # Assert organisation chart value.
+    And I should see "sample.pdf"
+
+    # Assert referenced person.
+    And I should see the text "Jane Doe"
+
+    # Assert the staff search link value.
+    And I should see the link "Staff search"
+
     # Assert organisation type for non-EU organisations.
     When I click "Edit"
     And I select "Non-EU organisation" from "Organisation type"
@@ -115,7 +135,7 @@ Feature: Organisation content creation
       | Body text         | Organisation body text         |
       | Organisation type | EU organisation                |
       | EU organisation   | Directorate-General for Budget |
-      | Contact           | A general contact              |
+      | Contacts          | A general contact              |
     When I am visiting the "Organisation demo page" content
     And I click "Edit"
     And I press "Remove"

@@ -14,6 +14,7 @@ dependencies:
   - inline_entity_form:inline_entity_form
   - oe_media:oe_media_avportal
   - description_list_field:description_list_field
+  - oe_media:oe_media
 
 config_devel:
   install:
@@ -28,16 +29,20 @@ config_devel:
     - field.field.node.oe_organisation.oe_organisation_eu_org
     - field.field.node.oe_organisation.oe_organisation_eu_org_type
     - field.field.node.oe_organisation.oe_organisation_non_eu_org_type
+    - field.field.node.oe_organisation.oe_organisation_chart
     - field.field.node.oe_organisation.oe_organisation_org_type
     - field.field.node.oe_organisation.oe_organisation_overview
+    - field.field.node.oe_organisation.oe_organisation_staff_link
     - field.storage.node.oe_organisation_acronym
     - field.storage.node.oe_organisation_contact
     - field.storage.node.oe_organisation_logo
     - field.storage.node.oe_organisation_eu_org
     - field.storage.node.oe_organisation_eu_org_type
     - field.storage.node.oe_organisation_non_eu_org_type
+    - field.storage.node.oe_organisation_chart
     - field.storage.node.oe_organisation_org_type
     - field.storage.node.oe_organisation_overview
+    - field.storage.node.oe_organisation_staff_link
     - node.type.oe_organisation
   optional:
     - language.content_settings.node.oe_organisation
