@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
@@ -17,7 +18,7 @@ function oe_content_organisation_person_reference_install(): void {
   // Add the persons entity reference field to the entity form display.
   /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
   $form_display = EntityFormDisplay::load('node.oe_organisation.default');
-  if ($form_display) {
+  if ($form_display instanceof EntityFormDisplayInterface) {
     $oe_organisation_persons = [
       'weight' => 29,
       'settings' => [
