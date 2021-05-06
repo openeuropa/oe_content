@@ -3,6 +3,8 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_call_tenders.body
+    - field.field.node.oe_call_tenders.oe_call_tenders_deadline
+    - field.field.node.oe_call_tenders.oe_call_tenders_opening_date
     - field.field.node.oe_call_tenders.oe_departments
     - field.field.node.oe_call_tenders.oe_documents
     - field.field.node.oe_call_tenders.oe_publication_date
@@ -10,8 +12,6 @@ dependencies:
     - field.field.node.oe_call_tenders.oe_subject
     - field.field.node.oe_call_tenders.oe_summary
     - field.field.node.oe_call_tenders.oe_teaser
-    - field.field.node.oe_call_tenders.oe_call_tenders_deadline
-    - field.field.node.oe_call_tenders.oe_call_tenders_opening_date
     - node.type.oe_call_tenders
   module:
     - datetime
@@ -30,6 +30,32 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  oe_call_tenders_deadline:
+    weight: 3
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_call_tenders_opening_date:
+    weight: 2
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_content_short_title:
+    type: string
+    weight: 8
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_departments:
     weight: 4
     label: above
@@ -71,30 +97,23 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_label
     region: content
-  oe_call_tenders_deadline:
-    weight: 3
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
+  oe_summary:
+    type: text_default
+    weight: 9
     region: content
-  oe_call_tenders_opening_date:
-    weight: 2
     label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
+    settings: {  }
     third_party_settings: {  }
-    type: datetime_default
+  oe_teaser:
+    type: text_default
+    weight: 10
     region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
   links: true
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
-  oe_content_short_title: true
-  oe_summary: true
-  oe_teaser: true

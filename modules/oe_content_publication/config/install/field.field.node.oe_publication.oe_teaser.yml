@@ -11,7 +11,7 @@ field_name: oe_teaser
 entity_type: node
 bundle: oe_publication
 label: Teaser
-description: 'A short overview of the information on this page. The teaser will be displayed in list views and search engine results, not on the page itself. Limited to 150 characters for SEO purposes.'
+description: 'A short overview of the information on this page. The teaser will be displayed in list views and search engine results, not on the page itself. Limited to 300 characters for SEO purposes.'
 required: true
 translatable: true
 default_value: {  }

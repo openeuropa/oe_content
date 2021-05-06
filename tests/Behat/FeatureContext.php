@@ -235,19 +235,12 @@ class FeatureContext extends RawDrupalContext {
    *   The table element.
    */
   protected function getMultiColumnFieldTable(string $field): ?NodeElement {
-    $headings = $this->getSession()->getPage()->findAll('css', 'table.field-multiple-table h4.label');
-    $found = FALSE;
-    foreach ($headings as $heading) {
-      if ($heading->getText() === $field) {
-        $found = TRUE;
-        break;
-      }
-    }
-    if (!$found) {
+    $xpath = '//table[contains(concat(" ", normalize-space(@class), " "), " field-multiple-table ")][./descendant::h4[contains(text(), "' . $field . '")]]';
+    $table = $this->getSession()->getPage()->find('xpath', $xpath);
+    if (!$table) {
       throw new \Exception(sprintf('Table for %s field not found', $field));
     }
-
-    return $heading->getParent()->getParent()->getParent()->getParent();
+    return $table;
   }
 
   /**
