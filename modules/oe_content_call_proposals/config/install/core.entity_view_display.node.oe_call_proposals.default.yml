@@ -87,7 +87,7 @@ content:
     region: content
     label: above
     settings:
-      trim_length: 80
+      trim_length: null
       url_only: false
       url_plain: false
       rel: ''
@@ -109,6 +109,14 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
+  oe_content_short_title:
+    type: string
+    weight: 15
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_departments:
     weight: 10
     label: above
@@ -150,6 +158,13 @@ content:
     settings:
       link: true
     third_party_settings: {  }
+  oe_summary:
+    type: text_default
+    weight: 16
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   oe_teaser:
     type: text_default
     weight: 14
@@ -162,5 +177,3 @@ hidden:
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
-  oe_content_short_title: true
-  oe_summary: true
