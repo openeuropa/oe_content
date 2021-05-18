@@ -28,35 +28,21 @@ trait EntityReferenceRevisionTrait {
    */
   protected function getReferenceRevisionField(string $entity_type, string $bundle, string $field_name, string $labels): array {
     $field_config = FieldConfig::loadByName($entity_type, $bundle, $field_name);
-    /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface $handler */
-    $handler = \Drupal::service('plugin.manager.entity_reference_selection')->getSelectionHandler($field_config);
-    $configuration = $handler->getConfiguration();
-    $entity_type_manager = \Drupal::entityTypeManager();
-    $target_entity_type = $entity_type_manager->getDefinition($configuration['target_type']);
-    $query = $entity_type_manager->getStorage($target_entity_type->id())->getQuery();
+    $configuration = \Drupal::service('plugin.manager.entity_reference_selection')->getSelectionHandler($field_config)->getConfiguration();
+    $target_entity_type_id = \Drupal::entityTypeManager()->getDefinition($configuration['target_type'])->id();
 
-    if ($target_entity_type->id() === 'skos_concept') {
-      $concept_schemes = $configuration['concept_schemes'];
-      if (!empty($concept_schemes)) {
-        $group = $query->orConditionGroup()
-          ->condition('in_scheme', $concept_schemes, 'IN')
-          ->condition('top_concept_of', $concept_schemes, 'IN');
-        $query->condition($group);
-      }
-    }
-    elseif (!empty($configuration['target_bundles']) && is_array($configuration['target_bundles'])) {
-      $query->condition($target_entity_type->getKey('bundle'), $configuration['target_bundles'], 'IN');
-    }
     // Transform titles to ids and maintain the comma separated format.
     $items = explode(',', $labels);
     $items = array_map('trim', $items);
     $ids = [];
     $revision_ids = [];
     foreach ($items as $item) {
-      $query_instance = clone $query;
-      $query_instance->condition($target_entity_type->getKey('label'), $item, '=');
-      $results = $query_instance->execute();
-      $entity = $entity_type_manager->getStorage($target_entity_type->id())->load(reset($results));
+      if ($target_entity_type_id === 'skos_concept') {
+        $entity = $this->loadSkosConceptEntityByLabel($item, $configuration['concept_schemes']);
+      }
+      else {
+        $entity = $this->loadEntityByLabel($target_entity_type_id, $item, $configuration['target_bundles']);
+      }
       $ids[] = $entity->id();
       $revision_ids[] = $entity->getRevisionId();
     }
