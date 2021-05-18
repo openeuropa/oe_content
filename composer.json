@@ -11,7 +11,7 @@
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "1.0.0 as 0.9.2",
-        "openeuropa/oe_media": "~1.11",
+        "openeuropa/oe_media": "dev-EWPP-912",
         "openeuropa/rdf_skos": "~1.0"
     },
     "require-dev": {
