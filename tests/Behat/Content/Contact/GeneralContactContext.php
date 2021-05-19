@@ -48,7 +48,7 @@ class GeneralContactContext extends RawDrupalContext {
       switch ($key) {
         // Set Media entity reference fields.
         case 'Image':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
