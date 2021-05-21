@@ -57,20 +57,15 @@ class PublicationContentContext extends RawDrupalContext {
         case 'Country':
         case 'Related department':
         case 'Resource type':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
+        case 'Files':
+        case 'Thumbnail':
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         // Set Contact entity reference field.
         case 'Contact':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
-        // Set Media entity reference fields.
-        case 'Files':
-        case 'Thumbnail':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

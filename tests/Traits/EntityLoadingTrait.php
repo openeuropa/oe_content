@@ -19,13 +19,14 @@ trait EntityLoadingTrait {
    *   Entity type ID.
    * @param string $label
    *   Entity label.
-   * @param string $bundle
-   *   Entity bundle ID.
+   * @param string|array $bundles
+   *   Entity bundle ID, or array of entity bundle IDs.
    *
    * @return \Drupal\Core\Entity\EntityInterface
    *   Entity object, if any.
    */
-  protected function loadEntityByLabel(string $entity_type, string $label, string $bundle = NULL): EntityInterface {
+  protected function loadEntityByLabel(string $entity_type, string $label, $bundles = NULL): EntityInterface {
+    $bundles = (array) $bundles;
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
     $label_key = $storage->getEntityType()->getKey('label');
     $properties = [
@@ -33,14 +34,52 @@ trait EntityLoadingTrait {
     ];
 
     // If bundle is set then add it to the query properties.
-    if ($bundle) {
+    if ($bundles) {
       $bundle_key = $storage->getEntityType()->getKey('bundle');
-      $properties[$bundle_key] = $bundle;
+      $properties[$bundle_key] = $bundles;
     }
     $entities = $storage->loadByProperties($properties);
 
     if (empty($entities)) {
-      throw new \InvalidArgumentException("No '$entity_type' entity of type '$bundle' with label '$label' has been found.");
+      $bundles = $bundles ?? 'of type ' . implode(', ', $bundles);
+      throw new \InvalidArgumentException("No '$entity_type' entity {$bundles}with label '$label' has been found.");
+    }
+
+    return reset($entities);
+  }
+
+  /**
+   * Load SKOS Concept entity by label and, optionally, by concept schemes.
+   *
+   * @param string $label
+   *   Entity label.
+   * @param string|array $concept_schemes
+   *   A concept scheme, or a list of concept schemes.
+   *
+   * @return \Drupal\Core\Entity\EntityInterface
+   *   Entity object, if any.
+   */
+  protected function loadSkosConceptEntityByLabel(string $label, $concept_schemes = NULL): EntityInterface {
+    $concept_schemes = (array) $concept_schemes;
+    $storage = \Drupal::entityTypeManager()->getStorage('skos_concept');
+    $label_key = $storage->getEntityType()->getKey('label');
+    $query = $storage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition($label_key, $label);
+
+    // Restrict query per concept schemes, if any.
+    if ($concept_schemes) {
+      $group = $query->orConditionGroup()
+        ->condition('in_scheme', $concept_schemes, 'IN')
+        ->condition('top_concept_of', $concept_schemes, 'IN');
+      $query->condition($group);
+    }
+    $result = $query->execute();
+    $entities = $storage->loadMultiple($result);
+
+    if (empty($entities)) {
+      $concept_schemes = $concept_schemes ?? 'with concept schemes ' . implode(', ', $concept_schemes);
+      throw new \InvalidArgumentException("No SKOS Concept entity {$concept_schemes}with label '$label' has been found.");
     }
 
     return reset($entities);

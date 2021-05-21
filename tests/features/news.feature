@@ -141,7 +141,6 @@ Feature: News content creation
     And I press "Remove"
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove"
-    And I wait for AJAX to finish
     And I press "Save"
     Then I should see "News Test news has been updated."
     And the General Contact entity with title "A general contact" exists
