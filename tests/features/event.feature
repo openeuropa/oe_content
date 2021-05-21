@@ -430,7 +430,6 @@ Feature: Event content creation
     And I press "Remove" in the "Event contact" region
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove" in the "Event contact" region
-    And I wait for AJAX to finish
     And I press "Save"
     Then I should see "Event Event demo page has been updated."
     And the Default Venue entity with title "A venue" exists

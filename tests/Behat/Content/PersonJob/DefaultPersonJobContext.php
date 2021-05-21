@@ -39,7 +39,7 @@ class DefaultPersonJobContext extends RawDrupalContext {
       switch ($key) {
         // Set SKOS Concept entity reference fields.
         case 'Role reference':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

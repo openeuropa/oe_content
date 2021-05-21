@@ -208,6 +208,7 @@ Feature: Call for proposals content creation and editing.
       | Publication date                    | 2019-02-21                                        |
       | Reference                           | CALL/100/10                                       |
       | Responsible department              | Directorate-General for Budget                    |
+      | Subject                             | export financing                                  |
       | Teaser                              | Teaser                                            |
     When I am visiting the "Proposals demo page" content
     And I click "Edit"

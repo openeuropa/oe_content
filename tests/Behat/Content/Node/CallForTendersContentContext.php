@@ -51,15 +51,10 @@ class CallForTendersContentContext extends RawDrupalContext {
 
     foreach ($scope->getFields() as $key => $value) {
       switch ($key) {
-        // Set SKOS Concept entity reference fields.
+        // Set entity reference fields.
         case 'Responsible department':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
-        // Set Media entity reference fields.
         case 'Documents':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -88,7 +83,7 @@ class CallForTendersContentContext extends RawDrupalContext {
 
     // Set default fields.
     $scope->addFields([
-      'oe_subject' => 'http://data.europa.eu/uxp/10',
+      'oe_subject' => 'http://data.europa.eu/uxp/1010',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AGRI',
     ]);
   }

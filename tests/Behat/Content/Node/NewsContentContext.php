@@ -49,22 +49,17 @@ class NewsContentContext extends RawDrupalContext {
     ];
 
     foreach ($scope->getFields() as $key => $value) {
-
       // Handle entity references.
       switch ($key) {
         case 'Contacts':
-          $fields = $this->getReferenceRevisionField('oe_news_contacts', 'oe_contact', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
-        case 'Featured media':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         case 'News type':
         case 'Location':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
+        case 'Featured media':
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
