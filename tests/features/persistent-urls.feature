@@ -39,8 +39,3 @@ Feature: Persistent URLs
     When I update alias of "News 1" node to "/alias1"
     And I go to "/news-2"
     Then I should see a persistent link for the node "News 1" pointing to "/en/alias1"
-    # Check link to first node with alias for another language.
-    When I update alias of "News 1" node to "/alias1_fr" for "French"
-    And I update alias of "News 2" node to "/news2_fr" for "French"
-    And I go to "/fr/news2_fr"
-    Then I should see a persistent link for the node "News 1" pointing to "/fr/alias1_fr"
