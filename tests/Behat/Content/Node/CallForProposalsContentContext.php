@@ -52,20 +52,17 @@ class CallForProposalsContentContext extends RawDrupalContext {
       'Published' => 'status',
       'Funding programme' => 'oe_call_proposals_funding',
       'Teaser' => 'oe_teaser',
+      'Subject' => 'oe_subject',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
       switch ($key) {
-        // Set SKOS Concept entity reference fields.
+        // Set entity reference fields.
         case 'Responsible department':
         case 'Funding programme':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
-        // Set Media entity reference fields.
+        case 'Subject':
         case 'Documents':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -79,7 +76,7 @@ class CallForProposalsContentContext extends RawDrupalContext {
           break;
 
         case 'Contact':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
@@ -99,7 +96,6 @@ class CallForProposalsContentContext extends RawDrupalContext {
 
     // Set default fields.
     $scope->addFields([
-      'oe_subject' => 'http://data.europa.eu/uxp/1010',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
     ]);
   }
