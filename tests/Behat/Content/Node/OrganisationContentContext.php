@@ -54,26 +54,27 @@ class OrganisationContentContext extends RawDrupalContext {
         // Set SKOS Concept entity reference fields.
         case 'EU organisation':
         case 'Non-EU organisation':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
+        case 'Logo':
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         // Set Contact entity reference field.
         case 'Contacts':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         // Set Media entity reference fields.
         case 'Logo':
         case 'Organisation chart':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         // Set Person entity reference field.
         case 'Persons':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'node', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 

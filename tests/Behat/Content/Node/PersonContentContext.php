@@ -64,29 +64,20 @@ class PersonContentContext extends RawDrupalContext {
 
     foreach ($scope->getFields() as $key => $value) {
       switch ($key) {
-        // Set SKOS Concept entity reference fields.
+        // Set entity reference fields.
         case 'Gender':
         case 'Departments':
-          $fields = $this->getReferenceField($mapping[$key], 'skos_concept', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
-        // Set Media entity reference fields.
         case 'CV upload':
         case 'Declaration of interests file':
         case 'Media':
         case 'Portrait photo':
-          $fields = $this->getReferenceField($mapping[$key], 'media', $value);
+          $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         case 'Organisation':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_organisation', $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
         case 'Contacts':
-          $fields = $this->getReferenceRevisionField($mapping[$key], 'oe_contact', $value);
+          $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
