@@ -25,6 +25,7 @@ config_devel:
     - field.field.oe_contact.oe_general.oe_email
     - field.field.oe_contact.oe_general.oe_fax
     - field.field.oe_contact.oe_general.oe_image
+    - field.field.oe_contact.oe_general.oe_link
     - field.field.oe_contact.oe_general.oe_mobile
     - field.field.oe_contact.oe_general.oe_organisation
     - field.field.oe_contact.oe_general.oe_office
@@ -37,6 +38,7 @@ config_devel:
     - field.field.oe_contact.oe_press.oe_email
     - field.field.oe_contact.oe_press.oe_fax
     - field.field.oe_contact.oe_press.oe_image
+    - field.field.oe_contact.oe_press.oe_link
     - field.field.oe_contact.oe_press.oe_mobile
     - field.field.oe_contact.oe_press.oe_organisation
     - field.field.oe_contact.oe_press.oe_office
@@ -49,6 +51,7 @@ config_devel:
     - field.storage.oe_contact.oe_email
     - field.storage.oe_contact.oe_fax
     - field.storage.oe_contact.oe_image
+    - field.storage.oe_contact.oe_link
     - field.storage.oe_contact.oe_mobile
     - field.storage.oe_contact.oe_node_reference
     - field.storage.oe_contact.oe_organisation

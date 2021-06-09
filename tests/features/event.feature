@@ -252,6 +252,8 @@ Feature: Event content creation
     And I fill in "Media item" with "Contact image" in the "Event contact" region
     And I fill in "Caption" with "Event contact caption" in the "Event contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Event contact" region
+    And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
+    And I fill in "Link text" with "Contact link" in the "Contact link" region
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
@@ -308,6 +310,7 @@ Feature: Event content creation
     And I should see the link "Contact image"
     And I should see the text "Event contact caption"
     And I should see the link "http://example.com/press_contacts"
+    And I should see the link "Contact link"
 
   @javascript @av_portal
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
