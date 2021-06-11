@@ -164,3 +164,37 @@ function oe_content_entity_contact_post_update_00009(): void {
     }
   }
 }
+
+/**
+ * Set address subfields as optional.
+ */
+function oe_content_entity_contact_post_update_00010(): void {
+  $storage = \Drupal::entityTypeManager()->getStorage('field_config');
+
+  $optional_fields = [
+    'addressLine1',
+    'addressLine2',
+    'postalCode',
+    'sortingCode',
+    'locality',
+    'administrativeArea',
+  ];
+  $config_ids = [
+    'oe_contact.oe_general.oe_address',
+    'oe_contact.oe_press.oe_address',
+  ];
+  foreach ($config_ids as $config_id) {
+    $field_config = $storage->load($config_id);
+    if ($field_config) {
+      $field_overrides = $field_config->getSetting('field_overrides');
+      foreach ($optional_fields as $optional_field) {
+        if (!isset($field_overrides[$optional_field])) {
+          // Default configuration is set, so we can update it.
+          $field_overrides[$optional_field]['override'] = 'optional';
+        }
+      }
+      $field_config->setSetting('field_overrides', $field_overrides);
+      $field_config->save();
+    }
+  }
+}

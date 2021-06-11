@@ -13,6 +13,24 @@ targetEntityType: oe_venue
 bundle: oe_default
 mode: default
 content:
+  created:
+    label: hidden
+    type: timestamp
+    weight: 0
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  name:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_address:
     weight: 3
     label: hidden
@@ -38,3 +56,4 @@ content:
     region: content
 hidden:
   langcode: true
+  status: true
