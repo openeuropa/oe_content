@@ -110,6 +110,8 @@ Feature: Person content creation
     And I fill in "Media item" with "Contact image" in the "Person contacts" region
     And I fill in "Caption" with "Person contact caption" in the "Person contacts" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Person contacts" region
+    And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
+    And I fill in "Link text" with "Contact link" in the "Contact link" region
     And I press "Create contact"
     And I wait for AJAX to finish
     # Add an organisation as contact.
@@ -179,6 +181,7 @@ Feature: Person content creation
     And I should see the link "Contact image"
     And I should see the text "Person contact caption"
     And I should see the link "http://example.com/press_contacts"
+    And I should see the link "Contact link"
     And I should see the text "Organisation contact name"
     # Document references are shown.
     And I should see "document2.pdf"

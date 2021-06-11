@@ -8,8 +8,10 @@ Feature: Organisation content creation
   Scenario: Creation of a Organisation content through the UI.
     Given I am logged in as a user with the "create oe_organisation content, access content, edit own oe_organisation content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
-      | name    | file            | alt                |
-      | Image 1 | placeholder.png | Alternative text 1 |
+      | name          | file            | alt                            |
+      | Image 1       | placeholder.png | Alternative text 1             |
+      | Contact image | example_1.jpeg  | Contact image alternative text |
+
     And the following AV Portal photo:
       | url                                                         |
       | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
@@ -45,29 +47,38 @@ Feature: Organisation content creation
     And I press "Add new contact"
     And I wait for AJAX to finish
     And I fill in "Name" with "Name of the organisation contact 1" in the "Organisation contact" region
+    And I fill in "Organisation" with "Contact organisation" in the "Organisation contact" region
+    And I fill in "Body text" with "Contact body text" in the "Organisation contact" region
+    And I fill in "Website" with "http://www.example.com/website" in the "Organisation contact" region
     And I select "Hungary" from "Country" in the "Organisation contact" region
     And I wait for AJAX to finish
     And I fill in "Street address" with "Back street 3" in the "Organisation contact" region
     And I fill in "Postal code" with "9000" in the "Organisation contact" region
     And I fill in "City" with "Budapest" in the "Organisation contact" region
+    And I fill in "Office" with "Contact office" in the "Organisation contact" region
     And I fill in "Email" with "test@example.com" in the "Organisation contact" region
     And I fill in "Phone number" with "0488779033" in the "Organisation contact" region
+    And I fill in "Mobile number" with "0488779034" in the "Organisation contact" region
+    And I fill in "Fax number" with "0488779035" in the "Organisation contact" region
     And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
     And I fill in "Link text" with "Email" in the "Contact social media links" region
+    And I fill in "Media item" with "Contact image" in the "Organisation contact" region
+    And I fill in "Caption" with "Contact caption" in the "Organisation contact" region
+    And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Organisation contact" region
+    And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
+    And I fill in "Link text" with "Contact link" in the "Contact link" region
     And I press "Create contact"
     And I wait for AJAX to finish
     # Add another contact.
     And I press "Add new contact"
     And I wait for AJAX to finish
     And I fill in "Name" with "Name of the organisation contact 2" in the "Organisation contact" region
-
     And I fill in "Term" with "Overview Term text"
     And I fill in "Description" with "Overview Description text"
     And I fill in "Use existing media" with "My Document 1" in the "Organisation chart" region
     And I fill in "URL" with "http://example.com"
     And I fill in "Link text" with "Staff search"
     And I fill in "Persons" with "Jane Doe"
-
     And I press "Save"
     Then I should see "Organisation My organisation has been created."
     And I should see "My Organisation"
@@ -76,16 +87,22 @@ Feature: Organisation content creation
     And I should see "Image 1"
     And I should see "Organisation Acronym"
     And I should see "Organisation teaser text"
-
     # Organisation contacts values.
     And I should see the text "Name of the organisation contact 1"
     And I should see the text "Back street 3"
     And I should see the text "Budapest"
     And I should see the text "9000"
     And I should see the text "Hungary"
+    And I should see the text "Contact office"
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
+    And I should see the text "0488779034"
+    And I should see the text "0488779035"
     And I should see the link "Email"
+    And I should see the link "Contact image"
+    And I should see the text "Contact caption"
+    And I should see the link "http://example.com/press_contacts"
+    And I should see the link "Contact link"
     And I should see the text "Name of the organisation contact 2"
 
     # Assert organisation type for EU organisations.

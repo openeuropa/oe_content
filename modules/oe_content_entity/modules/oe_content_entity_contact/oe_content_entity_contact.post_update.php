@@ -133,3 +133,34 @@ function oe_content_entity_contact_post_update_00007(): void {
     $field_storage_config->create($reference_field)->save();
   }
 }
+
+/**
+ * Create a Link field on the General and Press Contact bundle.
+ */
+function oe_content_entity_contact_post_update_00008(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00008_create_link_field');
+  \Drupal::service('config.installer')->installOptionalConfig($storage);
+}
+
+/**
+ * Update contact form displays with new Link field.
+ */
+function oe_content_entity_contact_post_update_00009(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00009_update_form_displays_link_field');
+
+  // Form display configurations to update.
+  $form_displays = [
+    'core.entity_form_display.oe_contact.oe_general.default',
+    'core.entity_form_display.oe_contact.oe_press.default',
+  ];
+  foreach ($form_displays as $form_display) {
+    $form_display_values = $storage->read($form_display);
+    $form_display = EntityFormDisplay::load($form_display_values['id']);
+    if ($form_display) {
+      $updated_form_display = \Drupal::entityTypeManager()
+        ->getStorage($form_display->getEntityTypeId())
+        ->updateFromStorageRecord($form_display, $form_display_values);
+      $updated_form_display->save();
+    }
+  }
+}
