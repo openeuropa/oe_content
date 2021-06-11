@@ -15,6 +15,13 @@ Feature: Organisation content creation
     And the following AV Portal photo:
       | url                                                         |
       | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
+    And the following Person Content entity:
+      | First name | Jane   |
+      | Last name  | Doe    |
+      | Gender     | female |
+    And the following document:
+      | name          | file       |
+      | My Document 1 | sample.pdf |
 
     When I visit "the Organisation creation page"
     And I fill in "Page title" with "My Organisation"
@@ -25,7 +32,7 @@ Feature: Organisation content creation
     And I fill in "Teaser" with "Organisation teaser text"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I should not see "Non-EU organisation type"
-    When I select "Non-EU organisation" from "Organisation type"
+    And I select "Non-EU organisation" from "Organisation type"
     Then I should see "Non-EU organisation type"
     When I select "EU organisation" from "Organisation type"
     And I press "Save"
@@ -34,12 +41,12 @@ Feature: Organisation content creation
     And I press "Save"
     Then I should see the error message "Please select a non-EU organisation type."
     When I select "EU organisation" from "Organisation type"
-    Then I fill in "EU organisation" with "Audit Board of the European Communities"
+    And I fill in "EU organisation" with "Audit Board of the European Communities"
 
     # Organisation contact field group.
-    When I press "Add new contact"
+    And I press "Add new contact"
     And I wait for AJAX to finish
-    Then I fill in "Name" with "Name of the organisation contact" in the "Organisation contact" region
+    And I fill in "Name" with "Name of the organisation contact 1" in the "Organisation contact" region
     And I fill in "Organisation" with "Contact organisation" in the "Organisation contact" region
     And I fill in "Body text" with "Contact body text" in the "Organisation contact" region
     And I fill in "Website" with "http://www.example.com/website" in the "Organisation contact" region
@@ -60,8 +67,19 @@ Feature: Organisation content creation
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Organisation contact" region
     And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
     And I fill in "Link text" with "Contact link" in the "Contact link" region
-
-    When I press "Save"
+    And I press "Create contact"
+    And I wait for AJAX to finish
+    # Add another contact.
+    And I press "Add new contact"
+    And I wait for AJAX to finish
+    And I fill in "Name" with "Name of the organisation contact 2" in the "Organisation contact" region
+    And I fill in "Term" with "Overview Term text"
+    And I fill in "Description" with "Overview Description text"
+    And I fill in "Use existing media" with "My Document 1" in the "Organisation chart" region
+    And I fill in "URL" with "http://example.com"
+    And I fill in "Link text" with "Staff search"
+    And I fill in "Persons" with "Jane Doe"
+    And I press "Save"
     Then I should see "Organisation My organisation has been created."
     And I should see "My Organisation"
     And I should see "Organisation introduction"
@@ -69,12 +87,8 @@ Feature: Organisation content creation
     And I should see "Image 1"
     And I should see "Organisation Acronym"
     And I should see "Organisation teaser text"
-
-    # Organisation contact values.
-    And I should see the text "Name of the organisation contact"
-    And I should see the text "Contact body text"
-    And I should see the text "Contact organisation"
-    And I should see the link "http://www.example.com/website"
+    # Organisation contacts values.
+    And I should see the text "Name of the organisation contact 1"
     And I should see the text "Back street 3"
     And I should see the text "Budapest"
     And I should see the text "9000"
@@ -89,18 +103,32 @@ Feature: Organisation content creation
     And I should see the text "Contact caption"
     And I should see the link "http://example.com/press_contacts"
     And I should see the link "Contact link"
+    And I should see the text "Name of the organisation contact 2"
 
     # Assert organisation type for EU organisations.
     And I should see "Organisation type EU organisation"
     And I should see "EU organisation Audit Board of the European Communities"
     And I should see "EU organisation type European Union corporate body"
 
+    # Assert overview field values.
+    And I should see the text "Overview Term text"
+    And I should see the text "Overview Description text"
+
+    # Assert organisation chart value.
+    And I should see "sample.pdf"
+
+    # Assert referenced person.
+    And I should see the text "Jane Doe"
+
+    # Assert the staff search link value.
+    And I should see the link "Staff search"
+
     # Assert organisation type for non-EU organisations.
     When I click "Edit"
     And I select "Non-EU organisation" from "Organisation type"
     And I select "non-governmental organisation" from "Non-EU organisation type"
 
-    When I press "Save"
+    And I press "Save"
     Then I should see "Organisation type non-EU organisation"
     And I should see "Non-EU organisation type non-governmental organisation"
 
@@ -108,7 +136,7 @@ Feature: Organisation content creation
     When I click "Edit"
     And I fill in "Use existing media" with "Euro with miniature figurines"
 
-    When I press "Save"
+    And I press "Save"
     Then I should see "Organisation My organisation has been updated."
     And I should see "Euro with miniature figurines"
 
@@ -124,7 +152,7 @@ Feature: Organisation content creation
       | Body text         | Organisation body text         |
       | Organisation type | EU organisation                |
       | EU organisation   | Directorate-General for Budget |
-      | Contact           | A general contact              |
+      | Contacts          | A general contact              |
     When I am visiting the "Organisation demo page" content
     And I click "Edit"
     And I press "Remove"
