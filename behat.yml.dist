@@ -106,6 +106,7 @@ default:
         Contact social media links: ".field--name-oe-social-media"
         Contact link: ".field--name-oe-link"
         Organisation contact: "#edit-oe-organisation-contact-wrapper"
+        Organisation chart: ".field--name-oe-organisation-chart"
         News contact: "#edit-oe-news-contacts-wrapper"
         Publication in the official journal: ".field--name-oe-call-proposals-journal"
         Grants awarded link: ".field--name-oe-call-proposals-grants-link"

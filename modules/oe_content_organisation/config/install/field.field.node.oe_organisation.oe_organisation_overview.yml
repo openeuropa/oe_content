@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_organisation_overview
+    - node.type.oe_organisation
+  module:
+    - description_list_field
+id: node.oe_organisation.oe_organisation_overview
+field_name: oe_organisation_overview
+entity_type: node
+bundle: oe_organisation
+label: Overview
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: description_list_field
