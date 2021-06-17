@@ -7,32 +7,20 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Config\FileStorage;
-
-/**
- * Create oe_stakeholder bundle.
- */
-function oe_content_entity_organisation_post_update_00001(): void {
-  // Obtain configuration from yaml files.
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_organisation') . '/config/post_updates/00001_create_stakeholder_bundle');
-  \Drupal::service('config.installer')->installOptionalConfig($storage);
-}
-
 /**
  * Set address subfields as optional.
  */
-function oe_content_entity_organisation_post_update_00002(): void {
+function oe_content_entity_venue_post_update_00001(): void {
   $optional_fields = [
     'addressLine1',
     'addressLine2',
     'postalCode',
     'sortingCode',
-    'dependentLocality',
     'locality',
     'administrativeArea',
   ];
 
-  $field_config = \Drupal::entityTypeManager()->getStorage('field_config')->load('oe_organisation.oe_stakeholder.oe_address');
+  $field_config = \Drupal::entityTypeManager()->getStorage('field_config')->load('oe_venue.oe_default.oe_address');
   if ($field_config) {
     $field_overrides = $field_config->getSetting('field_overrides');
     foreach ($optional_fields as $optional_field) {
