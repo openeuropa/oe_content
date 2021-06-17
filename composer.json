@@ -11,7 +11,7 @@
         "drupal/linkit": "~5.0-beta8",
         "drupal/maxlength": "~1.0@beta",
         "easyrdf/easyrdf": "1.0.0 as 0.9.2",
-        "openeuropa/oe_media": "~1.11",
+        "openeuropa/oe_media": "~1.12",
         "openeuropa/rdf_skos": "~1.0"
     },
     "require-dev": {
@@ -59,7 +59,7 @@
         "psr-4": {
             "Drupal\\Tests\\oe_content\\": "./tests/",
             "Drupal\\Tests\\oe_content_featured_media_field\\": "./modules/oe_content_featured_media_field/tests/src/",
-            "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/"
+            "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/src/"
         }
     },
     "conflict": {

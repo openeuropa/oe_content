@@ -1,11 +1,20 @@
 # Changelog
 
+## [2.3.0](https://github.com/openeuropa/oe_content/tree/2.3.0) (2021-06-17)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/2.2.0...2.3.0)
+
+**Merged pull requests:**
+
+- EWPP-1049: Address field should have only Country as mandatory. [\#419](https://github.com/openeuropa/oe_content/pull/419) ([yenyasinn](https://github.com/yenyasinn))
+
 ## [2.2.0](https://github.com/openeuropa/oe_content/tree/2.2.0) (2021-06-15)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/2.1.1...2.2.0)
 
 **Merged pull requests:**
 
+- Prepare release 2.2.0. [\#439](https://github.com/openeuropa/oe_content/pull/439) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - Epic-EWPP-953: Organisation content type, version 2 [\#438](https://github.com/openeuropa/oe_content/pull/438) ([nagyad](https://github.com/nagyad))
 - Update org v2 epic [\#437](https://github.com/openeuropa/oe_content/pull/437) ([22Alexandra](https://github.com/22Alexandra))
 - EPIC EWPP-1041: Contact entity link field. [\#436](https://github.com/openeuropa/oe_content/pull/436) ([upchuk](https://github.com/upchuk))
