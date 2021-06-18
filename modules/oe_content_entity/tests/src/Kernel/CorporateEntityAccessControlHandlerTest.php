@@ -33,7 +33,7 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installEntitySchema('oe_corporate_entity_test');
@@ -77,7 +77,12 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
     // Run through the scenarios and assert the expectations.
     foreach ($scenarios as $scenario => $test_data) {
       // Update the published status based on the scenario.
-      $entity->setPublished($test_data['status']);
+      if ($test_data['status']) {
+        $entity->setPublished();
+      }
+      else {
+        $entity->setUnpublished();
+      }
       $entity->save();
       $user = $this->drupalCreateUser($test_data['permissions']);
       $this->assertAccessResult(

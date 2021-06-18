@@ -2,7 +2,7 @@ name: OpenEuropa Content Sub Entity Document reference
 description: This module provides the Document reference content entity and its bundles.
 package: OpenEuropa
 type: module
-core: 8.x
+core_version_requirement: ^8.9 || ^9.1
 
 dependencies:
   - oe_content:oe_content_sub_entity

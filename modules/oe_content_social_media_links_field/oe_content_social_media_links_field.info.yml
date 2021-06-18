@@ -3,7 +3,7 @@ description: Contains the Social Media Links storage field.
 package: OpenEuropa
 
 type: module
-core: 8.x
+core_version_requirement: ^8.9 || ^9.1
 
 dependencies:
   - typed_link:typed_link

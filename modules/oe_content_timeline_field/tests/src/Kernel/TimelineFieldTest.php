@@ -244,13 +244,13 @@ class TimelineFieldTest extends EntityKernelTestBase {
     $build = $display->build($node);
     $output = $this->container->get('renderer')->renderRoot($build);
 
-    $this->assertContains('<div>Item 1</div>', (string) $output);
-    $this->assertContains('<p>Item 1 body</p>', (string) $output);
-    $this->assertContains('<div>Item 2</div>', (string) $output);
-    $this->assertContains('<p>Item 2 body</p>', (string) $output);
-    $this->assertContains('<div>Item 3</div>', (string) $output);
-    $this->assertContains('<p>Item 3 body</p>', (string) $output);
-    $this->assertContains('<button>Button label</button>', (string) $output);
+    $this->assertStringContainsString('<div>Item 1</div>', (string) $output);
+    $this->assertStringContainsString('<p>Item 1 body</p>', (string) $output);
+    $this->assertStringContainsString('<div>Item 2</div>', (string) $output);
+    $this->assertStringContainsString('<p>Item 2 body</p>', (string) $output);
+    $this->assertStringContainsString('<div>Item 3</div>', (string) $output);
+    $this->assertStringContainsString('<p>Item 3 body</p>', (string) $output);
+    $this->assertStringContainsString('<button>Button label</button>', (string) $output);
 
     // Change the limit to show all items without the "show more" button.
     $this->displayOptions['settings']['limit'] = 0;
@@ -258,7 +258,7 @@ class TimelineFieldTest extends EntityKernelTestBase {
 
     $build = $display->build($node);
     $output = $this->container->get('renderer')->renderRoot($build);
-    $this->assertNotContains('<button>Button label</button>', (string) $output);
+    $this->assertStringNotContainsString('<button>Button label</button>', (string) $output);
   }
 
 }

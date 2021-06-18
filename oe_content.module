@@ -109,7 +109,6 @@ function oe_content_locale_translation_projects_alter(&$projects) {
   $projects['oe_content']['info']['interface translation server pattern'] = drupal_get_path('module', 'oe_content') . '/translations/%project-%language.po';
 }
 
-
 /**
  * Implements hook_ENTITY_TYPE_prepare_form().
  */
@@ -140,4 +139,3 @@ function oe_content_node_prepare_form(EntityInterface $entity, $operation, FormS
     $entity->set('oe_content_content_owner', array_values($content_owners));
   }
 }
-

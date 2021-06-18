@@ -16,6 +16,11 @@ use Drupal\Tests\BrowserTestBase;
 class PersistentUrlControllerTest extends BrowserTestBase {
 
   /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
+
+  /**
    * Modules to enable.
    *
    * @var array
@@ -35,7 +40,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     NodeType::create(['type' => 'page'])->save();
@@ -56,9 +61,9 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->save();
 
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
-    $this->assertUrl('/foo');
-    $this->assertText('Testing create()');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('/foo');
+    $this->assertSession()->pageTextContains('Testing create()');
 
     $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($node->id());
     $node->path->alias = '/foo2';
@@ -66,25 +71,25 @@ class PersistentUrlControllerTest extends BrowserTestBase {
 
     // Ensure the cache is invalidated correctly.
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
-    $this->assertUrl('/foo2');
-    $this->assertText('Testing create()');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('/foo2');
+    $this->assertSession()->pageTextContains('Testing create()');
 
     $node->path->alias = '';
     $node->save();
 
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
-    $this->assertUrl('/node/' . $node->id());
-    $this->assertText('Testing create()');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('/node/' . $node->id());
+    $this->assertSession()->pageTextContains('Testing create()');
 
     // Check try to get not existing entity.
     $this->drupalGet('/content/' . \Drupal::service('uuid')->generate());
-    $this->assertResponse(404);
+    $this->assertSession()->statusCodeEquals(404);
 
     // Not valid uuid.
     $this->drupalGet('/content/' . $this->randomMachineName());
-    $this->assertResponse(404);
+    $this->assertSession()->statusCodeEquals(404);
 
     // Create a new node that will be sent to the home page by the controller.
     $node = Node::create([
@@ -97,10 +102,10 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->save();
 
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
+    $this->assertSession()->statusCodeEquals(200);
     // We should be redirected to the home page.
-    $this->assertUrl('/');
-    $this->assertNoText('Testing create()');
+    $this->assertSession()->addressEquals('/');
+    $this->assertSession()->pageTextNotContains('Testing create()');
   }
 
 }
