@@ -50,7 +50,7 @@
         "Modules that use D9 compatibility issues dev branches: openeuropa/rdf_skos, drupal/typed_link, drupaltest/behat-traits, openeuropa/oe_corporate_countries, openeuropa/oe_corporate_site_info",
         "openeuropa/multivalue_form_element is used temporarily as a dependency for openeuropa/oe_corporate_site_info.",
         "Datetime_testing has to be updated to be D9 compatible.",
-        "openeuropa/description_list_field is used from fork where 1.0.x has been merged into master."
+        "openeuropa/description_list_field is used from fork where 1.0.x has been merged into master. Use drupal/description_list_field when D9 version will be released."
     ],
     "autoload": {
         "psr-4": {
@@ -59,9 +59,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Drupal\\Tests\\oe_content\\": "./tests/src",
+            "Drupal\\Tests\\oe_content\\": "./tests/src/",
             "Drupal\\Tests\\oe_content_featured_media_field\\": "./modules/oe_content_featured_media_field/tests/src/",
-            "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/src"
+            "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/src/"
         }
     },
     "conflict": {
