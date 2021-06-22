@@ -70,7 +70,7 @@ class PersonJobEntityTest extends EntityKernelTestBase {
     ]);
 
     module_load_include('install', 'oe_content');
-    oe_content_install();
+    oe_content_install(FALSE);
   }
 
   /**

@@ -10,9 +10,9 @@ declare(strict_types = 1);
 /**
  * Implements hook_install().
  */
-function oe_content_install() {
+function oe_content_install($is_syncing) {
   // Configure the RDF SKOS graphs.
-  if (!\Drupal::service('config.installer')->isSyncing()) {
+  if (!$is_syncing) {
     \Drupal::service('oe_content.op_skos_setup')->setup();
   }
 }
