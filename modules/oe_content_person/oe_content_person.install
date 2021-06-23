@@ -14,11 +14,11 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
  * Implements hook_install().
  */
 function oe_content_person_install($is_syncing) {
-  // Configure the RDF SKOS graphs.
   if ($is_syncing) {
     return;
   }
 
+  // Configure the RDF SKOS graphs.
   $graphs = [
     'human-sex' => 'http://publications.europa.eu/resource/dataset/human-sex',
     'role-qualifier' => 'http://publications.europa.eu/resource/dataset/role-qualifier',
