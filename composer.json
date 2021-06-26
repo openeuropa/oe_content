@@ -16,7 +16,7 @@
     },
     "require-dev": {
         "composer/installers": "~1.5",
-        "drupal/core-composer-scaffold": "^8.9 || ^9",
+        "drupal/core-composer-scaffold": "^8.9 || ^9.1",
         "drupal/address": "~1.7",
         "drupal/composite_reference": "~1.0-alpha2",
         "drupal/config_devel": "~1.2",
@@ -36,7 +36,7 @@
         "nikic/php-parser": "^3.1.5",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.6.0",
-        "openeuropa/drupal-core-require-dev": "^8.9.14 || ^9",
+        "openeuropa/drupal-core-require-dev": "^8.9.14 || ^9.1",
         "openeuropa/oe_corporate_countries": "dev-EWPP-914",
         "openeuropa/oe_corporate_site_info": "dev-EWPP-1137",
         "openeuropa/oe_link_lists": "~0.5",
