@@ -21,7 +21,7 @@ Feature: Call for proposals content creation and editing.
     And I should see "Permanent" in the "Deadline model"
 
     # Fill in the mandatory fields.
-    And I fill in "Title" with "My Call for proposals 1"
+    And I fill in "Page title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "Teaser" with "Teaser text"
@@ -134,7 +134,7 @@ Feature: Call for proposals content creation and editing.
     And I should see the text "Content limited to 128 characters, remaining: 128" in the "Publication in the official journal"
     And I should see the text "Content limited to 150 characters, remaining: 150" in the "Reference code form element"
     And I should see the text "Content limited to 300 characters, remaining: 300" in the "teaser form element"
-    And I fill in "Title" with "My Call for proposals 1"
+    And I fill in "Page title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
     And I select the radio button "Two-stage"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
@@ -166,7 +166,7 @@ Feature: Call for proposals content creation and editing.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
 
     When I visit "the Call for proposals creation page"
-    And I fill in "Title" with "My Call for proposals 1"
+    And I fill in "Page title" with "My Call for proposals 1"
     And I set "Publication date" to the date "24-10-2020"
     And I select the radio button "Two-stage"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"

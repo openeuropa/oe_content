@@ -25,7 +25,7 @@ Feature: Project content creation
 
     When I visit "the Project creation page"
     # Fill in mandatory fields.
-    And I fill in "Title" with "My Project"
+    And I fill in "Page title" with "My Project"
     And I fill in "Subject" with "EU financing"
     And I fill in "Body text" with "Body text"
     And I fill in "Teaser" with "Project teaser text" in the "Alternative titles and teaser" region
