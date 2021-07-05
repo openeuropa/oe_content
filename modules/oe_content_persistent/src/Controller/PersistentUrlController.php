@@ -7,6 +7,7 @@ namespace Drupal\oe_content_persistent\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\oe_content_persistent\ContentUrlResolverInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -39,10 +40,13 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    *   The content URL resolver service.
    * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
    *   The content UUID resolver.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+   *   The language manager.
    */
-  public function __construct(ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver) {
+  public function __construct(ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver, LanguageManagerInterface $language_manager) {
     $this->contentUrlResolver = $url_resolver;
     $this->contentUuidResolver = $uuid_resolver;
+    $this->languageManager = $language_manager;
   }
 
   /**
@@ -51,7 +55,8 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('oe_content_persistent.url_resolver'),
-      $container->get('oe_content_persistent.uuid_resolver')
+      $container->get('oe_content_persistent.uuid_resolver'),
+      $container->get('language_manager')
     );
   }
 
@@ -65,7 +70,8 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    *   A redirect response to actual alias or system path.
    */
   public function index(string $uuid): RedirectResponse {
-    if ($entity = $this->contentUuidResolver->getEntityByUuid($uuid)) {
+    $langcode = $this->languageManager->getCurrentLanguage()->getId();
+    if ($entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode)) {
       // Unfortunately we cannot use
       // an instance of CacheableSecuredRedirectResponse because we get
       // an exception inside
