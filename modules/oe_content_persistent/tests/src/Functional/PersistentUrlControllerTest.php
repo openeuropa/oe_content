@@ -93,6 +93,16 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $this->assertUrl('/node/' . $node->id());
     $this->assertSession()->responseContains('Test node title');
 
+    \Drupal::entityTypeManager()->getStorage('node')->resetCache();
+    $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($node->id());
+
+    // Try an external redirect.
+    $node->setTitle('External');
+    $node->save();
+    $this->drupalGet('/content/' . $node->uuid());
+    $this->assertResponse(200);
+    $this->assertUrl('https://ec.europa.eu');
+
     // Check try to get not existing entity.
     $this->drupalGet('/content/' . \Drupal::service('uuid')->generate());
     $this->assertResponse(404);

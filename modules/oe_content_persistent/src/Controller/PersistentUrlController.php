@@ -4,10 +4,12 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_persistent\Controller;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\oe_content_persistent\ContentUrlResolverInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -72,15 +74,15 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
   public function index(string $uuid): RedirectResponse {
     $langcode = $this->languageManager->getCurrentLanguage()->getId();
     if ($entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode)) {
-      // Unfortunately we cannot use
-      // an instance of CacheableSecuredRedirectResponse because we get
-      // an exception inside
-      // \Drupal\Core\EventSubscriber\EarlyRenderingControllerWrapperSubscriber.
-      // More information you could find in this article:
-      // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
       if ($entity instanceof ContentEntityInterface) {
         $url = $this->contentUrlResolver->resolveUrl($entity);
-        return new RedirectResponse($url->toString(), 302, ['PURL' => '1']);
+        $generated_url = $url->toString(TRUE);
+        $cache = CacheableMetadata::createFromObject($generated_url);
+        $cache->addCacheableDependency($entity);
+        $cache->addCacheContexts(['url', 'languages']);
+        $response = new TrustedRedirectResponse($generated_url->getGeneratedUrl(), 302, ['PURL' => '1']);
+        $response->addCacheableDependency($cache);
+        return $response;
       }
     }
 
