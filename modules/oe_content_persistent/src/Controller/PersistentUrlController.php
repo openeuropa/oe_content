@@ -80,7 +80,7 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
         $cache = CacheableMetadata::createFromObject($generated_url);
         $cache->addCacheableDependency($entity);
         $cache->addCacheContexts(['url', 'languages']);
-        $response = new TrustedRedirectResponse($generated_url->getGeneratedUrl(), 302, ['PURL' => '1']);
+        $response = new TrustedRedirectResponse($generated_url->getGeneratedUrl());
         $response->addCacheableDependency($cache);
         return $response;
       }
