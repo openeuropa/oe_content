@@ -65,7 +65,7 @@ msgid "Jun"
 msgstr "Mei"
 
 msgid "Jul"
-msgstr "Iúil"
+msgstr "Iúl"
 
 msgid "Aug"
 msgstr "Lún"
@@ -77,10 +77,94 @@ msgid "Oct"
 msgstr "DF"
 
 msgid "Nov"
-msgstr "Samh"
+msgstr "Sam"
 
 msgid "Dec"
-msgstr "Noll"
+msgstr "Nol"
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "Domh"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "Luan"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "Máir"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "Céad"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "Déar"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "Aoin"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "Sath"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "Do"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "Lu"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "Má"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "Cé"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "Dé"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "Ao"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "Sa"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "D"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "L"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "M"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "C"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "D"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "A"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "S"
 
 msgid "Sunday"
 msgstr "Dé Domhnaigh"
@@ -102,3 +186,45 @@ msgstr "Dé hAoine"
 
 msgid "Saturday"
 msgstr "Dé Sathairn"
+
+msgid "Sun"
+msgstr "Domh"
+
+msgid "Mon"
+msgstr "Luan"
+
+msgid "Tue"
+msgstr "Máir"
+
+msgid "Wed"
+msgstr "Céad"
+
+msgid "Thu"
+msgstr "Déar"
+
+msgid "Fri"
+msgstr "Aoin"
+
+msgid "Sat"
+msgstr "Sath"
+
+msgid "Su"
+msgstr "Do"
+
+msgid "Mo"
+msgstr "Lu"
+
+msgid "Tu"
+msgstr "Má"
+
+msgid "We"
+msgstr "Cé"
+
+msgid "Th"
+msgstr "Dé"
+
+msgid "Fr"
+msgstr "Ao"
+
+msgid "Sa"
+msgstr "Sa"

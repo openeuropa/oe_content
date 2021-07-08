@@ -50,92 +50,96 @@ msgid "December"
 msgstr "décembre"
 
 msgid "Jan"
-msgstr "Jan"
+msgstr "jan"
 
 msgid "Feb"
-msgstr "Fév"
+msgstr "fév"
 
 msgid "Mar"
-msgstr "Mar"
+msgstr "mar"
 
 msgid "Apr"
-msgstr "Avr"
+msgstr "avr"
 
 msgid "May"
-msgstr "Mai"
+msgstr "mai"
 
 msgid "Jun"
-msgstr "Jun"
+msgstr "jui"
 
 msgid "Jul"
-msgstr "Jul"
+msgstr "jui"
 
 msgid "Aug"
-msgstr "Aoû"
+msgstr "aoû"
 
 msgid "Sep"
-msgstr "Sep"
+msgstr "sep"
 
 msgid "Oct"
-msgstr "Oct"
+msgstr "oct"
 
 msgid "Nov"
-msgstr "Nov"
+msgstr "nov"
 
 msgid "Dec"
-msgstr "Déc"
+msgstr "déc"
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "Dim"
+msgstr "dim"
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "Lun"
+msgstr "lun"
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "Mar"
+msgstr "mar"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "Mer"
+msgstr "mer"
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "Jeu"
+msgstr "jeu"
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "Ven"
+msgstr "ven"
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "Sam"
+msgstr "sam"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "Di"
+msgstr "di"
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "Lu"
+msgstr "lu"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "Ma"
+msgstr "ma"
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "Me"
+msgstr "me"
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "Je"
+msgstr "je"
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "Ve"
+msgstr "ve"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "sa"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
@@ -166,22 +170,64 @@ msgid "S"
 msgstr "S"
 
 msgid "Sunday"
-msgstr "Dimanche"
+msgstr "dimanche"
 
 msgid "Monday"
-msgstr "Lundi"
+msgstr "lundi"
 
 msgid "Tuesday"
-msgstr "Mardi"
+msgstr "mardi"
 
 msgid "Wednesday"
-msgstr "Mercredi"
+msgstr "mercredi"
 
 msgid "Thursday"
-msgstr "Jeudi"
+msgstr "jeudi"
 
 msgid "Friday"
-msgstr "Vendredi"
+msgstr "vendredi"
 
 msgid "Saturday"
-msgstr "Samedi"
+msgstr "samedi"
+
+msgid "Sun"
+msgstr "dim"
+
+msgid "Mon"
+msgstr "lun"
+
+msgid "Tue"
+msgstr "mar"
+
+msgid "Wed"
+msgstr "mer"
+
+msgid "Thu"
+msgstr "jeu"
+
+msgid "Fri"
+msgstr "ven"
+
+msgid "Sat"
+msgstr "sam"
+
+msgid "Su"
+msgstr "di"
+
+msgid "Mo"
+msgstr "lu"
+
+msgid "Tu"
+msgstr "ma"
+
+msgid "We"
+msgstr "me"
+
+msgid "Th"
+msgstr "je"
+
+msgid "Fr"
+msgstr "ve"
+
+msgid "Sa"
+msgstr "sa"

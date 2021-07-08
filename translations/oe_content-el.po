@@ -62,7 +62,7 @@ msgid "Apr"
 msgstr "Απρ"
 
 msgid "May"
-msgstr "Μαι"
+msgstr "Μάιος"
 
 msgid "Jun"
 msgstr "Ιουν"
@@ -80,7 +80,7 @@ msgid "Oct"
 msgstr "Οκτ"
 
 msgid "Nov"
-msgstr "Νοε"
+msgstr "Νοεμ"
 
 msgid "Dec"
 msgstr "Δεκ"
@@ -116,6 +116,10 @@ msgstr "Σαβ"
 msgctxt "Abbreviated weekday"
 msgid "Su"
 msgstr "Κυ"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "Δε"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
@@ -185,3 +189,45 @@ msgstr "Παρασκευή"
 
 msgid "Saturday"
 msgstr "Σάββατο"
+
+msgid "Sun"
+msgstr "Κυρ"
+
+msgid "Mon"
+msgstr "Δευ"
+
+msgid "Tue"
+msgstr "Τρι"
+
+msgid "Wed"
+msgstr "Τετ"
+
+msgid "Thu"
+msgstr "Πεμ"
+
+msgid "Fri"
+msgstr "Παρ"
+
+msgid "Sat"
+msgstr "Σαβ"
+
+msgid "Su"
+msgstr "Κυ"
+
+msgid "Mo"
+msgstr "Δε"
+
+msgid "Tu"
+msgstr "Τρ"
+
+msgid "We"
+msgstr "Τε"
+
+msgid "Th"
+msgstr "Πε"
+
+msgid "Fr"
+msgstr "Πα"
+
+msgid "Sa"
+msgstr "Σα"

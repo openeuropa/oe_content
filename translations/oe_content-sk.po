@@ -50,16 +50,16 @@ msgid "December"
 msgstr "december"
 
 msgid "Jan"
-msgstr "jan"
+msgstr "jan."
 
 msgid "Feb"
-msgstr "feb"
+msgstr "feb."
 
 msgid "Mar"
-msgstr "mar"
+msgstr "mar."
 
 msgid "Apr"
-msgstr "apr"
+msgstr "apr."
 
 msgid "May"
 msgstr "máj"
@@ -71,19 +71,103 @@ msgid "Jul"
 msgstr "júl"
 
 msgid "Aug"
-msgstr "aug"
+msgstr "aug."
 
 msgid "Sep"
-msgstr "sep"
+msgstr "sep."
 
 msgid "Oct"
-msgstr "okt"
+msgstr "okt."
 
 msgid "Nov"
-msgstr "nov"
+msgstr "nov."
 
 msgid "Dec"
-msgstr "dec"
+msgstr "dec."
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "ned."
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "pon."
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "ut."
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "str."
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "štv."
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "pia."
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "sob."
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "ned."
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "pon."
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "ut."
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "str."
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "štv."
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "pia."
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "sob."
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "N"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "U"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "S"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "Š"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "S"
 
 msgid "Sunday"
 msgstr "nedeľa"
@@ -105,3 +189,45 @@ msgstr "piatok"
 
 msgid "Saturday"
 msgstr "sobota"
+
+msgid "Sun"
+msgstr "ned."
+
+msgid "Mon"
+msgstr "pon."
+
+msgid "Tue"
+msgstr "ut."
+
+msgid "Wed"
+msgstr "str."
+
+msgid "Thu"
+msgstr "štv."
+
+msgid "Fri"
+msgstr "pia."
+
+msgid "Sat"
+msgstr "sob."
+
+msgid "Su"
+msgstr "ned."
+
+msgid "Mo"
+msgstr "pon."
+
+msgid "Tu"
+msgstr "ut."
+
+msgid "We"
+msgstr "str."
+
+msgid "Th"
+msgstr "štv."
+
+msgid "Fr"
+msgstr "pia."
+
+msgid "Sa"
+msgstr "sob."

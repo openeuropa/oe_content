@@ -59,7 +59,7 @@ msgid "Mar"
 msgstr "märts"
 
 msgid "Apr"
-msgstr "apr"
+msgstr "aprill"
 
 msgid "May"
 msgstr "mai"
@@ -87,31 +87,31 @@ msgstr "dets"
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "P"
+msgstr "pühap"
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "E"
+msgstr "esmasp"
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "T"
+msgstr "teisip"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "K"
+msgstr "kolmap"
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "N"
+msgstr "neljap"
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "R"
+msgstr "reede"
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "L"
+msgstr "laup"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
@@ -173,19 +173,61 @@ msgid "Sunday"
 msgstr "pühapäev"
 
 msgid "Monday"
-msgstr "Esmaspäev"
+msgstr "esmaspäev"
 
 msgid "Tuesday"
-msgstr "Teisipäev"
+msgstr "teisipäev"
 
 msgid "Wednesday"
-msgstr "Kolmapäev"
+msgstr "kolmapäev"
 
 msgid "Thursday"
-msgstr "Neljapäev"
+msgstr "neljapäev"
 
 msgid "Friday"
-msgstr "Reede"
+msgstr "reede"
 
 msgid "Saturday"
-msgstr "Laupäev"
+msgstr "laupäev"
+
+msgid "Sun"
+msgstr "pühap"
+
+msgid "Mon"
+msgstr "esmasp"
+
+msgid "Tue"
+msgstr "teisip"
+
+msgid "Wed"
+msgstr "kolmap"
+
+msgid "Thu"
+msgstr "neljap"
+
+msgid "Fri"
+msgstr "reede"
+
+msgid "Sat"
+msgstr "laup"
+
+msgid "Su"
+msgstr "P"
+
+msgid "Mo"
+msgstr "E"
+
+msgid "Tu"
+msgstr "T"
+
+msgid "We"
+msgstr "K"
+
+msgid "Th"
+msgstr "N"
+
+msgid "Fr"
+msgstr "R"
+
+msgid "Sa"
+msgstr "L"

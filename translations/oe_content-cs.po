@@ -3,95 +3,95 @@ msgstr ""
 
 msgctxt "Long month name"
 msgid "January"
-msgstr "Leden"
+msgstr "leden"
 
 msgctxt "Long month name"
 msgid "February"
-msgstr "Únor"
+msgstr "únor"
 
 msgctxt "Long month name"
 msgid "March"
-msgstr "Březen"
+msgstr "březen"
 
 msgctxt "Long month name"
 msgid "April"
-msgstr "Duben"
+msgstr "duben"
 
 msgctxt "Long month name"
 msgid "May"
-msgstr "Květen"
+msgstr "květen"
 
 msgctxt "Long month name"
 msgid "June"
-msgstr "Červen"
+msgstr "červen"
 
 msgctxt "Long month name"
 msgid "July"
-msgstr "Červenec"
+msgstr "červenec"
 
 msgctxt "Long month name"
 msgid "August"
-msgstr "Srpen"
+msgstr "srpen"
 
 msgctxt "Long month name"
 msgid "September"
-msgstr "Září"
+msgstr "září"
 
 msgctxt "Long month name"
 msgid "October"
-msgstr "Říjen"
+msgstr "říjen"
 
 msgctxt "Long month name"
 msgid "November"
-msgstr "Listopad"
+msgstr "listopad"
 
 msgctxt "Long month name"
 msgid "December"
-msgstr "Prosinec"
+msgstr "prosinec"
 
 msgid "Jan"
-msgstr "Led"
+msgstr "led"
 
 msgid "Feb"
-msgstr "Úno"
+msgstr "úno"
 
 msgid "Mar"
-msgstr "Bře"
+msgstr "bře"
 
 msgid "Apr"
-msgstr "Dub"
+msgstr "dub"
 
 msgid "May"
-msgstr "Kvě"
+msgstr "kvě"
 
 msgid "Jun"
-msgstr "Čvn"
+msgstr "čvn"
 
 msgid "Jul"
-msgstr "Čvc"
+msgstr "čvc"
 
 msgid "Aug"
-msgstr "Srp"
+msgstr "srp"
 
 msgid "Sep"
-msgstr "Zář"
+msgstr "zář"
 
 msgid "Oct"
-msgstr "Říj"
+msgstr "říj"
 
 msgid "Nov"
-msgstr "Lis"
+msgstr "lis"
 
 msgid "Dec"
-msgstr "Pro"
+msgstr "pro"
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "Ne"
+msgstr "Ned"
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "Po"
+msgstr "Pon"
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
@@ -99,15 +99,15 @@ msgstr "Út"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "St"
+msgstr "Stř"
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "Čt"
+msgstr "Čtv"
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "Pá"
+msgstr "Pát"
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
@@ -170,22 +170,64 @@ msgid "S"
 msgstr "S"
 
 msgid "Sunday"
-msgstr "Neděle"
+msgstr "neděle"
 
 msgid "Monday"
-msgstr "Pondělí"
+msgstr "pondělí"
 
 msgid "Tuesday"
-msgstr "Úterý"
+msgstr "úterý"
 
 msgid "Wednesday"
-msgstr "Středa"
+msgstr "středa"
 
 msgid "Thursday"
-msgstr "Čtvrtek"
+msgstr "čtvrtek"
 
 msgid "Friday"
-msgstr "Pátek"
+msgstr "pátek"
 
 msgid "Saturday"
-msgstr "Sobota"
+msgstr "sobota"
+
+msgid "Sun"
+msgstr "Ned"
+
+msgid "Mon"
+msgstr "Pon"
+
+msgid "Tue"
+msgstr "Út"
+
+msgid "Wed"
+msgstr "Stř"
+
+msgid "Thu"
+msgstr "Čtv"
+
+msgid "Fri"
+msgstr "Pát"
+
+msgid "Sat"
+msgstr "So"
+
+msgid "Su"
+msgstr "Ne"
+
+msgid "Mo"
+msgstr "Po"
+
+msgid "Tu"
+msgstr "Út"
+
+msgid "We"
+msgstr "St"
+
+msgid "Th"
+msgstr "Čt"
+
+msgid "Fr"
+msgstr "Pá"
+
+msgid "Sa"
+msgstr "So"
