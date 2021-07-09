@@ -192,7 +192,10 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
         '#widget_context' => $persistent_data['widget_context'],
         '#custom_hidden_id' => $hidden_id,
         '#process' => [
-          ['\Drupal\entity_browser\Element\EntityBrowserElement', 'processEntityBrowser'],
+          [
+            '\Drupal\entity_browser\Element\EntityBrowserElement',
+            'processEntityBrowser',
+          ],
           [get_called_class(), 'processEntityBrowser'],
         ],
       ];
@@ -314,7 +317,10 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     $entity_storage = $this->entityTypeManager->getStorage($entity_type);
 
     // Check if we have any values in the form state for this element.
-    $element_path = array_merge($element['#field_parents'], [$this->fieldDefinition->getName(), $delta]);
+    $element_path = array_merge($element['#field_parents'], [
+      $this->fieldDefinition->getName(),
+      $delta,
+    ]);
     $input_value = NestedArray::getValue($form_state->getUserInput(), $element_path, $input_exists);
     $value_exists = NestedArray::keyExists($form_state->getValues(), $element_path);
 

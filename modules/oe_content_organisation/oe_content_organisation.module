@@ -16,7 +16,7 @@ use Drupal\rdf_skos\Entity\Concept;
 use Drupal\rdf_skos\Entity\ConceptInterface;
 
 /**
- * Implements hook_form_BASE_FORM_ID_alter for the node form.
+ * Implements hook_form_BASE_FORM_ID_alter() for the node form.
  */
 function oe_content_organisation_form_node_form_alter(array &$form, FormStateInterface $form_state) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -27,20 +27,20 @@ function oe_content_organisation_form_node_form_alter(array &$form, FormStateInt
 
   $form['oe_organisation_non_eu_org_type']['widget']['#states'] = [
     'visible' => [
-      'select[name="oe_organisation_org_type"]' => ['value' => 'non_eu']
+      'select[name="oe_organisation_org_type"]' => ['value' => 'non_eu'],
     ],
     'required' => [
-      'select[name="oe_organisation_org_type"]' => ['value' => 'non_eu']
-    ]
+      'select[name="oe_organisation_org_type"]' => ['value' => 'non_eu'],
+    ],
   ];
 
   $form['oe_organisation_eu_org']['widget'][0]['target_id']['#states'] = [
     'visible' => [
-      'select[name="oe_organisation_org_type"]' => ['value' => 'eu']
+      'select[name="oe_organisation_org_type"]' => ['value' => 'eu'],
     ],
     'required' => [
-      'select[name="oe_organisation_org_type"]' => ['value' => 'eu']
-    ]
+      'select[name="oe_organisation_org_type"]' => ['value' => 'eu'],
+    ],
   ];
 
   $form['#validate'][] = 'oe_content_organisation_node_validate';
@@ -54,11 +54,23 @@ function oe_content_organisation_form_node_form_alter(array &$form, FormStateInt
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The form state.
  */
-function oe_content_organisation_node_validate(array $form, FormStateInterface $form_state): void{
+function oe_content_organisation_node_validate(array $form, FormStateInterface $form_state): void {
   // Ensure that organisation values are correctly selected.
-  $organisation_type = $form_state->getValue(['oe_organisation_org_type', 0, 'value']);
-  $non_eu_organisation_type = $form_state->getValue(['oe_organisation_non_eu_org_type', 0, 'target_id']);
-  $eu_organisation = $form_state->getValue(['oe_organisation_eu_org', 0, 'target_id']);
+  $organisation_type = $form_state->getValue([
+    'oe_organisation_org_type',
+    0,
+    'value',
+  ]);
+  $non_eu_organisation_type = $form_state->getValue([
+    'oe_organisation_non_eu_org_type',
+    0,
+    'target_id',
+  ]);
+  $eu_organisation = $form_state->getValue([
+    'oe_organisation_eu_org',
+    0,
+    'target_id',
+  ]);
   if ($organisation_type === 'eu' && !$eu_organisation) {
     $form_state->setErrorByName('oe_organisation_eu_org', t('Please select an EU organisation.'));
     return;

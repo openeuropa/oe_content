@@ -17,7 +17,7 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
    * {@inheritdoc}
    */
   public function validate($node, Constraint $constraint) {
-    /* @var \Drupal\node\NodeInterface $node */
+    /** @var \Drupal\node\NodeInterface $node */
     if (!isset($node) || $node->getType() !== 'oe_event') {
       return;
     }
