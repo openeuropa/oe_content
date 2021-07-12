@@ -10,6 +10,7 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\RenderContext;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\oe_content_persistent\ContentUrlResolverInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
@@ -37,6 +38,13 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
   protected $contentUuidResolver;
 
   /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
    * PersistentUrlController constructor.
    *
    * @param \Drupal\oe_content_persistent\ContentUrlResolverInterface $url_resolver
@@ -45,11 +53,14 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    *   The content UUID resolver.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
    */
-  public function __construct(ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver, LanguageManagerInterface $language_manager) {
+  public function __construct(ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver, LanguageManagerInterface $language_manager, RendererInterface $renderer) {
     $this->contentUrlResolver = $url_resolver;
     $this->contentUuidResolver = $uuid_resolver;
     $this->languageManager = $language_manager;
+    $this->renderer = $renderer;
   }
 
   /**
@@ -59,7 +70,8 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
     return new static(
       $container->get('oe_content_persistent.url_resolver'),
       $container->get('oe_content_persistent.uuid_resolver'),
-      $container->get('language_manager')
+      $container->get('language_manager'),
+      $container->get('renderer')
     );
   }
 
@@ -84,7 +96,7 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
     // cache metadata.
     $context = new RenderContext();
     /** @var \Drupal\Core\Url $url */
-    $url = \Drupal::service('renderer')->executeInRenderContext($context, function () use ($entity) {
+    $url = $this->renderer->executeInRenderContext($context, function () use ($entity) {
       return $this->contentUrlResolver->resolveUrl($entity);
     });
 
