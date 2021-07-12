@@ -9,6 +9,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Render\RenderContext;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\oe_content_persistent\ContentUrlResolverInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
@@ -73,20 +74,33 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    */
   public function index(string $uuid): RedirectResponse {
     $langcode = $this->languageManager->getCurrentLanguage()->getId();
-    if ($entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode)) {
-      if ($entity instanceof ContentEntityInterface) {
-        $url = $this->contentUrlResolver->resolveUrl($entity);
-        $generated_url = $url->toString(TRUE);
-        $cache = CacheableMetadata::createFromObject($generated_url);
-        $cache->addCacheableDependency($entity);
-        $cache->addCacheContexts(['url', 'languages']);
-        $response = new TrustedRedirectResponse($generated_url->getGeneratedUrl());
-        $response->addCacheableDependency($cache);
-        return $response;
-      }
+    $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
+    if (!$entity instanceof ContentEntityInterface) {
+      throw new NotFoundHttpException();
     }
 
-    throw new NotFoundHttpException();
+    // We need to resolve the URL in a render context because we can never know
+    // what a subscriber does for determining the URL and we may be leaking
+    // cache metadata.
+    $context = new RenderContext();
+    /** @var \Drupal\Core\Url $url */
+    $url = \Drupal::service('renderer')->executeInRenderContext($context, function () use ($entity) {
+      return $this->contentUrlResolver->resolveUrl($entity);
+    });
+
+    $generated_url = $url->toString(TRUE);
+    $cache = CacheableMetadata::createFromObject($generated_url);
+
+    if (!$context->isEmpty()) {
+      $bubbleable_metadata = $context->pop();
+      $cache->addCacheableDependency($bubbleable_metadata);
+    }
+
+    $cache->addCacheableDependency($entity);
+    $cache->addCacheContexts(['url', 'languages']);
+    $response = new TrustedRedirectResponse($generated_url->getGeneratedUrl());
+    $response->addCacheableDependency($cache);
+    return $response;
   }
 
 }

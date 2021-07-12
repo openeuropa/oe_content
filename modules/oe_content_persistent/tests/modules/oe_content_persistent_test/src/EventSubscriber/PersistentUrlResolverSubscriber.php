@@ -28,6 +28,17 @@ class PersistentUrlResolverSubscriber implements EventSubscriberInterface {
     if ($entity->label() === 'External') {
       $event->setUrl(Url::fromUri('https://ec.europa.eu'));
     }
+
+    if ($entity->label() === 'Early render') {
+      // Trigger an early render with cache metadata.
+      $render = [
+        '#cache' => [
+          'contexts' => ['url'],
+        ],
+      ];
+      \Drupal::service('renderer')->render($render);
+      $event->setUrl(Url::fromUri('https://ec.europa.eu/info'));
+    }
   }
 
   /**
