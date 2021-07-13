@@ -17,10 +17,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  * Implements hook_install().
  */
 function oe_content_news_install($is_syncing) {
-  if ($is_syncing) {
-    return;
-  }
-
   // Install the newly defined SKOS Concept defined fields.
   $manager = \Drupal::entityDefinitionUpdateManager();
   $definition = BaseFieldDefinition::create('string')
