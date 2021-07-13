@@ -65,10 +65,10 @@ msgid "May"
 msgstr "mai"
 
 msgid "Jun"
-msgstr "jui"
+msgstr "jun"
 
 msgid "Jul"
-msgstr "jui"
+msgstr "jul"
 
 msgid "Aug"
 msgstr "aoû"
