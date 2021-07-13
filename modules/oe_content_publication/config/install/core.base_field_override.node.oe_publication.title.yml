@@ -10,7 +10,7 @@ bundle: oe_publication
 label: 'Page title'
 description: 'The ideal length is 50 to 60 characters including spaces. If it must be longer, make sure you fill in a shorter version in the Alternative title field.'
 required: true
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
