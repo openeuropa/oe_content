@@ -23,7 +23,9 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
   sparql:
-    image: registry.fpfis.eu/openeuropa/triple-store-dev
+    # Temporarily fix the triple store version to avoid "Provisional data" terms.
+    # @todo: Use the latest release once a solution for the "Provisional data" terms is implemented.
+    image: registry.fpfis.eu/openeuropa/triple-store-dev:1.14.0
     pull: true
     environment:
       - SPARQL_UPDATE=true
