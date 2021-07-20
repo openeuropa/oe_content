@@ -69,7 +69,10 @@ class TimelineFieldTest extends EntityKernelTestBase {
     $this->installConfig(['field', 'node', 'system']);
 
     // Create content type.
-    $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
+    $type = NodeType::create([
+      'name' => 'Test content type',
+      'type' => 'test_ct',
+    ]);
     $type->save();
 
     FilterFormat::create([

@@ -44,7 +44,7 @@ function oe_content_organisation_person_reference_install(): void {
   if (!$view_display) {
     return;
   }
-  $oe_organisation_persons =[
+  $oe_organisation_persons = [
     'weight' => 14,
     'label' => 'above',
     'settings' => [

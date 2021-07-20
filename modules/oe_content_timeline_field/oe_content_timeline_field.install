@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Install, update and uninstall functions for the OpenEuropa Content Timeline Field module.
+ * The OpenEuropa Content Timeline Field installation file.
  */
 
 declare(strict_types = 1);

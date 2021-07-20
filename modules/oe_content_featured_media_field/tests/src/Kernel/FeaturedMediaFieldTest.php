@@ -89,7 +89,10 @@ class FeaturedMediaFieldTest extends EntityKernelTestBase {
     $this->mediaEntity->save();
 
     // Create a content type.
-    $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
+    $type = NodeType::create([
+      'name' => 'Test content type',
+      'type' => 'test_ct',
+    ]);
     $type->save();
 
     FieldStorageConfig::create([

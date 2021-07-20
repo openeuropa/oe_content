@@ -68,12 +68,12 @@ class PersistentUrlTest extends KernelTestBase {
     $node->save();
 
     // Make sure that we could get correct entity by uuid with correct language.
-    /* @var \Drupal\Core\Entity\EntityInterface $entity */
+    /** @var \Drupal\Core\Entity\EntityInterface $entity */
     $entity = $uuid_resolver->getEntityByUuid($node->uuid());
     $this->assertEquals($node->uuid(), $entity->uuid());
     $this->assertEquals($node->language()->getId(), $entity->language()->getId());
 
-    /* @var \Drupal\Core\Entity\EntityInterface $entity */
+    /** @var \Drupal\Core\Entity\EntityInterface $entity */
     $entity = $uuid_resolver->getEntityByUuid($node->uuid(), 'en');
     $this->assertEquals($node->uuid(), $entity->uuid());
     $this->assertEquals($node->language()->getId(), $entity->language()->getId());
@@ -82,7 +82,7 @@ class PersistentUrlTest extends KernelTestBase {
     $translation = $node->addTranslation('fr', $node->toArray());
     $translation->save();
 
-    /* @var \Drupal\Core\Entity\EntityInterface $entity */
+    /** @var \Drupal\Core\Entity\EntityInterface $entity */
     $entity = $uuid_resolver->getEntityByUuid($node->uuid(), 'fr');
     $this->assertEquals($translation->uuid(), $entity->uuid());
     $this->assertEquals($translation->language()->getId(), $entity->language()->getId());
