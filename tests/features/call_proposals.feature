@@ -5,7 +5,7 @@ Feature: Call for proposals content creation and editing.
   I need to be able to create, edit and see the call for proposals items
 
   @javascript
-  @batch1
+  @batch3
   Scenario: Creation of a Call for proposals content through the UI.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
     And the following document:
@@ -126,7 +126,7 @@ Feature: Call for proposals content creation and editing.
     And I should not see "Navi title 1"
 
   @javascript
-  @batch2
+  @batch3
   Scenario: Test the maximum string length and the valid date requirements of the Call for proposals content type.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
     When I visit "the Call for proposals creation page"
@@ -193,7 +193,7 @@ Feature: Call for proposals content creation and editing.
     And I should see "Fri, 01/15/2021 - 12:00"
 
   @javascript
-  @batch1
+  @batch3
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
     Given I am logged in as a user with the "create oe_call_proposals content, access content, edit any oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:

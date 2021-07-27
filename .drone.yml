@@ -82,6 +82,7 @@ pipeline:
     when:
       matrix:
         COMPOSER_BOUNDARY: highest
+        TYPE: phpunit
 
   phpunit:
     group: test
