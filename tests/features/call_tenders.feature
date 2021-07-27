@@ -5,6 +5,7 @@ Feature: Call for tenders content creation
   I need to be able to create and see call for tenders items
 
   @javascript
+  @batch2
   Scenario: Creation of a Call for tenders content through the UI.
     Given I am logged in as a user with the "create oe_call_tenders content, access content, edit own oe_call_tenders content, view published skos concept entities" permission
     And the following document:
@@ -38,6 +39,7 @@ Feature: Call for tenders content creation
     And I should not see "Committee on Agriculture and Rural Development"
 
   @javascript
+  @batch3
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_call_tenders content, access content, edit own oe_call_tenders content, view published skos concept entities" permission
     When I visit "the Call for tenders creation page"
