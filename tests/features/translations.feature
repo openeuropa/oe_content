@@ -4,6 +4,7 @@ Feature: Content and interface translations.
   As a visitor
   I should see the website text translated.
 
+  @batch1
   Scenario: As a translator, I should see the date month and weekday names are translated.
     Given I am logged in as a user with the "translate interface, access administration pages, view the administration theme" permission
     When I am on "the interface translation page"

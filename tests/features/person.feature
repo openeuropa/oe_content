@@ -5,6 +5,7 @@ Feature: Person content creation
   I need to be able to create and see content of type "Person"
 
   @javascript
+  @batch3
   Scenario: Creation of a Person content through the UI.
     Given I am logged in as a user with the "create oe_person content, access content, edit own oe_person content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
@@ -205,6 +206,7 @@ Feature: Person content creation
     Then I should not see "Acting role"
 
   @javascript
+  @batch1
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_person content, access content, edit own oe_person content, view published skos concept entities, manage corporate content entities" permission
     When I visit "the Person creation page"
@@ -230,6 +232,7 @@ Feature: Person content creation
     And I should see "amet Teaser."
 
   @javascript
+  @batch2
   Scenario: Ensure that person job, contact and document reference entities are not deleted after removing from the node.
     Given I am logged in as a user with the "access content, view published skos concept entities, view published oe_contact" permission
     And the following General Contact entity:

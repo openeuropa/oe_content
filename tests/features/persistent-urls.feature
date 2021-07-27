@@ -5,6 +5,7 @@ Feature: Persistent URLs
   I need to be able to insert persistent urls in wysiwyg and see processed link
 
   @purl-linkit @javascript
+  @batch2
   Scenario: Make sure that persistent url work with linkit module.
     Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media, use text format base_html, view the administration theme, create url aliases" permission
     And the following languages are available:
