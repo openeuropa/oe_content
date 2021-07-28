@@ -232,7 +232,7 @@ Feature: Person content creation
     And I should see "amet Teaser."
 
   @javascript
-  @batch2
+  @batch3
   Scenario: Ensure that person job, contact and document reference entities are not deleted after removing from the node.
     Given I am logged in as a user with the "access content, view published skos concept entities, view published oe_contact" permission
     And the following General Contact entity:
