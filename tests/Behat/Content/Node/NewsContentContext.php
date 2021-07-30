@@ -32,7 +32,7 @@ class NewsContentContext extends RawDrupalContext {
    *
    * @BeforeParseEntityFields(node,oe_news)
    */
-  public function alterEventFields(BeforeParseEntityFieldsScope $scope): void {
+  public function alterNewsFields(BeforeParseEntityFieldsScope $scope): void {
     // Map human readable field names to their Behat parsable machine names.
     $mapping = [
       'Title' => 'title',
