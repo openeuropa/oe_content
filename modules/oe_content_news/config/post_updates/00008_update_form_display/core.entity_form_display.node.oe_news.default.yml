@@ -3,10 +3,11 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_news.body
-    - field.field.node.oe_news.oe_news_last_updated
+    - field.field.node.oe_news.oe_news_sources
     - field.field.node.oe_news.oe_author
     - field.field.node.oe_news.oe_news_contacts
     - field.field.node.oe_news.oe_news_featured_media
+    - field.field.node.oe_news.oe_news_last_updated
     - field.field.node.oe_news.oe_news_location
     - field.field.node.oe_news.oe_news_types
     - field.field.node.oe_news.oe_publication_date
@@ -33,7 +34,7 @@ third_party_settings:
         - oe_content_navigation_title
         - oe_teaser
       parent_name: ''
-      weight: 7
+      weight: 8
       format_type: details
       region: content
       format_settings:
@@ -51,7 +52,7 @@ third_party_settings:
         - oe_author
         - oe_news_location
       parent_name: ''
-      weight: 6
+      weight: 7
       format_type: details
       region: content
       format_settings:
@@ -82,14 +83,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_news_last_updated:
-    weight: 9
+  oe_news_sources:
+    weight: 6
     settings:
-      date_order: DMY
-      time_type: none
-      increment: 15
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
-    type: datetime_datelist
+    type: link_default
     region: content
   langcode:
     type: language_select
@@ -99,7 +99,7 @@ content:
       include_locked: true
     third_party_settings: {  }
   oe_author:
-    weight: 10
+    weight: 11
     settings:
       match_operator: CONTAINS
       size: 60
@@ -110,7 +110,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 10
+    weight: 11
     region: content
     settings:
       match_operator: CONTAINS
@@ -120,7 +120,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 8
+    weight: 9
     region: content
     settings:
       placeholder_url: ''
@@ -173,8 +173,17 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  oe_news_last_updated:
+    weight: 10
+    settings:
+      date_order: DMY
+      time_type: none
+      increment: 15
+    third_party_settings: {  }
+    type: datetime_datelist
+    region: content
   oe_news_location:
-    weight: 11
+    weight: 12
     settings:
       match_operator: CONTAINS
       size: 60
@@ -191,7 +200,7 @@ content:
     type: skos_concept_entity_reference_options_select
     region: content
   oe_publication_date:
-    weight: 8
+    weight: 9
     settings:
       date_order: DMY
       time_type: none
@@ -208,7 +217,7 @@ content:
     type: string_textfield
     region: content
   oe_related_links:
-    weight: 9
+    weight: 10
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -275,7 +284,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 12
     region: content
     third_party_settings: {  }
   title:
