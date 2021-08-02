@@ -5,9 +5,3 @@ services:
   oe_content_persistent.url_resolver:
     class: \Drupal\oe_content_persistent\ContentUrlResolver
     arguments: ['@event_dispatcher']
-
-  oe_content_persistent.redirect_subscriber:
-    class: \Drupal\oe_content_persistent\EventSubscriber\PersistentUrlRedirectSubscriber
-    arguments: ['@oe_content_persistent.uuid_resolver']
-    tags:
-      - { name: event_subscriber }
