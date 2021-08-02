@@ -97,3 +97,12 @@ function oe_content_news_post_update_00006(): void {
   $component['settings']['removed_reference'] = 'keep';
   $form_display->setComponent('oe_news_contacts', $component)->save();
 }
+
+/**
+ * Set body field optional.
+ */
+function oe_content_news_post_update_00007(): void {
+  $field_config = FieldConfig::load('node.oe_news.body');
+  $field_config->setRequired(FALSE);
+  $field_config->save();
+}
