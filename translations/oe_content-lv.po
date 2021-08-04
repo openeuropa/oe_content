@@ -3,51 +3,51 @@ msgstr ""
 
 msgctxt "Long month name"
 msgid "January"
-msgstr "Janvāris"
+msgstr "janvāris"
 
 msgctxt "Long month name"
 msgid "February"
-msgstr "Februāris"
+msgstr "februāris"
 
 msgctxt "Long month name"
 msgid "March"
-msgstr "Marts"
+msgstr "marts"
 
 msgctxt "Long month name"
 msgid "April"
-msgstr "Aprīlis"
+msgstr "aprīlis"
 
 msgctxt "Long month name"
 msgid "May"
-msgstr "Maijs"
+msgstr "maijs"
 
 msgctxt "Long month name"
 msgid "June"
-msgstr "Jūnijs"
+msgstr "jūnijs"
 
 msgctxt "Long month name"
 msgid "July"
-msgstr "Jūlijs"
+msgstr "jūlijs"
 
 msgctxt "Long month name"
 msgid "August"
-msgstr "Augusts"
+msgstr "augusts"
 
 msgctxt "Long month name"
 msgid "September"
-msgstr "Septembris"
+msgstr "septembris"
 
 msgctxt "Long month name"
 msgid "October"
-msgstr "Oktobris"
+msgstr "oktobris"
 
 msgctxt "Long month name"
 msgid "November"
-msgstr "Novembris"
+msgstr "novembris"
 
 msgctxt "Long month name"
 msgid "December"
-msgstr "Decembris"
+msgstr "decembris"
 
 msgid "Jan"
 msgstr "janv."
@@ -56,13 +56,13 @@ msgid "Feb"
 msgstr "febr."
 
 msgid "Mar"
-msgstr "marts"
+msgstr "mar."
 
 msgid "Apr"
 msgstr "apr."
 
 msgid "May"
-msgstr "maijs"
+msgstr "mai."
 
 msgid "Jun"
 msgstr "jūn."
@@ -87,63 +87,63 @@ msgstr "dec."
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "Sv."
+msgstr "svētd."
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "P."
+msgstr "pirmd."
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "O."
+msgstr "otrd."
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "T."
+msgstr "trešd."
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "C."
+msgstr "cetd."
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "Pk."
+msgstr "piektd."
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "S"
+msgstr "sestd."
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "Sv"
+msgstr "svē."
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "P"
+msgstr "pir."
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "O"
+msgstr "otr."
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "T"
+msgstr "tre."
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "C"
+msgstr "cet."
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "Pk"
+msgstr "pie."
 
 msgctxt "Abbreviated weekday"
 msgid "Sa"
-msgstr "S"
+msgstr "ses."
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
-msgstr "S"
+msgstr "Sv"
 
 msgctxt "Abbreviated 1 letter weekday Monday"
 msgid "M"
@@ -163,29 +163,71 @@ msgstr "C"
 
 msgctxt "Abbreviated 1 letter weekday Friday"
 msgid "F"
-msgstr "P"
+msgstr "Pt"
 
 msgctxt "Abbreviated 1 letter weekday Saturday"
 msgid "S"
 msgstr "S"
 
 msgid "Sunday"
-msgstr "Svētdiena"
+msgstr "svētdiena"
 
 msgid "Monday"
-msgstr "Pirmdiena"
+msgstr "pirmdiena"
 
 msgid "Tuesday"
-msgstr "Otrdiena"
+msgstr "otrdiena"
 
 msgid "Wednesday"
-msgstr "Trešdiena"
+msgstr "trešdiena"
 
 msgid "Thursday"
-msgstr "Ceturtdiena"
+msgstr "ceturtdiena"
 
 msgid "Friday"
-msgstr "Piektdiena"
+msgstr "piektdiena"
 
 msgid "Saturday"
-msgstr "Sestdiena"
+msgstr "sestdiena"
+
+msgid "Sun"
+msgstr "svētd."
+
+msgid "Mon"
+msgstr "pirmd."
+
+msgid "Tue"
+msgstr "otrd."
+
+msgid "Wed"
+msgstr "trešd."
+
+msgid "Thu"
+msgstr "cetd."
+
+msgid "Fri"
+msgstr "piektd."
+
+msgid "Sat"
+msgstr "sestd."
+
+msgid "Su"
+msgstr "svē."
+
+msgid "Mo"
+msgstr "pir."
+
+msgid "Tu"
+msgstr "otr."
+
+msgid "We"
+msgstr "tre."
+
+msgid "Th"
+msgstr "cet."
+
+msgid "Fr"
+msgstr "pie."
+
+msgid "Sa"
+msgstr "ses."

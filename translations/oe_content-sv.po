@@ -56,7 +56,7 @@ msgid "Feb"
 msgstr "feb"
 
 msgid "Mar"
-msgstr "mars"
+msgstr "mar"
 
 msgid "Apr"
 msgstr "apr"
@@ -65,16 +65,16 @@ msgid "May"
 msgstr "maj"
 
 msgid "Jun"
-msgstr "juni"
+msgstr "jun"
 
 msgid "Jul"
-msgstr "juli"
+msgstr "jul"
 
 msgid "Aug"
 msgstr "aug"
 
 msgid "Sep"
-msgstr "sept"
+msgstr "sep"
 
 msgid "Oct"
 msgstr "okt"
@@ -143,31 +143,31 @@ msgstr "lö"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
-msgstr "S"
+msgstr "s"
 
 msgctxt "Abbreviated 1 letter weekday Monday"
 msgid "M"
-msgstr "M"
+msgstr "m"
 
 msgctxt "Abbreviated 1 letter weekday Tuesday"
 msgid "T"
-msgstr "T"
+msgstr "t"
 
 msgctxt "Abbreviated 1 letter weekday Wednesday"
 msgid "W"
-msgstr "O"
+msgstr "o"
 
 msgctxt "Abbreviated 1 letter weekday Thursday"
 msgid "T"
-msgstr "T"
+msgstr "t"
 
 msgctxt "Abbreviated 1 letter weekday Friday"
 msgid "F"
-msgstr "F"
+msgstr "f"
 
 msgctxt "Abbreviated 1 letter weekday Saturday"
 msgid "S"
-msgstr "L"
+msgstr "l"
 
 msgid "Sunday"
 msgstr "söndag"
@@ -189,3 +189,45 @@ msgstr "fredag"
 
 msgid "Saturday"
 msgstr "lördag"
+
+msgid "Sun"
+msgstr "sön"
+
+msgid "Mon"
+msgstr "mån"
+
+msgid "Tue"
+msgstr "tis"
+
+msgid "Wed"
+msgstr "ons"
+
+msgid "Thu"
+msgstr "tor"
+
+msgid "Fri"
+msgstr "fre"
+
+msgid "Sat"
+msgstr "lör"
+
+msgid "Su"
+msgstr "sö"
+
+msgid "Mo"
+msgstr "må"
+
+msgid "Tu"
+msgstr "ti"
+
+msgid "We"
+msgstr "on"
+
+msgid "Th"
+msgstr "to"
+
+msgid "Fr"
+msgstr "fr"
+
+msgid "Sa"
+msgstr "lö"
