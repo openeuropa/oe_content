@@ -3,12 +3,13 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_news.body
-    - field.field.node.oe_news.oe_news_sources
     - field.field.node.oe_news.oe_author
+    - field.field.node.oe_news.oe_departments
     - field.field.node.oe_news.oe_news_contacts
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_last_updated
     - field.field.node.oe_news.oe_news_location
+    - field.field.node.oe_news.oe_news_sources
     - field.field.node.oe_news.oe_news_types
     - field.field.node.oe_news.oe_publication_date
     - field.field.node.oe_news.oe_reference_code
@@ -50,6 +51,7 @@ third_party_settings:
         - oe_publication_date
         - oe_news_last_updated
         - oe_author
+        - oe_departments
         - oe_news_location
       parent_name: ''
       weight: 7
@@ -79,27 +81,19 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_news_sources:
-    weight: 6
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
   langcode:
     type: language_select
-    weight: 18
+    weight: 19
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   oe_author:
-    weight: 11
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
@@ -110,7 +104,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 11
+    weight: 12
     region: content
     settings:
       match_operator: CONTAINS
@@ -145,8 +139,18 @@ content:
       maxlength:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+  oe_departments:
+    weight: 11
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_autocomplete
+    region: content
   oe_news_contacts:
-    weight: 19
+    weight: 20
     settings:
       form_mode: default
       revision: true
@@ -174,7 +178,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   oe_news_last_updated:
-    weight: 10
+    weight: 9
     settings:
       date_order: DMY
       time_type: none
@@ -192,6 +196,14 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
+  oe_news_sources:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   oe_news_types:
     weight: 2
     settings:
@@ -200,7 +212,7 @@ content:
     type: skos_concept_entity_reference_options_select
     region: content
   oe_publication_date:
-    weight: 9
+    weight: 8
     settings:
       date_order: DMY
       time_type: none
@@ -217,7 +229,7 @@ content:
     type: string_textfield
     region: content
   oe_related_links:
-    weight: 10
+    weight: 11
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -262,7 +274,7 @@ content:
     region: content
   path:
     type: path
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -270,21 +282,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 13
+    weight: 14
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 17
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 12
+    weight: 13
     region: content
     third_party_settings: {  }
   title:
@@ -300,7 +312,7 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   uid:
     type: entity_reference_autocomplete
-    weight: 15
+    weight: 16
     settings:
       match_operator: CONTAINS
       size: 60

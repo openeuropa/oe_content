@@ -36,6 +36,7 @@ Feature: News content creation
     And I set "Last update date" to the date "29-07-2021"
     And I fill in "Subject" with "financing"
     And I fill in "Author" with "European Patent Office"
+    And I fill in "Related department" with "ACP–EU Joint Assembly"
     # Reference the media photo to the news item.
     And I fill in "Use existing media" with "Euro with miniature figurines"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
