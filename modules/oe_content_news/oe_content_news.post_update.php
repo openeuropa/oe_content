@@ -105,4 +105,24 @@ function oe_content_news_post_update_00007(): void {
   $field_config = FieldConfig::load('node.oe_news.body');
   $field_config->setRequired(FALSE);
   $field_config->save();
+
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00007_create_fields');
+  \Drupal::service('config.installer')->installOptionalConfig($storage);
+}
+
+/**
+ * Update form display.
+ */
+function oe_content_news_post_update_00008(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00008_update_form_display');
+
+  // Form display configurations to update.
+  $form_display_values = $storage->read('core.entity_form_display.node.oe_news.default');
+  $form_display = EntityFormDisplay::load($form_display_values['id']);
+  if ($form_display) {
+    $updated_form_display = \Drupal::entityTypeManager()
+      ->getStorage($form_display->getEntityTypeId())
+      ->updateFromStorageRecord($form_display, $form_display_values);
+    $updated_form_display->save();
+  }
 }
