@@ -1,0 +1,10 @@
+name: OpenEuropa Content Persons Field
+description: Allows to reference persons by, for example, providing an entity reference field.
+package: OpenEuropa
+
+type: module
+core_version_requirement: ^8.9 || ^9
+
+config_devel:
+  install:
+    - field.storage.node.oe_persons
