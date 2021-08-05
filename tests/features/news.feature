@@ -42,8 +42,10 @@ Feature: News content creation
     And I fill in "Redirect link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Alternative title" with "Shorter title"
-    And I fill in "URL" with "http://example.com"
-    And I fill in "Link text" with "My link"
+    And I fill in "URL" with "http://example.com" in the "Related links" region
+    And I fill in "Link text" with "My link" in the "Related links" region
+    And I fill in "URL" with "https://www.example.com" in the "News sources" region
+    And I fill in "Link text" with "Source link text" in the "News sources" region
     # News contact field.
     And I press "Add new contact"
     And I wait for AJAX to finish
@@ -89,8 +91,11 @@ Feature: News content creation
     And I should see the text "News contact caption"
     And I should see the link "http://example.com/press_contacts"
     And I should see the link "Contact link"
-
-    Then I should see "My News item"
+    # Assert the rest of the values.
+    And I should see "My News item"
+    And I should see the link "Source link text"
+    And I should see the link "My link"
+    And I should see "Reference text"
     And I should see "Shorter title"
     And I should see "Teaser text"
     And I should see "Summary text"
@@ -100,8 +105,6 @@ Feature: News content creation
     And I should not see "Thu, 07/29/2021"
     And I should not see the link "financing"
     And I should not see the link "European Patent Office"
-    And I should see the link "My link"
-    And I should see "Reference text"
 
   @javascript
   Scenario: Length limited fields are truncating characters exceeding the configured limit.

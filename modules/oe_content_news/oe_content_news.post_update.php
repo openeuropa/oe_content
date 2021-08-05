@@ -99,9 +99,10 @@ function oe_content_news_post_update_00006(): void {
 }
 
 /**
- * Set body field optional.
+ * Add new fields.
  */
 function oe_content_news_post_update_00007(): void {
+  // Set body field optional.
   $field_config = FieldConfig::load('node.oe_news.body');
   $field_config->setRequired(FALSE);
   $field_config->save();
