@@ -5,6 +5,10 @@ package: OpenEuropa
 type: module
 core_version_requirement: ^8.9 || ^9
 
+dependencies:
+  - drupal:node
+  - drupal:field
+
 config_devel:
   install:
     - field.storage.node.oe_persons
