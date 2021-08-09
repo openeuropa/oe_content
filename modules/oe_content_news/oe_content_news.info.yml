@@ -22,6 +22,7 @@ config_devel:
     - core.entity_view_display.node.oe_news.default
     - field.field.node.oe_news.body
     - field.field.node.oe_news.oe_author
+    - field.field.node.oe_news.oe_departments
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_last_updated
     - field.field.node.oe_news.oe_news_location
