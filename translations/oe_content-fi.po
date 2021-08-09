@@ -50,142 +50,184 @@ msgid "December"
 msgstr "joulukuu"
 
 msgid "Jan"
-msgstr "Tam"
+msgstr "tam"
 
 msgid "Feb"
-msgstr "Hel"
+msgstr "hel"
 
 msgid "Mar"
-msgstr "Maa"
+msgstr "maa"
 
 msgid "Apr"
-msgstr "Huh"
+msgstr "huh"
 
 msgid "May"
-msgstr "Tou"
+msgstr "tou"
 
 msgid "Jun"
-msgstr "Kes"
+msgstr "kes"
 
 msgid "Jul"
-msgstr "Hei"
+msgstr "hei"
 
 msgid "Aug"
-msgstr "Elo"
+msgstr "elo"
 
 msgid "Sep"
-msgstr "Syy"
+msgstr "syy"
 
 msgid "Oct"
-msgstr "Lok"
+msgstr "lok"
 
 msgid "Nov"
-msgstr "Mar"
+msgstr "mar"
 
 msgid "Dec"
-msgstr "Jou"
+msgstr "jou"
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "Sun"
+msgstr "su"
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "Maa"
+msgstr "ma"
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "Tii"
+msgstr "ti"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "Kes"
+msgstr "ke"
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "Tor"
+msgstr "to"
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "Per"
+msgstr "pe"
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "Lau"
+msgstr "la"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "Su"
+msgstr "su"
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "Ma"
+msgstr "ma"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "Ti"
+msgstr "ti"
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "Ke"
+msgstr "ke"
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "To"
+msgstr "to"
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "Pe"
+msgstr "pe"
 
 msgctxt "Abbreviated weekday"
 msgid "Sa"
-msgstr "La"
+msgstr "la"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
-msgstr "S"
+msgstr "s"
 
 msgctxt "Abbreviated 1 letter weekday Monday"
 msgid "M"
-msgstr "M"
+msgstr "m"
 
 msgctxt "Abbreviated 1 letter weekday Tuesday"
 msgid "T"
-msgstr "T"
+msgstr "t"
 
 msgctxt "Abbreviated 1 letter weekday Wednesday"
 msgid "W"
-msgstr "K"
+msgstr "k"
 
 msgctxt "Abbreviated 1 letter weekday Thursday"
 msgid "T"
-msgstr "T"
+msgstr "t"
 
 msgctxt "Abbreviated 1 letter weekday Friday"
 msgid "F"
-msgstr "P"
+msgstr "p"
 
 msgctxt "Abbreviated 1 letter weekday Saturday"
 msgid "S"
-msgstr "L"
+msgstr "l"
 
 msgid "Sunday"
-msgstr "Sunnuntai"
+msgstr "sunnuntai"
 
 msgid "Monday"
-msgstr "Maanantai"
+msgstr "maanantai"
 
 msgid "Tuesday"
-msgstr "Tiistai"
+msgstr "tiistai"
 
 msgid "Wednesday"
-msgstr "Keskiviikko"
+msgstr "keskiviikko"
 
 msgid "Thursday"
-msgstr "Torstai"
+msgstr "torstai"
 
 msgid "Friday"
-msgstr "Perjantai"
+msgstr "perjantai"
 
 msgid "Saturday"
-msgstr "Lauantai"
+msgstr "lauantai"
+
+msgid "Sun"
+msgstr "su"
+
+msgid "Mon"
+msgstr "ma"
+
+msgid "Tue"
+msgstr "ti"
+
+msgid "Wed"
+msgstr "ke"
+
+msgid "Thu"
+msgstr "to"
+
+msgid "Fri"
+msgstr "pe"
+
+msgid "Sat"
+msgstr "la"
+
+msgid "Su"
+msgstr "su"
+
+msgid "Mo"
+msgstr "ma"
+
+msgid "Tu"
+msgstr "ti"
+
+msgid "We"
+msgstr "ke"
+
+msgid "Th"
+msgstr "to"
+
+msgid "Fr"
+msgstr "pe"
+
+msgid "Sa"
+msgstr "la"

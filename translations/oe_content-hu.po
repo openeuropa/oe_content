@@ -50,120 +50,124 @@ msgid "December"
 msgstr "december"
 
 msgid "Jan"
-msgstr "Jan"
+msgstr "jan."
 
 msgid "Feb"
-msgstr "Feb"
+msgstr "febr."
 
 msgid "Mar"
-msgstr "Már"
+msgstr "márc."
 
 msgid "Apr"
-msgstr "Ápr"
+msgstr "ápr."
 
 msgid "May"
-msgstr "Máj"
+msgstr "máj."
 
 msgid "Jun"
-msgstr "Jún"
+msgstr "jún."
 
 msgid "Jul"
-msgstr "Júl"
+msgstr "júl."
 
 msgid "Aug"
-msgstr "Aug"
+msgstr "aug."
 
 msgid "Sep"
-msgstr "Szep"
+msgstr "szept."
 
 msgid "Oct"
-msgstr "Okt"
+msgstr "okt."
 
 msgid "Nov"
-msgstr "Nov"
+msgstr "nov."
 
 msgid "Dec"
-msgstr "Dec"
+msgstr "dec."
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "Vas"
+msgstr "vas."
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "Hét"
+msgstr "hétf."
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "Ked"
+msgstr "kedd"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "Sze"
+msgstr "szer."
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "Csü"
+msgstr "csüt."
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "Pén"
+msgstr "pént."
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "Szo"
+msgstr "szom."
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "Va"
+msgstr "va."
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "Hé"
+msgstr "hé."
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "Ke"
+msgstr "ke."
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "Sze"
+msgstr "sze."
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "Cs"
+msgstr "csü."
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "Pé"
+msgstr "pé."
 
 msgctxt "Abbreviated weekday"
 msgid "Sa"
-msgstr "Szo"
+msgstr "szo."
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
-msgstr "V"
+msgstr "v"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "M"
+msgstr "h"
 
 msgctxt "Abbreviated 1 letter weekday Tuesday"
 msgid "T"
-msgstr "K"
+msgstr "k"
 
 msgctxt "Abbreviated 1 letter weekday Wednesday"
 msgid "W"
-msgstr "Sz"
+msgstr "sze"
 
 msgctxt "Abbreviated 1 letter weekday Thursday"
 msgid "T"
-msgstr "Cs"
+msgstr "cs"
 
 msgctxt "Abbreviated 1 letter weekday Friday"
 msgid "F"
-msgstr "P"
+msgstr "p"
 
 msgctxt "Abbreviated 1 letter weekday Saturday"
 msgid "S"
-msgstr "Sz"
+msgstr "szo"
 
 msgid "Sunday"
 msgstr "vasárnap"
@@ -185,3 +189,45 @@ msgstr "péntek"
 
 msgid "Saturday"
 msgstr "szombat"
+
+msgid "Sun"
+msgstr "vas."
+
+msgid "Mon"
+msgstr "hétf."
+
+msgid "Tue"
+msgstr "kedd"
+
+msgid "Wed"
+msgstr "szer."
+
+msgid "Thu"
+msgstr "csüt."
+
+msgid "Fri"
+msgstr "pént."
+
+msgid "Sat"
+msgstr "szom."
+
+msgid "Su"
+msgstr "va."
+
+msgid "Mo"
+msgstr "hé."
+
+msgid "Tu"
+msgstr "ke."
+
+msgid "We"
+msgstr "sze."
+
+msgid "Th"
+msgstr "csü."
+
+msgid "Fr"
+msgstr "pé."
+
+msgid "Sa"
+msgstr "szo."

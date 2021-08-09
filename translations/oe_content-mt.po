@@ -115,31 +115,31 @@ msgstr "Sib"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "Ħ"
+msgstr "Ħa"
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "T"
+msgstr "Tn"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "TL"
+msgstr "Tl"
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "E"
+msgstr "Er"
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "Ħ"
+msgstr "Ħa"
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "G"
+msgstr "Ġi"
 
 msgctxt "Abbreviated weekday"
 msgid "Sa"
-msgstr "S"
+msgstr "Si"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
@@ -189,3 +189,45 @@ msgstr "Il-Ġimgħa"
 
 msgid "Saturday"
 msgstr "Is-Sibt"
+
+msgid "Sun"
+msgstr "Ħad"
+
+msgid "Mon"
+msgstr "Tne"
+
+msgid "Tue"
+msgstr "Tli"
+
+msgid "Wed"
+msgstr "Erb"
+
+msgid "Thu"
+msgstr "Ħam"
+
+msgid "Fri"
+msgstr "Ġim"
+
+msgid "Sat"
+msgstr "Sib"
+
+msgid "Su"
+msgstr "Ħa"
+
+msgid "Mo"
+msgstr "Tn"
+
+msgid "Tu"
+msgstr "Tl"
+
+msgid "We"
+msgstr "Er"
+
+msgid "Th"
+msgstr "Ħa"
+
+msgid "Fr"
+msgstr "Ġi"
+
+msgid "Sa"
+msgstr "Si"
