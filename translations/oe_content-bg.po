@@ -50,37 +50,40 @@ msgid "September"
 msgstr "септември"
 
 msgid "Jan"
-msgstr "Ян."
+msgstr "янр"
 
 msgid "Feb"
-msgstr "Февр."
+msgstr "фев"
 
 msgid "Mar"
-msgstr "Март"
+msgstr "мар"
 
 msgid "Apr"
-msgstr "Апр."
+msgstr "апр"
+
+msgid "May"
+msgstr "май"
 
 msgid "Jun"
-msgstr "Юни"
+msgstr "юни"
 
 msgid "Jul"
-msgstr "Юли"
+msgstr "юли"
 
 msgid "Aug"
-msgstr "Авг."
+msgstr "авг"
 
 msgid "Sep"
-msgstr "Септ."
+msgstr "сеп"
 
 msgid "Oct"
-msgstr "Окт."
+msgstr "окт"
 
 msgid "Nov"
-msgstr "Ноем."
+msgstr "ное"
 
 msgid "Dec"
-msgstr "Дек."
+msgstr "дек"
 
 msgid "Sunday"
 msgstr "неделя"
@@ -103,3 +106,128 @@ msgstr "петък"
 msgid "Saturday"
 msgstr "събота"
 
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "нед"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "пон"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "вто"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "сря"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "чет"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "пет"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "съб"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "не"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "пo"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "вт"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "ср"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "че"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "пе"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "съ"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "н"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "п"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "в"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "с"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "ч"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "п"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "с"
+
+msgid "Sun"
+msgstr "нед"
+
+msgid "Mon"
+msgstr "пон"
+
+msgid "Tue"
+msgstr "вто"
+
+msgid "Wed"
+msgstr "сря"
+
+msgid "Thu"
+msgstr "чет"
+
+msgid "Fri"
+msgstr "пет"
+
+msgid "Sat"
+msgstr "съб"
+
+msgid "Su"
+msgstr "не"
+
+msgid "Mo"
+msgstr "пo"
+
+msgid "Tu"
+msgstr "вт"
+
+msgid "We"
+msgstr "ср"
+
+msgid "Th"
+msgstr "че"
+
+msgid "Fr"
+msgstr "пе"
+
+msgid "Sa"
+msgstr "съ"

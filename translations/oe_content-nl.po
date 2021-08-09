@@ -50,84 +50,84 @@ msgid "December"
 msgstr "december"
 
 msgid "Jan"
-msgstr "jan"
+msgstr "jan."
 
 msgid "Feb"
-msgstr "feb"
+msgstr "feb."
 
 msgid "Mar"
 msgstr "mrt"
 
 msgid "Apr"
-msgstr "apr"
+msgstr "april"
 
 msgid "May"
 msgstr "mei"
 
 msgid "Jun"
-msgstr "jun"
+msgstr "juni"
 
 msgid "Jul"
-msgstr "jul"
+msgstr "juli"
 
 msgid "Aug"
-msgstr "aug"
+msgstr "aug."
 
 msgid "Sep"
-msgstr "sep"
+msgstr "sept."
 
 msgid "Oct"
-msgstr "okt"
+msgstr "okt."
 
 msgid "Nov"
-msgstr "nov"
+msgstr "nov."
 
 msgid "Dec"
-msgstr "dec"
+msgstr "dec."
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "zo"
+msgstr "Zon"
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "ma"
+msgstr "Maa"
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "di"
+msgstr "Din"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "wo"
+msgstr "Woe"
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "do"
+msgstr "Don"
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "vr"
+msgstr "Vrij"
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "za"
+msgstr "Zat"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "zo"
+msgstr "Zo"
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "ma"
+msgstr "Ma"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "di"
+msgstr "Di"
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "wo"
+msgstr "Wo"
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
@@ -136,6 +136,10 @@ msgstr "Do"
 msgctxt "Abbreviated weekday"
 msgid "Fr"
 msgstr "Vr"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "Za"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
@@ -185,3 +189,42 @@ msgstr "vrijdag"
 
 msgid "Saturday"
 msgstr "zaterdag"
+
+msgid "Sun"
+msgstr "Zon"
+
+msgid "Mon"
+msgstr "Maa"
+
+msgid "Tue"
+msgstr "Din"
+
+msgid "Wed"
+msgstr "Woe"
+
+msgid "Thu"
+msgstr "Don"
+
+msgid "Fri"
+msgstr "Vrij"
+
+msgid "Sat"
+msgstr "Zat"
+
+msgid "Su"
+msgstr "Zo"
+
+msgid "Mo"
+msgstr "Ma"
+
+msgid "Tu"
+msgstr "Di"
+
+msgid "We"
+msgstr "Wo"
+
+msgid "Th"
+msgstr "Do"
+
+msgid "Fr"
+msgstr "Vr"

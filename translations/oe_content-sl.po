@@ -85,6 +85,90 @@ msgstr "nov"
 msgid "Dec"
 msgstr "dec"
 
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "ned"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "pon"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "tor"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "sre"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "čet"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "pet"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "sob"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "ne"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "po"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "to"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "sr"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "če"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "pe"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "so"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "ne"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "po"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "to"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "sr"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "to"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "pe"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "ne"
+
 msgid "Sunday"
 msgstr "nedelja"
 
@@ -105,3 +189,45 @@ msgstr "petek"
 
 msgid "Saturday"
 msgstr "sobota"
+
+msgid "Sun"
+msgstr "ned"
+
+msgid "Mon"
+msgstr "pon"
+
+msgid "Tue"
+msgstr "tor"
+
+msgid "Wed"
+msgstr "sre"
+
+msgid "Thu"
+msgstr "čet"
+
+msgid "Fri"
+msgstr "pet"
+
+msgid "Sat"
+msgstr "sob"
+
+msgid "Su"
+msgstr "ne"
+
+msgid "Mo"
+msgstr "po"
+
+msgid "Tu"
+msgstr "to"
+
+msgid "We"
+msgstr "sr"
+
+msgid "Th"
+msgstr "če"
+
+msgid "Fr"
+msgstr "pe"
+
+msgid "Sa"
+msgstr "so"

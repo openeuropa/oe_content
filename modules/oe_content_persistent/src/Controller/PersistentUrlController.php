@@ -4,9 +4,14 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_persistent\Controller;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Render\RenderContext;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\oe_content_persistent\ContentUrlResolverInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -33,16 +38,29 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
   protected $contentUuidResolver;
 
   /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
    * PersistentUrlController constructor.
    *
    * @param \Drupal\oe_content_persistent\ContentUrlResolverInterface $url_resolver
    *   The content URL resolver service.
    * @param \Drupal\oe_content_persistent\ContentUuidResolverInterface $uuid_resolver
    *   The content UUID resolver.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+   *   The language manager.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
    */
-  public function __construct(ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver) {
+  public function __construct(ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver, LanguageManagerInterface $language_manager, RendererInterface $renderer) {
     $this->contentUrlResolver = $url_resolver;
     $this->contentUuidResolver = $uuid_resolver;
+    $this->languageManager = $language_manager;
+    $this->renderer = $renderer;
   }
 
   /**
@@ -51,7 +69,9 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('oe_content_persistent.url_resolver'),
-      $container->get('oe_content_persistent.uuid_resolver')
+      $container->get('oe_content_persistent.uuid_resolver'),
+      $container->get('language_manager'),
+      $container->get('renderer')
     );
   }
 
@@ -65,20 +85,34 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
    *   A redirect response to actual alias or system path.
    */
   public function index(string $uuid): RedirectResponse {
-    if ($entity = $this->contentUuidResolver->getEntityByUuid($uuid)) {
-      // Unfortunately we cannot use
-      // an instance of CacheableSecuredRedirectResponse because we get
-      // an exception inside
-      // \Drupal\Core\EventSubscriber\EarlyRenderingControllerWrapperSubscriber.
-      // More information you could find in this article:
-      // https://www.lullabot.com/articles/early-rendering-a-lesson-in-debugging-drupal-8
-      if ($entity instanceof ContentEntityInterface) {
-        $url = $this->contentUrlResolver->resolveUrl($entity);
-        return new RedirectResponse($url->toString(), 302, ['PURL' => '1']);
-      }
+    $langcode = $this->languageManager->getCurrentLanguage()->getId();
+    $entity = $this->contentUuidResolver->getEntityByUuid($uuid, $langcode);
+    if (!$entity instanceof ContentEntityInterface) {
+      throw new NotFoundHttpException();
     }
 
-    throw new NotFoundHttpException();
+    // We need to resolve the URL in a render context because we can never know
+    // what a subscriber does for determining the URL and we may be leaking
+    // cache metadata.
+    $context = new RenderContext();
+    /** @var \Drupal\Core\Url $url */
+    $url = $this->renderer->executeInRenderContext($context, function () use ($entity) {
+      return $this->contentUrlResolver->resolveUrl($entity);
+    });
+
+    $generated_url = $url->toString(TRUE);
+    $cache = CacheableMetadata::createFromObject($generated_url);
+
+    if (!$context->isEmpty()) {
+      $bubbleable_metadata = $context->pop();
+      $cache->addCacheableDependency($bubbleable_metadata);
+    }
+
+    $cache->addCacheableDependency($entity);
+    $cache->addCacheContexts(['url', 'languages']);
+    $response = new TrustedRedirectResponse($generated_url->getGeneratedUrl());
+    $response->addCacheableDependency($cache);
+    return $response;
   }
 
 }
