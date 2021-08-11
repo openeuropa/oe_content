@@ -1,4 +1,4 @@
-name: OpenEuropa Content Persons Field
+name: OpenEuropa Person Reference
 description: Contains the persons entity reference storage field.
 package: OpenEuropa
 

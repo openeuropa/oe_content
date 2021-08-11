@@ -1,4 +1,4 @@
-# OpenEuropa Persons Field
+# OpenEuropa Person Reference
 
 This module provides the Persons Field storage field, by enabling it you will be able to add persons
 fields to your content types. This will be used, to filter out news that are about a specific person,
