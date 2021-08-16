@@ -1,11 +1,29 @@
-# Changelog
+# Change Log
+
+## [2.4.0](https://github.com/openeuropa/oe_content/tree/2.4.0) (2021-08-12)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/2.3.0...2.4.0)
+
+**Closed issues:**
+
+- Dependencies vs dev dependencies [\#332](https://github.com/openeuropa/oe_content/issues/332)
+- Installation: conflict with drupal 8.9.7  - easyrdf [\#321](https://github.com/openeuropa/oe_content/issues/321)
+- Module drupal/typed\_link is missing after installation [\#206](https://github.com/openeuropa/oe_content/issues/206)
+- PHP error occurs when clicking on the RDF tab in content section [\#180](https://github.com/openeuropa/oe_content/issues/180)
+
+**Merged pull requests:**
+
+- EWPP-1257: Fix the triple store image to 1.14 to avoid the Provisional data terms. [\#446](https://github.com/openeuropa/oe_content/pull/446) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-1288: Unlock drupal/coder package. [\#445](https://github.com/openeuropa/oe_content/pull/445) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1289: Add missing interface translations. [\#444](https://github.com/openeuropa/oe_content/pull/444) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1257: Language support in the Persistent URL controller and fixes on PURL redirection. [\#443](https://github.com/openeuropa/oe_content/pull/443) ([upchuk](https://github.com/upchuk))
+- EWPP-1141: Make node title field labels consistent. [\#441](https://github.com/openeuropa/oe_content/pull/441) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [2.3.0](https://github.com/openeuropa/oe_content/tree/2.3.0) (2021-06-17)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/2.2.0...2.3.0)
 
 **Merged pull requests:**
 
+- Prepare release 2.3.0. [\#440](https://github.com/openeuropa/oe_content/pull/440) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1049: Address field should have only Country as mandatory. [\#419](https://github.com/openeuropa/oe_content/pull/419) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [2.2.0](https://github.com/openeuropa/oe_content/tree/2.2.0) (2021-06-15)
