@@ -10,6 +10,8 @@ dependencies:
   - drupal:datetime
   - rdf_skos:rdf_skos
   - maxlength:maxlength
+  - oe_content:oe_content_sub_entity
+  - entity_reference_revisions:entity_reference_revisions
 
 config_devel:
   install:
