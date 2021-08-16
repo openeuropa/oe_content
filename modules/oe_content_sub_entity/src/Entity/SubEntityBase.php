@@ -127,4 +127,12 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
     return $parent;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getBundleName(): ?string {
+    $bundles = $this->entityTypeBundleInfo()->getBundleInfo($this->entityTypeId);
+    return $bundles[$this->bundle()]['label'] ?? NULL;
+  }
+
 }

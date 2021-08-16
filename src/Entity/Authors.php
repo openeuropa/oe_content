@@ -52,15 +52,15 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 class Authors extends SubEntityBase implements AuthorsInterface {
 
   /**
-   * Gets the label of the entity.
+   * Gets the label of the entity with mentioned bundle label.
    *
-   * Since document reference doesn't have name field, label is generated.
+   * Since Author doesn't have name field, label is generated.
    * Pattern: Referenced entity 1 label, Referenced entity 2 label.
    */
   public function label() {
     $labels = $this->getReferencedEntityLabels();
     if (!empty($labels)) {
-      return $labels;
+      return '<strong>' . $this->getBundleName() . '</strong>: ' . $labels;
     }
 
     return parent::label();
