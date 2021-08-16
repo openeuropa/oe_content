@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_authors
+    - node.type.oe_news
+    - oe_content.oe_authors_type.oe_corporate_body
+  module:
+    - composite_reference
+    - entity_reference_revisions
+third_party_settings:
+  composite_reference:
+    composite: false
+id: node.oe_news.oe_authors
+field_name: oe_authors
+entity_type: node
+bundle: oe_news
+label: Authors
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:oe_authors'
+  handler_settings:
+    target_bundles:
+      oe_corporate_body: oe_corporate_body
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions
