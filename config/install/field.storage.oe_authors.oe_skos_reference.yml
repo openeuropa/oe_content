@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_content
+    - rdf_skos
+id: oe_authors.oe_skos_reference
+field_name: oe_skos_reference
+entity_type: oe_authors
+type: skos_concept_entity_reference
+settings:
+  target_type: skos_concept
+module: rdf_skos
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
