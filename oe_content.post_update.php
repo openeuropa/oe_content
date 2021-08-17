@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Utility\UpdateException;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\user\Entity\Role;
@@ -127,5 +128,44 @@ function oe_content_post_update_00004(): void {
     if ($role_changed) {
       $role->save();
     }
+  }
+}
+
+/**
+ * Add new Authors sub entity type with required fields.
+ */
+function oe_content_post_update_00005(): void {
+  $file_storage = new FileStorage(drupal_get_path('module', 'oe_content') . '/config/post_updates/00005_create_oe_authors_entity_type');
+
+  $entity_type_manager = \Drupal::entityTypeManager();
+  // Create Author bundle.
+  $entity_type_manager->getStorage('oe_authors_type')
+    ->create($file_storage->read('oe_content.oe_authors_type.oe_corporate_body'))
+    ->save();
+
+  // Create field for Author entity type.
+  $field_storage_config = $entity_type_manager->getStorage('field_storage_config');
+  $field_storage_config->create($file_storage->read('field.storage.oe_authors.oe_skos_reference'))->save();
+  $field_config = $entity_type_manager->getStorage('field_config');
+  $field_config->create($file_storage->read('field.field.oe_authors.oe_corporate_body.oe_skos_reference'))->save();
+
+  // Configure entity form display.
+  $entity_type_manager->getStorage('entity_form_display')->createFromStorageRecord($file_storage->read('core.entity_form_display.oe_authors.oe_corporate_body.default'))->save();
+
+  // Create field storage for nodes.
+  $field_storage_config->create($file_storage->read('field.storage.node.oe_authors'))->save();
+
+  $content_types = [
+    'oe_event',
+    'oe_news',
+    'oe_page',
+    'oe_policy',
+    'oe_publication',
+  ];
+  foreach ($content_types as $content_type) {
+    $field_config->create($file_storage->read('field.field.node.' . $content_type . '.oe_authors'))->save();
+    $form_display = $file_storage->read('core.entity_form_display.node.' . $content_type . '.default');
+    $entity = $entity_type_manager->getStorage('entity_form_display')->load($form_display['id']);
+    $entity_type_manager->getStorage('entity_form_display')->updateFromStorageRecord($entity, $form_display)->save();
   }
 }
