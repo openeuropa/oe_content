@@ -73,6 +73,13 @@ Feature: News content creation
     And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
     And I fill in "Link text" with "Contact link" in the "Contact link" region
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
+    # Authors field widget
+    And I press the "Add new authors" button
+    And I fill in "Corporate body (value 1)" with "Audit Board of the European Communities"
+    And I press the "Add another item" button in the "Authors field" region
+    And I fill in "Corporate body (value 2)" with "Arab Common Market"
+    And I press the "Create authors" button
+    And I should see "Corporate body: Audit Board of the European Communities, Arab Common Market"
     When I press "Save"
     # News contact values.
     Then I should see the text "Name of the contact"
