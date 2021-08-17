@@ -4,7 +4,9 @@ dependencies:
   config:
     - field.field.node.oe_news.body
     - field.field.node.oe_news.oe_author
+    - field.field.node.oe_news.oe_authors
     - field.field.node.oe_news.oe_departments
+    - field.field.node.oe_news.oe_news_contacts
     - field.field.node.oe_news.oe_news_contacts
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_last_updated
@@ -51,6 +53,7 @@ third_party_settings:
         - oe_publication_date
         - oe_news_last_updated
         - oe_author
+        - oe_authors
         - oe_departments
         - oe_news_location
       parent_name: ''
@@ -87,7 +90,7 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 19
+    weight: 18
     region: content
     settings:
       include_locked: true
@@ -102,6 +105,24 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
+  oe_authors:
+    type: inline_entity_form_complex
+    weight: 10
+    region: content
+    settings:
+      form_mode: default
+      revision: true
+      label_singular: ''
+      label_plural: ''
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
+      removed_reference: keep
+      override_labels: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
     weight: 12

@@ -3,16 +3,19 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_policy.body
-    - field.field.node.oe_policy.oe_timeline
     - field.field.node.oe_policy.oe_author
+    - field.field.node.oe_policy.oe_authors
     - field.field.node.oe_policy.oe_subject
     - field.field.node.oe_policy.oe_summary
     - field.field.node.oe_policy.oe_teaser
+    - field.field.node.oe_policy.oe_timeline
     - node.type.oe_policy
   module:
+    - inline_entity_form
     - link
     - maxlength
     - oe_content_timeline_field
+    - path
     - rdf_skos
     - text
 id: node.oe_policy.default
@@ -21,41 +24,69 @@ bundle: oe_policy
 mode: default
 content:
   body:
-    weight: 3
+    weight: 4
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
+      show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
   created:
     type: datetime_timestamp
-    weight: 12
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   oe_author:
-    weight: 6
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
+  oe_authors:
+    type: inline_entity_form_complex
+    weight: 8
+    region: content
+    settings:
+      form_mode: default
+      revision: true
+      label_singular: ''
+      label_plural: ''
+      collapsible: true
+      allow_new: true
+      match_operator: CONTAINS
+      removed_reference: keep
+      override_labels: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 7
+    weight: 9
     region: content
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 8
+    weight: 10
     region: content
     settings:
       placeholder_url: ''
@@ -63,7 +94,7 @@ content:
     third_party_settings: {  }
   oe_content_navigation_title:
     type: string_textfield
-    weight: 10
+    weight: 12
     region: content
     settings:
       size: 60
@@ -71,7 +102,7 @@ content:
     third_party_settings: {  }
   oe_content_short_title:
     type: string_textfield
-    weight: 9
+    weight: 11
     region: content
     settings:
       size: 60
@@ -81,16 +112,17 @@ content:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_subject:
-    weight: 5
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
   oe_summary:
-    weight: 2
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -116,30 +148,36 @@ content:
     type: text_textarea
     region: content
   oe_timeline:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: timeline_widget
     region: content
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 13
+  path:
+    type: path
+    weight: 18
     region: content
+    settings: {  }
     third_party_settings: {  }
-  status:
+  promote:
     type: boolean_checkbox
     settings:
       display_label: true
     weight: 15
     region: content
     third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 17
+    region: content
+    third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 14
+    weight: 16
     region: content
     third_party_settings: {  }
   title:
@@ -155,11 +193,12 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   uid:
     type: entity_reference_autocomplete
-    weight: 11
+    weight: 13
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
 hidden: {  }
