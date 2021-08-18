@@ -8,14 +8,14 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 
 /**
- * Defines the Authors entity.
+ * Defines the author entity.
  *
  * @ingroup oe_content
  *
  * @ContentEntityType(
- *   id = "oe_authors",
- *   label = @Translation("Authors"),
- *   label_collection = @Translation("Authors"),
+ *   id = "oe_author",
+ *   label = @Translation("author"),
+ *   label_collection = @Translation("author"),
  *   bundle_label = @Translation("Type"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
@@ -28,10 +28,10 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *   },
- *   base_table = "oe_authors",
- *   data_table = "oe_authors_field_data",
- *   revision_table = "oe_authors_revision",
- *   revision_data_table = "oe_authors_field_revision",
+ *   base_table = "oe_author",
+ *   data_table = "oe_author_field_data",
+ *   revision_table = "oe_author_revision",
+ *   revision_data_table = "oe_author_field_revision",
  *   translatable = TRUE,
  *   entity_revision_parent_type_field = "parent_type",
  *   entity_revision_parent_id_field = "parent_id",
@@ -44,12 +44,12 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *     "langcode" = "langcode",
  *     "published" = "status",
  *   },
- *   bundle_entity_type = "oe_authors_type",
- *   field_ui_base_route = "entity.oe_authors_type.edit_form",
+ *   bundle_entity_type = "oe_author_type",
+ *   field_ui_base_route = "entity.oe_author_type.edit_form",
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class Authors extends SubEntityBase implements AuthorsInterface {
+class author extends SubEntityBase implements authorInterface {
 
   /**
    * Gets the label of the entity with mentioned bundle label.

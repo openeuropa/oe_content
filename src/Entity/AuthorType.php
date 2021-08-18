@@ -7,17 +7,17 @@ namespace Drupal\oe_content\Entity;
 use Drupal\oe_content_sub_entity\Entity\SubEntityTypeBase;
 
 /**
- * Defines the authors type entity.
+ * Defines the author type entity.
  *
  * @ConfigEntityType(
- *   id = "oe_authors_type",
- *   label = @Translation("Authors type"),
- *   bundle_of = "oe_authors",
+ *   id = "oe_author_type",
+ *   label = @Translation("author type"),
+ *   bundle_of = "oe_author",
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "label",
  *   },
- *   config_prefix = "oe_authors_type",
+ *   config_prefix = "oe_author_type",
  *   config_export = {
  *     "id",
  *     "label",
@@ -37,11 +37,11 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityTypeBase;
  *   },
  *   admin_permission = "administer sub entity types",
  *   links = {
- *     "add-form" = "/admin/structure/oe_authors_type/add",
- *     "edit-form" = "/admin/structure/oe_authors_type/{oe_authors_type}/edit",
- *     "delete-form" = "/admin/structure/oe_authors_type/{oe_authors_type}/delete",
- *     "collection" = "/admin/structure/oe_authors_type",
+ *     "add-form" = "/admin/structure/oe_author_type/add",
+ *     "edit-form" = "/admin/structure/oe_author_type/{oe_author_type}/edit",
+ *     "delete-form" = "/admin/structure/oe_author_type/{oe_author_type}/delete",
+ *     "collection" = "/admin/structure/oe_author_type",
  *   }
  * )
  */
-class AuthorsType extends SubEntityTypeBase {}
+class authorType extends SubEntityTypeBase {}

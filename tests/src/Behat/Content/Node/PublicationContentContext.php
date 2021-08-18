@@ -50,6 +50,7 @@ class PublicationContentContext extends RawDrupalContext {
       'Title' => 'title',
       'Publications' => 'oe_publication_publications',
       'Collection' => 'oe_publication_collection',
+      'Authors' => 'oe_authors',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -78,6 +79,23 @@ class PublicationContentContext extends RawDrupalContext {
           $scope->addFields([
             $mapping[$key] => (int) ($value === 'Yes'),
           ])->removeField($key);
+          break;
+
+        // Set Authors entity reference fields.
+        case 'Authors':
+          $ids = [];
+          $revision_ids = [];
+          $names = explode(', ', $value);
+          foreach ($names as $name) {
+            $entity = $this->subEntityContext->getSubEntityByName($name);
+            $ids[] = $entity->id();
+            $revision_ids[] = $entity->getRevisionId();
+          }
+          $scope->addFields([
+            $mapping[$key] . ':target_id' => implode(',', $ids),
+            $mapping[$key] . ':target_revision_id' => implode(',', $revision_ids),
+          ]);
+          $scope->removeField($key);
           break;
 
         default:

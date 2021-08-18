@@ -48,6 +48,7 @@ class NewsContentContext extends RawDrupalContext {
       'Publication date' => 'oe_publication_date',
       'Last update date' => 'oe_news_last_updated',
       'Teaser' => 'oe_teaser',
+      'Authors' => 'oe_authors',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -72,6 +73,23 @@ class NewsContentContext extends RawDrupalContext {
               'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
             ]);
           $scope->addFields([$mapping[$key] => $date])->removeField($key);
+          break;
+
+        // Set Authors entity reference fields.
+        case 'Authors':
+          $ids = [];
+          $revision_ids = [];
+          $names = explode(', ', $value);
+          foreach ($names as $name) {
+            $entity = $this->subEntityContext->getSubEntityByName($name);
+            $ids[] = $entity->id();
+            $revision_ids[] = $entity->getRevisionId();
+          }
+          $scope->addFields([
+            $mapping[$key] . ':target_id' => implode(',', $ids),
+            $mapping[$key] . ':target_revision_id' => implode(',', $revision_ids),
+          ]);
+          $scope->removeField($key);
           break;
 
         default:

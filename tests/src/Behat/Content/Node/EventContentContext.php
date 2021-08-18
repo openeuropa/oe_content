@@ -8,6 +8,7 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -23,6 +24,7 @@ class EventContentContext extends RawDrupalContext {
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
   use EntityLoadingTrait;
+  use GatherSubEntityContextTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -66,6 +68,7 @@ class EventContentContext extends RawDrupalContext {
       'Teaser' => 'oe_teaser',
       'Venue' => 'oe_event_venue',
       'Contact' => 'oe_event_contact',
+      'Authors' => 'oe_authors',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -89,6 +92,23 @@ class EventContentContext extends RawDrupalContext {
         case 'Featured media':
           $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
+          break;
+
+        // Set Authors entity reference fields.
+        case 'Authors':
+          $ids = [];
+          $revision_ids = [];
+          $names = explode(', ', $value);
+          foreach ($names as $name) {
+            $entity = $this->subEntityContext->getSubEntityByName($name);
+            $ids[] = $entity->id();
+            $revision_ids[] = $entity->getRevisionId();
+          }
+          $scope->addFields([
+            $mapping[$key] . ':target_id' => implode(',', $ids),
+            $mapping[$key] . ':target_revision_id' => implode(',', $revision_ids),
+          ]);
+          $scope->removeField($key);
           break;
 
         // Convert dates to UTC so that they can be expressed in site timezone.

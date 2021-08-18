@@ -7,6 +7,6 @@ namespace Drupal\oe_content\Entity;
 use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 
 /**
- * Represents an Authors entity.
+ * Represents an author entity.
  */
-interface AuthorsInterface extends SubEntityInterface {}
+interface authorInterface extends SubEntityInterface {}

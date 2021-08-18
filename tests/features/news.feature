@@ -145,6 +145,9 @@ Feature: News content creation
     Given I am logged in as a user with the "create oe_news content, access content, edit any oe_news content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:
       | Name | A general contact |
+    And the following "Corporate body" "Author" sub-entity:
+      | Name           | Author reference to Directorate-General for Budget |
+      | Corporate body | Directorate-General for Budget                     |
     And the following News Content entity:
       | Title     | Test news         |
       | News type | News article      |
@@ -152,8 +155,10 @@ Feature: News content creation
       | Reference | Some reference    |
       | Contacts  | A general contact |
       | Teaser    | Some teaser       |
+      | Authors      | Author reference to Directorate-General for Budget |
     When I am visiting the "Test news" content
     And I click "Edit"
+    And I should see "Corporate body: Audit Board of the European Communities, Arab Common Market"
     And I press "Remove"
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove"

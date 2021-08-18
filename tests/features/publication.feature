@@ -9,11 +9,11 @@ Feature: Publication content creation
   Scenario: Creation of a Publication content through the UI.
     Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, manage corporate content entities, view published skos concept entities" permission
     And the following documents:
-    | name          | file       |
-    | My Document 1 | sample.pdf |
+      | name          | file       |
+      | My Document 1 | sample.pdf |
     And the following images:
-    | name         | file           | alt          |
-    | Sample image | example_1.jpeg | example text |
+      | name         | file           | alt          |
+      | Sample image | example_1.jpeg | example text |
 
     When I visit "the Publication creation page"
     Then I should see "This is a publication collection"
@@ -119,8 +119,8 @@ Feature: Publication content creation
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities, manage corporate content entities" permission
     And the following documents:
-    | name          | file       |
-    | My Document 1 | sample.pdf |
+      | name          | file       |
+      | My Document 1 | sample.pdf |
 
     When I visit "the Publication creation page"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
@@ -151,22 +151,27 @@ Feature: Publication content creation
       | name       | file       |
       | Document 1 | sample.pdf |
     And the following General Contact entity:
-      | Name          | A general contact |
+      | Name | A general contact |
+    And the following "Corporate body" "Author" sub-entity:
+      | Name           | Author reference to Directorate-General for Budget |
+      | Corporate body | Directorate-General for Budget                     |
     And the following "Publication" Content entity:
-      | Title                  | Publication demo page                 |
-      | Introduction           | Publication introduction text         |
-      | Identifier code        | PUB/100/1                             |
-      | Resource type          | Agenda                                |
-      | Publication date       | 2019-02-21                            |
-      | Last update date       | 2019-02-22                            |
-      | Files                  | Document 1                            |
-      | Body text              | Publication body text                 |
-      | Contact                | A general contact                     |
-      | Author                 | Directorate-General for Budget        |
-      | Related department     | Directorate-General for Communication |
-      | Teaser                 | Teaser                                |
+      | Title              | Publication demo page                              |
+      | Introduction       | Publication introduction text                      |
+      | Identifier code    | PUB/100/1                                          |
+      | Resource type      | Agenda                                             |
+      | Publication date   | 2019-02-21                                         |
+      | Last update date   | 2019-02-22                                         |
+      | Files              | Document 1                                         |
+      | Body text          | Publication body text                              |
+      | Contact            | A general contact                                  |
+      | Author             | Directorate-General for Budget                     |
+      | Related department | Directorate-General for Communication              |
+      | Teaser             | Teaser                                             |
+      | Authors            | Author reference to Directorate-General for Budget |
     When I am visiting the "Publication demo page" content
     And I click "Edit"
+    And I should see "Corporate body: Audit Board of the European Communities, Arab Common Market"
     And I press "Remove"
     And I wait for AJAX to finish
     Then I should see "Are you sure you want to remove A general contact?"
