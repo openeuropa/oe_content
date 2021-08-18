@@ -7,11 +7,11 @@ namespace Drupal\oe_content\Entity;
 use Drupal\oe_content_sub_entity\Entity\SubEntityTypeBase;
 
 /**
- * Defines the author type entity.
+ * Defines the Author type entity.
  *
  * @ConfigEntityType(
  *   id = "oe_author_type",
- *   label = @Translation("author type"),
+ *   label = @Translation("Author type"),
  *   bundle_of = "oe_author",
  *   entity_keys = {
  *     "id" = "id",
@@ -44,4 +44,4 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityTypeBase;
  *   }
  * )
  */
-class authorType extends SubEntityTypeBase {}
+class AuthorType extends SubEntityTypeBase {}

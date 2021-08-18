@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.oe_authors.oe_skos_reference
-    - oe_content.oe_authors_type.oe_corporate_body
+    - field.storage.oe_author.oe_skos_reference
+    - oe_content.oe_author_type.oe_corporate_body
   module:
     - rdf_skos
-id: oe_authors.oe_corporate_body.oe_skos_reference
+id: oe_author.oe_corporate_body.oe_skos_reference
 field_name: oe_skos_reference
-entity_type: oe_authors
+entity_type: oe_author
 bundle: oe_corporate_body
 label: 'Corporate body'
 description: ''
@@ -27,7 +27,7 @@ settings:
       - 'http://publications.europa.eu/resource/authority/corporate-body'
     field:
       field_name: oe_skos_reference
-      entity_type: oe_authors
+      entity_type: oe_author
       bundle: oe_corporate_body
       concept_schemes:
         - 'http://publications.europa.eu/resource/authority/corporate-body'

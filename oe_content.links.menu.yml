@@ -1,5 +1,5 @@
-entity.oe_authors_type.collection:
+entity.oe_author_type.collection:
   title: 'Author types'
-  route_name: entity.oe_authors_type.collection
-  description: 'Create and manage types of author entities'
+  route_name: entity.oe_author_type.collection
+  description: 'Create and manage types of Author entities'
   parent: system.admin_structure

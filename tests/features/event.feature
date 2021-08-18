@@ -263,11 +263,11 @@ Feature: Event content creation
     And I fill in "Responsible department" with "Audit Board of the European Communities"
 
     # Authors field widget
-    And I press the "Add new authors" button
+    And I press the "Add new author" button
     And I fill in "Corporate body (value 1)" with "Audit Board of the European Communities"
     And I press the "Add another item" button in the "Authors field" region
     And I fill in "Corporate body (value 2)" with "Arab Common Market"
-    And I press the "Create authors" button
+    And I press the "Create author" button
     And I should see "Corporate body: Audit Board of the European Communities, Arab Common Market"
 
     And I fill in "Teaser" with "Event teaser"
@@ -428,20 +428,20 @@ Feature: Event content creation
       | Name           | Author reference to Directorate-General for Budget |
       | Corporate body | Directorate-General for Budget                     |
     And the following Event Content entity:
-      | Title        | Event demo page         |
-      | Type         | Exhibitions             |
-      | Introduction | Event introduction text |
-      | Languages    | Valencian               |
-      | Start date   | 2019-02-21 02:21:00     |
-      | End date     | 2019-02-21 14:21:00     |
-      | Status       | as_planned              |
-      | Teaser       | Event teaser            |
-      | Venue        | A venue                 |
-      | Contact      | A general contact       |
+      | Title        | Event demo page                                    |
+      | Type         | Exhibitions                                        |
+      | Introduction | Event introduction text                            |
+      | Languages    | Valencian                                          |
+      | Start date   | 2019-02-21 02:21:00                                |
+      | End date     | 2019-02-21 14:21:00                                |
+      | Status       | as_planned                                         |
+      | Teaser       | Event teaser                                       |
+      | Venue        | A venue                                            |
+      | Contact      | A general contact                                  |
       | Authors      | Author reference to Directorate-General for Budget |
     When I am visiting the "Event demo page" content
     And I click "Edit"
-    And I should see "Corporate body: Audit Board of the European Communities, Arab Common Market"
+    And I should see "Directorate-General for Budget"
     And I press "Remove" in the "Event venue" region
     Then I should see "Are you sure you want to remove A venue?"
     When I press "Remove" in the "Event venue" region

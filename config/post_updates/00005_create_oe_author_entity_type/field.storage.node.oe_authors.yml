@@ -10,7 +10,7 @@ field_name: oe_authors
 entity_type: node
 type: entity_reference_revisions
 settings:
-  target_type: oe_authors
+  target_type: oe_author
 module: entity_reference_revisions
 locked: false
 cardinality: -1

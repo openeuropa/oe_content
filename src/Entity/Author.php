@@ -14,8 +14,8 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *
  * @ContentEntityType(
  *   id = "oe_author",
- *   label = @Translation("author"),
- *   label_collection = @Translation("author"),
+ *   label = @Translation("Author"),
+ *   label_collection = @Translation("Authors"),
  *   bundle_label = @Translation("Type"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
@@ -49,7 +49,7 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class author extends SubEntityBase implements authorInterface {
+class Author extends SubEntityBase implements AuthorInterface {
 
   /**
    * Gets the label of the entity with mentioned bundle label.

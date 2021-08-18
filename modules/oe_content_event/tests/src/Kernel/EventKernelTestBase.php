@@ -68,7 +68,7 @@ abstract class EventKernelTestBase extends SparqlKernelTestBase {
     $this->installEntitySchema('oe_contact');
     $this->installEntitySchema('oe_organisation');
     $this->installEntitySchema('oe_venue');
-    $this->installEntitySchema('oe_authors');
+    $this->installEntitySchema('author');
     $this->installConfig([
       'field',
       'node',

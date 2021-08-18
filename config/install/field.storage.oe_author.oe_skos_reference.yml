@@ -4,9 +4,9 @@ dependencies:
   module:
     - oe_content
     - rdf_skos
-id: oe_authors.oe_skos_reference
+id: oe_author.oe_skos_reference
 field_name: oe_skos_reference
-entity_type: oe_authors
+entity_type: oe_author
 type: skos_concept_entity_reference
 settings:
   target_type: skos_concept

@@ -74,11 +74,11 @@ Feature: News content creation
     And I fill in "Link text" with "Contact link" in the "Contact link" region
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     # Authors field widget
-    And I press the "Add new authors" button
+    And I press the "Add new author" button
     And I fill in "Corporate body (value 1)" with "Audit Board of the European Communities"
     And I press the "Add another item" button in the "Authors field" region
     And I fill in "Corporate body (value 2)" with "Arab Common Market"
-    And I press the "Create authors" button
+    And I press the "Create author" button
     And I should see "Corporate body: Audit Board of the European Communities, Arab Common Market"
     When I press "Save"
     # News contact values.
@@ -149,16 +149,16 @@ Feature: News content creation
       | Name           | Author reference to Directorate-General for Budget |
       | Corporate body | Directorate-General for Budget                     |
     And the following News Content entity:
-      | Title     | Test news         |
-      | News type | News article      |
-      | Body text | Some text         |
-      | Reference | Some reference    |
-      | Contacts  | A general contact |
-      | Teaser    | Some teaser       |
-      | Authors      | Author reference to Directorate-General for Budget |
+      | Title     | Test news                                          |
+      | News type | News article                                       |
+      | Body text | Some text                                          |
+      | Reference | Some reference                                     |
+      | Contacts  | A general contact                                  |
+      | Teaser    | Some teaser                                        |
+      | Authors   | Author reference to Directorate-General for Budget |
     When I am visiting the "Test news" content
     And I click "Edit"
-    And I should see "Corporate body: Audit Board of the European Communities, Arab Common Market"
+    And I should see "Directorate-General for Budget"
     And I press "Remove"
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove"

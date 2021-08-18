@@ -3,18 +3,18 @@ status: true
 dependencies:
   config:
     - field.storage.node.oe_authors
-    - node.type.oe_event
-    - oe_content.oe_authors_type.oe_corporate_body
+    - node.type.oe_page
+    - oe_content.oe_author_type.oe_corporate_body
   module:
     - composite_reference
     - entity_reference_revisions
 third_party_settings:
   composite_reference:
     composite: false
-id: node.oe_event.oe_authors
+id: node.oe_page.oe_authors
 field_name: oe_authors
 entity_type: node
-bundle: oe_event
+bundle: oe_page
 label: Authors
 description: ''
 required: false
@@ -22,7 +22,7 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:oe_authors'
+  handler: 'default:oe_author'
   handler_settings:
     target_bundles:
       oe_corporate_body: oe_corporate_body

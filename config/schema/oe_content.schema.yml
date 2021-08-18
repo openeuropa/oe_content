@@ -1,4 +1,4 @@
-oe_content.oe_authors_type.*:
+oe_content.oe_author_type.*:
   type: config_entity
   label: 'Author type settings'
   mapping:

@@ -36,11 +36,11 @@ Feature: Policy content creation
     And I fill in "Title" with "Title 3" in the "third" "Timeline" field element
     And I fill in "Content" with "Body 3" in the "third" "Timeline" field element
     # Authors field widget
-    And I press the "Add new authors" button
+    And I press the "Add new author" button
     And I fill in "Corporate body (value 1)" with "Audit Board of the European Communities"
     And I press the "Add another item" button in the "Authors field" region
     And I fill in "Corporate body (value 2)" with "Arab Common Market"
-    And I press the "Create authors" button
+    And I press the "Create author" button
     And I should see "Corporate body: Audit Board of the European Communities, Arab Common Market"
     When I press "Save"
     Then I should see "My Policy item"

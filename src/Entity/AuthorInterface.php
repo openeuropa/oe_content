@@ -9,4 +9,4 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 /**
  * Represents an author entity.
  */
-interface authorInterface extends SubEntityInterface {}
+interface AuthorInterface extends SubEntityInterface {}
