@@ -159,7 +159,7 @@ Feature: News content creation
     When I am visiting the "Test news" content
     And I click "Edit"
     And I should see "Directorate-General for Budget"
-    And I press "Remove"
+    And I press the "Remove" button in the "Contacts field" region
     Then I should see "Are you sure you want to remove A general contact?"
     When I press "Remove"
     And I press "Save"
