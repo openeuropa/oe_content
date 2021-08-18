@@ -19,5 +19,6 @@ config_devel:
     - field.field.node.oe_policy.oe_teaser
     - field.field.node.oe_policy.oe_timeline
     - node.type.oe_policy
+    - field.field.node.oe_policy.oe_authors
   optional:
     - language.content_settings.node.oe_policy
