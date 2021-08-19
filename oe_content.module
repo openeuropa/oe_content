@@ -138,6 +138,14 @@ function oe_content_node_prepare_form(EntityInterface $entity, $operation, FormS
 
   if (!empty($content_owners)) {
     $entity->set('oe_content_content_owner', array_values($content_owners));
+    // Set default corporate body entity for authors field.
+    if ($entity->hasField('oe_authors')) {
+      $corporate_body = \Drupal::entityTypeManager()->getStorage('oe_author')->create([
+        'type' => 'oe_corporate_body',
+        'oe_skos_reference' => array_values($content_owners),
+      ]);
+      $entity->set('oe_authors', [$corporate_body]);
+    }
   }
 }
 
