@@ -35,7 +35,7 @@ Feature: Policy content creation
     And I fill in "Label" with "Label 3" in the "third" "Timeline" field element
     And I fill in "Title" with "Title 3" in the "third" "Timeline" field element
     And I fill in "Content" with "Body 3" in the "third" "Timeline" field element
-    # Authors field widget
+    # Authors field widget.
     And I press the "Add new author" button
     And I fill in "Corporate body (value 1)" with "Audit Board of the European Communities"
     And I press the "Add another item" button in the "Authors field" region

@@ -10,7 +10,7 @@ dependencies:
     - entity_reference_revisions
 third_party_settings:
   composite_reference:
-    composite: false
+    composite: true
 id: node.oe_publication.oe_authors
 field_name: oe_authors
 entity_type: node
