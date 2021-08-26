@@ -12,7 +12,7 @@ Before enabling this module, make sure that the following modules are present in
     "drupal/composite_reference": "~1.0-alpha2",
     "drupal/entity_reference_revisions": "~1.3",
     "drupal/field_group": "~3.0",
-    "drupal/inline_entity_form": "~1.0-rc8",
+    "drupal/inline_entity_form": "~1.0-rc9",
     "drupal/typed_link": "~1.1",
     "openeuropa/oe_corporate_countries": "~1.0.0-beta1"
 }
