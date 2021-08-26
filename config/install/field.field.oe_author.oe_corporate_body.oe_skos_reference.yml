@@ -12,7 +12,7 @@ entity_type: oe_author
 bundle: oe_corporate_body
 label: 'Corporate body'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
