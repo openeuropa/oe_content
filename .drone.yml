@@ -93,6 +93,16 @@ pipeline:
       matrix:
         TYPE: phpunit
 
+  # Ensure that all Behat scenarios have been tagged with a batch tag.
+  ensure-behat-batching:
+    group: test
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    commands:
+      - ./vendor/bin/run behat:ensure-batching
+    when:
+      matrix:
+        TYPE: phpunit
+
   behat:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
