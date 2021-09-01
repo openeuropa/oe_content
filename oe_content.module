@@ -139,37 +139,3 @@ function oe_content_node_prepare_form(EntityInterface $entity, $operation, FormS
     $entity->set('oe_content_content_owner', array_values($content_owners));
   }
 }
-
-/**
- * Implements hook_inline_entity_form_table_fields_alter().
- */
-function oe_content_inline_entity_form_table_fields_alter(array &$fields, array $context) {
-  if ($context['entity_type'] === 'oe_author') {
-    $fields['type'] = [
-      // We are using a custom callback function for rendering the Author bundle
-      // label and avoiding access restrictions
-      // which we have on using 'entity_reference_label' field formatter.
-      'type' => 'callback',
-      'label' => t('Type'),
-      'weight' => -1,
-      'callback' => '_oe_content_entity_type_authors_bundle_label',
-    ];
-  }
-}
-
-/**
- * Implementation of callback function for extracting bundle label inside IEF.
- *
- * @param \Drupal\Core\Entity\EntityInterface $entity
- *   The entity.
- * @param array $variables
- *   The rendering entity array.
- *
- * @return array
- *   The render array.
- */
-function _oe_content_entity_type_authors_bundle_label(EntityInterface $entity, array $variables): array {
-  $bundle = \Drupal::service('entity_type.bundle.info')->getBundleInfo($entity->getEntityTypeId())[$entity->bundle()] ?? NULL;
-  $bundle_label = $bundle ? $bundle['label'] : t('N/A');
-  return ['#markup' => '<strong>' . $bundle_label . '</strong>'];
-}
