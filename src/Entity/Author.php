@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content\Entity;
 
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 
 /**
@@ -60,30 +59,10 @@ class Author extends SubEntityBase implements AuthorInterface {
   public function label() {
     $labels = $this->getReferencedEntityLabels();
     if (!empty($labels)) {
-      return '<strong>' . $this->getBundleName() . '</strong>: ' . $labels;
+      return $labels;
     }
 
     return parent::label();
-  }
-
-  /**
-   * Gets labels of referenced entities.
-   *
-   * @return string
-   *   Labels separated by comma.
-   */
-  protected function getReferencedEntityLabels(): string {
-    // Load referenced entities.
-    $entities = $this->referencedEntities();
-
-    $labels = [];
-    foreach ($entities as $entity) {
-      if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
-        $labels[] = $entity->label();
-      }
-    }
-
-    return implode(', ', $labels);
   }
 
 }

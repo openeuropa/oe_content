@@ -128,11 +128,23 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
   }
 
   /**
-   * {@inheritdoc}
+   * Gets labels of referenced entities.
+   *
+   * @return string
+   *   Labels separated by comma.
    */
-  public function getBundleName(): ?string {
-    $bundles = $this->entityTypeBundleInfo()->getBundleInfo($this->entityTypeId);
-    return $bundles[$this->bundle()]['label'] ?? NULL;
+  protected function getReferencedEntityLabels(): string {
+    // Load referenced entities.
+    $entities = $this->referencedEntities();
+
+    $labels = [];
+    foreach ($entities as $entity) {
+      if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
+        $labels[] = $entity->label();
+      }
+    }
+
+    return implode(', ', $labels);
   }
 
 }

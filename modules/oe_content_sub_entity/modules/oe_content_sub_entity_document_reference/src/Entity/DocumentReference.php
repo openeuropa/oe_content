@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_sub_entity_document_reference\Entity;
 
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 
 /**
@@ -64,26 +63,6 @@ class DocumentReference extends SubEntityBase implements DocumentReferenceInterf
     }
 
     return parent::label();
-  }
-
-  /**
-   * Gets labels of referenced entities.
-   *
-   * @return string
-   *   Labels separated by comma.
-   */
-  protected function getReferencedEntityLabels(): string {
-    // Load referenced entities.
-    $entities = $this->referencedEntities();
-
-    $labels = [];
-    foreach ($entities as $entity) {
-      if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
-        $labels[] = $entity->label();
-      }
-    }
-
-    return implode(', ', $labels);
   }
 
 }
