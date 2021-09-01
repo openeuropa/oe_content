@@ -27,7 +27,7 @@ Feature: Page content creation
     And I press the "Add another item" button in the "Authors field" region
     And I fill in "Corporate body (value 2)" with "Arab Common Market"
     And I press the "Create author" button
-    And I should see "Corporate body: Audit Board of the European Communities, Arab Common Market"
+    And I should see the text "Corporate body" in the "Audit Board of the European Communities, Arab Common Market" row
 
     When I press "Save"
     Then I should see "My page"
