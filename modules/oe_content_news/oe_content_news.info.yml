@@ -5,6 +5,7 @@ package: OpenEuropa
 type: module
 core: 8.x
 dependencies:
+  - drupal:path
   - field_group:field_group
   - oe_content:oe_content
   - oe_content:oe_content_departments_field
