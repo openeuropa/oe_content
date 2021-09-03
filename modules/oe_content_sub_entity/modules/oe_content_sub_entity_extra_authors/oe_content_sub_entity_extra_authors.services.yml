@@ -1,0 +1,5 @@
+services:
+  oe_content_sub_entity_extra_authors.event_subscriber:
+    class: Drupal\oe_content_sub_entity_extra_authors\EventSubscriber\SubEntityExtraAuthorsSubscriber
+    tags:
+      - { name: event_subscriber }

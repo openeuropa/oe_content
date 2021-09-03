@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_author.oe_node_reference
+    - node.type.oe_person
+    - oe_content.oe_author_type.oe_person
+  module:
+    - composite_reference
+third_party_settings:
+  composite_reference:
+    composite: false
+id: oe_author.oe_person.oe_node_reference
+field_name: oe_node_reference
+entity_type: oe_author
+bundle: oe_person
+label: Person
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      oe_person: oe_person
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

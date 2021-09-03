@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_author.oe_link
+    - oe_content.oe_author_type.oe_link
+  module:
+    - link
+id: oe_author.oe_link.oe_link
+field_name: oe_link
+entity_type: oe_author
+bundle: oe_link
+label: Link
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

@@ -1,0 +1,29 @@
+name: OpenEuropa Content Sub Entity Extra Authors
+description: Package extra author sub-entity type bundles, such as a simple link, or reference to persons or organisations.
+package: OpenEuropa
+type: module
+core_version_requirement: ^8.9 || ^9.1
+
+dependencies:
+  - oe_content:oe_content_person
+  - oe_content:oe_content_organisation
+  - oe_content:oe_content_sub_entity
+  - composite_reference:composite_reference
+  - drupal:link
+
+config_devel:
+  install:
+    - core.entity_form_display.oe_author.oe_link.default
+    - core.entity_form_display.oe_author.oe_organisation.default
+    - core.entity_form_display.oe_author.oe_person.default
+    - core.entity_view_display.oe_author.oe_link.default
+    - core.entity_view_display.oe_author.oe_organisation.default
+    - core.entity_view_display.oe_author.oe_person.default
+    - field.field.oe_author.oe_link.oe_link
+    - field.field.oe_author.oe_organisation.oe_node_reference
+    - field.field.oe_author.oe_person.oe_node_reference
+    - field.storage.oe_author.oe_link
+    - field.storage.oe_author.oe_node_reference
+    - oe_content.oe_author_type.oe_link
+    - oe_content.oe_author_type.oe_organisation
+    - oe_content.oe_author_type.oe_person
