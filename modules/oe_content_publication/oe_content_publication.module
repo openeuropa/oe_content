@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * @file
+ * OE Content Publication module file.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for the node form.
+ */
+function oe_content_publication_form_node_form_alter(array &$form, FormStateInterface $form_state) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+  if ($node->bundle() !== 'oe_publication') {
+    return;
+  }
+
+  $form['oe_documents']['#states'] = [
+    'visible' => [
+      'input[name="oe_publication_collection"]' => ['value' => '0'],
+    ],
+    'required' => [
+      'input[name="oe_publication_collection"]' => ['value' => '0'],
+    ],
+  ];
+
+  // Required flag needs to be set over the field item.
+  $form['oe_publication_publications']['#states'] = [
+    'required' => [
+      'input[name="oe_publication_collection"]' => ['value' => '1'],
+    ],
+    'visible' => [
+      'input[name="oe_publication_collection"]' => ['value' => '1'],
+    ],
+  ];
+
+  $form['#validate'][] = '_oe_content_publication_node_validate';
+
+  if (isset($form['actions']['submit']['#submit'])) {
+    $submit_handlers = $form['actions']['submit']['#submit'];
+    // Make sure that custom submit handler executed first.
+    array_unshift($submit_handlers, '_oe_content_publication_node_submit');
+    $form['actions']['submit']['#submit'] = $submit_handlers;
+  }
+}
+
+/**
+ * Custom validation for the Publication node form.
+ *
+ * @param array $form
+ *   The form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function _oe_content_publication_node_validate(array $form, FormStateInterface $form_state): void {
+  if ($form_state->getValue(['oe_publication_collection', 0, 'value']) == 1) {
+    $publications = $form_state->getValue([
+      'oe_publication_publications',
+      0,
+      'target_id',
+    ]);
+    if (!$publications) {
+      $form_state->setErrorByName('oe_publication_publications', t('Publications field is required.'));
+    }
+  }
+  else {
+    $files = $form_state->getValue(['oe_documents', 0, 'target_id']);
+    if (!$files) {
+      $form_state->setErrorByName('oe_documents', t('Files field is required.'));
+    }
+  }
+}
+
+/**
+ * Custom submit for the Publication node form.
+ *
+ * @param array $form
+ *   The form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function _oe_content_publication_node_submit(array $form, FormStateInterface $form_state): void {
+  // Ensure that files or publications are correctly cleaned up according to the
+  // collection flag.
+  if ($form_state->getValue(['oe_publication_collection', 0, 'value']) == 1) {
+    $form_state->setValue('oe_documents', []);
+  }
+  else {
+    $form_state->setValue('oe_publication_publications', []);
+  }
+}
