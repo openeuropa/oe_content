@@ -12,6 +12,8 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\TypedData\TranslatableInterface;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\oe_content_sub_entity\Event\SubEntityEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Provides the SubEntityBase class for content sub entities.
@@ -28,7 +30,13 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
    */
   public function label() {
     // Return the entity's bundle label by default.
-    return $this->get('type')->entity->label();
+    $label = $this->get('type')->entity->label();
+
+    $event = new SubEntityEvent($this);
+    $event->setLabel($label);
+    $this->eventDispatcher()->dispatch(SubEntityEvent::LABEL_FORMATION, $event);
+
+    return $event->getLabel();
   }
 
   /**
@@ -128,23 +136,13 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
   }
 
   /**
-   * Gets labels of referenced entities.
+   * Wraps the event dispatcher.
    *
-   * @return string
-   *   Labels separated by comma.
+   * @return \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   *   The event dispatcher.
    */
-  protected function getReferencedEntityLabels(): string {
-    // Load referenced entities.
-    $entities = $this->referencedEntities();
-
-    $labels = [];
-    foreach ($entities as $entity) {
-      if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
-        $labels[] = $entity->label();
-      }
-    }
-
-    return implode(', ', $labels);
+  protected function eventDispatcher(): EventDispatcherInterface {
+    return \Drupal::service('event_dispatcher');
   }
 
 }

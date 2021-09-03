@@ -48,21 +48,4 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class DocumentReference extends SubEntityBase implements DocumentReferenceInterface {
-
-  /**
-   * Gets the label of the entity.
-   *
-   * Since document reference doesn't have name field, label is generated.
-   * Pattern: Referenced entity 1 label, Referenced entity 2 label.
-   */
-  public function label() {
-    $labels = $this->getReferencedEntityLabels();
-    if (!empty($labels)) {
-      return $labels;
-    }
-
-    return parent::label();
-  }
-
-}
+class DocumentReference extends SubEntityBase implements DocumentReferenceInterface {}

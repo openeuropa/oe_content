@@ -48,21 +48,4 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class Author extends SubEntityBase implements AuthorInterface {
-
-  /**
-   * Gets the label of the entity with mentioned bundle label.
-   *
-   * Since Author doesn't have name field, label is generated.
-   * Pattern: Referenced entity 1 label, Referenced entity 2 label.
-   */
-  public function label() {
-    $labels = $this->getReferencedEntityLabels();
-    if (!empty($labels)) {
-      return $labels;
-    }
-
-    return parent::label();
-  }
-
-}
+class Author extends SubEntityBase implements AuthorInterface {}
