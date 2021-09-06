@@ -134,26 +134,26 @@ function oe_content_post_update_00004(): void {
 /**
  * Add new Author sub entity type with required fields.
  */
-function oe_content_post_update_00005(): void {
-  $file_storage = new FileStorage(drupal_get_path('module', 'oe_content') . '/config/post_updates/00005_create_oe_author_entity_type');
+function oe_content_post_update_20005(): void {
+  $file_storage = new FileStorage(drupal_get_path('module', 'oe_content') . '/config/post_updates/20005_create_oe_author_entity_type');
 
   $entity_type_manager = \Drupal::entityTypeManager();
   // Create Author bundle.
   $entity_type_manager->getStorage('oe_author_type')
-    ->create($file_storage->read('oe_content.oe_author_type.oe_corporate_body'))
+    ->create(_oe_content_config_import_prepare($file_storage->read('oe_content.oe_author_type.oe_corporate_body')))
     ->save();
 
   // Create field for Author entity type.
   $field_storage_config = $entity_type_manager->getStorage('field_storage_config');
-  $field_storage_config->create($file_storage->read('field.storage.oe_author.oe_skos_reference'))->save();
+  $field_storage_config->create(_oe_content_config_import_prepare($file_storage->read('field.storage.oe_author.oe_skos_reference')))->save();
   $field_config = $entity_type_manager->getStorage('field_config');
-  $field_config->create($file_storage->read('field.field.oe_author.oe_corporate_body.oe_skos_reference'))->save();
+  $field_config->create(_oe_content_config_import_prepare($file_storage->read('field.field.oe_author.oe_corporate_body.oe_skos_reference')))->save();
 
   // Configure entity form display.
-  $entity_type_manager->getStorage('entity_form_display')->createFromStorageRecord($file_storage->read('core.entity_form_display.oe_author.oe_corporate_body.default'))->save();
+  $entity_type_manager->getStorage('entity_form_display')->createFromStorageRecord(_oe_content_config_import_prepare($file_storage->read('core.entity_form_display.oe_author.oe_corporate_body.default')))->save();
 
   // Create field storage for nodes.
-  $field_storage_config->create($file_storage->read('field.storage.node.oe_authors'))->save();
+  $field_storage_config->create(_oe_content_config_import_prepare($file_storage->read('field.storage.node.oe_authors')))->save();
 
   $content_types = [
     'oe_event',
@@ -163,9 +163,9 @@ function oe_content_post_update_00005(): void {
     'oe_publication',
   ];
   foreach ($content_types as $content_type) {
-    $field_config->create($file_storage->read('field.field.node.' . $content_type . '.oe_authors'))->save();
+    $field_config->create(_oe_content_config_import_prepare($file_storage->read('field.field.node.' . $content_type . '.oe_authors')))->save();
     $form_display = $file_storage->read('core.entity_form_display.node.' . $content_type . '.default');
     $entity = $entity_type_manager->getStorage('entity_form_display')->load($form_display['id']);
-    $entity_type_manager->getStorage('entity_form_display')->updateFromStorageRecord($entity, $form_display)->save();
+    $entity_type_manager->getStorage('entity_form_display')->updateFromStorageRecord($entity, _oe_content_config_import_prepare($form_display))->save();
   }
 }

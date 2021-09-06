@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
@@ -138,4 +139,22 @@ function oe_content_node_prepare_form(EntityInterface $entity, $operation, FormS
   if (!empty($content_owners)) {
     $entity->set('oe_content_content_owner', array_values($content_owners));
   }
+}
+
+/**
+ * Preparing data of config for future import.
+ *
+ * @param array $config
+ *   The config data array.
+ *
+ * @return array
+ *   The array of config data.
+ */
+function _oe_content_config_import_prepare(array $config): array {
+  // We are creating the config which means that we are also shipping
+  // it in the config/install folder so we want to make sure it gets the hash
+  // so Drupal treats it as a shipped config. This means that it gets exposed
+  // to be translated via the locale system as well.
+  $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
+  return $config;
 }
