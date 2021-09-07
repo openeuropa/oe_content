@@ -14,7 +14,11 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
 /**
  * Implements hook_install().
  */
-function oe_content_organisation_person_reference_install(): void {
+function oe_content_organisation_person_reference_install($is_syncing): void {
+  if ($is_syncing) {
+    return;
+  }
+
   // Add the persons entity reference field to the entity form display.
   /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $form_display */
   $form_display = EntityFormDisplay::load('node.oe_organisation.default');

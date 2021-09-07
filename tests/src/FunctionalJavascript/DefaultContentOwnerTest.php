@@ -17,6 +17,11 @@ class DefaultContentOwnerTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = [
     'oe_content',
     'oe_content_page',
@@ -26,7 +31,7 @@ class DefaultContentOwnerTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->setUpSparql();

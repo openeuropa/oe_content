@@ -38,7 +38,12 @@ class PersistentUrlControllerTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
     parent::setUp();
 
     NodeType::create(['type' => 'page'])->save();
@@ -64,14 +69,14 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->save();
 
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
-    $this->assertUrl('/foo');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('/foo');
     $this->assertSession()->responseContains('Test node title');
 
     // Try the node translation.
     $this->drupalGet('/fr/content/' . $node->uuid());
-    $this->assertResponse(200);
-    $this->assertUrl('/fr/foo');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('/fr/foo');
     $this->assertSession()->responseContains('Titre test');
     $this->assertSession()->responseNotContains('Test node title');
 
@@ -81,16 +86,16 @@ class PersistentUrlControllerTest extends BrowserTestBase {
 
     // Ensure the cache is invalidated correctly.
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
-    $this->assertUrl('/foo2');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('/foo2');
     $this->assertSession()->responseContains('Test node title');
 
     $node->path->alias = '';
     $node->save();
 
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
-    $this->assertUrl('/node/' . $node->id());
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('/node/' . $node->id());
     $this->assertSession()->responseContains('Test node title');
 
     \Drupal::entityTypeManager()->getStorage('node')->resetCache();
@@ -100,8 +105,8 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->setTitle('External');
     $node->save();
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
-    $this->assertUrl('https://ec.europa.eu');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('https://ec.europa.eu');
 
     \Drupal::entityTypeManager()->getStorage('node')->resetCache();
     $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($node->id());
@@ -110,16 +115,16 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->setTitle('Early render');
     $node->save();
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
-    $this->assertUrl('https://ec.europa.eu/info/');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->addressEquals('https://ec.europa.eu/info/');
 
     // Try to get not existing entity.
     $this->drupalGet('/content/' . \Drupal::service('uuid')->generate());
-    $this->assertResponse(404);
+    $this->assertSession()->statusCodeEquals(404);
 
     // Not valid uuid.
     $this->drupalGet('/content/' . $this->randomMachineName());
-    $this->assertResponse(404);
+    $this->assertSession()->statusCodeEquals(404);
 
     // Create a new node that will be sent to the home page by the controller.
     $node = Node::create([
@@ -132,9 +137,9 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->save();
 
     $this->drupalGet('/content/' . $node->uuid());
-    $this->assertResponse(200);
+    $this->assertSession()->statusCodeEquals(200);
     // We should be redirected to the home page.
-    $this->assertUrl('/');
+    $this->assertSession()->addressEquals('/');
     $this->assertSession()->responseNotContains('Test node title');
   }
 

@@ -14,7 +14,7 @@ use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
 
 /**
- * Implements hook_form_BASE_FORM_ID_alter() for the node form.
+ * Implements hook_form_BASE_FORM_ID_alter().
  */
 function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateInterface $form_state) {
   /** @var \Drupal\node\NodeInterface $node */

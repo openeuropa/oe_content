@@ -39,7 +39,7 @@ class BehatCommands extends AbstractCommands {
     $lexer = new Lexer($keywords);
     $parser = new Parser($lexer);
     $finder = new Finder();
-    $finder->files()->in(__DIR__ . '/../../../tests/features');
+    $finder->files()->in(__DIR__ . '/../../../../tests/features');
 
     // Collect all scenarios that are not tagged with '@batch*'.
     $not_tagged = [];

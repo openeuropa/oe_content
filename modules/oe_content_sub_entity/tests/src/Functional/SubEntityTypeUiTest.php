@@ -17,6 +17,11 @@ class SubEntityTypeUiTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'classy';
+
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = [
     'oe_content_sub_entity_document_reference',
   ];

@@ -2,7 +2,7 @@ name: OpenEuropa Organisation Content
 description: Contains the EC corporate Organisation content type.
 package: OpenEuropa
 type: module
-core: 8.x
+core_version_requirement: ^8.9 || ^9.1
 
 dependencies:
   - drupal:path
