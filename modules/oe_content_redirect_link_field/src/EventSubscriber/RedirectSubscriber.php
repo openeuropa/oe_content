@@ -121,7 +121,10 @@ class RedirectSubscriber implements EventSubscriberInterface {
     $parsed = UrlHelper::parse($path);
 
     try {
-      return Url::fromUri($parsed['path'], ['fragment' => $parsed['fragment'], 'query' => $parsed['query']])->setAbsolute()->toString(TRUE);
+      return Url::fromUri($parsed['path'], [
+        'fragment' => $parsed['fragment'],
+        'query' => $parsed['query'],
+      ])->setAbsolute()->toString(TRUE);
     }
     catch (\Exception $exception) {
       return NULL;

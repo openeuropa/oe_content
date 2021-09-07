@@ -4,143 +4,143 @@ msgstr ""
 
 msgctxt "Long month name"
 msgid "January"
-msgstr "Janeiro"
+msgstr "janeiro"
 
 msgctxt "Long month name"
 msgid "February"
-msgstr "Fevereiro"
+msgstr "fevereiro"
 
 msgctxt "Long month name"
 msgid "March"
-msgstr "Março"
+msgstr "março"
 
 msgctxt "Long month name"
 msgid "April"
-msgstr "Abril"
+msgstr "abril"
 
 msgctxt "Long month name"
 msgid "May"
-msgstr "Maio"
+msgstr "maio"
 
 msgctxt "Long month name"
 msgid "June"
-msgstr "Junho"
+msgstr "junho"
 
 msgctxt "Long month name"
 msgid "July"
-msgstr "Julho"
+msgstr "julho"
 
 msgctxt "Long month name"
 msgid "August"
-msgstr "Agosto"
+msgstr "agosto"
 
 msgctxt "Long month name"
 msgid "September"
-msgstr "Setembro"
+msgstr "setembro"
 
 msgctxt "Long month name"
 msgid "October"
-msgstr "Outubro"
+msgstr "outubro"
 
 msgctxt "Long month name"
 msgid "November"
-msgstr "Novembro"
+msgstr "novembro"
 
 msgctxt "Long month name"
 msgid "December"
-msgstr "Dezembro"
+msgstr "dezembro"
 
 msgid "Jan"
-msgstr "Jan"
+msgstr "jan"
 
 msgid "Feb"
-msgstr "Fev"
+msgstr "fev"
 
 msgid "Mar"
-msgstr "Mar"
+msgstr "mar"
 
 msgid "Apr"
-msgstr "Abr"
+msgstr "abr"
 
 msgid "May"
-msgstr "Mai"
+msgstr "mai"
 
 msgid "Jun"
-msgstr "Jun"
+msgstr "jun"
 
 msgid "Jul"
-msgstr "Jul"
+msgstr "jul"
 
 msgid "Aug"
-msgstr "Ago"
+msgstr "ago"
 
 msgid "Sep"
-msgstr "Set"
+msgstr "set"
 
 msgid "Oct"
-msgstr "Out"
+msgstr "out"
 
 msgid "Nov"
-msgstr "Nov"
+msgstr "nov"
 
 msgid "Dec"
-msgstr "Dez"
+msgstr "dez"
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "Dom"
+msgstr "dom"
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "Seg"
+msgstr "seg"
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "Ter"
+msgstr "ter"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "Qua"
+msgstr "qua"
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "Qui"
+msgstr "qui"
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "Sex"
+msgstr "sex"
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "Sáb"
+msgstr "sáb"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "Do"
+msgstr "so"
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "2a"
+msgstr "2ª"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "3a"
+msgstr "3ª"
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "4a"
+msgstr "4ª"
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "5a"
+msgstr "5ª"
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "6a"
+msgstr "6ª"
 
 msgctxt "Abbreviated weekday"
 msgid "Sa"
-msgstr "Sa"
+msgstr "sa"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
@@ -171,22 +171,64 @@ msgid "S"
 msgstr "S"
 
 msgid "Sunday"
-msgstr "Domingo"
+msgstr "domingo"
 
 msgid "Monday"
-msgstr "Segunda"
+msgstr "segunda-feira"
 
 msgid "Tuesday"
-msgstr "Terça"
+msgstr "terça-feira"
 
 msgid "Wednesday"
-msgstr "Quarta"
+msgstr "quarta-feira"
 
 msgid "Thursday"
-msgstr "Quinta"
+msgstr "quinta-feira"
 
 msgid "Friday"
-msgstr "Sexta"
+msgstr "sexta-feira"
 
 msgid "Saturday"
-msgstr "Sábado"
+msgstr "sábado"
+
+msgid "Sun"
+msgstr "dom"
+
+msgid "Mon"
+msgstr "seg"
+
+msgid "Tue"
+msgstr "ter"
+
+msgid "Wed"
+msgstr "qua"
+
+msgid "Thu"
+msgstr "qui"
+
+msgid "Fri"
+msgstr "sex"
+
+msgid "Sat"
+msgstr "sáb"
+
+msgid "Su"
+msgstr "so"
+
+msgid "Mo"
+msgstr "2ª"
+
+msgid "Tu"
+msgstr "3ª"
+
+msgid "We"
+msgstr "4ª"
+
+msgid "Th"
+msgstr "5ª"
+
+msgid "Fr"
+msgstr "6ª"
+
+msgid "Sa"
+msgstr "sa"

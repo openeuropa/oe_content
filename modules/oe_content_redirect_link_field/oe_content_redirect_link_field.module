@@ -43,7 +43,10 @@ function oe_content_redirect_link_field_form_node_form_alter(&$form, FormStateIn
   $form['oe_redirect_link']['widget'][0]['title']['#access'] = FALSE;
   if (!empty($form['oe_redirect_link']['widget'][0]['#element_validate'])) {
     foreach ($form['oe_redirect_link']['widget'][0]['#element_validate'] as $index => $validator) {
-      if (in_array($validator[1], ['validateTitleElement', 'validateTitleNoLink'])) {
+      if (in_array($validator[1], [
+        'validateTitleElement',
+        'validateTitleNoLink',
+      ])) {
         unset($form['oe_redirect_link']['widget'][0]['#element_validate'][$index]);
       }
     }

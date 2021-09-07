@@ -3,51 +3,51 @@ msgstr ""
 
 msgctxt "Long month name"
 msgid "January"
-msgstr "siječnja"
+msgstr "siječanj"
 
 msgctxt "Long month name"
 msgid "February"
-msgstr "veljače"
+msgstr "veljača"
 
 msgctxt "Long month name"
 msgid "March"
-msgstr "ožujka"
+msgstr "ožujak"
 
 msgctxt "Long month name"
 msgid "April"
-msgstr "travnja"
+msgstr "travanj"
 
 msgctxt "Long month name"
 msgid "May"
-msgstr "svibnja"
+msgstr "svibanj"
 
 msgctxt "Long month name"
 msgid "June"
-msgstr "lipnja"
+msgstr "lipanj"
 
 msgctxt "Long month name"
 msgid "July"
-msgstr "srpnja"
+msgstr "srpanj"
 
 msgctxt "Long month name"
 msgid "August"
-msgstr "kolovoza"
+msgstr "kolovoz"
 
 msgctxt "Long month name"
 msgid "September"
-msgstr "rujna"
+msgstr "rujan"
 
 msgctxt "Long month name"
 msgid "October"
-msgstr "listopada"
+msgstr "listopad"
 
 msgctxt "Long month name"
 msgid "November"
-msgstr "studenog"
+msgstr "studeni"
 
 msgctxt "Long month name"
 msgid "December"
-msgstr "prosinca"
+msgstr "prosinac"
 
 msgid "Jan"
 msgstr "sij"
@@ -87,59 +87,59 @@ msgstr "pro"
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "Ned"
+msgstr "ned"
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "Pon"
+msgstr "pon"
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "Uto"
+msgstr "uto"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "Sri"
+msgstr "sri"
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "Čet"
+msgstr "čet"
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "Pet"
+msgstr "pet"
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "Sub"
+msgstr "sub"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "N"
+msgstr "ne"
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "P"
+msgstr "po"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "U"
+msgstr "ut"
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "S"
+msgstr "sr"
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "Č"
+msgstr "če"
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "P"
+msgstr "pe"
 
 msgctxt "Abbreviated weekday"
 msgid "Sa"
-msgstr "S"
+msgstr "su"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
@@ -189,3 +189,45 @@ msgstr "petak"
 
 msgid "Saturday"
 msgstr "subota"
+
+msgid "Sun"
+msgstr "ned"
+
+msgid "Mon"
+msgstr "pon"
+
+msgid "Tue"
+msgstr "uto"
+
+msgid "Wed"
+msgstr "sri"
+
+msgid "Thu"
+msgstr "čet"
+
+msgid "Fri"
+msgstr "pet"
+
+msgid "Sat"
+msgstr "sub"
+
+msgid "Su"
+msgstr "ne"
+
+msgid "Mo"
+msgstr "po"
+
+msgid "Tu"
+msgstr "ut"
+
+msgid "We"
+msgstr "sr"
+
+msgid "Th"
+msgstr "če"
+
+msgid "Fr"
+msgstr "pe"
+
+msgid "Sa"
+msgstr "su"

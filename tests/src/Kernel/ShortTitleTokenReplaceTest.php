@@ -54,7 +54,10 @@ class ShortTitleTokenReplaceTest extends SparqlKernelTestBase {
     ConfigurableLanguage::createFromLangcode('fr')->save();
 
     // Create a node type for the test.
-    $node_type = NodeType::create(['type' => 'oe_content_token_test', 'name' => 'OE Content token test']);
+    $node_type = NodeType::create([
+      'type' => 'oe_content_token_test',
+      'name' => 'OE Content token test',
+    ]);
     $node_type->save();
   }
 
@@ -67,7 +70,7 @@ class ShortTitleTokenReplaceTest extends SparqlKernelTestBase {
 
     // Create a user and a node with short title.
     $account = $this->createUser();
-    /* @var $node \Drupal\node\NodeInterface */
+    /** @var \Drupal\node\NodeInterface $node */
     $node_short_titled = $node_storage->create([
       'type' => 'oe_content_token_test',
       'tnid' => 0,

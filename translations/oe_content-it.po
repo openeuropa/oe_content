@@ -115,59 +115,59 @@ msgstr "sab"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "do"
+msgstr "dom"
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "lu"
+msgstr "lun"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "ma"
+msgstr "mar"
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "me"
+msgstr "mer"
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "gi"
+msgstr "gio"
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "ve"
+msgstr "ven"
 
 msgctxt "Abbreviated weekday"
 msgid "Sa"
-msgstr "sa"
+msgstr "sab"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
-msgstr "d"
+msgstr "D"
 
 msgctxt "Abbreviated 1 letter weekday Monday"
 msgid "M"
-msgstr "l"
+msgstr "L"
 
 msgctxt "Abbreviated 1 letter weekday Tuesday"
 msgid "T"
-msgstr "m"
+msgstr "M"
 
 msgctxt "Abbreviated 1 letter weekday Wednesday"
 msgid "W"
-msgstr "m"
+msgstr "M"
 
 msgctxt "Abbreviated 1 letter weekday Thursday"
 msgid "T"
-msgstr "g"
+msgstr "G"
 
 msgctxt "Abbreviated 1 letter weekday Friday"
 msgid "F"
-msgstr "v"
+msgstr "V"
 
 msgctxt "Abbreviated 1 letter weekday Saturday"
 msgid "S"
-msgstr "s"
+msgstr "S"
 
 msgid "Sunday"
 msgstr "domenica"
@@ -189,3 +189,45 @@ msgstr "venerdì"
 
 msgid "Saturday"
 msgstr "sabato"
+
+msgid "Sun"
+msgstr "dom"
+
+msgid "Mon"
+msgstr "lun"
+
+msgid "Tue"
+msgstr "mar"
+
+msgid "Wed"
+msgstr "mer"
+
+msgid "Thu"
+msgstr "gio"
+
+msgid "Fri"
+msgstr "ven"
+
+msgid "Sat"
+msgstr "sab"
+
+msgid "Su"
+msgstr "dom"
+
+msgid "Mo"
+msgstr "lun"
+
+msgid "Tu"
+msgstr "mar"
+
+msgid "We"
+msgstr "mer"
+
+msgid "Th"
+msgstr "gio"
+
+msgid "Fr"
+msgstr "ven"
+
+msgid "Sa"
+msgstr "sab"
