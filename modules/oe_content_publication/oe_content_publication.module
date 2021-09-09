@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -39,13 +40,6 @@ function oe_content_publication_form_node_form_alter(array &$form, FormStateInte
   ];
 
   $form['#validate'][] = '_oe_content_publication_node_validate';
-
-  if (isset($form['actions']['submit']['#submit'])) {
-    $submit_handlers = $form['actions']['submit']['#submit'];
-    // Make sure that custom submit handler executed first.
-    array_unshift($submit_handlers, '_oe_content_publication_node_submit');
-    $form['actions']['submit']['#submit'] = $submit_handlers;
-  }
 }
 
 /**
@@ -76,20 +70,18 @@ function _oe_content_publication_node_validate(array $form, FormStateInterface $
 }
 
 /**
- * Custom submit for the Publication node form.
- *
- * @param array $form
- *   The form.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The form state.
+ * Implements hook_ENTITY_TYPE_presave().
  */
-function _oe_content_publication_node_submit(array $form, FormStateInterface $form_state): void {
-  // Ensure that files or publications are correctly cleaned up according to the
-  // collection flag.
-  if ($form_state->getValue(['oe_publication_collection', 0, 'value']) == 1) {
-    $form_state->setValue('oe_documents', []);
+function oe_content_publication_node_presave(EntityInterface $entity) {
+  if ($entity->bundle() !== 'oe_publication') {
+    return;
+  }
+
+  $is_collection = (bool) $entity->get('oe_publication_collection')->value;
+  if ($is_collection) {
+    $entity->set('oe_documents', NULL);
   }
   else {
-    $form_state->setValue('oe_publication_publications', []);
+    $entity->set('oe_publication_publications', NULL);
   }
 }
