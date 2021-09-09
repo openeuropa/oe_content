@@ -168,35 +168,3 @@ Feature: Publication content creation
     And I press "Save"
     Then I should see "Publication Publication demo page has been updated."
     And the General Contact entity with title "A general contact" exists
-
-  @javascript @disable-browser-required-field-validation
-  @batch3
-  Scenario: Publication collection fields are cleaned up according to the selected options.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit any oe_publication content, view published skos concept entities, manage corporate content entities" permission
-    And the following documents:
-      | name       | file       |
-      | Document 1 | sample.pdf |
-    And the following "Publication" Content entity:
-      | Collection             | No                                    |
-      | Title                  | Publication demo page                 |
-      | Introduction           | Publication introduction text         |
-      | Identifier code        | PUB/100/1                             |
-      | Resource type          | Agenda                                |
-      | Publication date       | 2019-02-21                            |
-      | Last update date       | 2019-02-22                            |
-      | Files                  | Document 1                            |
-      | Body text              | Publication body text                 |
-      | Author                 | Directorate-General for Budget        |
-      | Related department     | Directorate-General for Communication |
-      | Teaser                 | Teaser                                |
-    When I am visiting the "Publication demo page" content
-    And I click "Edit"
-    And I select the radio button "Yes"
-    And I press "Save"
-    Then I should see the error message "Publications field is required."
-    When I fill in "Publications" with "Publication demo page"
-    And I press "Save"
-    And I click "Edit"
-    And I select the radio button "No"
-    And I press "Save"
-    Then I should see the error message "Files field is required."

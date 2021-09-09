@@ -24,17 +24,24 @@ function oe_content_publication_form_node_form_alter(array &$form, FormStateInte
     'visible' => [
       'input[name="oe_publication_collection"]' => ['value' => '0'],
     ],
+  ];
+
+  // Required flag needs to be set over the field item.
+  $form['oe_documents']['widget'][0]['target_id']['#states'] = [
     'required' => [
       'input[name="oe_publication_collection"]' => ['value' => '0'],
     ],
   ];
 
-  // Required flag needs to be set over the field item.
   $form['oe_publication_publications']['#states'] = [
-    'required' => [
+    'visible' => [
       'input[name="oe_publication_collection"]' => ['value' => '1'],
     ],
-    'visible' => [
+  ];
+
+  // Required flag needs to be set over the field item.
+  $form['oe_publication_publications']['widget'][0]['target_id']['#states'] = [
+    'required' => [
       'input[name="oe_publication_collection"]' => ['value' => '1'],
     ],
   ];
@@ -51,7 +58,7 @@ function oe_content_publication_form_node_form_alter(array &$form, FormStateInte
  *   The form state.
  */
 function _oe_content_publication_node_validate(array $form, FormStateInterface $form_state): void {
-  if ($form_state->getValue(['oe_publication_collection', 0, 'value']) == 1) {
+  if ($form_state->getValue(['oe_publication_collection', 0, 'value']) === '1') {
     $publications = $form_state->getValue([
       'oe_publication_publications',
       0,
