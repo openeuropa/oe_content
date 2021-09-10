@@ -115,7 +115,7 @@ class PublicationEntityTest extends EntityKernelTestBase {
     $file->setPermanent();
     $file->save();
 
-    $media = \Drupal::service('entity_type.manager')->getStorage('media')->create([
+    $media = $this->container->get('entity_type.manager')->getStorage('media')->create([
       'bundle' => 'document',
       'name' => "Test document",
       'oe_media_file_type' => 'local',
@@ -127,7 +127,7 @@ class PublicationEntityTest extends EntityKernelTestBase {
     ]);
     $media->save();
 
-    $node_storage = \Drupal::service('entity_type.manager')->getStorage('node');
+    $node_storage = $this->container->get('entity_type.manager')->getStorage('node');
 
     // Create a Publication node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */
@@ -158,6 +158,11 @@ class PublicationEntityTest extends EntityKernelTestBase {
     // Now switch the publication to collection and assert the documents field.
     $collection->set('oe_publication_collection', 1)->save();
     $this->assertTrue($collection->get('oe_documents')->isEmpty());
+
+    // Set a child publication, save and assert it is saved because the
+    // collection flag is set to 1.
+    $collection->set('oe_publication_publications', [$node])->save();
+    $this->assertFalse($collection->get('oe_publication_publications')->isEmpty());
   }
 
 }
