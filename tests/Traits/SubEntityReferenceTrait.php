@@ -4,32 +4,26 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Traits;
 
-use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
-
 /**
  * Trait for referencing sub-entities inside reference revision fields in Behat.
  */
 trait SubEntityReferenceTrait {
-
-  use GatherSubEntityContextTrait;
 
   /**
    * Get reference revision field in a multi-value, parsable format.
    *
    * @param string $field_name
    *   Reference revision field name.
-   * @param string $labels
-   *   Entity labels, comma separated.
+   * @param \Drupal\oe_content_sub_entity\Entity\SubEntityInterface[] $entities
+   *   The array of sub-entities.
    *
    * @return array
    *   Pair of target_id and target_revision_id for given field.
    */
-  protected function getSubEntityReferenceField(string $field_name, string $labels): array {
+  protected function getSubEntityReferenceField(string $field_name, array $entities): array {
     $ids = [];
     $revision_ids = [];
-    $labels = explode(', ', $labels);
-    foreach ($labels as $name) {
-      $entity = $this->subEntityContext->getSubEntityByName($name);
+    foreach ($entities as $entity) {
       $ids[] = $entity->id();
       $revision_ids[] = $entity->getRevisionId();
     }

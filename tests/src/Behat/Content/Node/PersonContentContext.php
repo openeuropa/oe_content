@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content\Node;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -22,6 +23,7 @@ class PersonContentContext extends RawDrupalContext {
   use EntityReferenceTrait;
   use EntityLoadingTrait;
   use SubEntityReferenceTrait;
+  use GatherSubEntityContextTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -84,7 +86,7 @@ class PersonContentContext extends RawDrupalContext {
         // Set entity reference revision fields for sub entities.
         case 'Documents':
         case 'Jobs':
-          $fields = $this->getSubEntityReferenceField($mapping[$key], $value);
+          $fields = $this->getSubEntityReferenceField($mapping[$key], $this->subEntityContext->getSubEntityMultipleByNames($value));
           $scope->addFields($fields)->removeField($key);
           break;
 

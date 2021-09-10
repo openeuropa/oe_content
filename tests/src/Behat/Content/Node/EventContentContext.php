@@ -8,6 +8,7 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -25,6 +26,7 @@ class EventContentContext extends RawDrupalContext {
   use EntityReferenceTrait;
   use EntityLoadingTrait;
   use SubEntityReferenceTrait;
+  use GatherSubEntityContextTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -96,7 +98,7 @@ class EventContentContext extends RawDrupalContext {
 
         // Set Authors entity reference fields.
         case 'Authors':
-          $fields = $this->getSubEntityReferenceField($mapping[$key], $value);
+          $fields = $this->getSubEntityReferenceField($mapping[$key], $this->subEntityContext->getSubEntityMultipleByNames($value));
           $scope->addFields($fields)->removeField($key);
           break;
 
