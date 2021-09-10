@@ -87,8 +87,9 @@ class AuthorsReferenceFormatter extends EntityReferenceFormatterBase {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $element = [];
 
-    foreach ($this->getEntitiesToView($items, $langcode) as $entity) {
-
+    /** @var \Drupal\oe_content\Entity\Author $entity */
+    foreach ($this->getEntitiesToView($items, $langcode) as $delta => $entity) {
+      $element[$delta] = $entity->getAuthorsAsLinks();
     }
 
     return $element;

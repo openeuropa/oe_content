@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_sub_entity_author\Entity;
 
+use Drupal\oe_content\Event\AuthorExtractDataEvent;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 
 /**
@@ -48,4 +49,15 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class Author extends SubEntityBase implements AuthorInterface {}
+class Author extends SubEntityBase implements AuthorInterface {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAuthorsAsLinks(): array {
+    $event = new AuthorExtractDataEvent($this);
+    $this->eventDispatcher()->dispatch(AuthorExtractDataEvent::EXTRACT_AUTHOR_LINKS, $event);
+    return $event->getLinks();
+  }
+
+}
