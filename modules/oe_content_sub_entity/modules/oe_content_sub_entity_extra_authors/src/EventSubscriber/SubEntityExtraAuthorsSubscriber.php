@@ -35,6 +35,9 @@ class SubEntityExtraAuthorsSubscriber extends SubEntitySubscriberBase {
         }
 
         break;
+
+      default:
+        $label = $this->defaultLabel($entity);
     }
 
     return $label;

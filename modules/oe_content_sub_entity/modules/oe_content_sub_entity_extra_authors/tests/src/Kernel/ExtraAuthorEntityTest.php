@@ -73,7 +73,6 @@ class ExtraAuthorEntityTest extends EntityKernelTestBase {
    * Tests label of extra author entities.
    */
   public function testLabel(): void {
-
     foreach ($this->getAuthorEntitiesTestData() as $bundle => $data_case) {
       $author = $this->entityTypeManager->getStorage('oe_author')->create([
         'type' => $bundle,
@@ -92,7 +91,6 @@ class ExtraAuthorEntityTest extends EntityKernelTestBase {
         $author->save();
         $this->assertEquals($data['expected_label'], $author->label());
       }
-
     }
   }
 

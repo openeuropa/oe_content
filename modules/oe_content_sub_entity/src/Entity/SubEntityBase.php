@@ -29,13 +29,8 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
    * {@inheritdoc}
    */
   public function label() {
-    // Return the entity's bundle label by default.
-    $label = $this->get('type')->entity->label();
-
     $event = new SubEntityEvent($this);
-    $event->setLabel($label);
     $this->eventDispatcher()->dispatch(SubEntityEvent::LABEL_FORMATION, $event);
-
     return $event->getLabel();
   }
 

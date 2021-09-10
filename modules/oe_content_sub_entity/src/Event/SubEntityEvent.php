@@ -4,23 +4,23 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_sub_entity\Event;
 
-use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Event used to form sub-entity type labels individually for each bundle.
+ * Event is used to form sub-entity type labels individually for each bundle.
  */
-class SubEntityEvent extends Event {
+final class SubEntityEvent extends Event {
 
   /**
    * The name of the event.
    */
-  const LABEL_FORMATION = 'oe_content.event.subentity_label_formation';
+  const LABEL_FORMATION = 'oe_content.event.label_formation';
 
   /**
    * The entity for which we have to form label.
    *
-   * @var \Drupal\Core\Entity\ContentEntityInterface
+   * @var \Drupal\oe_content_sub_entity\Entity\SubEntityInterface
    */
   protected $entity;
 
@@ -32,22 +32,24 @@ class SubEntityEvent extends Event {
   protected $label;
 
   /**
-   * AuthorEntityEvent constructor.
+   * SubEntityEvent constructor.
    *
-   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
-   *   The content entity.
+   * @param \Drupal\oe_content_sub_entity\Entity\SubEntityInterface $entity
+   *   The sub-entity.
    */
-  public function __construct(ContentEntityInterface $entity) {
+  public function __construct(SubEntityInterface $entity) {
     $this->entity = $entity;
+    // Uses the entity's bundle label by default.
+    $this->label = $entity->get('type')->entity->label();
   }
 
   /**
    * Returns the entity.
    *
-   * @return \Drupal\Core\Entity\ContentEntityInterface
+   * @return \Drupal\oe_content_sub_entity\Entity\SubEntityInterface
    *   The entity.
    */
-  public function getEntity(): ContentEntityInterface {
+  public function getEntity(): SubEntityInterface {
     return $this->entity;
   }
 
