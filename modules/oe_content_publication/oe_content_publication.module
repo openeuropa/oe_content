@@ -26,12 +26,16 @@ function oe_content_publication_form_node_form_alter(array &$form, FormStateInte
     ],
   ];
 
-  // Required flag needs to be set over the field item.
-  $form['oe_documents']['widget'][0]['target_id']['#states'] = [
-    'required' => [
-      'input[name="oe_publication_collection"]' => ['value' => '0'],
-    ],
-  ];
+  // We need to check if the widget array structure exists, it can vary if a
+  // different widget is being used.
+  if (isset($form['oe_documents']['widget'][0]['target_id'])) {
+    // Required flag needs to be set over the field item.
+    $form['oe_documents']['widget'][0]['target_id']['#states'] = [
+      'required' => [
+        'input[name="oe_publication_collection"]' => ['value' => '0'],
+      ],
+    ];
+  }
 
   $form['oe_publication_publications']['#states'] = [
     'visible' => [
@@ -39,12 +43,16 @@ function oe_content_publication_form_node_form_alter(array &$form, FormStateInte
     ],
   ];
 
-  // Required flag needs to be set over the field item.
-  $form['oe_publication_publications']['widget'][0]['target_id']['#states'] = [
-    'required' => [
-      'input[name="oe_publication_collection"]' => ['value' => '1'],
-    ],
-  ];
+  // We need to check if the widget array structure exists, it can vary if a
+  // different widget is being used.
+  if (isset($form['oe_publication_publications']['widget'][0]['target_id'])) {
+    // Required flag needs to be set over the field item.
+    $form['oe_publication_publications']['widget'][0]['target_id']['#states'] = [
+      'required' => [
+        'input[name="oe_publication_collection"]' => ['value' => '1'],
+      ],
+    ];
+  }
 
   $form['#validate'][] = '_oe_content_publication_node_validate';
 }
