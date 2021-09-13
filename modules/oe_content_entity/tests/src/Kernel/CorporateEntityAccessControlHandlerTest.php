@@ -155,7 +155,7 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
         'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
         'status' => 1,
       ],
-      'user with view published access / published entity' => [
+      'user with view published access / view / published entity' => [
         'permissions' => ['view published oe_corporate_entity_test'],
         'operation' => 'view',
         'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
@@ -179,6 +179,18 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
         'status' => 1,
       ],
+      'user with view published access / view label / published entity' => [
+        'permissions' => ['view published oe_corporate_entity_test'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
+        'status' => 1,
+      ],
+      'user with view published access / view label / unpublished entity' => [
+        'permissions' => ['view published oe_corporate_entity_test'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
+        'status' => 0,
+      ],
       'user with create, update, delete access / published entity' => [
         'permissions' => [
           'create oe_corporate_entity_test test_bundle corporate entity',
@@ -186,6 +198,16 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
           'delete oe_corporate_entity_test test_bundle corporate entity',
         ],
         'operation' => 'view',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
+        'status' => 1,
+      ],
+      'user with create, update, delete access / view label / published entity' => [
+        'permissions' => [
+          'create oe_corporate_entity_test test_bundle corporate entity',
+          'edit oe_corporate_entity_test test_bundle corporate entity',
+          'delete oe_corporate_entity_test test_bundle corporate entity',
+        ],
+        'operation' => 'view label',
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
         'status' => 1,
       ],
