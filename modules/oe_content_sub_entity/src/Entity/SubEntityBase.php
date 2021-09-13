@@ -28,10 +28,13 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
   /**
    * {@inheritdoc}
    */
-  public function label() {
-    $event = new SubEntityEvent($this);
-    $this->eventDispatcher()->dispatch(SubEntityEvent::LABEL_FORMATION, $event);
-    return $event->getLabel();
+  public function label(bool $update = FALSE) {
+    if (empty($this->label) || $update) {
+      $event = new SubEntityEvent($this);
+      $this->eventDispatcher()->dispatch(SubEntityEvent::LABEL_FORMATION, $event);
+      $this->label = $event->getLabel();
+    }
+    return $this->label;
   }
 
   /**

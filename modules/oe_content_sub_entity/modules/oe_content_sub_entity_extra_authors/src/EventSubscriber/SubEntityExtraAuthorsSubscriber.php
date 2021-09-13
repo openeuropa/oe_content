@@ -18,12 +18,6 @@ class SubEntityExtraAuthorsSubscriber extends SubEntitySubscriberBase {
   public function generateLabel(ContentEntityInterface $entity): ?string {
     $label = NULL;
     switch ($entity->bundle()) {
-      case 'oe_person':
-      case 'oe_organisation':
-        $label = $this->defaultLabel($entity);
-
-        break;
-
       case 'oe_link':
         $values = $entity->get('oe_link')->getValue();
         $titles = [];
