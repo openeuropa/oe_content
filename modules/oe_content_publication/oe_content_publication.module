@@ -11,6 +11,14 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+ * Implements hook_entity_type_alter().
+ */
+function oe_content_publication_entity_type_alter(array &$entity_types) {
+  // Add validation constraints to the node entity.
+  $entity_types['node']->addConstraint('PublicationFieldsRequired');
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter() for the node form.
  */
 function oe_content_publication_form_node_form_alter(array &$form, FormStateInterface $form_state) {
@@ -42,7 +50,6 @@ function oe_content_publication_form_node_form_alter(array &$form, FormStateInte
       'input[name="oe_publication_collection"]' => ['value' => '1'],
     ],
   ];
-
   // We need to check if the widget array structure exists, it can vary if a
   // different widget is being used.
   if (isset($form['oe_publication_publications']['widget'][0]['target_id'])) {
@@ -52,35 +59,6 @@ function oe_content_publication_form_node_form_alter(array &$form, FormStateInte
         'input[name="oe_publication_collection"]' => ['value' => '1'],
       ],
     ];
-  }
-
-  $form['#validate'][] = '_oe_content_publication_node_validate';
-}
-
-/**
- * Custom validation for the Publication node form.
- *
- * @param array $form
- *   The form.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The form state.
- */
-function _oe_content_publication_node_validate(array $form, FormStateInterface $form_state): void {
-  if ($form_state->getValue(['oe_publication_collection', 0, 'value']) === '1') {
-    $publications = $form_state->getValue([
-      'oe_publication_publications',
-      0,
-      'target_id',
-    ]);
-    if (!$publications) {
-      $form_state->setErrorByName('oe_publication_publications', t('Publications field is required.'));
-    }
-  }
-  else {
-    $files = $form_state->getValue(['oe_documents', 0, 'target_id']);
-    if (!$files) {
-      $form_state->setErrorByName('oe_documents', t('Files field is required.'));
-    }
   }
 }
 
