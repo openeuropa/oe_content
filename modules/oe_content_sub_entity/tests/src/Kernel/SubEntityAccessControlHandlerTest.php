@@ -276,6 +276,24 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
         'expected_result' => AccessResult::forbidden()->addCacheContexts(['user.permissions']),
         'status' => 0,
       ],
+      'user with access content / view label / published entity' => [
+        'permissions' => ['access content'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['node:2']),
+        'status' => 1,
+      ],
+      'user with access content / view label / unpublished entity' => [
+        'permissions' => ['access content'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::neutral(),
+        'status' => 0,
+      ],
+      'user with view unpublished sub entities / view label / unpublished entity' => [
+        'permissions' => ['view unpublished sub entities'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::forbidden()->addCacheContexts(['user.permissions']),
+        'status' => 0,
+      ],
       'user with access content / update' => [
         'permissions' => ['access content'],
         'operation' => 'update',
