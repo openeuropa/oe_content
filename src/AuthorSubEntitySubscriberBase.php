@@ -17,7 +17,7 @@ abstract class AuthorSubEntitySubscriberBase implements EventSubscriberInterface
   use StringTranslationTrait;
 
   /**
-   * Checking if particular even subscriber is applicable for Author entity.
+   * Checking if particular event subscriber is applicable for Author entity.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   The content entity.
