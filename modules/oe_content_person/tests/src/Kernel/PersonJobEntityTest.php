@@ -86,13 +86,13 @@ class PersonJobEntityTest extends EntityKernelTestBase {
 
     // Show role as a label if they are defined.
     $person_job->set('oe_role_name', 'Role name label')->save();
-    $this->assertEquals('Role name label', $person_job->label(TRUE));
+    $this->assertEquals('Role name label', $person_job->label());
 
     $person_job->set('oe_role_reference', ['http://publications.europa.eu/resource/authority/corporate-body/APEC'])->save();
-    $this->assertEquals('Asia-Pacific Economic Cooperation', $person_job->label(TRUE));
+    $this->assertEquals('Asia-Pacific Economic Cooperation', $person_job->label());
 
     $person_job->set('oe_acting', TRUE)->save();
-    $this->assertEquals('(Acting) Asia-Pacific Economic Cooperation', $person_job->label(TRUE));
+    $this->assertEquals('(Acting) Asia-Pacific Economic Cooperation', $person_job->label());
   }
 
 }

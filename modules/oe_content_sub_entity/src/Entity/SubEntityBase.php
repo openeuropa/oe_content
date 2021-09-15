@@ -26,6 +26,13 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
   use EntityPublishedTrait;
 
   /**
+   * The label of the entity.
+   *
+   * @var string
+   */
+  protected $label;
+
+  /**
    * {@inheritdoc}
    */
   public function label(bool $update = FALSE) {
@@ -131,6 +138,14 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
     }
 
     return $parent;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function save(): int {
+    $this->label = NULL;
+    return parent::save();
   }
 
   /**
