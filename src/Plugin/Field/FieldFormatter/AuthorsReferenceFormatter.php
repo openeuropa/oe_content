@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
@@ -85,14 +86,50 @@ class AuthorsReferenceFormatter extends EntityReferenceFormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $element = [];
+    $elements = [];
+    $settings = $this->getSettings();
 
     /** @var \Drupal\oe_content\Entity\Author $entity */
-    foreach ($this->getEntitiesToView($items, $langcode) as $delta => $entity) {
-      $element[$delta] = $entity->getAuthorsAsLinks();
-    }
+    $index = 0;
+    $cacheablemetadata = new CacheableMetadata();
+    foreach ($this->getEntitiesToView($items, $langcode) as $entity) {
+      $links = $entity->getAuthorsAsLinks();
+      foreach ($links as $link) {
+        if ($settings['label_only']) {
+          $elements[$index] = [
+            '#plain_text' => $link->getText(),
+          ];
+        }
+        else {
+          $url = $link->getUrl();
+          $options = $url->getOptions();
 
-    return $element;
+          // Add optional 'rel' attribute to link options.
+          if (!empty($settings['rel'])) {
+            $options['attributes']['rel'] = $settings['rel'];
+          }
+          // Add optional 'target' attribute to link options.
+          if (!empty($settings['target'])) {
+            $options['attributes']['target'] = $settings['target'];
+          }
+          $url->setOptions($options);
+          $elements[$index] = [
+            '#type' => 'link',
+            '#title' => $link->getText(),
+            '#url' => $url,
+            '#options' => $url->getOptions(),
+          ];
+        }
+
+        $entity->getCacheableMetadata()->applyTo($elements[$index]);
+        $cacheablemetadata->addCacheableDependency($entity->getCacheableMetadata());
+        $index++;
+      }
+    }
+    $cacheablemetadata->addCacheableDependency($items->getEntity());
+    $cacheablemetadata->applyTo($elements);
+
+    return $elements;
   }
 
   /**
