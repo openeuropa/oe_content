@@ -99,6 +99,8 @@ Feature: Event content creation
     Then I should see the text "Organiser name"
     And the "Internal organiser field" is not visible
 
+    And I should see the text "Media" in the "Event media" region
+
     # The full description group is opened by default.
     And I should see the text "Full description"
     And I should see the text "Featured media"
@@ -165,6 +167,7 @@ Feature: Event content creation
     And the following images:
       | name          | file           | alt                            |
       | Contact image | example_1.jpeg | Contact image alternative text |
+      | Media image   | example_2.jpeg | Media alternative text         |
     # Create a "Media AV portal photo".
     And the following AV Portal photos:
       | url                                                        |
@@ -224,6 +227,9 @@ Feature: Event content creation
     And I fill in "Link text" with "Twitter" in the "Social media links" region
     And I select "Twitter" from "Link type"
 
+    # Add a media item.
+    And I fill in "Use existing media" with "Media image" in the "Event media" region
+
     # Description field group.
     And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
     And I fill in "Featured media legend" with "Euro with miniature figurines"
@@ -274,6 +280,7 @@ Feature: Event content creation
     And I should see the link "Website"
     And I should see the link "Twitter"
     And I should see "Facebook"
+    And I should see "Media image"
     And I should see "Online description text"
     And I should see "Fri, 02/22/2019 - 02:30"
     And I should see "Fri, 02/22/2019 - 14:30"

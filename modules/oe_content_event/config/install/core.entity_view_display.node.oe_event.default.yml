@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
+    - field.field.node.oe_event.oe_event_media
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_dates
@@ -120,6 +121,14 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  oe_event_media:
+    type: entity_reference_label
+    weight: 28
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    region: content
   oe_event_online_dates:
     weight: 9
     label: above
