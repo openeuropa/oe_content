@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content\Event;
 
+use Drupal\Core\Cache\CacheableResponseTrait;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Link;
 use Symfony\Component\EventDispatcher\Event;
@@ -12,6 +13,8 @@ use Symfony\Component\EventDispatcher\Event;
  * Event used to extract sub-entity type Links individually for each bundle.
  */
 class AuthorExtractDataEvent extends Event {
+
+  use CacheableResponseTrait;
 
   /**
    * The name of the event.
@@ -39,6 +42,7 @@ class AuthorExtractDataEvent extends Event {
    *   The content entity.
    */
   public function __construct(ContentEntityInterface $entity) {
+    $this->addCacheableDependency($entity);
     $this->entity = $entity;
   }
 

@@ -24,7 +24,7 @@ class AuthorCorporateBodyExtractDataSubscriber extends AuthorSubEntitySubscriber
    * {@inheritdoc}
    */
   protected function extractLinks(AuthorExtractDataEvent $event): void {
-    $event->setLinks($this->getDefaultLinks($event->getEntity()));
+    $event->setLinks($this->getDefaultLinks($event));
   }
 
 }

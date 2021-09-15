@@ -60,38 +60,27 @@ abstract class AuthorSubEntitySubscriberBase implements EventSubscriberInterface
   /**
    * Default label generator for target sub-entity.
    *
-   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
-   *   The content entity.
+   * @param \Drupal\oe_content\Event\AuthorExtractDataEvent $event
+   *   Author Sub-entity event.
    *
    * @return array
    *   Generated entity links.
    */
-  protected function getDefaultLinks(ContentEntityInterface $entity): ?array {
-    $links = $this->getReferencedEntityLink($entity);
-    if (!empty($links)) {
-      return $links;
-    }
-    return NULL;
-  }
-
-  /**
-   * Gets links of referenced entities.
-   *
-   * @return array
-   *   Links separated by comma.
-   */
-  protected function getReferencedEntityLink(ContentEntityInterface $entity): array {
+  protected function getDefaultLinks(AuthorExtractDataEvent $event): ?array {
     // Load referenced entities.
-    $entities = $entity->referencedEntities();
+    $entities = $event->getEntity()->referencedEntities();
 
     $links = [];
     foreach ($entities as $entity) {
       if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
+        $event->addCacheableDependency($entity);
         $links[] = $entity->toLink();
       }
     }
-
-    return $links;
+    if (!empty($links)) {
+      return $links;
+    }
+    return NULL;
   }
 
 }

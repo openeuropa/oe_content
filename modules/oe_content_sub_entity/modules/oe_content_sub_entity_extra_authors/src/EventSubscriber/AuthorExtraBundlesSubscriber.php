@@ -32,12 +32,6 @@ class AuthorExtraBundlesSubscriber extends AuthorSubEntitySubscriberBase {
   protected function extractLinks(AuthorExtractDataEvent $event): void {
     $entity = $event->getEntity();
     switch ($entity->bundle()) {
-      case 'oe_person':
-      case 'oe_organisation':
-        $event->setLinks($this->getDefaultLinks($event->getEntity()));
-
-        break;
-
       case 'oe_link':
         $values = $entity->get('oe_link')->getValue();
         $links = [];
@@ -50,7 +44,7 @@ class AuthorExtraBundlesSubscriber extends AuthorSubEntitySubscriberBase {
         break;
 
       default:
-        $event->setLinks($this->getDefaultLinks($event->getEntity()));
+        $event->setLinks($this->getDefaultLinks($event));
     }
   }
 
