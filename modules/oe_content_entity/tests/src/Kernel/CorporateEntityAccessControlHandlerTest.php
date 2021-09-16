@@ -31,6 +31,13 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
   protected $accessControlHandler;
 
   /**
+   * The corporate entity type access control handler.
+   *
+   * @var \Drupal\oe_content_entity\CorporateEntityTypeAccessControlHandler
+   */
+  protected $bundleAccessControlHandler;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -56,6 +63,8 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
       'id' => 'another_test_bundle',
       'label' => 'Another test bundle',
     ])->save();
+
+    $this->bundleAccessControlHandler = $this->container->get('entity_type.manager')->getAccessControlHandler('oe_corporate_type_entity_test');
   }
 
   /**
@@ -73,7 +82,6 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
     /** @var \Drupal\oe_content_entity\Entity\CorporateEntityTypeInterface $entity */
     $entity = $storage->create($values);
     $entity->save();
-
     // Run through the scenarios and assert the expectations.
     foreach ($scenarios as $scenario => $test_data) {
       // Update the published status based on the scenario.
@@ -94,6 +102,23 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
   }
 
   /**
+   * Ensures corporate entity type access is working properly.
+   */
+  public function testBundleAccess(): void {
+    $scenarios = $this->bundleAccessTestScenarios();
+    $type_storage = $this->container->get('entity_type.manager')->getStorage('oe_corporate_type_entity_test');
+    $bundle = $type_storage->load('test_bundle');
+    foreach ($scenarios as $scenario => $test_data) {
+      $user = $this->drupalCreateUser($test_data['permissions']);
+      $this->assertAccessResult(
+        $test_data['expected_result'],
+        $this->bundleAccessControlHandler->access($bundle, $test_data['operation'], $user, TRUE),
+        sprintf('Failed asserting access for "%s" scenario.', $scenario)
+      );
+    }
+  }
+
+  /**
    * Ensures corporate entity create access is properly working.
    */
   public function testCreateAccess(): void {
@@ -106,6 +131,40 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
         sprintf('Failed asserting access for "%s" scenario.', $scenario)
       );
     }
+  }
+
+  /**
+   * Provides test scenarios for testBundleAccess().
+   *
+   * This method is not declared as a real PHPUnit data provider to speed up
+   * test execution.
+   *
+   * @return array
+   *   The data sets to test.
+   */
+  protected function bundleAccessTestScenarios(): array {
+    return [
+      'user without permissions' => [
+        'permissions' => [],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+      ],
+      'user with view published content access' => [
+        'permissions' => ['access content'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
+      ],
+      'user with view published corporate entity' => [
+        'permissions' => ['view published oe_corporate_entity_test'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
+      ],
+      'user with create access' => [
+        'permissions' => ['create oe_corporate_entity_test test_bundle corporate entity'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+      ],
+    ];
   }
 
   /**
@@ -155,7 +214,7 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
         'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
         'status' => 1,
       ],
-      'user with view published access / view / published entity' => [
+      'user with view published access / published entity' => [
         'permissions' => ['view published oe_corporate_entity_test'],
         'operation' => 'view',
         'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
@@ -179,18 +238,6 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
         'status' => 1,
       ],
-      'user with view published access / view label / published entity' => [
-        'permissions' => ['view published oe_corporate_entity_test'],
-        'operation' => 'view label',
-        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
-        'status' => 1,
-      ],
-      'user with view published access / view label / unpublished entity' => [
-        'permissions' => ['view published oe_corporate_entity_test'],
-        'operation' => 'view label',
-        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
-        'status' => 0,
-      ],
       'user with create, update, delete access / published entity' => [
         'permissions' => [
           'create oe_corporate_entity_test test_bundle corporate entity',
@@ -198,16 +245,6 @@ class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
           'delete oe_corporate_entity_test test_bundle corporate entity',
         ],
         'operation' => 'view',
-        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
-        'status' => 1,
-      ],
-      'user with create, update, delete access / view label / published entity' => [
-        'permissions' => [
-          'create oe_corporate_entity_test test_bundle corporate entity',
-          'edit oe_corporate_entity_test test_bundle corporate entity',
-          'delete oe_corporate_entity_test test_bundle corporate entity',
-        ],
-        'operation' => 'view label',
         'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions'])->addCacheTags(['oe_corporate_entity_test:1']),
         'status' => 1,
       ],

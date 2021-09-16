@@ -49,6 +49,13 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
   protected $subEntityStorage;
 
   /**
+   * The corporate entity type access control handler.
+   *
+   * @var \Drupal\oe_content_entity\CorporateEntityTypeAccessControlHandler
+   */
+  protected $bundleAccessControlHandler;
+
+  /**
    * {@inheritdoc}
    */
   public static $modules = [
@@ -85,6 +92,8 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
       'label' => 'Test bundle',
     ])->save();
     $this->createEntityReferenceField('oe_sub_entity_test', 'test_bundle', 'field_reference', 'Node reference', 'node');
+
+    $this->bundleAccessControlHandler = $this->container->get('entity_type.manager')->getAccessControlHandler('oe_sub_entity_type_test');
 
     // Create Article node type.
     $this->createContentType([
@@ -204,6 +213,23 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
   }
 
   /**
+   * Ensures corporate entity type access is working properly.
+   */
+  public function testBundleAccess(): void {
+    $scenarios = $this->bundleAccessTestScenarios();
+    $type_storage = $this->container->get('entity_type.manager')->getStorage('oe_sub_entity_type_test');
+    $bundle = $type_storage->load('test_bundle');
+    foreach ($scenarios as $scenario => $test_data) {
+      $user = $this->drupalCreateUser($test_data['permissions']);
+      $this->assertAccessResult(
+        $test_data['expected_result'],
+        $this->bundleAccessControlHandler->access($bundle, $test_data['operation'], $user, TRUE),
+        sprintf('Failed asserting access for "%s" scenario.', $scenario)
+      );
+    }
+  }
+
+  /**
    * Asserts entity access correctly grants or denies access.
    *
    * @param \Drupal\Core\Access\AccessResultInterface $expected
@@ -276,24 +302,6 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
         'expected_result' => AccessResult::forbidden()->addCacheContexts(['user.permissions']),
         'status' => 0,
       ],
-      'user with access content / view label / published entity' => [
-        'permissions' => ['access content'],
-        'operation' => 'view label',
-        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['node:2']),
-        'status' => 1,
-      ],
-      'user with access content / view label / unpublished entity' => [
-        'permissions' => ['access content'],
-        'operation' => 'view label',
-        'expected_result' => AccessResult::neutral(),
-        'status' => 0,
-      ],
-      'user with view unpublished sub entities / view label / unpublished entity' => [
-        'permissions' => ['view unpublished sub entities'],
-        'operation' => 'view label',
-        'expected_result' => AccessResult::forbidden()->addCacheContexts(['user.permissions']),
-        'status' => 0,
-      ],
       'user with access content / update' => [
         'permissions' => ['access content'],
         'operation' => 'update',
@@ -317,6 +325,35 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
         'operation' => 'delete',
         'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
         'status' => 1,
+      ],
+    ];
+  }
+
+  /**
+   * Provides test scenarios for testBundleAccess().
+   *
+   * This method is not declared as a real PHPUnit data provider to speed up
+   * test execution.
+   *
+   * @return array
+   *   The data sets to test.
+   */
+  protected function bundleAccessTestScenarios(): array {
+    return [
+      'user without permissions' => [
+        'permissions' => [],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+      ],
+      'user with access content' => [
+        'permissions' => ['access content'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
+      ],
+      'user with view unpublished sub entities' => [
+        'permissions' => ['view unpublished sub entities'],
+        'operation' => 'view label',
+        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
       ],
     ];
   }
