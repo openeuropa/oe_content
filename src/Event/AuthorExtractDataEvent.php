@@ -19,7 +19,7 @@ class AuthorExtractDataEvent extends Event {
   /**
    * The name of the event.
    */
-  const EXTRACT_AUTHOR_LINKS = 'oe_content.event.get_author_entity_links';
+  const EXTRACT_AUTHOR_LINKS = 'oe_content.get_author_entity_links';
 
   /**
    * The entity for which we have to extract some data.

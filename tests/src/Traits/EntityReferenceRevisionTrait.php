@@ -77,7 +77,7 @@ trait EntityReferenceRevisionTrait {
    * @param int $cardinality
    *   The cardinality of the field.
    *
-   * @see \Drupal\Core\Entity\Plugin\EntityReferenceSelection\SelectionBase::buildConfigurationForm()
+   * @see \Drupal\Core\Entity\Plugin\EntityReferenceSelection\DefaultSelection::buildConfigurationForm()
    */
   protected function createEntityReferenceRevisionField(string $entity_type, string $bundle, string $field_name, string $field_label, string $target_entity_type, string $selection_handler = 'default', array $selection_handler_settings = [], int $cardinality = 1) {
     // Look for or add the specified field to the requested entity bundle.

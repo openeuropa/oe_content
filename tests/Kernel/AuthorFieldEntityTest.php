@@ -109,12 +109,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
 
     $node = $this->createNode([
       'type' => 'test_node',
-      'oe_authors' => [
-        [
-          'target_id' => $author->id(),
-          'target_revision_id' => $author->getRevisionId(),
-        ],
-      ],
+      'oe_authors' => [$author],
     ]);
     $node->save();
     $this->renderAuthorField($node);
@@ -144,16 +139,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]
     );
     $author2->save();
-    $node->set('oe_authors', [
-      [
-        'target_id' => $author->id(),
-        'target_revision_id' => $author->getRevisionId(),
-      ],
-      [
-        'target_id' => $author2->id(),
-        'target_revision_id' => $author2->getRevisionId(),
-      ],
-    ]);
+    $node->set('oe_authors', [$author, $author2]);
     $node->save();
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div/span');
@@ -177,20 +163,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]
     );
     $author3->save();
-    $node->set('oe_authors', [
-      [
-        'target_id' => $author->id(),
-        'target_revision_id' => $author->getRevisionId(),
-      ],
-      [
-        'target_id' => $author2->id(),
-        'target_revision_id' => $author2->getRevisionId(),
-      ],
-      [
-        'target_id' => $author3->id(),
-        'target_revision_id' => $author3->getRevisionId(),
-      ],
-    ]);
+    $node->set('oe_authors', [$author, $author2, $author3]);
     $node->save();
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div');
@@ -222,24 +195,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]
     );
     $author4->save();
-    $node->set('oe_authors', [
-      [
-        'target_id' => $author->id(),
-        'target_revision_id' => $author->getRevisionId(),
-      ],
-      [
-        'target_id' => $author2->id(),
-        'target_revision_id' => $author2->getRevisionId(),
-      ],
-      [
-        'target_id' => $author3->id(),
-        'target_revision_id' => $author3->getRevisionId(),
-      ],
-      [
-        'target_id' => $author4->id(),
-        'target_revision_id' => $author4->getRevisionId(),
-      ],
-    ]);
+    $node->set('oe_authors', [$author, $author2, $author3, $author4]);
     $node->save();
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div');
@@ -271,28 +227,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]
     );
     $author5->save();
-    $node->set('oe_authors', [
-      [
-        'target_id' => $author->id(),
-        'target_revision_id' => $author->getRevisionId(),
-      ],
-      [
-        'target_id' => $author2->id(),
-        'target_revision_id' => $author2->getRevisionId(),
-      ],
-      [
-        'target_id' => $author3->id(),
-        'target_revision_id' => $author3->getRevisionId(),
-      ],
-      [
-        'target_id' => $author4->id(),
-        'target_revision_id' => $author4->getRevisionId(),
-      ],
-      [
-        'target_id' => $author5->id(),
-        'target_revision_id' => $author5->getRevisionId(),
-      ],
-    ]);
+    $node->set('oe_authors', [$author, $author2, $author3, $author4, $author5]);
     $node->save();
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div');
@@ -396,7 +331,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
    */
   protected function renderAuthorField(NodeInterface $node, array $settings = []): void {
     $render_array = $node->get('oe_authors')->view([
-      'type' => 'authors_reference_formatter',
+      'type' => 'oe_content_authors_reference_formatter',
       'settings' => $settings,
     ]);
 

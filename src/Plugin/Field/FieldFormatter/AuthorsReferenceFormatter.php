@@ -14,7 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
  * Plugin implementation of the Author reference fields formatter.
  *
  * @FieldFormatter(
- *   id = "authors_reference_formatter",
+ *   id = "oe_content_authors_reference_formatter",
  *   label = @Translation("Authors reference formatter"),
  *   field_types = {
  *     "entity_reference_revisions"
@@ -42,18 +42,18 @@ class AuthorsReferenceFormatter extends EntityReferenceFormatterBase {
 
     $elements['label_only'] = [
       '#type' => 'checkbox',
-      '#title' => t('Label only'),
+      '#title' => $this->t('Label only'),
       '#default_value' => $this->getSetting('label_only'),
     ];
     $elements['rel'] = [
       '#type' => 'checkbox',
-      '#title' => t('Add rel="nofollow" to links'),
+      '#title' => $this->t('Add rel="nofollow" to links'),
       '#return_value' => 'nofollow',
       '#default_value' => $this->getSetting('rel'),
     ];
     $elements['target'] = [
       '#type' => 'checkbox',
-      '#title' => t('Open link in new window'),
+      '#title' => $this->t('Open link in new window'),
       '#return_value' => '_blank',
       '#default_value' => $this->getSetting('target'),
     ];
@@ -70,13 +70,13 @@ class AuthorsReferenceFormatter extends EntityReferenceFormatterBase {
     $settings = $this->getSettings();
 
     if (!empty($settings['label_only'])) {
-      $summary[] = t('Show label only as plain-text');
+      $summary[] = $this->t('Show label only as plain-text');
     }
     if (!empty($settings['rel'])) {
-      $summary[] = t('Add rel="@rel"', ['@rel' => $settings['rel']]);
+      $summary[] = $this->t('Add rel="@rel"', ['@rel' => $settings['rel']]);
     }
     if (!empty($settings['target'])) {
-      $summary[] = t('Open link in new window');
+      $summary[] = $this->t('Open link in new window');
     }
 
     return $summary;
