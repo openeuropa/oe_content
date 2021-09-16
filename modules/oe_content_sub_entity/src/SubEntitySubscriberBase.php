@@ -6,7 +6,8 @@ namespace Drupal\oe_content_sub_entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_content_sub_entity\Event\SubEntityEvent;
+use Drupal\oe_content_sub_entity\Event\SubEntityEvents;
+use Drupal\oe_content_sub_entity\Event\SubEntityLabelInformationEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -44,17 +45,17 @@ abstract class SubEntitySubscriberBase implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
-      SubEntityEvent::LABEL_FORMATION => ['onLabelFormation'],
+      SubEntityEvents::LABEL_FORMATION => ['onLabelFormation'],
     ];
   }
 
   /**
    * Extracting sub-entity label which depends on entity bundle.
    *
-   * @param \Drupal\oe_content_sub_entity\Event\SubEntityEvent $event
+   * @param \Drupal\oe_content_sub_entity\Event\SubEntityLabelInformationEvent $event
    *   Sub-entity event.
    */
-  public function onLabelFormation(SubEntityEvent $event): void {
+  public function onLabelFormation(SubEntityLabelInformationEvent $event): void {
     if ($this->applies($event->getEntity())) {
       $generated_label = $this->generateLabel($event->getEntity());
       if (!empty($generated_label)) {

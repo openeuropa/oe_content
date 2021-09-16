@@ -10,12 +10,7 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * Event is used to form sub-entity type labels individually for each bundle.
  */
-final class SubEntityEvent extends Event {
-
-  /**
-   * The name of the event.
-   */
-  const LABEL_FORMATION = 'oe_content.event.label_formation';
+class SubEntityLabelInformationEvent extends Event {
 
   /**
    * The entity for which we have to form label.
