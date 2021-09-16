@@ -118,9 +118,8 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]);
     $node->save();
     $this->renderAuthorField($node);
-    $this->assertCount(2, $this->xpath('//main//a'));
-    $links = $this->xpath('//main//a');
-
+    $links = $this->xpath('//main/div/div/div/span');
+    $this->assertCount(2, $links);
     $this->assertEquals('Audit Board of the European Communities', $links[0]->__toString());
     $this->assertEquals('Directorate-General for Budget', $links[1]->__toString());
 
@@ -131,8 +130,8 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]);
     $author->save();
     $this->renderAuthorField($node);
-    $this->assertCount(2, $this->xpath('//main//a'));
-    $links = $this->xpath('//main//a');
+    $links = $this->xpath('//main/div/div/div/span');
+    $this->assertCount(2, $links);
     $this->assertEquals('Directorate-General for Budget', $links[0]->__toString());
     $this->assertEquals('Audit Board of the European Communities', $links[1]->__toString());
 
@@ -157,8 +156,8 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]);
     $node->save();
     $this->renderAuthorField($node);
-    $this->assertCount(3, $this->xpath('//main//a'));
-    $links = $this->xpath('//main//a');
+    $links = $this->xpath('//main/div/div/div/span');
+    $this->assertCount(3, $links);
     $this->assertEquals('Directorate-General for Budget', $links[0]->__toString());
     $this->assertEquals('Audit Board of the European Communities', $links[1]->__toString());
     $this->assertEquals('Directorate-General for Climate Action', $links[2]->__toString());
@@ -194,12 +193,12 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]);
     $node->save();
     $this->renderAuthorField($node);
-    $this->assertCount(4, $this->xpath('//main//a'));
-    $links = $this->xpath('//main//a');
-    $this->assertEquals('Directorate-General for Budget', $links[0]->__toString());
-    $this->assertEquals('Audit Board of the European Communities', $links[1]->__toString());
-    $this->assertEquals('Directorate-General for Climate Action', $links[2]->__toString());
-    $this->assertEquals('John Doe', $links[3]->__toString());
+    $links = $this->xpath('//main/div/div/div');
+    $this->assertCount(4, $links);
+    $this->assertEquals('Directorate-General for Budget', $links[0]->span->__toString());
+    $this->assertEquals('Audit Board of the European Communities', $links[1]->span->__toString());
+    $this->assertEquals('Directorate-General for Climate Action', $links[2]->span->__toString());
+    $this->assertEquals('John Doe', $links[3]->a->__toString());
 
     // Add Organisation author.
     $org_node1 = $this->createNode([
@@ -243,14 +242,14 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]);
     $node->save();
     $this->renderAuthorField($node);
-    $this->assertCount(6, $this->xpath('//main//a'));
-    $links = $this->xpath('//main//a');
-    $this->assertEquals('Directorate-General for Budget', $links[0]->__toString());
-    $this->assertEquals('Audit Board of the European Communities', $links[1]->__toString());
-    $this->assertEquals('Directorate-General for Climate Action', $links[2]->__toString());
-    $this->assertEquals('John Doe', $links[3]->__toString());
-    $this->assertEquals('Org1', $links[4]->__toString());
-    $this->assertEquals('Org2', $links[5]->__toString());
+    $links = $this->xpath('//main/div/div/div');
+    $this->assertCount(6, $links);
+    $this->assertEquals('Directorate-General for Budget', $links[0]->span->__toString());
+    $this->assertEquals('Audit Board of the European Communities', $links[1]->span->__toString());
+    $this->assertEquals('Directorate-General for Climate Action', $links[2]->span->__toString());
+    $this->assertEquals('John Doe', $links[3]->a->__toString());
+    $this->assertEquals('Org1', $links[4]->a->__toString());
+    $this->assertEquals('Org2', $links[5]->a->__toString());
 
     // Add Link author.
     $author5 = $this->entityTypeManager->getStorage('oe_author')->create([
@@ -296,34 +295,29 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]);
     $node->save();
     $this->renderAuthorField($node);
-    $this->assertCount(9, $this->xpath('//main//a'));
-    $links = $this->xpath('//main//a');
-    $this->assertEquals('Directorate-General for Budget', $links[0]->__toString());
-    $this->assertEquals('/admin/structure/skos_concept/http_e_f_fpublications_ceuropa_ceu_fresource_fauthority_fcorporate_bbody_fBUDG', $links[0]['href']);
+    $links = $this->xpath('//main/div/div/div');
+    $this->assertCount(9, $links);
+    $this->assertEquals('Directorate-General for Budget', $links[0]->span->__toString());
+    $this->assertEquals('Audit Board of the European Communities', $links[1]->span->__toString());
+    $this->assertEquals('Directorate-General for Climate Action', $links[2]->span->__toString());
 
-    $this->assertEquals('Audit Board of the European Communities', $links[1]->__toString());
-    $this->assertEquals('/admin/structure/skos_concept/http_e_f_fpublications_ceuropa_ceu_fresource_fauthority_fcorporate_bbody_fABEC', $links[1]['href']);
+    $this->assertEquals('John Doe', $links[3]->a->__toString());
+    $this->assertEquals('/node/2', $links[3]->a['href']);
 
-    $this->assertEquals('Directorate-General for Climate Action', $links[2]->__toString());
-    $this->assertEquals('/admin/structure/skos_concept/http_e_f_fpublications_ceuropa_ceu_fresource_fauthority_fcorporate_bbody_fCLIMA', $links[2]['href']);
+    $this->assertEquals('Org1', $links[4]->a->__toString());
+    $this->assertEquals('/node/3', $links[4]->a['href']);
 
-    $this->assertEquals('John Doe', $links[3]->__toString());
-    $this->assertEquals('/node/2', $links[3]['href']);
+    $this->assertEquals('Org2', $links[5]->a->__toString());
+    $this->assertEquals('/node/4', $links[5]->a['href']);
 
-    $this->assertEquals('Org1', $links[4]->__toString());
-    $this->assertEquals('/node/3', $links[4]['href']);
+    $this->assertEquals('node add internal', $links[6]->a->__toString());
+    $this->assertEquals('/node/add', $links[6]->a['href']);
 
-    $this->assertEquals('Org2', $links[5]->__toString());
-    $this->assertEquals('/node/4', $links[5]['href']);
+    $this->assertEquals('Link to John Doe person', $links[7]->a->__toString());
+    $this->assertEquals('/node/2', $links[7]->a['href']);
 
-    $this->assertEquals('node add internal', $links[6]->__toString());
-    $this->assertEquals('/node/add', $links[6]['href']);
-
-    $this->assertEquals('Link to John Doe person', $links[7]->__toString());
-    $this->assertEquals('/node/2', $links[7]['href']);
-
-    $this->assertEquals('external link', $links[8]->__toString());
-    $this->assertEquals('http://example.com', $links[8]['href']);
+    $this->assertEquals('external link', $links[8]->a->__toString());
+    $this->assertEquals('http://example.com', $links[8]->a['href']);
 
     // Update Person title and find update in rendered field.
     $person_node->set('oe_person_last_name', 'Doe II');
@@ -332,8 +326,8 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $author3->save();
 
     $this->renderAuthorField($node);
-    $links = $this->xpath('//main//a');
-    $this->assertEquals('John Doe II', $links[3]->__toString());
+    $links = $this->xpath('//main/div/div/div');
+    $this->assertEquals('John Doe II', $links[3]->a->__toString());
 
     // Update Link author.
     $author5->set('oe_link', [
@@ -352,15 +346,15 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     ]);
     $author5->save();
     $this->renderAuthorField($node);
-    $links = $this->xpath('//main//a');
-    $this->assertEquals('node add internal', $links[6]->__toString());
-    $this->assertEquals('/node/add', (string) $links[6]['href']);
+    $links = $this->xpath('//main/div/div/div');
+    $this->assertEquals('node add internal', $links[6]->a->__toString());
+    $this->assertEquals('/node/add', (string) $links[6]->a['href']);
 
-    $this->assertEquals('external link updated', $links[7]->__toString());
-    $this->assertEquals('http://example.com/updated', (string) $links[7]['href']);
+    $this->assertEquals('external link updated', $links[7]->a->__toString());
+    $this->assertEquals('http://example.com/updated', (string) $links[7]->a['href']);
 
-    $this->assertEquals('Link to John Doe person', $links[8]->__toString());
-    $this->assertEquals('/node/2', (string) $links[8]['href']);
+    $this->assertEquals('Link to John Doe person', $links[8]->a->__toString());
+    $this->assertEquals('/node/2', (string) $links[8]->a['href']);
 
     $this->renderAuthorField($node, [
       'label_only' => TRUE,
