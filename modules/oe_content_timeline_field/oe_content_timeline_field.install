@@ -2,7 +2,7 @@
 
 /**
  * @file
- * The OpenEuropa Content Timeline Field installation file.
+ * The OpenEuropa Content Timeline Field module installation file.
  */
 
 declare(strict_types = 1);

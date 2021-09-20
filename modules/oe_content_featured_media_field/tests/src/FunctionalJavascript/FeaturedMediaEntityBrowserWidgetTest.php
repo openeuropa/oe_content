@@ -35,7 +35,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     // Add an entity reference field with unlimited cardinality.

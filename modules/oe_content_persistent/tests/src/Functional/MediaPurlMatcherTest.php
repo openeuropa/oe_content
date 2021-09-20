@@ -17,6 +17,11 @@ class MediaPurlMatcherTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = [
     'linkit',
     'media',

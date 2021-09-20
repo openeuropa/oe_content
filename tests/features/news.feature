@@ -5,6 +5,7 @@ Feature: News content creation
   I need to be able to create and see news items
 
   @javascript @cleanup:media @av_portal
+  @batch1
   Scenario: Creation of a News content through the UI.
     Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media, manage corporate content entities" permission
     And the following images:
@@ -102,6 +103,7 @@ Feature: News content creation
     And I should see "Reference text"
 
   @javascript
+  @batch2
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_news content, access content, edit own oe_news content, view published skos concept entities, create av_portal_photo media" permission
     When I visit "the News creation page"
@@ -125,6 +127,7 @@ Feature: News content creation
     And I should see "amet Teaser."
 
   @javascript
+  @batch3
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
     Given I am logged in as a user with the "create oe_news content, access content, edit any oe_news content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:

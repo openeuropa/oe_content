@@ -45,7 +45,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installEntitySchema('node');
@@ -70,8 +70,8 @@ class PersistentUrlFilterTest extends KernelTestBase {
 
     /** @var \Drupal\Core\PathProcessor\PathProcessorManager $path_processor_manager */
     $path_processor_manager = $this->container->get('path_processor_manager');
-    /** @var \Drupal\Core\PathProcessor\PathProcessorAlias $path_processor */
-    $path_processor = $this->container->get('path_processor_alias');
+    /** @var \Drupal\path_alias\PathProcessor\AliasPathProcessor $path_processor */
+    $path_processor = $this->container->get('path_alias.path_processor');
     $path_processor_manager->addOutbound($path_processor);
   }
 

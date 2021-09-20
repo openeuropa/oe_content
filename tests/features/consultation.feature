@@ -5,6 +5,7 @@ Feature: Consultation content creation
   I need to be able to create and see Consultation items
 
   @javascript
+  @batch1
   Scenario: Creation of a Consultation content through the UI.
     Given I am logged in as a user with the "create oe_consultation content, access content, edit own oe_consultation content, view published skos concept entities, manage corporate content entities" permission
     And the following documents:
@@ -79,6 +80,7 @@ Feature: Consultation content creation
     And I should see "Publication node"
 
   @javascript
+  @batch2
   Scenario: Test the maximum string length and the valid date requirements of the Consultation content type.
     Given I am logged in as a user with the "create oe_consultation content, access content, edit own oe_consultation content, view published skos concept entities, manage corporate content entities" permission
     When I visit "the Consultation creation page"
@@ -102,6 +104,7 @@ Feature: Consultation content creation
     And I should see "amet Teaser."
 
   @javascript
+  @batch3
   Scenario: Test visibility of document references and ensure that document reference and contact is not deleted after removing from the node.
     Given I am an anonymous user
     And the following General Contact entity:
