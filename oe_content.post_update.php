@@ -135,9 +135,14 @@ function oe_content_post_update_00004(): void {
  * Add new Author sub entity type with required fields.
  */
 function oe_content_post_update_30005(): void {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  // Install new 'Author' and 'Author type' entity types.
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  $update_manager->installEntityType($entity_type_manager->getDefinition('oe_author'));
+  $update_manager->installEntityType($entity_type_manager->getDefinition('oe_author_type'));
+
   $file_storage = new FileStorage(drupal_get_path('module', 'oe_content') . '/config/post_updates/30005_create_oe_author_entity_type');
 
-  $entity_type_manager = \Drupal::entityTypeManager();
   // Create Author bundle.
   $entity_type_manager->getStorage('oe_author_type')
     ->create(_oe_content_config_import_prepare($file_storage->read('oe_content.oe_author_type.oe_corporate_body')))
