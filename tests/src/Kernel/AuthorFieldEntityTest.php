@@ -90,7 +90,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $this->createEntityReferenceRevisionField('node', 'test_node', 'oe_authors', 'Authors', 'oe_author');
 
     module_load_include('install', 'oe_content');
-    oe_content_install();
+    oe_content_install(FALSE);
   }
 
   /**
