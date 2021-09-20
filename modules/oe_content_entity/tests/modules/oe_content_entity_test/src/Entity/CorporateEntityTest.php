@@ -38,6 +38,11 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  *     "created" = "created",
  *     "changed" = "changed",
  *   },
+ *   revision_metadata_keys = {
+ *     "revision_user" = "revision_uid",
+ *     "revision_created" = "revision_timestamp",
+ *     "revision_log_message" = "revision_log"
+ *   },
  *   bundle_entity_type = "oe_corporate_type_entity_test",
  *   links = {
  *     "canonical" = "/admin/content/oe_corporate_entity_test/{oe_corporate_entity_test}/edit",

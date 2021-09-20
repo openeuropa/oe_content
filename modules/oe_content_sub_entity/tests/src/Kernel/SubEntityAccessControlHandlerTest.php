@@ -61,7 +61,7 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installEntitySchema('oe_sub_entity_test');
@@ -187,7 +187,12 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
     // Run through the scenarios and assert the expectations.
     foreach ($scenarios as $scenario => $test_data) {
       // Update the published status based on the scenario.
-      $this->subEntity->setPublished($test_data['status']);
+      if ($test_data['status']) {
+        $this->subEntity->setPublished();
+      }
+      else {
+        $this->subEntity->setUnpublished();
+      }
       $this->subEntity->save();
       $user = $this->drupalCreateUser($test_data['permissions']);
       $this->assertAccessResult(

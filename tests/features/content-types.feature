@@ -4,6 +4,7 @@ Feature: Common fields across the content types
   As an editor
   I should have common fields configured the same for each content type.
 
+  @batch3
   Scenario Outline: Common fields have the correct description.
     Given I am logged in as a user with the "create oe_event content, create oe_news content, create oe_page content, create oe_policy content, create oe_project content, create oe_publication content, create oe_call_tenders content, create oe_call_proposals content, create oe_organisation content, create oe_person content, create oe_consultation content, access content" permission
     When I visit "the <content_type> creation page"
@@ -29,6 +30,7 @@ Feature: Common fields across the content types
       | Policy             |
       | Publication        |
 
+  @batch3
   Scenario Outline: Title field have the correct description.
     Given I am logged in as a user with the "create oe_event content, create oe_news content, create oe_page content, create oe_policy content, create oe_project content, create oe_publication content, create oe_call_tenders content, create oe_call_proposals content, create oe_organisation content, create oe_consultation content, access content" permission
     When I visit "the <content_type> creation page"
@@ -48,6 +50,7 @@ Feature: Common fields across the content types
       | Policy             |
       | Publication        |
 
+  @batch3
   Scenario Outline: Subject field have the correct description.
     Given I am logged in as a user with the "create oe_event content, create oe_news content, create oe_page content, create oe_policy content, create oe_project content, create oe_publication content, create oe_call_tenders content, create oe_call_proposals content, create oe_person content, create oe_consultation content, access content" permission
     When I visit "the <content_type> creation page"

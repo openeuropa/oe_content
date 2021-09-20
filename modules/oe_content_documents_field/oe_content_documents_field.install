@@ -10,9 +10,9 @@ declare(strict_types = 1);
 /**
  * Implements hook_install().
  */
-function oe_content_documents_field_install() {
+function oe_content_documents_field_install($is_syncing) {
   // If we are installing from config, we bail out.
-  if (\Drupal::isConfigSyncing() === TRUE) {
+  if ($is_syncing) {
     return;
   }
 

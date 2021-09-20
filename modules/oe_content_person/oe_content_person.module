@@ -15,7 +15,7 @@ use Drupal\oe_content_person\Entity\PersonJobInterface;
 use Drupal\oe_content_person\PersonNodeWrapper;
 
 /**
- * Implements hook_form_BASE_FORM_ID_alter() for the node form.
+ * Implements hook_form_BASE_FORM_ID_alter().
  */
 function oe_content_person_form_node_form_alter(array &$form, FormStateInterface $form_state) {
   /** @var \Drupal\node\NodeInterface $node */
