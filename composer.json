@@ -43,6 +43,7 @@
         "openeuropa/oe_multilingual": "^1.5",
         "openeuropa/oe_time_caching": "^1.1",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0",
+        "openeuropa/task-runner-ensure-behat-batching": "dev-EWPP-1475",
         "phpspec/prophecy-phpunit": "^1 || ^2"
     },
     "autoload": {
@@ -69,6 +70,10 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/openeuropa/task-runner-ensure-behat-batching"
         }
     ],
     "extra": {
