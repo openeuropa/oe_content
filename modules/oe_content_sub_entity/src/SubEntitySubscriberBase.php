@@ -94,6 +94,7 @@ abstract class SubEntitySubscriberBase implements EventSubscriberInterface {
     $labels = [];
     foreach ($entities as $entity) {
       if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
+        $entity = \Drupal::service('entity.repository')->getTranslationFromContext($entity);
         $labels[] = $entity->label();
       }
     }
