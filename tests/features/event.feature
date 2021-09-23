@@ -382,10 +382,8 @@ Feature: Event content creation
       | error messages                           |
       | Featured media field is required.        |
       | Featured media legend field is required. |
-      | Description summary field is required.   |
     # Make sure that errors related to the Description fields are fixed.
-    When I fill in "Description summary" with "Description summary text"
-    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
+    When I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
     And I fill in "Featured media legend" with "Euro with miniature figurines"
     And I press "Save"
     Then I should see the following success messages:
