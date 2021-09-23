@@ -5,9 +5,10 @@ declare(strict_types = 1);
 namespace Drupal\oe_content;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content\Event\AuthorExtractDataEvent;
-use Drupal\oe_content\Event\AuthorSubEntityEvents;
+use Drupal\oe_content\Event\ContentEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -16,6 +17,23 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 abstract class AuthorSubEntitySubscriberBase implements EventSubscriberInterface {
 
   use StringTranslationTrait;
+
+  /**
+   * The entity repository.
+   *
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
+   */
+  protected $entityRepository;
+
+  /**
+   * Constructs an instances for sub-entity event subscribers.
+   *
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository.
+   */
+  public function __construct(EntityRepositoryInterface $entity_repository) {
+    $this->entityRepository = $entity_repository;
+  }
 
   /**
    * Checking if particular event subscriber is applicable for Author entity.
@@ -42,7 +60,7 @@ abstract class AuthorSubEntitySubscriberBase implements EventSubscriberInterface
    */
   public static function getSubscribedEvents() {
     return [
-      AuthorSubEntityEvents::EXTRACT_AUTHOR_LINKS => ['onExtractingLinks'],
+      ContentEvents::EXTRACT_AUTHOR_LINKS => ['onExtractingLinks'],
     ];
   }
 
@@ -74,7 +92,7 @@ abstract class AuthorSubEntitySubscriberBase implements EventSubscriberInterface
     $links = [];
     foreach ($entities as $entity) {
       if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
-        $entity = \Drupal::service('entity.repository')->getTranslationFromContext($entity);
+        $entity = $this->entityRepository->getTranslationFromContext($entity);
         $event->addCacheableDependency($entity);
         $links[] = $entity->toLink();
       }

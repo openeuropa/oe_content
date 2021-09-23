@@ -6,7 +6,7 @@ namespace Drupal\oe_content_sub_entity_author\Entity;
 
 use Drupal\Core\Cache\CacheableResponseTrait;
 use Drupal\oe_content\Event\AuthorExtractDataEvent;
-use Drupal\oe_content\Event\AuthorSubEntityEvents;
+use Drupal\oe_content\Event\ContentEvents;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 
 /**
@@ -60,7 +60,7 @@ class Author extends SubEntityBase implements AuthorInterface {
    */
   public function getAuthorsAsLinks(): array {
     $event = new AuthorExtractDataEvent($this);
-    $this->eventDispatcher()->dispatch(AuthorSubEntityEvents::EXTRACT_AUTHOR_LINKS, $event);
+    $this->eventDispatcher()->dispatch(ContentEvents::EXTRACT_AUTHOR_LINKS, $event);
     $this->addCacheableDependency($event->getCacheableMetadata());
     return $event->getLinks();
   }

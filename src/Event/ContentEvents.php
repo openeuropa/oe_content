@@ -5,11 +5,11 @@ declare(strict_types = 1);
 namespace Drupal\oe_content\Event;
 
 /**
- * Defines events for the Author sub-entities.
+ * Defines events for the Content.
  *
  * @internal
  */
-final class AuthorSubEntityEvents {
+final class ContentEvents {
 
   /**
    * The name of the event used for extracting Author links for each bundle.
