@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_sub_entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content_sub_entity\Event\SubEntityEvents;
 use Drupal\oe_content_sub_entity\Event\SubEntityLabelInformationEvent;
@@ -16,6 +17,23 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 abstract class SubEntitySubscriberBase implements EventSubscriberInterface {
 
   use StringTranslationTrait;
+
+  /**
+   * The entity repository.
+   *
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
+   */
+  protected $entityRepository;
+
+  /**
+   * Constructs an instances for sub-entity event subscribers.
+   *
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository.
+   */
+  public function __construct(EntityRepositoryInterface $entity_repository) {
+    $this->entityRepository = $entity_repository;
+  }
 
   /**
    * Checking if particular even subscriber applicable for specific entity.
@@ -94,7 +112,7 @@ abstract class SubEntitySubscriberBase implements EventSubscriberInterface {
     $labels = [];
     foreach ($entities as $entity) {
       if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
-        $entity = \Drupal::service('entity.repository')->getTranslationFromContext($entity);
+        $entity = $this->entityRepository->getTranslationFromContext($entity);
         $labels[] = $entity->label();
       }
     }

@@ -1,5 +1,6 @@
 services:
   oe_content_person.event_subscriber:
     class: Drupal\oe_content_person\EventSubscriber\SubEntityPersonJobSubscriber
+    parent: oe_content_sub_entity.event_subscriber.base
     tags:
       - { name: event_subscriber }

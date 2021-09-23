@@ -1,0 +1,5 @@
+services:
+  oe_content_sub_entity.event_subscriber.base:
+    class: Drupal\oe_content_sub_entity\SubEntitySubscriberBase
+    arguments: ['@entity.repository']
+    abstract: true

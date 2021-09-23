@@ -7,5 +7,6 @@ services:
 
   oe_content.event_subscriber:
     class: Drupal\oe_content\EventSubscriber\SubEntityAuthorSubscriber
+    parent: oe_content_sub_entity.event_subscriber.base
     tags:
       - { name: event_subscriber }

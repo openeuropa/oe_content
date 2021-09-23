@@ -1,5 +1,6 @@
 services:
   oe_content_sub_entity_document_reference.event_subscriber:
     class: Drupal\oe_content_sub_entity_document_reference\EventSubscriber\SubEntityDocumentReferenceSubscriber
+    parent: oe_content_sub_entity.event_subscriber.base
     tags:
       - { name: event_subscriber }
