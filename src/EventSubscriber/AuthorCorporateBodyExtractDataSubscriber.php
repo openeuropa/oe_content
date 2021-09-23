@@ -33,6 +33,7 @@ class AuthorCorporateBodyExtractDataSubscriber extends AuthorSubEntitySubscriber
     $links = [];
     foreach ($entities as $entity) {
       if ($entity instanceof ConceptInterface) {
+        $entity = \Drupal::service('entity.repository')->getTranslationFromContext($entity);
         $event->addCacheableDependency($entity);
         // Currently, SKOS concept terms do not have meaningful URLs.
         // In this case, we will use just labels.

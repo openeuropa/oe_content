@@ -7,6 +7,7 @@ namespace Drupal\oe_content;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content\Event\AuthorExtractDataEvent;
+use Drupal\oe_content\Event\AuthorSubEntityEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -41,7 +42,7 @@ abstract class AuthorSubEntitySubscriberBase implements EventSubscriberInterface
    */
   public static function getSubscribedEvents() {
     return [
-      AuthorExtractDataEvent::EXTRACT_AUTHOR_LINKS => ['onExtractingLinks'],
+      AuthorSubEntityEvents::EXTRACT_AUTHOR_LINKS => ['onExtractingLinks'],
     ];
   }
 
@@ -73,6 +74,7 @@ abstract class AuthorSubEntitySubscriberBase implements EventSubscriberInterface
     $links = [];
     foreach ($entities as $entity) {
       if ($entity instanceof ContentEntityInterface && $entity->getEntityType()->hasKey('label')) {
+        $entity = \Drupal::service('entity.repository')->getTranslationFromContext($entity);
         $event->addCacheableDependency($entity);
         $links[] = $entity->toLink();
       }

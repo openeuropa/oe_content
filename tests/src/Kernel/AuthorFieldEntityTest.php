@@ -103,8 +103,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
         'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
         'http://publications.europa.eu/resource/authority/corporate-body/BUDG',
       ],
-    ]
-    );
+    ]);
     $author->save();
 
     $node = $this->createNode([
@@ -136,8 +135,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
       'oe_skos_reference' => [
         'http://publications.europa.eu/resource/authority/corporate-body/CLIMA',
       ],
-    ]
-    );
+    ]);
     $author2->save();
     $node->set('oe_authors', [$author, $author2]);
     $node->save();
@@ -160,8 +158,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
       'oe_node_reference' => [
         $person_node->id(),
       ],
-    ]
-    );
+    ]);
     $author3->save();
     $node->set('oe_authors', [$author, $author2, $author3]);
     $node->save();
@@ -192,8 +189,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
         $org_node2->id(),
 
       ],
-    ]
-    );
+    ]);
     $author4->save();
     $node->set('oe_authors', [$author, $author2, $author3, $author4]);
     $node->save();
@@ -224,8 +220,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
             'title' => 'external link',
           ],
       ],
-    ]
-    );
+    ]);
     $author5->save();
     $node->set('oe_authors', [$author, $author2, $author3, $author4, $author5]);
     $node->save();
