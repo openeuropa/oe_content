@@ -2,21 +2,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
+    - field.storage.node.oe_news_sources
     - node.type.oe_news
   module:
-    - text
-id: node.oe_news.body
-field_name: body
+    - link
+id: node.oe_news.oe_news_sources
+field_name: oe_news_sources
 entity_type: node
 bundle: oe_news
-label: 'Body text'
+label: Sources
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  display_summary: false
-  required_summary: false
-field_type: text_with_summary
+  link_type: 17
+  title: 2
+field_type: link

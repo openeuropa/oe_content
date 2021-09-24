@@ -2,21 +2,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
+    - field.storage.node.oe_news_last_updated
     - node.type.oe_news
   module:
-    - text
-id: node.oe_news.body
-field_name: body
+    - datetime
+id: node.oe_news.oe_news_last_updated
+field_name: oe_news_last_updated
 entity_type: node
 bundle: oe_news
-label: 'Body text'
+label: 'Last update date'
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings:
-  display_summary: false
-  required_summary: false
-field_type: text_with_summary
+settings: {  }
+field_type: datetime
