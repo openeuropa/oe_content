@@ -5,6 +5,7 @@ Feature: Persistent URLs
   I need to be able to insert persistent urls in wysiwyg and see processed link
 
   @purl-linkit @javascript
+  @batch3
   Scenario: Make sure that persistent url work with linkit module.
     Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media, use text format base_html, view the administration theme, create url aliases" permission
     And the following languages are available:
@@ -39,8 +40,3 @@ Feature: Persistent URLs
     When I update alias of "News 1" node to "/alias1"
     And I go to "/news-2"
     Then I should see a persistent link for the node "News 1" pointing to "/en/alias1"
-    # Check link to first node with alias for another language.
-    When I update alias of "News 1" node to "/alias1_fr" for "French"
-    And I update alias of "News 2" node to "/news2_fr" for "French"
-    And I go to "/fr/news2_fr"
-    Then I should see a persistent link for the node "News 1" pointing to "/fr/alias1_fr"

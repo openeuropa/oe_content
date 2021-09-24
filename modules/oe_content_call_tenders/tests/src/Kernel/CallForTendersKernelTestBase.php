@@ -57,7 +57,7 @@ abstract class CallForTendersKernelTestBase extends SparqlKernelTestBase {
     $this->installEntitySchema('media');
     $this->installEntitySchema('entity_test');
     module_load_include('install', 'oe_content_documents_field');
-    oe_content_documents_field_install();
+    oe_content_documents_field_install(FALSE);
     $this->installConfig([
       'field',
       'node',
@@ -68,7 +68,7 @@ abstract class CallForTendersKernelTestBase extends SparqlKernelTestBase {
       'oe_content_call_tenders',
     ]);
     module_load_include('install', 'oe_content');
-    oe_content_install();
+    oe_content_install(FALSE);
   }
 
 }

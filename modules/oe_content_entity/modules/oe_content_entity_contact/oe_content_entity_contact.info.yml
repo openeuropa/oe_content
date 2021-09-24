@@ -2,14 +2,13 @@ name: OpenEuropa Content Entity Contact
 description: This module provides the Contact content entity and it's bundles.
 package: OpenEuropa
 type: module
-core: 8.x
+core_version_requirement: ^8.9 || ^9.1
 
 dependencies:
   - oe_content:oe_content_entity
   - oe_content:oe_content_featured_media_field
   - oe_media:oe_media
   - address:address
-  - drupal:entity_reference
   - typed_link:typed_link
 
 config_devel:

@@ -5,6 +5,7 @@ Feature: Project content creation
   I need to be able to create and see project items
 
   @javascript @remote-video
+  @batch2
   Scenario: Creation of a Project content through the UI.
     Given I am logged in as a user with the "create oe_project content, access content, edit own oe_project content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
@@ -185,6 +186,7 @@ Feature: Project content creation
     And I should see "Here is my featured video text caption." in the "featured media field" region
 
   @javascript
+  @batch3
   Scenario: By removing stakeholders and contacts from the form only the reference is removed and the entities are not deleted.
     Given I am logged in as a user with the "create oe_project content, access content, edit any oe_project content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:

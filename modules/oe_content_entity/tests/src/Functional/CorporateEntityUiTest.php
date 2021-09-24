@@ -17,6 +17,11 @@ class CorporateEntityUiTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'classy';
+
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = [
     'oe_content_entity_contact',
     'oe_content_entity_organisation',

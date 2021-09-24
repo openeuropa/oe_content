@@ -5,6 +5,7 @@ Feature: Event content creation
   I need to be able to create and see event items
 
   @javascript
+  @batch1
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     And the following AV Portal photo:
@@ -38,6 +39,7 @@ Feature: Event content creation
     And I should see the text "amet Teaser."
 
   @javascript
+  @batch2
   Scenario: Fields on the event content creation forms should be grouped logically.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
     When I visit "the Event creation page"
@@ -141,6 +143,7 @@ Feature: Event content creation
     And I should see the text "Language"
 
   @javascript
+  @batch3
   Scenario: Make sure that the selectboxes contains correct options.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     When I visit "the Event creation page"
@@ -156,6 +159,7 @@ Feature: Event content creation
       | Livestream |
 
   @javascript @av_portal
+  @batch1
   Scenario: Creation of a Event content through the UI.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
@@ -313,6 +317,7 @@ Feature: Event content creation
     And I should see the link "Contact link"
 
   @javascript @av_portal
+  @batch2
   Scenario: As an editor when I create an Event node, the required fields are correctly marked when not filled in.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     # Create a "Media AV portal photo".
@@ -377,10 +382,8 @@ Feature: Event content creation
       | error messages                           |
       | Featured media field is required.        |
       | Featured media legend field is required. |
-      | Description summary field is required.   |
     # Make sure that errors related to the Description fields are fixed.
-    When I fill in "Description summary" with "Description summary text"
-    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
+    When I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
     And I fill in "Featured media legend" with "Euro with miniature figurines"
     And I press "Save"
     Then I should see the following success messages:
@@ -405,6 +408,7 @@ Feature: Event content creation
       | Event My Event item has been updated. |
 
   @javascript
+  @batch3
   Scenario: By removing venue and contact from the form only the reference is removed and the entities are not deleted.
     Given I am logged in as a user with the "create oe_event content, access content, edit any oe_event content, view published skos concept entities, manage corporate content entities" permission
     And the following Default Venue entity:

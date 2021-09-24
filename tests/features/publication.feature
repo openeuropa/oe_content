@@ -5,6 +5,7 @@ Feature: Publication content creation
   I need to be able to create and see publication items
 
   @javascript
+  @batch1
   Scenario: Creation of a Publication content through the UI.
     Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, manage corporate content entities, view published skos concept entities" permission
     And the following documents:
@@ -15,6 +16,13 @@ Feature: Publication content creation
     | Sample image | example_1.jpeg | example text |
 
     When I visit "the Publication creation page"
+    Then I should see "This is a publication collection"
+    And I should not see "Publications"
+    And I should see "Files"
+    When I select the radio button "Yes"
+    And I should see "Publications"
+    And I should not see "Files"
+    When I select the radio button "No"
     And I fill in "Page title" with "My Publication item"
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
@@ -100,6 +108,7 @@ Feature: Publication content creation
     And I should not see the link "European Patent Office"
 
   @javascript
+  @batch2
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities, manage corporate content entities" permission
     And the following documents:
@@ -128,6 +137,7 @@ Feature: Publication content creation
     And I should see "amet Teaser."
 
   @javascript
+  @batch3
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
     Given I am logged in as a user with the "create oe_publication content, access content, edit any oe_publication content, view published skos concept entities, manage corporate content entities" permission
     And the following documents:
