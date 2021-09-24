@@ -5,6 +5,7 @@ Feature: Organisation content creation
   I need to be able to create and see organisation items
 
   @javascript @disable-browser-required-field-validation @av_portal
+  @batch1
   Scenario: Creation of a Organisation content through the UI.
     Given I am logged in as a user with the "create oe_organisation content, access content, edit own oe_organisation content, view published skos concept entities, manage corporate content entities" permission
     And the following images:
@@ -141,6 +142,7 @@ Feature: Organisation content creation
     And I should see "Euro with miniature figurines"
 
   @javascript
+  @batch2
   Scenario: By removing contact from the form only the reference is removed and the contact is not deleted.
     Given I am logged in as a user with the "create oe_organisation content, access content, edit any oe_organisation content, view published skos concept entities, manage corporate content entities" permission
     And the following General Contact entity:

@@ -2,7 +2,7 @@ name: OpenEuropa Content Entity Organisation
 description: This module provides the Organisation content entity and it's bundles.
 package: OpenEuropa
 type: module
-core: 8.x
+core_version_requirement: ^8.9 || ^9.1
 
 dependencies:
   - address:address

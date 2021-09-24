@@ -16,7 +16,7 @@ use Drupal\rdf_skos\Entity\Concept;
 use Drupal\rdf_skos\Entity\ConceptInterface;
 
 /**
- * Implements hook_form_BASE_FORM_ID_alter() for the node form.
+ * Implements hook_form_BASE_FORM_ID_alter().
  */
 function oe_content_organisation_form_node_form_alter(array &$form, FormStateInterface $form_state) {
   /** @var \Drupal\node\NodeInterface $node */

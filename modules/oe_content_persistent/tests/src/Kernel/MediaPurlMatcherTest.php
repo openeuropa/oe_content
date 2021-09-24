@@ -29,7 +29,7 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installEntitySchema('file');
@@ -118,7 +118,7 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
       $thumbnail = $media->get('thumbnail')->first();
       $thumbnail_file = $thumbnail->get('entity')->getTarget();
       $thumbnail_url = $style->buildUrl($thumbnail_file->get('uri')->getString());
-      $this->assertContains(parse_url($thumbnail_url)['path'], $suggestion->getDescription());
+      $this->assertStringContainsString(parse_url($thumbnail_url)['path'], $suggestion->getDescription());
     }
   }
 

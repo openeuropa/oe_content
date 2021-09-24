@@ -179,3 +179,33 @@ function oe_content_publication_post_update_00007(): void {
   $component['settings']['removed_reference'] = 'keep';
   $form_display->setComponent('oe_publication_contacts', $component)->save();
 }
+
+/**
+ * Publication v3: Add publication collection related fields.
+ */
+function oe_content_publication_post_update_20001(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/20001_publication_collection');
+  \Drupal::service('config.installer')->installOptionalConfig($storage);
+}
+
+/**
+ * Publication v3: Update form display.
+ */
+function oe_content_publication_post_update_20002(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/20002_publication_collection');
+
+  // Form display configuration to update.
+  $form_display_values = $storage->read('core.entity_form_display.node.oe_publication.default');
+  $form_display = EntityFormDisplay::load($form_display_values['id']);
+  if ($form_display) {
+    $updated_form_display = \Drupal::entityTypeManager()
+      ->getStorage($form_display->getEntityTypeId())
+      ->updateFromStorageRecord($form_display, $form_display_values);
+    $updated_form_display->save();
+  }
+
+  // Set the oe_documents field not required.
+  $field_config = FieldConfig::load('node.oe_publication.oe_documents');
+  $field_config->setRequired(FALSE);
+  $field_config->save();
+}

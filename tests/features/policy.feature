@@ -5,6 +5,7 @@ Feature: Policy content creation
   I need to be able to create and see policy items
 
   @javascript
+  @batch3
   Scenario: Creation of a Policy content through the UI.
     Given I am logged in as a user with the "create oe_policy content, access content, edit own oe_policy content, view published skos concept entities" permission
     And the following languages are available:
@@ -57,6 +58,7 @@ Feature: Policy content creation
     Then I should see "Voir l’historique complet"
 
   @javascript
+  @batch1
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_policy content, access content, edit own oe_policy content, view published skos concept entities" permission
     When I visit "the Policy creation page"

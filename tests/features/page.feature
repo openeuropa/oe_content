@@ -4,6 +4,7 @@ Feature: Page content creation
   As an editor
   I need to be able to create and see pages
 
+  @batch3
   Scenario: Creation of a Page content through the UI.
     Given I am logged in as a user with the "create oe_page content, access content, edit own oe_page content, view published skos concept entities" permission
     And I visit "the Page creation page"
@@ -30,6 +31,7 @@ Feature: Page content creation
     And I should see the link "My link"
 
   @javascript
+  @batch1
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_page content, access content, edit own oe_page content, view published skos concept entities" permission
     When I visit "the Page creation page"

@@ -14,6 +14,11 @@ use Drupal\Tests\BrowserTestBase;
 class PurlSettingsTest extends BrowserTestBase {
 
   /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
+
+  /**
    * Modules to enable.
    *
    * @var array
@@ -34,8 +39,8 @@ class PurlSettingsTest extends BrowserTestBase {
     $user = $this->createUser(['configure purl settings']);
     $this->drupalLogin($user);
     $this->drupalGet('/admin/config/purl/settings');
-    $this->assertResponse(200);
-    $this->assertText('PURL settings');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->pageTextContains('PURL settings');
 
     // Assert the default values.
     $this->assertSession()->fieldValueEquals('Inter institutional base url', 'https://data.ec.europa.eu/ewp/');

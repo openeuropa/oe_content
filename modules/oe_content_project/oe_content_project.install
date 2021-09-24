@@ -10,8 +10,8 @@ declare(strict_types = 1);
 /**
  * Implements hook_install().
  */
-function oe_content_project_install() {
-  if (\Drupal::service('config.installer')->isSyncing()) {
+function oe_content_project_install($is_syncing) {
+  if ($is_syncing) {
     return;
   }
 

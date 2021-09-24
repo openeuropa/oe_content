@@ -47,7 +47,7 @@ abstract class PersonEntityTestBase extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->setUpSparql();
@@ -75,7 +75,7 @@ abstract class PersonEntityTestBase extends EntityKernelTestBase {
     $this->installSchema('file', ['file_usage']);
 
     module_load_include('install', 'oe_content');
-    oe_content_install();
+    oe_content_install(FALSE);
   }
 
 }

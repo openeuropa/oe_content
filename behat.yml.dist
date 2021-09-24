@@ -2,7 +2,7 @@ default:
   suites:
     default:
       paths:
-        - %paths.base%/tests/features
+        - "%paths.base%/tests/features"
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MessageContext
@@ -130,7 +130,6 @@ default:
         Timeline: "#edit-oe-timeline-wrapper"
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
-        Related links: ".field--name-oe-related-links"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
@@ -138,6 +137,6 @@ default:
         warning_message_selector: '.messages.messages--warning'
     FriendsOfBehat\ServiceContainerExtension:
       imports:
-        - 'tests/Behat/config/services.yml'
+        - 'tests/src/Behat/config/services.yml'
   formatters:
     progress: ~

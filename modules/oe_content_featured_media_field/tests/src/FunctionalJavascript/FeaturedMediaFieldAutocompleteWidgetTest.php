@@ -14,7 +14,7 @@ class FeaturedMediaFieldAutocompleteWidgetTest extends FeaturedMediaFieldWidgetT
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     // Setup the display options for form and view.

@@ -11,7 +11,7 @@ bundle: oe_default
 label: Room
 description: 'The name of the room.'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
