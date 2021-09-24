@@ -99,25 +99,29 @@ function oe_content_news_post_update_00006(): void {
 }
 
 /**
- * Add new fields.
+ * Enable oe_content_departments_field module.
  */
-function oe_content_news_post_update_00007(): void {
-  // Set body field optional.
+function oe_content_news_post_update_20007(): void {
+  \Drupal::service('module_installer')->install(['oe_content_departments_field']);
+}
+
+/**
+ * Add new fields and set body field optional.
+ */
+function oe_content_news_post_update_20008(): void {
   $field_config = FieldConfig::load('node.oe_news.body');
   $field_config->setRequired(FALSE);
   $field_config->save();
 
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00007_create_fields');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/20008_create_fields');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 
 /**
  * Update form display.
  */
-function oe_content_news_post_update_00008(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/00008_update_form_display');
-
-  // Form display configurations to update.
+function oe_content_news_post_update_20009(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_news') . '/config/post_updates/20009_update_form_display');
   $form_display_values = $storage->read('core.entity_form_display.node.oe_news.default');
   $form_display = EntityFormDisplay::load($form_display_values['id']);
   if ($form_display) {
