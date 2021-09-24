@@ -16,6 +16,13 @@ Feature: Publication content creation
     | Sample image | example_1.jpeg | example text |
 
     When I visit "the Publication creation page"
+    Then I should see "This is a publication collection"
+    And I should not see "Publications"
+    And I should see "Files"
+    When I select the radio button "Yes"
+    And I should see "Publications"
+    And I should not see "Files"
+    When I select the radio button "No"
     And I fill in "Page title" with "My Publication item"
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
