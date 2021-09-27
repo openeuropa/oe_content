@@ -1,6 +1,31 @@
-# Change Log
+# Changelog
 
-## [2.4.0](https://github.com/openeuropa/oe_content/tree/2.4.0) (2021-08-12)
+## [2.5.0](https://github.com/openeuropa/oe_content/tree/2.5.0) (2021-09-27)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/2.4.0...2.5.0)
+
+**Merged pull requests:**
+
+- Epic ewpp 1360 news v3 [\#472](https://github.com/openeuropa/oe_content/pull/472) ([22Alexandra](https://github.com/22Alexandra))
+- Update epic news [\#471](https://github.com/openeuropa/oe_content/pull/471) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1488: Adds access control handler for corporate entity types and sub entity types. [\#467](https://github.com/openeuropa/oe_content/pull/467) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1485: Add publication collection related fields and settings. [\#465](https://github.com/openeuropa/oe_content/pull/465) ([nagyad](https://github.com/nagyad))
+- EWPP-1465: Enable non-eu languages: nb, is. [\#464](https://github.com/openeuropa/oe_content/pull/464) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1478: Add interface translations in non-eu languages. [\#462](https://github.com/openeuropa/oe_content/pull/462) ([yenyasinn](https://github.com/yenyasinn))
+- Update news v3 epic [\#457](https://github.com/openeuropa/oe_content/pull/457) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1368: Maps sources field for behat scenarios. [\#456](https://github.com/openeuropa/oe_content/pull/456) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1360: Update epic branch. [\#454](https://github.com/openeuropa/oe_content/pull/454) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1367: Add related departments field to news. [\#452](https://github.com/openeuropa/oe_content/pull/452) ([nagyad](https://github.com/nagyad))
+- \[EWPP-1360\] EWPP-1366: Add Persons entity reference field storage. [\#451](https://github.com/openeuropa/oe_content/pull/451) ([sergepavle](https://github.com/sergepavle))
+- \[EWPP-1360\] EWPP-1363: Add Sources field. [\#450](https://github.com/openeuropa/oe_content/pull/450) ([22Alexandra](https://github.com/22Alexandra))
+- \[EWPP-1360\] EWPP-1362: Adds Last update date field. [\#449](https://github.com/openeuropa/oe_content/pull/449) ([22Alexandra](https://github.com/22Alexandra))
+- \[EWPP-1360\] EWPP-1361: Set body field optional. [\#448](https://github.com/openeuropa/oe_content/pull/448) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1199: Parallelize tests on oe\_content. [\#447](https://github.com/openeuropa/oe_content/pull/447) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1162: Remove constraint for description summary field of Event CT. [\#442](https://github.com/openeuropa/oe_content/pull/442) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-169: Set field instances as not translatable. [\#254](https://github.com/openeuropa/oe_content/pull/254) ([22Alexandra](https://github.com/22Alexandra))
+
+## [2.4.0](https://github.com/openeuropa/oe_content/tree/2.4.0) (2021-08-16)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/2.3.0...2.4.0)
 
 **Closed issues:**
@@ -12,6 +37,7 @@
 
 **Merged pull requests:**
 
+- Prepare changelog for release 2.4.0. [\#455](https://github.com/openeuropa/oe_content/pull/455) ([brummbar](https://github.com/brummbar))
 - EWPP-1257: Fix the triple store image to 1.14 to avoid the Provisional data terms. [\#446](https://github.com/openeuropa/oe_content/pull/446) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1288: Unlock drupal/coder package. [\#445](https://github.com/openeuropa/oe_content/pull/445) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1289: Add missing interface translations. [\#444](https://github.com/openeuropa/oe_content/pull/444) ([yenyasinn](https://github.com/yenyasinn))
