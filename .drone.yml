@@ -109,7 +109,7 @@ pipeline:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
-      - ./vendor/bin/behat --strict --tags=$BATCH
+      - ./vendor/bin/behat --strict --tags=@run --format=pretty
     when:
       matrix:
         TYPE: behat

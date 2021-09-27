@@ -5,7 +5,7 @@ Feature: Event content creation
   I need to be able to create and see event items
 
   @javascript
-  @batch1
+  @batch1 @run
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     And the following AV Portal photo:
@@ -33,6 +33,7 @@ Feature: Event content creation
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "Text to remove"
+    Then print last response
     And I should see the text "hendr Featured media legend."
     And I should see the text "ametas Introduction."
     And I should see the text "nullamsa Alternative title."
