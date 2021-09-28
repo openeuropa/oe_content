@@ -48,6 +48,8 @@ class PublicationContentContext extends RawDrupalContext {
       'Introduction' => 'oe_summary',
       'Teaser' => 'oe_teaser',
       'Title' => 'title',
+      'Publications' => 'oe_publication_publications',
+      'Collection' => 'oe_publication_collection',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -59,6 +61,7 @@ class PublicationContentContext extends RawDrupalContext {
         case 'Resource type':
         case 'Files':
         case 'Thumbnail':
+        case 'Publications':
           $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
@@ -69,8 +72,9 @@ class PublicationContentContext extends RawDrupalContext {
           $scope->addFields($fields)->removeField($key);
           break;
 
-        // Set content published status.
+        // Set content published and collection status.
         case 'Published':
+        case 'Collection':
           $scope->addFields([
             $mapping[$key] => (int) ($value === 'Yes'),
           ])->removeField($key);

@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * OE Content Publication module file.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function oe_content_publication_entity_type_alter(array &$entity_types) {
+  // Add validation constraints to the node entity.
+  $entity_types['node']->addConstraint('PublicationFieldsRequired');
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for the node form.
+ */
+function oe_content_publication_form_node_form_alter(array &$form, FormStateInterface $form_state) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+  if ($node->bundle() !== 'oe_publication') {
+    return;
+  }
+
+  $form['oe_documents']['#states'] = [
+    'visible' => [
+      'input[name="oe_publication_collection"]' => ['value' => '0'],
+    ],
+  ];
+
+  // We need to check if the widget array structure exists, it can vary if a
+  // different widget is being used.
+  if (isset($form['oe_documents']['widget'][0]['target_id'])) {
+    // Required flag needs to be set over the field item.
+    $form['oe_documents']['widget'][0]['target_id']['#states'] = [
+      'required' => [
+        'input[name="oe_publication_collection"]' => ['value' => '0'],
+      ],
+    ];
+  }
+
+  $form['oe_publication_publications']['#states'] = [
+    'visible' => [
+      'input[name="oe_publication_collection"]' => ['value' => '1'],
+    ],
+  ];
+  // We need to check if the widget array structure exists, it can vary if a
+  // different widget is being used.
+  if (isset($form['oe_publication_publications']['widget'][0]['target_id'])) {
+    // Required flag needs to be set over the field item.
+    $form['oe_publication_publications']['widget'][0]['target_id']['#states'] = [
+      'required' => [
+        'input[name="oe_publication_collection"]' => ['value' => '1'],
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function oe_content_publication_node_presave(EntityInterface $entity) {
+  if ($entity->bundle() !== 'oe_publication') {
+    return;
+  }
+
+  $is_collection = (bool) $entity->get('oe_publication_collection')->value;
+  if ($is_collection) {
+    $entity->set('oe_documents', NULL);
+  }
+  else {
+    $entity->set('oe_publication_publications', NULL);
+  }
+}

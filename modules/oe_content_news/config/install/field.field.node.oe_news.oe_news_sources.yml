@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_news_sources
+    - node.type.oe_news
+  module:
+    - link
+id: node.oe_news.oe_news_sources
+field_name: oe_news_sources
+entity_type: node
+bundle: oe_news
+label: Sources
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

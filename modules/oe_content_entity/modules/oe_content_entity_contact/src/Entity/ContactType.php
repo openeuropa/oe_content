@@ -24,6 +24,7 @@ use Drupal\oe_content_entity\Entity\CorporateEntityTypeBase;
  *     "description",
  *   },
  *   handlers = {
+ *     "access" = "Drupal\oe_content_entity\CorporateEntityTypeAccessControlHandler",
  *     "list_builder" = "Drupal\oe_content\Entity\EntityTypeListBuilder",
  *     "form" = {
  *       "default" = "Drupal\oe_content\Form\EntityTypeForm",

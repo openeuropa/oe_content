@@ -11,7 +11,7 @@ entity_type: node
 bundle: oe_publication
 label: Files
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
