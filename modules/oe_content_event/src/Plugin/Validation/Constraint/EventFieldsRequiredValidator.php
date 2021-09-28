@@ -34,7 +34,6 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     $this->validateGroupFieldsEmpty($online_required_fields, $constraint, $node);
 
     $description_fields_required = [
-      'oe_event_description_summary',
       'oe_event_featured_media',
       'oe_event_featured_media_legend',
       'body',
@@ -83,7 +82,6 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
    *   The node object.
    */
   protected function validateRegistrationGroupFields(Constraint $constraint, NodeInterface $node) {
-    $violation = NULL;
     $field_values = [];
     $required_field = 'oe_event_registration_url';
     $fields_to_check = [

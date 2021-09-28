@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_publication_publications
+    - node.type.oe_publication
+  module:
+    - composite_reference
+third_party_settings:
+  composite_reference:
+    composite: false
+id: node.oe_publication.oe_publication_publications
+field_name: oe_publication_publications
+entity_type: node
+bundle: oe_publication
+label: Publications
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      oe_publication: oe_publication
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
