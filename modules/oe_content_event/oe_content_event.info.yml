@@ -32,6 +32,7 @@ config_devel:
     - field.field.node.oe_event.oe_event_featured_media
     - field.field.node.oe_event.oe_event_featured_media_legend
     - field.field.node.oe_event.oe_event_languages
+    - field.field.node.oe_event.oe_event_media
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
     - field.field.node.oe_event.oe_event_online_dates
@@ -59,6 +60,7 @@ config_devel:
     - field.storage.node.oe_event_featured_media
     - field.storage.node.oe_event_featured_media_legend
     - field.storage.node.oe_event_languages
+    - field.storage.node.oe_event_media
     - field.storage.node.oe_event_online_description
     - field.storage.node.oe_event_online_link
     - field.storage.node.oe_event_online_dates

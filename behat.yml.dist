@@ -91,6 +91,7 @@ default:
         Result : "#edit-group-result"
         Call for proposals: "#oe-project-calls-values"
         Social media links: "#oe-social-media-links-values"
+        Event media: '.field--name-oe-event-media'
         Description: "#edit-oe-event-featured-media"
         Event report: "#edit-group-report"
         Event contact: "#edit-oe-event-contact-wrapper"

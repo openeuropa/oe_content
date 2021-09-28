@@ -57,6 +57,7 @@ class EventContentContext extends RawDrupalContext {
       'Online link' => 'oe_event_online_link',
       'Languages' => 'oe_event_languages',
       'Internal organiser' => 'oe_event_organiser_internal',
+      'Media' => 'oe_event_media',
       'Featured media' => 'oe_event_featured_media',
       'Status' => 'oe_event_status',
       'Organiser is internal' => 'oe_event_organiser_is_internal',
@@ -87,6 +88,7 @@ class EventContentContext extends RawDrupalContext {
         case 'Languages':
         case 'Internal organiser':
         case 'Featured media':
+        case 'Media':
           $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
