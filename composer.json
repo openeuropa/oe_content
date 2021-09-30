@@ -73,7 +73,8 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/openeuropa/task-runner-ensure-behat-batching"
+            "url": "https://github.com/openeuropa/task-runner-ensure-behat-batching",
+            "no-api": true
         }
     ],
     "extra": {
