@@ -28,7 +28,7 @@ class AuthorsReferenceFormatter extends EntityReferenceFormatterBase {
    */
   public static function defaultSettings() {
     return [
-      'label_only' => '',
+      'label_only' => NULL,
       'rel' => '',
       'target' => '',
     ] + parent::defaultSettings();
