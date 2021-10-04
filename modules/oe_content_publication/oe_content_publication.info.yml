@@ -24,6 +24,7 @@ config_devel:
     - core.entity_form_display.node.oe_publication.default
     - core.entity_view_display.node.oe_publication.default
     - field.field.node.oe_publication.body
+    - field.field.node.oe_publication.oe_publication_collection
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_departments
     - field.field.node.oe_publication.oe_documents
@@ -31,15 +32,18 @@ config_devel:
     - field.field.node.oe_publication.oe_publication_countries
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_last_updated
+    - field.field.node.oe_publication.oe_publication_publications
     - field.field.node.oe_publication.oe_publication_thumbnail
     - field.field.node.oe_publication.oe_publication_type
     - field.field.node.oe_publication.oe_reference_codes
     - field.field.node.oe_publication.oe_subject
     - field.field.node.oe_publication.oe_summary
     - field.field.node.oe_publication.oe_teaser
+    - field.storage.node.oe_publication_collection
     - field.storage.node.oe_publication_contacts
     - field.storage.node.oe_publication_countries
     - field.storage.node.oe_publication_last_updated
+    - field.storage.node.oe_publication_publications
     - field.storage.node.oe_publication_thumbnail
     - field.storage.node.oe_publication_type
     - node.type.oe_publication

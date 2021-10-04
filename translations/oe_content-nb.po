@@ -1,0 +1,233 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "januar"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "februar"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "mars"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "april"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "mai"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "juni"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "juli"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "august"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "september"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "oktober"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "november"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "desember"
+
+msgid "Jan"
+msgstr "jan"
+
+msgid "Feb"
+msgstr "feb"
+
+msgid "Mar"
+msgstr "mar"
+
+msgid "Apr"
+msgstr "apr"
+
+msgid "May"
+msgstr "mai"
+
+msgid "Jun"
+msgstr "jun"
+
+msgid "Jul"
+msgstr "jul"
+
+msgid "Aug"
+msgstr "aug"
+
+msgid "Sep"
+msgstr "sep"
+
+msgid "Oct"
+msgstr "okt"
+
+msgid "Nov"
+msgstr "nov"
+
+msgid "Dec"
+msgstr "des"
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "søn"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "man"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "tir"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "ons"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "tor"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "fre"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "lør"
+
+msgid "Sun"
+msgstr "søn"
+
+msgid "Mon"
+msgstr "man"
+
+msgid "Tue"
+msgstr "tir"
+
+msgid "Wed"
+msgstr "ons"
+
+msgid "Thu"
+msgstr "tor"
+
+msgid "Fri"
+msgstr "fre"
+
+msgid "Sat"
+msgstr "lør"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "sø"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "ma"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "ti"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "on"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "to"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "fr"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "lø"
+
+msgid "Su"
+msgstr "sø"
+
+msgid "Mo"
+msgstr "ma"
+
+msgid "Tu"
+msgstr "ti"
+
+msgid "We"
+msgstr "on"
+
+msgid "Th"
+msgstr "to"
+
+msgid "Fr"
+msgstr "fr"
+
+msgid "Sa"
+msgstr "lø"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "S"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "M"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "T"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "O"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "T"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "F"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "L"
+
+msgid "Sunday"
+msgstr "søndag"
+
+msgid "Monday"
+msgstr "mandag"
+
+msgid "Tuesday"
+msgstr "tirsdag"
+
+msgid "Wednesday"
+msgstr "onsdag"
+
+msgid "Thursday"
+msgstr "torsdag"
+
+msgid "Friday"
+msgstr "fredag"
+
+msgid "Saturday"
+msgstr "lørdag"

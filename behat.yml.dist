@@ -108,6 +108,7 @@ default:
         Organisation contact: "#edit-oe-organisation-contact-wrapper"
         Organisation chart: ".field--name-oe-organisation-chart"
         News contact: "#edit-oe-news-contacts-wrapper"
+        News sources: ".field--name-oe-news-sources"
         Publication in the official journal: ".field--name-oe-call-proposals-journal"
         Grants awarded link: ".field--name-oe-call-proposals-grants-link"
         Related links: ".field--name-oe-related-links"
