@@ -23,6 +23,9 @@ use Drupal\oe_content_entity\Entity\CorporateEntityTypeBase;
  *     "label",
  *     "description",
  *   },
+ *   handlers = {
+ *     "access" = "Drupal\oe_content_entity\CorporateEntityTypeAccessControlHandler"
+ *   },
  *   admin_permission = "manage corporate content entity types",
  * )
  */

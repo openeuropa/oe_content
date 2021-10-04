@@ -1,0 +1,233 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "Ocak"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "Şubat"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "Mart"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "Nisan"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "Mayıs"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "Haziran"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "Temmuz"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "Ağustos"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "Eylül"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "Ekim"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "Kasım"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "Aralık"
+
+msgid "Jan"
+msgstr "Oca"
+
+msgid "Feb"
+msgstr "Şub"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Apr"
+msgstr "Nis"
+
+msgid "May"
+msgstr "May"
+
+msgid "Jun"
+msgstr "Haz"
+
+msgid "Jul"
+msgstr "Tem"
+
+msgid "Aug"
+msgstr "Ağu"
+
+msgid "Sep"
+msgstr "Eyl"
+
+msgid "Oct"
+msgstr "Eki"
+
+msgid "Nov"
+msgstr "Kas"
+
+msgid "Dec"
+msgstr "Ara"
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "Paz"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "Pzt"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "Sal"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "Çar"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "Per"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "Cum"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "Cmt"
+
+msgid "Sun"
+msgstr "Paz"
+
+msgid "Mon"
+msgstr "Pzt"
+
+msgid "Tue"
+msgstr "Sal"
+
+msgid "Wed"
+msgstr "Çar"
+
+msgid "Thu"
+msgstr "Per"
+
+msgid "Fri"
+msgstr "Cum"
+
+msgid "Sat"
+msgstr "Cmt"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "Pa"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "Pz"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "Sa"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "Ça"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "Pe"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "Cu"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "Cm"
+
+msgid "Su"
+msgstr "Pa"
+
+msgid "Mo"
+msgstr "Pz"
+
+msgid "Tu"
+msgstr "Sa"
+
+msgid "We"
+msgstr "Ça"
+
+msgid "Th"
+msgstr "Pe"
+
+msgid "Fr"
+msgstr "Cu"
+
+msgid "Sa"
+msgstr "Cm"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "S"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "Ç"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "P"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "C"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "C"
+
+msgid "Sunday"
+msgstr "Pazar"
+
+msgid "Monday"
+msgstr "Pazartesi"
+
+msgid "Tuesday"
+msgstr "Salı"
+
+msgid "Wednesday"
+msgstr "Çarşamba"
+
+msgid "Thursday"
+msgstr "Perşembe"
+
+msgid "Friday"
+msgstr "Cuma"
+
+msgid "Saturday"
+msgstr "Cumartesi"

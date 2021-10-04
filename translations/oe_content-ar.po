@@ -1,0 +1,233 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "يناير"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "فبراير"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "مارس"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "أبريل"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "مايو"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "يونيو"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "يوليو"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "أغسطس"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "سبتمبر"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "أكتوبر"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "نوفمبر"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "ديسمبر"
+
+msgid "Jan"
+msgstr "ينا"
+
+msgid "Feb"
+msgstr "فبر"
+
+msgid "Mar"
+msgstr "مار"
+
+msgid "Apr"
+msgstr "أبر"
+
+msgid "May"
+msgstr "ماي"
+
+msgid "Jun"
+msgstr "يون"
+
+msgid "Jul"
+msgstr "يول"
+
+msgid "Aug"
+msgstr "أغ"
+
+msgid "Sep"
+msgstr "سبت"
+
+msgid "Oct"
+msgstr "أكت"
+
+msgid "Nov"
+msgstr "نوف"
+
+msgid "Dec"
+msgstr "ديس"
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "أحد"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "اثنين"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "ثلاثاء"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "أربعاء"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "خميس"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "جمعة"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "سبت"
+
+msgid "Sun"
+msgstr "أحد"
+
+msgid "Mon"
+msgstr "اثنين"
+
+msgid "Tue"
+msgstr "ثلاثاء"
+
+msgid "Wed"
+msgstr "أربعاء"
+
+msgid "Thu"
+msgstr "خميس"
+
+msgid "Fri"
+msgstr "جمعة"
+
+msgid "Sat"
+msgstr "سبت"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "أحد"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "اثن"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "ثلا"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "أرب"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "خم"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "جم"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "سبت"
+
+msgid "Su"
+msgstr "أحد"
+
+msgid "Mo"
+msgstr "اثن"
+
+msgid "Tu"
+msgstr "ثلا"
+
+msgid "We"
+msgstr "أرب"
+
+msgid "Th"
+msgstr "خم"
+
+msgid "Fr"
+msgstr "جم"
+
+msgid "Sa"
+msgstr "سبت"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "أحد"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "اث"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "ثل"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "أر"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "خم"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "جم"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "أح"
+
+msgid "Sunday"
+msgstr "الأحد"
+
+msgid "Monday"
+msgstr "الاثنين"
+
+msgid "Tuesday"
+msgstr "الثلاثاء"
+
+msgid "Wednesday"
+msgstr "الأربعاء"
+
+msgid "Thursday"
+msgstr "الخميس"
+
+msgid "Friday"
+msgstr "الجمعة"
+
+msgid "Saturday"
+msgstr "السبت"

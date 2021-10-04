@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_publication_collection
+    - node.type.oe_publication
+id: node.oe_publication.oe_publication_collection
+field_name: oe_publication_collection
+entity_type: node
+bundle: oe_publication
+label: 'This is a publication collection'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean
