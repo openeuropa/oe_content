@@ -33,6 +33,7 @@ config_devel:
     - field.field.node.oe_organisation.oe_organisation_org_type
     - field.field.node.oe_organisation.oe_organisation_overview
     - field.field.node.oe_organisation.oe_organisation_staff_link
+    - field.field.node.oe_organisation.oe_subject
     - field.storage.node.oe_organisation_acronym
     - field.storage.node.oe_organisation_contact
     - field.storage.node.oe_organisation_logo
