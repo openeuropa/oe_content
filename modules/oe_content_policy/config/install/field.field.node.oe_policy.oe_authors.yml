@@ -15,7 +15,7 @@ id: node.oe_policy.oe_authors
 field_name: oe_authors
 entity_type: node
 bundle: oe_policy
-label: Authors
+label: 'Responsible department'
 description: ''
 required: false
 translatable: false

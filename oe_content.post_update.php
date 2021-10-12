@@ -160,14 +160,17 @@ function oe_content_post_update_30005(): void {
   // Create field storage for nodes.
   $field_storage_config->create(_oe_content_config_import_prepare($file_storage->read('field.storage.node.oe_authors')))->save();
 
-  $content_types = [
+  // According to the fact that right now we can not control the order of
+  // post_update hook implementation executions, we have to do the handling of
+  // currently enabled content types in the main oe_content module.
+  $content_types = $entity_type_manager->getStorage('node_type')->loadMultiple([
     'oe_event',
     'oe_news',
     'oe_page',
     'oe_policy',
     'oe_publication',
-  ];
-  foreach ($content_types as $content_type) {
+  ]);
+  foreach (array_keys($content_types) as $content_type) {
     $field_config->create(_oe_content_config_import_prepare($file_storage->read('field.field.node.' . $content_type . '.oe_authors')))->save();
     $form_display = $file_storage->read('core.entity_form_display.node.' . $content_type . '.default');
     $entity = $entity_type_manager->getStorage('entity_form_display')->load($form_display['id']);
