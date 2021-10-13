@@ -10,9 +10,16 @@ overriding the language.content_setting configuration.
 This module provides a sub-module (oe_content_entity) with a set of Corporate content entities to be used.
 Check out the [README](/modules/oe_content_entity/README.md) of the module.
 
-The module sets the "Content Owner" field value automatically when new content is created. The default "Content Owner" field value can be set in the "Basic site settings" administrative page. This functionality is available only if [OpenEuropa Corporate Site Information](https://github.com/openeuropa/oe_corporate_site_info) is enabled.
+The module sets the "Content Owner" field value automatically when new content is created. The default "Content Owner"
+field value can be set in the "Basic site settings" administrative page. This functionality is available only if
+[OpenEuropa Corporate Site Information](https://github.com/openeuropa/oe_corporate_site_info) is enabled.
 
-This module requires sub-module 'oe_content_sub_entity' for supporting the "Authors" (which previously was declared also in the main module) field which is referencing the "Author" sub-entity type. It is done for supporting different types of 'authors' like "Corporate body", "Person (Local)", "Organisation (Local)", "Link".
+As from version 3.0.0, the main `oe_content` module depends on its own sub-module `oe_content_sub_entity`.
+This is necessary since, due to a change in business requirements, the author field became a reference field to a new
+sub-entity type, called `oe_author`.
+
+By default, we ship with only one `oe_author` bundle, which lets editors pick SKOS corporate bodies as authors.
+More `oe_author` bundles are available in the `oe_content_sub_entity_extra_authors` sub-module.
 
 **Table of contents:**
 
