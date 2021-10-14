@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - oe_content
+    - oe_content_sub_entity_author
     - rdf_skos
 id: oe_author.oe_skos_reference
 field_name: oe_skos_reference

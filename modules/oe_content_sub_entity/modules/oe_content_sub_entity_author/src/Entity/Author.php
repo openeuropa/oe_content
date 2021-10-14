@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content\Entity;
+namespace Drupal\oe_content_sub_entity_author\Entity;
 
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 

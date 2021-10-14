@@ -5,6 +5,7 @@ dependencies:
     - entity_reference_revisions
     - node
     - oe_content
+    - oe_content_sub_entity_author
 id: node.oe_authors
 field_name: oe_authors
 entity_type: node
