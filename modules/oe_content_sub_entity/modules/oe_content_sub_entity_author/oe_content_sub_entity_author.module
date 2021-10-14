@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Sub Entity Author.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_prepare_form().
+ */
+function oe_content_sub_entity_author_node_prepare_form(EntityInterface $entity, $operation, FormStateInterface $form_state) {
+  /** @var \Drupal\node\NodeInterface $entity */
+  if ($entity->isNew() === FALSE) {
+    return;
+  }
+
+  if ($entity->hasField('oe_authors') === FALSE) {
+    return;
+  }
+
+  if (\Drupal::service('module_handler')->moduleExists('oe_corporate_site_info') === FALSE) {
+    return;
+  }
+
+  /** @var \Drupal\oe_corporate_site_info\SiteInformationInterface $site_information */
+  $site_information = \Drupal::service('oe_corporate_site_info.site_information');
+  if (!$site_information->hasDefaultContentOwners()) {
+    // No content owner(s) defined.
+    return;
+  }
+
+  $content_owners = $site_information->getDefaultContentOwners();
+  // Set default corporate body entity for authors field.
+  $corporate_body = \Drupal::entityTypeManager()->getStorage('oe_author')->create([
+    'type' => 'oe_corporate_body',
+    'oe_skos_reference' => array_values($content_owners),
+  ]);
+  $entity->set('oe_authors', [$corporate_body]);
+}
