@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.field.node.oe_event.body
     - field.field.node.oe_event.oe_author
-    - field.field.node.oe_event.oe_authors
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_dates
     - field.field.node.oe_event.oe_event_description_summary
@@ -132,7 +131,7 @@ third_party_settings:
         - oe_content_navigation_title
         - oe_teaser
       parent_name: ''
-      weight: 17
+      weight: 18
       format_type: tab
       format_settings:
         id: ''
@@ -165,13 +164,13 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 18
+    weight: 19
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   oe_author:
-    weight: 20
+    weight: 21
     settings:
       match_operator: CONTAINS
       size: 60
@@ -180,24 +179,6 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
     region: content
-  oe_authors:
-    type: inline_entity_form_complex
-    weight: 21
-    region: content
-    settings:
-      form_mode: default
-      revision: true
-      label_singular: ''
-      label_plural: ''
-      collapsible: true
-      allow_new: true
-      match_operator: CONTAINS
-      removed_reference: keep
-      override_labels: false
-      collapsed: false
-      allow_existing: false
-      allow_duplicate: false
-    third_party_settings: {  }
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
     weight: 22
@@ -236,7 +217,7 @@ content:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_event_contact:
-    weight: 16
+    weight: 17
     settings:
       form_mode: default
       revision: true
@@ -414,8 +395,7 @@ content:
     region: content
   oe_event_type:
     weight: 0
-    settings:
-      sort: id
+    settings: {  }
     third_party_settings: {  }
     type: skos_concept_entity_reference_options_select
     region: content
@@ -491,7 +471,7 @@ content:
     region: content
   path:
     type: path
-    weight: 19
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }

@@ -6,8 +6,6 @@ type: module
 core_version_requirement: ^8.9 || ^9.1
 dependencies:
   - oe_content:oe_content
-  - inline_entity_form:inline_entity_form
-  - composite_reference:composite_reference
 
 config_devel:
   install:
@@ -20,6 +18,5 @@ config_devel:
     - field.field.node.oe_page.oe_summary
     - field.field.node.oe_page.oe_teaser
     - node.type.oe_page
-    - field.field.node.oe_page.oe_authors
   optional:
     - language.content_settings.node.oe_page

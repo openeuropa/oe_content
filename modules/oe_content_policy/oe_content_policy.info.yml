@@ -7,8 +7,6 @@ core_version_requirement: ^8.9 || ^9.1
 dependencies:
   - oe_content:oe_content
   - oe_content:oe_content_timeline_field
-  - inline_entity_form:inline_entity_form
-  - composite_reference:composite_reference
 
 config_devel:
   install:
@@ -21,6 +19,5 @@ config_devel:
     - field.field.node.oe_policy.oe_teaser
     - field.field.node.oe_policy.oe_timeline
     - node.type.oe_policy
-    - field.field.node.oe_policy.oe_authors
   optional:
     - language.content_settings.node.oe_policy

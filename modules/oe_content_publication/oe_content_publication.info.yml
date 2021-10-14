@@ -47,6 +47,5 @@ config_devel:
     - field.storage.node.oe_publication_thumbnail
     - field.storage.node.oe_publication_type
     - node.type.oe_publication
-    - field.field.node.oe_publication.oe_authors
   optional:
     - language.content_settings.node.oe_publication
