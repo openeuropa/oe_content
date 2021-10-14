@@ -70,13 +70,6 @@ Feature: Publication content creation
     And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
     And I fill in "Link text" with "Contact link" in the "Contact link" region
 
-    # Authors field widget.
-    And I press the "Add new author" button
-    And I fill in "Corporate body (value 1)" with "Audit Board of the European Communities"
-    And I press the "Add another item" button in the "Authors field" region
-    And I fill in "Corporate body (value 2)" with "Arab Common Market"
-    And I press the "Create author" button
-    And I should see "Audit Board of the European Communities, Arab Common Market"
     And I press "Save"
     Then I should see "My Publication item"
     And I should see "sample.pdf"
@@ -119,8 +112,8 @@ Feature: Publication content creation
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, view published skos concept entities, manage corporate content entities" permission
     And the following documents:
-      | name          | file       |
-      | My Document 1 | sample.pdf |
+    | name          | file       |
+    | My Document 1 | sample.pdf |
 
     When I visit "the Publication creation page"
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
@@ -151,27 +144,22 @@ Feature: Publication content creation
       | name       | file       |
       | Document 1 | sample.pdf |
     And the following General Contact entity:
-      | Name | A general contact |
-    And the following "Corporate body" "Author" sub-entity:
-      | Name           | Author reference to Directorate-General for Budget |
-      | Corporate body | Directorate-General for Budget                     |
+      | Name          | A general contact |
     And the following "Publication" Content entity:
-      | Title              | Publication demo page                              |
-      | Introduction       | Publication introduction text                      |
-      | Identifier code    | PUB/100/1                                          |
-      | Resource type      | Agenda                                             |
-      | Publication date   | 2019-02-21                                         |
-      | Last update date   | 2019-02-22                                         |
-      | Files              | Document 1                                         |
-      | Body text          | Publication body text                              |
-      | Contact            | A general contact                                  |
-      | Author             | Directorate-General for Budget                     |
-      | Related department | Directorate-General for Communication              |
-      | Teaser             | Teaser                                             |
-      | Authors            | Author reference to Directorate-General for Budget |
+      | Title                  | Publication demo page                 |
+      | Introduction           | Publication introduction text         |
+      | Identifier code        | PUB/100/1                             |
+      | Resource type          | Agenda                                |
+      | Publication date       | 2019-02-21                            |
+      | Last update date       | 2019-02-22                            |
+      | Files                  | Document 1                            |
+      | Body text              | Publication body text                 |
+      | Contact                | A general contact                     |
+      | Author                 | Directorate-General for Budget        |
+      | Related department     | Directorate-General for Communication |
+      | Teaser                 | Teaser                                |
     When I am visiting the "Publication demo page" content
     And I click "Edit"
-    And I should see "Directorate-General for Budget"
     And I press "Remove"
     And I wait for AJAX to finish
     Then I should see "Are you sure you want to remove A general contact?"

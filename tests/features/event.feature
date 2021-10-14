@@ -9,8 +9,8 @@ Feature: Event content creation
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
     And the following AV Portal photo:
-      | url                                                        |
-      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15 |
+      | url                                                         |
+      | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
     When I visit "the Event creation page"
     Then I should see the text "Content limited to 170 characters, remaining: 170" in the "title form element"
     And I should see the text "Content limited to 250 characters, remaining: 250" in the "summary form element"
@@ -262,14 +262,6 @@ Feature: Event content creation
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
 
-    # Authors field widget.
-    And I press the "Add new author" button
-    And I fill in "Corporate body (value 1)" with "Audit Board of the European Communities"
-    And I press the "Add another item" button in the "Authors field" region
-    And I fill in "Corporate body (value 2)" with "Arab Common Market"
-    And I press the "Create author" button
-    And I should see "Audit Board of the European Communities, Arab Common Market"
-
     And I fill in "Teaser" with "Event teaser"
     When I press "Save"
 
@@ -424,24 +416,19 @@ Feature: Event content creation
       | Name | A venue |
     And the following General Contact entity:
       | Name | A general contact |
-    And the following "Corporate body" "Author" sub-entity:
-      | Name           | Author reference to Directorate-General for Budget |
-      | Corporate body | Directorate-General for Budget                     |
     And the following Event Content entity:
-      | Title        | Event demo page                                    |
-      | Type         | Exhibitions                                        |
-      | Introduction | Event introduction text                            |
-      | Languages    | Valencian                                          |
-      | Start date   | 2019-02-21 02:21:00                                |
-      | End date     | 2019-02-21 14:21:00                                |
-      | Status       | as_planned                                         |
-      | Teaser       | Event teaser                                       |
-      | Venue        | A venue                                            |
-      | Contact      | A general contact                                  |
-      | Authors      | Author reference to Directorate-General for Budget |
+      | Title               | Event demo page          |
+      | Type                | Exhibitions              |
+      | Introduction        | Event introduction text  |
+      | Languages           | Valencian                |
+      | Start date          | 2019-02-21 02:21:00      |
+      | End date            | 2019-02-21 14:21:00      |
+      | Status              | as_planned               |
+      | Teaser              | Event teaser             |
+      | Venue               | A venue                  |
+      | Contact             | A general contact        |
     When I am visiting the "Event demo page" content
     And I click "Edit"
-    And I should see "Directorate-General for Budget"
     And I press "Remove" in the "Event venue" region
     Then I should see "Are you sure you want to remove A venue?"
     When I press "Remove" in the "Event venue" region
