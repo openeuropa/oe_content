@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 
 /**
@@ -13,6 +14,7 @@ use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 class DefaultContentOwnerTest extends WebDriverTestBase {
 
   use SparqlConnectionTrait;
+  use EntityReferenceTestTrait;
 
   /**
    * {@inheritdoc}
@@ -25,7 +27,9 @@ class DefaultContentOwnerTest extends WebDriverTestBase {
   protected static $modules = [
     'oe_content',
     'oe_content_page',
+    'oe_content_sub_entity_author',
     'oe_corporate_site_info',
+    'inline_entity_form',
   ];
 
   /**
@@ -88,6 +92,17 @@ class DefaultContentOwnerTest extends WebDriverTestBase {
    * Tests the author values on new nodes.
    */
   public function testAuthorsDefaultValues() {
+    $this->createEntityReferenceField('node', 'oe_page', 'oe_authors', 'Authors', 'oe_author');
+    \Drupal::entityTypeManager()->getStorage('entity_form_display')
+      ->load('node.oe_page.default')
+      ->setComponent('oe_authors', [
+        'type' => 'inline_entity_form_complex',
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+        ],
+      ])
+      ->save();
+
     // Set the default content owner values.
     $this->container->get('config.factory')->getEditable('oe_corporate_site_info.settings')
       ->set('content_owners', [

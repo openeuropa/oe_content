@@ -261,7 +261,6 @@ Feature: Event content creation
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
-
     And I fill in "Teaser" with "Event teaser"
     When I press "Save"
 
