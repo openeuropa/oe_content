@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.oe_author.oe_link
-    - oe_content.oe_author_type.oe_link
+    - oe_content_sub_entity_author.oe_author_type.oe_link
   module:
     - link
 id: oe_author.oe_link.oe_link

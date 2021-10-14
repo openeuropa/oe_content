@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_author.oe_person.oe_node_reference
-    - oe_content.oe_author_type.oe_person
-id: oe_author.oe_person.default
+    - field.field.oe_author.oe_organisation.oe_node_reference
+    - oe_content_sub_entity_author.oe_author_type.oe_organisation
+id: oe_author.oe_organisation.default
 targetEntityType: oe_author
-bundle: oe_person
+bundle: oe_organisation
 mode: default
 content:
   oe_node_reference:

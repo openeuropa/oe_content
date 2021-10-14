@@ -3,18 +3,18 @@ status: true
 dependencies:
   config:
     - field.storage.oe_author.oe_node_reference
-    - node.type.oe_person
-    - oe_content.oe_author_type.oe_person
+    - node.type.oe_organisation
+    - oe_content_sub_entity_author.oe_author_type.oe_organisation
   module:
     - composite_reference
 third_party_settings:
   composite_reference:
     composite: false
-id: oe_author.oe_person.oe_node_reference
+id: oe_author.oe_organisation.oe_node_reference
 field_name: oe_node_reference
 entity_type: oe_author
-bundle: oe_person
-label: Person
+bundle: oe_organisation
+label: Organisation
 description: ''
 required: true
 translatable: false
@@ -24,7 +24,7 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
-      oe_person: oe_person
+      oe_organisation: oe_organisation
     sort:
       field: _none
     auto_create: false

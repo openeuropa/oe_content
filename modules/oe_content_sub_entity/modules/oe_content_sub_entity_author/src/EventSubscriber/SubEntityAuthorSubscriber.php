@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\oe_content_sub_entity_extra_authors\EventSubscriber;
+namespace Drupal\oe_content_sub_entity_author\EventSubscriber;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\oe_content_sub_entity\SubEntitySubscriberBase;
@@ -10,7 +10,7 @@ use Drupal\oe_content_sub_entity\SubEntitySubscriberBase;
 /**
  * Event subscriber for handing entity labels for "Author" entity type bundles.
  */
-class SubEntityExtraAuthorsSubscriber extends SubEntitySubscriberBase {
+class SubEntityAuthorSubscriber extends SubEntitySubscriberBase {
 
   /**
    * {@inheritdoc}
@@ -41,11 +41,7 @@ class SubEntityExtraAuthorsSubscriber extends SubEntitySubscriberBase {
    * {@inheritdoc}
    */
   protected function applies(ContentEntityInterface $entity): bool {
-    return $entity->getEntityTypeId() === 'oe_author' && in_array($entity->bundle(), [
-      'oe_person',
-      'oe_organisation',
-      'oe_link',
-    ]);
+    return $entity->getEntityTypeId() === 'oe_author';
 
   }
 
