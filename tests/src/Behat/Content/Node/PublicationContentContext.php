@@ -5,12 +5,10 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Behat\Content\Node;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
-use Drupal\Tests\oe_content\Traits\SubEntityReferenceTrait;
 
 /**
  * Context to create publication content entities.
@@ -22,8 +20,6 @@ class PublicationContentContext extends RawDrupalContext {
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
   use EntityLoadingTrait;
-  use SubEntityReferenceTrait;
-  use GatherSubEntityContextTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -54,7 +50,6 @@ class PublicationContentContext extends RawDrupalContext {
       'Title' => 'title',
       'Publications' => 'oe_publication_publications',
       'Collection' => 'oe_publication_collection',
-      'Authors' => 'oe_authors',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -83,12 +78,6 @@ class PublicationContentContext extends RawDrupalContext {
           $scope->addFields([
             $mapping[$key] => (int) ($value === 'Yes'),
           ])->removeField($key);
-          break;
-
-        // Set Authors entity reference fields.
-        case 'Authors':
-          $fields = $this->getSubEntityReferenceField($mapping[$key], $this->subEntityContext->getSubEntityMultipleByNames($value));
-          $scope->addFields($fields)->removeField($key);
           break;
 
         default:

@@ -8,12 +8,10 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
-use Drupal\Tests\oe_content\Traits\SubEntityReferenceTrait;
 
 /**
  * Context to create news content entities.
@@ -25,8 +23,6 @@ class NewsContentContext extends RawDrupalContext {
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
   use EntityLoadingTrait;
-  use SubEntityReferenceTrait;
-  use GatherSubEntityContextTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -52,7 +48,6 @@ class NewsContentContext extends RawDrupalContext {
       'Publication date' => 'oe_publication_date',
       'Last update date' => 'oe_news_last_updated',
       'Teaser' => 'oe_teaser',
-      'Authors' => 'oe_authors',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -77,12 +72,6 @@ class NewsContentContext extends RawDrupalContext {
               'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
             ]);
           $scope->addFields([$mapping[$key] => $date])->removeField($key);
-          break;
-
-        // Set Authors entity reference fields.
-        case 'Authors':
-          $fields = $this->getSubEntityReferenceField($mapping[$key], $this->subEntityContext->getSubEntityMultipleByNames($value));
-          $scope->addFields($fields)->removeField($key);
           break;
 
         default:

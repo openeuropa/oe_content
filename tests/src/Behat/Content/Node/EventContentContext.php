@@ -8,12 +8,10 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\Tests\oe_content\Behat\Content\Traits\GatherSubEntityContextTrait;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
-use Drupal\Tests\oe_content\Traits\SubEntityReferenceTrait;
 
 /**
  * Context to create event content entities.
@@ -25,8 +23,6 @@ class EventContentContext extends RawDrupalContext {
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
   use EntityLoadingTrait;
-  use SubEntityReferenceTrait;
-  use GatherSubEntityContextTrait;
 
   /**
    * Run before fields are parsed by Drupal Behat extension.
@@ -70,7 +66,6 @@ class EventContentContext extends RawDrupalContext {
       'Teaser' => 'oe_teaser',
       'Venue' => 'oe_event_venue',
       'Contact' => 'oe_event_contact',
-      'Authors' => 'oe_authors',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -93,12 +88,6 @@ class EventContentContext extends RawDrupalContext {
         case 'Internal organiser':
         case 'Featured media':
           $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
-          $scope->addFields($fields)->removeField($key);
-          break;
-
-        // Set Authors entity reference fields.
-        case 'Authors':
-          $fields = $this->getSubEntityReferenceField($mapping[$key], $this->subEntityContext->getSubEntityMultipleByNames($value));
           $scope->addFields($fields)->removeField($key);
           break;
 

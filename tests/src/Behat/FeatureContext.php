@@ -350,13 +350,4 @@ class FeatureContext extends RawDrupalContext {
     }
   }
 
-  /**
-   * Presses button with specified id|name|title|alt|value within region.
-   *
-   * @Given I press the :button button in the :region region
-   */
-  public function pressButton($button, $region) {
-    $this->getSession()->getPage()->find('region', $region)->pressButton($button);
-  }
-
 }

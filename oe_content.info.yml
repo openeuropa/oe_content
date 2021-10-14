@@ -19,11 +19,6 @@ config_devel:
     - field.storage.node.oe_subject
     - field.storage.node.oe_summary
     - field.storage.node.oe_teaser
-    - field.storage.node.oe_authors
-    - core.entity_form_display.oe_author.oe_corporate_body.default
-    - field.field.oe_author.oe_corporate_body.oe_skos_reference
-    - field.storage.oe_author.oe_skos_reference
-    - oe_content.oe_author_type.oe_corporate_body
   optional:
     - field.storage.node.oe_social_media_links
 

@@ -131,8 +131,6 @@ default:
         Timeline: "#edit-oe-timeline-wrapper"
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
-        Authors field: "#inline-entity-form-oe_authors-form"
-        Contacts field: "#inline-entity-form-oe_news_contacts-form"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
