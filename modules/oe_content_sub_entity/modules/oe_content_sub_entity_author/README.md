@@ -1,8 +1,8 @@
 # Author entity type
 
-This module ships a set of various "Author" types which are used to introduce entities like Corporate body,Person, Organisation, or simple links to internal or external content as authors of the publications.
+This module ships a set of various "Author" types which are used to introduce entities like Corporate body, Person, Organisation, or simple links to internal or external content as authors of the publications.
 
-After enabling of module you should see additional "Author" types:
+After enabling of module you should see following "Author" types:
 - Corporate body (with reference some Corporate body term)
 - Person (with reference to some existing Person content)
 - Organisation (with reference to some existing Organisation content)
@@ -17,8 +17,6 @@ Before enabling this module, make sure the following modules are present in your
 "require": {
   "drupal/composite_reference": "~1.0-alpha2",
   "drupal/entity_reference_revisions": "~1.3",
-  "drupal/field_group": "~3.0",
-  "drupal/inline_entity_form": "~1.0-rc9",
 }
 ```
 

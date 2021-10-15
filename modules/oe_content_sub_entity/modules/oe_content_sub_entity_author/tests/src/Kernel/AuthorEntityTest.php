@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content_sub_entity_author\Kernel;
 
-use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
+use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Tests all author entity bundles.
  */
-class AuthorEntityTest extends EntityKernelTestBase {
+class AuthorEntityTest extends SparqlKernelTestBase {
 
   use NodeCreationTrait;
 
@@ -22,6 +22,7 @@ class AuthorEntityTest extends EntityKernelTestBase {
     'link',
     'entity_reference_revisions',
     'sparql_entity_storage',
+    'user',
     'rdf_skos',
     'composite_reference',
     'media',
@@ -32,6 +33,7 @@ class AuthorEntityTest extends EntityKernelTestBase {
     'typed_link',
     'field_group',
     'maxlength',
+    'system',
     'description_list_field',
     'inline_entity_form',
     'oe_content_entity_contact',
@@ -49,9 +51,10 @@ class AuthorEntityTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
+    $this->installEntitySchema('user');
     $this->installEntitySchema('oe_author');
     $this->installEntitySchema('oe_document_reference');
     $this->installEntitySchema('node');
@@ -67,6 +70,8 @@ class AuthorEntityTest extends EntityKernelTestBase {
       'oe_content_organisation',
       'oe_content_sub_entity_author',
     ]);
+    module_load_include('install', 'oe_content');
+    oe_content_install(FALSE);
   }
 
   /**
@@ -74,7 +79,7 @@ class AuthorEntityTest extends EntityKernelTestBase {
    */
   public function testLabel(): void {
     foreach ($this->getAuthorEntitiesTestData() as $bundle => $data_case) {
-      $author = $this->entityTypeManager->getStorage('oe_author')->create([
+      $author = $this->container->get('entity_type.manager')->getStorage('oe_author')->create([
         'type' => $bundle,
       ]);
       foreach ($data_case as $data) {
@@ -87,9 +92,12 @@ class AuthorEntityTest extends EntityKernelTestBase {
         elseif (!empty($data['field_values'])) {
           $field_values = $data['field_values'];
         }
+        elseif (!empty($data['corporate_bodies'])) {
+          $field_values = $data['corporate_bodies'];
+        }
         $author->set($data['reference_field_name'], $field_values);
         $author->save();
-        $this->assertEquals($data['expected_label'], $author->label());
+        $this->assertEquals($data['expected_label'], $author->label(TRUE));
       }
     }
   }
@@ -102,6 +110,28 @@ class AuthorEntityTest extends EntityKernelTestBase {
    */
   protected function getAuthorEntitiesTestData(): array {
     return [
+      'oe_corporate_body' => [
+        [
+          'reference_field_name' => 'oe_skos_reference',
+          'corporate_bodies' => NULL,
+          'expected_label' => 'Corporate body',
+        ],
+        [
+          'reference_field_name' => 'oe_skos_reference',
+          'corporate_bodies' => [
+            'http://publications.europa.eu/resource/authority/corporate-body/BUDG',
+          ],
+          'expected_label' => 'Directorate-General for Budget',
+        ],
+        [
+          'reference_field_name' => 'oe_skos_reference',
+          'corporate_bodies' => [
+            'http://publications.europa.eu/resource/authority/corporate-body/BUDG',
+            'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
+          ],
+          'expected_label' => 'Directorate-General for Budget, Audit Board of the European Communities',
+        ],
+      ],
       'oe_person' => [
         [
           'reference_field_name' => 'oe_node_reference',
