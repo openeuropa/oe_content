@@ -5,29 +5,29 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_sub_entity\Event;
 
 use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Event is used to form sub-entity type labels individually for each bundle.
  */
-class SubEntityLabelInformationEvent extends Event {
+class GenerateLabelEvent extends Event {
 
   /**
-   * The entity for which we have to form label.
+   * The entity we generate a label for.
    *
    * @var \Drupal\oe_content_sub_entity\Entity\SubEntityInterface
    */
   protected $entity;
 
   /**
-   * The formed label for sub-entity.
+   * The generated label.
    *
    * @var string
    */
   protected $label;
 
   /**
-   * SubEntityEvent constructor.
+   * GenerateLabelEvent constructor.
    *
    * @param \Drupal\oe_content_sub_entity\Entity\SubEntityInterface $entity
    *   The sub-entity.
@@ -39,7 +39,7 @@ class SubEntityLabelInformationEvent extends Event {
   }
 
   /**
-   * Returns the entity.
+   * Return the entity.
    *
    * @return \Drupal\oe_content_sub_entity\Entity\SubEntityInterface
    *   The entity.
@@ -49,17 +49,17 @@ class SubEntityLabelInformationEvent extends Event {
   }
 
   /**
-   * Sets the label of sub-entity.
+   * Set the label.
    *
    * @param string $label
    *   The label.
    */
-  public function setLabel($label): void {
+  public function setLabel(string $label): void {
     $this->label = $label;
   }
 
   /**
-   * Gets the label of sub-entity.
+   * Get the label.
    *
    * @return string
    *   The label.

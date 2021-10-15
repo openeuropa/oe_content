@@ -5,15 +5,15 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_sub_entity\Event;
 
 /**
- * Defines events for the sub-entities.
+ * Collection of sub-entity event names.
  *
  * @internal
  */
 final class SubEntityEvents {
 
   /**
-   * The name of the event used for label formation for different sub-entities.
+   * Event name to generate sub-entities labels.
    */
-  const LABEL_FORMATION = 'oe_content_sub_entity.label_formation';
+  const GENERATE_LABEL = 'oe_content_sub_entity.generate_label';
 
 }

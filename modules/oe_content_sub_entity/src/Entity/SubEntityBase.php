@@ -12,7 +12,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\TypedData\TranslatableInterface;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\oe_content_sub_entity\Event\SubEntityLabelInformationEvent;
+use Drupal\oe_content_sub_entity\Event\GenerateLabelEvent;
 use Drupal\oe_content_sub_entity\Event\SubEntityEvents;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -38,8 +38,8 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
    */
   public function label(bool $update = FALSE) {
     if (empty($this->label) || $update) {
-      $event = new SubEntityLabelInformationEvent($this);
-      $this->eventDispatcher()->dispatch(SubEntityEvents::LABEL_FORMATION, $event);
+      $event = new GenerateLabelEvent($this);
+      $this->eventDispatcher()->dispatch(SubEntityEvents::GENERATE_LABEL, $event);
       $this->label = $event->getLabel();
     }
     return $this->label;

@@ -8,7 +8,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content_sub_entity\Event\SubEntityEvents;
-use Drupal\oe_content_sub_entity\Event\SubEntityLabelInformationEvent;
+use Drupal\oe_content_sub_entity\Event\GenerateLabelEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -26,7 +26,7 @@ abstract class SubEntityGenerateLabelSubscriberBase implements EventSubscriberIn
   protected $entityRepository;
 
   /**
-   * Constructs an instances for sub-entity event subscribers.
+   * SubEntityGenerateLabelSubscriberBase constructor.
    *
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
@@ -36,7 +36,22 @@ abstract class SubEntityGenerateLabelSubscriberBase implements EventSubscriberIn
   }
 
   /**
-   * Checking if particular even subscriber applicable for specific entity.
+   * Generate sub-entity label, given a sub-entity object.
+   *
+   * @param \Drupal\oe_content_sub_entity\Event\GenerateLabelEvent $event
+   *   Sub-entity event.
+   */
+  public function onGenerateLabel(GenerateLabelEvent $event): void {
+    if ($this->applies($event->getEntity())) {
+      $generated_label = $this->generateLabel($event->getEntity());
+      if (!empty($generated_label)) {
+        $event->setLabel($generated_label);
+      }
+    }
+  }
+
+  /**
+   * Check if a particular event subscriber applies to a given entity.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   The content entity.
@@ -48,7 +63,7 @@ abstract class SubEntityGenerateLabelSubscriberBase implements EventSubscriberIn
   abstract protected function applies(ContentEntityInterface $entity): bool;
 
   /**
-   * Form labels for specific sub-entity types or bundles.
+   * Generate labels for specific sub-entity types or bundles.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   The content entity.
@@ -63,23 +78,8 @@ abstract class SubEntityGenerateLabelSubscriberBase implements EventSubscriberIn
    */
   public static function getSubscribedEvents() {
     return [
-      SubEntityEvents::LABEL_FORMATION => ['onLabelFormation'],
+      SubEntityEvents::GENERATE_LABEL => ['onGenerateLabel'],
     ];
-  }
-
-  /**
-   * Extracting sub-entity label which depends on entity bundle.
-   *
-   * @param \Drupal\oe_content_sub_entity\Event\SubEntityLabelInformationEvent $event
-   *   Sub-entity event.
-   */
-  public function onLabelFormation(SubEntityLabelInformationEvent $event): void {
-    if ($this->applies($event->getEntity())) {
-      $generated_label = $this->generateLabel($event->getEntity());
-      if (!empty($generated_label)) {
-        $event->setLabel($generated_label);
-      }
-    }
   }
 
   /**
