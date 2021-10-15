@@ -15,7 +15,7 @@ class AuthorGenerateLabelSubscriber extends SubEntityGenerateLabelSubscriberBase
   /**
    * {@inheritdoc}
    */
-  public function generateLabel(ContentEntityInterface $entity): ?string {
+  protected function generateLabel(ContentEntityInterface $entity): ?string {
     $label = NULL;
     switch ($entity->bundle()) {
       case 'oe_link':
@@ -42,7 +42,6 @@ class AuthorGenerateLabelSubscriber extends SubEntityGenerateLabelSubscriberBase
    */
   protected function applies(ContentEntityInterface $entity): bool {
     return $entity->getEntityTypeId() === 'oe_author';
-
   }
 
 }

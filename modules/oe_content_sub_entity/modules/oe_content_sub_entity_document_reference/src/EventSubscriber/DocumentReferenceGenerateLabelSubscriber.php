@@ -15,7 +15,7 @@ class DocumentReferenceGenerateLabelSubscriber extends SubEntityGenerateLabelSub
   /**
    * {@inheritdoc}
    */
-  public function generateLabel(ContentEntityInterface $entity): ?string {
+  protected function generateLabel(ContentEntityInterface $entity): ?string {
     return $this->getReferencedEntityLabels($entity);
   }
 

@@ -15,7 +15,7 @@ class PersonJobGenerateLabelSubscriber extends SubEntityGenerateLabelSubscriberB
   /**
    * {@inheritdoc}
    */
-  public function generateLabel(ContentEntityInterface $entity) {
+  protected function generateLabel(ContentEntityInterface $entity) {
     // Define label for Default Person job.
     $label = $entity->get('oe_role_name')->value;
     if (!$entity->get('oe_role_reference')->isEmpty()) {
