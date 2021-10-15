@@ -10,8 +10,6 @@ overriding the language.content_setting configuration.
 This module provides a sub-module (oe_content_entity) with a set of Corporate content entities to be used.
 Check out the [README](/modules/oe_content_entity/README.md) of the module.
 
-The module sets the "Content Owner" field value automatically when new content is created. The default "Content Owner" field value can be set in the "Basic site settings" administrative page. This functionality is available only if [OpenEuropa Corporate Site Information](https://github.com/openeuropa/oe_corporate_site_info) is enabled.
-
 **Table of contents:**
 
 - [Requirements](#requirements)
@@ -95,6 +93,13 @@ If you want to use OpenEuropa Content, enable the module:
 ```bash
 drush en oe_content
 ```
+
+### OpenEuropa Corporate Site Info integration
+
+This module provides an integration with the [OpenEuropa Corporate Site Information](https://github.com/openeuropa/oe_corporate_site_info) module.
+
+When creating a new node if the fields "Content Owner" and "Authors" are avilable they will be automatically populated with the values configured
+as "Default content owner" in the "Basic site settings" provided by the OpenEuropa Corporate Site Info module.
 
 ## Development setup
 

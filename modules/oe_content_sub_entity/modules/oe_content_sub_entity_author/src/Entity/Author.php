@@ -2,19 +2,19 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_sub_entity_document_reference\Entity;
+namespace Drupal\oe_content_sub_entity_author\Entity;
 
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 
 /**
- * Defines the Document reference entity.
+ * Defines the author entity.
  *
- * @ingroup oe_content_sub_entity_document_reference
+ * @ingroup oe_content
  *
  * @ContentEntityType(
- *   id = "oe_document_reference",
- *   label = @Translation("Document reference"),
- *   label_collection = @Translation("Document references"),
+ *   id = "oe_author",
+ *   label = @Translation("Author"),
+ *   label_collection = @Translation("Authors"),
  *   bundle_label = @Translation("Type"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
@@ -27,10 +27,10 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *   },
- *   base_table = "oe_document_reference",
- *   data_table = "oe_document_reference_field_data",
- *   revision_table = "oe_document_reference_revision",
- *   revision_data_table = "oe_document_reference_field_revision",
+ *   base_table = "oe_author",
+ *   data_table = "oe_author_field_data",
+ *   revision_table = "oe_author_revision",
+ *   revision_data_table = "oe_author_field_revision",
  *   translatable = TRUE,
  *   entity_revision_parent_type_field = "parent_type",
  *   entity_revision_parent_id_field = "parent_id",
@@ -43,17 +43,17 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *     "langcode" = "langcode",
  *     "published" = "status",
  *   },
- *   bundle_entity_type = "oe_document_reference_type",
- *   field_ui_base_route = "entity.oe_document_reference_type.edit_form",
+ *   bundle_entity_type = "oe_author_type",
+ *   field_ui_base_route = "entity.oe_author_type.edit_form",
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class DocumentReference extends SubEntityBase implements DocumentReferenceInterface {
+class Author extends SubEntityBase implements AuthorInterface {
 
   /**
-   * Gets the label of the entity.
+   * Gets the label of the entity with mentioned bundle label.
    *
-   * Since document reference doesn't have name field, label is generated.
+   * Since Author doesn't have name field, label is generated.
    * Pattern: Referenced entity 1 label, Referenced entity 2 label.
    */
   public function label() {

@@ -166,4 +166,22 @@ class SubEntityContext extends RawEntityContext {
     return $this->subEntities[$name];
   }
 
+  /**
+   * Get a sub-entity objects from the local storage by names, if any.
+   *
+   * @param string $names
+   *   Sub-entity names delimited by comma.
+   *
+   * @return \Drupal\oe_content_sub_entity\Entity\SubEntityInterface[]
+   *   The list of Sub-entities.
+   */
+  public function getSubEntityMultipleByNames(string $names): array {
+    $entities = [];
+    $labels = explode(', ', $names);
+    foreach ($labels as $label) {
+      $entities[] = $this->getSubEntityByName($label);
+    }
+    return $entities;
+  }
+
 }
