@@ -51,10 +51,10 @@ class GenerateLabelEvent extends Event {
   /**
    * Set the label.
    *
-   * @param string $label
+   * @param string|mixed $label
    *   The label.
    */
-  public function setLabel(string $label): void {
+  public function setLabel($label): void {
     $this->label = $label;
   }
 
