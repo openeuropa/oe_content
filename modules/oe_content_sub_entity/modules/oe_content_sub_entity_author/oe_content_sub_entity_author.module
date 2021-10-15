@@ -23,6 +23,12 @@ function oe_content_sub_entity_author_node_prepare_form(EntityInterface $entity,
     return;
   }
 
+  // If we cannot reference the Corporate body entity bundle, do nothing.
+  $field_settings = $entity->getFieldDefinition('oe_authors')->getSettings();
+  if ($field_settings['target_type'] === 'oe_author' && !empty($field_settings['handler_settings']) && !in_array('oe_corporate_body', $field_settings['handler_settings']['target_bundles'])) {
+    return;
+  }
+
   if (\Drupal::service('module_handler')->moduleExists('oe_corporate_site_info') === FALSE) {
     return;
   }
