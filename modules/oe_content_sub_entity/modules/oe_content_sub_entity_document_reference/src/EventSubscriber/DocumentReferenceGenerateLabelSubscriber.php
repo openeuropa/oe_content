@@ -5,12 +5,12 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_sub_entity_document_reference\EventSubscriber;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\oe_content_sub_entity\SubEntitySubscriberBase;
+use Drupal\oe_content_sub_entity\SubEntityGenerateLabelSubscriberBase;
 
 /**
  * Subscriber for handing labels for "Document reference" entity type bundles.
  */
-class SubEntityDocumentReferenceSubscriber extends SubEntitySubscriberBase {
+class DocumentReferenceGenerateLabelSubscriber extends SubEntityGenerateLabelSubscriberBase {
 
   /**
    * {@inheritdoc}

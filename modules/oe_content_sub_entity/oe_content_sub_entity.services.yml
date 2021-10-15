@@ -1,5 +1,5 @@
 services:
-  oe_content_sub_entity.event_subscriber.base:
-    class: Drupal\oe_content_sub_entity\SubEntitySubscriberBase
+  oe_content_sub_entity.event_subscriber.generate_label_base:
+    class: Drupal\oe_content_sub_entity\SubEntityGenerateLabelSubscriberBase
     arguments: ['@entity.repository']
     abstract: true

@@ -14,7 +14,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * Provides a base implementation for SubEntitySubscriber.
  */
-abstract class SubEntitySubscriberBase implements EventSubscriberInterface {
+abstract class SubEntityGenerateLabelSubscriberBase implements EventSubscriberInterface {
 
   use StringTranslationTrait;
 

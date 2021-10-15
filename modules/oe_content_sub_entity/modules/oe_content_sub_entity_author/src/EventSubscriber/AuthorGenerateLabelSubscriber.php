@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Drupal\oe_content_sub_entity_author\EventSubscriber;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\oe_content_sub_entity\SubEntitySubscriberBase;
+use Drupal\oe_content_sub_entity\SubEntityGenerateLabelSubscriberBase;
 
 /**
  * Event subscriber for handing entity labels for "Author" entity type bundles.
  */
-class SubEntityAuthorSubscriber extends SubEntitySubscriberBase {
+class AuthorGenerateLabelSubscriber extends SubEntityGenerateLabelSubscriberBase {
 
   /**
    * {@inheritdoc}
