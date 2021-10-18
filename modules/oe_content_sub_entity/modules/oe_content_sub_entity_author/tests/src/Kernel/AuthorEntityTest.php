@@ -97,7 +97,7 @@ class AuthorEntityTest extends SparqlKernelTestBase {
         }
         $author->set($data['reference_field_name'], $field_values);
         $author->save();
-        $this->assertEquals($data['expected_label'], $author->label(TRUE));
+        $this->assertEquals($data['expected_label'], $author->label());
       }
     }
   }

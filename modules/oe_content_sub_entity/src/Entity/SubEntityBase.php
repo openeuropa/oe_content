@@ -36,8 +36,8 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
   /**
    * {@inheritdoc}
    */
-  public function label(bool $update = FALSE) {
-    if (empty($this->label) || $update) {
+  public function label() {
+    if (empty($this->label)) {
       $event = new GenerateLabelEvent($this);
       $this->eventDispatcher()->dispatch(SubEntityEvents::GENERATE_LABEL, $event);
       $this->label = $event->getLabel();
@@ -146,7 +146,7 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
    */
   public function save(): int {
     $this->label = NULL;
-    return parent::save();
+    return (int) parent::save();
   }
 
   /**
