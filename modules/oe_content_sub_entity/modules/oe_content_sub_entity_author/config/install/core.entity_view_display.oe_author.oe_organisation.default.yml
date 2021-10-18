@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_author.oe_organisation.oe_node_reference
+    - oe_content_sub_entity_author.oe_author_type.oe_organisation
+id: oe_author.oe_organisation.default
+targetEntityType: oe_author
+bundle: oe_organisation
+mode: default
+content:
+  oe_node_reference:
+    weight: 0
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden: {  }

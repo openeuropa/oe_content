@@ -1,0 +1,6 @@
+services:
+  oe_content_sub_entity_author.event_subscriber.generate_label:
+    class: Drupal\oe_content_sub_entity_author\EventSubscriber\AuthorGenerateLabelSubscriber
+    parent: oe_content_sub_entity.event_subscriber.generate_label_base
+    tags:
+      - { name: event_subscriber }

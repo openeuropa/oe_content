@@ -36,6 +36,7 @@ class PersonJobEntityTest extends EntityKernelTestBase {
     'oe_content_entity_contact',
     'oe_content_person',
     'oe_content_social_media_links_field',
+    'oe_content_sub_entity',
     'oe_content_sub_entity_document_reference',
     'oe_content_timeline_field',
     'typed_link',
