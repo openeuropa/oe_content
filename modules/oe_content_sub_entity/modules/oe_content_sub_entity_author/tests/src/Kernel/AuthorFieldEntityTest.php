@@ -12,7 +12,7 @@ use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 
 /**
- * Tests author 'person', 'organisation' and link entity bundles.
+ * Tests Authors reference formatter for all author entity bundles.
  */
 class AuthorFieldEntityTest extends EntityKernelTestBase {
 
@@ -50,7 +50,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     'oe_content_organisation',
     'oe_content_sub_entity',
     'oe_content_sub_entity_document_reference',
-    'oe_content_sub_entity_extra_authors',
+    'oe_content_sub_entity_author',
   ];
 
   /**
@@ -78,7 +78,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
       'oe_content_departments_field',
       'oe_content_person',
       'oe_content_organisation',
-      'oe_content_sub_entity_extra_authors',
+      'oe_content_sub_entity_author',
     ]);
 
     // Create a node type.

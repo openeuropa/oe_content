@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content\Event;
+namespace Drupal\oe_content_sub_entity_author\Event;
 
 use Drupal\Core\Cache\CacheableResponseTrait;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * Event used to extract sub-entity type Links individually for each bundle.
  */
-class AuthorExtractDataEvent extends Event {
+class AuthorExtractLinksEvent extends Event {
 
   use CacheableResponseTrait;
 

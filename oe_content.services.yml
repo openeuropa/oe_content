@@ -4,13 +4,3 @@ services:
   oe_content.op_skos_setup:
     class: Drupal\oe_content\PublicationsOfficeSkosGraphSetup
     arguments: ['@config.factory']
-
-  oe_content.author_event_subscriber.base:
-    class: Drupal\oe_content\AuthorSubEntitySubscriberBase
-    arguments: ['@entity.repository']
-    abstract: true
-  oe_content.author_event_subscriber:
-    class: Drupal\oe_content\EventSubscriber\AuthorCorporateBodyExtractDataSubscriber
-    parent: oe_content.author_event_subscriber.base
-    tags:
-      - { name: event_subscriber }

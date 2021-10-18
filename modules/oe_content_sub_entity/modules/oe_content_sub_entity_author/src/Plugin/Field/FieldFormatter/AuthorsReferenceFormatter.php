@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content\Plugin\Field\FieldFormatter;
+namespace Drupal\oe_content_sub_entity_author\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Field\FieldDefinitionInterface;
@@ -89,9 +89,9 @@ class AuthorsReferenceFormatter extends EntityReferenceFormatterBase {
     $elements = [];
     $settings = $this->getSettings();
 
-    /** @var \Drupal\oe_content\Entity\Author $entity */
     $index = 0;
     $cacheablemetadata = new CacheableMetadata();
+    /** @var \Drupal\oe_content_sub_entity_author\Entity\Author $entity */
     foreach ($this->getEntitiesToView($items, $langcode) as $entity) {
       $links = $entity->getAuthorsAsLinks();
       foreach ($links as $link) {

@@ -2,19 +2,19 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content;
+namespace Drupal\oe_content_sub_entity_author;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_content\Event\AuthorExtractDataEvent;
-use Drupal\oe_content\Event\ContentEvents;
+use Drupal\oe_content_sub_entity_author\Event\AuthorExtractLinksEvent;
+use Drupal\oe_content_sub_entity_author\Event\AuthorEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Provides a base implementation for AuthorSubEntitySubscriber.
+ * Provides a base implementation for AuthorExtractLinksSubscriber.
  */
-abstract class AuthorSubEntitySubscriberBase implements EventSubscriberInterface {
+abstract class AuthorExtractLinksSubscriberBase implements EventSubscriberInterface {
 
   use StringTranslationTrait;
 
@@ -50,42 +50,42 @@ abstract class AuthorSubEntitySubscriberBase implements EventSubscriberInterface
   /**
    * Extract array of Links object for specific sub-entity bundles.
    *
-   * @param \Drupal\oe_content\Event\AuthorExtractDataEvent $event
+   * @param \Drupal\oe_content_sub_entity_author\Event\AuthorExtractLinksEvent $event
    *   The content entity.
    */
-  abstract protected function extractLinks(AuthorExtractDataEvent $event): void;
+  abstract protected function extractLinks(AuthorExtractLinksEvent $event): void;
 
   /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
     return [
-      ContentEvents::EXTRACT_AUTHOR_LINKS => ['onExtractingLinks'],
+      AuthorEvents::EXTRACT_AUTHOR_LINKS => ['onExtractingLinks'],
     ];
   }
 
   /**
-   * Extracting sub-entity label which depends on entity bundle.
+   * Extracting sub-entity link which depends on entity bundle.
    *
-   * @param \Drupal\oe_content\Event\AuthorExtractDataEvent $event
+   * @param \Drupal\oe_content_sub_entity_author\Event\AuthorExtractLinksEvent $event
    *   Author Sub-entity event.
    */
-  public function onExtractingLinks(AuthorExtractDataEvent $event): void {
+  public function onExtractingLinks(AuthorExtractLinksEvent $event): void {
     if ($this->applies($event->getEntity())) {
       $this->extractLinks($event);
     }
   }
 
   /**
-   * Default label generator for target sub-entity.
+   * Default link extractor for target sub-entity.
    *
-   * @param \Drupal\oe_content\Event\AuthorExtractDataEvent $event
+   * @param \Drupal\oe_content_sub_entity_author\Event\AuthorExtractLinksEvent $event
    *   Author Sub-entity event.
    *
    * @return array
    *   Generated entity links.
    */
-  protected function getDefaultLinks(AuthorExtractDataEvent $event): ?array {
+  protected function getDefaultLinks(AuthorExtractLinksEvent $event): ?array {
     // Load referenced entities.
     $entities = $event->getEntity()->referencedEntities();
 
