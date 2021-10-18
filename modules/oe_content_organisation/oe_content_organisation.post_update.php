@@ -69,3 +69,29 @@ function oe_content_organisation_post_update_00005(): void {
   $field_config->set('label', 'Contacts');
   $field_config->save();
 }
+
+/**
+ * Creates the subject field.
+ */
+function oe_content_organisation_post_update_20006() {
+  $field = FieldConfig::load('node.oe_organisation.oe_subject');
+  if ($field) {
+    return 'The subject field already exists for Organisation CT.';
+  }
+  // Create the subject field.
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_organisation') . '/config/post_updates/20006_subject_field');
+  $config_record = $storage->read('field.field.node.oe_organisation.oe_subject');
+  $entity_storage = \Drupal::entityTypeManager()->getStorage('field_config');
+  $field = $entity_storage->createFromStorageRecord($config_record);
+  $field->save();
+
+  // Update the form display.
+  $form_display_values = $storage->read('core.entity_form_display.node.oe_organisation.default');
+  $form_display = EntityFormDisplay::load($form_display_values['id']);
+  if ($form_display) {
+    $updated_form_display = \Drupal::entityTypeManager()
+      ->getStorage('entity_form_display')
+      ->updateFromStorageRecord($form_display, $form_display_values);
+    $updated_form_display->save();
+  }
+}
