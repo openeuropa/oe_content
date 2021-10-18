@@ -47,11 +47,13 @@ class OrganisationContentContext extends RawDrupalContext {
       'Persons' => 'oe_organisation_persons',
       'Organisation chart' => 'oe_organisation_chart',
       'Staff search link' => 'oe_organisation_staff_link',
+      'Subject' => 'oe_subject',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
       switch ($key) {
         // Set SKOS Concept entity reference fields.
+        case 'Subject':
         case 'EU organisation':
         case 'Non-EU organisation':
         case 'Logo':
