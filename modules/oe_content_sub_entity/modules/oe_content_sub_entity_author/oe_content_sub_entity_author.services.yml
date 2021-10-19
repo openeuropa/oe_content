@@ -4,3 +4,13 @@ services:
     parent: oe_content_sub_entity.event_subscriber.generate_label_base
     tags:
       - { name: event_subscriber }
+
+  oe_content_sub_entity_author.event_subscriber.extract_links_base:
+    class: Drupal\oe_content_sub_entity_author\AuthorExtractLinksSubscriberBase
+    arguments: ['@entity.repository']
+    abstract: true
+  oe_content_sub_entity_author.event_subscriber.extract_links:
+    class: Drupal\oe_content_sub_entity_author\EventSubscriber\AuthorExtractLinksSubscriber
+    parent: oe_content_sub_entity_author.event_subscriber.extract_links_base
+    tags:
+      - { name: event_subscriber }
