@@ -332,6 +332,14 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
       if (!$data) {
         return $entities;
       }
+
+      // Ensure we maintain existing form values when no removal is triggered.
+      $values = [];
+      foreach ($data as $data_item) {
+        $values[]['target_id'] = explode(':', $data_item)[1];
+      }
+      $items->setValue($values);
+      return $items->referencedEntities();
     }
 
     // Determine if we're submitting and if submit came from this widget.
