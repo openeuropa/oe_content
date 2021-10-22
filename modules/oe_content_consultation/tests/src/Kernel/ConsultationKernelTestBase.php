@@ -33,6 +33,7 @@ abstract class ConsultationKernelTestBase extends SparqlKernelTestBase {
     'oe_content_departments_field',
     'oe_content_entity',
     'oe_content_entity_contact',
+    'oe_content_sub_entity',
     'oe_content_sub_entity_document_reference',
     'oe_content_consultation',
     'rdf_skos',

@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - oe_content_sub_entity_author.oe_author_type.oe_link
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '1'
+id: oe_author.oe_link
+target_entity_type_id: oe_author
+target_bundle: oe_link
+default_langcode: site_default
+language_alterable: true

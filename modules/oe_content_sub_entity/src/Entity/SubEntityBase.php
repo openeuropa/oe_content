@@ -12,6 +12,9 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\TypedData\TranslatableInterface;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\oe_content_sub_entity\Event\GenerateLabelEvent;
+use Drupal\oe_content_sub_entity\Event\SubEntityEvents;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Provides the SubEntityBase class for content sub entities.
@@ -24,11 +27,22 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
   use EntityPublishedTrait;
 
   /**
+   * The label of the entity.
+   *
+   * @var string
+   */
+  protected $label;
+
+  /**
    * {@inheritdoc}
    */
   public function label() {
-    // Return the entity's bundle label by default.
-    return $this->get('type')->entity->label();
+    if (empty($this->label)) {
+      $event = new GenerateLabelEvent($this);
+      $this->eventDispatcher()->dispatch(SubEntityEvents::GENERATE_LABEL, $event);
+      $this->label = $event->getLabel();
+    }
+    return $this->label;
   }
 
   /**
@@ -125,6 +139,24 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
     }
 
     return $parent;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function save(): int {
+    $this->label = NULL;
+    return (int) parent::save();
+  }
+
+  /**
+   * Wraps the event dispatcher.
+   *
+   * @return \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   *   The event dispatcher.
+   */
+  protected function eventDispatcher(): EventDispatcherInterface {
+    return \Drupal::service('event_dispatcher');
   }
 
 }
