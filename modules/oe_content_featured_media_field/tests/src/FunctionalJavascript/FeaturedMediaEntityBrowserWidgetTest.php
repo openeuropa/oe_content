@@ -411,6 +411,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     // Submit the IEF with missing required fields and check that the image
     // field still has the selected value after the validation.
     $this->getSession()->getPage()->pressButton('Create node');
+    $this->assertSession()->assertWaitOnAjaxRequest();
     $this->assertSession()->pageTextContains('Image 1');
     $this->assertFalse($featured_media_field->hasButton('Select images'));
     $this->assertMediaSelectionHasRemoveButton('Image 1', 'Article Featured media field');
