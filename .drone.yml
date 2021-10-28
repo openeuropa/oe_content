@@ -100,7 +100,7 @@ pipeline:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
-      - ./vendor/bin/run behat:ensure-batching
+      - ./vendor/bin/run behat:ensure-batching --path $(pwd)/tests/features
     when:
       matrix:
         TYPE: phpunit

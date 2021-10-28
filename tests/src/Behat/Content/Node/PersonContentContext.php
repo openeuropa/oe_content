@@ -10,6 +10,7 @@ use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
+use Drupal\Tests\oe_content\Traits\SubEntityReferenceTrait;
 
 /**
  * Context to create person content entities.
@@ -21,6 +22,7 @@ class PersonContentContext extends RawDrupalContext {
   use EntityReferenceRevisionTrait;
   use EntityReferenceTrait;
   use EntityLoadingTrait;
+  use SubEntityReferenceTrait;
   use GatherSubEntityContextTrait;
 
   /**
@@ -84,19 +86,8 @@ class PersonContentContext extends RawDrupalContext {
         // Set entity reference revision fields for sub entities.
         case 'Documents':
         case 'Jobs':
-          $ids = [];
-          $revision_ids = [];
-          $names = explode(', ', $value);
-          foreach ($names as $name) {
-            $entity = $this->subEntityContext->getSubEntityByName($name);
-            $ids[] = $entity->id();
-            $revision_ids[] = $entity->getRevisionId();
-          }
-          $scope->addFields([
-            $mapping[$key] . ':target_id' => implode(',', $ids),
-            $mapping[$key] . ':target_revision_id' => implode(',', $revision_ids),
-          ]);
-          $scope->removeField($key);
+          $fields = $this->getSubEntityReferenceField($mapping[$key], $this->subEntityContext->getSubEntityMultipleByNames($value));
+          $scope->addFields($fields)->removeField($key);
           break;
 
         // Set content published status.

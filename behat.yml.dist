@@ -19,6 +19,7 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\PressContactContext
+        - Drupal\Tests\oe_content\Behat\Content\Author\CorporateBodyAuthorContext
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\DocumentDocumentReferenceContext
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\PublicationDocumentReferenceContext
         - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
