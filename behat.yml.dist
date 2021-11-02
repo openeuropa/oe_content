@@ -132,6 +132,7 @@ default:
         Timeline: "#edit-oe-timeline-wrapper"
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
+        Event programme: "#edit-oe-event-programme-wrapper"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'

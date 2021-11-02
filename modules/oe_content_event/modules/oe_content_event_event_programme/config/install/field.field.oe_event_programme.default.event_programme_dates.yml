@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.event_programme.event_programme_dates
-    - oe_content_event_event_programme.event_programme_type.default
+    - field.storage.oe_event_programme.event_programme_dates
+    - oe_content_event_event_programme.oe_event_programme_type.default
   module:
     - datetime_range
-id: event_programme.default.event_programme_dates
+id: oe_event_programme.default.event_programme_dates
 field_name: event_programme_dates
-entity_type: event_programme
+entity_type: oe_event_programme
 bundle: default
 label: 'Start/end date'
 description: ''

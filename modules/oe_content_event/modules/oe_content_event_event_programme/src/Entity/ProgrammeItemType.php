@@ -10,14 +10,14 @@ use Drupal\oe_content_entity\Entity\CorporateEntityTypeBase;
  * Defines the event programme type entity.
  *
  * @ConfigEntityType(
- *   id = "event_programme_type",
+ *   id = "oe_event_programme_type",
  *   label = @Translation("Programme Item type"),
- *   bundle_of = "event_programme",
+ *   bundle_of = "oe_event_programme",
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "label",
  *   },
- *   config_prefix = "event_programme_type",
+ *   config_prefix = "oe_event_programme_type",
  *   config_export = {
  *     "id",
  *     "label",
@@ -38,10 +38,10 @@ use Drupal\oe_content_entity\Entity\CorporateEntityTypeBase;
  *   },
  *   admin_permission = "manage corporate content entity types",
  *   links = {
- *     "add-form" = "/admin/structure/event_programme_type/add",
- *     "edit-form" = "/admin/structure/event_programme_type/{event_programme_type}/edit",
- *     "delete-form" = "/admin/structure/event_programme_type/{event_programme_type}/delete",
- *     "collection" = "/admin/structure/event_programme_type",
+ *     "add-form" = "/admin/structure/oe_event_programme_type/add",
+ *     "edit-form" = "/admin/structure/oe_event_programme_type/{oe_event_programme_type}/edit",
+ *     "delete-form" = "/admin/structure/oe_event_programme_type/{oe_event_programme_type}/delete",
+ *     "collection" = "/admin/structure/oe_event_programme_type",
  *   }
  * )
  */

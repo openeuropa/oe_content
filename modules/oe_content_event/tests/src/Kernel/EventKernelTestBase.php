@@ -51,6 +51,7 @@ abstract class EventKernelTestBase extends SparqlKernelTestBase {
     'typed_link',
     'user',
     'composite_reference',
+    'oe_content_event_event_programme',
   ];
 
   /**
@@ -68,6 +69,7 @@ abstract class EventKernelTestBase extends SparqlKernelTestBase {
     $this->installEntitySchema('oe_contact');
     $this->installEntitySchema('oe_organisation');
     $this->installEntitySchema('oe_venue');
+    $this->installEntitySchema('oe_event_programme');
     $this->installConfig([
       'field',
       'node',

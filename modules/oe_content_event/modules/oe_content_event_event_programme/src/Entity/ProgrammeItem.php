@@ -12,7 +12,7 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  * @ingroup oe_content_event_event_programme
  *
  * @ContentEntityType(
- *   id = "event_programme",
+ *   id = "oe_event_programme",
  *   label = @Translation("Programme Item"),
  *   label_collection = @Translation("Programme Items"),
  *   bundle_label = @Translation("Programme Item type"),
@@ -32,10 +32,10 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  *       "html" = "Drupal\oe_content_entity\Routing\CorporateEntityRouteProvider",
  *     },
  *   },
- *   base_table = "event_programme",
- *   data_table = "event_programme_field_data",
- *   revision_table = "event_programme_revision",
- *   revision_data_table = "event_programme_field_revision",
+ *   base_table = "oe_event_programme",
+ *   data_table = "oe_event_programme_field_data",
+ *   revision_table = "oe_event_programme_revision",
+ *   revision_data_table = "oe_event_programme_field_revision",
  *   translatable = TRUE,
  *   show_revision_ui = TRUE,
  *   admin_permission = "manage corporate content entities",
@@ -55,15 +55,15 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  *     "revision_created" = "revision_timestamp",
  *     "revision_log_message" = "revision_log"
  *   },
- *   bundle_entity_type = "event_programme_type",
- *   field_ui_base_route = "entity.event_programme_type.edit_form",
+ *   bundle_entity_type = "oe_event_programme_type",
+ *   field_ui_base_route = "entity.oe_event_programme_type.edit_form",
  *   links = {
- *     "canonical" = "/admin/content/event_programme/{event_programme}",
- *     "add-page" = "/admin/content/event_programme/add",
- *     "add-form" = "/admin/content/event_programme/add/{event_programme_type}",
- *     "edit-form" = "/admin/content/event_programme/{event_programme}/edit",
- *     "delete-form" = "/admin/content/event_programme/{event_programme}/delete",
- *     "collection" = "/admin/content/event_programme",
+ *     "canonical" = "/admin/content/oe_event_programme/{oe_event_programme}",
+ *     "add-page" = "/admin/content/oe_event_programme/add",
+ *     "add-form" = "/admin/content/oe_event_programme/add/{oe_event_programme_type}",
+ *     "edit-form" = "/admin/content/oe_event_programme/{oe_event_programme}/edit",
+ *     "delete-form" = "/admin/content/oe_event_programme/{oe_event_programme}/delete",
+ *     "collection" = "/admin/content/oe_vent_programme",
  *   },
  *  type = {"entity"}
  * )

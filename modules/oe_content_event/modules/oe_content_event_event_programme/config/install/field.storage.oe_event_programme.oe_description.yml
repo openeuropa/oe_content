@@ -4,9 +4,9 @@ dependencies:
   module:
     - oe_content_event_event_programme
     - text
-id: event_programme.oe_description
+id: oe_event_programme.oe_description
 field_name: oe_description
-entity_type: event_programme
+entity_type: oe_event_programme
 type: text_long
 settings: {  }
 module: text

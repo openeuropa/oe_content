@@ -1,4 +1,4 @@
-oe_content_event_event_programme.event_programme_type.*:
+oe_content_event_event_programme.oe_event_programme_type.*:
   type: config_entity
   label: 'Programme Item Type settings'
   mapping:

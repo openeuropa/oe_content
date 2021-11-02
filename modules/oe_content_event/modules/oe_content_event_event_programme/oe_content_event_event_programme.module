@@ -12,7 +12,7 @@ declare(strict_types = 1);
  */
 function oe_content_event_event_programme_theme(): array {
   return [
-    'event_programme' => [
+    'oe_event_programme' => [
       'render element' => 'elements',
     ],
   ];
@@ -21,13 +21,13 @@ function oe_content_event_event_programme_theme(): array {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function template_preprocess_event_programme(array &$variables) {
-  oe_content_entity_default_preprocess($variables, 'event_programme');
+function template_preprocess_oe_event_programme(array &$variables) {
+  oe_content_entity_default_preprocess($variables, 'oe_event_programme');
 }
 
 /**
  * Implements hook_theme_suggestions_HOOK().
  */
-function oe_content_event_event_programme_theme_suggestions_event_programme(array $variables): array {
-  return oe_content_entity_default_theme_suggestion($variables, 'event_programme');
+function oe_content_event_event_programme_theme_suggestions_oe_event_programme(array $variables): array {
+  return oe_content_entity_default_theme_suggestion($variables, 'oe_event_programme');
 }

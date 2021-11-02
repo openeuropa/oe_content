@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.storage.node.oe_event_programme
     - node.type.oe_event
-    - oe_content_event_event_programme.event_programme_type.default
+    - oe_content_event_event_programme.oe_event_programme_type.default
   module:
     - composite_reference
     - entity_reference_revisions
@@ -23,7 +23,7 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:event_programme'
+  handler: 'default:oe_event_programme'
   handler_settings:
     target_bundles:
       default: default

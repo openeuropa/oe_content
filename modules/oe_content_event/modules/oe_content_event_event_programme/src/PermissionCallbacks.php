@@ -15,7 +15,7 @@ class PermissionCallbacks extends PermissionCallbacksBase {
    * {@inheritdoc}
    */
   protected function getEntityTypeId(): string {
-    return 'event_programme';
+    return 'oe_event_programme';
   }
 
 }
