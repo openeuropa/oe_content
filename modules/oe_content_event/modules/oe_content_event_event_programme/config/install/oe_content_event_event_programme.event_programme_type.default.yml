@@ -1,0 +1,6 @@
+langcode: en
+status: true
+dependencies: {  }
+id: default
+label: Default
+description: 'Provides the default corporate Programme Item type.'

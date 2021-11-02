@@ -1,0 +1,50 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.event_programme.default.event_programme_dates
+    - field.field.event_programme.default.oe_description
+    - oe_content_event_event_programme.event_programme_type.default
+  module:
+    - datetime_range
+    - text
+id: event_programme.default.default
+targetEntityType: event_programme
+bundle: default
+mode: default
+content:
+  event_programme_dates:
+    weight: 2
+    settings:
+      date_order: DMY
+      time_type: '24'
+      increment: 15
+    third_party_settings: {  }
+    type: daterange_datelist
+    region: content
+  oe_description:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  langcode:
+    type: language_select
+    weight: 3
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

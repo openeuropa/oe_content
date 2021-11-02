@@ -1,0 +1,13 @@
+oe_content_event_event_programme.event_programme_type.*:
+  type: config_entity
+  label: 'Programme Item Type settings'
+  mapping:
+    id:
+      type: string
+      label: 'Machine-readable name'
+    label:
+      type: label
+      label: 'Label'
+    description:
+      type: text
+      label: 'Description'

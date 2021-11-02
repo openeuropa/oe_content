@@ -1,0 +1,5 @@
+entity.event_programme_type.collection:
+  title: 'Programme Item types'
+  route_name: entity.event_programme_type.collection
+  description: 'Create and manage types of programme item entities'
+  parent: system.admin_structure

@@ -1,0 +1,44 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.event_programme.default.event_programme_dates
+    - field.field.event_programme.default.oe_description
+    - oe_content_event_event_programme.event_programme_type.default
+  module:
+    - datetime_range
+    - text
+id: event_programme.default.default
+targetEntityType: event_programme
+bundle: default
+mode: default
+content:
+  event_programme_dates:
+    weight: 2
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  oe_description:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  status: true
