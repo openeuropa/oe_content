@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
-    - field.field.node.oe_event.oe_event_media
+    - field.field.node.oe_event.oe_event_programme
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_dates
@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.oe_event.oe_event_featured_media
     - field.field.node.oe_event.oe_event_featured_media_legend
     - field.field.node.oe_event.oe_event_languages
+    - field.field.node.oe_event.oe_event_media
     - field.field.node.oe_event.oe_event_online_dates
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
@@ -163,15 +164,23 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_event_media:
-    weight: 14
+  oe_event_programme:
+    weight: 39
     settings:
+      form_mode: default
+      revision: true
+      override_labels: true
+      label_singular: Programme
+      label_plural: Programmes
+      collapsible: true
+      allow_new: true
       match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      removed_reference: keep
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
     region: content
   langcode:
     type: language_select
@@ -301,6 +310,16 @@ content:
       placeholder: ''
       match_limit: 10
     third_party_settings: {  }
+  oe_event_media:
+    weight: 14
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   oe_event_online_dates:
     weight: 24
     settings:
