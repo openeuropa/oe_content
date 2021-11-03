@@ -1,0 +1,15 @@
+name: OpenEuropa Sub Entity Author Test
+description: Test module for the OpenEuropa Author Sub Entities.
+package: Testing
+
+type: module
+core_version_requirement: ^8.9 || ^9.1
+hidden: true
+
+dependencies:
+  - oe_content:oe_content_sub_entity_author
+  - oe_content:oe_content_page
+
+config_devel:
+  install:
+    - field.field.node.oe_page.oe_authors
