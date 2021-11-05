@@ -66,6 +66,8 @@ class EventContentContext extends RawDrupalContext {
       'Teaser' => 'oe_teaser',
       'Venue' => 'oe_event_venue',
       'Contact' => 'oe_event_contact',
+      'Alternative title' => 'oe_content_short_title',
+      'Navigation title' => 'oe_content_navigation_title',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
