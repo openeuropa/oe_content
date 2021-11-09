@@ -63,7 +63,7 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  *     "add-form" = "/admin/content/oe_event_programme/add/{oe_event_programme_type}",
  *     "edit-form" = "/admin/content/oe_event_programme/{oe_event_programme}/edit",
  *     "delete-form" = "/admin/content/oe_event_programme/{oe_event_programme}/delete",
- *     "collection" = "/admin/content/oe_vent_programme",
+ *     "collection" = "/admin/content/oe_event_programme",
  *   },
  *  type = {"entity"}
  * )
