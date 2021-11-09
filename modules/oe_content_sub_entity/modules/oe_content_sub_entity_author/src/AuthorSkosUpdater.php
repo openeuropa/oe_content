@@ -75,11 +75,17 @@ class AuthorSkosUpdater {
         continue;
       }
 
+      // Prevent "double migration".
+      if (!$revision->get('oe_authors')->isEmpty()) {
+        continue;
+      }
+
       // Get the value from the revision and add it to the sub entity field.
       $author_value = $revision->get('oe_author')->getValue();
       $author->set('oe_skos_reference', $author_value);
       if (!$author->isNew()) {
         $author->setNewRevision(TRUE);
+        $author->isDefaultRevision($revision->isDefaultRevision());
       }
       $author->save();
 
