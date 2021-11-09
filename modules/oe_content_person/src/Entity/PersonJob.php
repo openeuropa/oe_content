@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_person\Entity;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
 
 /**
@@ -49,33 +48,4 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class PersonJob extends SubEntityBase implements PersonJobInterface {
-
-  use StringTranslationTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public function label() {
-    if ($this->bundle() === 'oe_default') {
-      // Define label for Default Person job.
-      $label = $this->get('oe_role_name')->value;
-      if (!$this->get('oe_role_reference')->isEmpty()) {
-        /** @var \Drupal\Core\Entity\ContentEntityBase $role_entity */
-        $role_entity = $this->get('oe_role_reference')->entity;
-        $label = $role_entity->label();
-        if ($role_entity->hasTranslation($this->language()->getId())) {
-          $label = $role_entity->getTranslation($this->language()->getId())->label();
-        }
-        if ($this->get('oe_acting')->value) {
-          $label = $this->t('(Acting) @role', ['@role' => $label]);
-        }
-      }
-      if (!empty($label)) {
-        return $label;
-      }
-    }
-    return parent::label();
-  }
-
-}
+class PersonJob extends SubEntityBase implements PersonJobInterface {}

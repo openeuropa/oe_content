@@ -1,0 +1,5 @@
+entity.oe_author_type.add_form:
+  route_name: entity.oe_author_type.add_form
+  title: 'Add Author type'
+  appears_on:
+    - entity.oe_author_type.collection

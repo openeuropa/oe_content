@@ -23,6 +23,7 @@ class DocumentReferenceEntityTest extends EntityKernelTestBase {
    */
   public static $modules = [
     'node',
+    'oe_content_sub_entity',
     'oe_content_sub_entity_document_reference',
   ];
 

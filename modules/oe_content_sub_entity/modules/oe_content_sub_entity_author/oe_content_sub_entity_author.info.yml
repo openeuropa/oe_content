@@ -1,0 +1,35 @@
+name: OpenEuropa Content Sub Entity Author
+description: This module provides the Author content entity and its bundles.
+package: OpenEuropa
+type: module
+core_version_requirement: ^8.9 || ^9.1
+
+dependencies:
+  - oe_content:oe_content_sub_entity
+  - entity_reference_revisions:entity_reference_revisions
+  - oe_content:oe_content_person
+  - oe_content:oe_content_organisation
+  - composite_reference:composite_reference
+  - drupal:link
+
+config_devel:
+  install:
+    - core.entity_form_display.oe_author.oe_corporate_body.default
+    - core.entity_form_display.oe_author.oe_link.default
+    - core.entity_form_display.oe_author.oe_organisation.default
+    - core.entity_form_display.oe_author.oe_person.default
+    - core.entity_view_display.oe_author.oe_link.default
+    - core.entity_view_display.oe_author.oe_organisation.default
+    - core.entity_view_display.oe_author.oe_person.default
+    - field.field.oe_author.oe_corporate_body.oe_skos_reference
+    - field.field.oe_author.oe_link.oe_link
+    - field.field.oe_author.oe_organisation.oe_node_reference
+    - field.field.oe_author.oe_person.oe_node_reference
+    - field.storage.node.oe_authors
+    - field.storage.oe_author.oe_link
+    - field.storage.oe_author.oe_node_reference
+    - field.storage.oe_author.oe_skos_reference
+    - oe_content_sub_entity_author.oe_author_type.oe_corporate_body
+    - oe_content_sub_entity_author.oe_author_type.oe_link
+    - oe_content_sub_entity_author.oe_author_type.oe_organisation
+    - oe_content_sub_entity_author.oe_author_type.oe_person

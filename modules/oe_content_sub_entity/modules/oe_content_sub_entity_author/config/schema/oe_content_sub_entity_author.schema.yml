@@ -1,0 +1,27 @@
+oe_content_sub_entity_author.oe_author_type.*:
+  type: config_entity
+  label: 'Author type settings'
+  mapping:
+    id:
+      type: string
+      label: 'Machine-readable name'
+    label:
+      type: label
+      label: 'Label'
+    description:
+      type: text
+      label: 'Description'
+
+field.formatter.settings.oe_content_authors_reference_formatter:
+  type: mapping
+  label: 'Authors reference field formatter settings'
+  mapping:
+    label_only:
+      type: boolean
+      label: 'Display as label'
+    rel:
+      type: string
+      label: 'Add rel "nofollow" to links'
+    target:
+      type: string
+      label: 'Open link in new window'
