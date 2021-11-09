@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_author.oe_link.oe_link
+    - oe_content_sub_entity_author.oe_author_type.oe_link
+  module:
+    - link
+id: oe_author.oe_link.default
+targetEntityType: oe_author
+bundle: oe_link
+mode: default
+content:
+  oe_link:
+    weight: 0
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+hidden:
+  status: true

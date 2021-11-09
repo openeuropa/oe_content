@@ -1,11 +1,31 @@
 # Changelog
 
+## [2.6.0](https://github.com/openeuropa/oe_content/tree/2.6.0) (2021-10-25)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/2.5.0...2.6.0)
+
+**Merged pull requests:**
+
+- EWPP-1408: Epic Author v2 storage. [\#480](https://github.com/openeuropa/oe_content/pull/480) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1545: Fix translatability of author bundles. [\#479](https://github.com/openeuropa/oe_content/pull/479) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1408: Update epic branch for  EWPP-1408 author v2. [\#478](https://github.com/openeuropa/oe_content/pull/478) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1616: Adds common Subject field to Organisation CT. [\#477](https://github.com/openeuropa/oe_content/pull/477) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1408: Update epic Author v2. [\#476](https://github.com/openeuropa/oe_content/pull/476) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1475: Move behat:ensure-batching task runner to dedicated repo. [\#470](https://github.com/openeuropa/oe_content/pull/470) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1408: Update epic branch. [\#469](https://github.com/openeuropa/oe_content/pull/469) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1468: Add linkable labels formatter for "Authors" reference field. [\#466](https://github.com/openeuropa/oe_content/pull/466) ([sergepavle](https://github.com/sergepavle))
+- \[EWPP-1408\] EWPP-1434: Add extra "Author" sub-entity bundles in a separate module. [\#463](https://github.com/openeuropa/oe_content/pull/463) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1432: Update field\_group module to 3.2. [\#460](https://github.com/openeuropa/oe_content/pull/460) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1414: Apply default content owner value to authors field. [\#459](https://github.com/openeuropa/oe_content/pull/459) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1410: Create author sub-entity type and related reference storage field. [\#458](https://github.com/openeuropa/oe_content/pull/458) ([sergepavle](https://github.com/sergepavle))
+
 ## [2.5.0](https://github.com/openeuropa/oe_content/tree/2.5.0) (2021-09-27)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/2.4.0...2.5.0)
 
 **Merged pull requests:**
 
+- Release-2.5.0: Update changelog. [\#473](https://github.com/openeuropa/oe_content/pull/473) ([nagyad](https://github.com/nagyad))
 - Epic ewpp 1360 news v3 [\#472](https://github.com/openeuropa/oe_content/pull/472) ([22Alexandra](https://github.com/22Alexandra))
 - Update epic news [\#471](https://github.com/openeuropa/oe_content/pull/471) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-1488: Adds access control handler for corporate entity types and sub entity types. [\#467](https://github.com/openeuropa/oe_content/pull/467) ([22Alexandra](https://github.com/22Alexandra))
