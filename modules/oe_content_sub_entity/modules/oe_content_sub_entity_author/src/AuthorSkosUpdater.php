@@ -6,7 +6,6 @@ namespace Drupal\oe_content_sub_entity_author;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\node\NodeInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Updates a given node's 'oe_author' skos field values to sub-entities.
@@ -30,15 +29,6 @@ class AuthorSkosUpdater {
    */
   public function __construct(EntityTypeManagerInterface $entityTypeManager) {
     $this->entityTypeManager = $entityTypeManager;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('entity_type.manager')
-    );
   }
 
   /**
