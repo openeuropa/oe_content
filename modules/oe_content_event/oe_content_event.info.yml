@@ -19,6 +19,7 @@ dependencies:
   - field_group:field_group
   - inline_entity_form:inline_entity_form
   - entity_reference_revisions:entity_reference_revisions
+  - oe_content_event:oe_content_event_event_programme
 
 config_devel:
   install:
@@ -40,6 +41,7 @@ config_devel:
     - field.field.node.oe_event.oe_event_organiser_is_internal
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_name
+    - field.field.node.oe_event.oe_event_programme
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_dates
     - field.field.node.oe_event.oe_event_registration_url
@@ -68,6 +70,7 @@ config_devel:
     - field.storage.node.oe_event_organiser_is_internal
     - field.storage.node.oe_event_organiser_internal
     - field.storage.node.oe_event_organiser_name
+    - field.storage.node.oe_event_programme
     - field.storage.node.oe_event_registration_capacity
     - field.storage.node.oe_event_registration_dates
     - field.storage.node.oe_event_registration_url

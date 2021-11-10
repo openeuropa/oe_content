@@ -139,6 +139,14 @@ Feature: Event content creation
     And I should see the text "Navigation title"
     And I should see the text "Teaser"
 
+    # The event programme group is open by default.
+    And I should see the text "Programme"
+    When I press "Add new Programme"
+    And I wait for AJAX to finish
+    And I should see the text "Name" in the "Event programme" region
+    And I should see the text "Description" in the "Event programme" region
+    And I should see the text "Start/end date" in the "Event programme" region
+
     # Metadata fields are visible
     And I should see the text "Content owner"
     And I should see the text "Responsible department"
@@ -265,6 +273,14 @@ Feature: Event content creation
     And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
     And I fill in "Link text" with "Contact link" in the "Contact link" region
 
+    # The event programme field group.
+    When I press "Add new Programme"
+    And I wait for AJAX to finish
+    And I fill in "Name" with "Event programme" in the "Event programme" region
+    And I fill in "Description" with "Event programme description" in the "Event programme" region
+    And I set "21-10-2021 02:15" as the "Start date" of "Start/end date"
+    And I set "21-10-2021 14:15" as the "End date" of "Start/end date"
+
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
     And I fill in "Teaser" with "Event teaser"
@@ -322,6 +338,11 @@ Feature: Event content creation
     And I should see the text "Event contact caption"
     And I should see the link "http://example.com/press_contacts"
     And I should see the link "Contact link"
+    # Event programme values.
+    And I should see the text "Event programme"
+    And I should see the text "Event programme description"
+    And I should see "Thu, 10/21/2021 - 02:15"
+    And I should see "Thu, 10/21/2021 - 14:15"
 
   @javascript @av_portal
   @batch2

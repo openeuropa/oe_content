@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_event_programme.oe_event_programme_dates
+    - oe_content_event_event_programme.oe_event_programme_type.oe_default
+  module:
+    - datetime_range
+id: oe_event_programme.oe_default.oe_event_programme_dates
+field_name: oe_event_programme_dates
+entity_type: oe_event_programme
+bundle: oe_default
+label: 'Start/end date'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

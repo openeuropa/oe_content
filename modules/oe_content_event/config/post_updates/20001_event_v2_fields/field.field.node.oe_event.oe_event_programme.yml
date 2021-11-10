@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_event_programme
+    - node.type.oe_event
+    - oe_content_event_event_programme.oe_event_programme_type.oe_default
+  module:
+    - composite_reference
+    - entity_reference_revisions
+third_party_settings:
+  composite_reference:
+    composite: true
+    composite_revisions: false
+id: node.oe_event.oe_event_programme
+field_name: oe_event_programme
+entity_type: node
+bundle: oe_event
+label: Programme
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:oe_event_programme'
+  handler_settings:
+    target_bundles:
+      oe_default: oe_default
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions

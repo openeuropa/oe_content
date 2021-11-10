@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_event_programme.oe_description
+    - oe_content_event_event_programme.oe_event_programme_type.oe_default
+  module:
+    - text
+id: oe_event_programme.oe_default.oe_description
+field_name: oe_description
+entity_type: oe_event_programme
+bundle: oe_default
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
