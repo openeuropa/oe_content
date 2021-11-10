@@ -75,6 +75,7 @@ class EventContentContext extends RawDrupalContext {
       switch ($key) {
         case 'Venue':
         case 'Contact':
+        case 'Programme':
           $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;

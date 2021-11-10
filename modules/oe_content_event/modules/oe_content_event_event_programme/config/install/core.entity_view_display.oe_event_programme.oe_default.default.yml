@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.oe_event_programme.default.event_programme_dates
-    - field.field.oe_event_programme.default.oe_description
-    - oe_content_event_event_programme.oe_event_programme_type.default
+    - field.field.oe_event_programme.oe_default.oe_event_programme_dates
+    - field.field.oe_event_programme.oe_default.oe_description
+    - oe_content_event_event_programme.oe_event_programme_type.oe_default
   module:
     - datetime_range
     - text
-id: oe_event_programme.default.default
+id: oe_event_programme.oe_default.default
 targetEntityType: oe_event_programme
-bundle: default
+bundle: oe_default
 mode: default
 content:
-  event_programme_dates:
+  oe_event_programme_dates:
     weight: 2
     label: above
     settings:

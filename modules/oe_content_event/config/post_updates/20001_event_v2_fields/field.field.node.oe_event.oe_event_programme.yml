@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.storage.node.oe_event_programme
     - node.type.oe_event
-    - oe_content_event_event_programme.oe_event_programme_type.default
+    - oe_content_event_event_programme.oe_event_programme_type.oe_default
   module:
     - composite_reference
     - entity_reference_revisions
@@ -26,7 +26,7 @@ settings:
   handler: 'default:oe_event_programme'
   handler_settings:
     target_bundles:
-      default: default
+      oe_default: oe_default
     sort:
       field: _none
       direction: ASC

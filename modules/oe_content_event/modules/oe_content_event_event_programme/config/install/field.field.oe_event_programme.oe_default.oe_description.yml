@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.storage.oe_event_programme.oe_description
-    - oe_content_event_event_programme.oe_event_programme_type.default
+    - oe_content_event_event_programme.oe_event_programme_type.oe_default
   module:
     - text
-id: oe_event_programme.default.oe_description
+id: oe_event_programme.oe_default.oe_description
 field_name: oe_description
 entity_type: oe_event_programme
-bundle: default
+bundle: oe_default
 label: Description
 description: ''
 required: false

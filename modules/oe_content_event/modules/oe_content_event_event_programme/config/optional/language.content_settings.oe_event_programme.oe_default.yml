@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - oe_content_event_event_programme.oe_event_programme_type.default
+    - oe_content_event_event_programme.oe_event_programme_type.oe_default
   module:
     - content_translation
 third_party_settings:
@@ -10,8 +10,8 @@ third_party_settings:
     enabled: false
     bundle_settings:
       untranslatable_fields_hide: '0'
-id: oe_event_programme.default
+id: oe_event_programme.oe_default
 target_entity_type_id: oe_event_programme
-target_bundle: default
+target_bundle: oe_default
 default_langcode: site_default
 language_alterable: true
