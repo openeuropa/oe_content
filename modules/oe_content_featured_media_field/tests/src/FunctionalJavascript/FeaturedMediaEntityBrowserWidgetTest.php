@@ -385,8 +385,8 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     // Add image item in IEF.
     $this->getSession()->getPage()->pressButton('Add new node');
     $this->assertSession()->assertWaitOnAjaxRequest();
-    $this->getSession()->getPage()->fillField('article_field[form][0][title][0][value]', 'Article node with IEF');
 
+    // Assert the featured media field widget elements.
     $featured_media_field_wrapper = $this->xpath('//div[@data-drupal-selector=\'edit-article-field-wrapper\']/div/fieldset/div/fieldset/div/div/div[@data-drupal-selector=\'edit-article-field-form-0-featured-media-field-wrapper\']');
     $this->assertCount(1, $featured_media_field_wrapper);
     $featured_media_field = reset($featured_media_field_wrapper);
@@ -394,11 +394,6 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->assertTrue($featured_media_field->hasField('Caption'));
     $this->assertSession()->pageTextContains('The caption that goes with the referenced media.');
     $this->assertTrue($featured_media_field->hasButton('Add another item'));
-
-    // Assert validation of caption without Media.
-    $this->getSession()->getPage()->fillField('article_field[form][0][featured_media_field][0][caption]', 'Invalid caption');
-    $this->getSession()->getPage()->pressButton('Save');
-    $this->assertSession()->pageTextContains('Please either remove the caption or select a Media entity');
 
     // Select the first media image from the entity browser.
     $featured_media_field->pressButton('Select images');
@@ -413,9 +408,26 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->assertFalse($featured_media_field->hasButton('Select images'));
     $this->assertMediaSelectionHasRemoveButton('Image 1', 'Article Featured media field');
 
+    // Submit the IEF with missing required fields and check that the image
+    // field still has the selected value after the validation.
+    $this->getSession()->getPage()->pressButton('Create node');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->assertSession()->pageTextContains('Image 1');
+    $this->assertFalse($featured_media_field->hasButton('Select images'));
+    $this->assertMediaSelectionHasRemoveButton('Image 1', 'Article Featured media field');
+
+    // Fill in the title field.
+    $this->getSession()->getPage()->fillField('article_field[form][0][title][0][value]', 'Article node with IEF');
+
     // Add the second media image item.
     $featured_media_field->pressButton('Add another item');
     $this->assertSession()->assertWaitOnAjaxRequest();
+
+    // Assert validation of caption without Media.
+    $this->getSession()->getPage()->fillField('article_field[form][0][featured_media_field][1][caption]', 'Invalid caption');
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains('Please either remove the caption or select a Media entity');
+
     // Assert that the item was added to the featured media field.
     $this->assertSession()->pageTextContains('Featured media field (value 2)');
     $featured_media_field->pressButton('Select images');
