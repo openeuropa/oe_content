@@ -1,0 +1,5 @@
+entity.oe_event_speaker_type.collection:
+  title: 'Event speaker types'
+  route_name: entity.oe_event_speaker_type.collection
+  description: 'Create and manage types of event speaker entities'
+  parent: system.admin_structure
