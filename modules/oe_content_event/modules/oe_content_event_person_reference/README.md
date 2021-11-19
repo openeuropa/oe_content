@@ -2,7 +2,9 @@
 
 The "Event speaker" entity type allows editors to reference Person with individual event role.
 
-At the moment, this module provides only Default bundle.
+This module provides the following bundles:
+
+- Default event speaker bundle, useful to refer to specific Person (oe_person content type) and roles which this person plays in the event.
 
 When used on a [entity reference revision](https://www.drupal.org/project/entity_reference_revisions) field, 
 in combination with the [inline entity form](https://www.drupal.org/project/inline_entity_form) widget, 

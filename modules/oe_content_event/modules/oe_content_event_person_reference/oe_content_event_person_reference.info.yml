@@ -10,12 +10,12 @@ dependencies:
 
 config_devel:
   install:
-    - core.entity_form_display.oe_event_programme.oe_default.default
-    - core.entity_view_display.oe_event_programme.oe_default.default
-    - field.field.oe_event_programme.oe_default.oe_event_programme_dates
-    - field.field.oe_event_programme.oe_default.oe_description
-    - field.storage.oe_event_programme.oe_event_programme_dates
-    - field.storage.oe_event_programme.oe_description
-    - oe_content_event_event_programme.oe_event_programme_type.oe_default
+    - core.entity_form_display.oe_event_speaker.oe_default.default
+    - field.field.oe_event_speaker.oe_default.oe_event_role
+    - field.field.oe_event_speaker.oe_default.oe_person
+    - field.storage.node.oe_event_speakers
+    - field.storage.oe_event_speaker.oe_event_role
+    - field.storage.oe_event_speaker.oe_person
+    - oe_content_event_person_reference.oe_event_speaker_type.oe_default
   optional:
-    - language.content_settings.oe_event_programme.oe_default
+    - language.content_settings.oe_event_speaker.oe_default
