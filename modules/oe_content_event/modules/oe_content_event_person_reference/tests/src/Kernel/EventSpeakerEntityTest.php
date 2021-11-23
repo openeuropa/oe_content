@@ -69,7 +69,7 @@ class EventSpeakerEntityTest extends SparqlKernelTestBase {
   }
 
   /**
-   * Tests label of extra author entities.
+   * Tests label of event speaker entities.
    */
   public function testLabel(): void {
     foreach ($this->getEventSpeakerEntitiesTestData() as $bundle => $data_case) {

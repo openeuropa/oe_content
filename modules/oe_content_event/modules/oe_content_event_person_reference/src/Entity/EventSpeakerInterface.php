@@ -7,6 +7,6 @@ namespace Drupal\oe_content_event_person_reference\Entity;
 use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 
 /**
- * Represents a Event speaker entity.
+ * Represents an Event speaker entity.
  */
 interface EventSpeakerInterface extends SubEntityInterface {}
