@@ -55,6 +55,7 @@ class EventContentContext extends RawDrupalContext {
       'Online time end' => 'oe_event_online_dates:end_value',
       'Online description' => 'oe_event_online_description',
       'Online link' => 'oe_event_online_link',
+      'Who should attend' => 'oe_event_who_should_attend',
       'Languages' => 'oe_event_languages',
       'Internal organiser' => 'oe_event_organiser_internal',
       'Media' => 'oe_event_media',
