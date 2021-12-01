@@ -3,6 +3,9 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
+    - field.field.node.oe_event.oe_event_media_more_description
+    - field.field.node.oe_event.oe_event_media_more_link
+    - field.field.node.oe_event.oe_event_online_only
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_dates
@@ -55,6 +58,35 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  oe_event_media_more_description:
+    weight: 32
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_event_media_more_link:
+    weight: 31
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  oe_event_online_only:
+    weight: 30
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   oe_content_short_title:
     type: string

@@ -71,6 +71,9 @@ class EventContentContext extends RawDrupalContext {
       'Programme' => 'oe_event_programme',
       'Alternative title' => 'oe_content_short_title',
       'Navigation title' => 'oe_content_navigation_title',
+      'Other links to further media items' => 'oe_event_media_more_description',
+      'Main link to further media items' => 'oe_event_media_more_link',
+      'Online only' => 'oe_event_online_only',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -84,6 +87,7 @@ class EventContentContext extends RawDrupalContext {
           break;
 
         case 'Organiser is internal':
+        case 'Online only':
           $scope->addFields([
             $mapping[$key] => (int) ($value === 'Yes'),
           ])->removeField($key);
