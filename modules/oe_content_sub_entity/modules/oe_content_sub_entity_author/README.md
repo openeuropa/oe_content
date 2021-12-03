@@ -25,3 +25,54 @@ Before enabling this module, make sure the following modules are present in your
   "drupal/entity_reference_revisions": "~1.3",
 }
 ```
+
+## Update 'oe_author' field to the sub-entity reference field 'oe_authors'
+
+The module ships the AuthorSkosUpdater service to migrate the values from 'oe_author' skos reference field
+to the new 'oe_authors' sub-entity reference field. This operation can be performed within an update hook
+that uses batch operation to loop over nodes of specific content types as follows:
+```php
+
+/**
+ * Update the nodes with author field.
+ */
+function hook_post_update_00001(array &$sandbox) {
+  if (!isset($sandbox['total'])) {
+    $content_types = [
+      'oe_event',
+      'oe_list_page',
+      'oe_page',
+      'oe_news',
+      'oe_policy',
+      'oe_publication',
+    ];
+    // Get all the nodes which have author.
+    $ids = \Drupal::entityTypeManager()->getStorage('node')->getQuery()
+      ->condition('type', $content_types, 'IN')
+      ->exists('oe_author')
+      ->allRevisions()
+      ->execute();
+
+    if (!$ids) {
+      return t('No nodes had to be updated with author values.');
+    }
+
+    $sandbox['ids'] = array_unique($ids);
+    $sandbox['total'] = count($sandbox['ids']);
+    $sandbox['current'] = 0;
+  }
+
+  // We process one node at the time.
+  $id = array_pop($sandbox['ids']);
+  $node = Node::load($id);
+  $updater = \Drupal::service('oe_content_sub_entity_author.skos_updater');
+  $updater->updateNode($node);
+
+  $sandbox['current']++;
+  $sandbox['#finished'] = empty($sandbox['total']) ? 1 : ($sandbox['current'] / $sandbox['total']);
+
+  if ($sandbox['#finished'] === 1) {
+    return t('A total of @updated nodes have been updated with author values.', ['@updated' => $sandbox['current']]);
+  }
+}
+```

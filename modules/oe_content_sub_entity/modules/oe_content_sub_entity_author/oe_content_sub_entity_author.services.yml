@@ -14,3 +14,6 @@ services:
     parent: oe_content_sub_entity_author.event_subscriber.extract_links_base
     tags:
       - { name: event_subscriber }
+  oe_content_sub_entity_author.skos_updater:
+    class: Drupal\oe_content_sub_entity_author\AuthorSkosUpdater
+    arguments: [ '@entity_type.manager' ]
