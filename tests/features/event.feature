@@ -54,6 +54,7 @@ Feature: Event content creation
     And I should see the text "End date"
     And I should see the text "Online only"
     And I should see the text "Status"
+    And I should see the text "Status description"
     And I should see the text "Languages"
     And I should see the text "Who should attend"
     And I should see the text "Event website"
@@ -227,6 +228,7 @@ Feature: Event content creation
     And I fill in "Link text" with "Online link" in the "Online link" region
 
     And I select "As planned" from "Status"
+    And I fill in "Status description" with "Status description message"
     And I fill in "Languages" with "Hungarian"
     And I fill in "Who should attend" with "Types of audiences that this event targets"
 
@@ -305,6 +307,7 @@ Feature: Event content creation
     And I should see "Hungarian"
     And I should see "Types of audiences that this event targets"
     And I should see "As planned"
+    And I should see "Status description message"
     And I should see the link "Website"
     And I should see the link "Twitter"
     And I should see "Facebook"

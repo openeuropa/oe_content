@@ -74,6 +74,7 @@ class EventContentContext extends RawDrupalContext {
       'Other links to further media items' => 'oe_event_media_more_description',
       'Main link to further media items' => 'oe_event_media_more_link',
       'Online only' => 'oe_event_online_only',
+      'Status description' => 'oe_event_status_description',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
