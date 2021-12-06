@@ -1,11 +1,23 @@
 # Changelog
 
+## [2.7.0](https://github.com/openeuropa/oe_content/tree/2.7.0) (2021-12-06)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/2.6.0...2.7.0)
+
+**Merged pull requests:**
+
+- EWPP-1620: Make author field optional. [\#490](https://github.com/openeuropa/oe_content/pull/490) ([nagyad](https://github.com/nagyad))
+- EWPP-1576: Adapt the behat context for news. [\#489](https://github.com/openeuropa/oe_content/pull/489) ([nagyad](https://github.com/nagyad))
+- \[EWPP-1681\] EWPP-1435: Provide a service to migrate author v1 to v2. [\#486](https://github.com/openeuropa/oe_content/pull/486) ([nagyad](https://github.com/nagyad))
+- EWPP-634: Fix featured media widget used in IEF. [\#482](https://github.com/openeuropa/oe_content/pull/482) ([nagyad](https://github.com/nagyad))
+
 ## [2.6.0](https://github.com/openeuropa/oe_content/tree/2.6.0) (2021-10-25)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/2.5.0...2.6.0)
 
 **Merged pull requests:**
 
+- Prepare release 2.6.0. [\#481](https://github.com/openeuropa/oe_content/pull/481) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1408: Epic Author v2 storage. [\#480](https://github.com/openeuropa/oe_content/pull/480) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1545: Fix translatability of author bundles. [\#479](https://github.com/openeuropa/oe_content/pull/479) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1408: Update epic branch for  EWPP-1408 author v2. [\#478](https://github.com/openeuropa/oe_content/pull/478) ([sergepavle](https://github.com/sergepavle))
