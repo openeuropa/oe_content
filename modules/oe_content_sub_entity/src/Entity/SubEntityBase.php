@@ -145,8 +145,18 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
    * {@inheritdoc}
    */
   public function save(): int {
+    // Reset static cache author's entity label.
     $this->label = NULL;
     return (int) parent::save();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validate() {
+    // Reset static cache author's entity label.
+    $this->label = NULL;
+    return parent::validate();
   }
 
   /**
