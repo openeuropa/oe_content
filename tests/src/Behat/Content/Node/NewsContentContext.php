@@ -8,6 +8,7 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\oe_content_sub_entity_author\Entity\Author;
 use Drupal\Tests\oe_content\Behat\Hook\Scope\BeforeParseEntityFieldsScope;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
@@ -81,10 +82,19 @@ class NewsContentContext extends RawDrupalContext {
       }
     }
 
+    $author = Author::create([
+      'type' => 'oe_corporate_body',
+    ]);
+    $author->set('oe_skos_reference', [
+      'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+    ]);
+    $author->save();
+
     // Set default fields.
     $scope->addFields([
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
-      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'oe_authors:target_id' => $author->id(),
+      'oe_authors:target_revision_id' => $author->getRevisionId(),
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/AGRI',
     ]);
   }
