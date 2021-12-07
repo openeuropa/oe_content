@@ -120,3 +120,12 @@ function oe_content_event_post_update_20002(): void {
     $updated_form_display->save();
   }
 }
+
+/**
+ * Make online link title required.
+ */
+function oe_content_event_post_update_20003(): void {
+  $field_config = FieldConfig::load('node.oe_event.oe_event_online_link');
+  $field_config->setSetting('title', 2);
+  $field_config->save();
+}
