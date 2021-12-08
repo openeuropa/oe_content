@@ -62,6 +62,15 @@ class EventNodeWrapperTest extends EventKernelTestBase {
   }
 
   /**
+   * Test online status.
+   */
+  public function testOnlineStatus(): void {
+    foreach ($this->onlineStatusAssertions() as $assertion) {
+      $this->assertOnlineStatus($assertion['case'], $assertion['values'], $assertion['now'], $assertion['assertions']);
+    }
+  }
+
+  /**
    * Test event ending.
    */
   public function testEventIsOver(): void {
@@ -79,6 +88,26 @@ class EventNodeWrapperTest extends EventKernelTestBase {
     // Event is over.
     $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-30 12:00:00', new \DateTimeZone('UTC'));
     $this->assertEquals(TRUE, $wrapper->isOver($now));
+  }
+
+  /**
+   * Test online is over.
+   */
+  public function testOnlineIsOver(): void {
+    $wrapper = $this->createWrapper([
+      'oe_event_online_dates' => [
+        'value' => '2016-05-10T12:00:00',
+        'end_value' => '2016-05-15T12:00:00',
+      ],
+    ]);
+
+    // Online is not over.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-09 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(FALSE, $wrapper->isOnlinePeriodOver($now));
+
+    // Online is over.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-30 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(TRUE, $wrapper->isOnlinePeriodOver($now));
   }
 
   /**
@@ -175,6 +204,33 @@ class EventNodeWrapperTest extends EventKernelTestBase {
   }
 
   /**
+   * Assert online status related methods.
+   *
+   * @param string $case
+   *   Test case description.
+   * @param array $values
+   *   Entity values to initialize the wrapper with.
+   * @param string $now
+   *   Current time in \DrupalDateTime::FORMAT.
+   * @param array $assertions
+   *   Assertions to be ran over it.
+   */
+  protected function assertOnlineStatus(string $case, array $values, string $now, array $assertions): void {
+    // Create wrapper.
+    $wrapper = $this->createWrapper($values);
+
+    // Run assertions.
+    foreach ($assertions as $method => $expected) {
+      $datetime = \DateTime::createFromFormat(DrupalDateTime::FORMAT, $now, new \DateTimeZone('UTC'));
+      $actual = $wrapper->{$method}($datetime);
+      if ($actual instanceof DrupalDateTime) {
+        $actual = $actual->format(DrupalDateTime::FORMAT);
+      }
+      $this->assertEquals($expected, $actual, "Test case '{$case}' failed: method {$method} did not return what was expected.");
+    }
+  }
+
+  /**
    * Create a wrapper object given its node entity values.
    *
    * @param array $values
@@ -215,9 +271,29 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'isCancelled' => FALSE,
           'isRescheduled' => FALSE,
           'isPostponed' => FALSE,
+          'hasOnlineDates' => FALSE,
+          'hasOnlineLink' => FALSE,
+          'hasOnlineType' => FALSE,
           'hasRegistration' => FALSE,
           'getRegistrationStartDate' => NULL,
           'getRegistrationEndDate' => NULL,
+          'getOnlineStartDate' => NULL,
+          'getOnlineEndDate' => NULL,
+        ],
+      ],
+      [
+        'case' => 'Test hasOnlineType and hasOnlineLink methods',
+        'values' => [
+          'oe_event_online_link' => [
+            'uri' => 'http://example.com',
+          ],
+          'oe_event_online_type' => [
+            'value' => 'livestream',
+          ],
+        ],
+        'assertions' => [
+          'hasOnlineLink' => TRUE,
+          'hasOnlineType' => TRUE,
         ],
       ],
       [
@@ -284,12 +360,19 @@ class EventNodeWrapperTest extends EventKernelTestBase {
             'value' => '2016-05-10T12:00:00',
             'end_value' => '2016-05-15T12:00:00',
           ],
+          'oe_event_online_dates' => [
+            'value' => '2016-09-20T12:00:00',
+            'end_value' => '2016-09-21T12:00:00',
+          ],
         ],
         'assertions' => [
           'getStartDate' => '2016-09-20 12:00:00',
           'getEndDate' => '2016-09-21 12:00:00',
           'getRegistrationStartDate' => '2016-05-10 12:00:00',
           'getRegistrationEndDate' => '2016-05-15 12:00:00',
+          'getOnlineStartDate' => '2016-09-20 12:00:00',
+          'getOnlineEndDate' => '2016-09-21 12:00:00',
+          'hasOnlineDates' => TRUE,
         ],
       ],
     ];
@@ -391,6 +474,78 @@ class EventNodeWrapperTest extends EventKernelTestBase {
         'assertions' => [
           'isRegistrationOpen' => FALSE,
           'isRegistrationClosed' => TRUE,
+        ],
+      ],
+    ];
+  }
+
+  /**
+   * Assertion for online status.
+   *
+   * This would normally be a data provider but it would require a full test
+   * bootstrap for each test case, which will add minutes to test runs.
+   *
+   * Since we are testing a simple entity wrapper we will instead run it in
+   * the same test.
+   *
+   * @return array
+   *   List of assertion for wrapper test.
+   */
+  protected function onlineStatusAssertions() {
+    return [
+      [
+        'case' => 'Test open online status',
+        'values' => [
+          'oe_event_online_dates' => [
+            'value' => '2016-09-20T12:00:00',
+            'end_value' => '2016-09-21T12:00:00',
+          ],
+        ],
+        'now' => '2016-09-20 12:00:01',
+        'assertions' => [
+          'isOnlinePeriodActive' => TRUE,
+          'isOnlinePeriodOver' => FALSE,
+          'isOnlinePeriodYetToCome' => FALSE,
+        ],
+      ],
+      [
+        'case' => 'Test closed online status',
+        'values' => [],
+        'now' => '2016-09-20 12:00:00',
+        'assertions' => [
+          'isOnlinePeriodActive' => FALSE,
+          'isOnlinePeriodOver' => TRUE,
+          'isOnlinePeriodYetToCome' => FALSE,
+        ],
+      ],
+      [
+        'case' => 'Test online period is over if the date is out of range',
+        'values' => [
+          'oe_event_online_dates' => [
+            'value' => '2016-09-20T12:00:00',
+            'end_value' => '2016-09-21T12:00:00',
+          ],
+        ],
+        'now' => '2016-09-22 12:00:00',
+        'assertions' => [
+          'isOnlinePeriodActive' => FALSE,
+          'isOnlinePeriodOver' => TRUE,
+          'isOnlinePeriodYetToCome' => FALSE,
+        ],
+      ],
+      [
+        'case' => 'Test online period is yet to come if the date is before range',
+        'values' => [
+          'oe_event_online_dates' => [
+            'value' => '2016-09-20T12:00:00',
+            'end_value' => '2016-09-21T12:00:00',
+          ],
+        ],
+        'now' => '2016-09-19 12:00:00',
+        'assertions' => [
+          'isOnlinePeriodActive' => FALSE,
+          'isOnlinePeriodOver' => FALSE,
+          'isOnlinePeriodYetToCome' => TRUE,
         ],
       ],
     ];

@@ -146,36 +146,26 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
     return $this->hasRegistrationDates() && $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
   }
 
-  // @todo methods below are temporary solution. Should be done in EWPP-1787.
-
   /**
-   * Check whether the event has online dates.
+   * {@inheritdoc}
    */
   public function hasOnlineDates(): bool {
     return !$this->entity->get('oe_event_online_dates')->isEmpty();
   }
 
   /**
-   * Check whether the online period is yet to come.
-   *
-   * @param \DateTimeInterface $datetime
-   *   Datetime object to check the online period against.
-   *
-   * @return bool
-   *   Whether the online period is yet to come.
+   * {@inheritdoc}
    */
   public function isOnlinePeriodYetToCome(\DateTimeInterface $datetime): bool {
+    if (!$this->hasOnlineDates()) {
+      return FALSE;
+    }
+
     return $this->hasOnlineDates() && $datetime < $this->getOnlineStartDate()->getPhpDateTime();
   }
 
   /**
-   * Check whether the event online is active.
-   *
-   * @param \DateTimeInterface $datetime
-   *   Date to compare.
-   *
-   * @return bool
-   *   Whether the online period is active.
+   * {@inheritdoc}
    */
   public function isOnlinePeriodActive(\DateTimeInterface $datetime): bool {
     return $this->hasOnlineDates()
@@ -184,50 +174,39 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
   }
 
   /**
-   * Check whether the event online is over.
-   *
-   * @return bool
-   *   Whether the online period is active.
+   * {@inheritdoc}
    */
   public function isOnlinePeriodOver(\DateTimeInterface $datetime): bool {
+    if (!$this->hasOnlineDates()) {
+      return TRUE;
+    }
+
     return $this->hasOnlineDates() && $datetime >= $this->getOnlineEndDate()->getPhpDateTime();
   }
 
   /**
-   * Get event online start date.
-   *
-   * @return \Drupal\Core\Datetime\DrupalDateTime
-   *   Start date.
+   * {@inheritdoc}
    */
-  public function getOnlineStartDate(): DrupalDateTime {
+  public function getOnlineStartDate(): ?DrupalDateTime {
     return $this->entity->get('oe_event_online_dates')->start_date;
   }
 
   /**
-   * Get event online end date.
-   *
-   * @return \Drupal\Core\Datetime\DrupalDateTime
-   *   End date.
+   * {@inheritdoc}
    */
-  public function getOnlineEndDate(): DrupalDateTime {
+  public function getOnlineEndDate(): ?DrupalDateTime {
     return $this->entity->get('oe_event_online_dates')->end_date;
   }
 
   /**
-   * Check whether the event has online link.
-   *
-   * @return bool
-   *   Whether event has the online link.
+   * {@inheritdoc}
    */
   public function hasOnlineLink(): bool {
     return !$this->entity->get('oe_event_online_link')->isEmpty();
   }
 
   /**
-   * Check whether the event has online type.
-   *
-   * @return bool
-   *   Whether event has the online type.
+   * {@inheritdoc}
    */
   public function hasOnlineType(): bool {
     return !$this->entity->get('oe_event_online_type')->isEmpty();
