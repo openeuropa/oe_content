@@ -135,6 +135,14 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
   /**
    * {@inheritdoc}
    */
+  public function isOngoing(\DateTimeInterface $datetime): bool {
+    return $this->getStartDate()->getPhpDateTime() <= $datetime
+      && $datetime < $this->getEndDate()->getPhpDateTime();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isRegistrationPeriodActive(\DateTimeInterface $datetime): bool {
     return $this->hasRegistrationDates() && $datetime >= $this->getRegistrationStartDate()->getPhpDateTime() && $datetime < $this->getRegistrationEndDate()->getPhpDateTime();
   }

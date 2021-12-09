@@ -91,6 +91,28 @@ class EventNodeWrapperTest extends EventKernelTestBase {
   }
 
   /**
+   * Test ongoing event.
+   */
+  public function testEventIsOngoing(): void {
+    $wrapper = $this->createWrapper([
+      'oe_event_dates' => [
+        'value' => '2016-05-10T12:00:00',
+        'end_value' => '2016-05-15T12:00:00',
+      ],
+    ]);
+
+    // Event is ongoing.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-15 11:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(TRUE, $wrapper->isOngoing($now));
+
+    // Event is not ongoing.
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-30 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(FALSE, $wrapper->isOngoing($now));
+    $now = \DateTime::createFromFormat(DrupalDateTime::FORMAT, '2016-05-09 12:00:00', new \DateTimeZone('UTC'));
+    $this->assertEquals(FALSE, $wrapper->isOngoing($now));
+  }
+
+  /**
    * Test online is over.
    */
   public function testOnlineIsOver(): void {
