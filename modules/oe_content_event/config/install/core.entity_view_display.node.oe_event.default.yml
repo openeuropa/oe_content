@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
-    - field.field.node.oe_event.oe_event_programme
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_dates
@@ -20,6 +19,7 @@ dependencies:
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_is_internal
     - field.field.node.oe_event.oe_event_organiser_name
+    - field.field.node.oe_event.oe_event_programme
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_dates
     - field.field.node.oe_event.oe_event_registration_url
@@ -29,6 +29,7 @@ dependencies:
     - field.field.node.oe_event.oe_event_type
     - field.field.node.oe_event.oe_event_venue
     - field.field.node.oe_event.oe_event_website
+    - field.field.node.oe_event.oe_event_who_should_attend
     - field.field.node.oe_event.oe_social_media_links
     - field.field.node.oe_event.oe_subject
     - field.field.node.oe_event.oe_summary
@@ -54,15 +55,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
-  oe_event_programme:
-    weight: 29
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
     region: content
   oe_content_short_title:
     type: string
@@ -201,6 +193,15 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  oe_event_programme:
+    weight: 29
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
   oe_event_registration_capacity:
     weight: 20
     label: above
@@ -281,6 +282,14 @@ content:
     third_party_settings: {  }
     type: link
     region: content
+  oe_event_who_should_attend:
+    type: string
+    weight: 30
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_social_media_links:
     type: typed_link
     weight: 6

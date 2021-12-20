@@ -54,6 +54,7 @@ Feature: Event content creation
     And I should see the text "End date"
     And I should see the text "Status"
     And I should see the text "Languages"
+    And I should see the text "Who should attend"
     And I should see the text "Event website"
     And I should see the text "Link type"
 
@@ -221,6 +222,7 @@ Feature: Event content creation
 
     And I select "As planned" from "Status"
     And I fill in "Languages" with "Hungarian"
+    And I fill in "Who should attend" with "Types of audiences that this event targets"
 
     # Organiser field group.
     When I uncheck "Organiser is internal"
@@ -292,6 +294,7 @@ Feature: Event content creation
     And I should see "Thu, 02/21/2019 - 14:15"
     And I should see "Info days"
     And I should see "Hungarian"
+    And I should see "Types of audiences that this event targets"
     And I should see "As planned"
     And I should see the link "Website"
     And I should see the link "Twitter"
