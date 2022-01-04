@@ -7,24 +7,47 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\FieldableEntityInterface;
+
 /**
- * Change timeline "label" column type from "varchar_ascii" to "varchar".
+ * Change timeline "label" column type from "varchar_ascii" to "varchar" - old version.
  */
 function oe_content_timeline_field_update_8101(): void {
-  /** @var \Drupal\Core\Entity\EntityFieldManager $entity_field_manager */
+  // This used to be old version of update hook 8102.
+  // It did the job, but missed fields without instances.
+}
+
+/**
+ * Change timeline fields that were not already updated.
+ */
+function oe_content_timeline_field_update_8102(): void {
+  /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager */
   $entity_field_manager = \Drupal::service('entity_field.manager');
   /** @var \Drupal\Core\KeyValueStore\DatabaseStorage $key_value */
   $key_value = \Drupal::keyValue('entity.storage_schema.sql');
   $db = \Drupal::database();
 
-  $timeline_fields = $entity_field_manager->getFieldMapByFieldType('timeline_field');
-  foreach ($timeline_fields as $entity_type => $fields) {
-    foreach (array_keys($fields) as $field_name) {
+  // Iterate through all fields with type 'timeline_field'.
+  // Previously this was done with
+  //   $timeline_fields = $entity_field_manager->getFieldMapByFieldType('timeline_field');
+  // Unfortunately, this misses field storages with no instances.
+  foreach (\Drupal::entityTypeManager()->getDefinitions() as $entity_type => $entity_type_definition) {
+    if (!$entity_type_definition->entityClassImplements(FieldableEntityInterface::class)) {
+      continue;
+    }
+    foreach ($entity_field_manager->getFieldStorageDefinitions($entity_type) as $field_name => $field_storage_definition) {
+      if ($field_storage_definition->getType() !== 'timeline_field') {
+        continue;
+      }
       $key_name = $entity_type . '.field_schema_data.' . $field_name;
       $storage_schema = $key_value->get($key_name);
       $schema_field = $field_name . '_label';
       // Update all tables where the field is present.
       foreach ($storage_schema as $table_name => $table_schema) {
+        if ($table_schema['fields'][$schema_field]['type'] === 'varchar') {
+          // The field was already updated in previous update.
+          continue;
+        }
         $table_schema['fields'][$schema_field]['type'] = 'varchar';
         $storage_schema[$table_name] = $table_schema;
         $db->schema()->changeField($table_name, $schema_field, $schema_field, $table_schema['fields'][$schema_field]);
