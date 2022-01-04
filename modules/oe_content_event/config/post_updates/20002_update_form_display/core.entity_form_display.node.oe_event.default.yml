@@ -3,6 +3,9 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
+    - field.field.node.oe_event.oe_event_media_more_description
+    - field.field.node.oe_event.oe_event_media_more_link
+    - field.field.node.oe_event.oe_event_online_only
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_dates
@@ -37,6 +40,7 @@ dependencies:
     - node.type.oe_event
   module:
     - datetime_range
+    - entity_reference_revisions
     - field_group
     - inline_entity_form
     - link
@@ -54,7 +58,7 @@ third_party_settings:
         - oe_event_online_description
         - oe_event_online_link
       parent_name: ''
-      weight: 9
+      weight: 10
       format_type: details
       format_settings:
         id: ''
@@ -100,6 +104,8 @@ third_party_settings:
       children:
         - oe_event_report_summary
         - oe_event_report_text
+        - oe_event_media_more_link
+        - oe_event_media_more_description
       parent_name: ''
       weight: 17
       format_type: details
@@ -134,7 +140,7 @@ third_party_settings:
         - oe_content_navigation_title
         - oe_teaser
       parent_name: ''
-      weight: 19
+      weight: 20
       format_type: tab
       format_settings:
         id: ''
@@ -161,19 +167,42 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 26
+    weight: 27
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_event_media_more_description:
+    weight: 32
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  oe_event_media_more_link:
+    weight: 31
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  oe_event_online_only:
+    weight: 8
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   langcode:
     type: language_select
-    weight: 20
+    weight: 21
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   oe_author:
-    weight: 22
+    weight: 23
     settings:
       match_operator: CONTAINS
       size: 60
@@ -184,7 +213,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 23
+    weight: 24
     region: content
     settings:
       match_operator: CONTAINS
@@ -194,7 +223,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 24
+    weight: 25
     region: content
     settings:
       placeholder_url: ''
@@ -285,7 +314,7 @@ content:
     region: content
   oe_event_languages:
     type: skos_concept_entity_reference_autocomplete
-    weight: 10
+    weight: 11
     region: content
     settings:
       match_operator: CONTAINS
@@ -360,7 +389,7 @@ content:
     type: string_textfield
     region: content
   oe_event_programme:
-    weight: 30
+    weight: 31
     settings:
       form_mode: default
       revision: true
@@ -432,7 +461,7 @@ content:
     type: skos_concept_entity_reference_options_select
     region: content
   oe_event_venue:
-    weight: 8
+    weight: 9
     settings:
       form_mode: default
       revision: true
@@ -511,7 +540,7 @@ content:
     region: content
   path:
     type: path
-    weight: 21
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -519,21 +548,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 27
+    weight: 28
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 29
+    weight: 30
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 28
+    weight: 29
     region: content
     third_party_settings: {  }
   title:
@@ -554,7 +583,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 25
+    weight: 26
     settings:
       match_operator: CONTAINS
       size: 60

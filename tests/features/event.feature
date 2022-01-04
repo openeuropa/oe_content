@@ -52,6 +52,7 @@ Feature: Event content creation
     And I should see the text "Subject"
     And I should see the text "Start date"
     And I should see the text "End date"
+    And I should see the text "Online only"
     And I should see the text "Status"
     And I should see the text "Languages"
     And I should see the text "Who should attend"
@@ -112,9 +113,13 @@ Feature: Event content creation
     And I should see the text "Event report"
     And I should not see the text "Report text"
     And I should not see the text "Summary for report"
+    And I should not see the text "Main link to further media items"
+    And I should not see the text "Other links to further media items"
     When I press "Event report"
     Then I should see the text "Report text"
     And I should see the text "Summary for report"
+    And I should see the text "Main link to further media items" in the "Event report" region
+    And I should see the text "Other links to further media items" in the "Event report" region
 
     # Make sure that the Event contact field group contains expected fields.
     And I should see the text "Event contact"
@@ -199,6 +204,7 @@ Feature: Event content creation
     And I fill in "Subject" with "EU financing"
     And I set "21-02-2019 02:15" as the "Start date" of "Event date"
     And I set "21-02-2019 14:15" as the "End date" of "Event date"
+    And I check the box "Online only"
     # Venue reference by Inline entity form - Complex.
     When I press "Add new venue"
     And I wait for AJAX to finish
@@ -249,6 +255,9 @@ Feature: Event content creation
     When I press "Event report"
     And I fill in "Report text" with "Report text paragraph"
     And I fill in "Summary for report" with "Report summary text"
+    And I fill in "URL" with "<front>" in the "Event report" region
+    And I fill in "Link text" with "More media items" in the "Event report" region
+    And I fill in "Other links to further media items" with "More links to media items" in the "Event report" region
 
     # Event contact field group.
     When I press "Add new contact"
@@ -309,6 +318,8 @@ Feature: Event content creation
     And I should see "Euro with miniature figurines"
     And I should see "Report summary text"
     And I should see "Report text paragraph"
+    And I should see the link "More media items"
+    And I should see "More links to media items"
     And I should see the link "http://example.com"
     And I should see "Open"
     And I should see "Sat, 02/23/2019 - 02:30"
