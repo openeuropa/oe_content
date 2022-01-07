@@ -143,6 +143,17 @@ interface EventNodeWrapperInterface {
   public function isOver(\DateTimeInterface $datetime): bool;
 
   /**
+   * Check whether the event is ongoing.
+   *
+   * @param \DateTimeInterface $datetime
+   *   Datetime object to check against.
+   *
+   * @return bool
+   *   Whereas the event is considered to be ongoing.
+   */
+  public function isOngoing(\DateTimeInterface $datetime): bool;
+
+  /**
    * Check whether the registration period is active.
    *
    * @param \DateTimeInterface $datetime

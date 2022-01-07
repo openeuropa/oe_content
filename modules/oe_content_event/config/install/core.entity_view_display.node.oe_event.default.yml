@@ -29,6 +29,7 @@ dependencies:
     - field.field.node.oe_event.oe_event_report_summary
     - field.field.node.oe_event.oe_event_report_text
     - field.field.node.oe_event.oe_event_status
+    - field.field.node.oe_event.oe_event_status_description
     - field.field.node.oe_event.oe_event_type
     - field.field.node.oe_event.oe_event_venue
     - field.field.node.oe_event.oe_event_website
@@ -284,6 +285,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  oe_event_status_description:
+    weight: 30
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: content
   oe_event_type:
     weight: 2

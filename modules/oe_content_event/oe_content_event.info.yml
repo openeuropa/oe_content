@@ -53,6 +53,7 @@ config_devel:
     - field.field.node.oe_event.oe_social_media_links
     - field.field.node.oe_event.oe_event_dates
     - field.field.node.oe_event.oe_event_status
+    - field.field.node.oe_event.oe_event_status_description
     - field.field.node.oe_event.oe_event_type
     - field.field.node.oe_event.oe_event_venue
     - field.field.node.oe_event.oe_event_website
@@ -84,6 +85,7 @@ config_devel:
     - field.storage.node.oe_event_report_text
     - field.storage.node.oe_event_dates
     - field.storage.node.oe_event_status
+    - field.storage.node.oe_event_status_description
     - field.storage.node.oe_event_type
     - field.storage.node.oe_event_venue
     - field.storage.node.oe_event_website
