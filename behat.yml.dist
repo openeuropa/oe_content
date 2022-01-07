@@ -23,6 +23,7 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\DocumentDocumentReferenceContext
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\PublicationDocumentReferenceContext
         - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
+        - Drupal\Tests\oe_content\Behat\Content\ProgrammeItem\DefaultProgrammeItemContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ConsultationContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\CallForProposalsContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
