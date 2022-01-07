@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 
 /**
  * Change timeline "label" column type to "varchar" - old version.
@@ -27,10 +28,9 @@ function oe_content_timeline_field_update_8102(): void {
   $key_value = \Drupal::keyValue('entity.storage_schema.sql');
   $db = \Drupal::database();
 
-  // Iterate through all fields with type 'timeline_field'.
-  // Previously this was done with
-  // $entity_field_manager->getFieldMapByFieldType('timeline_field');
-  // Unfortunately, this misses field storages with no instances.
+  // Iterate through all fields with type 'timeline_field'. This ensures we
+  // capture all fields types: base fields and field configs that may or may
+  // not have a field instance.
   $entity_type_definitions = \Drupal::entityTypeManager()->getDefinitions();
   foreach ($entity_type_definitions as $entity_type => $entity_type_definition) {
     if (!$entity_type_definition->entityClassImplements(FieldableEntityInterface::class)) {
@@ -43,6 +43,13 @@ function oe_content_timeline_field_update_8102(): void {
       $key_name = $entity_type . '.field_schema_data.' . $field_name;
       $storage_schema = $key_value->get($key_name);
       $schema_field = $field_name . '_label';
+      if ($field_storage_definition instanceof BaseFieldDefinition && $field_storage_definition->getCardinality() === 1) {
+        // Base fields with cardinality of 1 have two `_` between the field name
+        // and column name because they are added in the entity table. Multiple
+        // cardinality base fields get their own separate table, similar to
+        // field configs.
+        $schema_field = $field_name . '__label';
+      }
       // Update all tables where the field is present.
       foreach ($storage_schema as $table_name => $table_schema) {
         if ($table_schema['fields'][$schema_field]['type'] === 'varchar') {
