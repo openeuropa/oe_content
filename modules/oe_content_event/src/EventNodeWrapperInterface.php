@@ -164,4 +164,71 @@ interface EventNodeWrapperInterface {
    */
   public function isRegistrationPeriodOver(\DateTimeInterface $datetime): bool;
 
+  /**
+   * Check whether the event has online dates.
+   */
+  public function hasOnlineDates(): bool;
+
+  /**
+   * Check whether the online period is yet to come.
+   *
+   * @param \DateTimeInterface $datetime
+   *   Datetime object to check the online period against.
+   *
+   * @return bool
+   *   Whether the online period is yet to come.
+   */
+  public function isOnlinePeriodYetToCome(\DateTimeInterface $datetime): bool;
+
+  /**
+   * Check whether the event online is active.
+   *
+   * @param \DateTimeInterface $datetime
+   *   Date to compare.
+   *
+   * @return bool
+   *   Whether the online period is active.
+   */
+  public function isOnlinePeriodActive(\DateTimeInterface $datetime): bool;
+
+  /**
+   * Check whether the event online is over.
+   *
+   * @return bool
+   *   Whether the online period is active.
+   */
+  public function isOnlinePeriodOver(\DateTimeInterface $datetime): bool;
+
+  /**
+   * Get event online start date.
+   *
+   * @return \Drupal\Core\Datetime\DrupalDateTime|null
+   *   Start date or NULL if not set.
+   */
+  public function getOnlineStartDate(): ?DrupalDateTime;
+
+  /**
+   * Get event online end date.
+   *
+   * @return \Drupal\Core\Datetime\DrupalDateTime|null
+   *   End date or NULL if not set.
+   */
+  public function getOnlineEndDate(): ?DrupalDateTime;
+
+  /**
+   * Check whether the event has online link.
+   *
+   * @return bool
+   *   Whether event has the online link.
+   */
+  public function hasOnlineLink(): bool;
+
+  /**
+   * Check whether the event has online type.
+   *
+   * @return bool
+   *   Whether event has the online type.
+   */
+  public function hasOnlineType(): bool;
+
 }

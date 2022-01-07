@@ -146,4 +146,62 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
     return $this->hasRegistrationDates() && $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function hasOnlineDates(): bool {
+    return !$this->entity->get('oe_event_online_dates')->isEmpty();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isOnlinePeriodYetToCome(\DateTimeInterface $datetime): bool {
+    return $this->hasOnlineDates() && $datetime < $this->getOnlineStartDate()->getPhpDateTime();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isOnlinePeriodActive(\DateTimeInterface $datetime): bool {
+    return $this->hasOnlineDates()
+      && $this->getOnlineStartDate()->getPhpDateTime() <= $datetime
+      && $datetime < $this->getOnlineEndDate()->getPhpDateTime();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isOnlinePeriodOver(\DateTimeInterface $datetime): bool {
+    return $this->hasOnlineDates() && $datetime >= $this->getOnlineEndDate()->getPhpDateTime();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOnlineStartDate(): ?DrupalDateTime {
+    return $this->entity->get('oe_event_online_dates')->start_date;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOnlineEndDate(): ?DrupalDateTime {
+    return $this->entity->get('oe_event_online_dates')->end_date;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function hasOnlineLink(): bool {
+    return !$this->entity->get('oe_event_online_link')->isEmpty();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function hasOnlineType(): bool {
+    return !$this->entity->get('oe_event_online_type')->isEmpty();
+  }
+
 }
