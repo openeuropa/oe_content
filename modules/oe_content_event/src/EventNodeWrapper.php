@@ -157,10 +157,6 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    * {@inheritdoc}
    */
   public function isOnlinePeriodYetToCome(\DateTimeInterface $datetime): bool {
-    if (!$this->hasOnlineDates()) {
-      return FALSE;
-    }
-
     return $this->hasOnlineDates() && $datetime < $this->getOnlineStartDate()->getPhpDateTime();
   }
 
@@ -177,10 +173,6 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    * {@inheritdoc}
    */
   public function isOnlinePeriodOver(\DateTimeInterface $datetime): bool {
-    if (!$this->hasOnlineDates()) {
-      return TRUE;
-    }
-
     return $this->hasOnlineDates() && $datetime >= $this->getOnlineEndDate()->getPhpDateTime();
   }
 

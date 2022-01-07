@@ -514,7 +514,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
         'now' => '2016-09-20 12:00:00',
         'assertions' => [
           'isOnlinePeriodActive' => FALSE,
-          'isOnlinePeriodOver' => TRUE,
+          'isOnlinePeriodOver' => FALSE,
           'isOnlinePeriodYetToCome' => FALSE,
         ],
       ],
