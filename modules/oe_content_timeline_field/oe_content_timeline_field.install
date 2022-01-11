@@ -11,10 +11,10 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 
 /**
- * Change timeline "label" column type to "varchar" - old version.
+ * Change timeline "label" column type to "varchar" - deprecated.
  */
 function oe_content_timeline_field_update_8101(): void {
-  // This used to be old version of update hook 8102.
+  // This used to be deprecated version of update hook 8102.
   // Code has been removed to ensure new sites execute the corrected code.
 }
 
