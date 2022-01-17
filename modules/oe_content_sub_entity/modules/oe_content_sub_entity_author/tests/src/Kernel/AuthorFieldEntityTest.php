@@ -256,6 +256,10 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $person_node->save();
     $author3->save();
 
+    // We need to ensure the new revision of the author is assigned to the node.
+    $node->set('oe_authors', [$author, $author2, $author3, $author4, $author5]);
+    $node->save();
+
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div');
     $this->assertEquals('John Doe II', $links[3]->a->__toString());
@@ -276,6 +280,10 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
       ],
     ]);
     $author5->save();
+
+    // We need to ensure the new revision of the author is assigned to the node.
+    $node->set('oe_authors', [$author, $author2, $author3, $author4, $author5]);
+    $node->save();
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div');
     $this->assertEquals('node add internal', $links[6]->a->__toString());
