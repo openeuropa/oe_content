@@ -117,7 +117,8 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $this->assertEquals('Audit Board of the European Communities', $links[0]->__toString());
     $this->assertEquals('Directorate-General for Budget', $links[1]->__toString());
 
-    // Change order of references.
+    // Change order of references but we should not see the change because,
+    // the author sub-entity is referenced with it's revision id.
     $author->set('oe_skos_reference', [
       'http://publications.europa.eu/resource/authority/corporate-body/BUDG',
       'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
@@ -126,8 +127,8 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div/span');
     $this->assertCount(2, $links);
-    $this->assertEquals('Directorate-General for Budget', $links[0]->__toString());
-    $this->assertEquals('Audit Board of the European Communities', $links[1]->__toString());
+    $this->assertEquals('Audit Board of the European Communities', $links[0]->__toString());
+    $this->assertEquals('Directorate-General for Budget', $links[1]->__toString());
 
     // Add additional Corporate body Author with 1 skos reference.
     $author2 = $this->entityTypeManager->getStorage('oe_author')->create([
