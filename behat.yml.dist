@@ -22,6 +22,7 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\Author\CorporateBodyAuthorContext
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\DocumentDocumentReferenceContext
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\PublicationDocumentReferenceContext
+        - Drupal\Tests\oe_content\Behat\Content\EventSpeaker\DefaultEventSpeakerContext
         - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
         - Drupal\Tests\oe_content\Behat\Content\ProgrammeItem\DefaultProgrammeItemContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ConsultationContentContext
