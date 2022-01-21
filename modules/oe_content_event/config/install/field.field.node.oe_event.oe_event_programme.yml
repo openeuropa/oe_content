@@ -11,7 +11,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: true
-    composite_revisions: false
+    composite_revisions: true
 id: node.oe_event.oe_event_programme
 field_name: oe_event_programme
 entity_type: node
