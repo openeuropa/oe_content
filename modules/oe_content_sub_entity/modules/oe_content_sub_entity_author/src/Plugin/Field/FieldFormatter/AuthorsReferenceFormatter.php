@@ -7,8 +7,8 @@ namespace Drupal\oe_content_sub_entity_author\Plugin\Field\FieldFormatter;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\entity_reference_revisions\Plugin\Field\FieldFormatter\EntityReferenceRevisionsFormatterBase;
 
 /**
  * Plugin implementation of the Author reference fields formatter.
@@ -21,7 +21,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   }
  * )
  */
-class AuthorsReferenceFormatter extends EntityReferenceFormatterBase {
+class AuthorsReferenceFormatter extends EntityReferenceRevisionsFormatterBase {
 
   /**
    * {@inheritdoc}
