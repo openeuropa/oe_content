@@ -33,7 +33,7 @@ class CorporateEntityUiTest extends BrowserTestBase {
    */
   public function testCorporateEntityUi(): void {
     foreach ($this->corporateEntityDataTestCases() as $info) {
-      list($entity_type_id, $label) = $info;
+      [$entity_type_id, $label] = $info;
       $bundle = str_replace(' ', '_', $label) . '_type_bundle';
       $user = $this->drupalCreateUser([
         'manage corporate content entity types',

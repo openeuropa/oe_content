@@ -86,9 +86,6 @@
             "drupal/field_group": {
                 "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2021-08-19/2787179-highlight-html5-validation-67.patch"
             },
-            "drupal/address": {
-                "https://www.drupal.org/project/address/issues/2723917#comment-13844025": "https://www.drupal.org/files/issues/2020-10-02/address-multiple_value-2723917-13.patch"
-            },
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2020-10-05/entity_browser-remove_button_2851580-92.patch"
             },

@@ -52,7 +52,7 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
       '#default_value' => $items[$delta]->body ?? NULL,
       '#rows' => 5,
       '#required' => FALSE,
-      '#format' => isset($items[$delta]->format) ? $items[$delta]->format : filter_fallback_format(),
+      '#format' => $items[$delta]->format ?? filter_fallback_format(),
       '#base_type' => 'textarea',
     ];
 
