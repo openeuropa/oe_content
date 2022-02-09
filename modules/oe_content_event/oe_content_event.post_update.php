@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Config\FileStorage;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 
@@ -92,4 +93,13 @@ function oe_content_event_post_update_00005(): void {
   }
 
   $form_display->save();
+}
+
+/**
+ * Create new online time fields in the event content type.
+ */
+function oe_content_event_post_update_00006(): void {
+  \Drupal::service('module_installer')->install(['smart_date']);
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/00006_online_field');
+  \Drupal::service('config.installer')->installOptionalConfig($storage);
 }

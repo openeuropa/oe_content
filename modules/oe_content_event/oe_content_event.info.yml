@@ -16,6 +16,7 @@ dependencies:
   - oe_corporate_countries:oe_corporate_countries_address
   - drupal:datetime_range
   - typed_link:typed_link
+  - smart_date:smart_date
   - field_group:field_group
   - inline_entity_form:inline_entity_form
   - entity_reference_revisions:entity_reference_revisions
@@ -35,6 +36,7 @@ config_devel:
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
     - field.field.node.oe_event.oe_event_online_dates
+    - field.field.node.oe_event.oe_event_online_time
     - field.field.node.oe_event.oe_event_online_type
     - field.field.node.oe_event.oe_event_organiser_is_internal
     - field.field.node.oe_event.oe_event_organiser_internal
@@ -62,6 +64,7 @@ config_devel:
     - field.storage.node.oe_event_online_description
     - field.storage.node.oe_event_online_link
     - field.storage.node.oe_event_online_dates
+    - field.storage.node.oe_event_online_time
     - field.storage.node.oe_event_online_type
     - field.storage.node.oe_event_organiser_is_internal
     - field.storage.node.oe_event_organiser_internal
