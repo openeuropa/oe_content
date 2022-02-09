@@ -8,6 +8,7 @@
     "require": {
         "php": ">=7.4",
         "drupal/core": "^9.2",
+        "drupal/datetime_range_timezone": "1.x-dev",
         "drupal/linkit": "^5.0-beta11 || ^6.0",
         "drupal/maxlength": "^1.0@beta || ^2.0",
         "openeuropa/oe_media": "^1.15",
@@ -91,6 +92,10 @@
             },
             "drupal/inline_entity_form": {
                 "https://www.drupal.org/project/inline_entity_form/issues/2875716": "https://www.drupal.org/files/issues/2021-04-15/ief_removed_references_2875716-103.patch"
+            },
+            "drupal/datetime_range_timezone": {
+                "https://www.drupal.org/project/datetime_range_timezone/issues/3264268": "https://git.drupalcode.org/project/datetime_range_timezone/-/merge_requests/2.diff",
+                "https://www.drupal.org/project/datetime_range_timezone/issues/3265602": "https://git.drupalcode.org/project/datetime_range_timezone/-/merge_requests/3.diff"
             }
         },
         "drupal-scaffold": {

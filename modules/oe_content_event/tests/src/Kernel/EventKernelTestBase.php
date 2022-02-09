@@ -28,6 +28,7 @@ abstract class EventKernelTestBase extends SparqlKernelTestBase {
     'field_group',
     'datetime',
     'datetime_range',
+    'datetime_range_timezone',
     'entity_reference_revisions',
     'entity_test',
     'link',

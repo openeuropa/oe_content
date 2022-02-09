@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   module:
-    - datetime_range
+    - datetime_range_timezone
     - oe_content_event_event_programme
 id: oe_event_programme.oe_event_programme_dates
 field_name: oe_event_programme_dates
 entity_type: oe_event_programme
-type: daterange
+type: daterange_timezone
 settings:
   datetime_type: datetime
-module: datetime_range
+module: datetime_range_timezone
 locked: false
 cardinality: 1
 translatable: true

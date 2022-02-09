@@ -100,6 +100,13 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
   /**
    * {@inheritdoc}
    */
+  public function getTimezone(): string {
+    return $this->entity->get('oe_event_dates')->timezone;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function hasRegistrationDates(): bool {
     return !$this->entity->get('oe_event_registration_dates')->isEmpty();
   }
@@ -116,6 +123,13 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    */
   public function getRegistrationEndDate(): ?DrupalDateTime {
     return $this->hasRegistrationDates() ? $this->entity->get('oe_event_registration_dates')->end_date : NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getRegistrationTimezone(): ?string {
+    return $this->hasRegistrationDates() ? $this->entity->get('oe_event_registration_dates')->timezone : NULL;
   }
 
   /**
@@ -196,6 +210,13 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    */
   public function getOnlineEndDate(): ?DrupalDateTime {
     return $this->entity->get('oe_event_online_dates')->end_date;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOnlineTimezone(): ?string {
+    return $this->hasOnlineDates() ? $this->entity->get('oe_event_online_dates')->timezone : NULL;
   }
 
   /**

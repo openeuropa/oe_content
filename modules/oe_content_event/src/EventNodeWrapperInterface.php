@@ -97,6 +97,14 @@ interface EventNodeWrapperInterface {
   public function getEndDate(): DrupalDateTime;
 
   /**
+   * Get event timezone.
+   *
+   * @return string
+   *   The timezone of the date field.
+   */
+  public function getTimezone(): string;
+
+  /**
    * Check whether the event has registration dates.
    *
    * @return bool
@@ -119,6 +127,14 @@ interface EventNodeWrapperInterface {
    *   Registration end date as Drupal datetime object, NULL if none set.
    */
   public function getRegistrationEndDate(): ?DrupalDateTime;
+
+  /**
+   * Get registration timezone.
+   *
+   * @return string|null
+   *   The timezone of the date field.
+   */
+  public function getRegistrationTimezone(): ?string;
 
   /**
    * Check whether the registration period is yet to come.
@@ -225,6 +241,14 @@ interface EventNodeWrapperInterface {
    *   End date or NULL if not set.
    */
   public function getOnlineEndDate(): ?DrupalDateTime;
+
+  /**
+   * Get event online timezone.
+   *
+   * @return string|null
+   *   The timezone of the date field.
+   */
+  public function getOnlineTimezone(): ?string;
 
   /**
    * Check whether the event has online link.
