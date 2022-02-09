@@ -135,6 +135,7 @@ default:
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
         Event programme: "#edit-oe-event-programme-wrapper"
+        Programme name: ".field--name-oe-event-programme .field--name-name"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
