@@ -8,6 +8,7 @@
     "require": {
         "php": ">=7.3",
         "drupal/core": "^8.9.14 || ^9.1",
+        "drupal/datetime_range_timezone": "1.x-dev",
         "drupal/linkit": "^5.0-beta11",
         "drupal/maxlength": "^1.0@beta",
         "easyrdf/easyrdf": "1.0.0 as 0.9.2",
