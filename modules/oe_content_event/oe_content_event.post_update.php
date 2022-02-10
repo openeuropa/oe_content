@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Config\FileStorage;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Make the Event venue and contact fields composite.
@@ -128,4 +129,242 @@ function oe_content_event_post_update_20003(): void {
   $field_config = FieldConfig::load('node.oe_event.oe_event_online_link');
   $field_config->setSetting('title', 2);
   $field_config->save();
+}
+
+/**
+ * Enable datetime_range_timezone module.
+ */
+function oe_content_event_post_update_20004(array &$sandbox) {
+  \Drupal::service('module_installer')->install(['datetime_range_timezone']);
+}
+
+/**
+ * Convert oe_event_dates field to daterange_timezone.
+ */
+function oe_content_event_post_update_20005(array &$sandbox) {
+  $database = \Drupal::database();
+  $field = 'oe_event_dates';
+  if (!isset($sandbox['data_rows'])) {
+    // The table data to restore after the update is completed.
+    $sandbox['data_rows'] = $database->select("node__$field", 'n')
+      ->fields('n')
+      ->execute()
+      ->fetchAll();
+    $sandbox['revision_rows'] = $database->select("node_revision__$field", 'n')
+      ->fields('n')
+      ->execute()
+      ->fetchAll();
+
+    $sandbox['data_total'] = count($sandbox['data_rows']);
+    $sandbox['revision_total'] = count($sandbox['revision_rows']);
+    $sandbox['current'] = 0;
+
+    // Load up the form display in its original state.
+    $form_display = \Drupal::service('entity_display.repository')
+      ->getFormDisplay('node', 'oe_event', 'default');
+
+    /** @var \Drupal\field\Entity\FieldStorageConfig $field_config */
+    $field_storage = FieldStorageConfig::load("node.$field");
+    $new_field_storage = $field_storage;
+    $new_field_storage->set('type', 'daterange_timezone');
+    $new_field_storage = $new_field_storage->toArray();
+    $new_field_storage = FieldStorageConfig::create($new_field_storage);
+
+    /** @var \Drupal\field\Entity\FieldConfig $field_config */
+    $field_config = FieldConfig::load("node.oe_event.$field");
+    $new_field_config = $field_config;
+    $new_field_config->set('field_type', 'daterange_timezone');
+    $new_field_config = $new_field_config->toArray();
+    $new_field_config = FieldConfig::create($new_field_config);
+    $field_config->delete();
+
+    field_purge_batch(50);
+
+    // Save the new field.
+    $new_field_storage->save();
+    $new_field_config->save();
+
+    // Update form display.
+    $component = $form_display->getComponent($field);
+    $component['type'] = 'daterange_timezone';
+    $form_display->setComponent($field, $component);
+    $form_display->save();
+  }
+
+  // Restore existing data in the same table by 50 records per batch.
+  $data_rows = array_slice($sandbox['data_rows'], $sandbox['current'], 50);
+  foreach ($data_rows as $row) {
+    $database->insert("node__$field")
+      ->fields((array) $row)
+      ->execute();
+  }
+
+  $revision_rows = array_slice($sandbox['revision_rows'], $sandbox['current'], 50);
+  foreach ($revision_rows as $row) {
+    $database->insert("node_revision__$field")
+      ->fields((array) $row)
+      ->execute();
+  }
+
+  $sandbox['current'] += 50;
+
+  $sandbox['#finished'] = empty($sandbox['data_rows']) || $sandbox['current'] >= $sandbox['data_total'] && $sandbox['current'] >= $sandbox['revision_total'];
+
+  if ($sandbox['#finished'] === TRUE) {
+    return t('Finished converting the %field to daterange_timezone type.', ['%field' => $field]);
+  }
+}
+
+/**
+ * Convert oe_event_online_dates field to daterange_timezone.
+ */
+function oe_content_event_post_update_20006(array &$sandbox) {
+  $database = \Drupal::database();
+  $field = 'oe_event_online_dates';
+  if (!isset($sandbox['data_rows'])) {
+    // The table data to restore after the update is completed.
+    $sandbox['data_rows'] = $database->select("node__$field", 'n')
+      ->fields('n')
+      ->execute()
+      ->fetchAll();
+    $sandbox['revision_rows'] = $database->select("node_revision__$field", 'n')
+      ->fields('n')
+      ->execute()
+      ->fetchAll();
+
+    $sandbox['data_total'] = count($sandbox['data_rows']);
+    $sandbox['revision_total'] = count($sandbox['revision_rows']);
+    $sandbox['current'] = 0;
+
+    // Load up the form display in its original state.
+    $form_display = \Drupal::service('entity_display.repository')
+      ->getFormDisplay('node', 'oe_event', 'default');
+
+    /** @var \Drupal\field\Entity\FieldStorageConfig $field_config */
+    $field_storage = FieldStorageConfig::load("node.$field");
+    $new_field_storage = $field_storage;
+    $new_field_storage->set('type', 'daterange_timezone');
+    $new_field_storage = $new_field_storage->toArray();
+    $new_field_storage = FieldStorageConfig::create($new_field_storage);
+
+    /** @var \Drupal\field\Entity\FieldConfig $field_config */
+    $field_config = FieldConfig::load("node.oe_event.$field");
+    $new_field_config = $field_config;
+    $new_field_config->set('field_type', 'daterange_timezone');
+    $new_field_config = $new_field_config->toArray();
+    $new_field_config = FieldConfig::create($new_field_config);
+    $field_config->delete();
+
+    field_purge_batch(50);
+
+    // Save the new field.
+    $new_field_storage->save();
+    $new_field_config->save();
+
+    // Update form display.
+    $component = $form_display->getComponent($field);
+    $component['type'] = 'daterange_timezone';
+    $form_display->setComponent($field, $component);
+    $form_display->save();
+  }
+
+  // Restore existing data in the same table by 50 records per batch.
+  $data_rows = array_slice($sandbox['data_rows'], $sandbox['current'], 50);
+  foreach ($data_rows as $row) {
+    $database->insert("node__$field")
+      ->fields((array) $row)
+      ->execute();
+  }
+
+  $revision_rows = array_slice($sandbox['revision_rows'], $sandbox['current'], 50);
+  foreach ($revision_rows as $row) {
+    $database->insert("node_revision__$field")
+      ->fields((array) $row)
+      ->execute();
+  }
+
+  $sandbox['current'] += 50;
+
+  $sandbox['#finished'] = empty($sandbox['data_rows']) || $sandbox['current'] >= $sandbox['data_total'] && $sandbox['current'] >= $sandbox['revision_total'];
+
+  if ($sandbox['#finished'] === TRUE) {
+    return t('Finished converting the %field to daterange_timezone type.', ['%field' => $field]);
+  }
+}
+
+/**
+ * Convert oe_event_registration_dates field to daterange_timezone.
+ */
+function oe_content_event_post_update_20007(array &$sandbox) {
+  $database = \Drupal::database();
+  $field = 'oe_event_registration_dates';
+  if (!isset($sandbox['data_rows'])) {
+    // The table data to restore after the update is completed.
+    $sandbox['data_rows'] = $database->select("node__$field", 'n')
+      ->fields('n')
+      ->execute()
+      ->fetchAll();
+    $sandbox['revision_rows'] = $database->select("node_revision__$field", 'n')
+      ->fields('n')
+      ->execute()
+      ->fetchAll();
+
+    $sandbox['data_total'] = count($sandbox['data_rows']);
+    $sandbox['revision_total'] = count($sandbox['revision_rows']);
+    $sandbox['current'] = 0;
+
+    // Load up the form display in its original state.
+    $form_display = \Drupal::service('entity_display.repository')
+      ->getFormDisplay('node', 'oe_event', 'default');
+
+    /** @var \Drupal\field\Entity\FieldStorageConfig $field_config */
+    $field_storage = FieldStorageConfig::load("node.$field");
+    $new_field_storage = $field_storage;
+    $new_field_storage->set('type', 'daterange_timezone');
+    $new_field_storage = $new_field_storage->toArray();
+    $new_field_storage = FieldStorageConfig::create($new_field_storage);
+
+    /** @var \Drupal\field\Entity\FieldConfig $field_config */
+    $field_config = FieldConfig::load("node.oe_event.$field");
+    $new_field_config = $field_config;
+    $new_field_config->set('field_type', 'daterange_timezone');
+    $new_field_config = $new_field_config->toArray();
+    $new_field_config = FieldConfig::create($new_field_config);
+    $field_config->delete();
+
+    field_purge_batch(50);
+
+    // Save the new field.
+    $new_field_storage->save();
+    $new_field_config->save();
+
+    // Update form display.
+    $component = $form_display->getComponent($field);
+    $component['type'] = 'daterange_timezone';
+    $form_display->setComponent($field, $component);
+    $form_display->save();
+  }
+
+  // Restore existing data in the same table by 50 records per batch.
+  $data_rows = array_slice($sandbox['data_rows'], $sandbox['current'], 50);
+  foreach ($data_rows as $row) {
+    $database->insert("node__$field")
+      ->fields((array) $row)
+      ->execute();
+  }
+
+  $revision_rows = array_slice($sandbox['revision_rows'], $sandbox['current'], 50);
+  foreach ($revision_rows as $row) {
+    $database->insert("node_revision__$field")
+      ->fields((array) $row)
+      ->execute();
+  }
+
+  $sandbox['current'] += 50;
+
+  $sandbox['#finished'] = empty($sandbox['data_rows']) || $sandbox['current'] >= $sandbox['data_total'] && $sandbox['current'] >= $sandbox['revision_total'];
+
+  if ($sandbox['#finished'] === TRUE) {
+    return t('Finished converting the %field to daterange_timezone type.', ['%field' => $field]);
+  }
 }
