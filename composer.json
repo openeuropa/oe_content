@@ -10,7 +10,6 @@
         "drupal/core": "^9.2",
         "drupal/linkit": "^5.0-beta11 || ^6.0",
         "drupal/maxlength": "^1.0@beta || ^2.0",
-        "easyrdf/easyrdf": "1.0.0 as 0.9.2",
         "openeuropa/oe_media": "^1.15",
         "openeuropa/rdf_skos": "^1.0"
     },
@@ -26,6 +25,7 @@
         "drupal/core-dev": "^9.2",
         "drupal/ctools": "^3.7",
         "drupal/datetime_testing": "1.x-dev",
+        "drupal/description_list_field": "^1.0",
         "drupal/drupal-extension": "^4.0",
         "drupal/entity_browser": "^2.5",
         "drupal/entity_embed": "^1.1",
@@ -41,14 +41,13 @@
         "nikic/php-parser": "~4.10.4",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "^2.0",
-        "openeuropa/description_list_field": "dev-EWPP-1915",
-        "openeuropa/oe_corporate_countries": "2.x-dev",
-        "openeuropa/oe_corporate_site_info": "1.x-dev",
-        "openeuropa/oe_link_lists": "dev-master",
+        "openeuropa/oe_corporate_countries": "^2.0",
+        "openeuropa/oe_corporate_site_info": "^1.0",
+        "openeuropa/oe_link_lists": "~0.13.0",
         "openeuropa/oe_multilingual": "^1.10",
-        "openeuropa/oe_time_caching": "dev-EWPP-1915",
+        "openeuropa/oe_time_caching": "^1.1",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta5",
-        "openeuropa/task-runner-ensure-behat-batching": "1.x-dev",
+        "openeuropa/task-runner-ensure-behat-batching": "^1.0",
         "phpspec/prophecy-phpunit": "^2"
     },
     "autoload": {
@@ -68,10 +67,6 @@
         "post-update-cmd": "./vendor/bin/run drupal:site-setup"
     },
     "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://git.drupalcode.org/project/description_list_field.git"
-        },
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
@@ -103,8 +98,6 @@
             }
         },
         "_readme": [
-            "Use openeuropa/oe_link_lists:^0.12 in release",
-            "Use drupal/description_list_field in release",
             "Explicit lower version requirement of drupal/ctools due to Drupal core 9.2 compatibility.",
             "Explicit minimum version requirement of behat/behat library due to PHP compatibility.",
             "Explicit requirement for egulias/email-validator due to https://www.drupal.org/project/drupal/issues/3061074#comment-14300579. It can be removed when Drupal core 9.2 support is droppped.",
