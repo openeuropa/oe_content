@@ -407,6 +407,22 @@ Feature: Event content creation
       | success messages                      |
       | Event My Event item has been updated. |
 
+    # Make sure that validation of the Social media links works as expected.
+    When I click "Edit"
+    And I fill in "URL" with "htt://twitter.com" in the "Social media links" region
+    And I fill in "Link text" with "Twitter" in the "Social media links" region
+    And I select "Twitter" from "Link type"
+    And I press "Save"
+    Then I should see the following error messages:
+      | error messages                      |
+      | The path 'htt://twitter.com' is invalid. |
+    # Make sure that errors related to the Social media links fields are fixed.
+    And I fill in "URL" with "http://twitter.com" in the "Social media links" region
+    And I press "Save"
+    Then I should see the following success messages:
+      | success messages                      |
+      | Event My Event item has been updated. |
+
   @javascript
   @batch3
   Scenario: By removing venue and contact from the form only the reference is removed and the entities are not deleted.
