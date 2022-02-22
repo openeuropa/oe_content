@@ -1,5 +1,12 @@
 imports:
   - { resource: vendor/openeuropa/code-review/dist/drupal-conventions.yml }
+
+grumphp:
+  git_hook_variables:
+    EXEC_GRUMPHP_COMMAND: 'docker-compose exec -T web'
+  extensions:
+    - OpenEuropa\CodeReview\ExtraTasksExtension
+
 parameters:
   tasks.phpcs.ignore_patterns:
     - build/
@@ -15,7 +22,10 @@ parameters:
 
   extra_tasks:
     phpparser:
-      ignore_patterns: "%tasks.phpcs.ignore_patterns%"
+      ignore_patterns:
+        - build/
+        - node_modules/
+        - vendor/
       visitors:
         declare_strict_types: ~
       triggered_by:
@@ -24,6 +34,3 @@ parameters:
         - inc
         - theme
         - install
-
-  extensions:
-    - OpenEuropa\CodeReview\ExtraTasksExtension
