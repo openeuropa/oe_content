@@ -37,8 +37,8 @@ class EventDateRangeFieldTypeChanger {
       // Create a table based on the one we want to back up. We are using direct
       // SQL queries to rely on the database server performance instead of using
       // the API as well in the chain.
-      $data_table = "node__$field";
-      $backup_data_table = "_node__$field";
+      $data_table = "{node__$field}";
+      $backup_data_table = "{_node__$field}";
       $query_string = 'CREATE TABLE ' . $backup_data_table . ' LIKE ' . $data_table;
       $database->query($query_string);
 
@@ -47,8 +47,8 @@ class EventDateRangeFieldTypeChanger {
       $database->query($query_string);
 
       // Now do the same for the field revisions table.
-      $revision_table = "node_revision__$field";
-      $backup_revision_table = "_node_revision__$field";
+      $revision_table = "{node_revision__$field}";
+      $backup_revision_table = "{_node_revision__$field}";
       $query_string = 'CREATE TABLE ' . $backup_revision_table . ' LIKE ' . $revision_table;
       $database->query($query_string);
       $query_string = 'INSERT ' . $backup_revision_table . ' SELECT * FROM ' . $revision_table;

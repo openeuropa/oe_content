@@ -84,7 +84,7 @@ class DateFieldContext extends RawDrupalContext {
    * @param string $value
    *   The value of the field.
    * @param string $timezone
-   *   The value of the field.
+   *   The timezone of date.
    *
    * @When I fill in :field_item of :field_group with the date :value in the timezone :timezone
    */
