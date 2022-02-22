@@ -10,7 +10,6 @@ declare(strict_types = 1);
 use Drupal\Core\Config\FileStorage;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
-use Drupal\oe_content_event\EventDateRangeFieldTypeChanger;
 
 /**
  * Make the Event venue and contact fields composite.
@@ -106,58 +105,10 @@ function oe_content_event_post_update_20001(): void {
 }
 
 /**
- * Make online link title required.
+ * Update form display.
  */
 function oe_content_event_post_update_20002(): void {
-  $field_config = FieldConfig::load('node.oe_event.oe_event_online_link');
-  $field_config->setSetting('title', 2);
-  $field_config->save();
-}
-
-/**
- * Enable datetime_range_timezone module.
- */
-function oe_content_event_post_update_20003(array &$sandbox) {
-  \Drupal::service('module_installer')->install(['datetime_range_timezone']);
-  // Clear field type plugin cache.
-  \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
-}
-
-/**
- * Convert oe_event_dates field to daterange_timezone.
- */
-function oe_content_event_post_update_20004(array &$sandbox) {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20004_field_dates');
-  $field_storage = $storage->read('field.storage.node.oe_event_dates');
-  $field_config = $storage->read('field.field.node.oe_event.oe_event_dates');
-  EventDateRangeFieldTypeChanger::changeFieldType('oe_event_dates', $field_storage, $field_config);
-}
-
-/**
- * Convert oe_event_online_dates field to daterange_timezone.
- */
-function oe_content_event_post_update_20005(array &$sandbox) {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20005_field_online_dates');
-  $field_storage = $storage->read('field.storage.node.oe_event_online_dates');
-  $field_config = $storage->read('field.field.node.oe_event.oe_event_online_dates');
-  EventDateRangeFieldTypeChanger::changeFieldType('oe_event_online_dates', $field_storage, $field_config);
-}
-
-/**
- * Convert oe_event_registration_dates field to daterange_timezone.
- */
-function oe_content_event_post_update_20006(array &$sandbox) {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20006_field_registration_dates');
-  $field_storage = $storage->read('field.storage.node.oe_event_registration_dates');
-  $field_config = $storage->read('field.field.node.oe_event.oe_event_registration_dates');
-  EventDateRangeFieldTypeChanger::changeFieldType('oe_event_registration_dates', $field_storage, $field_config);
-}
-
-/**
- * Update event form display for date fields use daterange_timezone widget.
- */
-function oe_content_event_post_update_20007(array &$sandbox) {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20007_update_form_display');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20002_update_form_display');
 
   // Form display configurations to update.
   $form_display_values = $storage->read('core.entity_form_display.node.oe_event.default');
@@ -168,4 +119,22 @@ function oe_content_event_post_update_20007(array &$sandbox) {
       ->updateFromStorageRecord($form_display, $form_display_values);
     $updated_form_display->save();
   }
+}
+
+/**
+ * Make online link title required.
+ */
+function oe_content_event_post_update_20003(): void {
+  $field_config = FieldConfig::load('node.oe_event.oe_event_online_link');
+  $field_config->setSetting('title', 2);
+  $field_config->save();
+}
+
+/**
+ * Enable datetime_range_timezone module.
+ */
+function oe_content_event_post_update_20004(array &$sandbox) {
+  \Drupal::service('module_installer')->install(['datetime_range_timezone']);
+  // Clear field type plugin cache.
+  \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
 }

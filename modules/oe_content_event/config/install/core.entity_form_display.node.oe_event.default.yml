@@ -3,6 +3,9 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
+    - field.field.node.oe_event.oe_event_media_more_description
+    - field.field.node.oe_event.oe_event_media_more_link
+    - field.field.node.oe_event.oe_event_online_only
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_dates
@@ -12,12 +15,9 @@ dependencies:
     - field.field.node.oe_event.oe_event_featured_media_legend
     - field.field.node.oe_event.oe_event_languages
     - field.field.node.oe_event.oe_event_media
-    - field.field.node.oe_event.oe_event_media_more_description
-    - field.field.node.oe_event.oe_event_media_more_link
     - field.field.node.oe_event.oe_event_online_dates
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
-    - field.field.node.oe_event.oe_event_online_only
     - field.field.node.oe_event.oe_event_online_type
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_is_internal
@@ -171,6 +171,29 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_event_media_more_description:
+    weight: 32
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  oe_event_media_more_link:
+    weight: 31
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  oe_event_online_only:
+    weight: 8
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   langcode:
     type: language_select
     weight: 21
@@ -306,22 +329,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  oe_event_media_more_description:
-    weight: 32
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-    region: content
-  oe_event_media_more_link:
-    weight: 31
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
   oe_event_online_dates:
     weight: 24
     settings: {  }
@@ -343,13 +350,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  oe_event_online_only:
-    weight: 8
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
     region: content
   oe_event_online_type:
     weight: 23
