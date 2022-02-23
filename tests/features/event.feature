@@ -7,7 +7,7 @@ Feature: Event content creation
   @javascript
   @batch1
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create oe_event_programme oe_default corporate entity" permission
     And the following AV Portal photo:
       | url                                                         |
       | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
@@ -30,6 +30,10 @@ Feature: Event content creation
     And I fill in "Subject" with "financing"
     And I fill in "Responsible department" with "European Patent Office"
     And I fill in "Languages" with "English"
+    And I press "Add new Programme"
+    And I wait for AJAX to finish
+    Then I should see the text "Content limited to 150 characters, remaining: 150" in the "Programme name"
+    When I press "Cancel"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "Text to remove"

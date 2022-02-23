@@ -22,6 +22,7 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\Author\CorporateBodyAuthorContext
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\DocumentDocumentReferenceContext
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\PublicationDocumentReferenceContext
+        - Drupal\Tests\oe_content\Behat\Content\EventSpeaker\DefaultEventSpeakerContext
         - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
         - Drupal\Tests\oe_content\Behat\Content\ProgrammeItem\DefaultProgrammeItemContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ConsultationContentContext
@@ -134,6 +135,7 @@ default:
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
         Event programme: "#edit-oe-event-programme-wrapper"
+        Programme name: ".field--name-oe-event-programme .field--name-name"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
