@@ -8,7 +8,7 @@ use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 
 /**
- * Change the field-type of a given field that data structure is similar.
+ * Change the field type of a given field that data structure is similar.
  *
  * This class is used to change the field type of date range fields in event
  * content type in order to maintain the same machine name and data while the
