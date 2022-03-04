@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat;
 
+use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
@@ -68,6 +69,60 @@ class DateFieldContext extends RawDrupalContext {
     }
 
     $field_selector->fillField(ucfirst($date_component), $value);
+  }
+
+  /**
+   * Fills a date or time field at a daterange_timezone widget.
+   *
+   * When I fill in "Start date" of "Event date" with the date
+   * "29-08-2016 15:15" in the timezone Europe/Brussels".
+   *
+   * @param string $field_item
+   *   The date field item inside the field component.
+   * @param string $field_group
+   *   The field component's label.
+   * @param string $value
+   *   The value of the field.
+   * @param string $timezone
+   *   The timezone of date.
+   *
+   * @When I fill in :field_item of :field_group with the date :value in the timezone :timezone
+   */
+  public function fillDateRangeTimezoneField(string $field_item, string $field_group, string $value, string $timezone): void {
+    $date = DrupalDateTime::createFromFormat('d-m-Y H:i', $value, $timezone);
+    // Mapping for field items inside the date range field.
+    $field_items = [
+      'Start date' => 'value',
+      'End date' => 'end-value',
+    ];
+
+    $field_selectors = $this->findDateFields($field_group, 'Date range', '.field--widget-daterange-timezone');
+    $field_selector = reset($field_selectors);
+
+    if ($field_item === 'End date') {
+      $field_selector = $field_selector->findAll('css', 'div[id*="' . $field_items[$field_item] . '"]');
+      $field_selector = reset($field_selector);
+    }
+
+    foreach (['Date', 'Time'] as $date_component) {
+      $value = $date_component === 'Time' ? $date->format('H:i:s') : $date->format('Y-m-d');
+      if ($this->getMink()->getSession()->getDriver() instanceof Selenium2Driver) {
+        // Selenium setValue() clicks the date field before filling in, it
+        // clicks the year segment and due to this the input value is incorrect.
+        $date_component = lcfirst($date_component);
+        $script = "Array.from(document.querySelectorAll('legend span')).find(el => el.textContent === '$field_group').parentElement.parentElement.querySelector('.field--widget-daterange-timezone input[id*=\"$field_items[$field_item]-$date_component\"]').value='$value';";
+        $this->getMink()->getSession()->getDriver()->executeScript($script);
+        continue;
+      }
+      $field_selector->findField($date_component)->setValue($value);
+    }
+
+    // Fill in the timezone field of the date component.
+    if ($field_item === 'Start date') {
+      $field_selector = $field_selector->findAll('css', 'select[id*="-timezone"]');
+      $field_selector = reset($field_selector);
+      $field_selector->selectOption($timezone);
+    }
   }
 
   /**

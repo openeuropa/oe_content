@@ -200,15 +200,15 @@ Feature: Event content creation
     # Registration field group.
     When I press "Registration"
     Then I fill in "Registration URL" with "http://example.com"
-    And I set "23-02-2019 02:30" as the "Start date" of "Registration date"
-    And I set "23-02-2019 14:30" as the "End date" of "Registration date"
+    And I fill in "Start date" of "Registration date" with the date "23-02-2019 02:30" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Registration date" with the date "23-02-2019 14:30" in the timezone "Europe/Brussels"
     And I fill in "Entrance fee" with "Free of charge"
     And I fill in "Registration capacity" with "100 seats"
 
     And I fill in "Description summary" with "Description summary text"
     And I fill in "Subject" with "EU financing"
-    And I set "21-02-2019 02:15" as the "Start date" of "Event date"
-    And I set "21-02-2019 14:15" as the "End date" of "Event date"
+    And I fill in "Start date" of "Event date" with the date "21-02-2019 02:15" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Event date" with the date "21-02-2019 14:15" in the timezone "Europe/Brussels"
     And I check the box "Online only"
     # Venue reference by Inline entity form - Complex.
     When I press "Add new venue"
@@ -225,8 +225,8 @@ Feature: Event content creation
     # Online field group.
     When I press "Online"
     Then I select "Facebook" from "Online type"
-    And I set "22-02-2019 02:30" as the "Start date" of "Online time"
-    And I set "22-02-2019 14:30" as the "End date" of "Online time"
+    And I fill in "Start date" of "Online time" with the date "22-02-2019 02:30" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Online time" with the date "22-02-2019 14:30" in the timezone "Europe/Brussels"
     And I fill in "Online description" with "Online description text"
     And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
     And I fill in "Link text" with "Online link" in the "Online link" region
@@ -295,8 +295,8 @@ Feature: Event content creation
     And I wait for AJAX to finish
     And I fill in "Name" with "Event programme" in the "Event programme" region
     And I fill in "Description" with "Event programme description" in the "Event programme" region
-    And I set "21-10-2021 02:15" as the "Start date" of "Start/end date"
-    And I set "21-10-2021 14:15" as the "End date" of "Start/end date"
+    And I fill in "Start date" of "Start/end date" with the date "21-10-2021 02:15" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Start/end date" with the date "21-10-2021 14:15" in the timezone "Europe/Brussels"
 
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
@@ -413,8 +413,8 @@ Feature: Event content creation
       | Online time field is required. |
       | Online link field is required. |
     # Make sure that errors related to the Online fields are fixed.
-    And I set "22-02-2019 02:30" as the "Start date" of "Online time"
-    And I set "22-02-2019 14:30" as the "End date" of "Online time"
+    And I fill in "Start date" of "Online time" with the date "22-02-2019 02:30" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Online time" with the date "22-02-2019 14:30" in the timezone "Europe/Brussels"
     And I fill in "Online description" with "Online description text"
     And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
     And I fill in "Link text" with "Online link" in the "Online link" region
@@ -442,8 +442,8 @@ Feature: Event content creation
     # Make sure that validation of the Registration fields group works as expected.
     When I click "Edit"
     And I press "Registration"
-    And I set "23-02-2019 02:15" as the "Start date" of "Registration date"
-    And I set "23-02-2019 14:15" as the "End date" of "Registration date"
+    And I fill in "Start date" of "Registration date" with the date "23-02-2019 02:15" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Registration date" with the date "23-02-2019 14:15" in the timezone "Europe/Brussels"
     And I fill in "Registration capacity" with "100"
     And I press "Save"
     Then I should see the following error messages:

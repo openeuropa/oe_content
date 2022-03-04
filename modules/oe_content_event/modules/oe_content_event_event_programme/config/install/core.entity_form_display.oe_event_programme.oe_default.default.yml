@@ -6,7 +6,7 @@ dependencies:
     - field.field.oe_event_programme.oe_default.oe_event_programme_dates
     - oe_content_event_event_programme.oe_event_programme_type.oe_default
   module:
-    - datetime_range
+    - datetime_range_timezone
     - maxlength
     - text
 id: oe_event_programme.oe_default.default
@@ -42,12 +42,9 @@ content:
     region: content
   oe_event_programme_dates:
     weight: 2
-    settings:
-      date_order: DMY
-      time_type: '24'
-      increment: 15
+    settings: {  }
     third_party_settings: {  }
-    type: daterange_datelist
+    type: daterange_timezone
     region: content
 hidden:
   created: true

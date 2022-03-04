@@ -6,7 +6,7 @@ dependencies:
     - field.field.oe_event_programme.oe_default.oe_description
     - oe_content_event_event_programme.oe_event_programme_type.oe_default
   module:
-    - datetime_range
+    - datetime_range_timezone
     - text
 id: oe_event_programme.oe_default.default
 targetEntityType: oe_event_programme
@@ -19,9 +19,9 @@ content:
     settings:
       separator: '-'
       format_type: medium
-      timezone_override: ''
+      display_timezone: true
     third_party_settings: {  }
-    type: daterange_default
+    type: daterange_timezone
     region: content
   oe_description:
     weight: 1

@@ -99,7 +99,11 @@ function oe_content_event_post_update_00005(): void {
  * Add Media and Programme fields.
  */
 function oe_content_event_post_update_20001(): void {
-  \Drupal::service('module_installer')->install(['oe_content_event_event_programme']);
+  \Drupal::service('module_installer')->install([
+    'datetime_range_timezone',
+    'oe_content_event_event_programme',
+  ]);
+  \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
   $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20001_event_v2_fields');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }

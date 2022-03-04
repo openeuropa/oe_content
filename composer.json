@@ -8,6 +8,7 @@
     "require": {
         "php": ">=7.4",
         "drupal/core": "^9.2",
+        "drupal/datetime_range_timezone": "^1.0@alpha",
         "drupal/linkit": "^5.0-beta11 || ^6.0",
         "drupal/maxlength": "^1.0@beta || ^2.0",
         "openeuropa/oe_media": "^1.15",
@@ -44,7 +45,7 @@
         "openeuropa/code-review": "^2.0",
         "openeuropa/oe_corporate_countries": "^2.0",
         "openeuropa/oe_corporate_site_info": "^1.0",
-        "openeuropa/oe_link_lists": "~0.13.0",
+        "openeuropa/oe_link_lists": "dev-master",
         "openeuropa/oe_multilingual": "^1.10",
         "openeuropa/oe_time_caching": "^1.1",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta5",

@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_event\Kernel;
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
@@ -78,6 +79,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
       'oe_event_dates' => [
         'value' => '2016-05-10T12:00:00',
         'end_value' => '2016-05-15T12:00:00',
+        'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
       ],
     ]);
 
@@ -98,6 +100,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
       'oe_event_dates' => [
         'value' => '2016-05-10T12:00:00',
         'end_value' => '2016-05-15T12:00:00',
+        'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
       ],
     ]);
 
@@ -120,6 +123,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
       'oe_event_online_dates' => [
         'value' => '2016-05-10T12:00:00',
         'end_value' => '2016-05-15T12:00:00',
+        'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
       ],
     ]);
 
@@ -140,6 +144,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
       'oe_event_registration_dates' => [
         'value' => '2016-05-10T12:00:00',
         'end_value' => '2016-05-15T12:00:00',
+        'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
       ],
     ]);
 
@@ -299,8 +304,10 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'hasRegistration' => FALSE,
           'getRegistrationStartDate' => NULL,
           'getRegistrationEndDate' => NULL,
+          'getRegistrationTimezone' => NULL,
           'getOnlineStartDate' => NULL,
           'getOnlineEndDate' => NULL,
+          'getOnlineTimezone' => NULL,
         ],
       ],
       [
@@ -333,6 +340,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'hasRegistration' => TRUE,
           'getRegistrationStartDate' => NULL,
           'getRegistrationEndDate' => NULL,
+          'getRegistrationTimezone' => NULL,
         ],
       ],
       [
@@ -377,14 +385,17 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'oe_event_dates' => [
             'value' => '2016-09-20T12:00:00',
             'end_value' => '2016-09-21T12:00:00',
+            'timezone' => 'UTC',
           ],
           'oe_event_registration_dates' => [
             'value' => '2016-05-10T12:00:00',
             'end_value' => '2016-05-15T12:00:00',
+            'timezone' => 'UTC',
           ],
           'oe_event_online_dates' => [
             'value' => '2016-09-20T12:00:00',
             'end_value' => '2016-09-21T12:00:00',
+            'timezone' => 'UTC',
           ],
         ],
         'assertions' => [
@@ -392,8 +403,10 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'getEndDate' => '2016-09-21 12:00:00',
           'getRegistrationStartDate' => '2016-05-10 12:00:00',
           'getRegistrationEndDate' => '2016-05-15 12:00:00',
+          'getRegistrationTimezone' => 'UTC',
           'getOnlineStartDate' => '2016-09-20 12:00:00',
           'getOnlineEndDate' => '2016-09-21 12:00:00',
+          'getOnlineTimezone' => 'UTC',
           'hasOnlineDates' => TRUE,
         ],
       ],
@@ -521,6 +534,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'oe_event_online_dates' => [
             'value' => '2016-09-20T12:00:00',
             'end_value' => '2016-09-21T12:00:00',
+            'timezone' => 'UTC',
           ],
         ],
         'now' => '2016-09-20 12:00:01',
@@ -546,6 +560,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'oe_event_online_dates' => [
             'value' => '2016-09-20T12:00:00',
             'end_value' => '2016-09-21T12:00:00',
+            'timezone' => 'UTC',
           ],
         ],
         'now' => '2016-09-22 12:00:00',
@@ -561,6 +576,7 @@ class EventNodeWrapperTest extends EventKernelTestBase {
           'oe_event_online_dates' => [
             'value' => '2016-09-20T12:00:00',
             'end_value' => '2016-09-21T12:00:00',
+            'timezone' => 'UTC',
           ],
         ],
         'now' => '2016-09-19 12:00:00',

@@ -111,10 +111,10 @@ content:
     label: above
     settings:
       format_type: medium
-      timezone_override: ''
+      display_timezone: false
       separator: '-'
     third_party_settings: {  }
-    type: daterange_default
+    type: daterange_timezone
     region: content
   oe_event_description_summary:
     weight: 12
@@ -169,10 +169,10 @@ content:
     label: above
     settings:
       format_type: medium
-      timezone_override: ''
+      display_timezone: false
       separator: '-'
     third_party_settings: {  }
-    type: daterange_default
+    type: daterange_timezone
     region: content
   oe_event_online_description:
     weight: 8
@@ -248,10 +248,10 @@ content:
     label: above
     settings:
       format_type: medium
-      timezone_override: ''
+      display_timezone: false
       separator: '-'
     third_party_settings: {  }
-    type: daterange_default
+    type: daterange_timezone
     region: content
   oe_event_registration_url:
     weight: 17

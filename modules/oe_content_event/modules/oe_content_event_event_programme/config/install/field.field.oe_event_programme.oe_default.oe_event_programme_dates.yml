@@ -5,7 +5,7 @@ dependencies:
     - field.storage.oe_event_programme.oe_event_programme_dates
     - oe_content_event_event_programme.oe_event_programme_type.oe_default
   module:
-    - datetime_range
+    - datetime_range_timezone
 id: oe_event_programme.oe_default.oe_event_programme_dates
 field_name: oe_event_programme_dates
 entity_type: oe_event_programme
@@ -17,4 +17,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: daterange
+field_type: daterange_timezone

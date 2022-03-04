@@ -40,8 +40,7 @@ dependencies:
     - field.field.node.oe_event.oe_teaser
     - node.type.oe_event
   module:
-    - datetime_range
-    - entity_reference_revisions
+    - datetime_range_timezone
     - field_group
     - inline_entity_form
     - link
@@ -269,12 +268,9 @@ content:
     region: content
   oe_event_dates:
     weight: 8
-    settings:
-      date_order: DMY
-      time_type: '24'
-      increment: 15
+    settings: {  }
     third_party_settings: {  }
-    type: daterange_datelist
+    type: daterange_timezone
     region: content
   oe_event_description_summary:
     weight: 4
@@ -335,12 +331,9 @@ content:
     region: content
   oe_event_online_dates:
     weight: 24
-    settings:
-      date_order: DMY
-      time_type: '24'
-      increment: 15
+    settings: {  }
     third_party_settings: {  }
-    type: daterange_datelist
+    type: daterange_timezone
     region: content
   oe_event_online_description:
     weight: 26
@@ -417,12 +410,9 @@ content:
     region: content
   oe_event_registration_dates:
     weight: 28
-    settings:
-      date_order: DMY
-      time_type: '24'
-      increment: 15
+    settings: {  }
     third_party_settings: {  }
-    type: daterange_datelist
+    type: daterange_timezone
     region: content
   oe_event_registration_url:
     weight: 26
