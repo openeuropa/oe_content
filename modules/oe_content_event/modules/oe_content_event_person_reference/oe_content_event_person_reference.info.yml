@@ -1,0 +1,21 @@
+name: OpenEuropa Content Event Person reference
+description: This module provides the Event speaker content entity and its bundles.
+package: OpenEuropa
+type: module
+core_version_requirement: ^8.9 || ^9.1
+
+dependencies:
+  - oe_content:oe_content_sub_entity
+  - oe_content:oe_content_person
+
+config_devel:
+  install:
+    - core.entity_form_display.oe_event_speaker.oe_default.default
+    - field.field.oe_event_speaker.oe_default.oe_event_role
+    - field.field.oe_event_speaker.oe_default.oe_person
+    - field.storage.node.oe_event_speakers
+    - field.storage.oe_event_speaker.oe_event_role
+    - field.storage.oe_event_speaker.oe_person
+    - oe_content_event_person_reference.oe_event_speaker_type.oe_default
+  optional:
+    - language.content_settings.oe_event_speaker.oe_default

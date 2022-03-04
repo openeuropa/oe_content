@@ -14,11 +14,12 @@ dependencies:
   - oe_media:oe_media
   - oe_media_avportal:oe_media_avportal
   - oe_corporate_countries:oe_corporate_countries_address
-  - drupal:datetime_range
+  - datetime_range_timezone:datetime_range_timezone
   - typed_link:typed_link
   - field_group:field_group
   - inline_entity_form:inline_entity_form
   - entity_reference_revisions:entity_reference_revisions
+  - oe_content_event:oe_content_event_event_programme
 
 config_devel:
   install:
@@ -32,13 +33,18 @@ config_devel:
     - field.field.node.oe_event.oe_event_featured_media
     - field.field.node.oe_event.oe_event_featured_media_legend
     - field.field.node.oe_event.oe_event_languages
+    - field.field.node.oe_event.oe_event_media
+    - field.field.node.oe_event.oe_event_media_more_description
+    - field.field.node.oe_event.oe_event_media_more_link
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
+    - field.field.node.oe_event.oe_event_online_only
     - field.field.node.oe_event.oe_event_online_dates
     - field.field.node.oe_event.oe_event_online_type
     - field.field.node.oe_event.oe_event_organiser_is_internal
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_name
+    - field.field.node.oe_event.oe_event_programme
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_dates
     - field.field.node.oe_event.oe_event_registration_url
@@ -47,6 +53,7 @@ config_devel:
     - field.field.node.oe_event.oe_social_media_links
     - field.field.node.oe_event.oe_event_dates
     - field.field.node.oe_event.oe_event_status
+    - field.field.node.oe_event.oe_event_status_description
     - field.field.node.oe_event.oe_event_type
     - field.field.node.oe_event.oe_event_venue
     - field.field.node.oe_event.oe_event_website
@@ -59,13 +66,18 @@ config_devel:
     - field.storage.node.oe_event_featured_media
     - field.storage.node.oe_event_featured_media_legend
     - field.storage.node.oe_event_languages
+    - field.storage.node.oe_event_media
+    - field.storage.node.oe_event_media_more_description
+    - field.storage.node.oe_event_media_more_link
+    - field.storage.node.oe_event_online_dates
     - field.storage.node.oe_event_online_description
     - field.storage.node.oe_event_online_link
-    - field.storage.node.oe_event_online_dates
+    - field.storage.node.oe_event_online_only
     - field.storage.node.oe_event_online_type
     - field.storage.node.oe_event_organiser_is_internal
     - field.storage.node.oe_event_organiser_internal
     - field.storage.node.oe_event_organiser_name
+    - field.storage.node.oe_event_programme
     - field.storage.node.oe_event_registration_capacity
     - field.storage.node.oe_event_registration_dates
     - field.storage.node.oe_event_registration_url
@@ -73,6 +85,7 @@ config_devel:
     - field.storage.node.oe_event_report_text
     - field.storage.node.oe_event_dates
     - field.storage.node.oe_event_status
+    - field.storage.node.oe_event_status_description
     - field.storage.node.oe_event_type
     - field.storage.node.oe_event_venue
     - field.storage.node.oe_event_website

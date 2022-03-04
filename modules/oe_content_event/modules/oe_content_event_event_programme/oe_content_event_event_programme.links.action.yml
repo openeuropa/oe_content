@@ -1,0 +1,11 @@
+entity.oe_event_programme.add_page:
+  route_name: entity.oe_event_programme.add_page
+  title: 'Add programme item'
+  appears_on:
+    - entity.oe_event_programme.collection
+
+entity.oe_event_programme_type.add_form:
+  route_name: entity.oe_event_programme_type.add_form
+  title: 'Add programme item type'
+  appears_on:
+    - entity.oe_event_programme_type.collection

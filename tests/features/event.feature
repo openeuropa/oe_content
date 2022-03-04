@@ -7,7 +7,7 @@ Feature: Event content creation
   @javascript
   @batch1
   Scenario: Length limited fields are truncating characters exceeding the configured limit.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create oe_event_programme oe_default corporate entity" permission
     And the following AV Portal photo:
       | url                                                         |
       | https://audiovisual.ec.europa.eu/en/photo/P-038924~2F00-15  |
@@ -30,6 +30,10 @@ Feature: Event content creation
     And I fill in "Subject" with "financing"
     And I fill in "Responsible department" with "European Patent Office"
     And I fill in "Languages" with "English"
+    And I press "Add new Programme"
+    And I wait for AJAX to finish
+    Then I should see the text "Content limited to 150 characters, remaining: 150" in the "Programme name"
+    When I press "Cancel"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.
     Then I should not see "Text to remove"
@@ -52,8 +56,11 @@ Feature: Event content creation
     And I should see the text "Subject"
     And I should see the text "Start date"
     And I should see the text "End date"
+    And I should see the text "Online only"
     And I should see the text "Status"
+    And I should see the text "Status description"
     And I should see the text "Languages"
+    And I should see the text "Who should attend"
     And I should see the text "Event website"
     And I should see the text "Link type"
 
@@ -99,6 +106,8 @@ Feature: Event content creation
     Then I should see the text "Organiser name"
     And the "Internal organiser field" is not visible
 
+    And I should see the text "Media" in the "Event media" region
+
     # The full description group is opened by default.
     And I should see the text "Full description"
     And I should see the text "Featured media"
@@ -109,9 +118,13 @@ Feature: Event content creation
     And I should see the text "Event report"
     And I should not see the text "Report text"
     And I should not see the text "Summary for report"
+    And I should not see the text "Main link to further media items"
+    And I should not see the text "Other links to further media items"
     When I press "Event report"
     Then I should see the text "Report text"
     And I should see the text "Summary for report"
+    And I should see the text "Main link to further media items" in the "Event report" region
+    And I should see the text "Other links to further media items" in the "Event report" region
 
     # Make sure that the Event contact field group contains expected fields.
     And I should see the text "Event contact"
@@ -136,6 +149,14 @@ Feature: Event content creation
     And I should see the text "Alternative title"
     And I should see the text "Navigation title"
     And I should see the text "Teaser"
+
+    # The event programme group is open by default.
+    And I should see the text "Programme"
+    When I press "Add new Programme"
+    And I wait for AJAX to finish
+    And I should see the text "Name" in the "Event programme" region
+    And I should see the text "Description" in the "Event programme" region
+    And I should see the text "Start/end date" in the "Event programme" region
 
     # Metadata fields are visible
     And I should see the text "Content owner"
@@ -165,6 +186,7 @@ Feature: Event content creation
     And the following images:
       | name          | file           | alt                            |
       | Contact image | example_1.jpeg | Contact image alternative text |
+      | Media image   | example_2.jpeg | Media alternative text         |
     # Create a "Media AV portal photo".
     And the following AV Portal photos:
       | url                                                        |
@@ -178,15 +200,16 @@ Feature: Event content creation
     # Registration field group.
     When I press "Registration"
     Then I fill in "Registration URL" with "http://example.com"
-    And I set "23-02-2019 02:30" as the "Start date" of "Registration date"
-    And I set "23-02-2019 14:30" as the "End date" of "Registration date"
+    And I fill in "Start date" of "Registration date" with the date "23-02-2019 02:30" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Registration date" with the date "23-02-2019 14:30" in the timezone "Europe/Brussels"
     And I fill in "Entrance fee" with "Free of charge"
     And I fill in "Registration capacity" with "100 seats"
 
     And I fill in "Description summary" with "Description summary text"
     And I fill in "Subject" with "EU financing"
-    And I set "21-02-2019 02:15" as the "Start date" of "Event date"
-    And I set "21-02-2019 14:15" as the "End date" of "Event date"
+    And I fill in "Start date" of "Event date" with the date "21-02-2019 02:15" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Event date" with the date "21-02-2019 14:15" in the timezone "Europe/Brussels"
+    And I check the box "Online only"
     # Venue reference by Inline entity form - Complex.
     When I press "Add new venue"
     And I wait for AJAX to finish
@@ -202,14 +225,16 @@ Feature: Event content creation
     # Online field group.
     When I press "Online"
     Then I select "Facebook" from "Online type"
-    And I set "22-02-2019 02:30" as the "Start date" of "Online time"
-    And I set "22-02-2019 14:30" as the "End date" of "Online time"
+    And I fill in "Start date" of "Online time" with the date "22-02-2019 02:30" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Online time" with the date "22-02-2019 14:30" in the timezone "Europe/Brussels"
     And I fill in "Online description" with "Online description text"
     And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
     And I fill in "Link text" with "Online link" in the "Online link" region
 
     And I select "As planned" from "Status"
+    And I fill in "Status description" with "Status description message"
     And I fill in "Languages" with "Hungarian"
+    And I fill in "Who should attend" with "Types of audiences that this event targets"
 
     # Organiser field group.
     When I uncheck "Organiser is internal"
@@ -224,6 +249,9 @@ Feature: Event content creation
     And I fill in "Link text" with "Twitter" in the "Social media links" region
     And I select "Twitter" from "Link type"
 
+    # Add a media item.
+    And I fill in "Use existing media" with "Media image" in the "Event media" region
+
     # Description field group.
     And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
     And I fill in "Featured media legend" with "Euro with miniature figurines"
@@ -233,6 +261,9 @@ Feature: Event content creation
     When I press "Event report"
     And I fill in "Report text" with "Report text paragraph"
     And I fill in "Summary for report" with "Report summary text"
+    And I fill in "URL" with "<front>" in the "Event report" region
+    And I fill in "Link text" with "More media items" in the "Event report" region
+    And I fill in "Other links to further media items" with "More links to media items" in the "Event report" region
 
     # Event contact field group.
     When I press "Add new contact"
@@ -259,6 +290,14 @@ Feature: Event content creation
     And I fill in "URL" with "https://www.example.com/link" in the "Contact link" region
     And I fill in "Link text" with "Contact link" in the "Contact link" region
 
+    # The event programme field group.
+    When I press "Add new Programme"
+    And I wait for AJAX to finish
+    And I fill in "Name" with "Event programme" in the "Event programme" region
+    And I fill in "Description" with "Event programme description" in the "Event programme" region
+    And I fill in "Start date" of "Start/end date" with the date "21-10-2021 02:15" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Start/end date" with the date "21-10-2021 14:15" in the timezone "Europe/Brussels"
+
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Responsible department" with "Audit Board of the European Communities"
     And I fill in "Teaser" with "Event teaser"
@@ -270,10 +309,13 @@ Feature: Event content creation
     And I should see "Thu, 02/21/2019 - 14:15"
     And I should see "Info days"
     And I should see "Hungarian"
+    And I should see "Types of audiences that this event targets"
     And I should see "As planned"
+    And I should see "Status description message"
     And I should see the link "Website"
     And I should see the link "Twitter"
     And I should see "Facebook"
+    And I should see "Media image"
     And I should see "Online description text"
     And I should see "Fri, 02/22/2019 - 02:30"
     And I should see "Fri, 02/22/2019 - 14:30"
@@ -283,6 +325,8 @@ Feature: Event content creation
     And I should see "Euro with miniature figurines"
     And I should see "Report summary text"
     And I should see "Report text paragraph"
+    And I should see the link "More media items"
+    And I should see "More links to media items"
     And I should see the link "http://example.com"
     And I should see "Open"
     And I should see "Sat, 02/23/2019 - 02:30"
@@ -315,6 +359,11 @@ Feature: Event content creation
     And I should see the text "Event contact caption"
     And I should see the link "http://example.com/press_contacts"
     And I should see the link "Contact link"
+    # Event programme values.
+    And I should see the text "Event programme"
+    And I should see the text "Event programme description"
+    And I should see "Thu, 10/21/2021 - 02:15"
+    And I should see "Thu, 10/21/2021 - 14:15"
 
   @javascript @av_portal
   @batch2
@@ -364,8 +413,8 @@ Feature: Event content creation
       | Online time field is required. |
       | Online link field is required. |
     # Make sure that errors related to the Online fields are fixed.
-    And I set "22-02-2019 02:30" as the "Start date" of "Online time"
-    And I set "22-02-2019 14:30" as the "End date" of "Online time"
+    And I fill in "Start date" of "Online time" with the date "22-02-2019 02:30" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Online time" with the date "22-02-2019 14:30" in the timezone "Europe/Brussels"
     And I fill in "Online description" with "Online description text"
     And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
     And I fill in "Link text" with "Online link" in the "Online link" region
@@ -393,8 +442,8 @@ Feature: Event content creation
     # Make sure that validation of the Registration fields group works as expected.
     When I click "Edit"
     And I press "Registration"
-    And I set "23-02-2019 02:15" as the "Start date" of "Registration date"
-    And I set "23-02-2019 14:15" as the "End date" of "Registration date"
+    And I fill in "Start date" of "Registration date" with the date "23-02-2019 02:15" in the timezone "Europe/Brussels"
+    And I fill in "End date" of "Registration date" with the date "23-02-2019 14:15" in the timezone "Europe/Brussels"
     And I fill in "Registration capacity" with "100"
     And I press "Save"
     Then I should see the following error messages:

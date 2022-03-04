@@ -97,6 +97,14 @@ interface EventNodeWrapperInterface {
   public function getEndDate(): DrupalDateTime;
 
   /**
+   * Get event timezone.
+   *
+   * @return string
+   *   The timezone of the date field.
+   */
+  public function getTimezone(): string;
+
+  /**
    * Check whether the event has registration dates.
    *
    * @return bool
@@ -121,6 +129,14 @@ interface EventNodeWrapperInterface {
   public function getRegistrationEndDate(): ?DrupalDateTime;
 
   /**
+   * Get registration timezone.
+   *
+   * @return string|null
+   *   The timezone of the date field.
+   */
+  public function getRegistrationTimezone(): ?string;
+
+  /**
    * Check whether the registration period is yet to come.
    *
    * @param \DateTimeInterface $datetime
@@ -143,6 +159,17 @@ interface EventNodeWrapperInterface {
   public function isOver(\DateTimeInterface $datetime): bool;
 
   /**
+   * Check whether the event is ongoing.
+   *
+   * @param \DateTimeInterface $datetime
+   *   Datetime object to check against.
+   *
+   * @return bool
+   *   Whereas the event is considered to be ongoing.
+   */
+  public function isOngoing(\DateTimeInterface $datetime): bool;
+
+  /**
    * Check whether the registration period is active.
    *
    * @param \DateTimeInterface $datetime
@@ -163,5 +190,80 @@ interface EventNodeWrapperInterface {
    *   Whereas the registration period is over.
    */
   public function isRegistrationPeriodOver(\DateTimeInterface $datetime): bool;
+
+  /**
+   * Check whether the event has online dates.
+   */
+  public function hasOnlineDates(): bool;
+
+  /**
+   * Check whether the online period is yet to come.
+   *
+   * @param \DateTimeInterface $datetime
+   *   Datetime object to check the online period against.
+   *
+   * @return bool
+   *   Whether the online period is yet to come.
+   */
+  public function isOnlinePeriodYetToCome(\DateTimeInterface $datetime): bool;
+
+  /**
+   * Check whether the event online is active.
+   *
+   * @param \DateTimeInterface $datetime
+   *   Date to compare.
+   *
+   * @return bool
+   *   Whether the online period is active.
+   */
+  public function isOnlinePeriodActive(\DateTimeInterface $datetime): bool;
+
+  /**
+   * Check whether the event online is over.
+   *
+   * @return bool
+   *   Whether the online period is active.
+   */
+  public function isOnlinePeriodOver(\DateTimeInterface $datetime): bool;
+
+  /**
+   * Get event online start date.
+   *
+   * @return \Drupal\Core\Datetime\DrupalDateTime|null
+   *   Start date or NULL if not set.
+   */
+  public function getOnlineStartDate(): ?DrupalDateTime;
+
+  /**
+   * Get event online end date.
+   *
+   * @return \Drupal\Core\Datetime\DrupalDateTime|null
+   *   End date or NULL if not set.
+   */
+  public function getOnlineEndDate(): ?DrupalDateTime;
+
+  /**
+   * Get event online timezone.
+   *
+   * @return string|null
+   *   The timezone of the date field.
+   */
+  public function getOnlineTimezone(): ?string;
+
+  /**
+   * Check whether the event has online link.
+   *
+   * @return bool
+   *   Whether event has the online link.
+   */
+  public function hasOnlineLink(): bool;
+
+  /**
+   * Check whether the event has online type.
+   *
+   * @return bool
+   *   Whether event has the online type.
+   */
+  public function hasOnlineType(): bool;
 
 }

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_event_speaker.oe_event_role
+    - oe_content_event_person_reference.oe_event_speaker_type.oe_default
+id: oe_event_speaker.oe_default.oe_event_role
+field_name: oe_event_role
+entity_type: oe_event_speaker
+bundle: oe_default
+label: 'Event role'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

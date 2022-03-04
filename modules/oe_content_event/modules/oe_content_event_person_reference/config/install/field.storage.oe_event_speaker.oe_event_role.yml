@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_content_event_person_reference
+id: oe_event_speaker.oe_event_role
+field_name: oe_event_role
+entity_type: oe_event_speaker
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
