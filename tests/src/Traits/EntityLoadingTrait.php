@@ -78,7 +78,7 @@ trait EntityLoadingTrait {
     $entities = $storage->loadMultiple($result);
 
     if (empty($entities)) {
-      $concept_schemes = $concept_schemes ?? 'with concept schemes ' . implode(', ', $concept_schemes);
+      $concept_schemes = empty($concept_schemes) ? '' : 'with concept schemes ' . implode(', ', $concept_schemes) . ' ';
       throw new \InvalidArgumentException("No SKOS Concept entity {$concept_schemes}with label '$label' has been found.");
     }
 
