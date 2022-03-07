@@ -1,20 +1,55 @@
-# Change Log
+# Changelog
+
+## [2.9.0](https://github.com/openeuropa/oe_content/tree/2.9.0) (2022-03-07)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/2.8.0...2.9.0)
+
+**Merged pull requests:**
+
+- EWPP-1539: Event v2. [\#522](https://github.com/openeuropa/oe_content/pull/522) ([nagyad](https://github.com/nagyad))
+- EWPP-1539: Update epic with 2.x. [\#521](https://github.com/openeuropa/oe_content/pull/521) ([nagyad](https://github.com/nagyad))
+- EWPP-1873: Fix "Array to string conversion" php error. [\#519](https://github.com/openeuropa/oe_content/pull/519) ([yenyasinn](https://github.com/yenyasinn))
+- Update epic event v2 [\#518](https://github.com/openeuropa/oe_content/pull/518) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1983: Replace date range fields on event content type with date … [\#516](https://github.com/openeuropa/oe_content/pull/516) ([nagyad](https://github.com/nagyad))
+- EWPP-1977: Add patch for typed link module. [\#513](https://github.com/openeuropa/oe_content/pull/513) ([sergepavle](https://github.com/sergepavle))
+- Update epic ewpp event v2 [\#511](https://github.com/openeuropa/oe_content/pull/511) ([22Alexandra](https://github.com/22Alexandra))
+- Update Epic Event v2 EWPP-1539 [\#509](https://github.com/openeuropa/oe_content/pull/509) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1757: Add EventSpeaker behat context for parsing the fields. [\#508](https://github.com/openeuropa/oe_content/pull/508) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1691: Set Event Programme field composite revisions true. [\#507](https://github.com/openeuropa/oe_content/pull/507) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1691: Add missing behat context for Programme item corporate entity. [\#503](https://github.com/openeuropa/oe_content/pull/503) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1804: Make sure internal organiser checkbox is visible. [\#499](https://github.com/openeuropa/oe_content/pull/499) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1802: Improve live stream display. [\#498](https://github.com/openeuropa/oe_content/pull/498) ([yenyasinn](https://github.com/yenyasinn))
+- Update event v2 [\#497](https://github.com/openeuropa/oe_content/pull/497) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1787: Add status description field. [\#495](https://github.com/openeuropa/oe_content/pull/495) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1803: Add event extra fields. [\#494](https://github.com/openeuropa/oe_content/pull/494) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1765: Add "Who should attend" field. [\#493](https://github.com/openeuropa/oe_content/pull/493) ([sergepavle](https://github.com/sergepavle))
+- \[EWPP-1539\] EWPP-1755: Add optional module which bring Event speaker entity type. [\#492](https://github.com/openeuropa/oe_content/pull/492) ([sergepavle](https://github.com/sergepavle))
+- Update epic event v2 2021-11-18 [\#491](https://github.com/openeuropa/oe_content/pull/491) ([yenyasinn](https://github.com/yenyasinn))
+- Update EWPP-1539 Event v2 epic 20211109 [\#488](https://github.com/openeuropa/oe_content/pull/488) ([yenyasinn](https://github.com/yenyasinn))
+- \[EWPP-1539\] EWPP-1669: Add event collection functionality. [\#487](https://github.com/openeuropa/oe_content/pull/487) ([yenyasinn](https://github.com/yenyasinn))
+- \[EWPP-1539\] EWPP-1661: Adds Event Programme referencable corporate entity for Event CT.  [\#484](https://github.com/openeuropa/oe_content/pull/484) ([22Alexandra](https://github.com/22Alexandra))
+- Update epic event v2 [\#475](https://github.com/openeuropa/oe_content/pull/475) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1540: Add media field to Event. [\#468](https://github.com/openeuropa/oe_content/pull/468) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [2.8.0](https://github.com/openeuropa/oe_content/tree/2.8.0) (2022-02-10)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/2.7.0...2.8.0)
 
 **Merged pull requests:**
 
+- EWPP-0000: Prepare changelog for release. [\#515](https://github.com/openeuropa/oe_content/pull/515) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-1915: Update to PHP8 [\#512](https://github.com/openeuropa/oe_content/pull/512) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-0000: Remove merged patch for address module. [\#510](https://github.com/openeuropa/oe_content/pull/510) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1903: Fix the authors formatter. [\#505](https://github.com/openeuropa/oe_content/pull/505) ([nagyad](https://github.com/nagyad))
 - EWPP-1871: Correct update path for timeline fields. [\#504](https://github.com/openeuropa/oe_content/pull/504) ([nagyad](https://github.com/nagyad))
 
 ## [2.7.0](https://github.com/openeuropa/oe_content/tree/2.7.0) (2021-12-06)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/2.6.0...2.7.0)
 
 **Merged pull requests:**
 
+- Prepare release 2.7.0. [\#496](https://github.com/openeuropa/oe_content/pull/496) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1620: Make author field optional. [\#490](https://github.com/openeuropa/oe_content/pull/490) ([nagyad](https://github.com/nagyad))
 - EWPP-1576: Adapt the behat context for news. [\#489](https://github.com/openeuropa/oe_content/pull/489) ([nagyad](https://github.com/nagyad))
 - \[EWPP-1681\] EWPP-1435: Provide a service to migrate author v1 to v2. [\#486](https://github.com/openeuropa/oe_content/pull/486) ([nagyad](https://github.com/nagyad))
