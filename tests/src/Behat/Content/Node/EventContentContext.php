@@ -55,10 +55,8 @@ class EventContentContext extends RawDrupalContext {
       'Online time end' => 'oe_event_online_dates:end_value',
       'Online description' => 'oe_event_online_description',
       'Online link' => 'oe_event_online_link',
-      'Who should attend' => 'oe_event_who_should_attend',
       'Languages' => 'oe_event_languages',
       'Internal organiser' => 'oe_event_organiser_internal',
-      'Media' => 'oe_event_media',
       'Featured media' => 'oe_event_featured_media',
       'Status' => 'oe_event_status',
       'Organiser is internal' => 'oe_event_organiser_is_internal',
@@ -68,13 +66,6 @@ class EventContentContext extends RawDrupalContext {
       'Teaser' => 'oe_teaser',
       'Venue' => 'oe_event_venue',
       'Contact' => 'oe_event_contact',
-      'Programme' => 'oe_event_programme',
-      'Alternative title' => 'oe_content_short_title',
-      'Navigation title' => 'oe_content_navigation_title',
-      'Other links to further media items' => 'oe_event_media_more_description',
-      'Main link to further media items' => 'oe_event_media_more_link',
-      'Online only' => 'oe_event_online_only',
-      'Status description' => 'oe_event_status_description',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -82,13 +73,11 @@ class EventContentContext extends RawDrupalContext {
       switch ($key) {
         case 'Venue':
         case 'Contact':
-        case 'Programme':
           $fields = $this->getReferenceRevisionField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;
 
         case 'Organiser is internal':
-        case 'Online only':
           $scope->addFields([
             $mapping[$key] => (int) ($value === 'Yes'),
           ])->removeField($key);
@@ -98,7 +87,6 @@ class EventContentContext extends RawDrupalContext {
         case 'Languages':
         case 'Internal organiser':
         case 'Featured media':
-        case 'Media':
           $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);
           break;

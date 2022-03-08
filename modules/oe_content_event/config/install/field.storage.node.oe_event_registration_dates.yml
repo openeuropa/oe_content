@@ -2,18 +2,18 @@ langcode: en
 status: true
 dependencies:
   module:
-    - datetime_range_timezone
+    - datetime_range
     - node
 id: node.oe_event_registration_dates
 field_name: oe_event_registration_dates
 entity_type: node
-type: daterange_timezone
+type: daterange
 settings:
   datetime_type: datetime
-module: datetime_range_timezone
+module: datetime_range
 locked: false
 cardinality: 1
-translatable: false
+translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false

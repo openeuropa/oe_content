@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Config\FileStorage;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 
@@ -93,43 +92,4 @@ function oe_content_event_post_update_00005(): void {
   }
 
   $form_display->save();
-}
-
-/**
- * Add Media and Programme fields.
- */
-function oe_content_event_post_update_20001(): void {
-  \Drupal::service('module_installer')->install([
-    'datetime_range_timezone',
-    'oe_content_event_event_programme',
-  ]);
-  \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20001_event_v2_fields');
-  \Drupal::service('config.installer')->installOptionalConfig($storage);
-}
-
-/**
- * Update form display.
- */
-function oe_content_event_post_update_20002(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20002_update_form_display');
-
-  // Form display configurations to update.
-  $form_display_values = $storage->read('core.entity_form_display.node.oe_event.default');
-  $form_display = EntityFormDisplay::load($form_display_values['id']);
-  if ($form_display) {
-    $updated_form_display = \Drupal::entityTypeManager()
-      ->getStorage($form_display->getEntityTypeId())
-      ->updateFromStorageRecord($form_display, $form_display_values);
-    $updated_form_display->save();
-  }
-}
-
-/**
- * Make online link title required.
- */
-function oe_content_event_post_update_20003(): void {
-  $field_config = FieldConfig::load('node.oe_event.oe_event_online_link');
-  $field_config->setSetting('title', 2);
-  $field_config->save();
 }

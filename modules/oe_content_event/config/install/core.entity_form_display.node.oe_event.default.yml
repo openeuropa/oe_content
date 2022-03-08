@@ -3,9 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_event.body
-    - field.field.node.oe_event.oe_event_media_more_description
-    - field.field.node.oe_event.oe_event_media_more_link
-    - field.field.node.oe_event.oe_event_online_only
     - field.field.node.oe_event.oe_author
     - field.field.node.oe_event.oe_event_contact
     - field.field.node.oe_event.oe_event_dates
@@ -14,7 +11,6 @@ dependencies:
     - field.field.node.oe_event.oe_event_featured_media
     - field.field.node.oe_event.oe_event_featured_media_legend
     - field.field.node.oe_event.oe_event_languages
-    - field.field.node.oe_event.oe_event_media
     - field.field.node.oe_event.oe_event_online_dates
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
@@ -22,25 +18,22 @@ dependencies:
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_is_internal
     - field.field.node.oe_event.oe_event_organiser_name
-    - field.field.node.oe_event.oe_event_programme
     - field.field.node.oe_event.oe_event_registration_capacity
     - field.field.node.oe_event.oe_event_registration_dates
     - field.field.node.oe_event.oe_event_registration_url
     - field.field.node.oe_event.oe_event_report_summary
     - field.field.node.oe_event.oe_event_report_text
     - field.field.node.oe_event.oe_event_status
-    - field.field.node.oe_event.oe_event_status_description
     - field.field.node.oe_event.oe_event_type
     - field.field.node.oe_event.oe_event_venue
     - field.field.node.oe_event.oe_event_website
-    - field.field.node.oe_event.oe_event_who_should_attend
     - field.field.node.oe_event.oe_social_media_links
     - field.field.node.oe_event.oe_subject
     - field.field.node.oe_event.oe_summary
     - field.field.node.oe_event.oe_teaser
     - node.type.oe_event
   module:
-    - datetime_range_timezone
+    - datetime_range
     - field_group
     - inline_entity_form
     - link
@@ -58,7 +51,7 @@ third_party_settings:
         - oe_event_online_description
         - oe_event_online_link
       parent_name: ''
-      weight: 10
+      weight: 9
       format_type: details
       format_settings:
         id: ''
@@ -74,7 +67,7 @@ third_party_settings:
         - oe_event_organiser_name
         - oe_event_organiser_internal
       parent_name: ''
-      weight: 12
+      weight: 11
       format_type: details
       format_settings:
         description: ''
@@ -90,7 +83,7 @@ third_party_settings:
         - oe_event_featured_media_legend
         - body
       parent_name: ''
-      weight: 16
+      weight: 14
       format_type: details
       format_settings:
         description: ''
@@ -104,10 +97,8 @@ third_party_settings:
       children:
         - oe_event_report_summary
         - oe_event_report_text
-        - oe_event_media_more_link
-        - oe_event_media_more_description
       parent_name: ''
-      weight: 17
+      weight: 15
       format_type: details
       format_settings:
         description: ''
@@ -140,7 +131,7 @@ third_party_settings:
         - oe_content_navigation_title
         - oe_teaser
       parent_name: ''
-      weight: 20
+      weight: 18
       format_type: tab
       format_settings:
         id: ''
@@ -167,42 +158,19 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 27
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_event_media_more_description:
-    weight: 32
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-    region: content
-  oe_event_media_more_link:
-    weight: 31
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
-  oe_event_online_only:
-    weight: 8
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   langcode:
     type: language_select
-    weight: 21
+    weight: 19
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   oe_author:
-    weight: 23
+    weight: 21
     settings:
       match_operator: CONTAINS
       size: 60
@@ -213,7 +181,7 @@ content:
     region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 24
+    weight: 22
     region: content
     settings:
       match_operator: CONTAINS
@@ -223,7 +191,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 25
+    weight: 23
     region: content
     settings:
       placeholder_url: ''
@@ -249,7 +217,7 @@ content:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_event_contact:
-    weight: 18
+    weight: 17
     settings:
       form_mode: default
       revision: true
@@ -267,10 +235,13 @@ content:
     type: inline_entity_form_complex
     region: content
   oe_event_dates:
-    weight: 8
-    settings: {  }
+    weight: 7
+    settings:
+      date_order: DMY
+      time_type: '24'
+      increment: 15
     third_party_settings: {  }
-    type: daterange_timezone
+    type: daterange_datelist
     region: content
   oe_event_description_summary:
     weight: 4
@@ -299,7 +270,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   oe_event_featured_media_legend:
-    weight: 27
+    weight: 28
     settings:
       size: 60
       placeholder: ''
@@ -311,7 +282,7 @@ content:
     region: content
   oe_event_languages:
     type: skos_concept_entity_reference_autocomplete
-    weight: 11
+    weight: 10
     region: content
     settings:
       match_operator: CONTAINS
@@ -319,21 +290,14 @@ content:
       placeholder: ''
       match_limit: 10
     third_party_settings: {  }
-  oe_event_media:
-    weight: 15
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   oe_event_online_dates:
     weight: 24
-    settings: {  }
+    settings:
+      date_order: DMY
+      time_type: '24'
+      increment: 15
     third_party_settings: {  }
-    type: daterange_timezone
+    type: daterange_datelist
     region: content
   oe_event_online_description:
     weight: 26
@@ -358,7 +322,7 @@ content:
     type: options_select
     region: content
   oe_event_organiser_internal:
-    weight: 39
+    weight: 38
     settings:
       match_operator: CONTAINS
       size: 60
@@ -375,30 +339,12 @@ content:
     type: boolean_checkbox
     region: content
   oe_event_organiser_name:
-    weight: 38
+    weight: 37
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  oe_event_programme:
-    weight: 31
-    settings:
-      form_mode: default
-      revision: true
-      override_labels: true
-      label_singular: Programme
-      label_plural: Programmes
-      collapsible: true
-      allow_new: true
-      match_operator: CONTAINS
-      removed_reference: keep
-      collapsed: false
-      allow_existing: false
-      allow_duplicate: false
-    third_party_settings: {  }
-    type: inline_entity_form_complex
     region: content
   oe_event_registration_capacity:
     weight: 32
@@ -410,9 +356,12 @@ content:
     region: content
   oe_event_registration_dates:
     weight: 28
-    settings: {  }
+    settings:
+      date_order: DMY
+      time_type: '24'
+      increment: 15
     third_party_settings: {  }
-    type: daterange_timezone
+    type: daterange_datelist
     region: content
   oe_event_registration_url:
     weight: 26
@@ -444,23 +393,14 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
-  oe_event_status_description:
-    type: text_textarea
-    weight: 7
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
   oe_event_type:
     weight: 0
-    settings:
-      sort: id
+    settings: {  }
     third_party_settings: {  }
     type: skos_concept_entity_reference_options_select
     region: content
   oe_event_venue:
-    weight: 9
+    weight: 8
     settings:
       form_mode: default
       revision: true
@@ -478,24 +418,16 @@ content:
     type: inline_entity_form_complex
     region: content
   oe_event_website:
-    weight: 13
+    weight: 12
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  oe_event_who_should_attend:
-    type: string_textfield
-    weight: 11
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   oe_social_media_links:
     type: typed_link
-    weight: 14
+    weight: 13
     region: content
     settings:
       placeholder_url: ''
@@ -525,7 +457,7 @@ content:
     type: text_textarea
     region: content
   oe_teaser:
-    weight: 25
+    weight: 24
     settings:
       rows: 5
       placeholder: ''
@@ -539,7 +471,7 @@ content:
     region: content
   path:
     type: path
-    weight: 22
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -547,21 +479,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 28
+    weight: 26
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 30
+    weight: 28
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 29
+    weight: 27
     region: content
     third_party_settings: {  }
   title:
@@ -582,7 +514,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 26
+    weight: 24
     settings:
       match_operator: CONTAINS
       size: 60

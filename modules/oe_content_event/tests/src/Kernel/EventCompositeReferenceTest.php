@@ -37,14 +37,6 @@ class EventCompositeReferenceTest extends EventKernelTestBase {
     $press_contact_two = $contact_storage->create($values);
     $press_contact_two->save();
 
-    $values = [
-      'name' => 'Event Programme Item',
-      'bundle' => 'default',
-    ];
-    $event_programme_storage = $this->entityTypeManager->getStorage('oe_event_programme');
-    $event_programme = $event_programme_storage->create($values);
-    $event_programme->save();
-
     // Prepare an event with the composite entities referenced.
     $values = [
       'title' => 'First event',
@@ -63,10 +55,6 @@ class EventCompositeReferenceTest extends EventKernelTestBase {
           'target_revision_id' => $press_contact_two->getLoadedRevisionId(),
         ],
       ],
-      'oe_event_programme' => [
-        'target_id' => $event_programme->id(),
-        'target_revision_id' => $event_programme->getLoadedRevisionId(),
-      ],
     ];
     $node_storage = $this->entityTypeManager->getStorage('node');
     $event_one = $node_storage->create($values);
@@ -78,16 +66,14 @@ class EventCompositeReferenceTest extends EventKernelTestBase {
     $event_two = $node_storage->create($values);
     $event_two->save();
 
-    // Delete the first event where the same venue and event programme and one
-    // of the contacts were referenced.
+    // Delete the first event where the same venue and one of the contacts were
+    // referenced.
     $event_one->delete();
 
-    // Assert that the Venue, Event programme and Press contact 1 were not
-    // deleted because they are referenced by another event node.
+    // Assert that the Venue and Press contact 1 were not deleted because they
+    // are referenced by another event node.
     $venue_storage->resetCache();
     $this->assertNotEmpty($venue_storage->load($venue->id()));
-    $event_programme_storage->resetCache();
-    $this->assertNotEmpty($event_programme_storage->load($event_programme->id()));
     $contact_storage->resetCache();
     $this->assertNotEmpty($contact_storage->load($press_contact_one->id()));
 
@@ -98,12 +84,10 @@ class EventCompositeReferenceTest extends EventKernelTestBase {
     // Delete the second event.
     $event_two->delete();
 
-    // Assert that Venue, Event programme and Press contact 1 were deleted
-    // because no other event nodes referencing them.
+    // Assert both Venue and Press contact 1 were deleted because no other
+    // event nodes referencing them.
     $venue_storage->resetCache();
     $this->assertEmpty($venue_storage->load($venue->id()));
-    $event_programme_storage->resetCache();
-    $this->assertEmpty($event_programme_storage->load($event_programme->id()));
     $contact_storage->resetCache();
     $this->assertEmpty($contact_storage->load($press_contact_one->id()));
   }

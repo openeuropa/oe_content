@@ -100,13 +100,6 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
   /**
    * {@inheritdoc}
    */
-  public function getTimezone(): string {
-    return $this->entity->get('oe_event_dates')->timezone;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function hasRegistrationDates(): bool {
     return !$this->entity->get('oe_event_registration_dates')->isEmpty();
   }
@@ -128,13 +121,6 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
   /**
    * {@inheritdoc}
    */
-  public function getRegistrationTimezone(): ?string {
-    return $this->hasRegistrationDates() ? $this->entity->get('oe_event_registration_dates')->timezone : NULL;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function isRegistrationPeriodYetToCome(\DateTimeInterface $datetime): bool {
     return $this->hasRegistrationDates() && $datetime < $this->getRegistrationStartDate()->getPhpDateTime();
   }
@@ -149,14 +135,6 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
   /**
    * {@inheritdoc}
    */
-  public function isOngoing(\DateTimeInterface $datetime): bool {
-    return $this->getStartDate()->getPhpDateTime() <= $datetime
-      && $datetime < $this->getEndDate()->getPhpDateTime();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function isRegistrationPeriodActive(\DateTimeInterface $datetime): bool {
     return $this->hasRegistrationDates() && $datetime >= $this->getRegistrationStartDate()->getPhpDateTime() && $datetime < $this->getRegistrationEndDate()->getPhpDateTime();
   }
@@ -166,71 +144,6 @@ class EventNodeWrapper extends EntityWrapperBase implements EventNodeWrapperInte
    */
   public function isRegistrationPeriodOver(\DateTimeInterface $datetime): bool {
     return $this->hasRegistrationDates() && $datetime >= $this->getRegistrationEndDate()->getPhpDateTime();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function hasOnlineDates(): bool {
-    return !$this->entity->get('oe_event_online_dates')->isEmpty();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isOnlinePeriodYetToCome(\DateTimeInterface $datetime): bool {
-    return $this->hasOnlineDates() && $datetime < $this->getOnlineStartDate()->getPhpDateTime();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isOnlinePeriodActive(\DateTimeInterface $datetime): bool {
-    return $this->hasOnlineDates()
-      && $this->getOnlineStartDate()->getPhpDateTime() <= $datetime
-      && $datetime < $this->getOnlineEndDate()->getPhpDateTime();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isOnlinePeriodOver(\DateTimeInterface $datetime): bool {
-    return $this->hasOnlineDates() && $datetime >= $this->getOnlineEndDate()->getPhpDateTime();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOnlineStartDate(): ?DrupalDateTime {
-    return $this->entity->get('oe_event_online_dates')->start_date;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOnlineEndDate(): ?DrupalDateTime {
-    return $this->entity->get('oe_event_online_dates')->end_date;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOnlineTimezone(): ?string {
-    return $this->hasOnlineDates() ? $this->entity->get('oe_event_online_dates')->timezone : NULL;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function hasOnlineLink(): bool {
-    return !$this->entity->get('oe_event_online_link')->isEmpty();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function hasOnlineType(): bool {
-    return !$this->entity->get('oe_event_online_type')->isEmpty();
   }
 
 }

@@ -5,7 +5,7 @@ dependencies:
     - field.storage.node.oe_event_online_dates
     - node.type.oe_event
   module:
-    - datetime_range_timezone
+    - datetime_range
 id: node.oe_event.oe_event_online_dates
 field_name: oe_event_online_dates
 entity_type: node
@@ -17,4 +17,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: daterange_timezone
+field_type: daterange

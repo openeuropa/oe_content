@@ -57,22 +57,3 @@ This module provides integration with the OpenEuropa Link List component in the 
 plugin that allows to filter Event link lists based on their start and end dates.
 To ensure proper cacheability, this plugin depends on the `openeuropa/oe_time_caching` component so make sure you
 require it in your composer.json file.
-
-## Event daterange fields replacement to daterange_timezone from version 3.x
-
-As of 3.x the field type of the following fields ahs been changed to daterange_timezone in order to support timezones:
-  - oe_event_dates
-  - oe_event_online_dates
-  - oe_event_registration_dates
-
-This change has been carried out via a helper class called `EventDateRangeFieldTypeChanger` where we directly execute
-the necessary MySQL commands to ensure seamless performant change in the background by maintaining the same machine-names.
-The helper class can be used as follows:
-```php
-  $storage = new FileStorage(drupal_get_path('module', 'mymodule') . 'path to configs');
-  // The new field configs with the daterange_timezone type.
-  $field_storage = $storage->read('field.storage.node.oe_event_online_dates');
-  $field_config = $storage->read('field.field.node.oe_event.oe_event_online_dates');
-  // Call the changeFieldType() with the new daterange_timezone field configs to complete the replacement.
-  EventDateRangeFieldTypeChanger::changeFieldType('oe_event_online_dates', $field_storage, $field_config);
-```

@@ -22,9 +22,7 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\Author\CorporateBodyAuthorContext
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\DocumentDocumentReferenceContext
         - Drupal\Tests\oe_content\Behat\Content\DocumentReference\PublicationDocumentReferenceContext
-        - Drupal\Tests\oe_content\Behat\Content\EventSpeaker\DefaultEventSpeakerContext
         - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
-        - Drupal\Tests\oe_content\Behat\Content\ProgrammeItem\DefaultProgrammeItemContext
         - Drupal\Tests\oe_content\Behat\Content\Node\ConsultationContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\CallForProposalsContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
@@ -94,7 +92,6 @@ default:
         Result : "#edit-group-result"
         Call for proposals: "#oe-project-calls-values"
         Social media links: "#oe-social-media-links-values"
-        Event media: '.field--name-oe-event-media'
         Description: "#edit-oe-event-featured-media"
         Event report: "#edit-group-report"
         Event contact: "#edit-oe-event-contact-wrapper"
@@ -134,8 +131,6 @@ default:
         Timeline: "#edit-oe-timeline-wrapper"
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
-        Event programme: "#edit-oe-event-programme-wrapper"
-        Programme name: ".field--name-oe-event-programme .field--name-name"
       selectors:
         message_selector: '.messages'
         error_message_selector: '.messages.messages--error'
