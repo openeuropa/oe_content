@@ -59,18 +59,18 @@ function oe_content_redirect_link_field_form_node_form_alter(&$form, FormStateIn
       ],
     ],
   ];
-  if (isset($form['actions']['submit']['#submit'])) {
-    $submit_handlers = $form['actions']['submit']['#submit'];
-    // Make sure that custom submit handler executed first.
-    array_unshift($submit_handlers, '_oe_content_redirect_link_field_node_form_submit');
-    $form['actions']['submit']['#submit'] = $submit_handlers;
-  }
+
+  $validate_handlers = $form['#validate'];
+  array_unshift($validate_handlers, '_oe_content_redirect_link_field_node_form_validate');
+  $form['#validate'] = $validate_handlers;
 }
 
 /**
- * Submit form handler for node with 'oe_redirect_link' field.
+ * Validate form handler for node with 'oe_redirect_link' field.
+ *
+ * Removes the link value if the checkbox becomes unchecked.
  */
-function _oe_content_redirect_link_field_node_form_submit(&$form, FormStateInterface $form_state): void {
+function _oe_content_redirect_link_field_node_form_validate(&$form, FormStateInterface $form_state): void {
   if ($form_state->getValue('redirect_link_enable', 0) === 0) {
     $form_state->setValue('oe_redirect_link', []);
   }
