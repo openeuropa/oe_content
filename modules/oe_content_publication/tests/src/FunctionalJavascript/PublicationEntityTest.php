@@ -45,14 +45,14 @@ class PublicationEntityTest extends WebDriverTestBase {
 
     // Assert collection related field visibilities when loading the form.
     $this->assertTrue($this->getSession()->getPage()->findField('oe_documents[0][target_id]')->isVisible());
-    $this->assertTrue($this->getSession()->getPage()->findField('oe_documents[0][target_id]')->hasAttribute('required'));
+    $this->assertTrue($this->getSession()->getPage()->find('css', '#edit-oe-documents')->hasAttribute('required'));
     $this->assertFalse($this->getSession()->getPage()->findField('oe_publication_publications[0][target_id]')->isVisible());
 
     // Mark the publication as collection and assert the field visibilities.
     $this->getSession()->getPage()->selectFieldOption('Yes', '1');
     $this->assertFalse($this->getSession()->getPage()->findField('oe_documents[0][target_id]')->isVisible());
     $this->assertTrue($this->getSession()->getPage()->findField('oe_publication_publications[0][target_id]')->isVisible());
-    $this->assertTrue($this->getSession()->getPage()->findField('oe_publication_publications[0][target_id]')->hasAttribute('required'));
+    $this->assertTrue($this->getSession()->getPage()->find('css', '#oe-publication-publications-values h4')->hasClass('form-required'));
 
     // Create a publication and test the field constraints.
     $collection = \Drupal::entityTypeManager()->getStorage('node')->create([
