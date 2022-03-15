@@ -1,0 +1,8 @@
+name: OpenEuropa Content Corporate Fields
+description: Contains the OpenEuropa corporate fields.
+package: OpenEuropa
+
+type: module
+core_version_requirement: ^9.2
+dependencies:
+  - oe_content:oe_content
