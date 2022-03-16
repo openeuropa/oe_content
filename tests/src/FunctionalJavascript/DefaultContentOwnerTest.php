@@ -28,6 +28,7 @@ class DefaultContentOwnerTest extends WebDriverTestBase {
     'oe_content',
     'oe_content_page',
     'oe_corporate_site_info',
+    'oe_content_corporate_fields',
   ];
 
   /**
