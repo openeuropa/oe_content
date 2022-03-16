@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content\Kernel;
+namespace Drupal\Tests\oe_content_corporate_fields\Kernel;
 
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\NodeType;
@@ -33,6 +33,7 @@ class ShortTitleTokenReplaceTest extends SparqlKernelTestBase {
     'rdf_skos',
     'system',
     'user',
+    'oe_content_corporate_fields',
   ];
 
   /**
