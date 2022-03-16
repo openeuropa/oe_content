@@ -37,3 +37,29 @@ function oe_content_update_8001() {
     $entity_definition_update_manager->updateFieldStorageDefinition($field_definition);
   }
 }
+
+/**
+ * Install oe_content_corporate_fields module.
+ */
+function oe_content_update_9001(): void {
+  $entity_definition_manager = \Drupal::entityDefinitionUpdateManager();
+
+  // Change the base fields provider.
+  $field_names = [
+    'oe_content_short_title',
+    'oe_content_navigation_title',
+    'oe_content_content_owner',
+    'oe_content_legacy_link',
+  ];
+  foreach ($field_names as $field_name) {
+    $field_storage_definition = $entity_definition_manager->getFieldStorageDefinition($field_name, 'node');
+    $field_storage_definition->setProvider('oe_content_corporate_fields');
+    $entity_definition_manager->updateFieldStorageDefinition($field_storage_definition);
+  }
+
+  // Changing the base field provider requires container invalidation.
+  \Drupal::service('kernel')->invalidateContainer();
+
+  // Install the new sub-module.
+  \Drupal::service('module_installer')->install(['oe_content_corporate_fields']);
+}
