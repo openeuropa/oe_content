@@ -24,9 +24,7 @@ services:
 #    ports:
 #      - 3306:3306
   sparql:
-    # Temporarily fix the triple store version to avoid "Provisional data" terms.
-    # @todo: Use the latest release once a solution for the "Provisional data" terms is implemented.
-    image: openeuropa/triple-store-dev:1.14.0
+    image: openeuropa/triple-store-dev
     environment:
     - SPARQL_UPDATE=true
     - DBA_PASSWORD=dba
