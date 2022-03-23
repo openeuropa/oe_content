@@ -156,7 +156,7 @@ class PersonEntityTest extends WebDriverTestBase {
     $job_region = $this->getSession()->getPage()->find('css', '#edit-oe-person-jobs-wrapper');
     $job_region->pressButton('Edit');
     $this->assertSession()->assertWaitOnAjaxRequest();
-    $this->assertSession()->fieldValueEquals('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Advisor (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
+    $this->assertSession()->fieldValueEquals('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Adviser (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
 
     // Change the type of person to non-eu and assert
     // the old job type is no longer stored.
@@ -178,7 +178,7 @@ class PersonEntityTest extends WebDriverTestBase {
     // Change the person type to eu and assert the first job's role
     // is kept and the new job's fields are updated.
     $this->getSession()->getPage()->selectFieldOption('oe_person_type', 'eu');
-    $this->assertSession()->fieldValueEquals('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Advisor (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
+    $this->assertSession()->fieldValueEquals('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Adviser (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_role_reference][0][target_id]')->isVisible());
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_acting][value]')->isVisible());
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_description][0][value]')->isVisible());
