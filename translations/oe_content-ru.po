@@ -1,0 +1,233 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "октябрь"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "июль"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "март"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "февраль"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "декабрь"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "август"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "июнь"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "май"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "апрель"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "ноябрь"
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "январь"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "сентябрь"
+
+msgid "Jan"
+msgstr "янв."
+
+msgid "Feb"
+msgstr "фев."
+
+msgid "Mar"
+msgstr "мар."
+
+msgid "Apr"
+msgstr "апр."
+
+msgid "May"
+msgstr "май"
+
+msgid "Jun"
+msgstr "июн."
+
+msgid "Jul"
+msgstr "июл."
+
+msgid "Aug"
+msgstr "авг."
+
+msgid "Sep"
+msgstr "сен."
+
+msgid "Oct"
+msgstr "окт."
+
+msgid "Nov"
+msgstr "ноя."
+
+msgid "Dec"
+msgstr "дек."
+
+msgid "Sunday"
+msgstr "воскресенье"
+
+msgid "Monday"
+msgstr "понедельник"
+
+msgid "Tuesday"
+msgstr "вторник"
+
+msgid "Wednesday"
+msgstr "среда"
+
+msgid "Thursday"
+msgstr "четверг"
+
+msgid "Friday"
+msgstr "пятница"
+
+msgid "Saturday"
+msgstr "суббота"
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "вск"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "пнд"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "втр"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "срд"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "чтв"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "птн"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "сбт"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "вс"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "пн"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "вт"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "ср"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "чт"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "пт"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "сб"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "вс"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "пн"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "вт"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "ср"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "чт"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "пт"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "сб"
+
+msgid "Sun"
+msgstr "вск"
+
+msgid "Mon"
+msgstr "пнд"
+
+msgid "Tue"
+msgstr "втр"
+
+msgid "Wed"
+msgstr "срд"
+
+msgid "Thu"
+msgstr "чтв"
+
+msgid "Fri"
+msgstr "птн"
+
+msgid "Sat"
+msgstr "сбт"
+
+msgid "Su"
+msgstr "вс"
+
+msgid "Mo"
+msgstr "пн"
+
+msgid "Tu"
+msgstr "вт"
+
+msgid "We"
+msgstr "ср"
+
+msgid "Th"
+msgstr "чт"
+
+msgid "Fr"
+msgstr "пт"
+
+msgid "Sa"
+msgstr "сб"
