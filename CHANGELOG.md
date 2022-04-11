@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0-alpha2](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha2) (2022-04-1)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha1...3.0.0-alpha2)
+
+**Merged pull requests:**
+
+- EWPP-2125: Add translation for ru language. [\#530](https://github.com/openeuropa/oe_content/pull/530) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2101: Add translations for chinese and ukrainian languages. [\#529](https://github.com/openeuropa/oe_content/pull/529) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2067: Using the latest sparql image. [\#528](https://github.com/openeuropa/oe_content/pull/528) ([upchuk](https://github.com/upchuk))
+- EWPP-2004: Moving the clearing of the redirect link value to the validation handler. [\#526](https://github.com/openeuropa/oe_content/pull/526) ([upchuk](https://github.com/upchuk))
+- EWPP-1848: Adjust Files field requirement. [\#517](https://github.com/openeuropa/oe_content/pull/517) ([sergepavle](https://github.com/sergepavle))
+
 ## [3.0.0-alpha1](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha1) (2022-03-08)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/2.8.0...3.0.0-alpha1)
