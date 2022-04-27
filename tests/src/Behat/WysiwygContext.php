@@ -54,7 +54,7 @@ class WysiwygContext extends RawDrupalContext {
    */
   public function iShouldSeeWysiwygButton($field, $button) {
     $wysiwyg = $this->getWysiwyg($field);
-    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//a[@title="' . $button . '"]');
+    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//a[starts-with(@title, "' . $button . '")]');
     if (empty($button_elements)) {
       throw new \Exception("Could not find the '$button' button.");
     }
@@ -76,7 +76,7 @@ class WysiwygContext extends RawDrupalContext {
    */
   public function iShouldNotSeeWysiwygButton($field, $button) {
     $wysiwyg = $this->getWysiwyg($field);
-    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//a[@title="' . $button . '"]');
+    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//a[starts-with(@title, "' . $button . '")]');
     if (!empty($button_elements)) {
       throw new \Exception("The '$button' button is present.");
     }
