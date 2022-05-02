@@ -12,6 +12,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
+    composite_revisions: false
 id: node.oe_person.oe_person_media
 field_name: oe_person_media
 entity_type: node

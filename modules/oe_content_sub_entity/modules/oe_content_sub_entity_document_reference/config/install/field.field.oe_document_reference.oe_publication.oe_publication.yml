@@ -10,6 +10,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
+    composite_revisions: false
 id: oe_document_reference.oe_publication.oe_publication
 field_name: oe_publication
 entity_type: oe_document_reference

@@ -131,3 +131,12 @@ function oe_content_news_post_update_20009(): void {
     $updated_form_display->save();
   }
 }
+
+/**
+ * Enable "composite revisions" option for "Contacts" field.
+ */
+function oe_content_news_post_update_20010(): void {
+  $field_config = FieldConfig::load('node.oe_news.oe_news_contacts');
+  $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', TRUE);
+  $field_config->save();
+}

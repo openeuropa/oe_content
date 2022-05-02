@@ -95,3 +95,12 @@ function oe_content_organisation_post_update_20006() {
     $updated_form_display->save();
   }
 }
+
+/**
+ * Enable "composite revisions" option for "Contacts" field.
+ */
+function oe_content_organisation_post_update_20007(): void {
+  $field_config = FieldConfig::load('node.oe_organisation.oe_organisation_contact');
+  $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', TRUE);
+  $field_config->save();
+}

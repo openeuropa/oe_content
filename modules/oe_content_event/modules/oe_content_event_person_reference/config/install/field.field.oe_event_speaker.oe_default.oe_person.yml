@@ -10,6 +10,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
+    composite_revisions: false
 id: oe_event_speaker.oe_default.oe_person
 field_name: oe_person
 entity_type: oe_event_speaker

@@ -12,6 +12,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: true
+    composite_revisions: true
 id: node.oe_project.oe_project_contact
 field_name: oe_project_contact
 entity_type: node

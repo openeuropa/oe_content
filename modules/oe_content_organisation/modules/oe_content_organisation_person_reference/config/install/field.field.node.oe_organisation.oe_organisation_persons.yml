@@ -10,6 +10,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
+    composite_revisions: false
 id: node.oe_organisation.oe_organisation_persons
 field_name: oe_organisation_persons
 entity_type: node

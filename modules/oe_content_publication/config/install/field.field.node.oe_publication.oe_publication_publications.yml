@@ -9,6 +9,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
+    composite_revisions: false
 id: node.oe_publication.oe_publication_publications
 field_name: oe_publication_publications
 entity_type: node

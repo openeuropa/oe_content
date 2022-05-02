@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Add length restrictions for title display fields.
@@ -49,4 +50,22 @@ function oe_content_person_post_update_20002(): void {
   $settings['handler_settings']['field']['concept_schemes'] = ['http://publications.europa.eu/resource/authority/role-qualifier'];
   $field_storage->set('settings', $settings);
   $field_storage->save();
+}
+
+/**
+ * Enable "composite revisions" option for fields in Person CT.
+ *
+ * Updated fields: "Contacts", "Articles and Publications", "Jobs".
+ */
+function oe_content_person_post_update_20003(): void {
+  $fields = [
+    'node.oe_person.oe_person_contacts',
+    'node.oe_person.oe_person_documents',
+    'node.oe_person.oe_person_jobs',
+  ];
+  foreach ($fields as $id) {
+    $field_config = FieldConfig::load($id);
+    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', TRUE);
+    $field_config->save();
+  }
 }
