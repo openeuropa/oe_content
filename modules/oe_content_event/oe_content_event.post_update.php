@@ -135,16 +135,18 @@ function oe_content_event_post_update_20003(): void {
 }
 
 /**
- * Enable "composite revisions" option for "Event contact" and "Venue" fields.
+ * Set "composite revisions" option for reference fields.
  */
 function oe_content_event_post_update_20004(): void {
   $fields = [
-    'node.oe_event.oe_event_contact',
-    'node.oe_event.oe_event_venue',
+    'node.oe_event.oe_event_contact' => TRUE,
+    'node.oe_event.oe_event_media' => FALSE,
+    'node.oe_event.oe_event_venue' => TRUE,
+    'oe_event_speaker.oe_default.oe_person' => FALSE,
   ];
-  foreach ($fields as $id) {
-    $field_config = FieldConfig::load($id);
-    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', TRUE);
+  foreach ($fields as $field => $value) {
+    $field_config = FieldConfig::load($field);
+    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
     $field_config->save();
   }
 }

@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Hide untranslatable fields for all bundles.
@@ -36,4 +37,19 @@ function oe_content_sub_entity_document_reference_post_update_00001() {
     }
   }
 
+}
+
+/**
+ * Set "composite revisions" option for reference fields.
+ */
+function oe_content_sub_entity_document_reference_post_update_00002(): void {
+  $fields = [
+    'oe_document_reference.oe_document.oe_document' => FALSE,
+    'oe_document_reference.oe_publication.oe_publication' => FALSE,
+  ];
+  foreach ($fields as $field => $value) {
+    $field_config = FieldConfig::load($field);
+    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
+    $field_config->save();
+  }
 }

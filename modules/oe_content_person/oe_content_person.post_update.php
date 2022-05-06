@@ -53,19 +53,22 @@ function oe_content_person_post_update_20002(): void {
 }
 
 /**
- * Enable "composite revisions" option for fields in Person CT.
- *
- * Updated fields: "Contacts", "Articles and Publications", "Jobs".
+ * Set "composite revisions" option for reference fields.
  */
 function oe_content_person_post_update_20003(): void {
   $fields = [
-    'node.oe_person.oe_person_contacts',
-    'node.oe_person.oe_person_documents',
-    'node.oe_person.oe_person_jobs',
+    'node.oe_person.oe_person_contacts' => TRUE,
+    'node.oe_person.oe_person_cv' => FALSE,
+    'node.oe_person.oe_person_documents' => TRUE,
+    'node.oe_person.oe_person_interests_file' => FALSE,
+    'node.oe_person.oe_person_jobs' => TRUE,
+    'node.oe_person.oe_person_media' => FALSE,
+    'node.oe_person.oe_person_organisation' => FALSE,
+    'node.oe_person.oe_person_photo' => FALSE,
   ];
-  foreach ($fields as $id) {
-    $field_config = FieldConfig::load($id);
-    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', TRUE);
+  foreach ($fields as $field => $value) {
+    $field_config = FieldConfig::load($field);
+    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
     $field_config->save();
   }
 }

@@ -21,10 +21,16 @@ function oe_content_call_proposals_post_update_00001(): void {
 }
 
 /**
- * Enable "composite revisions" option for "Contact" field.
+ * Set "composite revisions" option for reference fields.
  */
 function oe_content_call_proposals_post_update_00002(): void {
-  $field_config = FieldConfig::load('node.oe_call_proposals.oe_call_proposals_contact');
-  $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', TRUE);
-  $field_config->save();
+  $fields = [
+    'node.oe_call_proposals.oe_call_proposals_contact' => TRUE,
+    'node.oe_call_proposals.oe_documents' => FALSE,
+  ];
+  foreach ($fields as $field => $value) {
+    $field_config = FieldConfig::load($field);
+    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
+    $field_config->save();
+  }
 }

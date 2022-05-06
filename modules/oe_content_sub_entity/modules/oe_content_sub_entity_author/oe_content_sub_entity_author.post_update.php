@@ -2,7 +2,7 @@
 
 /**
  * @file
- * OpenEuropa Consultation Content post updates.
+ * Post update functions for OpenEuropa Content Sub Entity Author module.
  */
 
 declare(strict_types = 1);
@@ -12,11 +12,10 @@ use Drupal\field\Entity\FieldConfig;
 /**
  * Set "composite revisions" option for reference fields.
  */
-function oe_content_consultation_post_update_00001(): void {
+function oe_content_sub_entity_author_post_update_00001(): void {
   $fields = [
-    'node.oe_consultation.oe_consultation_contacts' => TRUE,
-    'node.oe_consultation.oe_consultation_documents' => TRUE,
-    'node.oe_consultation.oe_consultation_outcome_files' => FALSE,
+    'oe_author.oe_organisation.oe_node_reference' => FALSE,
+    'oe_author.oe_person.oe_node_reference' => FALSE,
   ];
   foreach ($fields as $field => $value) {
     $field_config = FieldConfig::load($field);
