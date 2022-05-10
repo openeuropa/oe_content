@@ -11,7 +11,7 @@
         "drupal/core": "^9.2",
         "drupal/datetime_range_timezone": "^1.0@alpha",
         "drupal/linkit": "^5.0-beta11 || ^6.0",
-        "drupal/maxlength": "^1.0@beta || ^2.0",
+        "drupal/maxlength": "^1.0@beta || 2.0.0-rc1",
         "openeuropa/oe_media": "^1.15",
         "openeuropa/rdf_skos": "^1.0"
     },
@@ -108,7 +108,8 @@
             "Explicit lower version requirement of drupal/ctools due to Drupal core 9.2 compatibility.",
             "Explicit minimum version requirement of behat/behat library due to PHP compatibility.",
             "Explicit requirement for egulias/email-validator due to https://www.drupal.org/project/drupal/issues/3061074#comment-14300579. It can be removed when Drupal core 9.2 support is droppped.",
-            "Explicit requirement of drupal/token module due to PHP 8 compatbility."
+            "Explicit requirement of drupal/token module due to PHP 8 compatbility.",
+            "Explicit requirement of drupal/maxlength: 2.0.0-rc1 due to issues #3279243, #3279222."
         ]
     },
     "config": {
