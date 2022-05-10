@@ -24,6 +24,7 @@ class SubEntityTypeUiTest extends BrowserTestBase {
    */
   protected static $modules = [
     'oe_content_sub_entity_document_reference',
+    'oe_content_publication',
   ];
 
   /**
