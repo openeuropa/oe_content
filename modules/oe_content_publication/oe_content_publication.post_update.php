@@ -214,10 +214,6 @@ function oe_content_publication_post_update_20002(): void {
  * Set "composite revisions" option for reference fields.
  */
 function oe_content_publication_post_update_20003(): void {
-  $field_config = FieldConfig::load('node.oe_publication.oe_publication_contacts');
-  $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', TRUE);
-  $field_config->save();
-
   $fields = [
     'node.oe_publication.oe_publication_contacts' => TRUE,
     'node.oe_publication.oe_publication_publications' => FALSE,

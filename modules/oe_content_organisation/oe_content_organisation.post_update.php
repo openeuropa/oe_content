@@ -104,7 +104,6 @@ function oe_content_organisation_post_update_20007(): void {
     'node.oe_organisation.oe_organisation_chart' => FALSE,
     'node.oe_organisation.oe_organisation_contact' => TRUE,
     'node.oe_organisation.oe_organisation_logo' => FALSE,
-    'oe_contact.oe_organisation_reference.oe_node_reference' => FALSE,
   ];
   foreach ($fields as $field => $value) {
     $field_config = FieldConfig::load($field);
