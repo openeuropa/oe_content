@@ -1,6 +1,8 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - oe_content_publication
 id: oe_publication
 label: Publication
 description: ''
