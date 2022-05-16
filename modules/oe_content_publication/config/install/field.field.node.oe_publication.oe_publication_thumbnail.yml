@@ -11,6 +11,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
+    composite_revisions: false
 id: node.oe_publication.oe_publication_thumbnail
 field_name: oe_publication_thumbnail
 entity_type: node

@@ -10,6 +10,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
+    composite_revisions: false
 id: node.oe_call_proposals.oe_documents
 field_name: oe_documents
 entity_type: node

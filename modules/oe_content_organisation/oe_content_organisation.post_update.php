@@ -95,3 +95,19 @@ function oe_content_organisation_post_update_20006() {
     $updated_form_display->save();
   }
 }
+
+/**
+ * Set "composite revisions" option for reference fields.
+ */
+function oe_content_organisation_post_update_20007(): void {
+  $fields = [
+    'node.oe_organisation.oe_organisation_chart' => FALSE,
+    'node.oe_organisation.oe_organisation_contact' => TRUE,
+    'node.oe_organisation.oe_organisation_logo' => FALSE,
+  ];
+  foreach ($fields as $field => $value) {
+    $field_config = FieldConfig::load($field);
+    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
+    $field_config->save();
+  }
+}

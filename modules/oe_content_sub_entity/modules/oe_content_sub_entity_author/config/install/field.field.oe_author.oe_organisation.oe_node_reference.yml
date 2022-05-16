@@ -10,6 +10,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
+    composite_revisions: false
 id: oe_author.oe_organisation.oe_node_reference
 field_name: oe_node_reference
 entity_type: oe_author

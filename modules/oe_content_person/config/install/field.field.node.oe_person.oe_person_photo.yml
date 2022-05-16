@@ -11,6 +11,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: false
+    composite_revisions: false
 id: node.oe_person.oe_person_photo
 field_name: oe_person_photo
 entity_type: node

@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Add maxlegnth to oe_content_short_title, oe_summary, oe_teaser, title.
@@ -25,4 +26,13 @@ function oe_content_call_tenders_post_update_00001() {
     $storage->updateFromStorageRecord($form_display, $values);
     $form_display->save();
   }
+}
+
+/**
+ * Set "composite revisions" option for reference fields.
+ */
+function oe_content_call_tenders_post_update_00002(): void {
+  $field_config = FieldConfig::load('node.oe_call_tenders.oe_documents');
+  $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', FALSE);
+  $field_config->save();
 }

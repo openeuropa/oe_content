@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Add length restrictions for title display fields.
@@ -49,4 +50,25 @@ function oe_content_person_post_update_20002(): void {
   $settings['handler_settings']['field']['concept_schemes'] = ['http://publications.europa.eu/resource/authority/role-qualifier'];
   $field_storage->set('settings', $settings);
   $field_storage->save();
+}
+
+/**
+ * Set "composite revisions" option for reference fields.
+ */
+function oe_content_person_post_update_20003(): void {
+  $fields = [
+    'node.oe_person.oe_person_contacts' => TRUE,
+    'node.oe_person.oe_person_cv' => FALSE,
+    'node.oe_person.oe_person_documents' => TRUE,
+    'node.oe_person.oe_person_interests_file' => FALSE,
+    'node.oe_person.oe_person_jobs' => TRUE,
+    'node.oe_person.oe_person_media' => FALSE,
+    'node.oe_person.oe_person_organisation' => FALSE,
+    'node.oe_person.oe_person_photo' => FALSE,
+  ];
+  foreach ($fields as $field => $value) {
+    $field_config = FieldConfig::load($field);
+    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
+    $field_config->save();
+  }
 }

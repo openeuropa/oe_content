@@ -12,6 +12,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: true
+    composite_revisions: true
 id: node.oe_consultation.oe_consultation_documents
 field_name: oe_consultation_documents
 entity_type: node

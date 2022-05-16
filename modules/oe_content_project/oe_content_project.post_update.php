@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Set inline entity form widget reference removal policy to keep entities.
@@ -28,4 +29,21 @@ function oe_content_project_post_update_00001(): void {
   }
 
   $form_display->save();
+}
+
+/**
+ * Set "composite revisions" option for reference fields.
+ */
+function oe_content_project_post_update_00002(): void {
+  $fields = [
+    'node.oe_project.oe_documents' => FALSE,
+    'node.oe_project.oe_project_contact' => TRUE,
+    'node.oe_project.oe_project_coordinators' => TRUE,
+    'node.oe_project.oe_project_participants' => TRUE,
+  ];
+  foreach ($fields as $field => $value) {
+    $field_config = FieldConfig::load($field);
+    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
+    $field_config->save();
+  }
 }

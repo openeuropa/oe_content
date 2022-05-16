@@ -133,3 +133,19 @@ function oe_content_event_post_update_20003(): void {
   $field_config->setSetting('title', 2);
   $field_config->save();
 }
+
+/**
+ * Set "composite revisions" option for reference fields.
+ */
+function oe_content_event_post_update_20004(): void {
+  $fields = [
+    'node.oe_event.oe_event_contact' => TRUE,
+    'node.oe_event.oe_event_media' => FALSE,
+    'node.oe_event.oe_event_venue' => TRUE,
+  ];
+  foreach ($fields as $field => $value) {
+    $field_config = FieldConfig::load($field);
+    $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
+    $field_config->save();
+  }
+}

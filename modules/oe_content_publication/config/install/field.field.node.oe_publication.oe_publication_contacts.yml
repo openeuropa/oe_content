@@ -11,6 +11,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: true
+    composite_revisions: true
 id: node.oe_publication.oe_publication_contacts
 field_name: oe_publication_contacts
 entity_type: node

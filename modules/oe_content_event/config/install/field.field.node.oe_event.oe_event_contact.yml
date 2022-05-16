@@ -12,6 +12,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: true
+    composite_revisions: true
 id: node.oe_event.oe_event_contact
 field_name: oe_event_contact
 entity_type: node

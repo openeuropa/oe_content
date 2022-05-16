@@ -14,6 +14,7 @@ dependencies:
 third_party_settings:
   composite_reference:
     composite: true
+    composite_revisions: true
 id: node.oe_page.oe_authors
 field_name: oe_authors
 entity_type: node
