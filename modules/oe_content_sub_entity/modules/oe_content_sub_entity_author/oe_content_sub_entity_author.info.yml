@@ -5,12 +5,13 @@ type: module
 core_version_requirement: ^9.2
 
 dependencies:
-  - oe_content:oe_content_sub_entity
-  - entity_reference_revisions:entity_reference_revisions
-  - oe_content:oe_content_person
-  - oe_content:oe_content_organisation
   - composite_reference:composite_reference
   - drupal:link
+  - entity_reference_revisions:entity_reference_revisions
+  - oe_content:oe_content_entity
+  - oe_content:oe_content_organisation
+  - oe_content:oe_content_person
+  - oe_content:oe_content_sub_entity
 
 config_devel:
   install:
