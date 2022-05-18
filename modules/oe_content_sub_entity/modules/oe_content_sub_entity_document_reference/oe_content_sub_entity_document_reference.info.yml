@@ -5,6 +5,7 @@ type: module
 core_version_requirement: ^9.2
 
 dependencies:
+  - composite_reference:composite_reference
   - oe_content:oe_content_sub_entity
   - oe_media:oe_media
 
