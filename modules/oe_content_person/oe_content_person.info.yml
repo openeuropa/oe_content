@@ -6,7 +6,7 @@ core_version_requirement: ^9.2
 
 dependencies:
   - oe_content:oe_content_departments_field
-  - oe_content:oe_content_publication
+  - oe_content:oe_content_publication_document_reference
   - oe_content:oe_content_timeline_field
   - oe_content:oe_content_social_media_links_field
   - oe_content:oe_content_organisation_reference
