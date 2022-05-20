@@ -53,3 +53,13 @@ function oe_content_sub_entity_document_reference_post_update_00002(): void {
     $field_config->save();
   }
 }
+
+/**
+ * Enables the publication document reference module.
+ */
+function oe_content_sub_entity_document_reference_post_update_00003(): void {
+  // The module contains the config that was hosted in this module in the past.
+  // For consistency, we enable the module so that new installs and updates are
+  // in the same situation.
+  \Drupal::service('module_installer')->install(['oe_content_publication_document_reference']);
+}
