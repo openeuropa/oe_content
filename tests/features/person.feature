@@ -58,6 +58,7 @@ Feature: Person content creation
     And I should see the link "Committee on Agriculture and Rural Development"
     # Optional fields.
     When I click "Edit"
+    And I fill in "Description" with "Description Description text"
     And I fill in "Introduction" with "Summary text"
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Alternative title" with "Shorter title"
@@ -136,7 +137,7 @@ Feature: Person content creation
     # Jobs field.
     And I press "Add new person job"
     And I wait for AJAX to finish
-    And I fill in "first" person job role reference field with "Adviser"
+    And I fill in "first" person job role reference field with "Advisor"
     And I fill in "Responsibilities assigned to the job" with "Responsibilities text"
     And I check "Acting role"
     And I press "Save"
@@ -165,6 +166,7 @@ Feature: Person content creation
     And I should see the link "Twitter"
     And I should see "http://example.com"
     And I should see the link "Example link"
+    And I should see "Description Description text"
     # Assert person contacts values.
     And I should see the text "Name of the contact"
     And I should see the text "Person contact body text"
@@ -188,7 +190,7 @@ Feature: Person content creation
     # Document references are shown.
     And I should see "document2.pdf"
     And I should see "Publication node in Person"
-    And I should see the text "Adviser"
+    And I should see the text "Advisor"
     And I should see the text "Responsibilities text"
     And the "Acting role field" element should contain "On"
 
@@ -196,7 +198,7 @@ Feature: Person content creation
     And I select "Person not part of the EU institutions" from "What type of person are you adding?"
     And I press "Save"
     Then print last response
-    Then I should see "The role \"(Acting) Adviser\" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly."
+    Then I should see "The role \"(Acting) Advisor\" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly."
     When I fill in "Organisation" with "Organisation demo page"
     And I press "Edit" in the "Person jobs" region
     And I fill in "Role" with "Person job role"

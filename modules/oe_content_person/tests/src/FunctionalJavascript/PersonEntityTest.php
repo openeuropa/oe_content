@@ -52,6 +52,7 @@ class PersonEntityTest extends WebDriverTestBase {
       'oe_person_transparency_links[0][uri]',
       'oe_person_biography_intro[0][value]',
       'oe_person_biography_timeline[0][label]',
+      'oe_person_description[0][value]',
       'oe_person_cv[0][target_id]',
       'oe_person_interests_intro[0][value]',
       'oe_person_interests_file[0][target_id]',

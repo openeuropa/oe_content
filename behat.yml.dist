@@ -131,6 +131,7 @@ default:
         Person contacts: "#edit-oe-person-contacts-wrapper"
         Person transparency links: "#edit-oe-person-transparency-links-wrapper"
         Person biography: "#edit-oe-person-biography-timeline-wrapper"
+        Person description: "#edit-oe-person-description-wrapper"
         Timeline: "#edit-oe-timeline-wrapper"
         Consultation contacts: "#edit-oe-consultation-contacts-wrapper"
         Consultation documents: "#edit-oe-consultation-documents-wrapper"
