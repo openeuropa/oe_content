@@ -52,7 +52,6 @@ class PersonEntityTest extends WebDriverTestBase {
       'oe_person_transparency_links[0][uri]',
       'oe_person_biography_intro[0][value]',
       'oe_person_biography_timeline[0][label]',
-      'oe_person_description[0][value]',
       'oe_person_cv[0][target_id]',
       'oe_person_interests_intro[0][value]',
       'oe_person_interests_file[0][target_id]',
@@ -81,7 +80,7 @@ class PersonEntityTest extends WebDriverTestBase {
 
     // Fill in the job fields, they should not be saved after
     // we change the type to non-eu.
-    $this->getSession()->getPage()->fillField('oe_person_jobs[form][0][oe_role_reference][0][target_id]', 'Advisor (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][0][oe_role_reference][0][target_id]', 'Adviser (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
 
     // Change the person type to non-eu
     // and assert the available fields have changed.
@@ -145,7 +144,7 @@ class PersonEntityTest extends WebDriverTestBase {
     $this->assertEmpty($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]')->getValue());
 
     // Update the job with a reference role and set it to be an acting role.
-    $this->getSession()->getPage()->fillField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Advisor (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Adviser (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
     $this->getSession()->getPage()->checkField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_acting][value]');
 
     // Save the person and assert it was updated.

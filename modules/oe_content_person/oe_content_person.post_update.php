@@ -10,7 +10,6 @@ declare(strict_types = 1);
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
-use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\field\Entity\FieldConfig;
 
 /**
@@ -115,16 +114,5 @@ function oe_content_person_post_update_30001(): void {
       ->getStorage($form_display->getEntityTypeId())
       ->updateFromStorageRecord($form_display, $form_display_values);
     $updated_form_display->save();
-  }
-
-  // View display configuration to update.
-  $view_display_values = $storage->read('core.entity_view_display.node.oe_person.default');
-  $view_display_values['_core']['default_config_hash'] = Crypt::hashBase64(serialize($view_display_values));
-  $view_display = EntityViewDisplay::load($view_display_values['id']);
-  if ($view_display) {
-    $updated_view_display = \Drupal::entityTypeManager()
-      ->getStorage($view_display->getEntityTypeId())
-      ->updateFromStorageRecord($view_display, $view_display_values);
-    $updated_view_display->save();
   }
 }
