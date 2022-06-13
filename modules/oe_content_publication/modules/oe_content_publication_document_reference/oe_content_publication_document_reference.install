@@ -51,6 +51,6 @@ function oe_content_publication_document_reference_install($is_syncing) {
   }
 
   if (\Drupal::moduleHandler()->moduleExists('content_translation')) {
-    $import_single_config('language.content_settings.oe_document_reference.oe_document');
+    $import_single_config('language.content_settings.oe_document_reference.oe_publication');
   }
 }
