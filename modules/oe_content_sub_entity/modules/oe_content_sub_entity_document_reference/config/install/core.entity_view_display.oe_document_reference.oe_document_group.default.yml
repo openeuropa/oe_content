@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_document_reference.oe_document_group.oe_documents
+    - field.field.oe_document_reference.oe_document_group.oe_title
+    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_document_group
+id: oe_document_reference.oe_document_group.default
+targetEntityType: oe_document_reference
+bundle: oe_document_group
+mode: default
+content:
+  oe_documents:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  oe_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

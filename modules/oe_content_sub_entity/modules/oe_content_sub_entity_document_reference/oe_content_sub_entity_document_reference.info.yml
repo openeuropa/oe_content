@@ -13,9 +13,17 @@ dependencies:
 config_devel:
   install:
     - core.entity_form_display.oe_document_reference.oe_document.default
+    - core.entity_form_display.oe_document_reference.oe_document_group.default
     - core.entity_view_display.oe_document_reference.oe_document.default
+    - core.entity_view_display.oe_document_reference.oe_document_group.default
     - field.field.oe_document_reference.oe_document.oe_document
+    - field.field.oe_document_reference.oe_document_group.oe_documents
+    - field.field.oe_document_reference.oe_document_group.oe_title
     - field.storage.oe_document_reference.oe_document
+    - field.storage.oe_document_reference.oe_documents
+    - field.storage.oe_document_reference.oe_title
     - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_document
+    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_document_group
   optional:
     - language.content_settings.oe_document_reference.oe_document
+    - language.content_settings.oe_document_reference.oe_document_group
