@@ -67,7 +67,8 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
       'mode' => 'default',
       'status' => TRUE,
     ]);
-    // Remove distractions.
+    // Remove form elements that are not relevant for the test, for more
+    // reliable selectors and so that we can ignore required base fields.
     foreach ($node_form_display->getComponents() as $name => $component) {
       if ($name !== 'title') {
         $node_form_display->removeComponent($name);
@@ -86,7 +87,7 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
       'mode' => 'default',
       'status' => TRUE,
     ]);
-    // Remove distractions.
+    // Only show fields that are relevant for the test.
     foreach ($node_view_display->getComponents() as $name => $component) {
       if ($name !== 'title') {
         $node_view_display->removeComponent($name);
