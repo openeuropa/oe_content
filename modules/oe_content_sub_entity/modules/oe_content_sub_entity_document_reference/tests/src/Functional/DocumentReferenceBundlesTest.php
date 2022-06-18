@@ -72,7 +72,6 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
     foreach ($node_form_display->getComponents() as $name => $component) {
       if ($name !== 'title') {
         $node_form_display->removeComponent($name);
-        print "Form display: Remove $name\n";
       }
     }
     $node_form_display->setComponent('node_docs', [
@@ -91,7 +90,6 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
     foreach ($node_view_display->getComponents() as $name => $component) {
       if ($name !== 'title') {
         $node_view_display->removeComponent($name);
-        print "View display: Remove $name\n";
       }
     }
     $node_view_display->setComponent('node_docs', [
