@@ -120,7 +120,7 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
     // Add a single document.
     $subform->selectFieldOption('node_docs[actions][bundle]', 'Document');
     $subform->pressButton('Add new document reference');
-    $document = $this->createDocumentMedia(NULL, 0);
+    $document = $this->createDocumentMedia(0);
     $subform->fillField(
       'Use existing media',
       $document->label() . ' (' . $document->id() . ')',
@@ -131,13 +131,13 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
     $subform->selectFieldOption('node_docs[actions][bundle]', 'Document group');
     $subform->pressButton('Add new document reference');
     $subform->fillField('Title', 'Example documents group');
-    $document = $this->createDocumentMedia(NULL, 1);
+    $document = $this->createDocumentMedia(1);
     $subform->fillField(
       'node_docs[form][1][oe_documents][0][target_id]',
       $document->label() . ' (' . $document->id() . ')',
     );
     $subform->pressButton('Add another item');
-    $document = $this->createDocumentMedia(NULL, 2);
+    $document = $this->createDocumentMedia(2);
     $subform->fillField(
       'node_docs[form][1][oe_documents][1][target_id]',
       $document->label() . ' (' . $document->id() . ')',
@@ -184,22 +184,23 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
   /**
    * Creates a document media entity.
    *
-   * @param string|null $name
-   *   Base part of the name/title.
-   * @param int|null $index
-   *   Index for the file entity.
+   * @param int $index
+   *   Index to distinguish from other documents.
+   *   The index will be included in all labels, and is also used to pick a
+   *   specific file entity.
+   *   This is limited by the number of files returned from ->getTestFiles().
    *
    * @return \Drupal\media\MediaInterface
    *   The media entity.
    */
-  protected function createDocumentMedia(string $name = NULL, int $index = NULL): MediaInterface {
-    $name = $name ?? 'Example document' . (($index !== NULL) ? ' ' . $index : '');
+  protected function createDocumentMedia(int $index): MediaInterface {
+    $name = 'Example document ' . $index;
     $media = Media::create([
       'bundle' => 'document',
       'oe_media_file_type' => 'local',
       'name' => "$name name",
       'oe_media_file' => [
-        'target_id' => $this->createFileEntity('text', $index ?? 0)->id(),
+        'target_id' => $this->createFileEntity('text', $index)->id(),
         'title' => "$name title",
       ],
     ]);
@@ -219,7 +220,7 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
    * @return \Drupal\file\FileInterface
    *   The file entity.
    */
-  protected function createFileEntity(string $type, int $index = 0): FileInterface {
+  protected function createFileEntity(string $type, int $index): FileInterface {
     /** @var object[] $files */
     $files = $this->getTestFiles($type);
     $this->assertArrayHasKey($index, $files);
