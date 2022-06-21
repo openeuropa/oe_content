@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.0.0-alpha3](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha3) (2022-06-21)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha2...3.0.0-alpha3)
+
+**Merged pull requests:**
+
+- EWPP-1777: Enable 'Include past revisions' option in composite fields. [\#534](https://github.com/openeuropa/oe_content/pull/534) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2232: Characters limitation for introduction is missing. [\#536](https://github.com/openeuropa/oe_content/pull/536) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2194: Fix dependency from composer patches. [\#532](https://github.com/openeuropa/oe_content/pull/532) ([yenyasinn](https://github.com/yenyasinn))
+
 ## [3.0.0-alpha2](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha2) (2022-04-1)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha1...3.0.0-alpha2)
