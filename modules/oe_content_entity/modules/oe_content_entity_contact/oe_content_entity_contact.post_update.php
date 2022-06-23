@@ -198,3 +198,15 @@ function oe_content_entity_contact_post_update_00010(): void {
     }
   }
 }
+
+/**
+ * Add Telegram and Mastodon options to social media field.
+ */
+function oe_content_entity_contact_post_update_00011(): void {
+  $field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->load('oe_contact.oe_social_media');
+  $settings = $field_storage->get('settings');
+  $settings['allowed_values']['telegram'] = 'Telegram';
+  $settings['allowed_values']['mastodon'] = 'Mastodon';
+  $field_storage->set('settings', $settings);
+  $field_storage->save();
+}

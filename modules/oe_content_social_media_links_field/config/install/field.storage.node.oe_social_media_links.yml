@@ -22,6 +22,8 @@ settings:
     twitter: Twitter
     yammer: Yammer
     youtube: YouTube
+    telegram: Telegram
+    mastodon: Mastodon
   allowed_values_function: ''
 module: typed_link
 locked: false
