@@ -5,22 +5,17 @@ type: module
 core_version_requirement: ^9.2
 
 dependencies:
+  - composite_reference:composite_reference
+  - oe_content:oe_content_entity
   - oe_content:oe_content_sub_entity
-  - oe_content:oe_content_publication
   - oe_media:oe_media
 
 config_devel:
   install:
     - core.entity_form_display.oe_document_reference.oe_document.default
-    - core.entity_form_display.oe_document_reference.oe_publication.default
     - core.entity_view_display.oe_document_reference.oe_document.default
-    - core.entity_view_display.oe_document_reference.oe_publication.default
     - field.field.oe_document_reference.oe_document.oe_document
-    - field.field.oe_document_reference.oe_publication.oe_publication
     - field.storage.oe_document_reference.oe_document
-    - field.storage.oe_document_reference.oe_publication
-    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_publication
     - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_document
   optional:
     - language.content_settings.oe_document_reference.oe_document
-    - language.content_settings.oe_document_reference.oe_publication

@@ -9,7 +9,7 @@ dependencies:
   - oe_content:oe_content
   - oe_content:oe_content_entity_contact
   - oe_content:oe_content_departments_field
-  - oe_content:oe_content_sub_entity_document_reference
+  - oe_content:oe_content_publication_document_reference
   - oe_media:oe_media
   - drupal:link
   - drupal:path

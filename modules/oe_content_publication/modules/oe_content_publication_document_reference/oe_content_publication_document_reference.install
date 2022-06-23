@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Config\FileStorage;
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_publication_document_reference_install($is_syncing) {
+  if ($is_syncing) {
+    return;
+  }
+
+  $entity_type_manager = \Drupal::entityTypeManager();
+  // If the oe_publication bundle already exists, bail out.
+  if ($entity_type_manager->getStorage('oe_document_reference_type')->load('oe_publication')) {
+    return;
+  }
+
+  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication_document_reference') . '/tasks/install');
+  $configs_to_import = [
+    'oe_content_sub_entity_document_reference.oe_document_reference_type.oe_publication',
+    'field.storage.oe_document_reference.oe_publication',
+    'field.field.oe_document_reference.oe_publication.oe_publication',
+    'core.entity_form_display.oe_document_reference.oe_publication.default',
+    'core.entity_view_display.oe_document_reference.oe_publication.default',
+  ];
+
+  // Function to import a single config from the file storage, given the name.
+  $import_single_config = function (string $name) use ($storage, $entity_type_manager) {
+    $config = $storage->read($name);
+
+    $entity_type = \Drupal::service('config.manager')->getEntityTypeIdByName($name);
+    /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
+    $entity_storage = $entity_type_manager->getStorage($entity_type);
+
+    $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
+    $entity = $entity_storage->createFromStorageRecord($config);
+    $entity->save();
+  };
+
+  foreach ($configs_to_import as $name) {
+    $import_single_config($name);
+  }
+
+  if (\Drupal::moduleHandler()->moduleExists('content_translation')) {
+    $import_single_config('language.content_settings.oe_document_reference.oe_publication');
+  }
+}
