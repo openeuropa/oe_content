@@ -7,13 +7,3 @@ core_version_requirement: ^9.2
 dependencies:
   - oe_content:oe_content_publication
   - oe_content:oe_content_sub_entity_document_reference
-
-config_devel:
-  install:
-    - core.entity_form_display.oe_document_reference.oe_publication.default
-    - core.entity_view_display.oe_document_reference.oe_publication.default
-    - field.field.oe_document_reference.oe_publication.oe_publication
-    - field.storage.oe_document_reference.oe_publication
-    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_publication
-  optional:
-    - language.content_settings.oe_document_reference.oe_publication
