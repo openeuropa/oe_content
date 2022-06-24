@@ -29,7 +29,7 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
    */
   public static $modules = [
     'node',
-    'oe_content_sub_entity_document_reference',
+    'oe_content_sub_entity_document_reference_group',
   ];
 
   /**
