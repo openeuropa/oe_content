@@ -8,7 +8,7 @@
     "require": {
         "php": ">=7.4",
         "cweagans/composer-patches": "~1.4",
-        "drupal/core": "^9.2",
+        "drupal/core": "^9.3",
         "drupal/datetime_range_timezone": "^1.0@alpha",
         "drupal/linkit": "^5.0-beta11 || ^6.0",
         "drupal/maxlength": "^1.0@beta || 2.0.0-rc1",
@@ -19,12 +19,11 @@
         "behat/behat": "^3.10",
         "behat/mink-extension": "^2.3.1",
         "composer/installers": "^1.5",
-        "egulias/email-validator": "^2.1.22 || ^3.0",
         "drupal/address": "^1.8",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.8",
-        "drupal/core-composer-scaffold": "^9.2",
-        "drupal/core-dev": "^9.2",
+        "drupal/core-composer-scaffold": "^9.3",
+        "drupal/core-dev": "^9.3",
         "drupal/ctools": "^3.7",
         "drupal/datetime_testing": "1.x-dev",
         "drupal/description_list_field": "^1.0",
@@ -39,6 +38,7 @@
         "drupal/token": "^1.10",
         "drupaltest/behat-traits": "^0.3",
         "drush/drush": "^10.3",
+        "fabpot/goutte": "^3.3",
         "friends-of-behat/service-container-extension": "^1.0",
         "instaclick/php-webdriver": "^1.4.7",
         "nikic/php-parser": "~4.10.4",
@@ -105,9 +105,9 @@
             }
         },
         "_readme": [
-            "Explicit lower version requirement of drupal/ctools due to Drupal core 9.2 compatibility.",
+            "Explicit lower version requirement of drupal/ctools due to Drupal core 9.3 compatibility.",
             "Explicit minimum version requirement of behat/behat library due to PHP compatibility.",
-            "Explicit requirement for egulias/email-validator due to https://www.drupal.org/project/drupal/issues/3061074#comment-14300579. It can be removed when Drupal core 9.2 support is droppped.",
+            "Explicit minimum version requirement for fabpot/goutte due to Drupal 9.3 compatibility.",
             "Explicit requirement of drupal/token module due to PHP 8 compatbility.",
             "Explicit requirement of drupal/maxlength: 2.0.0-rc1 due to issues #3279243, #3279222."
         ]
