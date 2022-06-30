@@ -61,6 +61,9 @@ msgstr "Már"
 msgid "Apr"
 msgstr "Aib"
 
+msgid "May"
+msgstr "Bea"
+
 msgid "Jun"
 msgstr "Mei"
 
