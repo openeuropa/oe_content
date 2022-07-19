@@ -178,6 +178,21 @@ Feature: Event content creation
       | - None -   |
       | Facebook   |
       | Livestream |
+    And I should have the following options for the "Link type" select:
+      | Email     |
+      | Facebook  |
+      | Flickr    |
+      | Google+   |
+      | Instagram |
+      | Linkedin  |
+      | Pinterest |
+      | RSS       |
+      | Storify   |
+      | Twitter   |
+      | Yammer    |
+      | YouTube   |
+      | Telegram  |
+      | Mastodon  |
 
   @javascript @av_portal
   @batch1
