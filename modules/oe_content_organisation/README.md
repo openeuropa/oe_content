@@ -48,7 +48,7 @@ The `inline_entity_form` module requires the following patches to be applied:
 ```json
 "patches": {
     "drupal/inline_entity_form": {
-        "https://www.drupal.org/project/inline_entity_form/issues/2875716": "https://www.drupal.org/files/issues/2021-04-15/ief_removed_references_2875716-103.patch"
+        "https://www.drupal.org/project/inline_entity_form/issues/2875716": "https://www.drupal.org/files/issues/2022-07-20/ief_removed_references_2875716-104.patch"
     }
 }
 ```
