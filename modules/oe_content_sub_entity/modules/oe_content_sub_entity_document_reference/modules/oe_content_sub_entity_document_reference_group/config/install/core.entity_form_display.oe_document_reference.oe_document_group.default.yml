@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_document_reference.oe_document_group.oe_documents
+    - field.field.oe_document_reference.oe_document_group.oe_title
+    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_document_group
+id: oe_document_reference.oe_document_group.default
+targetEntityType: oe_document_reference
+bundle: oe_document_group
+mode: default
+content:
+  oe_documents:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  translation:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

@@ -24,6 +24,7 @@ drupal:
     - "./vendor/bin/drush config-set system.theme default bartik -y"
     - "./vendor/bin/drush config-set system.theme admin seven -y"
     - "./vendor/bin/drush config-set node.settings use_admin_theme 1 -y"
+    - "./vendor/bin/drush config-set field_ui.settings field_prefix oe_ -y"
     - "./vendor/bin/drush -y config-set system.performance css.preprocess 0"
     - "./vendor/bin/drush -y config-set system.performance js.preprocess 0"
     # Enable the modules.

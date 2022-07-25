@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_document_reference.oe_title
+    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_document_group
+id: oe_document_reference.oe_document_group.oe_title
+field_name: oe_title
+entity_type: oe_document_reference
+bundle: oe_document_group
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

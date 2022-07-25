@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_document_reference.oe_documents
+    - media.type.document
+    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_document_group
+  module:
+    - composite_reference
+third_party_settings:
+  composite_reference:
+    composite: false
+    composite_revisions: false
+id: oe_document_reference.oe_document_group.oe_documents
+field_name: oe_documents
+entity_type: oe_document_reference
+bundle: oe_document_group
+label: Documents
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
