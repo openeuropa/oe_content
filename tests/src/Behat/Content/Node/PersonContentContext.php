@@ -49,6 +49,7 @@ class PersonContentContext extends RawDrupalContext {
       'Gender' => 'oe_person_gender',
       'Introduction' => 'oe_summary',
       'Jobs' => 'oe_person_jobs',
+      'Description' => 'oe_person_description',
       'Last name' => 'oe_person_last_name',
       'Media' => 'oe_person_media',
       'Organisation' => 'oe_person_organisation',

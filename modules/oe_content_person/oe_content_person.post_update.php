@@ -7,7 +7,9 @@
 
 declare(strict_types = 1);
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
 
 /**
@@ -70,5 +72,47 @@ function oe_content_person_post_update_20003(): void {
     $field_config = FieldConfig::load($field);
     $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
     $field_config->save();
+  }
+}
+
+/**
+ * Add Description field.
+ */
+function oe_content_person_post_update_30001(): void {
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_person') . '/config/post_updates/30001_add_description_field');
+
+  $configs = [
+    'field_storage_config' => [
+      'field.storage.node.oe_person_description' => 'node.oe_person_description',
+    ],
+    'field_config' => [
+      'field.field.node.oe_person.oe_person_description' => 'node.oe_person.oe_person_description',
+    ],
+  ];
+
+  foreach ($configs as $key => $ids) {
+    $config_storage = \Drupal::entityTypeManager()->getStorage($key);
+    foreach ($ids as $id => $reference) {
+      if (!$config_storage->load($reference)) {
+        $config_data = $storage->read($id);
+        // We are creating the config which means that we are also shipping
+        // it in the install folder so we want to make sure it gets the hash
+        // so Drupal treats it as a shipped config. This means that it gets
+        // exposed to be translated via the locale system as well.
+        $config_data['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config_data));
+        $config_storage->create($config_data)->save();
+      }
+    }
+  }
+
+  // Form display configuration to update.
+  $form_display_values = $storage->read('core.entity_form_display.node.oe_person.default');
+  $form_display_values['_core']['default_config_hash'] = Crypt::hashBase64(serialize($form_display_values));
+  $form_display = EntityFormDisplay::load($form_display_values['id']);
+  if ($form_display) {
+    $updated_form_display = \Drupal::entityTypeManager()
+      ->getStorage($form_display->getEntityTypeId())
+      ->updateFromStorageRecord($form_display, $form_display_values);
+    $updated_form_display->save();
   }
 }

@@ -58,6 +58,7 @@ Feature: Person content creation
     And I should see the link "Committee on Agriculture and Rural Development"
     # Optional fields.
     When I click "Edit"
+    And I fill in "Description" with "Description Description text"
     And I fill in "Introduction" with "Summary text"
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Alternative title" with "Shorter title"
@@ -165,6 +166,7 @@ Feature: Person content creation
     And I should see the link "Twitter"
     And I should see "http://example.com"
     And I should see the link "Example link"
+    And I should see "Description Description text"
     # Assert person contacts values.
     And I should see the text "Name of the contact"
     And I should see the text "Person contact body text"

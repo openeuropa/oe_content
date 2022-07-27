@@ -26,6 +26,7 @@ config_devel:
     - field.field.node.oe_person.oe_person_biography_timeline
     - field.field.node.oe_person.oe_person_contacts
     - field.field.node.oe_person.oe_person_cv
+    - field.field.node.oe_person.oe_person_description
     - field.field.node.oe_person.oe_person_documents
     - field.field.node.oe_person.oe_person_gender
     - field.field.node.oe_person.oe_person_interests_file
@@ -50,6 +51,7 @@ config_devel:
     - field.storage.node.oe_person_biography_timeline
     - field.storage.node.oe_person_contacts
     - field.storage.node.oe_person_cv
+    - field.storage.node.oe_person_description
     - field.storage.node.oe_person_documents
     - field.storage.node.oe_person_gender
     - field.storage.node.oe_person_interests_file
