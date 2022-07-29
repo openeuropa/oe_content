@@ -98,6 +98,7 @@
 - \[EWPP-1360\] EWPP-1361: Set body field optional. [\#448](https://github.com/openeuropa/oe_content/pull/448) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-1199: Parallelize tests on oe\_content. [\#447](https://github.com/openeuropa/oe_content/pull/447) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1162: Remove constraint for description summary field of Event CT. [\#442](https://github.com/openeuropa/oe_content/pull/442) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-911: Drupal 9 compatibility fixes. [\#431](https://github.com/openeuropa/oe_content/pull/431) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-169: Set field instances as not translatable. [\#254](https://github.com/openeuropa/oe_content/pull/254) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [2.4.0](https://github.com/openeuropa/oe_content/tree/2.4.0) (2021-08-16)
