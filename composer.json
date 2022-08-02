@@ -46,7 +46,7 @@
         "openeuropa/code-review": "^2.0",
         "openeuropa/oe_corporate_countries": "^2.0",
         "openeuropa/oe_corporate_site_info": "^1.0",
-        "openeuropa/oe_link_lists": "dev-master",
+        "openeuropa/oe_link_lists": "~0.16.0",
         "openeuropa/oe_multilingual": "^1.10",
         "openeuropa/oe_time_caching": "^1.1",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta5",
