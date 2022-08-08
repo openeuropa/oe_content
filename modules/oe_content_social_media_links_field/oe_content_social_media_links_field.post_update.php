@@ -7,6 +7,8 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Config\FieldStorage;
+
 /**
  * Add Telegram and Mastodon options to social media links field.
  */
