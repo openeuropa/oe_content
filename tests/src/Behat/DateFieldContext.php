@@ -67,7 +67,10 @@ class DateFieldContext extends RawDrupalContext {
   public function fillInNthDateField(string $field_group, string $date_component, string $value, int $position): void {
     $field_selectors = $this->findDateFields($field_group);
     $field_selector = reset($field_selectors);
-    $fields = $field_selector->findAll('named', ['field', ucfirst($date_component)]);
+    $fields = $field_selector->findAll(
+      'named',
+      ['field', ucfirst($date_component)],
+    );
     $this->fillDateField($fields[$position - 1], $date_component, $value);
   }
 
