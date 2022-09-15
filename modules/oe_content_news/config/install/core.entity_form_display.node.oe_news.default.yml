@@ -34,17 +34,17 @@ third_party_settings:
         - oe_content_short_title
         - oe_content_navigation_title
         - oe_teaser
+      label: 'Alternative titles and teaser'
+      region: content
       parent_name: ''
       weight: 8
       format_type: details
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         open: true
+        description: ''
         required_fields: true
-      label: 'Alternative titles and teaser'
     group_details:
       children:
         - oe_reference_code
@@ -53,17 +53,17 @@ third_party_settings:
         - oe_author
         - oe_departments
         - oe_news_location
+      label: Details
+      region: content
       parent_name: ''
       weight: 7
       format_type: details
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         open: true
+        description: ''
         required_fields: true
-      label: Details
 id: node.oe_news.default
 targetEntityType: node
 bundle: oe_news
@@ -72,13 +72,13 @@ content:
   body:
     type: text_textarea_with_summary
     weight: 5
+    region: content
     settings:
       rows: 9
-      placeholder: ''
       summary_rows: 3
+      placeholder: ''
       show_summary: false
     third_party_settings: {  }
-    region: content
   created:
     type: datetime_timestamp
     weight: 15
@@ -93,24 +93,24 @@ content:
       include_locked: true
     third_party_settings: {  }
   oe_author:
+    type: skos_concept_entity_reference_autocomplete
     weight: 10
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
     weight: 12
     region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
@@ -140,114 +140,110 @@ content:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_departments:
+    type: skos_concept_entity_reference_autocomplete
     weight: 11
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   oe_news_contacts:
+    type: inline_entity_form_complex
     weight: 20
+    region: content
     settings:
       form_mode: default
-      revision: true
       override_labels: true
       label_singular: contact
       label_plural: contacts
-      collapsible: true
       allow_new: true
-      match_operator: CONTAINS
-      collapsed: false
       allow_existing: false
+      match_operator: CONTAINS
       allow_duplicate: false
+      collapsible: true
+      collapsed: false
+      revision: true
       removed_reference: keep
     third_party_settings: {  }
-    type: inline_entity_form_complex
-    region: content
   oe_news_featured_media:
-    weight: 3
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
     type: entity_reference_autocomplete
+    weight: 3
     region: content
-  oe_news_last_updated:
-    weight: 9
-    settings:
-      date_order: DMY
-      time_type: none
-      increment: 15
-    third_party_settings: {  }
-    type: datetime_datelist
-    region: content
-  oe_news_location:
-    weight: 12
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
+  oe_news_last_updated:
+    type: datetime_default
+    weight: 9
     region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_news_location:
+    type: skos_concept_entity_reference_autocomplete
+    weight: 12
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   oe_news_sources:
+    type: link_default
     weight: 6
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   oe_news_types:
+    type: skos_concept_entity_reference_options_select
     weight: 2
+    region: content
     settings:
       sort: label
     third_party_settings: {  }
-    type: skos_concept_entity_reference_options_select
-    region: content
   oe_publication_date:
+    type: datetime_default
     weight: 8
-    settings:
-      date_order: DMY
-      time_type: none
-      increment: 15
-    third_party_settings: {  }
-    type: datetime_datelist
     region: content
+    settings: {  }
+    third_party_settings: {  }
   oe_reference_code:
+    type: string_textfield
     weight: 7
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   oe_related_links:
+    type: link_default
     weight: 11
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   oe_subject:
+    type: skos_concept_entity_reference_autocomplete
     weight: 4
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   oe_summary:
+    type: text_textarea
     weight: 1
+    region: content
     settings:
       rows: 5
       placeholder: ''
@@ -257,10 +253,10 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
         maxlength_js_truncate_html: true
-    type: text_textarea
-    region: content
   oe_teaser:
+    type: text_textarea
     weight: 15
+    region: content
     settings:
       rows: 5
       placeholder: ''
@@ -270,8 +266,6 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
         maxlength_js_truncate_html: true
-    type: text_textarea
-    region: content
   path:
     type: path
     weight: 18
@@ -280,24 +274,24 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 14
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 17
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 13
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -313,11 +307,11 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 16
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
 hidden: {  }
