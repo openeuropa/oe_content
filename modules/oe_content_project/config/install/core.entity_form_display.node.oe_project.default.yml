@@ -39,63 +39,63 @@ third_party_settings:
       children:
         - oe_project_results
         - oe_project_result_files
+      label: Result
+      region: content
       parent_name: ''
       weight: 16
       format_type: details
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         open: true
+        description: ''
         required_fields: true
-      label: Result
     group_alternative_titles_teaser:
       children:
         - oe_content_short_title
         - oe_content_navigation_title
         - oe_teaser
+      label: 'Alternative titles and teaser'
+      region: content
       parent_name: ''
       weight: 17
       format_type: tab
-      region: content
       format_settings:
-        description: ''
-        formatter: open
-        required_fields: true
-        id: ''
         classes: ''
-      label: 'Alternative titles and teaser'
+        id: ''
+        formatter: open
+        description: ''
+        required_fields: true
     group_budget:
       children:
         - oe_project_budget
         - oe_project_budget_eu
+      label: Budget
+      region: content
       parent_name: ''
       weight: 9
       format_type: tab
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         formatter: open
+        description: ''
         required_fields: true
-      label: Budget
 id: node.oe_project.default
 targetEntityType: node
 bundle: oe_project
 mode: default
 content:
   body:
+    type: text_textarea_with_summary
     weight: 13
+    region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-    type: text_textarea_with_summary
-    region: content
   created:
     type: datetime_timestamp
     weight: 24
@@ -144,196 +144,193 @@ content:
       placeholder: ''
     third_party_settings: {  }
   oe_departments:
-    weight: 19
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
     type: skos_concept_entity_reference_autocomplete
+    weight: 19
     region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   oe_documents:
-    weight: 15
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
     type: entity_reference_autocomplete
+    weight: 15
     region: content
-  oe_featured_media:
-    weight: 12
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  oe_featured_media:
     type: oe_featured_media_autocomplete
+    weight: 12
     region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   oe_project_budget:
+    type: number
     weight: 9
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   oe_project_budget_eu:
+    type: number
     weight: 10
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   oe_project_calls:
+    type: link_default
     weight: 14
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   oe_project_contact:
+    type: inline_entity_form_complex
     weight: 29
+    region: content
     settings:
       form_mode: default
-      revision: true
       override_labels: true
       label_singular: contact
       label_plural: contacts
-      collapsible: true
       allow_new: true
-      match_operator: CONTAINS
-      collapsed: false
       allow_existing: false
+      match_operator: CONTAINS
       allow_duplicate: false
+      collapsible: true
+      collapsed: false
+      revision: true
       removed_reference: keep
     third_party_settings: {  }
-    type: inline_entity_form_complex
-    region: content
   oe_project_coordinators:
+    type: inline_entity_form_complex
     weight: 27
+    region: content
     settings:
       form_mode: default
-      revision: true
       override_labels: true
       label_singular: coordinator
       label_plural: coordinators
-      collapsible: true
       allow_new: true
-      match_operator: CONTAINS
-      collapsed: false
       allow_existing: false
+      match_operator: CONTAINS
       allow_duplicate: false
+      collapsible: true
+      collapsed: false
+      revision: true
       removed_reference: keep
     third_party_settings: {  }
-    type: inline_entity_form_complex
-    region: content
   oe_project_dates:
+    type: daterange_default
     weight: 7
-    settings:
-      date_order: DMY
-      time_type: none
-      increment: 15
-    third_party_settings: {  }
-    type: daterange_datelist
     region: content
+    settings: {  }
+    third_party_settings: {  }
   oe_project_funding_programme:
+    type: skos_concept_entity_reference_autocomplete
     weight: 26
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   oe_project_locations:
+    type: address_default
     weight: 8
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: address_default
-    region: content
   oe_project_participants:
+    type: inline_entity_form_complex
     weight: 28
+    region: content
     settings:
       form_mode: default
-      revision: true
       override_labels: true
       label_singular: participant
       label_plural: participants
-      collapsible: true
       allow_new: true
-      match_operator: CONTAINS
-      collapsed: false
       allow_existing: false
+      match_operator: CONTAINS
       allow_duplicate: false
+      collapsible: true
+      collapsed: false
+      revision: true
       removed_reference: keep
     third_party_settings: {  }
-    type: inline_entity_form_complex
-    region: content
   oe_project_result_files:
+    type: entity_reference_autocomplete
     weight: 21
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   oe_project_results:
+    type: text_textarea
     weight: 20
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   oe_project_website:
+    type: link_default
     weight: 10
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   oe_reference_code:
+    type: string_textfield
     weight: 6
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   oe_subject:
+    type: skos_concept_entity_reference_autocomplete
     weight: 1
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   oe_summary:
+    type: text_textarea
     weight: 2
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   oe_teaser:
+    type: text_textarea
     weight: 4
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   path:
     type: path
     weight: 20
@@ -342,24 +339,24 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 3
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 25
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 4
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -377,11 +374,11 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 23
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
 hidden: {  }

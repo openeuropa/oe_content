@@ -115,9 +115,19 @@ class DateFieldContext extends RawDrupalContext {
     if ($field_item === 'End date') {
       $field_selector = $field_selector->findAll('css', 'div[class*="end-value-' . $date_component . '"]');
       $field_selector = reset($field_selector);
+      $field = $field_selector->find(
+        'named',
+        ['field', ucfirst($date_component)],
+      );
+      $this->fillDateField($field, $date_component, $value);
+      return;
     }
 
-    $field_selector->fillField(ucfirst($date_component), $value);
+    $field = $field_selector->find(
+      'named',
+      ['field', ucfirst($date_component)],
+    );
+    $this->fillDateField($field, $date_component, $value);
   }
 
   /**
