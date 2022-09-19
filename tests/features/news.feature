@@ -19,15 +19,21 @@ Feature: News content creation
     And I visit "the News creation page"
     And I fill in "Page title" with "My News item"
     And the available options in the "News type" select should be:
-      | Factsheet                 |
-      | General publications      |
-      | News announcement         |
-      | News article              |
-      | Newsletter                |
-      | Press release             |
-      | Schedule                  |
-      | Speech                    |
-      | Supplementary information |
+      | Commissioners’ weekly activities |
+      | Daily news                       |
+      | Factsheet                        |
+      | General publications             |
+      | Minutes                          |
+      | News announcement                |
+      | News article                     |
+      | Newsletter                       |
+      | Press release                    |
+      | Provisional data                 |
+      | Questions and answers            |
+      | Schedule                         |
+      | Speech                           |
+      | Statement                        |
+      | Supplementary information        |
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Body text" with "Body text"
