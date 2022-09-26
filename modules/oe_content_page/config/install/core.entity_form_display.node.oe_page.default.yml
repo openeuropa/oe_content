@@ -70,6 +70,7 @@ content:
       maxlength:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   oe_author:
     weight: 5
     settings:
@@ -146,6 +147,7 @@ content:
       maxlength:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   uid:
     type: entity_reference_autocomplete
     weight: 10

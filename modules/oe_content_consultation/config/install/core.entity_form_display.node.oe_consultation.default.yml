@@ -224,6 +224,7 @@ content:
       maxlength:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   oe_departments:
     type: skos_concept_entity_reference_autocomplete
     weight: 4
@@ -308,6 +309,7 @@ content:
       maxlength:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   uid:
     type: entity_reference_autocomplete
     weight: 21

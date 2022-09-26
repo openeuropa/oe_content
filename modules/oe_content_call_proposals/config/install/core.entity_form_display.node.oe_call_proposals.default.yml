@@ -175,6 +175,7 @@ content:
       maxlength:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   oe_departments:
     type: skos_concept_entity_reference_autocomplete
     weight: 12
@@ -212,6 +213,7 @@ content:
       maxlength:
         maxlength_js: 150
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   oe_subject:
     type: skos_concept_entity_reference_autocomplete
     weight: 2
@@ -286,6 +288,7 @@ content:
       maxlength:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   uid:
     type: entity_reference_autocomplete
     weight: 19

@@ -32,6 +32,7 @@ content:
       maxlength:
         maxlength_js: 150
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   oe_description:
     weight: 1
     settings:
