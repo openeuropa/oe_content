@@ -60,8 +60,8 @@ Feature: Project content creation
     # Fill in optional fields.
     And I fill in "Summary" with "Summary text"
     And I fill in "Reference" with "Reference text"
-    And I set "23-02-2019" as the "Start date" of "Project period"
-    And I set "24-02-2019" as the "End date" of "Project period"
+    And I fill in "Start date" of "Project period" with the date "23-02-2019"
+    And I fill in "End date" of "Project period" with the date "24-02-2019"
     And I fill in "Overall budget" with "1000" in the "Budget" region
     And I fill in "EU contribution" with "200" in the "Budget" region
     And I fill in "Funding programme" with "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"

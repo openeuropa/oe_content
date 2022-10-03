@@ -23,26 +23,26 @@ Feature: Call for proposals content creation and editing.
 
     # Fill in the mandatory fields.
     And I fill in "Page title" with "My Call for proposals 1"
-    And I set "Publication date" to the date "24-10-2020"
+    And I fill in "Publication date" with the date "24-10-2020"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
 
     # Fill in an invalid deadline date and switch to Permanent.
     And I select the radio button "Single-stage"
-    And I select "15" from "oe_call_proposals_deadline[0][value][day]"
+    And I fill in "Deadline date" with the date "31-12-2020"
     # Test also that no Deadline Date field is visible when the Permanent model is selected.
     And I select the radio button "Permanent"
     And I should not see "Deadline date"
 
     When I press "Save"
-    Then I should not see the error message "A value must be selected for month."
-    But I should see "Call for proposals My Call for proposals 1 has been created."
+    Then I should see "Call for proposals My Call for proposals 1 has been created."
 
     When I click "Edit"
 
     And I select the radio button "Two-stage"
-    And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
+    And I fill in "Deadline date" with the date "31-12-2020"
+    And I fill in "Deadline date" with the time "23:45:00"
 
     And I press "Save"
 
@@ -60,7 +60,7 @@ Feature: Call for proposals content creation and editing.
     And I fill in "Reference" with "My Call for proposals 1 reference"
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
     And I fill in "Link text" with "Official Journal publication 1" in the "Publication in the official journal" region
-    And I set "Opening date" to the date "25-10-2020"
+    And I fill in "Opening date" with the date "25-10-2020"
     And I fill in "Awarded grants" with "http://example.com/2"
     And I fill in "Funding programme" with "Anti Fraud Information System (AFIS) (http://publications.europa.eu/resource/authority/eu-programme/AFIS2020)"
     And I fill in "Responsible department" with "Audit Board of the European Communities (http://publications.europa.eu/resource/authority/corporate-body/ABEC)"
@@ -137,7 +137,7 @@ Feature: Call for proposals content creation and editing.
     And I should see the text "Content limited to 150 characters, remaining: 150" in the "Reference code form element"
     And I should see the text "Content limited to 300 characters, remaining: 300" in the "teaser form element"
     And I fill in "Page title" with "My Call for proposals 1"
-    And I set "Publication date" to the date "24-10-2020"
+    And I fill in "Publication date" with the date "24-10-2020"
     And I select the radio button "Two-stage"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
@@ -151,7 +151,8 @@ Feature: Call for proposals content creation and editing.
     When I press "Save"
 
     Then I should see "The selected \"Two-stage\" model requires a valid date!"
-    And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
+    And I fill in "Deadline date" with the date "31-12-2020"
+    And I fill in "Deadline date" with the time "23:45:00"
 
     When I press "Save"
 
@@ -170,17 +171,15 @@ Feature: Call for proposals content creation and editing.
 
     When I visit "the Call for proposals creation page"
     And I fill in "Page title" with "My Call for proposals 1"
-    And I set "Publication date" to the date "24-10-2020"
+    And I fill in "Publication date" with the date "24-10-2020"
     And I select the radio button "Two-stage"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
-    And I set "Deadline date" to the date "31-12-2020 23:45" using format "d-m-Y H:i"
+    And I fill in "Deadline date" with the date "31-12-2020"
+    And I fill in "Deadline date" with the time "23:45:00"
     And I press "Add another item" in the "Deadline date" region
     And I wait for AJAX to finish
-    And I select "15" from "oe_call_proposals_deadline[1][value][day]"
-    And I select "1" from "oe_call_proposals_deadline[1][value][month]"
-    And I select "2021" from "oe_call_proposals_deadline[1][value][year]"
-    And I select "12" from "oe_call_proposals_deadline[1][value][hour]"
-    And I select "0" from "oe_call_proposals_deadline[1][value][minute]"
+    And I fill in "Deadline date" with the date "15-01-2021" at position 2
+    And I fill in "Deadline date" with the time "12:00:00" at position 2
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
     And I fill in "Link text" with "Official Journal publication 1" in the "Publication in the official journal" region
     And I fill in "Teaser" with "Teaser text"

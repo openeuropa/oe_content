@@ -7,7 +7,7 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Datetime\Element\Datelist;
+use Drupal\Core\Datetime\Element\Datetime;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
@@ -33,12 +33,12 @@ function oe_content_call_proposals_form_node_form_alter(array &$form, FormStateI
 
   $form['oe_call_proposals_deadline']['widget'][0]['value']['#element_validate'] = [
     'oe_content_call_proposals_deadline_validate',
-    [Datelist::class, 'validateDatelist'],
+    [Datetime::class, 'validateDatetime'],
   ];
 }
 
 /**
- * Validation callback for a "oe_call_proposals_deadline" datelist element.
+ * Validation callback for an "oe_call_proposals_deadline" datetime element.
  *
  * If the chosen CFP model is permanent, it means there is no deadline needed.
  * But in case the user first had set a deadline (or part of the deadline), we
@@ -63,11 +63,8 @@ function oe_content_call_proposals_deadline_validate(array &$element, FormStateI
   }
 
   $form_state->setValue(['oe_call_proposals_deadline', 0, 'value'], [
-    'day' => '',
-    'month' => '',
-    'year' => '',
-    'hour' => '',
-    'minute' => '',
+    'date' => '',
+    'time' => '',
     'object' => NULL,
   ]);
 }

@@ -3,6 +3,8 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_call_tenders.body
+    - field.field.node.oe_call_tenders.oe_call_tenders_deadline
+    - field.field.node.oe_call_tenders.oe_call_tenders_opening_date
     - field.field.node.oe_call_tenders.oe_departments
     - field.field.node.oe_call_tenders.oe_documents
     - field.field.node.oe_call_tenders.oe_publication_date
@@ -10,14 +12,12 @@ dependencies:
     - field.field.node.oe_call_tenders.oe_subject
     - field.field.node.oe_call_tenders.oe_summary
     - field.field.node.oe_call_tenders.oe_teaser
-    - field.field.node.oe_call_tenders.oe_call_tenders_deadline
-    - field.field.node.oe_call_tenders.oe_call_tenders_opening_date
     - node.type.oe_call_tenders
   module:
     - datetime
     - field_group
-    - maxlength
     - link
+    - maxlength
     - path
     - rdf_skos
     - text
@@ -28,17 +28,17 @@ third_party_settings:
         - oe_content_short_title
         - oe_content_navigation_title
         - oe_teaser
+      label: 'Alternative titles and teaser'
+      region: content
       parent_name: ''
       weight: 10
       format_type: tab
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         formatter: open
+        description: ''
         required_fields: true
-      label: 'Alternative titles and teaser'
 id: node.oe_call_tenders.default
 targetEntityType: node
 bundle: oe_call_tenders
@@ -66,6 +66,18 @@ content:
     region: content
     settings:
       include_locked: true
+    third_party_settings: {  }
+  oe_call_tenders_deadline:
+    type: datetime_default
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_call_tenders_opening_date:
+    type: datetime_default
+    weight: 4
+    region: content
+    settings: {  }
     third_party_settings: {  }
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
@@ -105,54 +117,53 @@ content:
         maxlength_js: 170
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   oe_departments:
+    type: skos_concept_entity_reference_autocomplete
     weight: 7
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
-    region: content
   oe_documents:
-    weight: 9
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
     type: entity_reference_autocomplete
+    weight: 9
     region: content
-  oe_publication_date:
-    weight: 3
-    settings:
-      date_order: DMY
-      time_type: none
-      increment: 15
-    third_party_settings: {  }
-    type: datetime_datelist
-    region: content
-  oe_reference_code:
-    weight: 6
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  oe_subject:
-    weight: 2
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: skos_concept_entity_reference_autocomplete
+  oe_publication_date:
+    type: datetime_default
+    weight: 3
     region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_reference_code:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  oe_subject:
+    type: skos_concept_entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   oe_summary:
+    type: text_textarea
     weight: 1
+    region: content
     settings:
       rows: 5
       placeholder: ''
@@ -162,10 +173,10 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
         maxlength_js_truncate_html: true
-    type: text_textarea
-    region: content
   oe_teaser:
+    type: text_textarea
     weight: 7
+    region: content
     settings:
       rows: 5
       placeholder: ''
@@ -175,26 +186,6 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
         maxlength_js_truncate_html: true
-    type: text_textarea
-    region: content
-  oe_call_tenders_deadline:
-    weight: 5
-    settings:
-      date_order: DMY
-      time_type: '24'
-      increment: 15
-    third_party_settings: {  }
-    type: datetime_datelist
-    region: content
-  oe_call_tenders_opening_date:
-    weight: 4
-    settings:
-      date_order: DMY
-      time_type: none
-      increment: 15
-    third_party_settings: {  }
-    type: datetime_datelist
-    region: content
   path:
     type: path
     weight: 12
@@ -210,10 +201,10 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 17
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
@@ -236,11 +227,11 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 15
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
 hidden: {  }

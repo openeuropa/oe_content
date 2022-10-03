@@ -20,8 +20,8 @@ class DateFieldContext extends RawDrupalContext {
   /**
    * Fills a date or time field at a datetime widget.
    *
-   * When I fill in "Start date" with the date "29-08-2016".
-   * When I fill in "Start date" with the time "06:59:00AM".
+   * When I fill in "Deadline date" with the date "29-08-2016 23:59".
+   * When I fill in "Deadline date" with the time "23:59:00".
    *
    * @param string $field_group
    *   The field component's label.
@@ -31,15 +31,64 @@ class DateFieldContext extends RawDrupalContext {
    *   The value of the field.
    *
    * @throws \Exception
-   *    Thrown when more than one elements match the given field in the given
+   *    Thrown when more than one element match the given field in the given
    *    field group.
    *
    * @When I fill in :field_group with the :date_component :value
    */
-  public function fillDateField(string $field_group, string $date_component, string $value): void {
+  public function fillInDateField(string $field_group, string $date_component, string $value): void {
     $field_selectors = $this->findDateFields($field_group);
     $field_selector = reset($field_selectors);
-    $field_selector->fillField(ucfirst($date_component), $value);
+    $field = $field_selector->find('named', ['field', ucfirst($date_component)]);
+    $this->fillDateField($field, $date_component, $value);
+  }
+
+  /**
+   * Fills a date or time field at a datetime multivalue widget.
+   *
+   * When I fill in "Date" with the date "29-08-2016 23:59" at position 1.
+   * When I fill in "Date" with the time "23:59:00" at position 1.
+   *
+   * @param string $field_group
+   *   The field component's label.
+   * @param string $date_component
+   *   The field to be filled.
+   * @param string $value
+   *   The value of the field.
+   * @param int $position
+   *   The multivalue field position starting from 1.
+   *
+   * @throws \Exception
+   *    Thrown when more than one element match the given field in the given
+   *    field group.
+   *
+   * @When I fill in :field_group with the :date_component :value at position :position
+   */
+  public function fillInNthDateField(string $field_group, string $date_component, string $value, int $position): void {
+    $field_selectors = $this->findDateFields($field_group);
+    $field_selector = reset($field_selectors);
+    $fields = $field_selector->findAll(
+      'named',
+      ['field', ucfirst($date_component)],
+    );
+    $this->fillDateField($fields[$position - 1], $date_component, $value);
+  }
+
+  /**
+   * Fills a date or time field.
+   */
+  protected function fillDateField(NodeElement $field, string $date_component, string $value): void {
+    // Ensure the date is in the format expected by the HTML.
+    $value = $date_component === 'date' ? DrupalDateTime::createFromFormat('d-m-Y', $value)->format('Y-m-d') : $value;
+    if ($this->getMink()->getSession()->getDriver() instanceof Selenium2Driver) {
+      // Selenium setValue() clicks the date field before filling in, it
+      // clicks the year segment and due to this the input value is incorrect.
+      $field_id = $field->getAttribute('id');
+      $script = "document.querySelector('input[id=$field_id]').value='$value';";
+      $this->getMink()->getSession()->getDriver()->executeScript($script);
+      return;
+    }
+    $field->setValue($value);
   }
 
   /**
@@ -66,9 +115,19 @@ class DateFieldContext extends RawDrupalContext {
     if ($field_item === 'End date') {
       $field_selector = $field_selector->findAll('css', 'div[class*="end-value-' . $date_component . '"]');
       $field_selector = reset($field_selector);
+      $field = $field_selector->find(
+        'named',
+        ['field', ucfirst($date_component)],
+      );
+      $this->fillDateField($field, $date_component, $value);
+      return;
     }
 
-    $field_selector->fillField(ucfirst($date_component), $value);
+    $field = $field_selector->find(
+      'named',
+      ['field', ucfirst($date_component)],
+    );
+    $this->fillDateField($field, $date_component, $value);
   }
 
   /**

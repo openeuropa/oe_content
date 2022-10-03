@@ -27,7 +27,7 @@ Feature: Publication content creation
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Subject" with "financing"
-    And I set "Publication date" to the date "21-02-2019"
+    And I fill in "Publication date" with the date "21-02-2019"
     And I fill in "Use existing media" with "My Document 1" in the "Documents" region
     And I fill in "Resource type" with "Acknowledgement receipt"
     And I fill in "Use existing media" with "Sample image" in the "Publication thumbnail" region
@@ -36,7 +36,7 @@ Feature: Publication content creation
     And I fill in "Redirect link" with "http://example.com"
     And I fill in "Navigation title" with "Navi title"
     And I fill in "Alternative title" with "Shorter title"
-    And I set "Last update date" to the date "04-11-2019"
+    And I fill in "Last update date" with the date "29-07-2021"
     And I fill in "Body" with "Body text"
     And I fill in "Identifier code" with "123456789" in the "Reference codes" region
     And I press "Add another item" in the "Reference codes" region
