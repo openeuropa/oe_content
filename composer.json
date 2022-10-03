@@ -33,7 +33,7 @@
         "drupal/entity_reference_revisions": "^1.8",
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "^1.0-rc12",
-        "drupal/sparql_entity_storage": "1.0.0-alpha10",
+        "drupal/sparql_entity_storage": "^1.0.0-alpha10",
         "drupal/typed_link": "^2.0",
         "drupal/token": "^1.10",
         "drupaltest/behat-traits": "^0.3",
