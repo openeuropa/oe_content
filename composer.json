@@ -33,7 +33,7 @@
         "drupal/entity_reference_revisions": "^1.8",
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "^1.0-rc12",
-        "drupal/sparql_entity_storage": "1.0.0-alpha10",
+        "drupal/sparql_entity_storage": "^1.0.0-alpha10",
         "drupal/typed_link": "^2.0",
         "drupal/token": "^1.10",
         "drupaltest/behat-traits": "^0.3",
@@ -94,6 +94,9 @@
             },
             "drupal/inline_entity_form": {
                 "https://www.drupal.org/project/inline_entity_form/issues/2875716": "https://www.drupal.org/files/issues/2022-07-20/ief_removed_references_2875716-104.patch"
+            },
+            "drupal/maxlength": {
+                "https://www.drupal.org/project/maxlength/issues/3310421": "https://www.drupal.org/files/issues/2022-09-26/maxlength_js_enforce_3310421-2_0_0-rc1-16.patch"
             },
             "drupal/typed_link": {
                 "https://www.drupal.org/project/typed_link/issues/3263477": "https://www.drupal.org/files/issues/2022-02-09/typed_link_constraints-3263477-2.patch"

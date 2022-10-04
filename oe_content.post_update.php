@@ -7,8 +7,10 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Utility\UpdateException;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\node\Entity\NodeType;
 use Drupal\user\Entity\Role;
 
 /**
@@ -126,6 +128,28 @@ function oe_content_post_update_00004(): void {
 
     if ($role_changed) {
       $role->save();
+    }
+  }
+}
+
+/**
+ * Ensure truncate maxlength setting is applied for textfields.
+ */
+function oe_content_post_update_00005(): void {
+  foreach (array_keys(NodeType::loadMultiple()) as $content_type) {
+    $display = EntityFormDisplay::load("node.$content_type.default");
+    $changed = FALSE;
+    foreach ($display->getComponents() as $field_name => $component) {
+      if ((isset($component['type']) && $component['type'] !== 'string_textfield') || empty($component['third_party_settings']['maxlength'])) {
+        continue;
+      }
+      $component['third_party_settings']['maxlength']['maxlength_js_enforce'] = TRUE;
+      $display->setComponent($field_name, $component);
+      $changed = TRUE;
+    }
+
+    if ($changed) {
+      $display->save();
     }
   }
 }
