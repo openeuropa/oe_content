@@ -36,7 +36,6 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     $description_fields_required = [
       'oe_event_featured_media',
       'oe_event_featured_media_legend',
-      'body',
     ];
     // Check if any of these "Description" field group fields are filled in,
     // then they are all required.
