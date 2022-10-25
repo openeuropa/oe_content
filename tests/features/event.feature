@@ -438,22 +438,6 @@ Feature: Event content creation
       | success messages                      |
       | Event My Event item has been updated. |
 
-    # Make sure that validation of the Description fields group works as expected.
-    When I click "Edit"
-    And I fill in "Full text" with "Full text paragraph"
-    And I press "Save"
-    Then I should see the following error messages:
-      | error messages                           |
-      | Featured media field is required.        |
-      | Featured media legend field is required. |
-    # Make sure that errors related to the Description fields are fixed.
-    When I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
-    And I fill in "Featured media legend" with "Euro with miniature figurines"
-    And I press "Save"
-    Then I should see the following success messages:
-      | success messages                      |
-      | Event My Event item has been updated. |
-
     # Make sure that validation of the Registration fields group works as expected.
     When I click "Edit"
     And I press "Registration"
