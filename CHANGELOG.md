@@ -1,11 +1,21 @@
 # Changelog
 
-## [3.0.0-alpha4](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha4) (2022-07-29)
+## [3.0.0-alpha5](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha5) (2022-11-04)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha4...3.0.0-alpha5)
+
+**Merged pull requests:**
+
+- EWPP-2607: Fix maxlength\_js\_enforce class not applied. [\#550](https://github.com/openeuropa/oe_content/pull/550) ([nagyad](https://github.com/nagyad))
+- EWPP-2550: Change various content type date field widgets to datepicker. [\#549](https://github.com/openeuropa/oe_content/pull/549) ([nagyad](https://github.com/nagyad))
+
+## [3.0.0-alpha4](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha4) (2022-08-02)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha3...3.0.0-alpha4)
 
 **Merged pull requests:**
 
+- Prepare release 3.0.0-alpha4. [\#546](https://github.com/openeuropa/oe_content/pull/546) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-2464: Re-roll IEF patch. [\#544](https://github.com/openeuropa/oe_content/pull/544) ([nagyad](https://github.com/nagyad))
 - EWPP-2171: Fix abbreviation of the month of 'May' for Irish. [\#543](https://github.com/openeuropa/oe_content/pull/543) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-2375: Add Luxembourgish string translations. [\#542](https://github.com/openeuropa/oe_content/pull/542) ([22Alexandra](https://github.com/22Alexandra))
