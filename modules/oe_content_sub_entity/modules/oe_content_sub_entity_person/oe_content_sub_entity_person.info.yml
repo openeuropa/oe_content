@@ -4,6 +4,14 @@ package: OpenEuropa
 type: module
 core_version_requirement: ^9.3
 
+dependencies:
+  - composite_reference:composite_reference
+  - drupal:link
+  - entity_reference_revisions:entity_reference_revisions
+  - oe_content:oe_content_entity
+  - oe_content:oe_content_person
+  - oe_content:oe_content_sub_entity
+
 config_devel:
   install:
     - core.entity_form_display.oe_person.oe_person.default
