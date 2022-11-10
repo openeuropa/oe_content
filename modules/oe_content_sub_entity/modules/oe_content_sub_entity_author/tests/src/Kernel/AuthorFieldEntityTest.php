@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content\Kernel;
+namespace Drupal\Tests\oe_content_sub_entity_author\Kernel;
 
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\node\NodeInterface;
