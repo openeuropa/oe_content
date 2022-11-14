@@ -17,7 +17,7 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'node',
     'link',
     'entity_reference_revisions',
@@ -56,9 +56,7 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
 
     $this->installEntitySchema('user');
     $this->installEntitySchema('oe_person');
-    $this->installEntitySchema('oe_document_reference');
     $this->installEntitySchema('node');
-    $this->installEntitySchema('media');
     $this->installConfig([
       'node',
       'filter',
@@ -67,7 +65,6 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
       'oe_content',
       'oe_content_departments_field',
       'oe_content_person',
-      'oe_content_organisation',
       'oe_content_sub_entity_person',
     ]);
     \Drupal::moduleHandler()->loadInclude('oe_content', 'install');

@@ -14,7 +14,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * Provides a base implementation for ExtractLinksSubscriber.
  */
-abstract class ExtractLinksSubscriberBase implements EventSubscriberInterface {
+abstract class PersonExtractLinksSubscriberBase implements EventSubscriberInterface {
 
   use StringTranslationTrait;
 

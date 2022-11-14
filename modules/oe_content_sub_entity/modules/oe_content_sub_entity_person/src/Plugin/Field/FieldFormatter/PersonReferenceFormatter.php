@@ -90,7 +90,7 @@ class PersonReferenceFormatter extends EntityReferenceRevisionsFormatterBase {
     $settings = $this->getSettings();
 
     $index = 0;
-    $cacheablemetadata = new CacheableMetadata();
+    $cacheable_metadata = new CacheableMetadata();
     /** @var \Drupal\oe_content_sub_entity_person\Entity\Person $entity */
     foreach ($this->getEntitiesToView($items, $langcode) as $entity) {
       $links = $entity->getEntitiesAsLinks();
@@ -122,12 +122,12 @@ class PersonReferenceFormatter extends EntityReferenceRevisionsFormatterBase {
         }
 
         $entity->getCacheableMetadata()->applyTo($elements[$index]);
-        $cacheablemetadata->addCacheableDependency($entity->getCacheableMetadata());
+        $cacheable_metadata->addCacheableDependency($entity->getCacheableMetadata());
         $index++;
       }
     }
-    $cacheablemetadata->addCacheableDependency($items->getEntity());
-    $cacheablemetadata->applyTo($elements);
+    $cacheable_metadata->addCacheableDependency($items->getEntity());
+    $cacheable_metadata->applyTo($elements);
 
     return $elements;
   }

@@ -1,10 +1,10 @@
 services:
   oe_content_sub_entity_person.event_subscriber.extract_links_base:
-    class: Drupal\oe_content_sub_entity_person\ExtractLinksSubscriberBase
+    class: Drupal\oe_content_sub_entity_person\PersonExtractLinksSubscriberBase
     arguments: ['@entity.repository']
     abstract: true
   oe_content_sub_entity_person.event_subscriber.extract_links:
-    class: Drupal\oe_content_sub_entity_person\EventSubscriber\ExtractLinksSubscriber
+    class: Drupal\oe_content_sub_entity_person\EventSubscriber\PersonExtractLinksSubscriber
     parent: oe_content_sub_entity_person.event_subscriber.extract_links_base
     tags:
       - { name: event_subscriber }

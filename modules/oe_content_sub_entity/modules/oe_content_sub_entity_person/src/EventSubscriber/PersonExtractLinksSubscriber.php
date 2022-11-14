@@ -7,14 +7,14 @@ namespace Drupal\oe_content_sub_entity_person\EventSubscriber;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Drupal\oe_content_sub_entity_person\ExtractLinksSubscriberBase;
+use Drupal\oe_content_sub_entity_person\PersonExtractLinksSubscriberBase;
 use Drupal\oe_content_sub_entity_person\Event\ExtractLinksEvent;
 use Drupal\rdf_skos\Entity\ConceptInterface;
 
 /**
- * Event subscriber for extracting links for author bundles.
+ * Event subscriber for extracting links for person bundles.
  */
-class ExtractLinksSubscriber extends ExtractLinksSubscriberBase {
+class PersonExtractLinksSubscriber extends PersonExtractLinksSubscriberBase {
 
   /**
    * {@inheritdoc}

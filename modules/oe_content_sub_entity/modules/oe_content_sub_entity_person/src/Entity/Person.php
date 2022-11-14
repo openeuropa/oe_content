@@ -17,7 +17,7 @@ use Drupal\oe_content_sub_entity_person\Event\PersonEvents;
  * @ContentEntityType(
  *   id = "oe_person",
  *   label = @Translation("Person"),
- *   label_collection = @Translation("People"),
+ *   label_collection = @Translation("Persons"),
  *   bundle_label = @Translation("Type"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",

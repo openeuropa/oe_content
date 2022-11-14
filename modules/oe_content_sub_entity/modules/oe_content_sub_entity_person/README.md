@@ -5,6 +5,8 @@ This module provides the "Person" sub-entity type, along with the following set 
 - Political leader, that can reference multiple "EU political leader names" SKOS terms
 - Person, that can reference multiple "Person" content type nodes
 
+Also it provides reference field to reference node with person bundles.
+
 When used on a [entity reference revision](https://www.drupal.org/project/entity_reference_revisions) field, in combination
 with the [inline entity form](https://www.drupal.org/project/inline_entity_form) widget, the "Person" entity type brings
 the additional value of being able to arrange heterogeneous persons (as in: references to different entity types and

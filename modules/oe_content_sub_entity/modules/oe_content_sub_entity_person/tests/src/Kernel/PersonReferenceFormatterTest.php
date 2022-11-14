@@ -24,7 +24,7 @@ class PersonReferenceFormatterTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'node',
     'link',
     'entity_reference_revisions',
@@ -63,10 +63,6 @@ class PersonReferenceFormatterTest extends EntityKernelTestBase {
     $this->setUpSparql();
 
     $this->installEntitySchema('oe_person');
-    $this->installEntitySchema('oe_document_reference');
-    $this->installEntitySchema('node');
-    $this->installEntitySchema('media');
-
     $this->installSchema('node', ['node_access']);
 
     $this->installConfig([
@@ -77,7 +73,6 @@ class PersonReferenceFormatterTest extends EntityKernelTestBase {
       'oe_content',
       'oe_content_departments_field',
       'oe_content_person',
-      'oe_content_organisation',
       'oe_content_sub_entity_person',
     ]);
 
