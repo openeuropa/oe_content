@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Content Sub Entity Person installation file.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_sub_entity_person_install($is_syncing) {
+  if ($is_syncing) {
+    return;
+  }
+
+  // Add 'EU political leader name' vocabulary.
+  \Drupal::service('rdf_skos.skos_graph_configurator')->addGraphs([
+    'political-leader' => 'http://publications.europa.eu/resource/dataset/political-leader',
+  ]);
+}

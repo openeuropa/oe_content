@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.oe_person.oe_skos_reference
+    - oe_content_sub_entity_person.oe_person_type.oe_political_leader
+  module:
+    - rdf_skos
+id: oe_person.oe_political_leader.oe_skos_reference
+field_name: oe_skos_reference
+entity_type: oe_person
+bundle: oe_political_leader
+label: 'Political leader'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:skos_concept'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    concept_schemes:
+      - 'http://publications.europa.eu/resource/authority/political-leader'
+    field:
+      field_name: oe_skos_reference
+      entity_type: oe_person
+      bundle: oe_political_leader
+      concept_schemes:
+        - 'http://publications.europa.eu/resource/authority/political-leader'
+field_type: skos_concept_entity_reference

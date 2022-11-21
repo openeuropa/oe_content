@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_person.oe_political_leader.oe_skos_reference
+    - oe_content_sub_entity_person.oe_person_type.oe_political_leader
+  module:
+    - rdf_skos
+id: oe_person.oe_political_leader.default
+targetEntityType: oe_person
+bundle: oe_political_leader
+mode: default
+content:
+  oe_skos_reference:
+    type: skos_concept_entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

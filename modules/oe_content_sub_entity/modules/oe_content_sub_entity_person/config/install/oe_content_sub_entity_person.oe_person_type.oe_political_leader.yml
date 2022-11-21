@@ -1,0 +1,6 @@
+langcode: en
+status: true
+dependencies: {  }
+id: oe_political_leader
+label: 'Political leader'
+description: ''

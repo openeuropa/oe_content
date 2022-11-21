@@ -1,0 +1,5 @@
+entity.oe_person_type.collection:
+  title: 'Person types'
+  route_name: entity.oe_person_type.collection
+  description: 'Create and manage types of person entities'
+  parent: system.admin_structure
