@@ -24,6 +24,7 @@ class PersonEntityTest extends WebDriverTestBase {
    */
   protected static $modules = [
     'oe_content_person',
+    'oe_content_corporate_fields',
   ];
 
   /**

@@ -1,0 +1,101 @@
+<?php
+
+/**
+ * @file
+ * The module file.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\link\LinkItemInterface;
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function oe_content_corporate_fields_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+
+  if ($entity_type->id() !== 'node') {
+    return $fields;
+  }
+
+  $fields['oe_content_short_title'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('Alternative title'))
+    ->setDescription(t('Use this field to create an alternative title for use in the URL and in list views. If the page title is longer than 60 characters, you can add a shorter title here.'))
+    ->setRequired(FALSE)
+    ->setTranslatable(TRUE)
+    ->setRevisionable(TRUE)
+    ->setSetting('max_length', 255)
+    ->setDisplayOptions('form', [
+      'type' => 'string_textfield',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['oe_content_navigation_title'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('Navigation title'))
+    ->setRequired(FALSE)
+    ->setTranslatable(TRUE)
+    ->setRevisionable(TRUE)
+    ->setSetting('max_length', 255)
+    ->setDisplayOptions('form', [
+      'type' => 'string_textfield',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['oe_content_content_owner'] = BaseFieldDefinition::create('skos_concept_entity_reference')
+    ->setLabel(t('Content owner'))
+    ->setDescription(t('This is not the writer of the content, but the subject matter expert responsible for keeping this content up to date.'))
+    ->setRequired(TRUE)
+    ->setTranslatable(FALSE)
+    ->setRevisionable(TRUE)
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+    ->setSettings([
+      'target_type' => 'skos_concept',
+      'handler_settings' => [
+        'concept_schemes' => [
+          'http://publications.europa.eu/resource/authority/corporate-body',
+        ],
+        'field' => [
+          'field_name' => 'oe_content_content_owner',
+          'entity_type' => 'node',
+          'bundle' => NULL,
+          'concept_schemes' => [
+            'http://publications.europa.eu/resource/authority/corporate-body',
+          ],
+        ],
+      ],
+      'default_value' => 0,
+    ])
+    ->setDisplayOptions('form', [
+      'type' => 'skos_concept_entity_reference_autocomplete',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  $fields['oe_content_legacy_link'] = BaseFieldDefinition::create('link')
+    ->setLabel(t('Redirect link'))
+    ->setDescription(t('Add a link to this field to automatically redirect the user to a different page. Use this to prevent duplication of content.'))
+    ->setRequired(FALSE)
+    ->setTranslatable(TRUE)
+    ->setRevisionable(TRUE)
+    ->setSettings([
+      'link_type' => LinkItemInterface::LINK_EXTERNAL,
+      'title' => DRUPAL_DISABLED,
+    ])
+    ->setDisplayOptions('form', [
+      'type' => 'link_default',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('view', TRUE)
+    ->setDisplayConfigurable('form', TRUE);
+
+  return $fields;
+}

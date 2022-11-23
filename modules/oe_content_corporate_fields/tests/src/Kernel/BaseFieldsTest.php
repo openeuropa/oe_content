@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content\Kernel;
+namespace Drupal\Tests\oe_content_corporate_fields\Kernel;
 
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
@@ -27,6 +27,7 @@ class BaseFieldsTest extends SparqlKernelTestBase {
     'system',
     'text',
     'user',
+    'oe_content_corporate_fields',
   ];
 
   /**
