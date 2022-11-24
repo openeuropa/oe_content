@@ -7,7 +7,7 @@ namespace Drupal\oe_content_sub_entity_person;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_content_sub_entity_person\Event\ExtractLinksEvent;
+use Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent;
 use Drupal\oe_content_sub_entity_person\Event\PersonEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -50,27 +50,27 @@ abstract class PersonExtractLinksSubscriberBase implements EventSubscriberInterf
   /**
    * Extract array of Links object for specific sub-entity bundles.
    *
-   * @param \Drupal\oe_content_sub_entity_person\Event\ExtractLinksEvent $event
+   * @param \Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent $event
    *   The content entity.
    */
-  abstract protected function extractLinks(ExtractLinksEvent $event): void;
+  abstract protected function extractLinks(PersonExtractLinksEvent $event): void;
 
   /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
     return [
-      PersonEvents::EXTRACT_ENTITY_LINKS => ['onExtractingLinks'],
+      PersonEvents::EXTRACT_PERSON_LINKS => ['onExtractingLinks'],
     ];
   }
 
   /**
    * Extracting sub-entity link which depends on entity bundle.
    *
-   * @param \Drupal\oe_content_sub_entity_person\Event\ExtractLinksEvent $event
+   * @param \Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent $event
    *   Event.
    */
-  public function onExtractingLinks(ExtractLinksEvent $event): void {
+  public function onExtractingLinks(PersonExtractLinksEvent $event): void {
     if ($this->applies($event->getEntity())) {
       $this->extractLinks($event);
     }
@@ -79,13 +79,13 @@ abstract class PersonExtractLinksSubscriberBase implements EventSubscriberInterf
   /**
    * Default link extractor for target sub-entity.
    *
-   * @param \Drupal\oe_content_sub_entity_person\Event\ExtractLinksEvent $event
+   * @param \Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent $event
    *   Event.
    *
    * @return array
    *   Generated entity links.
    */
-  protected function getDefaultLinks(ExtractLinksEvent $event): ?array {
+  protected function getDefaultLinks(PersonExtractLinksEvent $event): ?array {
     // Load referenced entities.
     $entities = $event->getEntity()->referencedEntities();
 

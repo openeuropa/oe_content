@@ -6,7 +6,7 @@ namespace Drupal\oe_content_sub_entity_person\Entity;
 
 use Drupal\Core\Cache\CacheableResponseTrait;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
-use Drupal\oe_content_sub_entity_person\Event\ExtractLinksEvent;
+use Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent;
 use Drupal\oe_content_sub_entity_person\Event\PersonEvents;
 
 /**
@@ -59,8 +59,8 @@ class Person extends SubEntityBase implements PersonInterface {
    * {@inheritdoc}
    */
   public function getEntitiesAsLinks(): array {
-    $event = new ExtractLinksEvent($this);
-    $this->eventDispatcher()->dispatch(PersonEvents::EXTRACT_ENTITY_LINKS, $event);
+    $event = new PersonExtractLinksEvent($this);
+    $this->eventDispatcher()->dispatch(PersonEvents::EXTRACT_PERSON_LINKS, $event);
     $this->addCacheableDependency($event->getCacheableMetadata());
     return $event->getLinks();
   }
