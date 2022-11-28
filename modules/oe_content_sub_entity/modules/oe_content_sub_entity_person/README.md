@@ -46,11 +46,12 @@ function hook_post_update_00001(array &$sandbox) {
       'oe_policy',
       'oe_publication',
     ];
-    // Get all the nodes which have author.
+    // Get all the nodes which have person.
     $ids = \Drupal::entityTypeManager()->getStorage('node')->getQuery()
       ->condition('type', $content_types, 'IN')
       ->exists('oe_persons')
       ->allRevisions()
+      ->accessCheck(FALSE)
       ->execute();
 
     if (!$ids) {

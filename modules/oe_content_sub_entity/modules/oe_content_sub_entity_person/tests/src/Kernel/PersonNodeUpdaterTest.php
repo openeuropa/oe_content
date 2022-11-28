@@ -5,14 +5,14 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_sub_entity_person\Kernel;
 
 use Drupal\field\Entity\FieldConfig;
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
-use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 
 /**
  * Tests the PersonNodeUpdater service.
  */
-class PersonNodeUpdaterTest extends SparqlKernelTestBase {
+class PersonNodeUpdaterTest extends KernelTestBase {
 
   use NodeCreationTrait;
   use ContentTypeCreationTrait;
@@ -30,6 +30,8 @@ class PersonNodeUpdaterTest extends SparqlKernelTestBase {
     'composite_reference',
     'media',
     'image',
+    'field',
+    'filter',
     'text',
     'options',
     'datetime',

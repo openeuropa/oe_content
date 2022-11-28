@@ -51,6 +51,7 @@ class PersonNodeUpdater {
       ->allRevisions()
       ->condition('nid', $node->id())
       ->sort('vid')
+      ->accessCheck(FALSE)
       ->execute();
 
     $revisions = $this->entityTypeManager
