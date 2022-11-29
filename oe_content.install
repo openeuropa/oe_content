@@ -14,6 +14,10 @@ function oe_content_install($is_syncing) {
   // Configure the RDF SKOS graphs.
   if (!$is_syncing) {
     \Drupal::service('oe_content.op_skos_setup')->setup();
+    // Add 'EU political leader name' vocabulary.
+    \Drupal::service('rdf_skos.skos_graph_configurator')->addGraphs([
+      'political-leader' => 'http://publications.europa.eu/resource/dataset/political-leader',
+    ]);
   }
 }
 

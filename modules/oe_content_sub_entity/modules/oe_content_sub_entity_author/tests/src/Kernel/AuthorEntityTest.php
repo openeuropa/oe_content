@@ -95,6 +95,9 @@ class AuthorEntityTest extends SparqlKernelTestBase {
         elseif (!empty($data['corporate_bodies'])) {
           $field_values = $data['corporate_bodies'];
         }
+        elseif (!empty($data['political_leaders'])) {
+          $field_values = $data['political_leaders'];
+        }
         $author->set($data['reference_field_name'], $field_values);
         $author->save();
         $this->assertEquals($data['expected_label'], $author->label());
@@ -110,6 +113,28 @@ class AuthorEntityTest extends SparqlKernelTestBase {
    */
   protected function getAuthorEntitiesTestData(): array {
     return [
+      'oe_political_leader' => [
+        [
+          'reference_field_name' => 'oe_skos_reference',
+          'political_leaders' => NULL,
+          'expected_label' => 'Political leader',
+        ],
+        [
+          'reference_field_name' => 'oe_skos_reference',
+          'political_leaders' => [
+            'http://publications.europa.eu/resource/authority/political-leader/COM_00006A0440FF',
+          ],
+          'expected_label' => 'Ursula von der Leyen',
+        ],
+        [
+          'reference_field_name' => 'oe_skos_reference',
+          'political_leaders' => [
+            'http://publications.europa.eu/resource/authority/political-leader/COM_00006A0440FF',
+            'http://publications.europa.eu/resource/authority/political-leader/COM_00006A044747',
+          ],
+          'expected_label' => 'Ursula von der Leyen, Nicolas Schmit',
+        ],
+      ],
       'oe_corporate_body' => [
         [
           'reference_field_name' => 'oe_skos_reference',
