@@ -70,8 +70,11 @@ class AuthorEntityTest extends SparqlKernelTestBase {
       'oe_content_organisation',
       'oe_content_sub_entity_author',
     ]);
-    module_load_include('install', 'oe_content');
+
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
+    \Drupal::moduleHandler()->loadInclude('oe_content_sub_entity_author', 'install');
+    oe_content_sub_entity_author_install(FALSE);
   }
 
   /**
