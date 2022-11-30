@@ -12,7 +12,7 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * Event used to extract sub-entity type links individually for each bundle.
  */
-class ExtractLinksEvent extends Event {
+class PersonExtractLinksEvent extends Event {
 
   use CacheableResponseTrait;
 

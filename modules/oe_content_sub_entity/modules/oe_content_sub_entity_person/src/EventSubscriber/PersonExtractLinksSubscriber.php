@@ -8,7 +8,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\oe_content_sub_entity_person\PersonExtractLinksSubscriberBase;
-use Drupal\oe_content_sub_entity_person\Event\ExtractLinksEvent;
+use Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent;
 use Drupal\rdf_skos\Entity\ConceptInterface;
 
 /**
@@ -26,7 +26,7 @@ class PersonExtractLinksSubscriber extends PersonExtractLinksSubscriberBase {
   /**
    * {@inheritdoc}
    */
-  protected function extractLinks(ExtractLinksEvent $event): void {
+  protected function extractLinks(PersonExtractLinksEvent $event): void {
     $entity = $event->getEntity();
     switch ($entity->bundle()) {
       case 'oe_political_leader':

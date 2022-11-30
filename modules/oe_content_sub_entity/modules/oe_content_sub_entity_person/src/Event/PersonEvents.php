@@ -14,6 +14,6 @@ final class PersonEvents {
   /**
    * The name of the event used for extracting entity links for each bundle.
    */
-  const EXTRACT_ENTITY_LINKS = 'oe_content_sub_entity_person.extract_links';
+  const EXTRACT_PERSON_LINKS = 'oe_content_sub_entity_person.extract_links';
 
 }
