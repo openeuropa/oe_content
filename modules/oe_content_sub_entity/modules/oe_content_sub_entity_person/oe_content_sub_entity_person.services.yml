@@ -13,3 +13,6 @@ services:
     parent: oe_content_sub_entity.event_subscriber.generate_label_base
     tags:
       - { name: event_subscriber }
+  oe_content_sub_entity_person.node_updater:
+    class: Drupal\oe_content_sub_entity_person\PersonNodeUpdater
+    arguments: [ '@entity_type.manager' ]
