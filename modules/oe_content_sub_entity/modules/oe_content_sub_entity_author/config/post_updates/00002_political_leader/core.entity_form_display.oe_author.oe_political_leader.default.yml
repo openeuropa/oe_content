@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_author.oe_political_leader.oe_skos_reference
+    - oe_content_sub_entity_author.oe_author_type.oe_political_leader
+  module:
+    - rdf_skos
+id: oe_author.oe_political_leader.default
+targetEntityType: oe_author
+bundle: oe_political_leader
+mode: default
+content:
+  oe_skos_reference:
+    type: skos_concept_entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  status: true
