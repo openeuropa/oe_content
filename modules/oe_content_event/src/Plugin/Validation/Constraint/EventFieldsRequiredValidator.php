@@ -32,15 +32,6 @@ class EventFieldsRequiredValidator extends ConstraintValidator {
     // Check if any of these "Online" field group fields are filled in,
     // then they are all required.
     $this->validateGroupFieldsEmpty($online_required_fields, $constraint, $node);
-
-    $description_fields_required = [
-      'oe_event_featured_media',
-      'oe_event_featured_media_legend',
-      'body',
-    ];
-    // Check if any of these "Description" field group fields are filled in,
-    // then they are all required.
-    $this->validateGroupFieldsEmpty($description_fields_required, $constraint, $node);
   }
 
   /**
