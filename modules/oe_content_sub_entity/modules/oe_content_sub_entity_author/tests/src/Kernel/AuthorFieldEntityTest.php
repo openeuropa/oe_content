@@ -89,8 +89,10 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
 
     $this->createEntityReferenceRevisionField('node', 'test_node', 'oe_authors', 'Authors', 'oe_author');
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
+    \Drupal::moduleHandler()->loadInclude('oe_content_sub_entity_author', 'install');
+    oe_content_sub_entity_author_install(FALSE);
   }
 
   /**
@@ -250,6 +252,24 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $this->assertEquals('external link', $links[8]->a->__toString());
     $this->assertEquals('http://example.com', $links[8]->a['href']);
 
+    // Create a political leader author.
+    $author6 = $this->entityTypeManager->getStorage('oe_author')->create([
+      'type' => 'oe_political_leader',
+      'oe_skos_reference' => [
+        'http://publications.europa.eu/resource/authority/political-leader/COM_00006A0F334D',
+      ],
+    ]);
+    $author6->save();
+
+    $node->set('oe_authors', [
+      $author, $author2, $author3, $author4, $author5, $author6,
+    ]);
+    $node->save();
+    $this->renderAuthorField($node);
+    $links = $this->xpath('//main/div/div/div');
+    $this->assertCount(10, $links);
+    $this->assertEquals('Didier Reynders', $links[9]->span->__toString());
+
     // Update Person title and find update in rendered field.
     $person_node->set('oe_person_last_name', 'Doe II');
     $person_node->setNewRevision(FALSE);
@@ -257,7 +277,9 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $author3->save();
 
     // We need to ensure the new revision of the author is assigned to the node.
-    $node->set('oe_authors', [$author, $author2, $author3, $author4, $author5]);
+    $node->set('oe_authors', [
+      $author, $author2, $author3, $author4, $author5, $author6,
+    ]);
     $node->save();
 
     $this->renderAuthorField($node);
@@ -282,7 +304,9 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $author5->save();
 
     // We need to ensure the new revision of the author is assigned to the node.
-    $node->set('oe_authors', [$author, $author2, $author3, $author4, $author5]);
+    $node->set('oe_authors', [
+      $author, $author2, $author3, $author4, $author5, $author6,
+    ]);
     $node->save();
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div');
@@ -312,6 +336,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $this->assertEquals('node add internal', $labels[6]->__toString());
     $this->assertEquals('external link updated', $labels[7]->__toString());
     $this->assertEquals('Link to John Doe person', $labels[8]->__toString());
+    $this->assertEquals('Didier Reynders', $labels[9]->__toString());
 
     $this->renderAuthorField($node, [
       'label_only' => FALSE,

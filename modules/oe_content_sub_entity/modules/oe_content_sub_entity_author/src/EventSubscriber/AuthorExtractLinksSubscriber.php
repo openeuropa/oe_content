@@ -30,6 +30,7 @@ class AuthorExtractLinksSubscriber extends AuthorExtractLinksSubscriberBase {
     $entity = $event->getEntity();
     switch ($entity->bundle()) {
       case 'oe_corporate_body':
+      case 'oe_political_leader':
         // Load referenced entities.
         $entities = $event->getEntity()->referencedEntities();
         $links = [];
