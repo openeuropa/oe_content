@@ -126,6 +126,7 @@ content:
       maxlength:
         maxlength_js: 128
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   oe_call_proposals_model:
     type: options_buttons
     weight: 9
