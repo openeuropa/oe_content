@@ -37,7 +37,7 @@ class PersistentUrlResolverSubscriber implements EventSubscriberInterface {
         ],
       ];
       \Drupal::service('renderer')->render($render);
-      $event->setUrl(Url::fromUri('https://ec.europa.eu/info'));
+      $event->setUrl(Url::fromUri('https://commission.europa.eu/index_en'));
     }
   }
 
