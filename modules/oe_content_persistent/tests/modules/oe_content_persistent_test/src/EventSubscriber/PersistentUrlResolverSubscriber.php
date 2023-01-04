@@ -26,7 +26,7 @@ class PersistentUrlResolverSubscriber implements EventSubscriberInterface {
     }
 
     if ($entity->label() === 'External') {
-      $event->setUrl(Url::fromUri('https://ec.europa.eu'));
+      $event->setUrl(Url::fromUri('https://commission.europa.eu/index_en'));
     }
 
     if ($entity->label() === 'Early render') {
