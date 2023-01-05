@@ -106,7 +106,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->save();
     $this->drupalGet('/content/' . $node->uuid());
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->addressEquals('https://ec.europa.eu');
+    $this->assertSession()->addressEquals('https://commission.europa.eu/index_en');
 
     \Drupal::entityTypeManager()->getStorage('node')->resetCache();
     $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($node->id());
@@ -116,7 +116,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->save();
     $this->drupalGet('/content/' . $node->uuid());
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->addressEquals('https://ec.europa.eu/info/');
+    $this->assertSession()->addressEquals('https://commission.europa.eu/index_en');
 
     // Try to get not existing entity.
     $this->drupalGet('/content/' . \Drupal::service('uuid')->generate());

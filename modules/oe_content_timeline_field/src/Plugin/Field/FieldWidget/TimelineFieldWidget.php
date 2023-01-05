@@ -75,7 +75,8 @@ class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
    * {@inheritdoc}
    */
   public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state) {
-    if (!empty($violation->arrayPropertyPath) && $sub_element = NestedArray::getValue($element, $violation->arrayPropertyPath)) {
+    $property_path = $violation->arrayPropertyPath;
+    if (!empty($property_path) && $sub_element = NestedArray::getValue($element, $property_path)) {
       return $sub_element;
     }
     return $element;
