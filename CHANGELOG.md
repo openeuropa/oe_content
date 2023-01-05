@@ -1,11 +1,28 @@
 # Changelog
 
+## [3.0.0-alpha6](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha6) (2023-01-04)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha5...3.0.0-alpha6)
+
+**Closed issues:**
+
+- Issues with latest oe\_content\_social\_media\_links\_field updates [\#548](https://github.com/openeuropa/oe_content/issues/548)
+- Security warning for Remote Stream Wrapper dependency  [\#520](https://github.com/openeuropa/oe_content/issues/520)
+- Mismatched field definition for oe\_timeline in 2.x branch [\#501](https://github.com/openeuropa/oe_content/issues/501)
+
+**Merged pull requests:**
+
+- EWPP-0000: Fix persistent url test and magic getter returning false [\#562](https://github.com/openeuropa/oe_content/pull/562) ([nagyad](https://github.com/nagyad))
+- EWPP-2894: Fix update path for oe\_content\_social\_media\_links\_field. [\#560](https://github.com/openeuropa/oe_content/pull/560) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2714: Remove required fields constraint for Event Description field group. [\#552](https://github.com/openeuropa/oe_content/pull/552) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.0.0-alpha5](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha5) (2022-11-04)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha4...3.0.0-alpha5)
 
 **Merged pull requests:**
 
+- Prepare release 3.0.0-alpha5. [\#553](https://github.com/openeuropa/oe_content/pull/553) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-2607: Fix maxlength\_js\_enforce class not applied. [\#550](https://github.com/openeuropa/oe_content/pull/550) ([nagyad](https://github.com/nagyad))
 - EWPP-2550: Change various content type date field widgets to datepicker. [\#549](https://github.com/openeuropa/oe_content/pull/549) ([nagyad](https://github.com/nagyad))
 
