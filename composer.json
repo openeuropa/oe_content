@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "cweagans/composer-patches": "~1.4",
         "drupal/core": "^9.3",
         "drupal/datetime_range_timezone": "^1.0@alpha",
