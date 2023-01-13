@@ -7,18 +7,19 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.0",
-        "cweagans/composer-patches": "~1.4",
+        "cweagans/composer-patches": "~1.5",
         "drupal/core": "^9.4",
         "drupal/datetime_range_timezone": "^1.0@alpha",
-        "drupal/linkit": "^5.0-beta11 || ^6.0",
+        "drupal/linkit": "^6.0.0-beta3",
         "drupal/maxlength": "^1.0@beta || 2.0.0-rc1",
-        "openeuropa/oe_media": "^1.15",
-        "openeuropa/rdf_skos": "^1.0"
+        "openeuropa/oe_media": "dev-master",
+        "openeuropa/rdf_skos": "1.x-dev"
     },
     "require-dev": {
         "behat/behat": "^3.10",
-        "behat/mink-extension": "^2.3.1",
+        "behat/mink-selenium2-driver": "^1.5",
         "composer/installers": "^1.5",
+        "composer/xdebug-handler": "^2.0",
         "drupal/address": "^1.8",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.8",
@@ -26,21 +27,23 @@
         "drupal/ctools": "^3.7",
         "drupal/datetime_testing": "1.x-dev",
         "drupal/description_list_field": "^1.0",
-        "drupal/drupal-extension": "^4.0",
+        "drupal/drupal-extension": "dev-master as 4.0",
         "drupal/entity_browser": "^2.5",
         "drupal/entity_embed": "^1.1",
         "drupal/entity_reference_revisions": "^1.8",
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "^1.0-rc12",
-        "drupal/sparql_entity_storage": "^1.0.0-alpha10",
-        "drupal/typed_link": "^2.0",
+        "drupal/sparql_entity_storage": "^2.0.0-alpha9",
         "drupal/token": "^1.10",
+        "drupal/typed_link": "^2.0",
         "drupaltest/behat-traits": "^0.3",
-        "drush/drush": "^10.3",
-        "fabpot/goutte": "^3.3",
+        "drush/drush": "^11.1",
         "friends-of-behat/service-container-extension": "^1.0",
+        "guzzlehttp/guzzle": "^7.0",
         "instaclick/php-webdriver": "^1.4.7",
-        "nikic/php-parser": "~4.10.4",
+        "masterminds/html5": "^2.7.6",
+        "mikey179/vfsstream": "^1.6.10",
+        "nikic/php-parser": "^4.13",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "^2.0",
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha6",
@@ -51,7 +54,14 @@
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta5",
         "openeuropa/task-runner-ensure-behat-batching": "^1.0",
         "phpspec/prophecy-phpunit": "^2",
-        "composer/xdebug-handler": "^2.0"
+        "symfony/css-selector": "^4.4.24",
+        "symfony/dom-crawler": "^4.4.44",
+        "symfony/http-foundation": "^4.4.30",
+        "symfony/http-kernel": "^4.4.30",
+        "symfony/phpunit-bridge": "^6.0",
+        "symfony/routing": "^4.4.30",
+        "symfony/validator": "^4.4.30",
+        "symfony/yaml": "^4.4.29"
     },
     "autoload": {
         "psr-4": {
@@ -70,6 +80,10 @@
         "post-update-cmd": "./vendor/bin/run drupal:site-setup"
     },
     "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/openeuropa/media_avportal"
+        },
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
@@ -99,6 +113,9 @@
             },
             "drupal/typed_link": {
                 "https://www.drupal.org/project/typed_link/issues/3263477": "https://www.drupal.org/files/issues/2022-02-09/typed_link_constraints-3263477-2.patch"
+            },
+            "drupal/linkit": {
+                "https://www.drupal.org/project/linkit/issues/3262401": "https://www.drupal.org/files/issues/2022-04-26/linkit-jsonserialize-3262401-11.patch"
             }
         },
         "drupal-scaffold": {
@@ -107,11 +124,15 @@
             }
         },
         "_readme": [
-            "Explicit lower version requirement of drupal/ctools due to Drupal core 9.3 compatibility.",
             "Explicit minimum version requirement of behat/behat library due to PHP compatibility.",
-            "Explicit minimum version requirement for fabpot/goutte due to Drupal 9.3 compatibility.",
-            "Explicit requirement of drupal/token module due to PHP 8 compatbility.",
-            "Explicit requirement of drupal/maxlength: 2.0.0-rc1 due to issues #3279243, #3279222."
+            "Explicit requirement of token module due to lower versions declaring optional parameters before the require one on token_tokens() function.",
+            "Explicit requirement of drupal/maxlength: 2.0.0-rc1 due to issues #3279243, #3279222.",
+            "Use master branch of drupal/drupal-extension to replace fabpot/goutte with behat/mink-browserkit-driver and the rest of the behat required dependencies.",
+            "Explicit minimum version requirement of mikey179/vfsstream due to lower versions missing return type on vfsStreamDirectory::getIterator() method.",
+            "Explicit minimum version requirement of masterminds/html5 due to lower versions passing NULL parameters instead of string when calling DOMImplementation::createDocument() method.",
+            "Explicit minimum version requirement of guzzlehttp/guzzle due to lower versions missing return type on CookieJar::getIterator() and CookieJar::count() methods.",
+            "Explicit minimum version requirement of symfony/phpunit-bridge to replace drupal/core-dev testing classes and traits.",
+            "Explicit minimum version requirement of symfony packages due to lower versions missing return type on various methods being incompatible with PHP 8.1 parent methods."
         ]
     },
     "config": {
@@ -121,6 +142,7 @@
             "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
+            "enable-patching": true,
             "phpro/grumphp": true
         }
     }
