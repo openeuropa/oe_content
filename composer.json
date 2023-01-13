@@ -8,7 +8,7 @@
     "require": {
         "php": ">=8.0",
         "cweagans/composer-patches": "~1.4",
-        "drupal/core": "^9.3",
+        "drupal/core": "^9.4",
         "drupal/datetime_range_timezone": "^1.0@alpha",
         "drupal/linkit": "^5.0-beta11 || ^6.0",
         "drupal/maxlength": "^1.0@beta || 2.0.0-rc1",
@@ -22,8 +22,7 @@
         "drupal/address": "^1.8",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.8",
-        "drupal/core-composer-scaffold": "^9.3",
-        "drupal/core-dev": "^9.3",
+        "drupal/core-composer-scaffold": "^9.4",
         "drupal/ctools": "^3.7",
         "drupal/datetime_testing": "1.x-dev",
         "drupal/description_list_field": "^1.0",

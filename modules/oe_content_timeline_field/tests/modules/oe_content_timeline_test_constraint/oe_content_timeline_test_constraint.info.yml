@@ -2,4 +2,4 @@ name: OpenEuropa Timeline Test Constraint
 type: module
 description: Provides a test constraint applied to a node timeline field.
 package: OpenEuropa
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4

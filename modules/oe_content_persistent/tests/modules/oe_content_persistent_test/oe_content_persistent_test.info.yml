@@ -1,6 +1,6 @@
 name: Persistent Url test
 description: Provides configuration for testing integration to wysiwyg.
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4
 type: module
 
 dependencies:
