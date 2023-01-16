@@ -81,12 +81,12 @@
     },
     "repositories": [
         {
-            "type": "git",
-            "url": "https://github.com/openeuropa/media_avportal"
-        },
-        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/openeuropa/media_avportal"
         }
     ],
     "extra": {
