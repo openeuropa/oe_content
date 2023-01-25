@@ -122,22 +122,22 @@ pipeline:
 
 matrix:
   include:
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: behat, BATCH: '@batch3' }
-
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: behat, BATCH: '@batch1' }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: behat, BATCH: '@batch2' }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: behat, BATCH: '@batch3' }
 
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: behat, BATCH: '@batch3' }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: lowest, TYPE: phpunit }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: lowest, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: lowest, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: lowest, TYPE: behat, BATCH: '@batch3' }
 
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: behat, BATCH: '@batch1' }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: behat, BATCH: '@batch2' }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: behat, BATCH: '@batch3' }
+
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: behat, BATCH: '@batch3' }

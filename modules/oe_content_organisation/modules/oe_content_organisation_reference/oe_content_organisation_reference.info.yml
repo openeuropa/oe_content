@@ -2,7 +2,7 @@ name: OpenEuropa Organisation Reference
 description: Allows to reference organisations in very specific cases, such as a contact information.
 package: OpenEuropa
 type: module
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4
 
 dependencies:
   - oe_content:oe_content_entity_contact

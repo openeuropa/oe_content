@@ -3,7 +3,7 @@ description: Test module for Featured Media field type.
 package: OpenEuropa
 
 type: module
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4
 
 dependencies:
   - entity_browser_entity_form:entity_browser_entity_form

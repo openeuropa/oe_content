@@ -3,7 +3,7 @@ description: Contains the reference code storage field.
 package: OpenEuropa
 
 type: module
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4
 
 dependencies:
   - drupal:node

@@ -2,7 +2,7 @@ name: OpenEuropa Content Sub Entity
 description: This module provides generic entity base to serve the content sub entities in its submodules.
 package: OpenEuropa
 type: module
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4
 
 dependencies:
   - oe_content:oe_content
