@@ -126,6 +126,7 @@ content:
       maxlength:
         maxlength_js: 128
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
   oe_call_proposals_model:
     type: options_buttons
     weight: 9
@@ -236,7 +237,6 @@ content:
         maxlength_js: 250
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
-        maxlength_js_truncate_html: true
   oe_teaser:
     type: text_textarea
     weight: 16
@@ -249,7 +249,6 @@ content:
         maxlength_js: 300
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
-        maxlength_js_truncate_html: true
   path:
     type: path
     weight: 23

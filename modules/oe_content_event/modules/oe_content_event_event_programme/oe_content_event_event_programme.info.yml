@@ -2,7 +2,7 @@ name: OpenEuropa Content Event Programme Item
 description: This module provides the corporate entity bundle Programme Item.
 package: OpenEuropa
 type: module
-core_version_requirement: ^8.9 || ^9.1
+core_version_requirement: ^9.4
 
 dependencies:
   - oe_content:oe_content_entity
