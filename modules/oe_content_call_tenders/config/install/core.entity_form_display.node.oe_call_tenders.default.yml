@@ -173,7 +173,6 @@ content:
         maxlength_js: 250
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
-        maxlength_js_truncate_html: true
   oe_teaser:
     type: text_textarea
     weight: 7
@@ -186,7 +185,6 @@ content:
         maxlength_js: 300
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
-        maxlength_js_truncate_html: true
   path:
     type: path
     weight: 12

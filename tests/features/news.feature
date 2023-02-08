@@ -26,6 +26,7 @@ Feature: News content creation
       | Minutes                          |
       | News announcement                |
       | News article                     |
+      | News blog                        |
       | Newsletter                       |
       | Press release                    |
       | Provisional data                 |

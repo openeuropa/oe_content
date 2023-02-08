@@ -3,5 +3,5 @@ description: Test module for the OpenEuropa Corporate Entities.
 package: Testing
 
 type: module
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4
 hidden: true

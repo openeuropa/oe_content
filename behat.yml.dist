@@ -60,7 +60,7 @@ default:
               interface translation: 'admin/config/regional/translate'
   extensions:
     Drupal\MinkExtension:
-      goutte: ~
+      browserkit_http: ~
       ajax_timeout: 15
       javascript_session: selenium2
       browser_name: "${selenium.browser}"
