@@ -40,6 +40,7 @@ class CountryRepository extends OeCountryRepository {
       'http://publications.europa.eu/resource/authority/country/HUN' => '',
       'http://publications.europa.eu/resource/authority/country/BEL' => '',
       'http://publications.europa.eu/resource/authority/country/GBR' => '',
+      'http://publications.europa.eu/resource/authority/country/ESP' => '',
     ];
     $countries = array_intersect_key($countries, $countries_to_load);
 
