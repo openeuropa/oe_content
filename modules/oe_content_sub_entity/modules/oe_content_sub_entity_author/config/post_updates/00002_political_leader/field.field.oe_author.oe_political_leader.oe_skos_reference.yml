@@ -10,7 +10,7 @@ id: oe_author.oe_political_leader.oe_skos_reference
 field_name: oe_skos_reference
 entity_type: oe_author
 bundle: oe_political_leader
-label: 'Political leader'
+label: 'EU Political leader'
 description: ''
 required: true
 translatable: false

@@ -120,7 +120,7 @@ class AuthorEntityTest extends SparqlKernelTestBase {
         [
           'reference_field_name' => 'oe_skos_reference',
           'political_leaders' => NULL,
-          'expected_label' => 'Political leader',
+          'expected_label' => 'EU Political leader',
         ],
         [
           'reference_field_name' => 'oe_skos_reference',

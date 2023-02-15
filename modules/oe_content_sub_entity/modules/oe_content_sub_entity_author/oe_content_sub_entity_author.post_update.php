@@ -28,7 +28,7 @@ function oe_content_sub_entity_author_post_update_00001(): void {
 }
 
 /**
- * Install political leader author type and graph.
+ * Install EU Political leader author type and graph.
  */
 function oe_content_sub_entity_author_post_update_00002(): void {
   // Add 'EU political leader name' vocabulary.
@@ -38,7 +38,7 @@ function oe_content_sub_entity_author_post_update_00002(): void {
 
   $political_leader = AuthorType::create([
     'id' => 'oe_political_leader',
-    'label' => 'Political leader',
+    'label' => 'EU Political leader',
   ]);
   $political_leader->save();
 
