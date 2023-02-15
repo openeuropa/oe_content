@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * The OpenEuropa Countries Test module install file.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_install().
+ */
+function oe_countries_test_install() {
+  // We need to ensure its service provider loaded after the
+  // OeCorporateCountriesAddressServiceProvider.
+  module_set_weight('oe_countries_test', 100);
+}
