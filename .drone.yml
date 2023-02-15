@@ -71,6 +71,7 @@ pipeline:
     commands:
       - while ! mysqladmin ping -h mysql --silent; do sleep 1; done
       - ./vendor/bin/run drupal:site-install
+      - ./vendor/bin/drush en -y oe_countries_test
     when:
       matrix:
         TYPE: behat
