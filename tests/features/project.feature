@@ -52,7 +52,7 @@ Feature: Project content creation
     And I fill in "Name" with "Participants stakeholder" in the "Project participants" region
     And I fill in "Acronym" with "Acronym of the Participant" in the "Project participants" region
     And I fill in "Use existing media" with "Image 2" in the "Project participants" region
-    And I select "Mexico" from "Country" in the "Project participants" region
+    And I select "Hungary" from "Country" in the "Project participants" region
     And I wait for AJAX to finish
     And I fill in "Website" with "https://ec.europa.eu/website" in the "Project participants" region
     And I fill in "Contact page URL" with "https://ec.europa.eu/contact" in the "Project participants" region
@@ -130,7 +130,7 @@ Feature: Project content creation
     And I should see "Participants stakeholder" in the "Project participants" region
     And I should see "Acronym of the Participant" in the "Project participants" region
     And I should see "Logo" in the "Project participants" region
-    And I should see "Mexico" in the "Project participants" region
+    And I should see "Hungary" in the "Project participants" region
     And I should see "https://ec.europa.eu/website" in the "Project participants" region
     And I should see "https://ec.europa.eu/contact" in the "Project participants" region
 
