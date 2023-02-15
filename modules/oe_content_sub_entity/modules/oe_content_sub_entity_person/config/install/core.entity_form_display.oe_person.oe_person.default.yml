@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_person.oe_person.oe_node_reference
+    - oe_content_sub_entity_person.oe_person_type.oe_person
+id: oe_person.oe_person.default
+targetEntityType: oe_person
+bundle: oe_person
+mode: default
+content:
+  oe_node_reference:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  status: true

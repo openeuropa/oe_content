@@ -2,34 +2,33 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_sub_entity_author\EventSubscriber;
+namespace Drupal\oe_content_sub_entity_person\EventSubscriber;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Drupal\oe_content_sub_entity_author\AuthorExtractLinksSubscriberBase;
-use Drupal\oe_content_sub_entity_author\Event\AuthorExtractLinksEvent;
+use Drupal\oe_content_sub_entity_person\PersonExtractLinksSubscriberBase;
+use Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent;
 use Drupal\rdf_skos\Entity\ConceptInterface;
 
 /**
- * Event subscriber for extracting links for author bundles.
+ * Event subscriber for extracting links for person bundles.
  */
-class AuthorExtractLinksSubscriber extends AuthorExtractLinksSubscriberBase {
+class PersonExtractLinksSubscriber extends PersonExtractLinksSubscriberBase {
 
   /**
    * {@inheritdoc}
    */
   protected function applies(ContentEntityInterface $entity): bool {
-    return $entity->getEntityTypeId() === 'oe_author';
+    return $entity->getEntityTypeId() === 'oe_person';
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function extractLinks(AuthorExtractLinksEvent $event): void {
+  protected function extractLinks(PersonExtractLinksEvent $event): void {
     $entity = $event->getEntity();
     switch ($entity->bundle()) {
-      case 'oe_corporate_body':
       case 'oe_political_leader':
         // Load referenced entities.
         $entities = $event->getEntity()->referencedEntities();
@@ -47,17 +46,6 @@ class AuthorExtractLinksSubscriber extends AuthorExtractLinksSubscriberBase {
         if ($links) {
           $event->setLinks($links);
         }
-
-        break;
-
-      case 'oe_link':
-        $values = $entity->get('oe_link')->getValue();
-        $links = [];
-        foreach ($values as $value) {
-          $url = Url::fromUri($value['uri']) ?: Url::fromRoute('<none>');
-          $links[] = Link::fromTextAndUrl($value['title'], $url);
-        }
-        $event->setLinks($links);
 
         break;
 

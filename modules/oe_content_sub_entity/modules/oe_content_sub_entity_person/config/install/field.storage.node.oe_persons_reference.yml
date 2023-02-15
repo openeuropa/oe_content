@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_reference_revisions
+    - node
+    - oe_content_sub_entity_person
+id: node.oe_persons_reference
+field_name: oe_persons_reference
+entity_type: node
+type: entity_reference_revisions
+settings:
+  target_type: oe_person
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

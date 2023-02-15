@@ -19,13 +19,16 @@ config_devel:
     - core.entity_form_display.oe_author.oe_link.default
     - core.entity_form_display.oe_author.oe_organisation.default
     - core.entity_form_display.oe_author.oe_person.default
+    - core.entity_form_display.oe_author.oe_political_leader.default
     - core.entity_view_display.oe_author.oe_link.default
     - core.entity_view_display.oe_author.oe_organisation.default
     - core.entity_view_display.oe_author.oe_person.default
+    - core.entity_view_display.oe_author.oe_political_leader.default
     - field.field.oe_author.oe_corporate_body.oe_skos_reference
     - field.field.oe_author.oe_link.oe_link
     - field.field.oe_author.oe_organisation.oe_node_reference
     - field.field.oe_author.oe_person.oe_node_reference
+    - field.field.oe_author.oe_political_leader.oe_skos_reference
     - field.storage.node.oe_authors
     - field.storage.oe_author.oe_link
     - field.storage.oe_author.oe_node_reference
@@ -34,3 +37,4 @@ config_devel:
     - oe_content_sub_entity_author.oe_author_type.oe_link
     - oe_content_sub_entity_author.oe_author_type.oe_organisation
     - oe_content_sub_entity_author.oe_author_type.oe_person
+    - oe_content_sub_entity_author.oe_author_type.oe_political_leader
