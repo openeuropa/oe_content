@@ -110,7 +110,7 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
         [
           'reference_field_name' => 'oe_skos_reference',
           'corporate_bodies' => NULL,
-          'expected_label' => 'Political leader',
+          'expected_label' => 'EU Political leader',
         ],
         [
           'reference_field_name' => 'oe_skos_reference',
