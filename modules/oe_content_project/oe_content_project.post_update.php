@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
 
@@ -44,6 +45,25 @@ function oe_content_project_post_update_00002(): void {
   foreach ($fields as $field => $value) {
     $field_config = FieldConfig::load($field);
     $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', $value);
+    $field_config->save();
+  }
+}
+
+/**
+ * Add decimal budget fields and deprecate old fields.
+ */
+function oe_content_project_post_update_30001(): void {
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_project') . '/config/post_updates/30001_decimal_budget_fields');
+  \Drupal::service('config.installer')->installOptionalConfig($storage);
+
+  // Add deprecated to the old budget field label.
+  $fields = [
+    'node.oe_project.oe_project_budget' => 'EU contribution (deprecated)',
+    'node.oe_project.oe_project_budget_eu' => 'Overall budget (deprecated)',
+  ];
+  foreach ($fields as $field => $label) {
+    $field_config = FieldConfig::load($field);
+    $field_config->setLabel($label);
     $field_config->save();
   }
 }

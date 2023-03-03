@@ -33,6 +33,8 @@ config_devel:
     - field.field.node.oe_project.oe_project_funding_programme
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_dates
+    - field.field.node.oe_project.oe_project_eu_budget
+    - field.field.node.oe_project.oe_project_eu_contrib
     - field.field.node.oe_project.oe_project_website
     - field.field.node.oe_project.oe_project_results
     - field.field.node.oe_project.oe_project_result_files
@@ -49,6 +51,8 @@ config_devel:
     - field.storage.node.oe_project_funding_programme
     - field.storage.node.oe_project_budget
     - field.storage.node.oe_project_dates
+    - field.storage.node.oe_project_eu_budget
+    - field.storage.node.oe_project_eu_contrib
     - field.storage.node.oe_project_website
     - field.storage.node.oe_project_results
     - field.storage.node.oe_project_result_files

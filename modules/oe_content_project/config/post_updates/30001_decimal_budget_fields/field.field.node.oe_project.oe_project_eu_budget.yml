@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.oe_project_budget
+    - field.storage.node.oe_project_eu_budget
     - node.type.oe_project
-id: node.oe_project.oe_project_budget
-field_name: oe_project_budget
+id: node.oe_project.oe_project_eu_budget
+field_name: oe_project_eu_budget
 entity_type: node
 bundle: oe_project
-label: 'Overall budget (deprecated)'
+label: 'Overall budget'
 description: ''
 required: false
 translatable: false
@@ -19,4 +19,4 @@ settings:
   max: null
   prefix: €
   suffix: ''
-field_type: float
+field_type: decimal
