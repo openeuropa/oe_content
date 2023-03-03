@@ -1,7 +1,17 @@
 # Changelog
 
-## [3.0.0-alpha6](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha6) (2023-01-04)
+## [3.0.0-alpha7](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha7) (2023-03-03)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha6...3.0.0-alpha7)
 
+**Merged pull requests:**
+
+- EWPP-2742: Change field label. [\#572](https://github.com/openeuropa/oe_content/pull/572) ([nagyad](https://github.com/nagyad))
+- EWPP-3107: Fix ajax timeout. [\#570](https://github.com/openeuropa/oe_content/pull/570) ([nagyad](https://github.com/nagyad))
+- EWPP-2902: Update to PHP 8.1 and D9.4. [\#566](https://github.com/openeuropa/oe_content/pull/566) ([22Alexandra](https://github.com/22Alexandra))
+- EPIC-EWPP-2742: Political leader. [\#564](https://github.com/openeuropa/oe_content/pull/564) ([nagyad](https://github.com/nagyad))
+- EWPP-2882: Update maxlength module. [\#559](https://github.com/openeuropa/oe_content/pull/559) ([nagyad](https://github.com/nagyad))
+
+## [3.0.0-alpha6](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha6) (2023-01-04)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha5...3.0.0-alpha6)
 
 **Closed issues:**
@@ -13,11 +23,11 @@
 **Merged pull requests:**
 
 - EWPP-0000: Fix persistent url test and magic getter returning false [\#562](https://github.com/openeuropa/oe_content/pull/562) ([nagyad](https://github.com/nagyad))
+- Release-3.0.0-alpha6: Update changelog. [\#561](https://github.com/openeuropa/oe_content/pull/561) ([nagyad](https://github.com/nagyad))
 - EWPP-2894: Fix update path for oe\_content\_social\_media\_links\_field. [\#560](https://github.com/openeuropa/oe_content/pull/560) ([sergepavle](https://github.com/sergepavle))
 - EWPP-2714: Remove required fields constraint for Event Description field group. [\#552](https://github.com/openeuropa/oe_content/pull/552) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-alpha5](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha5) (2022-11-04)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha4...3.0.0-alpha5)
 
 **Merged pull requests:**
