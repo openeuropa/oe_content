@@ -1,10 +1,11 @@
 # Changelog
 
-## [3.0.0-alpha7](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha7) (2023-03-03)
+## [3.0.0-alpha7](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha7) (2023-03-06)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha6...3.0.0-alpha7)
 
 **Merged pull requests:**
 
+- EWPP-0000: Update linkit module version and change admin theme. [\#575](https://github.com/openeuropa/oe_content/pull/575) ([nagyad](https://github.com/nagyad))
 - EWPP-2742: Change field label. [\#572](https://github.com/openeuropa/oe_content/pull/572) ([nagyad](https://github.com/nagyad))
 - EWPP-3107: Fix ajax timeout. [\#570](https://github.com/openeuropa/oe_content/pull/570) ([nagyad](https://github.com/nagyad))
 - EWPP-2902: Update to PHP 8.1 and D9.4. [\#566](https://github.com/openeuropa/oe_content/pull/566) ([22Alexandra](https://github.com/22Alexandra))
