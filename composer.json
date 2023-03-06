@@ -10,7 +10,7 @@
         "cweagans/composer-patches": "~1.5",
         "drupal/core": "^9.4",
         "drupal/datetime_range_timezone": "^1.0@alpha",
-        "drupal/linkit": "^6.0.0-beta3",
+        "drupal/linkit": "^6.0.0-beta4",
         "drupal/maxlength": "^2.0.1",
         "openeuropa/oe_media": "dev-master",
         "openeuropa/rdf_skos": "1.x-dev"
@@ -49,7 +49,7 @@
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha6",
         "openeuropa/oe_corporate_site_info": "^1.0",
         "openeuropa/oe_link_lists": "~0.16.0",
-        "openeuropa/oe_multilingual": "^1.10",
+        "openeuropa/oe_multilingual": "^1.13",
         "openeuropa/oe_time_caching": "dev-master",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta5",
         "openeuropa/task-runner-ensure-behat-batching": "^1.0",
@@ -110,9 +110,6 @@
             },
             "drupal/typed_link": {
                 "https://www.drupal.org/project/typed_link/issues/3263477": "https://www.drupal.org/files/issues/2022-02-09/typed_link_constraints-3263477-2.patch"
-            },
-            "drupal/linkit": {
-                "https://www.drupal.org/project/linkit/issues/3262401": "https://www.drupal.org/files/issues/2022-04-26/linkit-jsonserialize-3262401-11.patch"
             }
         },
         "drupal-scaffold": {
