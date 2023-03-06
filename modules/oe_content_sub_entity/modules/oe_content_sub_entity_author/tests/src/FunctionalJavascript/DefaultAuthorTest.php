@@ -86,6 +86,7 @@ class DefaultAuthorTest extends WebDriverTestBase {
     $this->getSession()->getPage()->fillField('oe_authors[form][inline_entity_form][entities][0][form][oe_skos_reference][1][target_id]', 'Arab Common Market');
     $this->getSession()->getPage()->fillField('Page title', 'Title');
     $this->getSession()->getPage()->fillField('Teaser', 'Teaser');
+    $this->getSession()->getPage()->fillField('Subject', 'financing');
     $this->getSession()->getPage()->pressButton('Save');
     $this->drupalGet('/node/1/edit');
     $this->getSession()->getPage()->pressButton('ief-oe_authors-form-entity-edit-0');
