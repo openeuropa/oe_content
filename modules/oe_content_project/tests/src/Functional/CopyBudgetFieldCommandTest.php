@@ -75,11 +75,11 @@ class CopyBudgetFieldCommandTest extends BrowserTestBase {
     $project_node->save();
     $project_nodes[] = $project_node;
 
-    $this->drush('project-budget-copy-values:run');
+    $this->drush('oe-content:project-budget-copy-values');
     $storage->resetCache();
 
     foreach ($project_nodes as $node) {
-      // Assert we have only one revision after copy.
+      // Assert that no new revisions have been created.
       $revision_ids = $storage->getQuery()
         ->allRevisions()
         ->condition('nid', $node->id())

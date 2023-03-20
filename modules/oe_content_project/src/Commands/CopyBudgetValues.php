@@ -43,7 +43,7 @@ class CopyBudgetValues extends DrushCommands {
   protected $nodestorage;
 
   /**
-   * UpdatePersonData class constructor.
+   * CopyBudgetValues class constructor.
    */
   public function __construct(EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger) {
     parent::__construct();
@@ -56,7 +56,7 @@ class CopyBudgetValues extends DrushCommands {
   /**
    * Triggers the field value copy.
    *
-   * @command project-budget-copy-values:run
+   * @command oe-content:project-budget-copy-values
    */
   public function copyFieldValues(): void {
     $project_ids = $this->nodeStorage->getQuery()
@@ -135,9 +135,8 @@ class CopyBudgetValues extends DrushCommands {
       $this->messenger->addStatus($this->t('No nodes have been processed.'));
     }
     else {
-      $this->messenger->addStatus($this->t('@items nodes with values have been processed: @ids.', [
+      $this->messenger->addStatus($this->t('@items nodes with values have been processed.', [
         '@items' => $processed,
-        '@ids' => implode(', ', $results['processed']),
       ]));
     }
   }
