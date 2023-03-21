@@ -1,11 +1,20 @@
 # Changelog
 
+## [3.0.0-alpha9](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha9) (2023-03-21)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha8...3.0.0-alpha9)
+
+**Merged pull requests:**
+
+- EWPP-3056: Introduce new decimal budget field for project content type. [\#573](https://github.com/openeuropa/oe_content/pull/573) ([nagyad](https://github.com/nagyad))
+
 ## [3.0.0-alpha8](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha8) (2023-03-09)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha7...3.0.0-alpha8)
 
 **Merged pull requests:**
 
+- Release 3.0.0-alpha8: Update changelog. [\#578](https://github.com/openeuropa/oe_content/pull/578) ([nagyad](https://github.com/nagyad))
 - Remove IEF patch. [\#577](https://github.com/openeuropa/oe_content/pull/577) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-alpha7](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha7) (2023-03-06)
