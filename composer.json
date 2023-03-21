@@ -59,6 +59,7 @@
         "symfony/http-foundation": "^4.4.30",
         "symfony/http-kernel": "^4.4.30",
         "symfony/phpunit-bridge": "^6.0",
+        "symfony/process": "^4.4.30",
         "symfony/routing": "^4.4.30",
         "symfony/validator": "^4.4.30",
         "symfony/yaml": "^4.4.29"
@@ -95,6 +96,9 @@
             "build/themes/contrib/{$name}": ["type:drupal-theme"]
         },
         "patches": {
+            "drupal/core": {
+                "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2022-07-26/2230909-269.patch"
+            },
             "drupal/field_group": {
                 "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2021-08-19/2787179-highlight-html5-validation-67.patch"
             },

@@ -12,6 +12,8 @@ dependencies:
     - field.field.node.oe_project.oe_project_contact
     - field.field.node.oe_project.oe_project_coordinators
     - field.field.node.oe_project.oe_project_dates
+    - field.field.node.oe_project.oe_project_eu_budget
+    - field.field.node.oe_project.oe_project_eu_contrib
     - field.field.node.oe_project.oe_project_funding_programme
     - field.field.node.oe_project.oe_project_locations
     - field.field.node.oe_project.oe_project_participants
@@ -42,7 +44,7 @@ third_party_settings:
       label: Result
       region: content
       parent_name: ''
-      weight: 16
+      weight: 14
       format_type: details
       format_settings:
         classes: ''
@@ -58,7 +60,7 @@ third_party_settings:
       label: 'Alternative titles and teaser'
       region: content
       parent_name: ''
-      weight: 17
+      weight: 15
       format_type: tab
       format_settings:
         classes: ''
@@ -68,12 +70,12 @@ third_party_settings:
         required_fields: true
     group_budget:
       children:
-        - oe_project_budget
-        - oe_project_budget_eu
+        - oe_project_eu_budget
+        - oe_project_eu_contrib
       label: Budget
       region: content
       parent_name: ''
-      weight: 9
+      weight: 8
       format_type: tab
       format_settings:
         classes: ''
@@ -88,7 +90,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 13
+    weight: 11
     region: content
     settings:
       rows: 9
@@ -98,20 +100,20 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 24
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 18
+    weight: 16
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   oe_content_content_owner:
     type: skos_concept_entity_reference_autocomplete
-    weight: 21
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -121,7 +123,7 @@ content:
     third_party_settings: {  }
   oe_content_legacy_link:
     type: link_default
-    weight: 22
+    weight: 20
     region: content
     settings:
       placeholder_url: ''
@@ -145,7 +147,7 @@ content:
     third_party_settings: {  }
   oe_departments:
     type: skos_concept_entity_reference_autocomplete
-    weight: 19
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
@@ -155,7 +157,7 @@ content:
     third_party_settings: {  }
   oe_documents:
     type: entity_reference_autocomplete
-    weight: 15
+    weight: 13
     region: content
     settings:
       match_operator: CONTAINS
@@ -165,7 +167,7 @@ content:
     third_party_settings: {  }
   oe_featured_media:
     type: oe_featured_media_autocomplete
-    weight: 12
+    weight: 10
     region: content
     settings:
       match_operator: CONTAINS
@@ -173,23 +175,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  oe_project_budget:
-    type: number
-    weight: 9
-    region: content
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-  oe_project_budget_eu:
-    type: number
-    weight: 10
-    region: content
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
   oe_project_calls:
     type: link_default
-    weight: 14
+    weight: 12
     region: content
     settings:
       placeholder_url: ''
@@ -197,7 +185,7 @@ content:
     third_party_settings: {  }
   oe_project_contact:
     type: inline_entity_form_complex
-    weight: 29
+    weight: 27
     region: content
     settings:
       form_mode: default
@@ -215,7 +203,7 @@ content:
     third_party_settings: {  }
   oe_project_coordinators:
     type: inline_entity_form_complex
-    weight: 27
+    weight: 25
     region: content
     settings:
       form_mode: default
@@ -233,13 +221,27 @@ content:
     third_party_settings: {  }
   oe_project_dates:
     type: daterange_default
-    weight: 7
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
+  oe_project_eu_budget:
+    type: number
+    weight: 31
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  oe_project_eu_contrib:
+    type: number
+    weight: 32
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   oe_project_funding_programme:
     type: skos_concept_entity_reference_autocomplete
-    weight: 26
+    weight: 24
     region: content
     settings:
       match_operator: CONTAINS
@@ -249,13 +251,13 @@ content:
     third_party_settings: {  }
   oe_project_locations:
     type: address_default
-    weight: 8
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   oe_project_participants:
     type: inline_entity_form_complex
-    weight: 28
+    weight: 26
     region: content
     settings:
       form_mode: default
@@ -291,7 +293,7 @@ content:
     third_party_settings: {  }
   oe_project_website:
     type: link_default
-    weight: 10
+    weight: 9
     region: content
     settings:
       placeholder_url: ''
@@ -299,7 +301,7 @@ content:
     third_party_settings: {  }
   oe_reference_code:
     type: string_textfield
-    weight: 6
+    weight: 5
     region: content
     settings:
       size: 60
@@ -333,7 +335,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 20
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -346,7 +348,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 25
+    weight: 23
     region: content
     settings:
       display_label: true
@@ -373,7 +375,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 23
+    weight: 21
     region: content
     settings:
       match_operator: CONTAINS
@@ -381,4 +383,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  oe_project_budget: true
+  oe_project_budget_eu: true

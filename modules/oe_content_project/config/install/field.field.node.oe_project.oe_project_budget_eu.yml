@@ -8,7 +8,7 @@ id: node.oe_project.oe_project_budget_eu
 field_name: oe_project_budget_eu
 entity_type: node
 bundle: oe_project
-label: 'EU contribution'
+label: 'EU contribution (deprecated)'
 description: ''
 required: false
 translatable: false
