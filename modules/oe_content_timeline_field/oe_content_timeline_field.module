@@ -34,8 +34,13 @@ function oe_content_timeline_field_locale_translation_projects_alter(&$projects)
  */
 function oe_content_timeline_field_field_info_alter(&$info) {
   if (isset($info['timeline_field'])) {
-    // For the timeline_field field we need to use our own processor. This is
-    // only used if TMGMT is installed.
-    $info['timeline_field']['tmgmt_field_processor'] = 'Drupal\oe_content_timeline_field\TmgmtTimelineFieldProcessor';
+    // For the timeline_field field we need to use our own field processor
+    // depending on the translation service used (TMGMT or oe_translation).
+    if (class_exists('\Drupal\oe_translation\TranslationSourceFieldProcessor\DefaultFieldProcessor')) {
+      $info['timeline_field']['oe_translation_source_field_processor'] = 'Drupal\oe_content_timeline_field\TimelineFieldProcessor';
+    }
+    else {
+      $info['timeline_field']['tmgmt_field_processor'] = 'Drupal\oe_content_timeline_field\TimelineFieldProcessor';
+    }
   }
 }
