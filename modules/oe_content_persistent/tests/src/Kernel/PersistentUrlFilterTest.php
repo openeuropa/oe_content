@@ -21,7 +21,7 @@ class PersistentUrlFilterTest extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'system',
     'filter',
     'field',

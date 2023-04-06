@@ -39,7 +39,7 @@ abstract class SubEntityBase extends ContentEntityBase implements SubEntityInter
   public function label() {
     if (empty($this->label)) {
       $event = new GenerateLabelEvent($this);
-      $this->eventDispatcher()->dispatch(SubEntityEvents::GENERATE_LABEL, $event);
+      $this->eventDispatcher()->dispatch($event, SubEntityEvents::GENERATE_LABEL);
       $this->label = $event->getLabel();
     }
     return $this->label;

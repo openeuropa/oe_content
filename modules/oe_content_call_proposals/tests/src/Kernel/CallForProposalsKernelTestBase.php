@@ -16,7 +16,7 @@ abstract class CallForProposalsKernelTestBase extends SparqlKernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'datetime',
     'field',
     'field_group',

@@ -60,7 +60,7 @@ class Person extends SubEntityBase implements PersonInterface {
    */
   public function getEntitiesAsLinks(): array {
     $event = new PersonExtractLinksEvent($this);
-    $this->eventDispatcher()->dispatch(PersonEvents::EXTRACT_PERSON_LINKS, $event);
+    $this->eventDispatcher()->dispatch($event, PersonEvents::EXTRACT_PERSON_LINKS);
     $this->addCacheableDependency($event->getCacheableMetadata());
     return $event->getLinks();
   }

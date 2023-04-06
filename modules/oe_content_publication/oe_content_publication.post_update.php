@@ -74,7 +74,7 @@ function oe_content_publication_post_update_00003() {
  * Create the new fields in the Publication content type.
  */
 function oe_content_publication_post_update_00004(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00004_create_fields');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_publication') . '/config/post_updates/00004_create_fields');
 
   $configs = [
     'field_storage_config' => [
@@ -145,7 +145,7 @@ function oe_content_publication_post_update_00005(): void {
  * Update Publication node form displays.
  */
 function oe_content_publication_post_update_00006(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/00006_update_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_publication') . '/config/post_updates/00006_update_display');
 
   // Form display configuration to update.
   $form_display_values = $storage->read('core.entity_form_display.node.oe_publication.default');
@@ -184,7 +184,7 @@ function oe_content_publication_post_update_00007(): void {
  * Publication v3: Add publication collection related fields.
  */
 function oe_content_publication_post_update_20001(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/20001_publication_collection');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_publication') . '/config/post_updates/20001_publication_collection');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 
@@ -192,7 +192,7 @@ function oe_content_publication_post_update_20001(): void {
  * Publication v3: Update form display.
  */
 function oe_content_publication_post_update_20002(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication') . '/config/post_updates/20002_publication_collection');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_publication') . '/config/post_updates/20002_publication_collection');
 
   // Form display configuration to update.
   $form_display_values = $storage->read('core.entity_form_display.node.oe_publication.default');

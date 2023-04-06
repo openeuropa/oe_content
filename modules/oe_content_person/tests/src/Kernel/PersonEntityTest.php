@@ -44,7 +44,7 @@ class PersonEntityTest extends PersonEntityTestBase {
    */
   public function testPersonEntityValues(): void {
 
-    $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_content') . '/tests/fixtures/sample.pdf'), 'public://sample.pdf');
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.module')->getPath('oe_content') . '/tests/fixtures/sample.pdf'), 'public://sample.pdf');
     $file->save();
     $document_media = $this->entityTypeManager->getStorage('media')->create([
       'bundle' => 'document',
@@ -55,7 +55,7 @@ class PersonEntityTest extends PersonEntityTestBase {
     ]);
     $document_media->save();
 
-    $image = file_save_data(file_get_contents(drupal_get_path('module', 'oe_content') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $image = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.module')->getPath('oe_content') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $image->save();
     $image_media = $this->entityTypeManager->getStorage('media')->create([
       'bundle' => 'image',

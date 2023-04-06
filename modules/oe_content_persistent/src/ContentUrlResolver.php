@@ -59,7 +59,7 @@ class ContentUrlResolver implements ContentUrlResolverInterface {
     // Not all entity types will need to be linked to their canonical URLs,
     // so we dispatch an event to allow to modify the resulting URL.
     $event = new PersistentUrlResolverEvent($entity);
-    $this->eventDispatcher->dispatch(PersistentUrlResolverEvent::NAME, $event);
+    $this->eventDispatcher->dispatch($event, PersistentUrlResolverEvent::NAME);
     $url = $event->hasUrl() ? $event->getUrl() : $entity->toUrl();
     $this->lookupMap[$entity->uuid()][$entity->language()->getId()] = $url;
     return $url;

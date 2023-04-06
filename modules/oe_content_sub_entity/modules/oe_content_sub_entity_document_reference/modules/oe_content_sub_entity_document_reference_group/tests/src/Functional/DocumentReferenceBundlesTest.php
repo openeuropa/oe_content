@@ -27,7 +27,7 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'node',
     'oe_content_sub_entity_document_reference_group',
   ];

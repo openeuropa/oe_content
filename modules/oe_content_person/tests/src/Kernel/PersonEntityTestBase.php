@@ -17,7 +17,7 @@ abstract class PersonEntityTestBase extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'composite_reference',
     'datetime',
     'entity_reference_revisions',

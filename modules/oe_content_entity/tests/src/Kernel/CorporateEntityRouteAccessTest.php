@@ -14,7 +14,7 @@ class CorporateEntityRouteAccessTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_content_entity',
     'oe_content_entity_test',
     'system',

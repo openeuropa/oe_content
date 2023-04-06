@@ -14,7 +14,7 @@ use Drupal\Core\Config\FileStorage;
  */
 function oe_content_entity_organisation_post_update_00001(): void {
   // Obtain configuration from yaml files.
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_organisation') . '/config/post_updates/00001_create_stakeholder_bundle');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_entity_organisation') . '/config/post_updates/00001_create_stakeholder_bundle');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 

@@ -155,6 +155,7 @@ class EventPeriodFilter extends InternalLinkSourceFilterPluginBase implements In
     // starts or ends, so use the provided date field value id to find
     // the next event and use the value from that event to generate the tags.
     $results = $this->entityTypeManager->getStorage('node')->getQuery()
+      ->accessCheck()
       ->condition('oe_event_dates.' . $date_value, $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), ">")
       ->sort('oe_event_dates.' . $date_value, 'ASC')
       ->execute();

@@ -7,7 +7,7 @@ namespace Drupal\oe_content_sub_entity_author\Event;
 use Drupal\Core\Cache\CacheableResponseTrait;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Link;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Event used to extract sub-entity type Links individually for each bundle.

@@ -58,7 +58,7 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'entity_reference_revisions',
     'node',
     'oe_content_sub_entity',

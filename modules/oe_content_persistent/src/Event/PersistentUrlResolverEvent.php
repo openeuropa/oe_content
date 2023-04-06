@@ -6,7 +6,7 @@ namespace Drupal\oe_content_persistent\Event;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Url;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Event used to resolve the URL of an entity from its PURL.

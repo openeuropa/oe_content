@@ -15,7 +15,7 @@ class OrganisationFieldTest extends SparqlKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'datetime',
     'field',
     'field_group',

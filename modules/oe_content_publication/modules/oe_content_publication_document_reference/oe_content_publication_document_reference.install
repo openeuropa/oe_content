@@ -24,7 +24,7 @@ function oe_content_publication_document_reference_install($is_syncing) {
     return;
   }
 
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_publication_document_reference') . '/tasks/install');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_publication_document_reference') . '/tasks/install');
   $configs_to_import = [
     'oe_content_sub_entity_document_reference.oe_document_reference_type.oe_publication',
     'field.storage.oe_document_reference.oe_publication',

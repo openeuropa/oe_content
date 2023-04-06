@@ -60,7 +60,7 @@ class Author extends SubEntityBase implements AuthorInterface {
    */
   public function getAuthorsAsLinks(): array {
     $event = new AuthorExtractLinksEvent($this);
-    $this->eventDispatcher()->dispatch(AuthorEvents::EXTRACT_AUTHOR_LINKS, $event);
+    $this->eventDispatcher()->dispatch($event, AuthorEvents::EXTRACT_AUTHOR_LINKS);
     $this->addCacheableDependency($event->getCacheableMetadata());
     return $event->getLinks();
   }

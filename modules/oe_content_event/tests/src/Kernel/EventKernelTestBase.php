@@ -23,7 +23,7 @@ abstract class EventKernelTestBase extends SparqlKernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'field',
     'field_group',
     'datetime',
