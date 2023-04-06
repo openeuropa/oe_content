@@ -2,7 +2,7 @@ name: OpenEuropa Content Sub Entity Document reference Group
 description: This module provides the "Document group" bundle to the Document reference content entity.
 package: OpenEuropa
 type: module
-core_version_requirement: ^9.2
+core_version_requirement: ^9.4 || ^10
 
 dependencies:
   - oe_content:oe_content_sub_entity_document_reference
