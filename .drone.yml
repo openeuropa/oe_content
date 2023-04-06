@@ -51,7 +51,7 @@ pipeline:
       # Pre-install 9.4.x so that all modules are compatible and plugins are installed too.
       - composer require drupal/core:~9.4.0 drupal/core-composer-scaffold:~9.4.0 --update-with-all-dependencies --ansi --no-progress --no-interaction --no-plugins --no-scripts
       # Install the lenient plugin so that non-D10 ready components will be marked as compatible.
-      - composer require mglaman/composer-drupal-lenient --no-plugins --no-scripts
+      - composer require mglaman/composer-drupal-lenient --ansi --no-progress --no-interaction --no-plugins --no-scripts
       # Delete the lock file to ignore all dependencies when requiring D10.
       - rm -f composer.lock
     when:
