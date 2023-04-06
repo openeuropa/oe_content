@@ -9,7 +9,7 @@
         "php": ">=8.0",
         "cweagans/composer-patches": "~1.5",
         "drupal/core": "^9.4 || ^10",
-        "drupal/datetime_range_timezone": "dev-3296933-automated-drupal-10",
+        "drupal/datetime_range_timezone": "1.0.0-alpha2",
         "drupal/linkit": "^6.0.0-beta4",
         "drupal/maxlength": "^2.0.1",
         "openeuropa/oe_media": "dev-EWPP-3006",
@@ -64,10 +64,6 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://git.drupalcode.org/issue/datetime_range_timezone-3296933.git"
-        },
-        {
-            "type": "git",
             "url": "https://github.com/openeuropa/description_list_field.git"
         },
         {
@@ -93,6 +89,9 @@
             },
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2020-10-05/entity_browser-remove_button_2851580-92.patch"
+            },
+            "drupal/datetime_range_timezone": {
+                "D10 compatibility": "https://git.drupalcode.org/project/datetime_range_timezone/-/merge_requests/12.diff"
             }
         },
         "drupal-scaffold": {
@@ -104,7 +103,10 @@
             "Explicit requirement of symfony/phpunit-bridge to replace drupal/core-dev testing classes and traits."
         ],
         "drupal-lenient": {
-            "allowed-list": ["drupal/typed_link"]
+            "allowed-list": [
+                "drupal/typed_link",
+                "drupal/datetime_range_timezone"
+            ]
         }
     },
     "config": {
