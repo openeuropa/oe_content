@@ -43,7 +43,7 @@ services:
 
 pipeline:
   composer-add-lenient:
-    group: prepare
+    group: warmup
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
