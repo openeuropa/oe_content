@@ -117,7 +117,8 @@
             "drupal/core-composer-scaffold": true,
             "enable-patching": true,
             "phpro/grumphp": true,
-            "mglaman/composer-drupal-lenient": true
+            "mglaman/composer-drupal-lenient": true,
+            "phpstan/extension-installer": true
         }
     }
 }
