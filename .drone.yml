@@ -42,7 +42,7 @@ services:
       - NODE_MAX_SESSION=5
 
 pipeline:
-  composer-warmup:
+  composer-add-lenient:
     group: prepare
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
@@ -50,17 +50,10 @@ pipeline:
     commands:
       # Pre-install 9.4.x so that all modules are compatible and plugins are installed too.
       - composer require drupal/core:~9.4.0 drupal/core-composer-scaffold:~9.4.0 --update-with-all-dependencies --ansi --no-progress --no-interaction
-    when:
-      matrix:
-        CORE_VERSION: "10.0"
-
-  composer-add-lenient:
-    group: prepare
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
-    volumes:
-      - /cache/${DRONE_REPO_NAME}:/cache
-    commands:
-      - composer require mglaman/composer-drupal-lenient
+      # Install the lenient plugin so that non-D10 ready components will be marked as compatible.
+      - composer require mglaman/composer-drupal-lenient --no-plugins
+      # Delete the lock file to ignore all dependencies when requiring D10.
+      - rm -f composer.lock
     when:
       matrix:
         CORE_VERSION: "10.0"
