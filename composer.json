@@ -33,7 +33,6 @@
         "drupal/typed_link": "^2.0.1",
         "drush/drush": "^11.1",
         "friends-of-behat/service-container-extension": "^1.0",
-        "mglaman/composer-drupal-lenient": "^1.0",
         "openeuropa/behat-transformation-context": "~0.2",
         "openeuropa/code-review": "^2.0",
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha6",
