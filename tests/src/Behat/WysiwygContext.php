@@ -4,9 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_content\Behat;
 
+use Behat\Mink\Exception\DriverException;
+use Behat\Mink\Exception\UnsupportedDriverActionException;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Traits\WysiwygTrait;
-use DrupalTest\BehatTraits\Traits\BrowserCapabilityDetectionTrait;
 use PHPUnit\Framework\Assert;
 
 /**
@@ -14,7 +15,6 @@ use PHPUnit\Framework\Assert;
  */
 class WysiwygContext extends RawDrupalContext {
 
-  use BrowserCapabilityDetectionTrait;
   use WysiwygTrait;
 
   /**
@@ -183,6 +183,38 @@ JS;
         $event_data = '';
       }
       throw new \RuntimeException('Unable to complete AJAX request.' . $event_data);
+    }
+  }
+
+  /**
+   * Checks whether the browser supports JavaScript.
+   *
+   * @see https://github.com/drupaltest/behat-traits/blob/8.x-1.x/src/Traits/BrowserCapabilityDetectionTrait.php
+   *
+   * @return bool
+   *   Returns TRUE when the browser environment supports executing JavaScript
+   *   code, for example because the test is running in Selenium or PhantomJS.
+   */
+  protected function browserSupportsJavaScript(): bool {
+    $driver = $this->getSession()->getDriver();
+    try {
+      if (!$driver->isStarted()) {
+        $driver->start();
+      }
+    }
+    catch (DriverException $e) {
+      throw new \RuntimeException('Could not start webdriver.', 0, $e);
+    }
+
+    try {
+      $driver->executeScript('return;');
+      return TRUE;
+    }
+    catch (UnsupportedDriverActionException $e) {
+      return FALSE;
+    }
+    catch (DriverException $e) {
+      throw new \RuntimeException('Could not execute JavaScript.', 0, $e);
     }
   }
 

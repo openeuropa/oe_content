@@ -31,7 +31,6 @@
         "drupal/inline_entity_form": "^1.0-rc15",
         "drupal/token": "^1.10",
         "drupal/typed_link": "^2.0.1",
-        "drupaltest/behat-traits": "^0.3",
         "drush/drush": "^11.1",
         "friends-of-behat/service-container-extension": "^1.0",
         "openeuropa/behat-transformation-context": "~0.2",
