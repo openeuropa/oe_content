@@ -90,7 +90,7 @@
                 "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2021-08-19/2787179-highlight-html5-validation-67.patch"
             },
             "drupal/entity_browser": {
-                "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2020-10-05/entity_browser-remove_button_2851580-92.patch"
+                "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2023-04-04/2851580-109.patch"
             },
             "drupal/datetime_range_timezone": {
                 "D10 compatibility": "https://git.drupalcode.org/project/datetime_range_timezone/-/merge_requests/12.diff"
