@@ -37,7 +37,6 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
     $this->installEntitySchema('media');
     $this->installEntitySchema('entity_view_display');
     $this->installConfig(['media', 'image']);
-    $this->installSchema('system', ['key_value_expire']);
     $this->installSchema('file', ['file_usage']);
 
     // Setup media bundle and fields.
