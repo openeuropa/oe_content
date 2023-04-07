@@ -24,7 +24,7 @@ class RedirectSubscriberTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stable';
+  protected $defaultTheme = 'starterkit_theme';
 
   /**
    * {@inheritdoc}
