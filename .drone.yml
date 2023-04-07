@@ -120,6 +120,8 @@ pipeline:
       - ./vendor/bin/drush ws --count 500
     when:
       status: failure
+      matrix:
+        TYPE: behat
 
 matrix:
   include:
