@@ -35,7 +35,7 @@
         "drupal/inline_entity_form": "^1.0-rc15",
         "drupal/sparql_entity_storage": "^2.0.0-alpha9",
         "drupal/token": "^1.10",
-        "drupal/typed_link": "^2.0",
+        "drupal/typed_link": "^2.0.1",
         "drupaltest/behat-traits": "^0.3",
         "drush/drush": "^11.1",
         "friends-of-behat/service-container-extension": "^1.0",
@@ -104,9 +104,6 @@
             },
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2020-10-05/entity_browser-remove_button_2851580-92.patch"
-            },
-            "drupal/typed_link": {
-                "https://www.drupal.org/project/typed_link/issues/3263477": "https://www.drupal.org/files/issues/2022-02-09/typed_link_constraints-3263477-2.patch"
             }
         },
         "drupal-scaffold": {
