@@ -26,7 +26,6 @@
         "drupal/description_list_field": "^1.0.0-alpha5",
         "drupal/drupal-extension": "^5.0",
         "drupal/entity_browser": "^2.5",
-        "drupal/entity_embed": "dev-1.x",
         "drupal/entity_reference_revisions": "^1.8",
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "^1.0-rc15",
