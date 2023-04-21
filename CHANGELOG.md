@@ -1,7 +1,14 @@
-# Changelog
+# Change Log
+
+## [3.0.0-alpha10](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha10) (2023-04-21)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha9...3.0.0-alpha10)
+
+**Merged pull requests:**
+
+- EWPP-3220: Update typed\_link dependency version. [\#582](https://github.com/openeuropa/oe_content/pull/582) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2814: Adapt the timeline field processor. [\#580](https://github.com/openeuropa/oe_content/pull/580) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-alpha9](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha9) (2023-03-21)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha8...3.0.0-alpha9)
 
 **Merged pull requests:**
