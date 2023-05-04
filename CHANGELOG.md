@@ -1,10 +1,18 @@
 # Change Log
 
+## [3.0.0-alpha11](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha11) (2023-05-04)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha10...3.0.0-alpha11)
+
+**Merged pull requests:**
+
+- EWPP-3008: D10 compatibility. [\#581](https://github.com/openeuropa/oe_content/pull/581) ([brummbar](https://github.com/brummbar))
+
 ## [3.0.0-alpha10](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha10) (2023-04-21)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha9...3.0.0-alpha10)
 
 **Merged pull requests:**
 
+- Release-3.0.0-alpha10: Update changelog. [\#584](https://github.com/openeuropa/oe_content/pull/584) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3220: Update typed\_link dependency version. [\#582](https://github.com/openeuropa/oe_content/pull/582) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-2814: Adapt the timeline field processor. [\#580](https://github.com/openeuropa/oe_content/pull/580) ([22Alexandra](https://github.com/22Alexandra))
 
@@ -13,10 +21,10 @@
 
 **Merged pull requests:**
 
+- Release-3.0.0-alpha9: Update changelog. [\#579](https://github.com/openeuropa/oe_content/pull/579) ([nagyad](https://github.com/nagyad))
 - EWPP-3056: Introduce new decimal budget field for project content type. [\#573](https://github.com/openeuropa/oe_content/pull/573) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-alpha8](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha8) (2023-03-09)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha7...3.0.0-alpha8)
 
 **Merged pull requests:**
