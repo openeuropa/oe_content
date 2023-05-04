@@ -20,7 +20,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_link_lists',
     'oe_link_lists_internal_source',
     'datetime_testing',
@@ -118,7 +118,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     // Default filter will only return upcoming events.
     $query = $storage->getQuery();
     $plugin->apply($query, [], $cache);
-    $query_results = $query->execute();
+    $query_results = $query->accessCheck()->execute();
     $future_events = [
       $ongoing_event->id() => $ongoing_event->id(),
       $upcoming_event->id() => $upcoming_event->id(),
@@ -140,7 +140,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $plugin->setConfiguration(['period' => EventPeriodFilter::PAST]);
     $cache = new CacheableMetadata();
     $plugin->apply($query, [], $cache);
-    $query_results = $query->execute();
+    $query_results = $query->accessCheck()->execute();
     $past_events = [
       $past_event->id() => $past_event->id(),
       $ancient_event->id() => $ancient_event->id(),
@@ -162,7 +162,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $cache = new CacheableMetadata();
     $query = $storage->getQuery();
     $plugin->apply($query, [], $cache);
-    $query_results = $query->execute();
+    $query_results = $query->accessCheck()->execute();
     $past_events = [
       $ancient_event->id() => $ancient_event->id(),
     ];
@@ -185,7 +185,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $plugin->setConfiguration(['period' => EventPeriodFilter::UPCOMING]);
     $cache = new CacheableMetadata();
     $plugin->apply($query, [], $cache);
-    $query_results = $query->execute();
+    $query_results = $query->accessCheck()->execute();
     $ongoing_events = [
       // Only future event is visible because the time is set to the
       // end date of the ongoing and upcoming event.
@@ -207,7 +207,7 @@ class EventLinkSourceFilterTest extends EventKernelTestBase {
     $plugin->setConfiguration(['period' => '']);
     $cache = new CacheableMetadata();
     $plugin->apply($query, [], $cache);
-    $query_results = $query->execute();
+    $query_results = $query->accessCheck()->execute();
     $all_events = [
       $future_event->id() => $future_event->id(),
       $upcoming_event->id() => $upcoming_event->id(),

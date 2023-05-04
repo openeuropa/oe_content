@@ -45,9 +45,14 @@ class EntityTypeDeleteForm extends EntityDeleteForm {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $entity_type_id = $this->getEntity()->getEntityType()->getBundleOf();
+    // @todo Why aggregate query?
     $query_aggregator = $this->entityTypeManager->getStorage($entity_type_id)->getAggregateQuery();
     $entity_type = $this->entityTypeManager->getDefinition($entity_type_id);
     $num_lists = $query_aggregator
+      // We need to bypass access checks as we need to warn the user that there
+      // are existing entities that prevent the deletion of this entity bundle,
+      // regardless if the user can access those entities or not.
+      ->accessCheck(FALSE)
       ->condition($entity_type->getKey('bundle'), $this->entity->id())
       ->count()
       ->execute();

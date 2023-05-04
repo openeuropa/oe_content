@@ -18,7 +18,7 @@ class BaseFieldsTest extends SparqlKernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'field',
     'link',
     'node',

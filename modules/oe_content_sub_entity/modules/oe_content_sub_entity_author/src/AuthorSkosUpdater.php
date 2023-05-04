@@ -48,6 +48,7 @@ class AuthorSkosUpdater {
     ]);
 
     $ids = $this->entityTypeManager->getStorage('node')->getQuery()
+      ->accessCheck(FALSE)
       ->allRevisions()
       ->condition('nid', $node->id())
       ->sort('vid')

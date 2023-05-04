@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_persistent\Kernel;
 
 use Drupal\file\Entity\File;
+use Drupal\file\FileInterface;
 use Drupal\media\Entity\Media;
 use Drupal\media\Entity\MediaType;
 use Drupal\Tests\linkit\Kernel\LinkitKernelTestBase;
@@ -17,7 +18,7 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'file_test',
     'file',
     'media',
@@ -36,7 +37,6 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
     $this->installEntitySchema('media');
     $this->installEntitySchema('entity_view_display');
     $this->installConfig(['media', 'image']);
-    $this->installSchema('system', ['key_value_expire']);
     $this->installSchema('file', ['file_usage']);
 
     // Setup media bundle and fields.
@@ -61,7 +61,7 @@ class MediaPurlMatcherTest extends LinkitKernelTestBase {
         'filename' => 'image-test.' . $ext,
         'uri' => 'public://image-test.' . $ext,
         'filemime' => 'text/plain',
-        'status' => FILE_STATUS_PERMANENT,
+        'status' => FileInterface::STATUS_PERMANENT,
       ]);
       $file->save();
 

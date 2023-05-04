@@ -14,7 +14,7 @@ use Drupal\field\Entity\FieldConfig;
  * Add maxlegnth to oe_content_short_title, oe_summary, oe_teaser, title.
  */
 function oe_content_call_tenders_post_update_00001() {
-  $file_storage = new FileStorage(drupal_get_path('module', 'oe_content_call_tenders') . '/config/post_updates/00001_add_maxlength');
+  $file_storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_call_tenders') . '/config/post_updates/00001_add_maxlength');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
 
   $display_id = 'core.entity_form_display.node.oe_call_tenders.default';

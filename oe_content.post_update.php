@@ -29,6 +29,7 @@ function oe_content_post_update_00001(): void {
   $config_name_list = \Drupal::entityTypeManager()
     ->getStorage('field_config')
     ->getQuery()
+    ->accessCheck(FALSE)
     ->condition('field_type', 'skos_concept_entity_reference')
     ->execute();
   foreach ($config_name_list as $config_name) {

@@ -13,7 +13,7 @@ use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
 use Drupal\oe_content_redirect_link_field\RedirectLinkResolverInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -62,10 +62,10 @@ class RedirectSubscriber implements EventSubscriberInterface {
   /**
    * Redirects entity canonical URLs to their corresponding redirect links.
    *
-   * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
+   * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
    *   Response event.
    */
-  public function onKernelRequest(GetResponseEvent $event): void {
+  public function onKernelRequest(RequestEvent $event): void {
     $request = $event->getRequest();
 
     $route = $request->attributes->get('_route');

@@ -17,7 +17,7 @@ class EventSpeakerEntityTest extends SparqlKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'node',
     'link',
     'entity_reference_revisions',

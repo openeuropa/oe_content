@@ -33,7 +33,7 @@ class CopyBudgetFieldCommandTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'path',
     'oe_content_project',
   ];
@@ -81,6 +81,7 @@ class CopyBudgetFieldCommandTest extends BrowserTestBase {
     foreach ($project_nodes as $node) {
       // Assert that no new revisions have been created.
       $revision_ids = $storage->getQuery()
+        ->accessCheck(FALSE)
         ->allRevisions()
         ->condition('nid', $node->id())
         ->sort('vid')

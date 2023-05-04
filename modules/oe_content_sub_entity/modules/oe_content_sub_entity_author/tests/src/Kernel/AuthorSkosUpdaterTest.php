@@ -17,7 +17,7 @@ class AuthorSkosUpdaterTest extends SparqlKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'node',
     'link',
     'entity_reference_revisions',
@@ -143,6 +143,7 @@ class AuthorSkosUpdaterTest extends SparqlKernelTestBase {
     // Load up the revisions of the node and compare the field values against
     // the author sub-entity values.
     $revision_ids = $node_storage->getQuery()
+      ->accessCheck(FALSE)
       ->allRevisions()
       ->condition('nid', $node->id())
       ->sort('vid')

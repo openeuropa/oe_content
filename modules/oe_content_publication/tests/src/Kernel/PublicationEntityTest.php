@@ -18,7 +18,7 @@ class PublicationEntityTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'composite_reference',
     'datetime',
     'entity_reference_revisions',
@@ -112,7 +112,7 @@ class PublicationEntityTest extends EntityKernelTestBase {
     $node->save();
 
     // Create a document for Publication.
-    $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), "public://sample.pdf");
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.module')->getPath('oe_media') . '/tests/fixtures/sample.pdf'), "public://sample.pdf");
     $file->setPermanent();
     $file->save();
 

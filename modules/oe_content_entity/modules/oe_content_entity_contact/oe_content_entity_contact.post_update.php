@@ -38,7 +38,7 @@ function oe_content_entity_contact_post_update_00001(): void {
  *  - Website (oe_website)
  */
 function oe_content_entity_contact_post_update_00002(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00002_create_contact_fields');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_entity_contact') . '/config/post_updates/00002_create_contact_fields');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 
@@ -46,7 +46,7 @@ function oe_content_entity_contact_post_update_00002(): void {
  * Update contact form displays.
  */
 function oe_content_entity_contact_post_update_00003(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00003_update_contact_form_displays');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_entity_contact') . '/config/post_updates/00003_update_contact_form_displays');
 
   // Form display configurations to update.
   $form_displays = [
@@ -69,7 +69,7 @@ function oe_content_entity_contact_post_update_00003(): void {
  * Create "oe_details" view mode.
  */
 function oe_content_entity_contact_post_update_00004(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00004_create_details_view_mode');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_entity_contact') . '/config/post_updates/00004_create_details_view_mode');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 
@@ -121,7 +121,7 @@ function oe_content_entity_contact_post_update_00007(): void {
   $view_mode_config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($view_mode_config));
   EntityViewMode::create($view_mode_config)->save();
 
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00007_node_reference_field');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_entity_contact') . '/config/post_updates/00007_node_reference_field');
 
   // Clear the cached plugin definitions of the field types.
   \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
@@ -138,7 +138,7 @@ function oe_content_entity_contact_post_update_00007(): void {
  * Create a Link field on the General and Press Contact bundle.
  */
 function oe_content_entity_contact_post_update_00008(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00008_create_link_field');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_entity_contact') . '/config/post_updates/00008_create_link_field');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 
@@ -146,7 +146,7 @@ function oe_content_entity_contact_post_update_00008(): void {
  * Update contact form displays with new Link field.
  */
 function oe_content_entity_contact_post_update_00009(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_entity_contact') . '/config/post_updates/00009_update_form_displays_link_field');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_entity_contact') . '/config/post_updates/00009_update_form_displays_link_field');
 
   // Form display configurations to update.
   $form_displays = [

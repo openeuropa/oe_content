@@ -23,7 +23,7 @@ class ShortTitleTokenReplaceTest extends SparqlKernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'content_translation',
     'field',
     'language',

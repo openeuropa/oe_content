@@ -21,7 +21,7 @@ use Drupal\field\Entity\FieldConfig;
  * https://www.drupal.org/project/entity_reference_revisions/issues/3150084
  */
 function oe_content_sub_entity_document_reference_post_update_00001() {
-  $file_storage = new FileStorage(drupal_get_path('module', 'oe_content_sub_entity_document_reference') . '/config/post_updates/00001_hide_untranslatable_fields');
+  $file_storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_sub_entity_document_reference') . '/config/post_updates/00001_hide_untranslatable_fields');
   $storage = \Drupal::entityTypeManager()->getStorage('language_content_settings');
 
   $config_ids = [

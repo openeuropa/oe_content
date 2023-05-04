@@ -17,7 +17,7 @@ use Drupal\field\Entity\FieldConfig;
  */
 function oe_content_person_post_update_20001(): void {
   // Update form display to add maxlength to first and last names.
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_person') . '/config/post_updates/20001_person_title');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_person') . '/config/post_updates/20001_person_title');
   $entity_type_manager = \Drupal::entityTypeManager();
   $display_values = $storage->read('core.entity_form_display.node.oe_person.default');
   $form_display_storage = $entity_type_manager->getStorage('entity_form_display');

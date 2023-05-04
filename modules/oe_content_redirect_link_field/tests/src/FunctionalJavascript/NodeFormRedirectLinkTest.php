@@ -20,7 +20,7 @@ class NodeFormRedirectLinkTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'seven';
+  protected $defaultTheme = 'claro';
 
   /**
    * {@inheritdoc}

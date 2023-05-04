@@ -106,7 +106,7 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
  * Implements hook_locale_translation_projects_alter().
  */
 function oe_content_locale_translation_projects_alter(&$projects) {
-  $projects['oe_content']['info']['interface translation server pattern'] = drupal_get_path('module', 'oe_content') . '/translations/%project-%language.po';
+  $projects['oe_content']['info']['interface translation server pattern'] = \Drupal::service('extension.list.module')->getPath('oe_content') . '/translations/%project-%language.po';
 }
 
 /**

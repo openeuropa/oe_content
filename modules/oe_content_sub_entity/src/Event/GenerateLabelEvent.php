@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_sub_entity\Event;
 
 use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Event is used to form sub-entity type labels individually for each bundle.

@@ -20,7 +20,7 @@ class PersonNodeUpdaterTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'node',
     'link',
     'entity_reference_revisions',
@@ -186,6 +186,7 @@ class PersonNodeUpdaterTest extends KernelTestBase {
     // Load up the revisions of the node and compare the field values against
     // the person sub-entity values.
     $revision_ids = $node_storage->getQuery()
+      ->accessCheck(FALSE)
       ->allRevisions()
       ->condition('nid', $node->id())
       ->sort('vid')

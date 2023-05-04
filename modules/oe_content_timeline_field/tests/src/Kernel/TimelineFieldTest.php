@@ -48,7 +48,7 @@ class TimelineFieldTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'field',
     'node',
     'oe_content_timeline_field',

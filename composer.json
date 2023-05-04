@@ -8,61 +8,43 @@
     "require": {
         "php": ">=8.0",
         "cweagans/composer-patches": "~1.5",
-        "drupal/core": "^9.4",
-        "drupal/datetime_range_timezone": "^1.0@alpha",
+        "drupal/core": "^9.4 || ^10",
+        "drupal/datetime_range_timezone": "^1.0.0-alpha3",
         "drupal/linkit": "^6.0.0-beta4",
         "drupal/maxlength": "^2.0.1",
-        "openeuropa/oe_media": "^1.22",
-        "openeuropa/rdf_skos": "^1.0.0-alpha9"
+        "openeuropa/oe_media": "^1.23.1",
+        "openeuropa/rdf_skos": "^1.0.0-alpha10"
     },
     "require-dev": {
-        "behat/behat": "^3.10",
-        "behat/mink-selenium2-driver": "^1.5",
         "composer/installers": "^1.5",
-        "composer/xdebug-handler": "^2.0",
-        "drupal/address": "^1.8",
-        "drupal/composite_reference": "^2.1",
-        "drupal/config_devel": "^1.8",
-        "drupal/core-composer-scaffold": "^9.4",
-        "drupal/ctools": "^3.7",
-        "drupal/datetime_testing": "1.x-dev",
-        "drupal/description_list_field": "^1.0",
-        "drupal/drupal-extension": "dev-master as 4.0",
+        "drupal/address": "^1.11",
+        "drupal/ckeditor": "^1.0",
+        "drupal/composite_reference": "^2.2",
+        "drupal/config_devel": "^1.9",
+        "drupal/core-composer-scaffold": "^9.4 || ^10",
+        "drupal/datetime_testing": "^1.0",
+        "drupal/description_list_field": "^1.0.0-alpha5",
+        "drupal/drupal-extension": "^5.0",
         "drupal/entity_browser": "^2.5",
-        "drupal/entity_embed": "^1.1",
         "drupal/entity_reference_revisions": "^1.8",
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "^1.0-rc15",
-        "drupal/sparql_entity_storage": "^2.0.0-alpha9",
         "drupal/token": "^1.10",
         "drupal/typed_link": "^2.0.1",
-        "drupaltest/behat-traits": "^0.3",
         "drush/drush": "^11.1",
         "friends-of-behat/service-container-extension": "^1.0",
-        "guzzlehttp/guzzle": "^7.0",
-        "instaclick/php-webdriver": "^1.4.7",
-        "masterminds/html5": "^2.7.6",
-        "mikey179/vfsstream": "^1.6.10",
-        "nikic/php-parser": "^4.13",
+        "mikey179/vfsstream": "^1.6",
         "openeuropa/behat-transformation-context": "~0.2",
         "openeuropa/code-review": "^2.0",
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha6",
         "openeuropa/oe_corporate_site_info": "^1.0",
-        "openeuropa/oe_link_lists": "^0.21",
+        "openeuropa/oe_link_lists": "~0.21",
         "openeuropa/oe_multilingual": "^1.13",
-        "openeuropa/oe_time_caching": "^1.4",
+        "openeuropa/oe_time_caching": "^1.5",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta6",
         "openeuropa/task-runner-ensure-behat-batching": "^1.0",
         "phpspec/prophecy-phpunit": "^2",
-        "symfony/css-selector": "^4.4.24",
-        "symfony/dom-crawler": "^4.4.44",
-        "symfony/http-foundation": "^4.4.30",
-        "symfony/http-kernel": "^4.4.30",
-        "symfony/phpunit-bridge": "^6.0",
-        "symfony/process": "^4.4.30",
-        "symfony/routing": "^4.4.30",
-        "symfony/validator": "^4.4.30",
-        "symfony/yaml": "^4.4.29"
+        "symfony/phpunit-bridge": "^6.0"
     },
     "autoload": {
         "psr-4": {
@@ -100,10 +82,10 @@
                 "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2022-07-26/2230909-269.patch"
             },
             "drupal/field_group": {
-                "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2021-08-19/2787179-highlight-html5-validation-67.patch"
+                "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2023-04-07/2787179-highlight-html5-validation-85.patch"
             },
             "drupal/entity_browser": {
-                "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2020-10-05/entity_browser-remove_button_2851580-92.patch"
+                "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2023-04-04/2851580-109.patch"
             }
         },
         "drupal-scaffold": {
@@ -112,15 +94,7 @@
             }
         },
         "_readme": [
-            "Explicit minimum version requirement of behat/behat library due to PHP compatibility.",
-            "Explicit requirement of token module due to lower versions declaring optional parameters before the require one on token_tokens() function.",
-            "Explicit requirement of drupal/maxlength: 2.0.0-rc1 due to issues #3279243, #3279222.",
-            "Use master branch of drupal/drupal-extension to replace fabpot/goutte with behat/mink-browserkit-driver and the rest of the behat required dependencies.",
-            "Explicit minimum version requirement of mikey179/vfsstream due to lower versions missing return type on vfsStreamDirectory::getIterator() method.",
-            "Explicit minimum version requirement of masterminds/html5 due to lower versions passing NULL parameters instead of string when calling DOMImplementation::createDocument() method.",
-            "Explicit minimum version requirement of guzzlehttp/guzzle due to lower versions missing return type on CookieJar::getIterator() and CookieJar::count() methods.",
-            "Explicit minimum version requirement of symfony/phpunit-bridge to replace drupal/core-dev testing classes and traits.",
-            "Explicit minimum version requirement of symfony packages due to lower versions missing return type on various methods being incompatible with PHP 8.1 parent methods."
+            "Explicit requirement of symfony/phpunit-bridge to replace drupal/core-dev testing classes and traits."
         ]
     },
     "config": {
@@ -131,7 +105,8 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "enable-patching": true,
-            "phpro/grumphp": true
+            "phpro/grumphp": true,
+            "phpstan/extension-installer": true
         }
     }
 }

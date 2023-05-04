@@ -104,7 +104,7 @@ function oe_content_event_post_update_20001(): void {
     'oe_content_event_event_programme',
   ]);
   \Drupal::service('plugin.manager.field.field_type')->clearCachedDefinitions();
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20001_event_v2_fields');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_event') . '/config/post_updates/20001_event_v2_fields');
   \Drupal::service('config.installer')->installOptionalConfig($storage);
 }
 
@@ -112,7 +112,7 @@ function oe_content_event_post_update_20001(): void {
  * Update form display.
  */
 function oe_content_event_post_update_20002(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_content_event') . '/config/post_updates/20002_update_form_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_event') . '/config/post_updates/20002_update_form_display');
 
   // Form display configurations to update.
   $form_display_values = $storage->read('core.entity_form_display.node.oe_event.default');
