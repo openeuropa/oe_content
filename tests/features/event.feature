@@ -147,7 +147,9 @@ Feature: Event content creation
     # The alternative titles and teaser group is open by default.
     And I should see the text "Alternative titles and teaser"
     And I should see the text "Alternative title"
+    And I should see the text "Use this field to create an alternative title for use in the URL and in list views. If the page title is longer than 60 characters, you can add a shorter title here."
     And I should see the text "Navigation title"
+    And I should see the text "When filled in, the navigation title will replace the page title in the breadcrumb, horizontal menu and navigation blocks."
     And I should see the text "Teaser"
 
     # The event programme group is open by default.

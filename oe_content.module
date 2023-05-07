@@ -40,6 +40,7 @@ function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
 
   $fields['oe_content_navigation_title'] = BaseFieldDefinition::create('string')
     ->setLabel(t('Navigation title'))
+    ->setDescription(t('When filled in, the navigation title will replace the page title in the breadcrumb, horizontal menu and navigation blocks.'))
     ->setRequired(FALSE)
     ->setTranslatable(TRUE)
     ->setRevisionable(TRUE)
