@@ -3,47 +3,51 @@ msgstr ""
 
 msgctxt "Long month name"
 msgid "January"
-msgstr "sausis"
+msgstr "sausio"
 
 msgctxt "Long month name"
 msgid "February"
-msgstr "vasaris"
+msgstr "vasario"
 
 msgctxt "Long month name"
 msgid "March"
-msgstr "kovas"
+msgstr "kovo"
 
 msgctxt "Long month name"
 msgid "April"
-msgstr "balandis"
+msgstr "balandžio"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "gegužės"
 
 msgctxt "Long month name"
 msgid "June"
-msgstr "birželis"
+msgstr "birželio"
 
 msgctxt "Long month name"
 msgid "July"
-msgstr "liepa"
+msgstr "liepos"
 
 msgctxt "Long month name"
 msgid "August"
-msgstr "Rugpjūtis"
+msgstr "rugpjūčio"
 
 msgctxt "Long month name"
 msgid "September"
-msgstr "rugsėjis"
+msgstr "rugsėjo"
 
 msgctxt "Long month name"
 msgid "October"
-msgstr "spalis"
+msgstr "spalio"
 
 msgctxt "Long month name"
 msgid "November"
-msgstr "lapkritis"
+msgstr "lapkričio"
 
 msgctxt "Long month name"
 msgid "December"
-msgstr "gruodis"
+msgstr "gruodžio"
 
 msgid "Jan"
 msgstr "sau."
@@ -67,7 +71,7 @@ msgid "Jul"
 msgstr "lie."
 
 msgid "Aug"
-msgstr "rgpj."
+msgstr "rugp."
 
 msgid "Sep"
 msgstr "rgs."
@@ -163,7 +167,7 @@ msgstr "Pn."
 
 msgctxt "Abbreviated 1 letter weekday Saturday"
 msgid "S"
-msgstr "S"
+msgstr "Š"
 
 msgid "Sunday"
 msgstr "sekmadienis"
@@ -185,45 +189,3 @@ msgstr "penktadienis"
 
 msgid "Saturday"
 msgstr "šeštadienis"
-
-msgid "Sun"
-msgstr "Sek."
-
-msgid "Mon"
-msgstr "Pir."
-
-msgid "Tue"
-msgstr "Ant."
-
-msgid "Wed"
-msgstr "Tre."
-
-msgid "Thu"
-msgstr "Ket."
-
-msgid "Fri"
-msgstr "Pen."
-
-msgid "Sat"
-msgstr "Šeš."
-
-msgid "Su"
-msgstr "Se."
-
-msgid "Mo"
-msgstr "Pi."
-
-msgid "Tu"
-msgstr "An."
-
-msgid "We"
-msgstr "Tr."
-
-msgid "Th"
-msgstr "Ke."
-
-msgid "Fr"
-msgstr "Pe."
-
-msgid "Sa"
-msgstr "Še."
