@@ -50,96 +50,96 @@ msgid "December"
 msgstr "december"
 
 msgid "Jan"
-msgstr "jan."
+msgstr "jan"
 
 msgid "Feb"
-msgstr "feb."
+msgstr "feb"
 
 msgid "Mar"
-msgstr "mar."
+msgstr "mar"
 
 msgid "Apr"
-msgstr "apr."
+msgstr "apr"
 
 msgid "May"
 msgstr "maj"
 
 msgid "Jun"
-msgstr "jun."
+msgstr "jun"
 
 msgid "Jul"
-msgstr "jul."
+msgstr "jul"
 
 msgid "Aug"
-msgstr "aug."
+msgstr "aug"
 
 msgid "Sep"
-msgstr "sep."
+msgstr "sep"
 
 msgid "Oct"
-msgstr "okt."
+msgstr "okt"
 
 msgid "Nov"
-msgstr "nov."
+msgstr "nov"
 
 msgid "Dec"
-msgstr "dec."
+msgstr "dec"
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "søn."
+msgstr "søn"
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "man."
+msgstr "man"
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "tirs."
+msgstr "tirs"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "ons."
+msgstr "ons"
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "tors."
+msgstr "tors"
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "fre."
+msgstr "fre"
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "lør."
+msgstr "lør"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "sø."
+msgstr "sø"
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "ma."
+msgstr "ma"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "ti."
+msgstr "ti"
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "on."
+msgstr "on"
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "to."
+msgstr "to"
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "fr."
+msgstr "fr"
 
 msgctxt "Abbreviated weekday"
 msgid "Sa"
-msgstr "lø."
+msgstr "lø"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
