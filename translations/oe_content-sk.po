@@ -3,51 +3,51 @@ msgstr ""
 
 msgctxt "Long month name"
 msgid "January"
-msgstr "január"
+msgstr "januára"
 
 msgctxt "Long month name"
 msgid "February"
-msgstr "február"
+msgstr "februára"
 
 msgctxt "Long month name"
 msgid "March"
-msgstr "marec"
+msgstr "marca"
 
 msgctxt "Long month name"
 msgid "April"
-msgstr "apríl"
+msgstr "apríla"
 
 msgctxt "Long month name"
 msgid "May"
-msgstr "máj"
+msgstr "mája"
 
 msgctxt "Long month name"
 msgid "June"
-msgstr "jún"
+msgstr "júna"
 
 msgctxt "Long month name"
 msgid "July"
-msgstr "júl"
+msgstr "júla"
 
 msgctxt "Long month name"
 msgid "August"
-msgstr "august"
+msgstr "augusta"
 
 msgctxt "Long month name"
 msgid "September"
-msgstr "september"
+msgstr "septembra"
 
 msgctxt "Long month name"
 msgid "October"
-msgstr "október"
+msgstr "októbra"
 
 msgctxt "Long month name"
 msgid "November"
-msgstr "november"
+msgstr "novembra"
 
 msgctxt "Long month name"
 msgid "December"
-msgstr "december"
+msgstr "decembra"
 
 msgid "Jan"
 msgstr "jan."
@@ -189,45 +189,3 @@ msgstr "piatok"
 
 msgid "Saturday"
 msgstr "sobota"
-
-msgid "Sun"
-msgstr "ned."
-
-msgid "Mon"
-msgstr "pon."
-
-msgid "Tue"
-msgstr "ut."
-
-msgid "Wed"
-msgstr "str."
-
-msgid "Thu"
-msgstr "štv."
-
-msgid "Fri"
-msgstr "pia."
-
-msgid "Sat"
-msgstr "sob."
-
-msgid "Su"
-msgstr "ned."
-
-msgid "Mo"
-msgstr "pon."
-
-msgid "Tu"
-msgstr "ut."
-
-msgid "We"
-msgstr "str."
-
-msgid "Th"
-msgstr "štv."
-
-msgid "Fr"
-msgstr "pia."
-
-msgid "Sa"
-msgstr "sob."

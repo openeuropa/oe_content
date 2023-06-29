@@ -3,51 +3,51 @@ msgstr ""
 
 msgctxt "Long month name"
 msgid "January"
-msgstr "tammikuu"
+msgstr "tammikuuta"
 
 msgctxt "Long month name"
 msgid "February"
-msgstr "helmikuu"
+msgstr "helmikuuta"
 
 msgctxt "Long month name"
 msgid "March"
-msgstr "maaliskuu"
+msgstr "maaliskuuta"
 
 msgctxt "Long month name"
 msgid "April"
-msgstr "huhtikuu"
+msgstr "huhtikuuta"
 
 msgctxt "Long month name"
 msgid "May"
-msgstr "toukokuu"
+msgstr "toukokuuta"
 
 msgctxt "Long month name"
 msgid "June"
-msgstr "kesäkuu"
+msgstr "kesäkuuta"
 
 msgctxt "Long month name"
 msgid "July"
-msgstr "heinäkuu"
+msgstr "heinäkuuta"
 
 msgctxt "Long month name"
 msgid "August"
-msgstr "elokuu"
+msgstr "elokuuta"
 
 msgctxt "Long month name"
 msgid "September"
-msgstr "syyskuu"
+msgstr "syyskuuta"
 
 msgctxt "Long month name"
 msgid "October"
-msgstr "lokakuu"
+msgstr "lokakuuta"
 
 msgctxt "Long month name"
 msgid "November"
-msgstr "marraskuu"
+msgstr "marraskuuta"
 
 msgctxt "Long month name"
 msgid "December"
-msgstr "joulukuu"
+msgstr "joulukuuta"
 
 msgid "Jan"
 msgstr "tam"
@@ -189,45 +189,3 @@ msgstr "perjantai"
 
 msgid "Saturday"
 msgstr "lauantai"
-
-msgid "Sun"
-msgstr "su"
-
-msgid "Mon"
-msgstr "ma"
-
-msgid "Tue"
-msgstr "ti"
-
-msgid "Wed"
-msgstr "ke"
-
-msgid "Thu"
-msgstr "to"
-
-msgid "Fri"
-msgstr "pe"
-
-msgid "Sat"
-msgstr "la"
-
-msgid "Su"
-msgstr "su"
-
-msgid "Mo"
-msgstr "ma"
-
-msgid "Tu"
-msgstr "ti"
-
-msgid "We"
-msgstr "ke"
-
-msgid "Th"
-msgstr "to"
-
-msgid "Fr"
-msgstr "pe"
-
-msgid "Sa"
-msgstr "la"

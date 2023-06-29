@@ -44,7 +44,8 @@
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta6",
         "openeuropa/task-runner-ensure-behat-batching": "^1.0",
         "phpspec/prophecy-phpunit": "^2",
-        "symfony/phpunit-bridge": "^6.0"
+        "symfony/phpunit-bridge": "^6.0",
+        "symfony/validator": "~v4.4.48 || ~v6.2.5"
     },
     "autoload": {
         "psr-4": {
@@ -94,7 +95,8 @@
             }
         },
         "_readme": [
-            "Explicit requirement of symfony/phpunit-bridge to replace drupal/core-dev testing classes and traits."
+            "Explicit requirement of symfony/phpunit-bridge to replace drupal/core-dev testing classes and traits.",
+            "Using symfony/validator v6.2.5 for D10 like core-recommended does because 6.3 breaks BC with the signature changes to the ExecutionContextInterface."
         ]
     },
     "config": {

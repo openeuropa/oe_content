@@ -3,51 +3,51 @@ msgstr ""
 
 msgctxt "Long month name"
 msgid "January"
-msgstr "Ιανουάριος"
+msgstr "Ιανουαρίου"
 
 msgctxt "Long month name"
 msgid "February"
-msgstr "Φεβρουάριος"
+msgstr "Φεβρουαρίου"
 
 msgctxt "Long month name"
 msgid "March"
-msgstr "Μάρτιος"
+msgstr "Μαρτίου"
 
 msgctxt "Long month name"
 msgid "April"
-msgstr "Απρίλιος"
+msgstr "Απριλίου"
 
 msgctxt "Long month name"
 msgid "May"
-msgstr "Μάιος"
+msgstr "Μαΐου"
 
 msgctxt "Long month name"
 msgid "June"
-msgstr "Ιούνιος"
+msgstr "Ιουνίου"
 
 msgctxt "Long month name"
 msgid "July"
-msgstr "Ιούλιος"
+msgstr "Ιουλίου"
 
 msgctxt "Long month name"
 msgid "August"
-msgstr "Αύγουστος"
+msgstr "Αυγούστου"
 
 msgctxt "Long month name"
 msgid "September"
-msgstr "Σεπτέμβριος"
+msgstr "Σεπτεμβρίου"
 
 msgctxt "Long month name"
 msgid "October"
-msgstr "Οκτώβριος"
+msgstr "Οκτωβρίου"
 
 msgctxt "Long month name"
 msgid "November"
-msgstr "Νοέμβριος"
+msgstr "Νοεμβρίου"
 
 msgctxt "Long month name"
 msgid "December"
-msgstr "Δεκέμβριος"
+msgstr "Δεκεμβρίου"
 
 msgid "Jan"
 msgstr "Ιαν"
@@ -189,45 +189,3 @@ msgstr "Παρασκευή"
 
 msgid "Saturday"
 msgstr "Σάββατο"
-
-msgid "Sun"
-msgstr "Κυρ"
-
-msgid "Mon"
-msgstr "Δευ"
-
-msgid "Tue"
-msgstr "Τρι"
-
-msgid "Wed"
-msgstr "Τετ"
-
-msgid "Thu"
-msgstr "Πεμ"
-
-msgid "Fri"
-msgstr "Παρ"
-
-msgid "Sat"
-msgstr "Σαβ"
-
-msgid "Su"
-msgstr "Κυ"
-
-msgid "Mo"
-msgstr "Δε"
-
-msgid "Tu"
-msgstr "Τρ"
-
-msgid "We"
-msgstr "Τε"
-
-msgid "Th"
-msgstr "Πε"
-
-msgid "Fr"
-msgstr "Πα"
-
-msgid "Sa"
-msgstr "Σα"

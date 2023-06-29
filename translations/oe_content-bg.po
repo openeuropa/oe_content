@@ -3,231 +3,189 @@ msgstr ""
 
 msgctxt "Long month name"
 msgid "October"
-msgstr "октомври"
+msgstr "Oктомври"
 
 msgctxt "Long month name"
 msgid "July"
-msgstr "юли"
+msgstr "Юли"
 
 msgctxt "Long month name"
 msgid "March"
-msgstr "март"
+msgstr "Mарт"
 
 msgctxt "Long month name"
 msgid "February"
-msgstr "февруари"
+msgstr "Февруари"
 
 msgctxt "Long month name"
 msgid "December"
-msgstr "декември"
+msgstr "Декември"
 
 msgctxt "Long month name"
 msgid "August"
-msgstr "август"
+msgstr "Aвгуст"
 
 msgctxt "Long month name"
 msgid "June"
-msgstr "юни"
+msgstr "Юни"
 
 msgctxt "Long month name"
 msgid "May"
-msgstr "май"
+msgstr "Mай"
 
 msgctxt "Long month name"
 msgid "April"
-msgstr "април"
+msgstr "Aприл"
 
 msgctxt "Long month name"
 msgid "November"
-msgstr "ноември"
+msgstr "Hоември"
 
 msgctxt "Long month name"
 msgid "January"
-msgstr "януари"
+msgstr "Януари"
 
 msgctxt "Long month name"
 msgid "September"
-msgstr "септември"
+msgstr "Септември"
 
 msgid "Jan"
-msgstr "янр"
+msgstr "Янр"
 
 msgid "Feb"
-msgstr "фев"
+msgstr "Фев"
 
 msgid "Mar"
-msgstr "мар"
+msgstr "Mар"
 
 msgid "Apr"
-msgstr "апр"
+msgstr "Aпр"
 
 msgid "May"
-msgstr "май"
+msgstr "Mай"
 
 msgid "Jun"
-msgstr "юни"
+msgstr "Юни"
 
 msgid "Jul"
-msgstr "юли"
+msgstr "Юли"
 
 msgid "Aug"
-msgstr "авг"
+msgstr "Aвг"
 
 msgid "Sep"
-msgstr "сеп"
+msgstr "Cеп"
 
 msgid "Oct"
-msgstr "окт"
+msgstr "Oкт"
 
 msgid "Nov"
-msgstr "ное"
+msgstr "Hое"
 
 msgid "Dec"
-msgstr "дек"
+msgstr "Дек"
 
 msgid "Sunday"
-msgstr "неделя"
+msgstr "Неделя"
 
 msgid "Monday"
-msgstr "понеделник"
+msgstr "Понеделник"
 
 msgid "Tuesday"
-msgstr "вторник"
+msgstr "Вторник"
 
 msgid "Wednesday"
-msgstr "сряда"
+msgstr "Сряда"
 
 msgid "Thursday"
-msgstr "четвъртък"
+msgstr "Четвъртък"
 
 msgid "Friday"
-msgstr "петък"
+msgstr "Петък"
 
 msgid "Saturday"
-msgstr "събота"
+msgstr "Събота"
 
 msgctxt "Abbreviated weekday"
 msgid "Sun"
-msgstr "нед"
+msgstr "Нед"
 
 msgctxt "Abbreviated weekday"
 msgid "Mon"
-msgstr "пон"
+msgstr "Пон"
 
 msgctxt "Abbreviated weekday"
 msgid "Tue"
-msgstr "вто"
+msgstr "Вто"
 
 msgctxt "Abbreviated weekday"
 msgid "Wed"
-msgstr "сря"
+msgstr "Сря"
 
 msgctxt "Abbreviated weekday"
 msgid "Thu"
-msgstr "чет"
+msgstr "Чет"
 
 msgctxt "Abbreviated weekday"
 msgid "Fri"
-msgstr "пет"
+msgstr "Пет"
 
 msgctxt "Abbreviated weekday"
 msgid "Sat"
-msgstr "съб"
+msgstr "Съб"
 
 msgctxt "Abbreviated weekday"
 msgid "Su"
-msgstr "не"
+msgstr "Не"
 
 msgctxt "Abbreviated weekday"
 msgid "Mo"
-msgstr "пo"
+msgstr "Пo"
 
 msgctxt "Abbreviated weekday"
 msgid "Tu"
-msgstr "вт"
+msgstr "Вт"
 
 msgctxt "Abbreviated weekday"
 msgid "We"
-msgstr "ср"
+msgstr "Ср"
 
 msgctxt "Abbreviated weekday"
 msgid "Th"
-msgstr "че"
+msgstr "Че"
 
 msgctxt "Abbreviated weekday"
 msgid "Fr"
-msgstr "пе"
+msgstr "Пе"
 
 msgctxt "Abbreviated weekday"
 msgid "Sa"
-msgstr "съ"
+msgstr "Съ"
 
 msgctxt "Abbreviated 1 letter weekday Sunday"
 msgid "S"
-msgstr "н"
+msgstr "Н"
 
 msgctxt "Abbreviated 1 letter weekday Monday"
 msgid "M"
-msgstr "п"
+msgstr "П"
 
 msgctxt "Abbreviated 1 letter weekday Tuesday"
 msgid "T"
-msgstr "в"
+msgstr "В"
 
 msgctxt "Abbreviated 1 letter weekday Wednesday"
 msgid "W"
-msgstr "с"
+msgstr "С"
 
 msgctxt "Abbreviated 1 letter weekday Thursday"
 msgid "T"
-msgstr "ч"
+msgstr "Ч"
 
 msgctxt "Abbreviated 1 letter weekday Friday"
 msgid "F"
-msgstr "п"
+msgstr "П"
 
 msgctxt "Abbreviated 1 letter weekday Saturday"
 msgid "S"
-msgstr "с"
-
-msgid "Sun"
-msgstr "нед"
-
-msgid "Mon"
-msgstr "пон"
-
-msgid "Tue"
-msgstr "вто"
-
-msgid "Wed"
-msgstr "сря"
-
-msgid "Thu"
-msgstr "чет"
-
-msgid "Fri"
-msgstr "пет"
-
-msgid "Sat"
-msgstr "съб"
-
-msgid "Su"
-msgstr "не"
-
-msgid "Mo"
-msgstr "пo"
-
-msgid "Tu"
-msgstr "вт"
-
-msgid "We"
-msgstr "ср"
-
-msgid "Th"
-msgstr "че"
-
-msgid "Fr"
-msgstr "пе"
-
-msgid "Sa"
-msgstr "съ"
+msgstr "С"
