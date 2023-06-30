@@ -1,13 +1,26 @@
-# Change Log
+# Changelog
+
+## [3.0.0-beta1](https://github.com/openeuropa/oe_content/tree/3.0.0-beta1) (2023-06-30)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha11...3.0.0-beta1)
+
+**Merged pull requests:**
+
+- EWPP-3305: Fix date translations and remove duplicates. [\#588](https://github.com/openeuropa/oe_content/pull/588) ([nagyad](https://github.com/nagyad))
+- EWPP-3289: Add help text to navigation title field. [\#586](https://github.com/openeuropa/oe_content/pull/586) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3070: Make subject field required on pages. [\#576](https://github.com/openeuropa/oe_content/pull/576) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [3.0.0-alpha11](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha11) (2023-05-04)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha10...3.0.0-alpha11)
 
 **Merged pull requests:**
 
+- Prepare changelog for release 3.0.0-alpha11. [\#585](https://github.com/openeuropa/oe_content/pull/585) ([brummbar](https://github.com/brummbar))
 - EWPP-3008: D10 compatibility. [\#581](https://github.com/openeuropa/oe_content/pull/581) ([brummbar](https://github.com/brummbar))
 
 ## [3.0.0-alpha10](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha10) (2023-04-21)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha9...3.0.0-alpha10)
 
 **Merged pull requests:**
@@ -17,6 +30,7 @@
 - EWPP-2814: Adapt the timeline field processor. [\#580](https://github.com/openeuropa/oe_content/pull/580) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-alpha9](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha9) (2023-03-21)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha8...3.0.0-alpha9)
 
 **Merged pull requests:**
@@ -25,6 +39,7 @@
 - EWPP-3056: Introduce new decimal budget field for project content type. [\#573](https://github.com/openeuropa/oe_content/pull/573) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-alpha8](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha8) (2023-03-09)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha7...3.0.0-alpha8)
 
 **Merged pull requests:**
@@ -47,6 +62,7 @@
 - EWPP-2882: Update maxlength module. [\#559](https://github.com/openeuropa/oe_content/pull/559) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-alpha6](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha6) (2023-01-04)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha5...3.0.0-alpha6)
 
 **Closed issues:**
@@ -63,6 +79,7 @@
 - EWPP-2714: Remove required fields constraint for Event Description field group. [\#552](https://github.com/openeuropa/oe_content/pull/552) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-alpha5](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha5) (2022-11-04)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha4...3.0.0-alpha5)
 
 **Merged pull requests:**
