@@ -1,8 +1,7 @@
 # OpenEuropa Person sub-entity
 
-This module provides the "Person" sub-entity type, along with the following set of person bundles:
+This module provides the "Person" sub-entity type, along with the following person bundle:
 
-- EU Political leader, that can reference multiple "EU political leader names" SKOS terms
 - Person, that can reference multiple "Person" content type nodes
 
 Also it provides reference field to reference node with person bundles.

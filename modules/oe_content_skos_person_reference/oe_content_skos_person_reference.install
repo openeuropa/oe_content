@@ -2,7 +2,7 @@
 
 /**
  * @file
- * The OpenEuropa Content Sub Entity Person installation file.
+ * Install, update and uninstall functions.
  */
 
 declare(strict_types = 1);
@@ -10,7 +10,7 @@ declare(strict_types = 1);
 /**
  * Implements hook_install().
  */
-function oe_content_sub_entity_person_install($is_syncing) {
+function oe_content_skos_person_reference_install($is_syncing): void {
   if ($is_syncing) {
     return;
   }

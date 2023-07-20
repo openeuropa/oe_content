@@ -69,8 +69,6 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
     ]);
     \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
-    \Drupal::moduleHandler()->loadInclude('oe_content_sub_entity_person', 'install');
-    oe_content_sub_entity_person_install(FALSE);
   }
 
   /**
@@ -88,9 +86,6 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
             $field_values[] = $this->createNode($node_values);
           }
         }
-        elseif (!empty($data['political_leaders'])) {
-          $field_values = $data['political_leaders'];
-        }
         $person->set($data['reference_field_name'], $field_values);
         $person->save();
         $this->assertEquals($data['expected_label'], $person->label());
@@ -106,28 +101,6 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
    */
   protected function getTestData(): array {
     return [
-      'oe_political_leader' => [
-        [
-          'reference_field_name' => 'oe_skos_reference',
-          'corporate_bodies' => NULL,
-          'expected_label' => 'EU Political leader',
-        ],
-        [
-          'reference_field_name' => 'oe_skos_reference',
-          'political_leaders' => [
-            'http://publications.europa.eu/resource/authority/political-leader/COM_00006A0440FF',
-          ],
-          'expected_label' => 'Ursula von der Leyen',
-        ],
-        [
-          'reference_field_name' => 'oe_skos_reference',
-          'political_leaders' => [
-            'http://publications.europa.eu/resource/authority/political-leader/COM_00006A0440FF',
-            'http://publications.europa.eu/resource/authority/political-leader/COM_00006A044747',
-          ],
-          'expected_label' => 'Ursula von der Leyen, Nicolas Schmit',
-        ],
-      ],
       'oe_person' => [
         [
           'reference_field_name' => 'oe_node_reference',

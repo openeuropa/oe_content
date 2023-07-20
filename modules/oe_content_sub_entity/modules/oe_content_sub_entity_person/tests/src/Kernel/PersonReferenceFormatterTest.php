@@ -51,6 +51,7 @@ class PersonReferenceFormatterTest extends EntityKernelTestBase {
     'oe_content_sub_entity',
     'oe_content_sub_entity_document_reference',
     'oe_content_sub_entity_person',
+    'oe_content_skos_person_reference',
   ];
 
   /**
@@ -74,6 +75,7 @@ class PersonReferenceFormatterTest extends EntityKernelTestBase {
       'oe_content_departments_field',
       'oe_content_person',
       'oe_content_sub_entity_person',
+      'oe_content_skos_person_reference',
     ]);
 
     // Create a node type.
@@ -86,8 +88,8 @@ class PersonReferenceFormatterTest extends EntityKernelTestBase {
 
     \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
-    \Drupal::moduleHandler()->loadInclude('oe_content_sub_entity_person', 'install');
-    oe_content_sub_entity_person_install(FALSE);
+    \Drupal::moduleHandler()->loadInclude('oe_content_skos_person_reference', 'install');
+    oe_content_skos_person_reference_install(FALSE);
   }
 
   /**
