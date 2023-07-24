@@ -8,9 +8,9 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
+use Drupal\oe_content\CallEntityWrapperInterface;
 use Drupal\oe_content\EntityWrapperInterface;
 use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
-use Drupal\oe_content\CallEntityWrapperInterface;
 
 /**
  * Tests "Call for tenders" wrapper class.
@@ -117,22 +117,22 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
         'case' => 'Test default getters behaviour when no fields are set',
         'values' => [],
         'assertions' => [
-          'hasStatus' => FALSE,
+          'hasStatus' => TRUE,
           'isUpcoming' => FALSE,
-          'isOpen' => FALSE,
+          'isOpen' => TRUE,
           'isClosed' => FALSE,
-          'getStatus' => CallEntityWrapperInterface::STATUS_NOT_AVAILABLE,
-          'getStatusLabel' => 'N/A',
-          'hasOpeningDate' => FALSE,
+          'getStatus' => CallEntityWrapperInterface::STATUS_OPEN,
+          'getStatusLabel' => 'Ongoing',
+          'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => FALSE,
-          'getOpeningDate' => NULL,
+          'getOpeningDate' => date('Y-m-d') . ' 00:00:00',
           'getDeadlineDate' => NULL,
         ],
       ],
       [
         'case' => 'Test upcoming status',
         'values' => [
-          'oe_call_tenders_opening_date' => [
+          'oe_publication_date' => [
             'value' => date('Y') + 1 . '-11-26',
           ],
         ],
@@ -152,7 +152,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
       [
         'case' => 'Test open status',
         'values' => [
-          'oe_call_tenders_opening_date' => [
+          'oe_publication_date' => [
             'value' => '2020-09-01',
           ],
           'oe_call_tenders_deadline' => [
@@ -165,7 +165,7 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
           'isOpen' => TRUE,
           'isClosed' => FALSE,
           'getStatus' => CallEntityWrapperInterface::STATUS_OPEN,
-          'getStatusLabel' => 'Open',
+          'getStatusLabel' => 'Ongoing',
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => TRUE,
           'getOpeningDate' => '2020-09-01 00:00:00',
@@ -173,9 +173,9 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
         ],
       ],
       [
-        'case' => 'Test closed status with opening date set',
+        'case' => 'Test closed status',
         'values' => [
-          'oe_call_tenders_opening_date' => [
+          'oe_publication_date' => [
             'value' => '2020-09-01',
           ],
           'oe_call_tenders_deadline' => [
@@ -192,26 +192,6 @@ class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
           'hasOpeningDate' => TRUE,
           'hasDeadlineDate' => TRUE,
           'getOpeningDate' => '2020-09-01 00:00:00',
-          'getDeadlineDate' => '2020-09-10 00:00:00',
-        ],
-      ],
-      [
-        'case' => 'Test closed status without opening date set',
-        'values' => [
-          'oe_call_tenders_deadline' => [
-            'value' => '2020-09-10T00:00:00',
-          ],
-        ],
-        'assertions' => [
-          'hasStatus' => TRUE,
-          'isUpcoming' => FALSE,
-          'isOpen' => FALSE,
-          'isClosed' => TRUE,
-          'getStatus' => CallEntityWrapperInterface::STATUS_CLOSED,
-          'getStatusLabel' => 'Closed',
-          'hasOpeningDate' => FALSE,
-          'hasDeadlineDate' => TRUE,
-          'getOpeningDate' => NULL,
           'getDeadlineDate' => '2020-09-10 00:00:00',
         ],
       ],

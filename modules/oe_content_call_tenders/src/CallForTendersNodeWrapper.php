@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content_call_tenders;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\oe_content\CallEntityWrapperBase;
 
 /**
@@ -21,11 +22,11 @@ class CallForTendersNodeWrapper extends CallEntityWrapperBase {
   protected $entityBundle = 'oe_call_tenders';
 
   /**
-   * Contains the Opening Date field id.
+   * Contains the Publication date field id.
    *
    * @var string
    */
-  protected $openingDate = 'oe_call_tenders_opening_date';
+  protected $openingDate = 'oe_publication_date';
 
   /**
    * Contains the Deadline date field id.
@@ -33,5 +34,21 @@ class CallForTendersNodeWrapper extends CallEntityWrapperBase {
    * @var string
    */
   protected $deadline = 'oe_call_tenders_deadline';
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getStatusLabel(): MarkupInterface {
+    switch ($this->getStatus()) {
+      case static::STATUS_OPEN:
+        $label = $this->t('Ongoing');
+        break;
+
+      default:
+        $label = parent::getStatusLabel();
+    }
+
+    return $label;
+  }
 
 }
