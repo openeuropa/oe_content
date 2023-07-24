@@ -34,7 +34,7 @@ class DateFieldContext extends RawDrupalContext {
    *    Thrown when more than one element match the given field in the given
    *    field group.
    *
-   * @When I fill in :field_group with the :date_component :value
+   * @When I fill in :field( field) with the :date_component :value
    */
   public function fillInDateField(string $field_group, string $date_component, string $value): void {
     $field_selectors = $this->findDateFields($field_group);

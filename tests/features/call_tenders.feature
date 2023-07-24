@@ -19,7 +19,7 @@ Feature: Call for tenders content creation
     And I fill in "Introduction" with "My Introduction text"
     And I fill in "Reference" with "My Reference text"
     And I fill in "Publication date" with the date "14-07-2020"
-    And I fill in "Opening of tenders" with the date "24-07-2020"
+    And I fill in "Opening of tenders" field with the date "24-07-2020"
     And I fill in "Deadline date" with the date "31-07-2020"
     And I fill in "Deadline date" with the time "23:45:00"
     And I fill in "Responsible department" with "Audit Board of the European Communities (http://publications.europa.eu/resource/authority/corporate-body/ABEC)"

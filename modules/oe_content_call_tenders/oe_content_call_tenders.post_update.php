@@ -42,6 +42,9 @@ function oe_content_call_tenders_post_update_00002(): void {
  */
 function oe_content_call_tenders_post_update_00003(): void {
   $field_config = FieldConfig::load('node.oe_call_tenders.oe_call_tenders_opening_date');
+  if (!$field_config) {
+    return;
+  }
   // Only update them if the original values are still in place.
   if ($field_config->label() === 'Opening date') {
     $field_config->set('label', 'Opening of tenders');
