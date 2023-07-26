@@ -51,6 +51,7 @@ class PersonReferenceFormatterTest extends EntityKernelTestBase {
     'oe_content_sub_entity',
     'oe_content_sub_entity_document_reference',
     'oe_content_sub_entity_person',
+    'oe_content_person_sub_entity_reference',
     'oe_content_skos_person_reference',
   ];
 
@@ -75,6 +76,7 @@ class PersonReferenceFormatterTest extends EntityKernelTestBase {
       'oe_content_departments_field',
       'oe_content_person',
       'oe_content_sub_entity_person',
+      'oe_content_person_sub_entity_reference',
       'oe_content_skos_person_reference',
     ]);
 

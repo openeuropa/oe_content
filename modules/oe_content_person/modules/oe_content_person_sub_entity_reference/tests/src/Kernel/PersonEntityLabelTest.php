@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_content_sub_entity_person\Kernel;
+namespace Drupal\Tests\oe_content_person_sub_entity_reference\Kernel;
 
 use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
- * Tests all Person entity bundles.
+ * Tests Person type Person entity.
  */
 class PersonEntityLabelTest extends SparqlKernelTestBase {
 
@@ -46,6 +46,7 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
     'oe_content_sub_entity',
     'oe_content_sub_entity_document_reference',
     'oe_content_sub_entity_person',
+    'oe_content_person_sub_entity_reference',
   ];
 
   /**
@@ -66,20 +67,21 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
       'oe_content_departments_field',
       'oe_content_person',
       'oe_content_sub_entity_person',
+      'oe_content_person_sub_entity_reference',
     ]);
     \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
   }
 
   /**
-   * Tests label of extra person entities.
+   * Tests label of Person type Person entity.
    */
   public function testLabel(): void {
     foreach ($this->getTestData() as $bundle => $data_case) {
       $person = $this->container->get('entity_type.manager')->getStorage('oe_person')->create([
-        'type' => $bundle,
+        'type' => 'oe_person',
       ]);
-      foreach ($data_case as $data) {
+      foreach ($this->getTestData() as $data) {
         $field_values = NULL;
         if (!empty($data['referenced_nodes'])) {
           foreach ($data['referenced_nodes'] as $node_values) {
@@ -101,39 +103,37 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
    */
   protected function getTestData(): array {
     return [
-      'oe_person' => [
-        [
-          'reference_field_name' => 'oe_node_reference',
-          'referenced_nodes' => NULL,
-          'expected_label' => 'Person',
-        ],
-        [
-          'reference_field_name' => 'oe_node_reference',
-          'referenced_nodes' => [
-            [
-              'type' => 'oe_person',
-              'oe_person_first_name' => 'John',
-              'oe_person_last_name' => 'Doe',
-            ],
+      [
+        'reference_field_name' => 'oe_node_reference',
+        'referenced_nodes' => NULL,
+        'expected_label' => 'Person',
+      ],
+      [
+        'reference_field_name' => 'oe_node_reference',
+        'referenced_nodes' => [
+          [
+            'type' => 'oe_person',
+            'oe_person_first_name' => 'John',
+            'oe_person_last_name' => 'Doe',
           ],
-          'expected_label' => 'John Doe',
         ],
-        [
-          'reference_field_name' => 'oe_node_reference',
-          'referenced_nodes' => [
-            [
-              'type' => 'oe_person',
-              'oe_person_first_name' => 'John',
-              'oe_person_last_name' => 'Doe',
-            ],
-            [
-              'type' => 'oe_person',
-              'oe_person_first_name' => 'Foo',
-              'oe_person_last_name' => 'Bar',
-            ],
+        'expected_label' => 'John Doe',
+      ],
+      [
+        'reference_field_name' => 'oe_node_reference',
+        'referenced_nodes' => [
+          [
+            'type' => 'oe_person',
+            'oe_person_first_name' => 'John',
+            'oe_person_last_name' => 'Doe',
           ],
-          'expected_label' => 'John Doe, Foo Bar',
+          [
+            'type' => 'oe_person',
+            'oe_person_first_name' => 'Foo',
+            'oe_person_last_name' => 'Bar',
+          ],
         ],
+        'expected_label' => 'John Doe, Foo Bar',
       ],
     ];
   }

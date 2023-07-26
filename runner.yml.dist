@@ -43,6 +43,7 @@ drupal:
     - "./vendor/bin/drush en oe_content_organisation_person_reference -y"
     - "./vendor/bin/drush en oe_content_sub_entity_author -y"
     - "./vendor/bin/drush en oe_content_sub_entity_person -y"
+    - "./vendor/bin/drush en oe_content_person_sub_entity_reference -y"
     - "./vendor/bin/drush en oe_content_skos_person_reference -y"
     - "./vendor/bin/drush cr"
     - "./vendor/bin/drush oe-multilingual:import-local-translations"

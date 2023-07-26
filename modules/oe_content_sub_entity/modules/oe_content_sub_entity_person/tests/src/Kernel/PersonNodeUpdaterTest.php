@@ -6,8 +6,8 @@ namespace Drupal\Tests\oe_content_sub_entity_person\Kernel;
 
 use Drupal\field\Entity\FieldConfig;
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
+use Drupal\Tests\node\Traits\NodeCreationTrait;
 
 /**
  * Tests the PersonNodeUpdater service.
@@ -52,6 +52,7 @@ class PersonNodeUpdaterTest extends KernelTestBase {
     'oe_content_sub_entity',
     'oe_content_sub_entity_document_reference',
     'oe_content_sub_entity_person',
+    'oe_content_person_sub_entity_reference',
   ];
 
   /**
@@ -76,6 +77,7 @@ class PersonNodeUpdaterTest extends KernelTestBase {
       'oe_content_person',
       'oe_content_person_reference',
       'oe_content_sub_entity_person',
+      'oe_content_person_sub_entity_reference',
     ]);
     \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
