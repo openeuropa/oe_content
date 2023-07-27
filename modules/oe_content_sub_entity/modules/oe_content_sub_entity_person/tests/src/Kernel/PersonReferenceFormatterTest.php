@@ -77,7 +77,6 @@ class PersonReferenceFormatterTest extends EntityKernelTestBase {
       'oe_content_person',
       'oe_content_sub_entity_person',
       'oe_content_person_sub_entity_reference',
-      'oe_content_skos_person_reference',
     ]);
 
     // Create a node type.
