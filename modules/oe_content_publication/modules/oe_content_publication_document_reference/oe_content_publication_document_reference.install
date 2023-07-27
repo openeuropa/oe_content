@@ -7,13 +7,12 @@
 
 declare(strict_types = 1);
 
-use Drupal\Component\Utility\Crypt;
-use Drupal\Core\Config\FileStorage;
+use Drupal\oe_content\ConfigImporter;
 
 /**
  * Implements hook_install().
  */
-function oe_content_publication_document_reference_install($is_syncing) {
+function oe_content_publication_document_reference_install($is_syncing): void {
   if ($is_syncing) {
     return;
   }
@@ -24,7 +23,8 @@ function oe_content_publication_document_reference_install($is_syncing) {
     return;
   }
 
-  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_publication_document_reference') . '/tasks/install');
+  $extension = 'oe_content_publication_document_reference';
+  $config_path = '/tasks/install';
   $configs_to_import = [
     'oe_content_sub_entity_document_reference.oe_document_reference_type.oe_publication',
     'field.storage.oe_document_reference.oe_publication',
@@ -32,25 +32,9 @@ function oe_content_publication_document_reference_install($is_syncing) {
     'core.entity_form_display.oe_document_reference.oe_publication.default',
     'core.entity_view_display.oe_document_reference.oe_publication.default',
   ];
-
-  // Function to import a single config from the file storage, given the name.
-  $import_single_config = function (string $name) use ($storage, $entity_type_manager) {
-    $config = $storage->read($name);
-
-    $entity_type = \Drupal::service('config.manager')->getEntityTypeIdByName($name);
-    /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
-    $entity_storage = $entity_type_manager->getStorage($entity_type);
-
-    $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
-    $entity = $entity_storage->createFromStorageRecord($config);
-    $entity->save();
-  };
-
-  foreach ($configs_to_import as $name) {
-    $import_single_config($name);
-  }
+  ConfigImporter::importMultiple('module', $extension, $config_path, $configs_to_import);
 
   if (\Drupal::moduleHandler()->moduleExists('content_translation')) {
-    $import_single_config('language.content_settings.oe_document_reference.oe_publication');
+    ConfigImporter::importSingle('module', $extension, $config_path, 'language.content_settings.oe_document_reference.oe_publication');
   }
 }
