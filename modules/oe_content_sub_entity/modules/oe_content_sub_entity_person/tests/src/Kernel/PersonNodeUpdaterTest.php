@@ -77,10 +77,11 @@ class PersonNodeUpdaterTest extends KernelTestBase {
       'oe_content_person',
       'oe_content_person_reference',
       'oe_content_sub_entity_person',
-      'oe_content_person_sub_entity_reference',
     ]);
     \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
+    \Drupal::moduleHandler()->loadInclude('oe_content_person_sub_entity_reference', 'install');
+    oe_content_person_sub_entity_reference_install(FALSE);
 
     // Create a node type for the test.
     $this->createContentType(['type' => 'page']);

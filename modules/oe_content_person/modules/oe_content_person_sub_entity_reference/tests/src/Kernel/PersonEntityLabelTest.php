@@ -67,10 +67,11 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
       'oe_content_departments_field',
       'oe_content_person',
       'oe_content_sub_entity_person',
-      'oe_content_person_sub_entity_reference',
     ]);
     \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
+    \Drupal::moduleHandler()->loadInclude('oe_content_person_sub_entity_reference', 'install');
+    oe_content_person_sub_entity_reference_install(FALSE);
   }
 
   /**
