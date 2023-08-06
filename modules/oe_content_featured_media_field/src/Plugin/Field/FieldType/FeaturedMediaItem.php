@@ -87,4 +87,12 @@ class FeaturedMediaItem extends EntityReferenceItem {
     return $schema;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function isDisplayed() {
+    // OE Feature Media items do not have per-item visibility settings.
+    return TRUE;
+  }
+
 }
