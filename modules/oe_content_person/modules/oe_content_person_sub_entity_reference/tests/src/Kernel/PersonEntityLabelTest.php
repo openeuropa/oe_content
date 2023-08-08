@@ -75,24 +75,22 @@ class PersonEntityLabelTest extends SparqlKernelTestBase {
   }
 
   /**
-   * Tests label of Person type Person entity.
+   * Tests the oe_person bundle for the person entity type.
    */
   public function testLabel(): void {
-    foreach ($this->getTestData() as $bundle => $data_case) {
-      $person = $this->container->get('entity_type.manager')->getStorage('oe_person')->create([
-        'type' => 'oe_person',
-      ]);
-      foreach ($this->getTestData() as $data) {
-        $field_values = NULL;
-        if (!empty($data['referenced_nodes'])) {
-          foreach ($data['referenced_nodes'] as $node_values) {
-            $field_values[] = $this->createNode($node_values);
-          }
+    $person = $this->container->get('entity_type.manager')->getStorage('oe_person')->create([
+      'type' => 'oe_person',
+    ]);
+    foreach ($this->getTestData() as $data) {
+      $field_values = NULL;
+      if (!empty($data['referenced_nodes'])) {
+        foreach ($data['referenced_nodes'] as $node_values) {
+          $field_values[] = $this->createNode($node_values);
         }
-        $person->set($data['reference_field_name'], $field_values);
-        $person->save();
-        $this->assertEquals($data['expected_label'], $person->label());
       }
+      $person->set($data['reference_field_name'], $field_values);
+      $person->save();
+      $this->assertEquals($data['expected_label'], $person->label());
     }
   }
 
