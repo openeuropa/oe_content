@@ -12,6 +12,7 @@ dependencies:
   - oe_content:oe_content_entity_venue
   - oe_content:oe_content_social_media_links_field
   - oe_media:oe_media
+  - oe_media:oe_media_iframe
   - oe_media_avportal:oe_media_avportal
   - oe_corporate_countries:oe_corporate_countries_address
   - datetime_range_timezone:datetime_range_timezone
