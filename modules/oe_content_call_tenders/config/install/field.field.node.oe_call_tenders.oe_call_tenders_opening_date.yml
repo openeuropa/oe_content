@@ -10,8 +10,8 @@ id: node.oe_call_tenders.oe_call_tenders_opening_date
 field_name: oe_call_tenders_opening_date
 entity_type: node
 bundle: oe_call_tenders
-label: 'Opening date'
-description: 'When does/did the call open for applications? E.g.: 20/02/2020'
+label: 'Opening of tenders'
+description: 'The date when the tenders will be opened'
 required: false
 translatable: false
 default_value: {  }

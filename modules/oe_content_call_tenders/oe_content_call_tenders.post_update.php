@@ -36,3 +36,21 @@ function oe_content_call_tenders_post_update_00002(): void {
   $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', FALSE);
   $field_config->save();
 }
+
+/**
+ * Update label and description of the opening date field.
+ */
+function oe_content_call_tenders_post_update_00003(): void {
+  $field_config = FieldConfig::load('node.oe_call_tenders.oe_call_tenders_opening_date');
+  if (!$field_config) {
+    return;
+  }
+  // Only update them if the original values are still in place.
+  if ($field_config->label() === 'Opening date') {
+    $field_config->set('label', 'Opening of tenders');
+  }
+  if ($field_config->getDescription() === 'When does/did the call open for applications? E.g.: 20/02/2020') {
+    $field_config->set('description', 'The date when the tenders will be opened');
+  }
+  $field_config->save();
+}

@@ -38,7 +38,7 @@ class CallForTendersContentContext extends RawDrupalContext {
       'Alternative title' => 'oe_content_short_title',
       'Body text' => 'body',
       'Responsible department' => 'oe_departments',
-      'Opening date' => 'oe_call_tenders_opening_date',
+      'Opening of tenders' => 'oe_call_tenders_opening_date',
       'Deadline date' => 'oe_call_tenders_deadline',
       'Publication date' => 'oe_publication_date',
       'Published' => 'status',
