@@ -7,13 +7,3 @@ core_version_requirement: ^9.4 || ^10
 dependencies:
   - oe_content:oe_content_person
   - oe_content:oe_content_sub_entity_person
-
-config_devel:
-  install:
-    - core.entity_form_display.oe_person.oe_person.default
-    - core.entity_view_display.oe_person.oe_person.default
-    - field.field.oe_person.oe_person.oe_node_reference
-    - field.storage.oe_person.oe_node_reference
-    - oe_content_sub_entity_person.oe_person_type.oe_person
-  optional:
-    - language.content_settings.oe_person.oe_person
