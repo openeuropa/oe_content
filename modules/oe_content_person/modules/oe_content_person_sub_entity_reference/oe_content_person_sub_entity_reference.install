@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\oe_content\ConfigImporter;
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_person_sub_entity_reference_install($is_syncing): void {
+  if ($is_syncing) {
+    return;
+  }
+
+  // If the oe_person bundle already exists, bail out.
+  if (\Drupal::entityTypeManager()->getStorage('oe_person')->load('oe_person')) {
+    return;
+  }
+
+  $extension = 'oe_content_person_sub_entity_reference';
+  $config_path = '/tasks/install';
+  $configs_to_import = [
+    'oe_content_sub_entity_person.oe_person_type.oe_person',
+    'field.storage.oe_person.oe_node_reference',
+    'field.field.oe_person.oe_person.oe_node_reference',
+    'core.entity_form_display.oe_person.oe_person.default',
+    'core.entity_view_display.oe_person.oe_person.default',
+  ];
+  ConfigImporter::importMultiple('module', $extension, $config_path, $configs_to_import);
+
+  if (\Drupal::moduleHandler()->moduleExists('content_translation')) {
+    ConfigImporter::importSingle('module', $extension, $config_path, 'language.content_settings.oe_person.oe_person');
+  }
+}

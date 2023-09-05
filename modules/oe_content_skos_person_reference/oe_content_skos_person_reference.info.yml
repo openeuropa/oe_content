@@ -1,0 +1,8 @@
+name: OpenEuropa Content SKOS Person Reference
+description: Contains SKOS Person Reference field storage and the Person sub-entity bundle Political leader.
+package: OpenEuropa
+type: module
+core_version_requirement: ^9.4 || ^10
+
+dependencies:
+  - oe_content:oe_content_sub_entity_person

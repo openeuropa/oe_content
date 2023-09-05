@@ -1,0 +1,9 @@
+name: OpenEuropa Content Person Sub Entity Reference
+description: Contains Person reference field storage and the Person sub-entity bundle Person.
+package: OpenEuropa
+type: module
+core_version_requirement: ^9.4 || ^10
+
+dependencies:
+  - oe_content:oe_content_person
+  - oe_content:oe_content_sub_entity_person

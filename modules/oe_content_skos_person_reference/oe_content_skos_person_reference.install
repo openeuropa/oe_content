@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\oe_content\ConfigImporter;
+
+/**
+ * Implements hook_install().
+ */
+function oe_content_skos_person_reference_install($is_syncing): void {
+  if ($is_syncing) {
+    return;
+  }
+
+  // Add 'EU political leader name' vocabulary.
+  \Drupal::service('rdf_skos.skos_graph_configurator')->addGraphs([
+    'political-leader' => 'http://publications.europa.eu/resource/dataset/political-leader',
+  ]);
+
+  // If the oe_political_leader bundle already exists, bail out.
+  if (\Drupal::entityTypeManager()->getStorage('oe_person')->load('oe_political_leader')) {
+    return;
+  }
+
+  $extension = 'oe_content_skos_person_reference';
+  $config_path = '/tasks/install';
+  $configs_to_import = [
+    'oe_content_sub_entity_person.oe_person_type.oe_political_leader',
+    'field.storage.oe_person.oe_skos_reference',
+    'field.field.oe_person.oe_political_leader.oe_skos_reference',
+    'core.entity_form_display.oe_person.oe_political_leader.default',
+    'core.entity_view_display.oe_person.oe_political_leader.default',
+  ];
+  ConfigImporter::importMultiple('module', $extension, $config_path, $configs_to_import);
+
+  if (\Drupal::moduleHandler()->moduleExists('content_translation')) {
+    ConfigImporter::importSingle('module', $extension, $config_path, 'language.content_settings.oe_person.oe_political_leader');
+  }
+}
