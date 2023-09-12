@@ -5,7 +5,9 @@ dependencies:
     - field.storage.node.oe_event_media
     - media.type.av_portal_photo
     - media.type.av_portal_video
+    - media.type.iframe
     - media.type.image
+    - media.type.video_iframe
     - node.type.oe_event
   module:
     - composite_reference
