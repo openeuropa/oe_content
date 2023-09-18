@@ -1,11 +1,23 @@
 # Changelog
 
+## [3.0.0-beta2](https://github.com/openeuropa/oe_content/tree/3.0.0-beta2) (2023-09-15)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta1...3.0.0-beta2)
+
+**Merged pull requests:**
+
+- EWPP-3349: Remove symfony/validator package explicit requirement. [\#595](https://github.com/openeuropa/oe_content/pull/595) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3479: Fix iframe media dependencies of Event submodule. [\#594](https://github.com/openeuropa/oe_content/pull/594) ([22Alexandra](https://github.com/22Alexandra))
+- UCPKN-2278: Move person sub-entity bundles to separate modules. [\#591](https://github.com/openeuropa/oe_content/pull/591) ([kp77](https://github.com/kp77))
+- EWPP-3349: Update the CFT Opening date field and the logic to determine the status. [\#590](https://github.com/openeuropa/oe_content/pull/590) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.0.0-beta1](https://github.com/openeuropa/oe_content/tree/3.0.0-beta1) (2023-06-30)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha11...3.0.0-beta1)
 
 **Merged pull requests:**
 
+- Release-3.0.0-beta1: Update changelog. [\#589](https://github.com/openeuropa/oe_content/pull/589) ([nagyad](https://github.com/nagyad))
 - EWPP-3305: Fix date translations and remove duplicates. [\#588](https://github.com/openeuropa/oe_content/pull/588) ([nagyad](https://github.com/nagyad))
 - EWPP-3289: Add help text to navigation title field. [\#586](https://github.com/openeuropa/oe_content/pull/586) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3070: Make subject field required on pages. [\#576](https://github.com/openeuropa/oe_content/pull/576) ([imanoleguskiza](https://github.com/imanoleguskiza))
@@ -56,10 +68,18 @@
 - EWPP-0000: Update linkit module version and change admin theme. [\#575](https://github.com/openeuropa/oe_content/pull/575) ([nagyad](https://github.com/nagyad))
 - Prepare changelog for release 3.0.0 alpha7 [\#574](https://github.com/openeuropa/oe_content/pull/574) ([brummbar](https://github.com/brummbar))
 - EWPP-2742: Change field label. [\#572](https://github.com/openeuropa/oe_content/pull/572) ([nagyad](https://github.com/nagyad))
+- EWPP-2742: Update epic. [\#571](https://github.com/openeuropa/oe_content/pull/571) ([nagyad](https://github.com/nagyad))
 - EWPP-3107: Fix ajax timeout. [\#570](https://github.com/openeuropa/oe_content/pull/570) ([nagyad](https://github.com/nagyad))
+- EWPP-2742: Update epic. [\#569](https://github.com/openeuropa/oe_content/pull/569) ([nagyad](https://github.com/nagyad))
 - EWPP-2902: Update to PHP 8.1 and D9.4. [\#566](https://github.com/openeuropa/oe_content/pull/566) ([22Alexandra](https://github.com/22Alexandra))
 - EPIC-EWPP-2742: Political leader. [\#564](https://github.com/openeuropa/oe_content/pull/564) ([nagyad](https://github.com/nagyad))
+- EWPP-2742: Epic update. [\#563](https://github.com/openeuropa/oe_content/pull/563) ([nagyad](https://github.com/nagyad))
 - EWPP-2882: Update maxlength module. [\#559](https://github.com/openeuropa/oe_content/pull/559) ([nagyad](https://github.com/nagyad))
+- EWPP-2742: Update epic with 3.x. [\#558](https://github.com/openeuropa/oe_content/pull/558) ([nagyad](https://github.com/nagyad))
+- EWPP-2745: Rename Person event. [\#557](https://github.com/openeuropa/oe_content/pull/557) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2743: Add oe\_political\_leader reference type to authors entity. [\#556](https://github.com/openeuropa/oe_content/pull/556) ([nagyad](https://github.com/nagyad))
+- EWPP-2746: Migrate the person data to the new sub entities. [\#555](https://github.com/openeuropa/oe_content/pull/555) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2744: Create the Person sub entity. [\#554](https://github.com/openeuropa/oe_content/pull/554) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [3.0.0-alpha6](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha6) (2023-01-04)
 
