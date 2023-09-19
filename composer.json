@@ -79,7 +79,7 @@
         },
         "patches": {
             "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2022-07-26/2230909-269.patch"
+                "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2022-11-19/2230909-285-D10.patch"
             },
             "drupal/field_group": {
                 "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2023-04-07/2787179-highlight-html5-validation-85.patch"
