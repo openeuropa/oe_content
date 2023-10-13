@@ -26,7 +26,7 @@ Feature: Call for proposals content creation and editing.
     And I fill in "Publication date" with the date "24-10-2020"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development (http://publications.europa.eu/resource/authority/corporate-body/EP_AGRI)"
     And I fill in "Teaser" with "Teaser text"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
 
     # Fill in an invalid deadline date and switch to Permanent.
     And I select the radio button "Single-stage"
@@ -146,7 +146,7 @@ Feature: Call for proposals content creation and editing.
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet Teaser. Text to remove"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
     And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
 
     When I press "Save"
 
@@ -183,7 +183,7 @@ Feature: Call for proposals content creation and editing.
     And I fill in "URL" with "http://example.com/1" in the "Publication in the official journal" region
     And I fill in "Link text" with "Official Journal publication 1" in the "Publication in the official journal" region
     And I fill in "Teaser" with "Teaser text"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
 
     And I press "Save"
 
@@ -211,7 +211,7 @@ Feature: Call for proposals content creation and editing.
       | Publication date                    | 2019-02-21                                        |
       | Reference                           | CALL/100/10                                       |
       | Responsible department              | Directorate-General for Budget                    |
-      | Subject                             | export financing                                  |
+      | Subject tags                        | export financing                                  |
       | Teaser                              | Teaser                                            |
     When I am visiting the "Proposals demo page" content
     And I click "Edit"

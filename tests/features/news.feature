@@ -42,7 +42,7 @@ Feature: News content creation
     And I fill in "Reference" with "Reference text"
     And I fill in "Publication date" with the date "21-02-2019"
     And I fill in "Last update date" with the date "29-07-2021"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
     And I fill in "Author" with "European Patent Office"
     And I fill in "Related department" with "ACP–EU Joint Assembly"
     # Reference the media photo to the news item.
@@ -130,7 +130,7 @@ Feature: News content creation
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
     And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
     And I fill in "Body text" with "Body text"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
     And I fill in "Author" with "European Patent Office"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.

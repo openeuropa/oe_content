@@ -58,7 +58,7 @@ Feature: Consultation content creation
 
     When I fill in "Teaser" with "Teaser text"
     And I fill in "Content owner" with "Audit Board of the European Communities"
-    And I fill in "Subject" with "export financing"
+    And I fill in "Subject tags" with "export financing"
     And I press "Save"
     Then I should see the text "Consultation title"
     And I should see the text "Introduction text"
@@ -98,7 +98,7 @@ Feature: Consultation content creation
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
     And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
     And I fill in "Content owner" with "Audit Board of the European Communities"
-    And I fill in "Subject" with "export financing"
+    And I fill in "Subject tags" with "export financing"
     And I press "Save"
     Then I should not see "Text to remove"
     And I should see "ametas Introduction."
