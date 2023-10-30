@@ -14,7 +14,7 @@ Feature: Call for tenders content creation
 
     When I visit "the Call for tenders creation page"
     And I fill in "Page title" with "My Call for tenders 1"
-    And I fill in "Subject" with "EU financing"
+    And I fill in "Subject tags" with "EU financing"
     And I fill in "Teaser" with "My Teaser text"
     And I fill in "Introduction" with "My Introduction text"
     And I fill in "Reference" with "My Reference text"
@@ -52,7 +52,7 @@ Feature: Call for tenders content creation
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet Teaser. Text to remove"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
     And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
-    And I fill in "Subject" with "EU financing"
+    And I fill in "Subject tags" with "EU financing"
     And I fill in "Publication date" with the date "14-07-2020"
     And I fill in "Deadline date" with the date "31-07-2020"
     And I fill in "Deadline date" with the time "23:45:00"

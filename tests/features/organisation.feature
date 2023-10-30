@@ -32,7 +32,7 @@ Feature: Organisation content creation
     And I fill in "Acronym" with "Organisation Acronym"
     And I fill in "Teaser" with "Organisation teaser text"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
     And I should not see "Non-EU organisation type"
     And I select "Non-EU organisation" from "Organisation type"
     Then I should see "Non-EU organisation type"
@@ -152,7 +152,7 @@ Feature: Organisation content creation
     And the following Organisation Content entity:
       | Title             | Organisation demo page         |
       | Introduction      | Organisation introduction text |
-      | Subject           | financing                      |
+      | Subject tags      | financing                      |
       | Acronym           | Organisation acronym           |
       | Body text         | Organisation body text         |
       | Organisation type | EU organisation                |
