@@ -1,11 +1,21 @@
 # Changelog
 
-## [3.0.0-beta2](https://github.com/openeuropa/oe_content/tree/3.0.0-beta2) (2023-09-15)
+## [3.0.0-beta3](https://github.com/openeuropa/oe_content/tree/3.0.0-beta3) (2023-11-21)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta2...3.0.0-beta3)
+
+**Merged pull requests:**
+
+- EWPP-3624: Update Subject field's label. [\#600](https://github.com/openeuropa/oe_content/pull/600) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3502: Change skos\_concept term for content owner field. [\#596](https://github.com/openeuropa/oe_content/pull/596) ([sergepavle](https://github.com/sergepavle))
+
+## [3.0.0-beta2](https://github.com/openeuropa/oe_content/tree/3.0.0-beta2) (2023-09-18)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta1...3.0.0-beta2)
 
 **Merged pull requests:**
 
+- Prepare release 3.0.0-beta2. [\#598](https://github.com/openeuropa/oe_content/pull/598) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-3349: Remove symfony/validator package explicit requirement. [\#595](https://github.com/openeuropa/oe_content/pull/595) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3479: Fix iframe media dependencies of Event submodule. [\#594](https://github.com/openeuropa/oe_content/pull/594) ([22Alexandra](https://github.com/22Alexandra))
 - UCPKN-2278: Move person sub-entity bundles to separate modules. [\#591](https://github.com/openeuropa/oe_content/pull/591) ([kp77](https://github.com/kp77))
