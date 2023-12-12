@@ -25,7 +25,7 @@
         "drupal/datetime_testing": "^1.0",
         "drupal/description_list_field": "^1.0.0-alpha5",
         "drupal/drupal-extension": "^5.0",
-        "drupal/entity_browser": "^2.5",
+        "drupal/entity_browser": "^2.10",
         "drupal/entity_reference_revisions": "^1.8",
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "^1.0-rc15",
@@ -85,7 +85,7 @@
                 "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2023-04-07/2787179-highlight-html5-validation-85.patch"
             },
             "drupal/entity_browser": {
-                "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2023-04-04/2851580-109.patch"
+                "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2023-12-12/2851580-117.patch"
             }
         },
         "drupal-scaffold": {
