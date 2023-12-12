@@ -214,7 +214,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
 
     // Edit the node to reorder field items.
     $this->drupalGet($node->toUrl('edit-form'));
-    $handle = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(1) a.tabledrag-handle');
+    $handle = $this->assertSession()->elementExists('css', 'table#featured-media-field-values > tbody > tr:nth-child(1) a.tabledrag-handle');
     $target = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(2) a.tabledrag-handle');
     $handle->dragTo($target);
     $this->assertSession()->assertWaitOnAjaxRequest();
