@@ -2,7 +2,7 @@ name: OpenEuropa Content Sub Entity Person
 description: This module provides the Person content entity, and the Persons reference field.
 package: OpenEuropa
 type: module
-core_version_requirement: ^9.4 || ^10
+core_version_requirement: ^10
 
 dependencies:
   - composite_reference:composite_reference

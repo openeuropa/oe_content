@@ -158,6 +158,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
     $this->getSession()->getPage()->checkField('entity_browser_select[media:1]');
     $this->getSession()->getPage()->pressButton('Select image');
+    $this->getSession()->switchToWindow();
     $this->assertSession()->assertWaitOnAjaxRequest();
 
     // Assert the image was selected and the widget shows the proper buttons.
@@ -175,6 +176,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
     $this->getSession()->getPage()->checkField('entity_browser_select[media:2]');
     $this->getSession()->getPage()->pressButton('Select image');
+    $this->getSession()->switchToWindow();
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->assertSession()->pageTextContains('Image 2');
     $this->assertFalse($featured_media_field->hasButton('Select images'));
@@ -214,7 +216,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
 
     // Edit the node to reorder field items.
     $this->drupalGet($node->toUrl('edit-form'));
-    $handle = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(1) a.tabledrag-handle');
+    $handle = $this->assertSession()->elementExists('css', 'table#featured-media-field-values > tbody > tr:nth-child(1) a.tabledrag-handle');
     $target = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(2) a.tabledrag-handle');
     $handle->dragTo($target);
     $this->assertSession()->assertWaitOnAjaxRequest();
@@ -401,6 +403,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
     $this->getSession()->getPage()->checkField('entity_browser_select[media:1]');
     $this->getSession()->getPage()->pressButton('Select image');
+    $this->getSession()->switchToWindow();
     $this->assertSession()->assertWaitOnAjaxRequest();
 
     // Assert the image was selected and the widget shows the proper buttons.
@@ -435,6 +438,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $this->getSession()->switchToIFrame('entity_browser_iframe_test_images');
     $this->getSession()->getPage()->checkField('entity_browser_select[media:2]');
     $this->getSession()->getPage()->pressButton('Select image');
+    $this->getSession()->switchToWindow();
     $this->assertSession()->assertWaitOnAjaxRequest();
     $this->assertSession()->pageTextContains('Image 2');
     $this->assertFalse($featured_media_field->hasButton('Select images'));
