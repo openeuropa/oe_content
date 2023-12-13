@@ -119,6 +119,11 @@ matrix:
     - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: behat, BATCH: '@batch2' }
     - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: behat, BATCH: '@batch3' }
 
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: phpunit }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch3' }
+
     - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: phpunit }
     - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch1' }
     - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch2' }
