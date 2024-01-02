@@ -18,7 +18,7 @@ Feature: Policy content creation
     And I fill in "Introduction" with "Summary text"
     And I fill in "Teaser" with "Teaser text"
     And I fill in "Body text" with "Body text"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
     And I fill in "Responsible department" with "European Patent Office"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I fill in "Redirect link" with "http://example.com"
@@ -72,7 +72,7 @@ Feature: Policy content creation
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
     And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
     And I fill in "Body text" with "Body text"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
     And I fill in "Responsible department" with "European Patent Office"
     And I press "Save"
     # We assert that the extra characters are actually truncated from the end of the string.

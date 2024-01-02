@@ -154,3 +154,34 @@ function oe_content_post_update_00005(): void {
     }
   }
 }
+
+/**
+ * Update Subject field label.
+ */
+function oe_content_post_update_00006(): void {
+  $bundles = [
+    'oe_call_proposals',
+    'oe_call_tenders',
+    'oe_consultation',
+    'oe_event',
+    'oe_news',
+    'oe_organisation',
+    'oe_page',
+    'oe_person',
+    'oe_policy',
+    'oe_project',
+    'oe_publication',
+  ];
+  foreach ($bundles as $bundle) {
+    $field_config = FieldConfig::load("node.$bundle.oe_subject");
+    if (!$field_config) {
+      continue;
+    }
+    // If the label is not the original one, skip it.
+    if ($field_config->getLabel() !== 'Subject') {
+      continue;
+    }
+    $field_config->setLabel('Subject tags');
+    $field_config->save();
+  }
+}

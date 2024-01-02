@@ -10,7 +10,7 @@ id: node.oe_event.oe_subject
 field_name: oe_subject
 entity_type: node
 bundle: oe_event
-label: Subject
+label: Subject tags
 description: 'The topics mentioned on this page. These will be used by search engines and dynamic lists to determine their relevance to a user.'
 required: true
 translatable: false

@@ -35,7 +35,7 @@ Feature: Person content creation
     # Create a "person" content, mandatory fields first.
     When I visit "the Person creation page"
     Then the Node title field should not exist
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
     And I fill in "Teaser" with "Teaser text"
     And I select "EU institutions related person" from "What type of person are you adding?"
     And I fill in "First name" with "Firstname"
@@ -219,7 +219,7 @@ Feature: Person content creation
     And I should see the text "Content limited to 170 characters, remaining: 170" in the "alternative title form element"
     And I should see the text "Content limited to 125 characters, remaining: 125" in the "first name form element"
     And I should see the text "Content limited to 125 characters, remaining: 125" in the "last name form element"
-    And I fill in "Subject" with "financing"
+    And I fill in "Subject tags" with "financing"
     And I fill in "Introduction" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas felis leo, lobortis non eros in, consequat tempor est. Praesent sit amet sem eleifend, cursus arcu ac, eleifend nunc. Integer et orci sagittis, volutpat felis sit ametas Introduction. Text to remove"
     And I fill in "Alternative title" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullamsa Alternative title. Text to remove"
     And I fill in "Teaser" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu hendrerit lacus, vitae bibendum odio. Fusce orci purus, hendrerit a magna at nullam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet Teaser. Text to remove"

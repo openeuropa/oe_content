@@ -52,7 +52,7 @@ class CallForProposalsContentContext extends RawDrupalContext {
       'Published' => 'status',
       'Funding programme' => 'oe_call_proposals_funding',
       'Teaser' => 'oe_teaser',
-      'Subject' => 'oe_subject',
+      'Subject tags' => 'oe_subject',
     ];
 
     foreach ($scope->getFields() as $key => $value) {
@@ -60,7 +60,7 @@ class CallForProposalsContentContext extends RawDrupalContext {
         // Set entity reference fields.
         case 'Responsible department':
         case 'Funding programme':
-        case 'Subject':
+        case 'Subject tags':
         case 'Documents':
           $fields = $this->getReferenceField($scope->getEntityType(), $scope->getBundle(), $mapping[$key], $value);
           $scope->addFields($fields)->removeField($key);

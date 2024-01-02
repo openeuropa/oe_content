@@ -56,7 +56,7 @@ class PersonContentContext extends RawDrupalContext {
       'Portrait photo' => 'oe_person_photo',
       'Departments' => 'oe_departments',
       'Social media links' => 'oe_social_media_links',
-      'Subject' => 'oe_subject',
+      'Subject tags' => 'oe_subject',
       'Teaser' => 'oe_teaser',
       'Transparency introduction' => 'oe_person_transparency_intro',
       'Transparency links' => 'oe_person_transparency_links',
