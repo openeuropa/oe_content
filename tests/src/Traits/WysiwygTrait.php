@@ -7,7 +7,7 @@ namespace Drupal\Tests\oe_content\Traits;
 use Behat\Mink\Element\NodeElement;
 
 /**
- * Helper methods for interacting with WYSIWYG editors.
+ * Helper methods for interacting with CKEditor5 WYSIWYG editors.
  */
 trait WysiwygTrait {
 
@@ -20,13 +20,13 @@ trait WysiwygTrait {
    * @return bool
    *   TRUE if the editor is present, FALSE otherwise.
    */
-  public function hasWysiwyg($field) {
+  public function hasWysiwyg(string $field) {
     try {
       $this->getWysiwyg($field);
       return TRUE;
     }
-    // Only catch the specific exception that is thrown when the WYSIWYG editor
-    // is not present, let all other exceptions pass through.
+      // Only catch the specific exception that thrown when the WYSIWYG editor
+      // is not present, let all other exceptions pass through.
     catch (\Exception $e) {
       return FALSE;
     }
@@ -38,17 +38,26 @@ trait WysiwygTrait {
    * @param string $field
    *   The field label of the field to which the WYSIWYG editor is attached. For
    *   example 'Body'.
-   * @param string $button
-   *   The title of the button to click.
+   * @param string $button_label
+   *   The label of the button to click.
    */
-  public function pressWysiwygButton($field, $button): void {
+  public function pressWysiwygButton(string $field, string $button_label): void {
     $wysiwyg = $this->getWysiwyg($field);
-    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//a[@title="' . $button . '"]');
-    if (empty($button_elements)) {
-      throw new \Exception("Could not find the '$button' button.");
+
+    // Try to see if there is a dropdown button to reveal the button.
+    $dropdown_button = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="Show more items"]');
+    if (!empty($dropdown_button)) {
+      $button = reset($dropdown_button);
+      $button->click();
     }
+
+    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="' . $button_label . '"]');
+    if (empty($button_elements)) {
+      throw new \Exception("Could not find the '$button_label' button.");
+    }
+
     if (count($button_elements) > 1) {
-      throw new \Exception("Multiple '$button' buttons found in the editor.");
+      throw new \Exception("Multiple '$button_label' buttons found in the editor.");
     }
     $button = reset($button_elements);
     $button->click();
@@ -65,9 +74,9 @@ trait WysiwygTrait {
    * @param string $text
    *   The text to enter in the textarea.
    */
-  public function setWysiwygText($field, $text): void {
+  public function setWysiwygText(string $field, string $text): void {
     $wysiwyg = $this->getWysiwyg($field);
-    $textarea_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//textarea');
+    $textarea_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//div[contains(@class, "ck-source-editing-area")]//textarea');
     if (empty($textarea_elements)) {
       throw new \Exception("Could not find the textarea for the '$field' field.");
     }
@@ -89,7 +98,7 @@ trait WysiwygTrait {
    * @return \Behat\Mink\Element\NodeElement
    *   The WYSIWYG editor.
    */
-  public function getWysiwyg($field): NodeElement {
+  public function getWysiwyg(string $field): NodeElement {
     $driver = $this->getSession()->getDriver();
     $label_elements = $driver->find('//label[text()="' . $field . '"]');
     if (empty($label_elements)) {
@@ -98,8 +107,7 @@ trait WysiwygTrait {
     if (count($label_elements) > 1) {
       throw new \Exception("Multiple '$field' labels found in the page.");
     }
-    $wysiwyg_id = 'cke_' . $label_elements[0]->getAttribute('for');
-    $wysiwyg_elements = $driver->find('//div[@id="' . $wysiwyg_id . '"]');
+    $wysiwyg_elements = $driver->find('//label[contains(text(), "' . $field . '")]/following::div[contains(@class, " ck-editor ")][1]');
     if (empty($wysiwyg_elements)) {
       throw new \Exception("Could not find the '$field' wysiwyg editor.");
     }
@@ -120,13 +128,16 @@ trait WysiwygTrait {
    * @param string $text
    *   The text to enter in the WYSIWYG editor.
    */
-  protected function enterTextInWysiwyg($label, $text): void {
+  protected function enterTextInWysiwyg(string $label, string $text): void {
     // If we are running in a JavaScript enabled browser, first click the
     // 'Source' button so we can enter the text as HTML and get the same result
     // as in a non-JS browser.
     if ($this->browserSupportsJavaScript()) {
       $this->pressWysiwygButton($label, 'Source');
       $this->setWysiwygText($label, $text);
+      // Make sure we switch back to normal view and let javascript to
+      // execute filters on the text and validate the html.
+      $this->pressWysiwygButton($label, 'Source');
     }
     else {
       $this->getSession()->getPage()->fillField($label, $text);

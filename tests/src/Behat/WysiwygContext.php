@@ -25,7 +25,7 @@ class WysiwygContext extends RawDrupalContext {
    *
    * @Then I should see the :label wysiwyg editor
    */
-  public function assertWysiwyg($label) {
+  public function assertWysiwyg(string $label): void {
     Assert::assertTrue($this->hasWysiwyg($label));
   }
 
@@ -37,7 +37,7 @@ class WysiwygContext extends RawDrupalContext {
    *
    * @Then the :label field should not have a wysiwyg editor
    */
-  public function assertNoWysiwyg($label) {
+  public function assertNoWysiwyg(string $label): void {
     Assert::assertFalse($this->hasWysiwyg($label));
   }
 
@@ -52,12 +52,19 @@ class WysiwygContext extends RawDrupalContext {
    *
    * @Then I should see the wysiwyg button :button in the field :field
    */
-  public function iShouldSeeWysiwygButton($field, $button) {
+  public function iShouldSeeWysiwygButton(string $field, string $button): void {
     $wysiwyg = $this->getWysiwyg($field);
-    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//a[@title="' . $button . '"]');
+    // Try to see if there is a dropdown button to reveal the button.
+    $dropdown_button = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="Show more items"]');
+    if (!empty($dropdown_button)) {
+      $dropdown_button = reset($dropdown_button);
+      $dropdown_button->click();
+    }
+    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="' . $button . '"][1]');
     if (empty($button_elements)) {
       throw new \Exception("Could not find the '$button' button.");
     }
+
     if (count($button_elements) > 1) {
       throw new \Exception("Multiple '$button' buttons found in the editor.");
     }
@@ -74,9 +81,15 @@ class WysiwygContext extends RawDrupalContext {
    *
    * @Then I should not see the wysiwyg button :button in the field :field
    */
-  public function iShouldNotSeeWysiwygButton($field, $button) {
+  public function iShouldNotSeeWysiwygButton(string $field, string $button): void {
     $wysiwyg = $this->getWysiwyg($field);
-    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//a[@title="' . $button . '"]');
+    // Try to see if there is a dropdown button to reveal the button.
+    $dropdown_button = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="Show more items"]');
+    if (!empty($dropdown_button)) {
+      $dropdown_button = reset($dropdown_button);
+      $dropdown_button->click();
+    }
+    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="' . $button . '"][1]');
     if (!empty($button_elements)) {
       throw new \Exception("The '$button' button is present.");
     }
@@ -98,13 +111,16 @@ class WysiwygContext extends RawDrupalContext {
    *
    * @When I enter :text in the :label wysiwyg editor
    */
-  public function enterTextInWysiwyg($text, $label) {
+  public function enterTextInWysiwyg(string $text, string $label): void {
     // If we are running in a JavaScript enabled browser, first click the
     // 'Source' button so we can enter the text as HTML and get the same result
     // as in a non-JS browser.
     if ($this->browserSupportsJavaScript()) {
       $this->pressWysiwygButton($label, 'Source');
       $this->setWysiwygText($label, $text);
+      // Make sure we switch back to normal view and let javascript to
+      // execute filters on the text and validate the html.
+      $this->pressWysiwygButton($label, 'Source');
     }
     else {
       $this->getSession()->getPage()->fillField($label, $text);
@@ -173,11 +189,11 @@ JS;
       if ($event) {
         /** @var \Behat\Behat\Hook\Scope\BeforeStepScope $event */
         $event_data = ' ' . json_encode([
-          'name' => $event->getName(),
-          'feature' => $event->getFeature()->getTitle(),
-          'step' => $event->getStep()->getText(),
-          'suite' => $event->getSuite()->getName(),
-        ]);
+            'name' => $event->getName(),
+            'feature' => $event->getFeature()->getTitle(),
+            'step' => $event->getStep()->getText(),
+            'suite' => $event->getSuite()->getName(),
+          ]);
       }
       else {
         $event_data = '';
