@@ -11,7 +11,7 @@
         "drupal/core": "^10",
         "drupal/datetime_range_timezone": "^1.0.0-alpha3",
         "drupal/linkit": "^6.0.0-beta4",
-        "drupal/maxlength": "^2.0.1",
+        "drupal/maxlength": "dev-3.x",
         "openeuropa/oe_media": "^1.23.1",
         "openeuropa/rdf_skos": "^1.0.0-alpha10"
     },
@@ -87,6 +87,9 @@
             },
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2023-12-12/2851580-117.patch"
+            },
+            "drupal/maxlength": {
+                "https://www.drupal.org/project/maxlength/issues/3350059": "https://git.drupalcode.org/project/maxlength/-/merge_requests/41/diffs.patch"
             }
         },
         "drupal-scaffold": {
