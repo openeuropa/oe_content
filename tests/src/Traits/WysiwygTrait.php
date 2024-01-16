@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content\Traits;
 
 use Behat\Mink\Element\NodeElement;
+use PHPUnit\Framework\Assert;
 
 /**
  * Helper methods for interacting with CKEditor5 WYSIWYG editors.
@@ -47,20 +48,16 @@ trait WysiwygTrait {
     // Try to see if there is a dropdown button to reveal the button.
     $dropdown_button = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="Show more items"]');
     if (!empty($dropdown_button)) {
-      $button = reset($dropdown_button);
-      $button->click();
+      $dropdown_button = reset($dropdown_button);
+      $dropdown_button->click();
     }
 
-    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="' . $button_label . '"]');
-    if (empty($button_elements)) {
-      throw new \Exception("Could not find the '$button_label' button.");
-    }
+    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="' . $button_label . '"][1]');
+    Assert::assertNotEmpty($button_elements, "Could not find the '$button_label' button.");
+    Assert::assertCount(1, $button_elements, "Multiple '$button_label' buttons found in the editor.");
 
-    if (count($button_elements) > 1) {
-      throw new \Exception("Multiple '$button_label' buttons found in the editor.");
-    }
-    $button = reset($button_elements);
-    $button->click();
+    $button_element = reset($button_elements);
+    $button_element->click();
   }
 
   /**
@@ -75,16 +72,13 @@ trait WysiwygTrait {
    *   The text to enter in the textarea.
    */
   public function setWysiwygText(string $field, string $text): void {
-    $wysiwyg = $this->getWysiwyg($field);
-    $textarea_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//div[contains(@class, "ck-source-editing-area")]//textarea');
-    if (empty($textarea_elements)) {
-      throw new \Exception("Could not find the textarea for the '$field' field.");
-    }
-    if (count($textarea_elements) > 1) {
-      throw new \Exception("Multiple textareas found for '$field'.");
-    }
-    $textarea = reset($textarea_elements);
-    $textarea->setValue($text);
+    $ckeditor5_id = $this->getCKEditor5Id($field);
+    $javascript = <<<JS
+(function(){
+  return Drupal.CKEditor5Instances.get('$ckeditor5_id').setData('$text');
+})();
+JS;
+    $this->getSession()->evaluateScript($javascript);
   }
 
   /**
@@ -101,27 +95,21 @@ trait WysiwygTrait {
   public function getWysiwyg(string $field): NodeElement {
     $driver = $this->getSession()->getDriver();
     $label_elements = $driver->find('//label[text()="' . $field . '"]');
-    if (empty($label_elements)) {
-      throw new \Exception("Could not find the '$field' field label.");
-    }
-    if (count($label_elements) > 1) {
-      throw new \Exception("Multiple '$field' labels found in the page.");
-    }
+    Assert::assertNotEmpty($label_elements, "Could not find the '$field' field label.");
+    Assert::assertCount(1, $label_elements, "Multiple '$field' labels found in the page.");
+
     $wysiwyg_elements = $driver->find('//label[contains(text(), "' . $field . '")]/following::div[contains(@class, " ck-editor ")][1]');
-    if (empty($wysiwyg_elements)) {
-      throw new \Exception("Could not find the '$field' wysiwyg editor.");
-    }
-    if (count($wysiwyg_elements) > 1) {
-      throw new \Exception("Multiple '$field' wysiwyg editors found in the page.");
-    }
+    Assert::assertNotEmpty($wysiwyg_elements, "Could not find the '$field' wysiwyg editor.");
+    Assert::assertCount(1, $wysiwyg_elements, "Multiple '$field' wysiwyg editors found in the page.");
+
     return reset($wysiwyg_elements);
   }
 
   /**
    * Enters the given text in the given WYSIWYG editor.
    *
-   * If this is running on a JavaScript enabled browser it will first click the
-   * 'Source' button so the text can be entered as normal HTML.
+   * If this is running on a JavaScript enabled browser it execute
+   * a JS code to enter the text into CKEditor.
    *
    * @param string $label
    *   The label of the field containing the WYSIWYG editor.
@@ -129,19 +117,33 @@ trait WysiwygTrait {
    *   The text to enter in the WYSIWYG editor.
    */
   protected function enterTextInWysiwyg(string $label, string $text): void {
-    // If we are running in a JavaScript enabled browser, first click the
-    // 'Source' button so we can enter the text as HTML and get the same result
-    // as in a non-JS browser.
     if ($this->browserSupportsJavaScript()) {
-      $this->pressWysiwygButton($label, 'Source');
       $this->setWysiwygText($label, $text);
-      // Make sure we switch back to normal view and let javascript to
-      // execute filters on the text and validate the html.
-      $this->pressWysiwygButton($label, 'Source');
     }
     else {
       $this->getSession()->getPage()->fillField($label, $text);
     }
+  }
+
+  /**
+   * Gets the "data-ckeditor5-id" attribute value.
+   *
+   * @param string $label
+   *   The label of the WYSIWYG field to look at.
+   *
+   * @return string|int
+   *   Returns the "data-ckeditor5-id" attribute value.
+   */
+  protected function getCKEditor5Id(string $label): string|int {
+    $wysiwyg = $this->getWysiwyg($label);
+    $textarea = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '/preceding-sibling::textarea');
+    Assert::assertNotEmpty($textarea, "Could not find the '$label' textarea element.");
+
+    $textarea = reset($textarea);
+    $ckeditor_id = $textarea->getAttribute('data-ckeditor5-id');
+    Assert::assertNotEmpty($ckeditor_id, "Could not find the '$label' textarea element's ckeditor5 id.");
+
+    return $ckeditor_id;
   }
 
 }

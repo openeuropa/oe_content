@@ -61,13 +61,7 @@ class WysiwygContext extends RawDrupalContext {
       $dropdown_button->click();
     }
     $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="' . $button . '"][1]');
-    if (empty($button_elements)) {
-      throw new \Exception("Could not find the '$button' button.");
-    }
-
-    if (count($button_elements) > 1) {
-      throw new \Exception("Multiple '$button' buttons found in the editor.");
-    }
+    Assert::assertNotEmpty($button_elements, "The '$button' button is not present.");
   }
 
   /**
@@ -90,12 +84,7 @@ class WysiwygContext extends RawDrupalContext {
       $dropdown_button->click();
     }
     $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="' . $button . '"][1]');
-    if (!empty($button_elements)) {
-      throw new \Exception("The '$button' button is present.");
-    }
-    if (count($button_elements) > 1) {
-      throw new \Exception("Multiple '$button' buttons found in the editor.");
-    }
+    Assert::assertEmpty($button_elements, "The '$button' button is present.");
   }
 
   /**
@@ -116,11 +105,7 @@ class WysiwygContext extends RawDrupalContext {
     // 'Source' button so we can enter the text as HTML and get the same result
     // as in a non-JS browser.
     if ($this->browserSupportsJavaScript()) {
-      $this->pressWysiwygButton($label, 'Source');
       $this->setWysiwygText($label, $text);
-      // Make sure we switch back to normal view and let javascript to
-      // execute filters on the text and validate the html.
-      $this->pressWysiwygButton($label, 'Source');
     }
     else {
       $this->getSession()->getPage()->fillField($label, $text);
