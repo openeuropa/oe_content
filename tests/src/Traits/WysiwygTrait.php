@@ -75,7 +75,7 @@ trait WysiwygTrait {
     $ckeditor5_id = $this->getCKEditor5Id($field);
     $javascript = <<<JS
 (function(){
-  return Drupal.CKEditor5Instances.get('$ckeditor5_id').setData('$text');
+  return Drupal.CKEditor5Instances.get('$ckeditor5_id').setData(`$text`);
 })();
 JS;
     $this->getSession()->evaluateScript($javascript);
