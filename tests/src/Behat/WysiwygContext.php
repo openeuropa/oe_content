@@ -88,22 +88,16 @@ class WysiwygContext extends RawDrupalContext {
   }
 
   /**
-   * Enters the given text in the given WYSIWYG editor.
-   *
-   * If this is running on a JavaScript enabled browser it will first click the
-   * 'Source' button so the text can be entered as normal HTML.
+   * Enters the given text in the given CKEditor.
    *
    * @param string $text
-   *   The text to enter in the WYSIWYG editor.
+   *   The text to enter in the CKEditor.
    * @param string $label
-   *   The label of the field containing the WYSIWYG editor.
+   *   The label of the field containing the CKEditor.
    *
    * @When I enter :text in the :label wysiwyg editor
    */
   public function enterTextInWysiwyg(string $text, string $label): void {
-    // If we are running in a JavaScript enabled browser, first click the
-    // 'Source' button so we can enter the text as HTML and get the same result
-    // as in a non-JS browser.
     if ($this->browserSupportsJavaScript()) {
       $this->setWysiwygText($label, $text);
     }
@@ -174,11 +168,11 @@ JS;
       if ($event) {
         /** @var \Behat\Behat\Hook\Scope\BeforeStepScope $event */
         $event_data = ' ' . json_encode([
-            'name' => $event->getName(),
-            'feature' => $event->getFeature()->getTitle(),
-            'step' => $event->getStep()->getText(),
-            'suite' => $event->getSuite()->getName(),
-          ]);
+          'name' => $event->getName(),
+          'feature' => $event->getFeature()->getTitle(),
+          'step' => $event->getStep()->getText(),
+          'suite' => $event->getSuite()->getName(),
+        ]);
       }
       else {
         $event_data = '';
