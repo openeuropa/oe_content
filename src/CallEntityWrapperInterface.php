@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_content;
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Interface for content entity wrappers.

@@ -219,7 +219,6 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
     $handle = $this->assertSession()->elementExists('css', 'table#featured-media-field-values > tbody > tr:nth-child(1) a.tabledrag-handle');
     $target = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(2) a.tabledrag-handle');
     $handle->dragTo($target);
-    $this->assertSession()->assertWaitOnAjaxRequest();
 
     // Check that 'Image 1' media item is placed after 'Image 2'.
     $this->assertOrderInPage(['Image 2', 'Image 1']);

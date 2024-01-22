@@ -10,8 +10,8 @@ declare(strict_types = 1);
 use Drupal\Core\Datetime\Element\Datetime;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().

@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_timeline_field;
 
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\tmgmt_content\DefaultFieldProcessor;
 use Drupal\oe_translation\TranslationSourceFieldProcessor\DefaultFieldProcessor as OeDefaultFieldProcessor;
+use Drupal\tmgmt_content\DefaultFieldProcessor;
 
 if (class_exists('\Drupal\oe_translation\TranslationSourceFieldProcessor\DefaultFieldProcessor')) {
   /**

@@ -7,8 +7,8 @@ namespace Drupal\oe_content_sub_entity_person\EventSubscriber;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Drupal\oe_content_sub_entity_person\PersonExtractLinksSubscriberBase;
 use Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent;
+use Drupal\oe_content_sub_entity_person\PersonExtractLinksSubscriberBase;
 use Drupal\rdf_skos\Entity\ConceptInterface;
 
 /**

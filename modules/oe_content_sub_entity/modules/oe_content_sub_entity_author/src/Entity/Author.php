@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace Drupal\oe_content_sub_entity_author\Entity;
 
 use Drupal\Core\Cache\CacheableResponseTrait;
-use Drupal\oe_content_sub_entity_author\Event\AuthorExtractLinksEvent;
-use Drupal\oe_content_sub_entity_author\Event\AuthorEvents;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
+use Drupal\oe_content_sub_entity_author\Event\AuthorEvents;
+use Drupal\oe_content_sub_entity_author\Event\AuthorExtractLinksEvent;
 
 /**
  * Defines the author entity.

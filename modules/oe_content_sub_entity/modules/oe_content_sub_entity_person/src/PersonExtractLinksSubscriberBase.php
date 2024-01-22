@@ -7,8 +7,8 @@ namespace Drupal\oe_content_sub_entity_person;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent;
 use Drupal\oe_content_sub_entity_person\Event\PersonEvents;
+use Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
