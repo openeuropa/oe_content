@@ -79,7 +79,7 @@ default:
                 - '--no-sandbox'
                 - '--start-maximized'
                 - '--disable-gpu'
-                - '--window-size=1280,800'
+                - '--window-size=1440,900'
                 - '--disable-dev-shm-usage'
                 - '--disable-setuid-sandbox'
                 - '--disable-web-security'

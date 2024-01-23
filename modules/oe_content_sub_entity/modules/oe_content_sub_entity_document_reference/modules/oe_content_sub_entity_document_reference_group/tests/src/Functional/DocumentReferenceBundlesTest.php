@@ -13,7 +13,7 @@ use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Drupal\node\Entity\NodeType;
 use Drupal\Tests\BrowserTestBase;
-use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
+use Drupal\Tests\oe_content\Traits\EntityReferenceRevisionTrait;
 use Drupal\Tests\TestFileCreationTrait;
 
 /**
@@ -21,7 +21,7 @@ use Drupal\Tests\TestFileCreationTrait;
  */
 class DocumentReferenceBundlesTest extends BrowserTestBase {
 
-  use EntityReferenceTrait;
+  use EntityReferenceRevisionTrait;
   use TestFileCreationTrait;
 
   /**

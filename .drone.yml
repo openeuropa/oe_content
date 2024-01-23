@@ -33,8 +33,8 @@ services:
     image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-4.1.3-20220405
     environment:
       - DISPLAY=:99
-      - SCREEN_WIDTH=1280
-      - SCREEN_HEIGHT=800
+      - SCREEN_WIDTH=1440
+      - SCREEN_HEIGHT=900
       - NODE_MAX_INSTANCES=5
       - NODE_MAX_SESSION=5
 
