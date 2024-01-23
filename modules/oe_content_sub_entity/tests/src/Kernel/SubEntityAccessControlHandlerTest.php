@@ -11,9 +11,9 @@ use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
+use Drupal\Tests\field\Traits\EntityReferenceFieldCreationTrait;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
-use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -25,7 +25,7 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
 
   use NodeCreationTrait;
   use ContentTypeCreationTrait;
-  use EntityReferenceTestTrait;
+  use EntityReferenceFieldCreationTrait;
 
   /**
    * The access control handler.
