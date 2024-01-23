@@ -26,13 +26,13 @@ This depends on the following software:
 * [PHP >=8.1](http://php.net/)
 * Virtuoso (or equivalent) triple store which contains the RDF representations of the following Publications Office (OP) vocabularies: Corporate Bodies, Target Audiences, Organisation Types, Resource Types, Eurovoc
 
-## Usage with Drupal 10.2
+## Usage with Drupal 10.1
 
-For Drupal 10.2, the drupal/core patch needs to be overridden to the new one specifically made for 10.2.
-If you require this module in Drupal 10.2 you must set the patch in your composer.json.\
+For Drupal 10.1, the drupal/core patch needs to be overridden to the new one specifically made for 10.1.
+If you require this module in Drupal 10.1 you must set the patch in your composer.json.\
 You can do this with the following command:
 ```bash
-composer config --merge --json "extra.patches.drupal/core" '{"https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"}'
+composer config --merge --json "extra.patches.drupal/core" '{"https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2022-07-26/2230909-269.patch"}'
 ```
 
 ## Installation

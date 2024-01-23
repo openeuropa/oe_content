@@ -78,7 +78,7 @@ class OrganisationFieldTest extends SparqlKernelTestBase {
 
     // If the type is 'EU' only EU related organsiation fields are filled in.
     $this->assertTrue($node->get('oe_organisation_non_eu_org_type')->isEmpty());
-    $this->assertEquals('Directorate-General for Informatics', $node->get('oe_organisation_eu_org')->entity->label());
+    $this->assertEquals('Directorate-General for Digital Services', $node->get('oe_organisation_eu_org')->entity->label());
     $this->assertEquals('Directorate-general', $node->get('oe_organisation_eu_org_type')->entity->label());
 
     $node = Node::create([

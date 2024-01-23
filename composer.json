@@ -32,7 +32,7 @@
         "drupal/inline_entity_form": "^1.0-rc15",
         "drupal/token": "^1.10",
         "drupal/typed_link": "^2.0.1",
-        "drush/drush": "^11.1",
+        "drush/drush": "^12.4",
         "friends-of-behat/service-container-extension": "^1.0",
         "mikey179/vfsstream": "^1.6",
         "openeuropa/behat-transformation-context": "~0.2",
@@ -40,7 +40,7 @@
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha6",
         "openeuropa/oe_corporate_site_info": "^1.0",
         "openeuropa/oe_link_lists": "~0.21",
-        "openeuropa/oe_multilingual": "^1.13",
+        "openeuropa/oe_multilingual": "dev-EWPP-3861",
         "openeuropa/oe_time_caching": "^1.5",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta6",
         "openeuropa/task-runner-ensure-behat-batching": "^1.0",
@@ -80,7 +80,7 @@
         },
         "patches": {
             "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2022-07-26/2230909-269.patch"
+                "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"
             },
             "drupal/field_group": {
                 "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2023-04-07/2787179-highlight-html5-validation-85.patch"

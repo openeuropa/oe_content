@@ -28,7 +28,7 @@ class EventBusinessLogicTest extends EventKernelTestBase {
 
     // Assert that only the internal organiser value has been kept.
     $this->assertTrue($node->get('oe_event_organiser_name')->isEmpty());
-    $this->assertEquals('Directorate-General for Informatics', $node->get('oe_event_organiser_internal')->entity->label());
+    $this->assertEquals('Directorate-General for Digital Services', $node->get('oe_event_organiser_internal')->entity->label());
 
     // Test internal organiser to be checked.
     $node = Node::create([
@@ -38,7 +38,7 @@ class EventBusinessLogicTest extends EventKernelTestBase {
 
     // Assert that only the internal organiser value has been kept.
     $this->assertTrue($node->get('oe_event_organiser_name')->isEmpty());
-    $this->assertEquals('Directorate-General for Informatics', $node->get('oe_event_organiser_internal')->entity->label());
+    $this->assertEquals('Directorate-General for Digital Services', $node->get('oe_event_organiser_internal')->entity->label());
 
     // Test internal organiser to be un-checked.
     $node = Node::create([
