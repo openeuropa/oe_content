@@ -1,6 +1,6 @@
 services:
   oe_content_project.copy_budget_values:
-    class: Drupal\oe_content_project\Drush\Commands\CopyBudgetValues
+    class: Drupal\oe_content_project\Commands\CopyBudgetValues
     arguments: [ '@entity_type.manager', '@messenger' ]
     tags:
       - { name: drush.command }
