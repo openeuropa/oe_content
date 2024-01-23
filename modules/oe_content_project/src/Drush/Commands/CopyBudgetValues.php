@@ -2,8 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_project\Commands;
+namespace Drupal\oe_content_project\Drush\Commands;
 
+use Drupal\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Batch\BatchBuilder;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -51,6 +52,16 @@ class CopyBudgetValues extends DrushCommands {
     $this->entityTypeManager = $entityTypeManager;
     $this->messenger = $messenger;
     $this->nodeStorage = $this->entityTypeManager->getStorage('node');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container): self {
+    return new static(
+      $container->get('entity_type.manager'),
+      $container->get('messenger')
+    );
   }
 
   /**
