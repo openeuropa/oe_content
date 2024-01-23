@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_content_sub_entity_document_reference\Kernel;
 
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
-use Drupal\Tests\field\Traits\EntityReferenceFieldCreationTrait;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
+use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 
 /**
  * Tests document reference entity.
@@ -16,7 +16,7 @@ class DocumentReferenceEntityTest extends EntityKernelTestBase {
 
   use NodeCreationTrait;
   use ContentTypeCreationTrait;
-  use EntityReferenceFieldCreationTrait;
+  use EntityReferenceTrait;
 
   /**
    * {@inheritdoc}
