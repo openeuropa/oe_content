@@ -205,7 +205,7 @@ Feature: Call for proposals content creation and editing.
       | Deadline model                      | Single-stage                                      |
       | Deadline date                       | 2019-03-21 18:30:00                               |
       | Awarded grants                      | http://example.com                                |
-      | Funding programme                   | Connecting Europe Facility (CEF 2021)             |
+      | Funding programme                   | Connecting Europe Facility (CEF) (2014/2020)      |
       | Publication in the official journal | uri: http://example.com - title: Publication link |
       | Contact                             | A general contact                                 |
       | Publication date                    | 2019-02-21                                        |
