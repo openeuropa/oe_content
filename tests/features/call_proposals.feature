@@ -216,9 +216,9 @@ Feature: Call for proposals content creation and editing.
     When I am visiting the "Proposals demo page" content
     And I click "Edit"
     And I select the radio button "Single-stage"
-    And I press "Remove"
+    And I press "Remove" in the "Call for proposals contact" region
     Then I should see "Are you sure you want to remove A general contact?"
-    When I press "Remove"
+    When I press "Remove" in the "Call for proposals contact" region
     And I wait for AJAX to finish
     And I press "Save"
     Then I should see "Call for proposals Proposals demo page has been updated."
