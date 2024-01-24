@@ -2,21 +2,21 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_content_project\Commands;
+namespace Drupal\oe_content_project\Drush\Commands;
 
 use Drupal\Core\Batch\BatchBuilder;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drush\Attributes as CLI;
 use Drush\Commands\DrushCommands;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Copies the project budget values from the old field to the new field.
- *
- * This command can be optionally executed to copy over values from old field.
+ * Project content type commands.
  */
-class CopyBudgetValues extends DrushCommands {
+final class ProjectCommands extends DrushCommands {
 
   use StringTranslationTrait;
   use DependencySerializationTrait;
@@ -43,7 +43,7 @@ class CopyBudgetValues extends DrushCommands {
   protected $nodestorage;
 
   /**
-   * CopyBudgetValues class constructor.
+   * ProjectCommands class constructor.
    */
   public function __construct(EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger) {
     parent::__construct();
@@ -54,11 +54,27 @@ class CopyBudgetValues extends DrushCommands {
   }
 
   /**
-   * Triggers the field value copy.
+   * Return an instance of these Drush commands.
    *
-   * @command oe-content:project-budget-copy-values
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   The container.
+   *
+   * @return \Drupal\oe_content_project\Drush\Commands\ProjectCommands
+   *   The instance of Drush commands.
    */
-  public function copyFieldValues(): void {
+  public static function create(ContainerInterface $container): ProjectCommands {
+    return new ProjectCommands(
+      $container->get('entity_type.manager'),
+      $container->get('messenger'),
+    );
+  }
+
+  /**
+   * Copies the project budget values from the old field to the new field.
+   */
+  #[CLI\Command(name: 'oe_content_project:copy-budget-field-values', aliases: [])]
+  #[CLI\Usage(name: 'oe_content_project:copy-budget-field-values', description: 'Copy budget field values.')]
+  public function copyBudgetFieldValues(): void {
     $project_ids = $this->nodeStorage->getQuery()
       ->condition('type', 'oe_project')
       ->latestRevision()
