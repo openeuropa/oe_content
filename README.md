@@ -33,6 +33,7 @@ If you require this module in Drupal 10.1 you must set the patch in your compose
 You can do this with the following command:
 ```bash
 composer config --merge --json "extra.patches.drupal/core" '{"https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2022-07-26/2230909-269.patch"}'
+composer config --merge --json "extra.patches-ignore.openeuropa/oe_content" '{"drupal/core": {"Drupal 10.2.x only - see README.md for 10.1.x - https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"}}'
 ```
 
 ## Installation
