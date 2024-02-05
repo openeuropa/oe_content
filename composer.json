@@ -40,7 +40,7 @@
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha6",
         "openeuropa/oe_corporate_site_info": "^1.0",
         "openeuropa/oe_link_lists": "~0.21",
-        "openeuropa/oe_multilingual": "dev-EWPP-3861",
+        "openeuropa/oe_multilingual": "^1.18",
         "openeuropa/oe_time_caching": "^1.5",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta6",
         "openeuropa/task-runner-ensure-behat-batching": "^1.0",
