@@ -72,8 +72,8 @@ final class ProjectCommands extends DrushCommands {
   /**
    * Copies the project budget values from the old field to the new field.
    */
-  #[CLI\Command(name: 'oe_content_project:copy-budget-field-values', aliases: [])]
-  #[CLI\Usage(name: 'oe_content_project:copy-budget-field-values', description: 'Copy budget field values.')]
+  #[CLI\Command(name: 'oe-content:project-budget-copy-values', aliases: [])]
+  #[CLI\Usage(name: 'oe-content:project-budget-copy-values', description: 'Copy budget field values.')]
   public function copyBudgetFieldValues(): void {
     $project_ids = $this->nodeStorage->getQuery()
       ->condition('type', 'oe_project')

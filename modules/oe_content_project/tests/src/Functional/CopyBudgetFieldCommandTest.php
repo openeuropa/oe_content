@@ -75,7 +75,7 @@ class CopyBudgetFieldCommandTest extends BrowserTestBase {
     $project_node->save();
     $project_nodes[] = $project_node;
 
-    $this->drush('oe_content_project:copy-budget-field-values');
+    $this->drush('oe-content:project-budget-copy-values');
     $storage->resetCache();
 
     foreach ($project_nodes as $node) {
