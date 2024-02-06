@@ -154,9 +154,9 @@ Feature: News content creation
       | Teaser    | Some teaser       |
     When I am visiting the "Test news" content
     And I click "Edit"
-    And I press "Remove"
+    And I press "Remove" in the "News contact" region
     Then I should see "Are you sure you want to remove A general contact?"
-    When I press "Remove"
+    When I press "Remove" in the "News contact" region
     And I press "Save"
     Then I should see "News Test news has been updated."
     And the General Contact entity with title "A general contact" exists

@@ -2,4 +2,4 @@ name: OpenEuropa Countries Test
 description: Test module to provide limited list of countries.
 package: OpenEuropa
 type: module
-core_version_requirement: ^9.4 || ^10
+core_version_requirement: ^10

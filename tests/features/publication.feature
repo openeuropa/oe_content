@@ -160,10 +160,10 @@ Feature: Publication content creation
       | Teaser                 | Teaser                                |
     When I am visiting the "Publication demo page" content
     And I click "Edit"
-    And I press "Remove"
+    And I press "Remove" in the "Publication contact" region
     And I wait for AJAX to finish
     Then I should see "Are you sure you want to remove A general contact?"
-    When I press "Remove"
+    When I press "Remove" in the "Publication contact" region
     And I wait for AJAX to finish
     And I press "Save"
     Then I should see "Publication Publication demo page has been updated."

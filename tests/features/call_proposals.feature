@@ -205,7 +205,7 @@ Feature: Call for proposals content creation and editing.
       | Deadline model                      | Single-stage                                      |
       | Deadline date                       | 2019-03-21 18:30:00                               |
       | Awarded grants                      | http://example.com                                |
-      | Funding programme                   | Connecting Europe Facility (CEF 2021)             |
+      | Funding programme                   | Connecting Europe Facility (CEF) (2014/2020)      |
       | Publication in the official journal | uri: http://example.com - title: Publication link |
       | Contact                             | A general contact                                 |
       | Publication date                    | 2019-02-21                                        |
@@ -216,9 +216,9 @@ Feature: Call for proposals content creation and editing.
     When I am visiting the "Proposals demo page" content
     And I click "Edit"
     And I select the radio button "Single-stage"
-    And I press "Remove"
+    And I press "Remove" in the "Call for proposals contact" region
     Then I should see "Are you sure you want to remove A general contact?"
-    When I press "Remove"
+    When I press "Remove" in the "Call for proposals contact" region
     And I wait for AJAX to finish
     And I press "Save"
     Then I should see "Call for proposals Proposals demo page has been updated."

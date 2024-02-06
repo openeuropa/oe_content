@@ -30,18 +30,28 @@ services:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba
   selenium:
-    image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-3.141.59-oxygen
-    pull: true
-    shm_size: 2g
+    image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-4.1.3-20220405
     environment:
       - DISPLAY=:99
-      - SE_OPTS=-debug
-      - SCREEN_WIDTH=1280
-      - SCREEN_HEIGHT=800
+      - SCREEN_WIDTH=1440
+      - SCREEN_HEIGHT=900
       - NODE_MAX_INSTANCES=5
       - NODE_MAX_SESSION=5
 
 pipeline:
+  composer-change-patch:
+    group: warmup
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    volumes:
+      - /cache:/cache
+    commands:
+      # Change the patch for 10.1.x.
+      - >
+        composer config --merge --json "extra.patches.drupal/core" '{"Drupal 10.2.x only - see README.md for 10.1.x - https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2022-07-26/2230909-269.patch"}'
+    when:
+      matrix:
+        CORE_VERSION: "10.1.0"
+
   composer-install:
     group: prepare
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
@@ -109,22 +119,22 @@ pipeline:
 
 matrix:
   include:
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: behat, BATCH: '@batch3' }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1.0, TYPE: phpunit }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1.0, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1.0, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1.0, TYPE: behat, BATCH: '@batch3' }
 
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: phpunit }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: behat, BATCH: '@batch3' }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1.0, TYPE: phpunit }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1.0, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1.0, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1.0, TYPE: behat, BATCH: '@batch3' }
 
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: phpunit }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch3' }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2.0, TYPE: phpunit }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2.0, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2.0, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2.0, TYPE: behat, BATCH: '@batch3' }
 
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: phpunit }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: behat, BATCH: '@batch3' }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2.0, TYPE: phpunit }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2.0, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2.0, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2.0, TYPE: behat, BATCH: '@batch3' }

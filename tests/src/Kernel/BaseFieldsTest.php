@@ -76,7 +76,7 @@ class BaseFieldsTest extends SparqlKernelTestBase {
     $this->assertEquals('My node title', $node->label());
     $this->assertEquals('My short title', $node->get('oe_content_short_title')->value);
     $this->assertEquals('My navigation title', $node->get('oe_content_navigation_title')->value);
-    $this->assertEquals('Directorate-General for Informatics', $node->get('oe_content_content_owner')->entity->label());
+    $this->assertEquals('Directorate-General for Digital Services', $node->get('oe_content_content_owner')->entity->label());
     $this->assertEquals('http://legacy-link.com', $node->get('oe_content_legacy_link')->uri);
   }
 
