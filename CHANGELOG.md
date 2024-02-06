@@ -1,11 +1,27 @@
 # Changelog
 
+## [3.0.0](https://github.com/openeuropa/oe_content/tree/3.0.0) (2024-02-06)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta4...3.0.0)
+
+**Closed issues:**
+
+- Cannot apply patch https://www.drupal.org/files/issues/2022-07-26/2230909-269.patch [\#607](https://github.com/openeuropa/oe_content/issues/607)
+- Patch cannot be applied after updating to Drupal 10.2 [\#606](https://github.com/openeuropa/oe_content/issues/606)
+- Patches cannot be applied [\#583](https://github.com/openeuropa/oe_content/issues/583)
+- Cannot apply patch https://www.drupal.org/project/inline\_entity\_form/issues/3162384 \(https://www.drupal.org/files/issues/2020-08-13/fixed\_duplicate\_rows-3162384-16.patch\)! [\#331](https://github.com/openeuropa/oe_content/issues/331)
+
+**Merged pull requests:**
+
+- EWPP-3855: Support D10.2 and drop D9. [\#609](https://github.com/openeuropa/oe_content/pull/609) ([nagyad](https://github.com/nagyad))
+
 ## [3.0.0-beta4](https://github.com/openeuropa/oe_content/tree/3.0.0-beta4) (2023-12-13)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta3...3.0.0-beta4)
 
 **Merged pull requests:**
 
+- Release-3.0.0-beta4: Update changelog. [\#605](https://github.com/openeuropa/oe_content/pull/605) ([nagyad](https://github.com/nagyad))
 - EWPP-3827: Drop 9.4 core support and update entity\_browser patch and selenium. [\#603](https://github.com/openeuropa/oe_content/pull/603) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-beta3](https://github.com/openeuropa/oe_content/tree/3.0.0-beta3) (2023-11-21)
