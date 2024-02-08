@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.0](https://github.com/openeuropa/oe_content/tree/3.1.0) (2024-02-08)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0...3.1.0)
+
+**Merged pull requests:**
+
+- EWPP-3855: Allow composer-patches v2. [\#611](https://github.com/openeuropa/oe_content/pull/611) ([nagyad](https://github.com/nagyad))
+
 ## [3.0.0](https://github.com/openeuropa/oe_content/tree/3.0.0) (2024-02-06)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta4...3.0.0)
@@ -13,6 +21,7 @@
 
 **Merged pull requests:**
 
+- Release-3.0.0: Update changelog. [\#610](https://github.com/openeuropa/oe_content/pull/610) ([nagyad](https://github.com/nagyad))
 - EWPP-3855: Support D10.2 and drop D9. [\#609](https://github.com/openeuropa/oe_content/pull/609) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-beta4](https://github.com/openeuropa/oe_content/tree/3.0.0-beta4) (2023-12-13)
