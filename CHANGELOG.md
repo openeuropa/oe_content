@@ -1,11 +1,20 @@
 # Changelog
 
+## [3.1.1](https://github.com/openeuropa/oe_content/tree/3.1.1) (2024-02-09)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.1.0...3.1.1)
+
+**Merged pull requests:**
+
+- EWPP-3855: Add repo name to the D10.1 patching instructions. [\#613](https://github.com/openeuropa/oe_content/pull/613) ([nagyad](https://github.com/nagyad))
+
 ## [3.1.0](https://github.com/openeuropa/oe_content/tree/3.1.0) (2024-02-08)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0...3.1.0)
 
 **Merged pull requests:**
 
+- Release-3.1.0: Udpate changelog. [\#612](https://github.com/openeuropa/oe_content/pull/612) ([nagyad](https://github.com/nagyad))
 - EWPP-3855: Allow composer-patches v2. [\#611](https://github.com/openeuropa/oe_content/pull/611) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0](https://github.com/openeuropa/oe_content/tree/3.0.0) (2024-02-06)
