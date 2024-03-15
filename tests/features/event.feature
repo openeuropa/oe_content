@@ -301,6 +301,7 @@ Feature: Event content creation
     And I fill in "Office" with "Event contact office" in the "Event contact" region
     And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
     And I fill in "Link text" with "Event contact social link email" in the "Contact social media links" region
+    And I select "Email" from "Link type" in the "Contact social media links" region
     And I fill in "Media item" with "Contact image" in the "Event contact" region
     And I fill in "Caption" with "Event contact caption" in the "Event contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Event contact" region

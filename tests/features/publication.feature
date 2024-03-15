@@ -64,6 +64,7 @@ Feature: Publication content creation
     And I fill in "Office" with "Publication contact office" in the "Publication contact" region
     And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
     And I fill in "Link text" with "Publication contact social link email" in the "Contact social media links" region
+    And I select "Email" from "Link type" in the "Contact social media links" region
     And I fill in "Media item" with "Sample image" in the "Publication contact" region
     And I fill in "Caption" with "Publication contact caption" in the "Publication contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Publication contact" region
