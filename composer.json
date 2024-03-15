@@ -30,7 +30,7 @@
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "^1.0-rc15",
         "drupal/token": "^1.10",
-        "drupal/typed_link": "dev-2.0.x",
+        "drupal/typed_link": "^2.1",
         "drush/drush": "^12.4",
         "friends-of-behat/service-container-extension": "^1.0",
         "mikey179/vfsstream": "^1.6",
@@ -87,9 +87,6 @@
             },
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2023-12-12/2851580-117.patch"
-            },
-            "drupal/typed_link": {
-                "https://git.drupalcode.org/project/typed_link/-/merge_requests/3/": "https://git.drupalcode.org/project/typed_link/-/merge_requests/3.diff"
             }
         },
         "drupal-scaffold": {
