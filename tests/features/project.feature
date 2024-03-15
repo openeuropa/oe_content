@@ -97,6 +97,7 @@ Feature: Project content creation
     And I fill in "Office" with "Project contact office" in the "Project contact" region
     And I fill in "URL" with "mailto:project_contact_social@example.com" in the "Contact social media links" region
     And I fill in "Link text" with "Project contact social link email" in the "Contact social media links" region
+    And I select "Email" from "Link type" in the "Contact social media links" region
     And I fill in "Media item" with "Contact image" in the "Project contact" region
     And I fill in "Caption" with "Project contact caption" in the "Project contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Project contact" region

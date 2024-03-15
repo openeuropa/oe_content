@@ -64,6 +64,7 @@ Feature: Organisation content creation
     And I fill in "Fax number" with "0488779035" in the "Organisation contact" region
     And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
     And I fill in "Link text" with "Email" in the "Contact social media links" region
+    And I select "Email" from "Link type" in the "Contact social media links" region
     And I fill in "Media item" with "Contact image" in the "Organisation contact" region
     And I fill in "Caption" with "Contact caption" in the "Organisation contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Organisation contact" region
@@ -80,6 +81,7 @@ Feature: Organisation content creation
     And I fill in "Use existing media" with "My Document 1" in the "Organisation chart" region
     And I fill in "URL" with "http://example.com"
     And I fill in "Link text" with "Staff search"
+    And I select "Email" from "Link type"
     And I fill in "Persons" with "Jane Doe"
     And I press "Save"
     Then I should see "Organisation My organisation has been created."
