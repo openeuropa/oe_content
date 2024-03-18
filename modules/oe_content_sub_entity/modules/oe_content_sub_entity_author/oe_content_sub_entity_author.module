@@ -7,8 +7,9 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_ENTITY_TYPE_prepare_form().
@@ -47,4 +48,29 @@ function oe_content_sub_entity_author_node_prepare_form(EntityInterface $entity,
     'oe_skos_reference' => array_values($content_owners),
   ]);
   $entity->set('oe_authors', [$corporate_body]);
+}
+
+/**
+ * Implements hook_entity_delete().
+ *
+ * Delete author sub entities referencing a node being deleted.
+ */
+function oe_content_sub_entity_author_entity_delete(EntityInterface $entity) {
+  if (!$entity instanceof NodeInterface) {
+    return;
+  }
+
+  if ($entity->bundle() !== 'oe_organisation' && $entity->bundle() !== 'oe_person') {
+    return;
+  }
+
+  $author_storage = \Drupal::entityTypeManager()->getStorage('oe_author');
+  $authors = $author_storage->loadByProperties([
+    'type' => $entity->bundle(),
+    'oe_node_reference' => $entity->id(),
+  ]);
+  if (empty($authors)) {
+    return;
+  }
+  $author_storage->delete($authors);
 }
