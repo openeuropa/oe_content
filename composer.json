@@ -34,6 +34,7 @@
         "drush/drush": "^12.4",
         "friends-of-behat/service-container-extension": "^1.0",
         "mikey179/vfsstream": "^1.6",
+        "nikic/php-parser": "^4.18",
         "openeuropa/behat-transformation-context": "~0.2",
         "openeuropa/code-review": "^2.0",
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha6",
@@ -95,7 +96,8 @@
         },
         "_readme": [
             "Explicit requirement of symfony/phpunit-bridge to replace drupal/core-dev testing classes and traits.",
-            "Explicit requirement of behat/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests."
+            "Explicit requirement of behat/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests.",
+            "Explicit requirement of nikic/php-parser as ^5.0 generates GrumPHP Parser issues."
         ]
     },
     "config": {

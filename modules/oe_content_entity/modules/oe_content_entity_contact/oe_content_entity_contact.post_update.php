@@ -5,11 +5,11 @@
  * OpenEuropa Contact entity post updates.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Component\Utility\Crypt;
-use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\Entity\EntityViewMode;
 
 /**
@@ -207,6 +207,23 @@ function oe_content_entity_contact_post_update_00011(): void {
   $settings = $field_storage->get('settings');
   $settings['allowed_values']['telegram'] = 'Telegram';
   $settings['allowed_values']['mastodon'] = 'Mastodon';
+  $field_storage->set('settings', $settings);
+  $field_storage->save();
+}
+
+/**
+ * Update Twitter label to X.
+ */
+function oe_content_entity_contact_post_update_00012() {
+  $field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->load('oe_contact.oe_social_media');
+  $settings = $field_storage->get('settings');
+  if (!isset($settings['allowed_values']['twitter'])) {
+    return 'The field storage does not contain the twitter key.';
+  }
+  if ($settings['allowed_values']['twitter'] !== 'Twitter') {
+    return 'The label of the twitter key is different than the original value. No update required.';
+  }
+  $settings['allowed_values']['twitter'] = 'X';
   $field_storage->set('settings', $settings);
   $field_storage->save();
 }
