@@ -24,8 +24,8 @@ Feature: Persistent URLs
     # Create a second node.
     When I visit "the News creation page"
     And I fill in "Page title" with "News 2"
+    And I insert a link to "News 1" in the "Introduction" field through the WYSIWYG editor
     And I enter "Teaser text" in the "Teaser" wysiwyg editor
-    And I insert a link to "News 1" in the "Body text" field through the WYSIWYG editor
     And I fill in "Subject tags" with "financing"
     And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I click the fieldset "URL alias"

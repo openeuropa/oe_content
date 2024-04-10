@@ -54,7 +54,7 @@ class FeatureContext extends RawDrupalContext {
    */
   public function enableTestModule(BeforeScenarioScope $scope): void {
     \Drupal::service('module_installer')->install([
-      'ckeditor',
+      'ckeditor5',
       'content_translation',
       'oe_content_persistent_test',
     ]);
@@ -70,11 +70,12 @@ class FeatureContext extends RawDrupalContext {
    */
   public function disableTestModule(AfterScenarioScope $scope): void {
     \Drupal::service('module_installer')->uninstall([
-      'ckeditor',
+      'ckeditor5',
       'content_translation',
       'oe_content_persistent_test',
     ]);
     \Drupal::configFactory()->getEditable('filter.format.base_html')->delete();
+    \Drupal::configFactory()->getEditable('editor.editor.base_html')->delete();
   }
 
   /**

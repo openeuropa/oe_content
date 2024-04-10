@@ -25,7 +25,7 @@ class WysiwygContext extends RawDrupalContext {
    *
    * @Then I should see the :label wysiwyg editor
    */
-  public function assertWysiwyg($label) {
+  public function assertWysiwyg(string $label): void {
     Assert::assertTrue($this->hasWysiwyg($label));
   }
 
@@ -37,7 +37,7 @@ class WysiwygContext extends RawDrupalContext {
    *
    * @Then the :label field should not have a wysiwyg editor
    */
-  public function assertNoWysiwyg($label) {
+  public function assertNoWysiwyg(string $label): void {
     Assert::assertFalse($this->hasWysiwyg($label));
   }
 
@@ -52,15 +52,16 @@ class WysiwygContext extends RawDrupalContext {
    *
    * @Then I should see the wysiwyg button :button in the field :field
    */
-  public function iShouldSeeWysiwygButton($field, $button) {
+  public function iShouldSeeWysiwygButton(string $field, string $button): void {
     $wysiwyg = $this->getWysiwyg($field);
-    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//a[@title="' . $button . '"]');
-    if (empty($button_elements)) {
-      throw new \Exception("Could not find the '$button' button.");
+    // Try to see if there is a dropdown button to reveal the button.
+    $dropdown_button = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="Show more items"]');
+    if (!empty($dropdown_button)) {
+      $dropdown_button = reset($dropdown_button);
+      $dropdown_button->click();
     }
-    if (count($button_elements) > 1) {
-      throw new \Exception("Multiple '$button' buttons found in the editor.");
-    }
+    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="' . $button . '"][1]');
+    Assert::assertNotEmpty($button_elements, "The '$button' button is not present.");
   }
 
   /**
@@ -74,36 +75,30 @@ class WysiwygContext extends RawDrupalContext {
    *
    * @Then I should not see the wysiwyg button :button in the field :field
    */
-  public function iShouldNotSeeWysiwygButton($field, $button) {
+  public function iShouldNotSeeWysiwygButton(string $field, string $button): void {
     $wysiwyg = $this->getWysiwyg($field);
-    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//a[@title="' . $button . '"]');
-    if (!empty($button_elements)) {
-      throw new \Exception("The '$button' button is present.");
+    // Try to see if there is a dropdown button to reveal the button.
+    $dropdown_button = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="Show more items"]');
+    if (!empty($dropdown_button)) {
+      $dropdown_button = reset($dropdown_button);
+      $dropdown_button->click();
     }
-    if (count($button_elements) > 1) {
-      throw new \Exception("Multiple '$button' buttons found in the editor.");
-    }
+    $button_elements = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '//button[@data-cke-tooltip-text="' . $button . '"][1]');
+    Assert::assertEmpty($button_elements, "The '$button' button is present.");
   }
 
   /**
-   * Enters the given text in the given WYSIWYG editor.
-   *
-   * If this is running on a JavaScript enabled browser it will first click the
-   * 'Source' button so the text can be entered as normal HTML.
+   * Enters the given text in the given CKEditor.
    *
    * @param string $text
-   *   The text to enter in the WYSIWYG editor.
+   *   The text to enter in the CKEditor.
    * @param string $label
-   *   The label of the field containing the WYSIWYG editor.
+   *   The label of the field containing the CKEditor.
    *
    * @When I enter :text in the :label wysiwyg editor
    */
-  public function enterTextInWysiwyg($text, $label) {
-    // If we are running in a JavaScript enabled browser, first click the
-    // 'Source' button so we can enter the text as HTML and get the same result
-    // as in a non-JS browser.
+  public function enterTextInWysiwyg(string $text, string $label): void {
     if ($this->browserSupportsJavaScript()) {
-      $this->pressWysiwygButton($label, 'Source');
       $this->setWysiwygText($label, $text);
     }
     else {
@@ -129,8 +124,8 @@ class WysiwygContext extends RawDrupalContext {
 
     $this->waitForAjaxToFinish();
 
-    $href_field = $page->findField('attributes[href]');
-    // Trigger a keydown event to active a autocomplete search.
+    $href_field = $page->find('css', 'input.form-linkit-autocomplete');
+    // Trigger a keydown event to activate an autocomplete search.
     $href_field->setValue($node_title);
     $href_field->keyDown(' ');
 
@@ -139,7 +134,7 @@ class WysiwygContext extends RawDrupalContext {
     // Find the first result and click it.
     $page->find('xpath', '//li[contains(@class, "linkit-result-line") and contains(@class, "ui-menu-item")][1]')->click();
 
-    $page->find('css', '.editor-link-dialog button:contains("Save")')->click();
+    $page->find('css', '.ck-button-save')->click();
 
     $this->waitForAjaxToFinish();
   }
