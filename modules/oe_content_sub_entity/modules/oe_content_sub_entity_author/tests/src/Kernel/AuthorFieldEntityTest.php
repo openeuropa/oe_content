@@ -66,6 +66,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $this->installEntitySchema('oe_document_reference');
     $this->installEntitySchema('node');
     $this->installEntitySchema('media');
+    $this->installEntitySchema('oe_person_job');
 
     $this->installSchema('node', ['node_access']);
 
@@ -206,6 +207,16 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $this->assertEquals('Org1', $links[4]->a->__toString());
     $this->assertEquals('Org2', $links[5]->a->__toString());
 
+    // Load all existing author entities and assert there are 4 entities.
+    $authors = $this->entityTypeManager->getStorage('oe_author')->loadMultiple();
+    $this->assertCount(4, $authors);
+    // Delete the organisation nodes referenced by $author4 entity.
+    $org_node1->delete();
+    $org_node2->delete();
+    // Load all existing author entities and assert there are only 3 now.
+    $authors = $this->entityTypeManager->getStorage('oe_author')->loadMultiple();
+    $this->assertCount(3, $authors);
+
     // Add Link author.
     $author5 = $this->entityTypeManager->getStorage('oe_author')->create([
       'type' => 'oe_link',
@@ -225,11 +236,11 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
       ],
     ]);
     $author5->save();
-    $node->set('oe_authors', [$author, $author2, $author3, $author4, $author5]);
+    $node->set('oe_authors', [$author, $author2, $author3, $author5]);
     $node->save();
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div');
-    $this->assertCount(9, $links);
+    $this->assertCount(7, $links);
     $this->assertEquals('Directorate-General for Budget', $links[0]->span->__toString());
     $this->assertEquals('Audit Board of the European Communities', $links[1]->span->__toString());
     $this->assertEquals('Directorate-General for Climate Action', $links[2]->span->__toString());
@@ -237,20 +248,14 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $this->assertEquals('John Doe', $links[3]->a->__toString());
     $this->assertEquals('/node/2', $links[3]->a['href']);
 
-    $this->assertEquals('Org1', $links[4]->a->__toString());
-    $this->assertEquals('/node/3', $links[4]->a['href']);
+    $this->assertEquals('node add internal', $links[4]->a->__toString());
+    $this->assertEquals('/node/add', $links[4]->a['href']);
 
-    $this->assertEquals('Org2', $links[5]->a->__toString());
-    $this->assertEquals('/node/4', $links[5]->a['href']);
+    $this->assertEquals('Link to John Doe person', $links[5]->a->__toString());
+    $this->assertEquals('/node/2', $links[5]->a['href']);
 
-    $this->assertEquals('node add internal', $links[6]->a->__toString());
-    $this->assertEquals('/node/add', $links[6]->a['href']);
-
-    $this->assertEquals('Link to John Doe person', $links[7]->a->__toString());
-    $this->assertEquals('/node/2', $links[7]->a['href']);
-
-    $this->assertEquals('external link', $links[8]->a->__toString());
-    $this->assertEquals('http://example.com', $links[8]->a['href']);
+    $this->assertEquals('external link', $links[6]->a->__toString());
+    $this->assertEquals('http://example.com', $links[6]->a['href']);
 
     // Create a political leader author.
     $author6 = $this->entityTypeManager->getStorage('oe_author')->create([
@@ -262,13 +267,13 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $author6->save();
 
     $node->set('oe_authors', [
-      $author, $author2, $author3, $author4, $author5, $author6,
+      $author, $author2, $author3, $author5, $author6,
     ]);
     $node->save();
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div');
-    $this->assertCount(10, $links);
-    $this->assertEquals('Didier Reynders', $links[9]->span->__toString());
+    $this->assertCount(8, $links);
+    $this->assertEquals('Didier Reynders', $links[7]->span->__toString());
 
     // Update Person title and find update in rendered field.
     $person_node->set('oe_person_last_name', 'Doe II');
@@ -278,7 +283,7 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
 
     // We need to ensure the new revision of the author is assigned to the node.
     $node->set('oe_authors', [
-      $author, $author2, $author3, $author4, $author5, $author6,
+      $author, $author2, $author3, $author5, $author6,
     ]);
     $node->save();
 
@@ -305,20 +310,33 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
 
     // We need to ensure the new revision of the author is assigned to the node.
     $node->set('oe_authors', [
-      $author, $author2, $author3, $author4, $author5, $author6,
+      $author, $author2, $author3, $author5, $author6,
     ]);
     $node->save();
     $this->renderAuthorField($node);
     $links = $this->xpath('//main/div/div/div');
-    $this->assertEquals('node add internal', $links[6]->a->__toString());
-    $this->assertEquals('/node/add', (string) $links[6]->a['href']);
+    $this->assertEquals('node add internal', $links[4]->a->__toString());
+    $this->assertEquals('/node/add', (string) $links[4]->a['href']);
 
-    $this->assertEquals('external link updated', $links[7]->a->__toString());
-    $this->assertEquals('http://example.com/updated', (string) $links[7]->a['href']);
+    $this->assertEquals('external link updated', $links[5]->a->__toString());
+    $this->assertEquals('http://example.com/updated', (string) $links[5]->a['href']);
 
-    $this->assertEquals('Link to John Doe person', $links[8]->a->__toString());
-    $this->assertEquals('/node/2', (string) $links[8]->a['href']);
+    $this->assertEquals('Link to John Doe person', $links[6]->a->__toString());
+    $this->assertEquals('/node/2', (string) $links[6]->a['href']);
 
+    // Load all existing author entities and assert there are 5.
+    $authors = $this->entityTypeManager->getStorage('oe_author')->loadMultiple();
+    $this->assertCount(5, $authors);
+    // Delete the person node referenced by $author3 entity.
+    $person_node->delete();
+    // Load all existing author entities and assert there are only 4 now.
+    $authors = $this->entityTypeManager->getStorage('oe_author')->loadMultiple();
+    $this->assertCount(4, $authors);
+
+    $node->set('oe_authors', [
+      $author, $author2, $author5, $author6,
+    ]);
+    $node->save();
     $this->renderAuthorField($node, [
       'label_only' => TRUE,
     ]);
@@ -330,13 +348,10 @@ class AuthorFieldEntityTest extends EntityKernelTestBase {
     $this->assertEquals('Directorate-General for Budget', $labels[0]->__toString());
     $this->assertEquals('Audit Board of the European Communities', $labels[1]->__toString());
     $this->assertEquals('Directorate-General for Climate Action', $labels[2]->__toString());
-    $this->assertEquals('John Doe II', $labels[3]->__toString());
-    $this->assertEquals('Org1', $labels[4]->__toString());
-    $this->assertEquals('Org2', $labels[5]->__toString());
-    $this->assertEquals('node add internal', $labels[6]->__toString());
-    $this->assertEquals('external link updated', $labels[7]->__toString());
-    $this->assertEquals('Link to John Doe person', $labels[8]->__toString());
-    $this->assertEquals('Didier Reynders', $labels[9]->__toString());
+    $this->assertEquals('node add internal', $labels[3]->__toString());
+    $this->assertEquals('external link updated', $labels[4]->__toString());
+    $this->assertEquals('Link to John Doe person', $labels[5]->__toString());
+    $this->assertEquals('Didier Reynders', $labels[6]->__toString());
 
     $this->renderAuthorField($node, [
       'label_only' => FALSE,
