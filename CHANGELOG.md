@@ -1,11 +1,22 @@
 # Changelog
 
+## [3.2.0](https://github.com/openeuropa/oe_content/tree/3.2.0) (2024-04-15)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.1.1...3.2.0)
+
+**Merged pull requests:**
+
+- EWPP-4011: Update Twitter label to X. [\#617](https://github.com/openeuropa/oe_content/pull/617) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3540: Delete oe\_author entities referencing a node being deleted. [\#616](https://github.com/openeuropa/oe_content/pull/616) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3846: Refactor WISYWIG trait and context for CKEditor5. [\#608](https://github.com/openeuropa/oe_content/pull/608) ([nagyad](https://github.com/nagyad))
+
 ## [3.1.1](https://github.com/openeuropa/oe_content/tree/3.1.1) (2024-02-09)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.1.0...3.1.1)
 
 **Merged pull requests:**
 
+- Release-3.1.1: Update changelog. [\#614](https://github.com/openeuropa/oe_content/pull/614) ([nagyad](https://github.com/nagyad))
 - EWPP-3855: Add repo name to the D10.1 patching instructions. [\#613](https://github.com/openeuropa/oe_content/pull/613) ([nagyad](https://github.com/nagyad))
 
 ## [3.1.0](https://github.com/openeuropa/oe_content/tree/3.1.0) (2024-02-08)
