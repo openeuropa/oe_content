@@ -87,8 +87,8 @@ Feature: Person content creation
     And I fill in "Declaration of interests introduction" with "declaration text"
     And I fill in "Use existing media" with "My Document 2" in the "Person declaration of interests file" region
     And I fill in "URL" with "http://twitter.com" in the "Social media links" region
-    And I fill in "Link text" with "Twitter" in the "Social media links" region
-    And I select "Twitter" from "Link type"
+    And I fill in "Link text" with "X" in the "Social media links" region
+    And I select "X" from "Link type"
     And I fill in "Redirect link" with "http://example.com"
     # Contact field.
     And I press "Add new contact"
@@ -163,7 +163,7 @@ Feature: Person content creation
     And I should see "My Document 1"
     And I should see "declaration text"
     And I should see "My Document 2"
-    And I should see the link "Twitter"
+    And I should see the link "X"
     And I should see "http://example.com"
     And I should see the link "Example link"
     And I should see "Description Description text"

@@ -190,7 +190,7 @@ Feature: Event content creation
       | Pinterest |
       | RSS       |
       | Storify   |
-      | Twitter   |
+      | X         |
       | Yammer    |
       | YouTube   |
       | Telegram  |
@@ -263,8 +263,8 @@ Feature: Event content creation
 
     # Add a social media link
     And I fill in "URL" with "http://twitter.com" in the "Social media links" region
-    And I fill in "Link text" with "Twitter" in the "Social media links" region
-    And I select "Twitter" from "Link type"
+    And I fill in "Link text" with "X" in the "Social media links" region
+    And I select "X" from "Link type"
 
     # Add a media item.
     And I fill in "Use existing media" with "Media image" in the "Event media" region
@@ -330,7 +330,7 @@ Feature: Event content creation
     And I should see "As planned"
     And I should see "Status description message"
     And I should see the link "Website"
-    And I should see the link "Twitter"
+    And I should see the link "X"
     And I should see "Facebook"
     And I should see "Media image"
     And I should see "Online description text"
@@ -460,8 +460,8 @@ Feature: Event content creation
     # Make sure that validation of the Social media links works as expected.
     When I click "Edit"
     And I fill in "URL" with "htt://twitter.com" in the "Social media links" region
-    And I fill in "Link text" with "Twitter" in the "Social media links" region
-    And I select "Twitter" from "Link type"
+    And I fill in "Link text" with "X" in the "Social media links" region
+    And I select "X" from "Link type"
     And I press "Save"
     Then I should see the following error messages:
       | error messages                      |
