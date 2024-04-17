@@ -85,6 +85,7 @@ Feature: Call for proposals content creation and editing.
     And I fill in "Office" with "Call for proposals contact office" in the "Call for proposals contact" region
     And I fill in "URL" with "mailto:example@email.com" in the "Contact social media links" region
     And I fill in "Link text" with "Call for proposals contact social link email" in the "Contact social media links" region
+    And I select "Email" from "Link type" in the "Contact social media links" region
     And I fill in "Media item" with "Contact image" in the "Call for proposals contact" region
     And I fill in "Caption" with "Call for proposals contact caption" in the "Call for proposals contact" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Call for proposals contact" region

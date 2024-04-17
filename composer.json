@@ -30,7 +30,7 @@
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "^1.0-rc15",
         "drupal/token": "^1.10",
-        "drupal/typed_link": "2.0.1",
+        "drupal/typed_link": "^2.1",
         "drush/drush": "^12.4",
         "friends-of-behat/service-container-extension": "^1.0",
         "mikey179/vfsstream": "^1.6",

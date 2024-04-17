@@ -109,6 +109,7 @@ Feature: Person content creation
     And I fill in "Office" with "Person contact office" in the "Person contacts" region
     And I fill in "URL" with "mailto:person_contact_social@example.com" in the "Contact social media links" region
     And I fill in "Link text" with "Person contact social link email" in the "Contact social media links" region
+    And I select "Email" from "Link type" in the "Contact social media links" region
     And I fill in "Media item" with "Contact image" in the "Person contacts" region
     And I fill in "Caption" with "Person contact caption" in the "Person contacts" region
     And I fill in "Press contacts" with "http://example.com/press_contacts" in the "Person contacts" region
