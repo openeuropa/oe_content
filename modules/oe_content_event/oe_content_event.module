@@ -24,7 +24,7 @@ function oe_content_event_entity_type_alter(array &$entity_types) {
  */
 function oe_content_event_node_presave(EntityInterface $entity) {
   // Make sure that we don't save both concurrent field values.
-  if ($entity->bundle() === 'oe_event') {
+  if ($entity->bundle() === 'oe_event' && $entity->hasField('oe_event_organiser_is_internal')) {
     if ((bool) $entity->get('oe_event_organiser_is_internal')->value) {
       $entity->get('oe_event_organiser_name')->setValue(NULL);
     }
