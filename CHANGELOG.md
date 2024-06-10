@@ -1,11 +1,21 @@
 # Changelog
 
-## [3.2.0](https://github.com/openeuropa/oe_content/tree/3.2.0) (2024-04-15)
+## [3.3.0](https://github.com/openeuropa/oe_content/tree/3.3.0) (2024-06-11)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/3.2.0...3.3.0)
+
+**Merged pull requests:**
+
+- EWPP-4414: Use mock external page for tests. [\#624](https://github.com/openeuropa/oe_content/pull/624) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-4041: Test typed\_link patch. [\#615](https://github.com/openeuropa/oe_content/pull/615) ([nagyad](https://github.com/nagyad))
+
+## [3.2.0](https://github.com/openeuropa/oe_content/tree/3.2.0) (2024-04-16)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.1.1...3.2.0)
 
 **Merged pull requests:**
 
+- Release-3.2.0: Update changelog. [\#618](https://github.com/openeuropa/oe_content/pull/618) ([nagyad](https://github.com/nagyad))
 - EWPP-4011: Update Twitter label to X. [\#617](https://github.com/openeuropa/oe_content/pull/617) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3540: Delete oe\_author entities referencing a node being deleted. [\#616](https://github.com/openeuropa/oe_content/pull/616) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3846: Refactor WISYWIG trait and context for CKEditor5. [\#608](https://github.com/openeuropa/oe_content/pull/608) ([nagyad](https://github.com/nagyad))
