@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content_persistent\Functional;
 
@@ -106,7 +106,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->save();
     $this->drupalGet('/content/' . $node->uuid());
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->addressEquals('https://commission.europa.eu/index_en');
+    $this->assertSession()->addressEquals('http://web:8080/tests/fixtures/example.html');
 
     \Drupal::entityTypeManager()->getStorage('node')->resetCache();
     $node = \Drupal::service('entity_type.manager')->getStorage('node')->load($node->id());
@@ -116,7 +116,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $node->save();
     $this->drupalGet('/content/' . $node->uuid());
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->addressEquals('https://commission.europa.eu/index_en');
+    $this->assertSession()->addressEquals('http://web:8080/tests/fixtures/example.html');
 
     // Try to get not existing entity.
     $this->drupalGet('/content/' . \Drupal::service('uuid')->generate());
