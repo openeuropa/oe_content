@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\oe_content_persistent_test\EventSubscriber;
 
@@ -26,7 +26,7 @@ class PersistentUrlResolverSubscriber implements EventSubscriberInterface {
     }
 
     if ($entity->label() === 'External') {
-      $event->setUrl(Url::fromUri('https://commission.europa.eu/index_en'));
+      $event->setUrl(Url::fromUri('http://web:8080/tests/fixtures/example.html'));
     }
 
     if ($entity->label() === 'Early render') {
@@ -37,7 +37,7 @@ class PersistentUrlResolverSubscriber implements EventSubscriberInterface {
         ],
       ];
       \Drupal::service('renderer')->render($render);
-      $event->setUrl(Url::fromUri('https://commission.europa.eu/index_en'));
+      $event->setUrl(Url::fromUri('http://web:8080/tests/fixtures/example.html'));
     }
   }
 
