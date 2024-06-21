@@ -38,3 +38,17 @@ function oe_content_social_media_links_field_post_update_00002() {
   $field_storage->set('settings', $settings);
   $field_storage->save();
 }
+
+/**
+ * Add Bluesky option to social media links field.
+ */
+function oe_content_social_media_links_field_post_update_00003(): void {
+  $field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->load('node.oe_social_media_links');
+  if (!$field_storage) {
+    return;
+  }
+  $settings = $field_storage->get('settings');
+  $settings['allowed_values'] = ['bluesky' => 'Bluesky'] + $settings['allowed_values'];
+  $field_storage->set('settings', $settings);
+  $field_storage->save();
+}

@@ -182,6 +182,7 @@ Feature: Event content creation
       | Livestream |
     And I should have the following options for the "Link type" select:
       | - Select - |
+      | Bluesky    |
       | Email      |
       | Facebook   |
       | Flickr     |

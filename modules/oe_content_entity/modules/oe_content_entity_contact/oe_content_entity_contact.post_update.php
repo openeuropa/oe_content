@@ -227,3 +227,14 @@ function oe_content_entity_contact_post_update_00012() {
   $field_storage->set('settings', $settings);
   $field_storage->save();
 }
+
+/**
+ * Add Bluesky option to social media field.
+ */
+function oe_content_entity_contact_post_update_00013(): void {
+  $field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->load('oe_contact.oe_social_media');
+  $settings = $field_storage->get('settings');
+  $settings['allowed_values'] = ['bluesky' => 'Bluesky'] + $settings['allowed_values'];
+  $field_storage->set('settings', $settings);
+  $field_storage->save();
+}
