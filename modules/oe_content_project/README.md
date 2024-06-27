@@ -51,16 +51,10 @@ For more information check `cweagans/composer-patches` documentation [here](http
 
 ## Replacing Project budget fields and removing previous float type fields as of 4.x version
 
-As of 4.x the following float type fields will be removed:
+As of 4.x the following float type fields had been removed:
 - oe_project_budget
 - oe_project_budget_eu
 
 These fields had been replaced by two decimal type fields:
 - oe_project_eu_budget
 - oe_project_eu_contrib
-
-The following optional drush command can be executed in order to copy the field values from the old field to the new
-fields. This will only affect the latest revision of the given project node.
-```
-docker-compose exec web ./vendor/bin/drush oe-content:project-budget-copy-values
-```

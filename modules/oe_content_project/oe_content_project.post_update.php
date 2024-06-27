@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Set inline entity form widget reference removal policy to keep entities.
@@ -65,5 +66,20 @@ function oe_content_project_post_update_30001(): void {
     $field_config = FieldConfig::load($field);
     $field_config->setLabel($label);
     $field_config->save();
+  }
+}
+
+/**
+ * Remove old budget fields after 4.x.
+ */
+function oe_content_project_post_update_40001(): void {
+  $fields_to_remove = [
+    'oe_project_budget',
+    'oe_project_budget_eu',
+  ];
+  foreach ($fields_to_remove as $field_name) {
+    if ($field_storage = FieldStorageConfig::load("node.$field_name")) {
+      $field_storage->delete();
+    }
   }
 }

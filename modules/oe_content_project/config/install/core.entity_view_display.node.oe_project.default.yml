@@ -6,8 +6,6 @@ dependencies:
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_documents
     - field.field.node.oe_project.oe_featured_media
-    - field.field.node.oe_project.oe_project_budget
-    - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_project_calls
     - field.field.node.oe_project.oe_project_contact
     - field.field.node.oe_project.oe_project_coordinators
@@ -120,28 +118,6 @@ content:
       link: true
     third_party_settings: {  }
     weight: 0
-    region: content
-  oe_project_budget:
-    type: number_decimal
-    label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
-    third_party_settings: {  }
-    weight: 10
-    region: content
-  oe_project_budget_eu:
-    type: number_decimal
-    label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
-    third_party_settings: {  }
-    weight: 9
     region: content
   oe_project_calls:
     type: link
