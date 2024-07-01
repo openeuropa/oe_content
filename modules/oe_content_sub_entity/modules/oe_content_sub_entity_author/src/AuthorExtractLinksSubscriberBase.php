@@ -85,7 +85,7 @@ abstract class AuthorExtractLinksSubscriberBase implements EventSubscriberInterf
    * @return array
    *   Generated entity links.
    */
-  protected function getDefaultLinks(AuthorExtractLinksEvent $event): ?array {
+  protected function getDefaultLinks(AuthorExtractLinksEvent $event): array {
     // Load referenced entities.
     $entities = $event->getEntity()->referencedEntities();
 
@@ -97,10 +97,8 @@ abstract class AuthorExtractLinksSubscriberBase implements EventSubscriberInterf
         $links[] = $entity->toLink();
       }
     }
-    if (!empty($links)) {
-      return $links;
-    }
-    return NULL;
+
+    return $links;
   }
 
 }

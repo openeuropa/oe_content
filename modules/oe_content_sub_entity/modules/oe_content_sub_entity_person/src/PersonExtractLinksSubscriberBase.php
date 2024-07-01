@@ -85,7 +85,7 @@ abstract class PersonExtractLinksSubscriberBase implements EventSubscriberInterf
    * @return array
    *   Generated entity links.
    */
-  protected function getDefaultLinks(PersonExtractLinksEvent $event): ?array {
+  protected function getDefaultLinks(PersonExtractLinksEvent $event): array {
     // Load referenced entities.
     $entities = $event->getEntity()->referencedEntities();
 
@@ -100,7 +100,7 @@ abstract class PersonExtractLinksSubscriberBase implements EventSubscriberInterf
     if (!empty($links)) {
       return $links;
     }
-    return NULL;
+    return $links;
   }
 
 }
