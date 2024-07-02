@@ -53,6 +53,9 @@
         }
     },
     "autoload-dev": {
+        "classmap": [
+            "build/core/modules/field/tests/src/Traits/EntityReferenceFieldCreationTrait.php"
+        ],
         "psr-4": {
             "Drupal\\Tests\\oe_content\\": "./tests/src/",
             "Drupal\\Tests\\oe_content_featured_media_field\\": "./modules/oe_content_featured_media_field/tests/src/",
