@@ -5,7 +5,7 @@
  * Post update functions for OpenEuropa Organisation Person Reference module.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\field\Entity\FieldConfig;
 

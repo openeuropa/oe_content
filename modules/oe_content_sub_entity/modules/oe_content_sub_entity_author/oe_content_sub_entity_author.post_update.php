@@ -5,7 +5,7 @@
  * Post update functions for OpenEuropa Content Sub Entity Author module.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\field\Entity\FieldConfig;
 use Drupal\oe_content\ConfigImporter;

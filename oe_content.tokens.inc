@@ -5,7 +5,7 @@
  * Builds placeholder replacement tokens for oe_content content types.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Core\Render\BubbleableMetadata;
 

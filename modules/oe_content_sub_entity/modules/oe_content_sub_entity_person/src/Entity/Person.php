@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\oe_content_sub_entity_person\Entity;
 
 use Drupal\Core\Cache\CacheableResponseTrait;
 use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
-use Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent;
 use Drupal\oe_content_sub_entity_person\Event\PersonEvents;
+use Drupal\oe_content_sub_entity_person\Event\PersonExtractLinksEvent;
 
 /**
  * Defines the Person entity.

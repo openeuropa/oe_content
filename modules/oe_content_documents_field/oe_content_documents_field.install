@@ -5,7 +5,7 @@
  * The OpenEuropa Content Documents Field installation file.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 /**
  * Implements hook_install().

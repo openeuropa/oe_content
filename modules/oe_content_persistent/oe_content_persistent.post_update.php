@@ -5,7 +5,7 @@
  * Post update functions for OpenEuropa Content Persistent module.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 /**
  * Update PURL configuration.

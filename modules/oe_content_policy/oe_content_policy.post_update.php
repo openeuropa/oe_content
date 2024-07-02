@@ -5,7 +5,7 @@
  * OpenEuropa Content Policy post updates.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;

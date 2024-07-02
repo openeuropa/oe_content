@@ -5,7 +5,7 @@
  * OpenEuropa Reference Code Field post updates.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Core\Config\FileStorage;
 

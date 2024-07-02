@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content\Traits;
 
@@ -26,8 +26,8 @@ trait WysiwygTrait {
       $this->getWysiwyg($field);
       return TRUE;
     }
-      // Only catch the specific exception that thrown when the WYSIWYG editor
-      // is not present, let all other exceptions pass through.
+    // Only catch the specific exception that thrown when the WYSIWYG editor
+    // is not present, let all other exceptions pass through.
     catch (\Exception $e) {
       return FALSE;
     }
@@ -72,7 +72,7 @@ trait WysiwygTrait {
    *   The text to enter in the textarea.
    */
   public function setWysiwygText(string $field, string $text): void {
-    $ckeditor5_id = $this->getCKEditor5Id($field);
+    $ckeditor5_id = $this->getCkeditor5Id($field);
     $javascript = <<<JS
 (function(){
   return Drupal.CKEditor5Instances.get('$ckeditor5_id').setData(`$text`);
@@ -133,8 +133,9 @@ JS;
    *
    * @return string|int
    *   Returns the "data-ckeditor5-id" attribute value.
+   * @codingStandardsIgnoreStart
    */
-  protected function getCKEditor5Id(string $label): string|int {
+  protected function getCkeditor5Id(string $label): string|int {
     $wysiwyg = $this->getWysiwyg($label);
     $textarea = $this->getSession()->getDriver()->find($wysiwyg->getXpath() . '/preceding-sibling::textarea');
     Assert::assertNotEmpty($textarea, "Could not find the '$label' textarea element.");

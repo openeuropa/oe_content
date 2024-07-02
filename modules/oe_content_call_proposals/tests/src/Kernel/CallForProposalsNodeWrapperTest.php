@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content_call_proposals\Kernel;
 
@@ -8,9 +8,9 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
+use Drupal\oe_content\CallEntityWrapperInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
-use Drupal\oe_content\CallEntityWrapperInterface;
 
 /**
  * Tests "Call for proposals" wrapper class.

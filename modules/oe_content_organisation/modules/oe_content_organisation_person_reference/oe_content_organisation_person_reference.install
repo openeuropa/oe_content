@@ -5,7 +5,7 @@
  * The OpenEuropa Content Organisation Person installation file.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;

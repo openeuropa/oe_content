@@ -5,7 +5,7 @@
  * OpenEuropa Content Sub Entity Person post updates.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 /**
  * Enables the Person sub-entity reference and SKOS person reference modules.
