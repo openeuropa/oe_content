@@ -50,6 +50,7 @@ pipeline:
     when:
       matrix:
         CORE_VERSION: "10.2.0"
+
   composer-install:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
