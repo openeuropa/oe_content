@@ -68,13 +68,11 @@ pipeline:
         TYPE: behat
 
   grumphp:
-    group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/grumphp run
     when:
       matrix:
-        COMPOSER_BOUNDARY: highest
         TYPE: phpunit
 
   phpunit:
