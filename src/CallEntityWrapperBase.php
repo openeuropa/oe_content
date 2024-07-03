@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\oe_content;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Base class for "Call" style content type wrappers.

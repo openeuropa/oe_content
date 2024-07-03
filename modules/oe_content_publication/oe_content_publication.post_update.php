@@ -5,14 +5,14 @@
  * OpenEuropa Publication post updates.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Field\Entity\BaseFieldOverride;
-use Drupal\Component\Utility\Crypt;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Update body and summary labels.

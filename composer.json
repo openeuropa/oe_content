@@ -53,6 +53,9 @@
         }
     },
     "autoload-dev": {
+        "classmap": [
+            "build/core/modules/field/tests/src/Traits/EntityReferenceFieldCreationTrait.php"
+        ],
         "psr-4": {
             "Drupal\\Tests\\oe_content\\": "./tests/src/",
             "Drupal\\Tests\\oe_content_featured_media_field\\": "./modules/oe_content_featured_media_field/tests/src/",
@@ -80,7 +83,7 @@
         },
         "patches": {
             "drupal/core": {
-                "Drupal 10.2.x only - see oe_content/README.md for 10.1.x - https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"
+                "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"
             },
             "drupal/field_group": {
                 "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2023-04-07/2787179-highlight-html5-validation-85.patch"

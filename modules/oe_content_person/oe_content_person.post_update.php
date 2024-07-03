@@ -5,7 +5,7 @@
  * Post update functions for OpenEuropa Person Content module.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;

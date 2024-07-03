@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\oe_content_call_proposals\Plugin\Validation\Constraint;
 
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 
 /**
  * Validates the Call For Proposals Deadline date constraint.

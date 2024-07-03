@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\oe_content_sub_entity_author;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_content_sub_entity_author\Event\AuthorExtractLinksEvent;
 use Drupal\oe_content_sub_entity_author\Event\AuthorEvents;
+use Drupal\oe_content_sub_entity_author\Event\AuthorExtractLinksEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

@@ -5,11 +5,11 @@
  * Post update functions for OpenEuropa Event Content module.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Core\Config\FileStorage;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Make the Event venue and contact fields composite.

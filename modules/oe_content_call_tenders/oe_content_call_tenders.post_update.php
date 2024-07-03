@@ -5,7 +5,7 @@
  * Post update functions for OpenEuropa Call for tenders Content module.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Core\Config\FileStorage;
 use Drupal\field\Entity\FieldConfig;

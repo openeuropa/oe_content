@@ -5,7 +5,7 @@
  * Post update functions for OpenEuropa Content Entity Organisation module.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 /**
  * Set address subfields as optional.

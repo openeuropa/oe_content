@@ -5,7 +5,7 @@
  * OpenEuropa Call for proposals post updates.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\field\Entity\FieldConfig;
