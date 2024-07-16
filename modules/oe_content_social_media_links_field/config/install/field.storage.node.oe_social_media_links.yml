@@ -10,6 +10,7 @@ entity_type: node
 type: typed_link
 settings:
   allowed_values:
+    bluesky: Bluesky
     email: Email
     facebook: Facebook
     flickr: Flickr
