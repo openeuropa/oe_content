@@ -8,6 +8,7 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\PathProcessor\OutboundPathProcessorInterface;
 use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Routing\Router;
 use Drupal\Core\Url;
 use Drupal\oe_content_redirect_link_field\RedirectLinkResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,8 +27,9 @@ use Symfony\Component\HttpFoundation\Request;
  *   being build from the EntityBase class. Moreover, we don't know if the route
  *   is the canonical one. For this, we use the Router service to match the
  *   path.
- * - We cannot inject the Router service because of circular dependency issues
- *   so we have to use it statically.
+ * - We don't use the router.no_access_checks service because we don't
+ *   want the match process to perform any enhancements as that can cause
+ *   some unwanted circular consequences.
  */
 class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
 
@@ -56,7 +58,9 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
    */
   public function processOutbound($path, &$options = [], Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
     try {
-      $match = \Drupal::service('router.no_access_checks')->match($path);
+      $router = new Router(\Drupal::service('router.route_provider'), \Drupal::service('path.current'), \Drupal::service('url_generator'));
+      $router->setContext(\Drupal::service('router.request_context'));
+      $match = $router->match($path);
     }
     catch (\Exception $e) {
       return $path;
@@ -72,12 +76,15 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
     }
 
     $entity_type = $route_parts[1];
-    if (!isset($match[$entity_type]) || !$match[$entity_type] instanceof ContentEntityInterface) {
+    if (!isset($match[$entity_type])) {
       return $path;
     }
 
     /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    $entity = $match[$entity_type];
+    $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($match[$entity_type]);
+    if (!$entity instanceof ContentEntityInterface) {
+      return $path;
+    }
     if (isset($options['language'])) {
       $entity = $entity->hasTranslation($options['language']->getId()) ? $entity->getTranslation($options['language']->getId()) : $entity;
     }
