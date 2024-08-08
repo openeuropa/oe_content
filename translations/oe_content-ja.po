@@ -1,0 +1,191 @@
+msgid ""
+msgstr ""
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "1月"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "2月"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "3月"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "4月"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "5月"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "6月"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "7月"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "8月"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "9月"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "10月"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "11月"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "12月"
+
+msgid "Jan"
+msgstr "1月"
+
+msgid "Feb"
+msgstr "2月"
+
+msgid "Mar"
+msgstr "3月"
+
+msgid "Apr"
+msgstr "4月"
+
+msgid "May"
+msgstr "5月"
+
+msgid "Jun"
+msgstr "6月"
+
+msgid "Jul"
+msgstr "7月"
+
+msgid "Aug"
+msgstr "8月"
+
+msgid "Sep"
+msgstr "9月"
+
+msgid "Oct"
+msgstr "10月"
+
+msgid "Nov"
+msgstr "11月"
+
+msgid "Dec"
+msgstr "12月"
+
+msgctxt "Abbreviated weekday"
+msgid "Sun"
+msgstr "日"
+
+msgctxt "Abbreviated weekday"
+msgid "Mon"
+msgstr "月"
+
+msgctxt "Abbreviated weekday"
+msgid "Tue"
+msgstr "火"
+
+msgctxt "Abbreviated weekday"
+msgid "Wed"
+msgstr "水"
+
+msgctxt "Abbreviated weekday"
+msgid "Thu"
+msgstr "木"
+
+msgctxt "Abbreviated weekday"
+msgid "Fri"
+msgstr "金"
+
+msgctxt "Abbreviated weekday"
+msgid "Sat"
+msgstr "土"
+
+msgctxt "Abbreviated weekday"
+msgid "Su"
+msgstr "日"
+
+msgctxt "Abbreviated weekday"
+msgid "Mo"
+msgstr "月"
+
+msgctxt "Abbreviated weekday"
+msgid "Tu"
+msgstr "火"
+
+msgctxt "Abbreviated weekday"
+msgid "We"
+msgstr "水"
+
+msgctxt "Abbreviated weekday"
+msgid "Th"
+msgstr "木"
+
+msgctxt "Abbreviated weekday"
+msgid "Fr"
+msgstr "金"
+
+msgctxt "Abbreviated weekday"
+msgid "Sa"
+msgstr "土"
+
+msgctxt "Abbreviated 1 letter weekday Sunday"
+msgid "S"
+msgstr "土"
+
+msgctxt "Abbreviated 1 letter weekday Monday"
+msgid "M"
+msgstr "月"
+
+msgctxt "Abbreviated 1 letter weekday Tuesday"
+msgid "T"
+msgstr "木"
+
+msgctxt "Abbreviated 1 letter weekday Wednesday"
+msgid "W"
+msgstr "水"
+
+msgctxt "Abbreviated 1 letter weekday Thursday"
+msgid "T"
+msgstr "木"
+
+msgctxt "Abbreviated 1 letter weekday Friday"
+msgid "F"
+msgstr "金"
+
+msgctxt "Abbreviated 1 letter weekday Saturday"
+msgid "S"
+msgstr "土"
+
+msgid "Sunday"
+msgstr "日曜日"
+
+msgid "Monday"
+msgstr "月曜日"
+
+msgid "Tuesday"
+msgstr "火曜日"
+
+msgid "Wednesday"
+msgstr "水曜日"
+
+msgid "Thursday"
+msgstr "木曜日"
+
+msgid "Friday"
+msgstr "金曜日"
+
+msgid "Saturday"
+msgstr "土曜日"

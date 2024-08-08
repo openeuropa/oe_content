@@ -1,0 +1,5 @@
+msgid ""
+msgstr ""
+
+msgid "Show full timeline"
+msgstr "全時系列を見る"
