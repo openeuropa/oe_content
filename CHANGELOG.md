@@ -1,11 +1,20 @@
 # Changelog
 
+## [4.1.0](https://github.com/openeuropa/oe_content/tree/4.1.0) (2024-08-28)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.0.0...4.1.0)
+
+**Merged pull requests:**
+
+- EWPP-4526: Add Japanese translations. [\#630](https://github.com/openeuropa/oe_content/pull/630) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [4.0.0](https://github.com/openeuropa/oe_content/tree/4.0.0) (2024-08-05)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.3.0...4.0.0)
 
 **Merged pull requests:**
 
+- Release-4.0.0: Update changelog. [\#632](https://github.com/openeuropa/oe_content/pull/632) ([nagyad](https://github.com/nagyad))
 - EWPP-0000: Field group patch update for version 3.6. [\#631](https://github.com/openeuropa/oe_content/pull/631) ([intelektron](https://github.com/intelektron))
 - EWPP-4546: Remove patch ignore after remote\_stream\_wrapper release. [\#629](https://github.com/openeuropa/oe_content/pull/629) ([nagyad](https://github.com/nagyad))
 - OEL-3045: Update to Drupal 10.3 [\#628](https://github.com/openeuropa/oe_content/pull/628) ([AaronGilMartinez](https://github.com/AaronGilMartinez))
