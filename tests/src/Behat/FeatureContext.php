@@ -10,8 +10,8 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ExpectationException;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_content\Traits\UtilityTrait;
+use Drupal\node\NodeInterface;
 use PHPUnit\Framework\Assert;
 
 /**

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content_persistent\Kernel;
 
+use Drupal\Tests\linkit\Kernel\LinkitKernelTestBase;
 use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
 use Drupal\media\Entity\Media;
 use Drupal\media\Entity\MediaType;
-use Drupal\Tests\linkit\Kernel\LinkitKernelTestBase;
 
 /**
  * Tests media PURL matcher.

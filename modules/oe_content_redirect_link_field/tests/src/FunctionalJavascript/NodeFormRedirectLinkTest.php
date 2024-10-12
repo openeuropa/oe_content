@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content_redirect_link_field\FunctionalJavascript;
 
-use Drupal\field\Entity\FieldConfig;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\node\Traits\NodeCreationTrait;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\link\LinkItemInterface;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\node\Traits\NodeCreationTrait;
 
 /**
  * Tests the redirect link field within the node add/edit form.

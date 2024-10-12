@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_content\Behat\Content;
 
 use Behat\Gherkin\Node\TableNode;
-use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
+use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 
 /**
  * Context to create sub-entities.

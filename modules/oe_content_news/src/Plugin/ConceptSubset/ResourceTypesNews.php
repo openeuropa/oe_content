@@ -29,7 +29,7 @@ class ResourceTypesNews extends ConceptSubsetPluginBase implements PredicateMapp
   /**
    * {@inheritdoc}
    */
-  public function alterQuery(QueryInterface $query, $match_operator, array $concept_schemes = [], string $match = NULL): void {
+  public function alterQuery(QueryInterface $query, $match_operator, array $concept_schemes = [], ?string $match = NULL): void {
     $query->condition('oe_content_news_resource_types_news', 'http://publications.europa.eu/resource/authority/use-context/COM_NEWS');
   }
 

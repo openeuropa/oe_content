@@ -22,6 +22,6 @@ interface ContentUuidResolverInterface {
    * @return \Drupal\Core\Entity\EntityInterface|null
    *   The resolved entity or NULL.
    */
-  public function getEntityByUuid(string $uuid, string $langcode = NULL): ?EntityInterface;
+  public function getEntityByUuid(string $uuid, ?string $langcode = NULL): ?EntityInterface;
 
 }

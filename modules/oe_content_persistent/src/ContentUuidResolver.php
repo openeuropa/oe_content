@@ -58,7 +58,7 @@ class ContentUuidResolver implements ContentUuidResolverInterface {
   /**
    * {@inheritdoc}
    */
-  public function getEntityByUuid(string $uuid, string $langcode = NULL): ?EntityInterface {
+  public function getEntityByUuid(string $uuid, ?string $langcode = NULL): ?EntityInterface {
     $langcode = $langcode ?? LanguageInterface::LANGCODE_DEFAULT;
 
     // Try the static cache first.

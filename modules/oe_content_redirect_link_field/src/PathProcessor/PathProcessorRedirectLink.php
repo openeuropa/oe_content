@@ -56,7 +56,7 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
-  public function processOutbound($path, &$options = [], Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
+  public function processOutbound($path, &$options = [], ?Request $request = NULL, ?BubbleableMetadata $bubbleable_metadata = NULL) {
     try {
       $router = new Router(\Drupal::service('router.route_provider'), \Drupal::service('path.current'), \Drupal::service('url_generator'));
       $router->setContext(\Drupal::service('router.request_context'));
