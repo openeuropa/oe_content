@@ -32,7 +32,7 @@ class Gender extends ConceptSubsetPluginBase implements PredicateMapperInterface
   /**
    * {@inheritdoc}
    */
-  public function alterQuery(QueryInterface $query, $match_operator, array $concept_schemes = [], string $match = NULL): void {
+  public function alterQuery(QueryInterface $query, $match_operator, array $concept_schemes = [], ?string $match = NULL): void {
     $query->condition('oe_content_human_sex_contexts', 'http://publications.europa.eu/resource/authority/use-context/COM_WEB');
   }
 

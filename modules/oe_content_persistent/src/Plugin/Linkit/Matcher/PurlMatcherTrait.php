@@ -22,14 +22,14 @@ trait PurlMatcherTrait {
   /**
    * {@inheritdoc}
    */
-  protected function buildPath(EntityInterface $entity) {
+  protected function buildPath(EntityInterface $entity, array $options = []) {
     return $this->config->get('base_url') . $entity->uuid();
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function createSuggestion(EntityInterface $entity) {
+  protected function createSuggestion(EntityInterface $entity, array $options = []) {
     $suggestion = new EntitySuggestion();
     $suggestion->setLabel($this->buildLabel($entity))
       ->setGroup($this->buildGroup($entity))

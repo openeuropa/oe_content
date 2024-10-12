@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content_persistent\Kernel;
 
-use Drupal\filter\FilterPluginCollection;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\filter\FilterPluginCollection;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\Node;
 

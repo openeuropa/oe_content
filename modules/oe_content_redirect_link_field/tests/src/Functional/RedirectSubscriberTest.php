@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_content_redirect_link_field\Functional;
 
 use Drupal\Core\Url;
+use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\link\LinkItemInterface;
 use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
-use Drupal\Tests\BrowserTestBase;
-use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -217,7 +217,7 @@ class RedirectSubscriberTest extends BrowserTestBase {
    * @return \Psr\Http\Message\ResponseInterface
    *   The response.
    */
-  public function assertRedirect(string $expected, NodeInterface $node, string $cache, int $expected_status_code = 301, string $language = NULL): ResponseInterface {
+  public function assertRedirect(string $expected, NodeInterface $node, string $cache, int $expected_status_code = 301, ?string $language = NULL): ResponseInterface {
     /** @var \GuzzleHttp\ClientInterface $client */
     $client = $this->getHttpClient();
     /** @var \Psr\Http\Message\ResponseInterface $response */

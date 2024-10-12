@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content\Kernel;
 
-use Drupal\language\Entity\ConfigurableLanguage;
-use Drupal\node\Entity\NodeType;
 use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 use Drupal\Tests\user\Traits\UserCreationTrait;
+use Drupal\language\Entity\ConfigurableLanguage;
+use Drupal\node\Entity\NodeType;
 
 /**
  * Tests the generation of the short title token.

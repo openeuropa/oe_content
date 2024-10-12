@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_content_redirect_link_field\Kernel;
 
 use Drupal\Core\Url;
-use Drupal\field\Entity\FieldConfig;
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\language\Entity\ConfigurableLanguage;
-use Drupal\link\LinkItemInterface;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\language\Entity\ConfigurableLanguage;
+use Drupal\link\LinkItemInterface;
 
 /**
  * Test outbound path processor for redirect links.

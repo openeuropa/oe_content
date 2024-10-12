@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_content_publication\Kernel;
 
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
-use Drupal\node\Entity\Node;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
+use Drupal\node\Entity\Node;
 
 /**
  * Tests the Publication content type.

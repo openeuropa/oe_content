@@ -7,14 +7,14 @@ namespace Drupal\Tests\oe_content_sub_entity_document_reference\Functional;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\TestFileCreationTrait;
+use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\BrowserTestBase;
-use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
-use Drupal\Tests\TestFileCreationTrait;
 
 /**
  * Tests the document reference bundles defined in this module.

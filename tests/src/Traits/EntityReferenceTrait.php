@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content\Traits;
 
-use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\field\Traits\EntityReferenceFieldCreationTrait;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Helper trait to handle entity reference fields in Behat tests.

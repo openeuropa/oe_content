@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content_organisation\Kernel;
 
-use Drupal\node\Entity\Node;
 use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
+use Drupal\node\Entity\Node;
 
 /**
  * Test Organisation creation business logic.
