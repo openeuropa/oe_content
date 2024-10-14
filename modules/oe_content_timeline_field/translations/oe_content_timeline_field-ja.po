@@ -2,4 +2,4 @@ msgid ""
 msgstr ""
 
 msgid "Show full timeline"
-msgstr "全時系列を見る"
+msgstr "完全なタイムラインを表示"
