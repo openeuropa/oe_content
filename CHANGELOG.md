@@ -1,11 +1,21 @@
 # Changelog
 
-## [4.1.0](https://github.com/openeuropa/oe_content/tree/4.1.0) (2024-08-28)
+## [4.2.0](https://github.com/openeuropa/oe_content/tree/4.2.0) (2024-10-28)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.1.0...4.2.0)
+
+**Merged pull requests:**
+
+- EWPP-0001: Updating PurlMatcherTrait method signatures. [\#636](https://github.com/openeuropa/oe_content/pull/636) ([upchuk](https://github.com/upchuk))
+- EWPP-4782: Update timeline japanese translation. [\#635](https://github.com/openeuropa/oe_content/pull/635) ([22Alexandra](https://github.com/22Alexandra))
+
+## [4.1.0](https://github.com/openeuropa/oe_content/tree/4.1.0) (2024-08-29)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.0.0...4.1.0)
 
 **Merged pull requests:**
 
+- Release-4.1.0: Update changelog. [\#633](https://github.com/openeuropa/oe_content/pull/633) ([nagyad](https://github.com/nagyad))
 - EWPP-4526: Add Japanese translations. [\#630](https://github.com/openeuropa/oe_content/pull/630) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0](https://github.com/openeuropa/oe_content/tree/4.0.0) (2024-08-05)
