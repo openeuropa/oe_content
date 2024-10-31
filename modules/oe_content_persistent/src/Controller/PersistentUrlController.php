@@ -108,6 +108,10 @@ class PersistentUrlController extends ControllerBase implements ContainerInjecti
       $cache->addCacheableDependency($bubbleable_metadata);
     }
 
+    // Make sure we cache the access result, so it will be invalidated when
+    // the entity gets inaccessible for anonymous users.
+    $access = $entity->access('view', NULL, TRUE);
+    $cache->addCacheableDependency($access);
     $cache->addCacheableDependency($entity);
     $cache->addCacheContexts(['url', 'languages']);
     $response = new TrustedRedirectResponse($generated_url->getGeneratedUrl());
