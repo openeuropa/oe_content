@@ -116,3 +116,15 @@ function oe_content_person_post_update_30001(): void {
     $updated_form_display->save();
   }
 }
+
+/**
+ * Update the oe_role_name field's label.
+ */
+function oe_content_person_post_update_30002(): void {
+  $field = FieldConfig::load('oe_person_job.oe_default.oe_role_name');
+  if (!$field || $field->label() !== 'Role') {
+    return;
+  }
+  $field->setLabel('Role (free text)');
+  $field->save();
+}

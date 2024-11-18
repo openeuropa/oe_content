@@ -148,15 +148,17 @@ function _oe_content_person_oe_person_jobs_validate(array &$element, FormStateIn
     if (empty($item['#entity'])) {
       continue;
     }
+    $is_role_reference_empty = $item['#entity']->get('oe_role_reference')->isEmpty();
+    $is_role_name_empty = $item['#entity']->get('oe_role_name')->isEmpty();
     if ($type === 'eu') {
-      if ($item['#entity']->get('oe_role_reference')->isEmpty() && $item['#entity']->get('oe_role_name')->isEmpty()) {
+      if ($is_role_reference_empty && $is_role_name_empty) {
         $form_state->setError($element, t('The job role of an EU person cannot be empty. Please edit the related job entry and fix its role accordingly.'));
       }
-      if (!$item['#entity']->get('oe_role_reference')->isEmpty() && !$item['#entity']->get('oe_role_name')->isEmpty()) {
-        $form_state->setError($element, t("An EU person\'s job cannot have two roles. Please edit the related job entry and fix its role accordingly."));
+      if (!$is_role_reference_empty && !$is_role_name_empty) {
+        $form_state->setError($element, t("An EU person's job cannot have two roles. Please edit the related job entry and fix its role accordingly."));
       }
     }
-    if ($type === 'non_eu' && $item['#entity']->get('oe_role_name')->isEmpty()) {
+    if ($type === 'non_eu' && $is_role_name_empty) {
       $form_state->setError($element, t('The role "@label" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly.', ['@label' => $item['#entity']->label()]));
     }
   }
@@ -189,11 +191,13 @@ function _oe_content_person_oe_person_job_validate(array &$element, FormStateInt
     if ($key === 'inline_entity_form') {
       continue;
     }
-    if (empty($person_job_values['oe_role_name'][0]['value']) && !isset($person_job_values['oe_role_reference'][0]['target_id'])) {
-      $form_state->setError($element, t("Please fill in one of the Role fields of the EU Person\'s job."));
+    $is_role_reference_set = isset($person_job_values['oe_role_reference'][0]['target_id']);
+    $is_role_name_empty = empty($person_job_values['oe_role_name'][0]['value']);
+    if ($is_role_name_empty && !$is_role_reference_set) {
+      $form_state->setError($element, t("Please fill in one of the Role fields of the EU Person's job."));
     }
-    if (!empty($person_job_values['oe_role_name'][0]['value']) && isset($person_job_values['oe_role_reference'][0]['target_id'])) {
-      $form_state->setError($element, t("Please fill in only one of the Role fields of the Person\'s job."));
+    if (!$is_role_name_empty && $is_role_reference_set) {
+      $form_state->setError($element, t("Please fill in only one of the Role fields of the Person's job."));
     }
   }
 }
