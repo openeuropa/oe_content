@@ -189,14 +189,15 @@ Feature: Event content creation
       | Google+    |
       | Instagram  |
       | Linkedin   |
+      | Mastodon   |
       | Pinterest  |
       | RSS        |
       | Storify    |
+      | Telegram   |
+      | Threads    |
       | X          |
       | Yammer     |
       | YouTube    |
-      | Telegram   |
-      | Mastodon   |
 
   @javascript @av_portal
   @batch1

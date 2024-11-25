@@ -17,14 +17,15 @@ settings:
     google: Google+
     instagram: Instagram
     linkedin: Linkedin
+    mastodon: Mastodon
     pinterest: Pinterest
     rss: RSS
     storify: Storify
+    telegram: Telegram
+    threads: Threads
     twitter: X
     yammer: Yammer
     youtube: YouTube
-    telegram: Telegram
-    mastodon: Mastodon
   allowed_values_function: ''
 module: typed_link
 locked: false

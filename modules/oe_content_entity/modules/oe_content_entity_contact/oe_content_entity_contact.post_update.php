@@ -238,3 +238,18 @@ function oe_content_entity_contact_post_update_00013(): void {
   $field_storage->set('settings', $settings);
   $field_storage->save();
 }
+
+/**
+ * Add Threads option to social media field.
+ */
+function oe_content_entity_contact_post_update_00014(): void {
+  $field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->load('oe_contact.oe_social_media');
+  if (!$field_storage) {
+    return;
+  }
+  $settings = $field_storage->get('settings');
+  $settings['allowed_values']['threads'] = 'Threads';
+  asort($settings['allowed_values']);
+  $field_storage->set('settings', $settings);
+  $field_storage->save();
+}
