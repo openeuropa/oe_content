@@ -92,21 +92,29 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
   }
 
   if ($type !== 'non_eu') {
-    $entity_form['oe_role_name']['#attributes']['style'] = 'display:none';
-    $entity_form['oe_role_reference']['widget'][0]['target_id']['#required'] = TRUE;
+//    $entity_form['oe_role_name']['#attributes']['style'] = 'display:none';
+    $entity_form['oe_role_type']['widget'][0]['value']['#required'] = TRUE;
   }
 
   // Set states based on person type field.
-  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_name', 'non_eu');
-  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_reference', 'eu');
+//  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_name', 'non_eu');
   ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_acting', 'eu');
+  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_type', 'eu');
+  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_role_type', 'oe_role_name', 'enter_role');
+  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_role_type', 'oe_role_reference', 'choose_from_list');
+//  ContentFormUtilities::toggleFieldInvisibilityByValue($entity_form, 'oe_role_type', 'oe_role_name', 'choose_from_list');
   ContentFormUtilities::toggleFieldRequiredByValue($entity_form, 'oe_person_type', 'value', 'non_eu', [
     'oe_role_name',
     'widget',
     0,
   ]);
+//  ContentFormUtilities::toggleFieldRequiredByValue($entity_form, 'oe_person_type', 'target_id', 'eu', [
+//    'oe_role_reference',
+//    'widget',
+//    0,
+//  ]);
   ContentFormUtilities::toggleFieldRequiredByValue($entity_form, 'oe_person_type', 'target_id', 'eu', [
-    'oe_role_reference',
+    'oe_role_type',
     'widget',
     0,
   ]);
@@ -130,22 +138,18 @@ function _oe_content_person_oe_person_jobs_validate(array &$element, FormStateIn
     foreach ($person_jobs as $key => $person_job_values) {
       if ($key === 'inline_entity_form') {
         foreach ($person_job_values['entities'] as $delta => $values) {
-          if ($type !== 'non_eu') {
-            $person_jobs[$key]['entities'][$delta]['form']['oe_role_name'] = [];
-          }
           if ($type !== 'eu') {
             $person_jobs[$key]['entities'][$delta]['form']['oe_role_reference'] = [];
             $person_jobs[$key]['entities'][$delta]['form']['oe_acting'] = [];
+            $person_jobs[$key]['entities'][$delta]['form']['oe_role_type'] = [];
           }
         }
       }
       else {
-        if ($type !== 'non_eu') {
-          $person_jobs[$key]['oe_role_name'] = [];
-        }
         if ($type !== 'eu') {
           $person_jobs[$key]['oe_role_reference'] = [];
           $person_jobs[$key]['oe_acting'] = [];
+          $person_jobs[$key]['oe_role_type'] = [];
         }
       }
     }

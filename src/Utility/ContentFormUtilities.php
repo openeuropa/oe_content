@@ -73,6 +73,38 @@ class ContentFormUtilities {
   }
 
   /**
+   * Toggle invisibility of a field, depending on the value of another field.
+   *
+   * @param array $form
+   *   The form array.
+   * @param string $toggle_field
+   *   The toggle field name.
+   * @param string $dependent_field
+   *   The dependent field name.
+   * @param string $value
+   *   The value that makes the dependent field visible.
+   * @param array $dependent_parents
+   *   An array of parents for the dependent field.
+   */
+  public static function toggleFieldInvisibilityByValue(array &$form, string $toggle_field, string $dependent_field, string $value, array $dependent_parents = []): void {
+    if (!isset($form[$dependent_field])) {
+      return;
+    }
+    $parents_array = array_merge($dependent_parents, [$dependent_field]);
+    if (!NestedArray::keyExists($form, $parents_array)) {
+      return;
+    }
+    $states_array = array_merge($parents_array, ['#states']);
+    NestedArray::setValue($form, $states_array, [
+      'invisible' => [
+        ':input[name="' . $toggle_field . '"]' => [
+          'value' => $value,
+        ],
+      ],
+    ]);
+  }
+
+  /**
    * Toggle required state of a field, depending on the value of another field.
    *
    * @param array $form
