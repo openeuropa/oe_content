@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.3.0](https://github.com/openeuropa/oe_content/tree/4.3.0) (2024-11-27)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.2.0...4.3.0)
+
+**Merged pull requests:**
+
+- EWPP-4968: Add Threads option to social media links. [\#640](https://github.com/openeuropa/oe_content/pull/640) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [4.2.0](https://github.com/openeuropa/oe_content/tree/4.2.0) (2024-10-28)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.1.0...4.2.0)
