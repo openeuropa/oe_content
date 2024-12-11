@@ -73,6 +73,16 @@ class PersistentUrlControllerTest extends BrowserTestBase {
     $this->assertSession()->addressEquals('/foo');
     $this->assertSession()->responseContains('Test node title');
 
+    $node->set('status', FALSE);
+    $node->save();
+
+    // There should be access denied because the node is not published.
+    $this->drupalGet('/content/' . $node->uuid());
+    $this->assertSession()->statusCodeEquals(403);
+
+    $node->set('status', TRUE);
+    $node->save();
+
     // Try the node translation.
     $this->drupalGet('/fr/content/' . $node->uuid());
     $this->assertSession()->statusCodeEquals(200);
