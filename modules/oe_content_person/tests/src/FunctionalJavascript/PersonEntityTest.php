@@ -69,14 +69,14 @@ class PersonEntityTest extends WebDriverTestBase {
     // Add a job to render the job form and assert the visible fields.
     $this->getSession()->getPage()->pressButton('Add new person job');
     $this->assertSession()->assertWaitOnAjaxRequest();
+    // Both role fields are visible for EU Person.
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][0][oe_role_reference][0][target_id]')->isVisible());
+    $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][0][oe_role_name][0][value]')->isVisible());
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][0][oe_acting][value]')->isVisible());
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][0][oe_description][0][value]')->isVisible());
-    $this->assertFalse($this->getSession()->getPage()->findField('oe_person_jobs[form][0][oe_role_name][0][value]')->isVisible());
 
-    // Assert the job required fields.
-    $this->assertEquals('required', $this->getSession()->getPage()->findField('oe_person_jobs[form][0][oe_role_reference][0][target_id]')->getAttribute('required'));
-    $this->assertFalse($this->getSession()->getPage()->findField('oe_person_jobs[form][0][oe_acting][value]')->hasAttribute('required'));
+    // Assert the job role helptext.
+    $this->assertSession()->pageTextContainsOnce('Please fill in one of the Role fields but not both at the same time.');
 
     // Fill in the job fields, they should not be saved after
     // we change the type to non-eu.
@@ -136,18 +136,42 @@ class PersonEntityTest extends WebDriverTestBase {
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]')->isVisible());
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_acting][value]')->isVisible());
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_description][0][value]')->isVisible());
-    $this->assertFalse($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]')->isVisible());
-    $this->assertFalse($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]')->hasAttribute('required'));
-    $this->assertEquals('required', $this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]')->getAttribute('required'));
+    $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]')->isVisible());
 
     // Assert the job does not have a reference role.
     $this->assertEmpty($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]')->getValue());
+    // But it has the custom role.
+    $this->assertSession()->fieldValueEquals('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]', 'Custom Role');
+
+    // Save and assert the person is updated.
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains('Person John Doe has been updated.');
+
+    // Edit and assert the values were kept.
+    $this->drupalGet('/node/1/edit');
+    $job_region = $this->getSession()->getPage()->find('css', '#edit-oe-person-jobs-wrapper');
+    $job_region->pressButton('Edit');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->assertEmpty($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]')->getValue());
+    $this->assertSession()->fieldValueEquals('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]', 'Custom Role');
+
+    // Save without a job role and assert validation.
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]', '');
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains('The job role of an EU person cannot be empty. Please edit the related job entry and fix its role accordingly.');
 
     // Update the job with a reference role and set it to be an acting role.
     $this->getSession()->getPage()->fillField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Adviser (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
     $this->getSession()->getPage()->checkField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_acting][value]');
+    // Add back the custom job role.
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]', 'Custom role');
 
-    // Save the person and assert it was updated.
+    // Save and assert validation.
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains("An EU person's job cannot have two roles. Please edit the related job entry and fix its role accordingly.");
+
+    // Empty the role reference and save the person and assert it was updated.
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', '');
     $this->getSession()->getPage()->pressButton('Save');
     $this->assertSession()->pageTextContains('Person John Doe has been updated.');
 
@@ -156,7 +180,20 @@ class PersonEntityTest extends WebDriverTestBase {
     $job_region = $this->getSession()->getPage()->find('css', '#edit-oe-person-jobs-wrapper');
     $job_region->pressButton('Edit');
     $this->assertSession()->assertWaitOnAjaxRequest();
-    $this->assertSession()->fieldValueEquals('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Adviser (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
+    $this->assertSession()->fieldValueEquals('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', '');
+    $this->assertSession()->fieldValueEquals('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]', 'Custom role');
+    // Empty the custom role and use a role reference.
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_reference][0][target_id]', 'Adviser (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]', '');
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains('Person John Doe has been updated.');
+
+    // Edit the node again and assert the job values where updated.
+    $this->drupalGet('/node/1/edit');
+    $job_region = $this->getSession()->getPage()->find('css', '#edit-oe-person-jobs-wrapper');
+    $job_region->pressButton('Edit');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+    $this->assertEmpty($this->getSession()->getPage()->findField('oe_person_jobs[form][inline_entity_form][entities][0][form][oe_role_name][0][value]')->getValue());
 
     // Change the type of person to non-eu and assert
     // the old job type is no longer stored.
@@ -182,9 +219,23 @@ class PersonEntityTest extends WebDriverTestBase {
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_role_reference][0][target_id]')->isVisible());
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_acting][value]')->isVisible());
     $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_description][0][value]')->isVisible());
-    $this->assertFalse($this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_role_name][0][value]')->isVisible());
-    $this->assertFalse($this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_role_name][0][value]')->hasAttribute('required'));
-    $this->assertEquals('required', $this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_role_reference][0][target_id]')->getAttribute('required'));
+    $this->assertTrue($this->getSession()->getPage()->findField('oe_person_jobs[form][1][oe_role_name][0][value]')->isVisible());
+
+    // Save and assert the validation.
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains("Please fill in one of the Role fields of the EU Person's job.");
+
+    // Fill in both role field and save to assert the validation.
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][1][oe_role_name][0][value]', 'Custom role 2');
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][1][oe_role_reference][0][target_id]', 'Adviser (http://publications.europa.eu/resource/authority/role-qualifier/ADVIS)');
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains("Please fill in only one of the Role fields of the Person's job.");
+
+    // Leave only the job role reference filled in and assert the node is
+    // updated.
+    $this->getSession()->getPage()->fillField('oe_person_jobs[form][1][oe_role_name][0][value]', '');
+    $this->getSession()->getPage()->pressButton('Save');
+    $this->assertSession()->pageTextContains('Person John Doe has been updated.');
   }
 
 }

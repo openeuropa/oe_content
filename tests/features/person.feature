@@ -202,7 +202,7 @@ Feature: Person content creation
     Then I should see "The role \"(Acting) Adviser\" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly."
     When I fill in "Organisation" with "Organisation demo page"
     And I press "Edit" in the "Person jobs" region
-    And I fill in "Role" with "Person job role"
+    And I fill in "Role (free text)" with "Person job role"
     And I press "Save"
     Then I should see "Organisation demo page"
     And I should not see the link "European Patent Office"

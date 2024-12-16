@@ -11,7 +11,6 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\oe_content\Utility\ContentFormUtilities;
-use Drupal\oe_content_person\Entity\PersonJobInterface;
 use Drupal\oe_content_person\PersonNodeWrapper;
 
 /**
@@ -90,14 +89,14 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
     $entity_form['oe_acting']['#attributes']['style'] = 'display:none';
     $entity_form['oe_role_name']['widget'][0]['value']['#required'] = TRUE;
   }
-
   if ($type !== 'non_eu') {
-    $entity_form['oe_role_name']['#attributes']['style'] = 'display:none';
-    $entity_form['oe_role_reference']['widget'][0]['target_id']['#required'] = TRUE;
+    $entity_form['role_helptext'] = [
+      '#markup' => t('Please fill in one of the Role fields but not both at the same time.'),
+      '#weight' => -1,
+    ];
   }
 
   // Set states based on person type field.
-  ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_name', 'non_eu');
   ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_role_reference', 'eu');
   ContentFormUtilities::toggleFieldVisibilityByValue($entity_form, 'oe_person_type', 'oe_acting', 'eu');
   ContentFormUtilities::toggleFieldRequiredByValue($entity_form, 'oe_person_type', 'value', 'non_eu', [
@@ -105,11 +104,7 @@ function oe_content_person_inline_entity_form_entity_form_alter(array &$entity_f
     'widget',
     0,
   ]);
-  ContentFormUtilities::toggleFieldRequiredByValue($entity_form, 'oe_person_type', 'target_id', 'eu', [
-    'oe_role_reference',
-    'widget',
-    0,
-  ]);
+  $entity_form['#element_validate'][] = '_oe_content_person_oe_person_job_validate';
 }
 
 /**
@@ -130,9 +125,6 @@ function _oe_content_person_oe_person_jobs_validate(array &$element, FormStateIn
     foreach ($person_jobs as $key => $person_job_values) {
       if ($key === 'inline_entity_form') {
         foreach ($person_job_values['entities'] as $delta => $values) {
-          if ($type !== 'non_eu') {
-            $person_jobs[$key]['entities'][$delta]['form']['oe_role_name'] = [];
-          }
           if ($type !== 'eu') {
             $person_jobs[$key]['entities'][$delta]['form']['oe_role_reference'] = [];
             $person_jobs[$key]['entities'][$delta]['form']['oe_acting'] = [];
@@ -140,9 +132,6 @@ function _oe_content_person_oe_person_jobs_validate(array &$element, FormStateIn
         }
       }
       else {
-        if ($type !== 'non_eu') {
-          $person_jobs[$key]['oe_role_name'] = [];
-        }
         if ($type !== 'eu') {
           $person_jobs[$key]['oe_role_reference'] = [];
           $person_jobs[$key]['oe_acting'] = [];
@@ -156,30 +145,59 @@ function _oe_content_person_oe_person_jobs_validate(array &$element, FormStateIn
   // changed.
   foreach (Element::children($complete_form['oe_person_jobs']['widget']['entities']) as $key) {
     $item = $complete_form['oe_person_jobs']['widget']['entities'][$key];
-    if (!empty($item['#entity']) && !_oe_content_person_validate_person_job_entity($item['#entity'], $type)) {
+    if (empty($item['#entity'])) {
+      continue;
+    }
+    $is_role_reference_empty = $item['#entity']->get('oe_role_reference')->isEmpty();
+    $is_role_name_empty = $item['#entity']->get('oe_role_name')->isEmpty();
+    if ($type === 'eu') {
+      if ($is_role_reference_empty && $is_role_name_empty) {
+        $form_state->setError($element, t('The job role of an EU person cannot be empty. Please edit the related job entry and fix its role accordingly.'));
+      }
+      if (!$is_role_reference_empty && !$is_role_name_empty) {
+        $form_state->setError($element, t("An EU person's job cannot have two roles. Please edit the related job entry and fix its role accordingly."));
+      }
+    }
+    if ($type === 'non_eu' && $is_role_name_empty) {
       $form_state->setError($element, t('The role "@label" is not compatible with the type of person currently selected. Please edit the related job entry and fix its role accordingly.', ['@label' => $item['#entity']->label()]));
     }
   }
 }
 
 /**
- * Validation of Person job entity based on the person type.
+ * Custom validation for new job entities for EU Person.
  *
- * @param \Drupal\oe_content_person\Entity\PersonJobInterface $entity
- *   Person job entity.
- * @param string $type
- *   Person type.
- *
- * @return bool
- *   FALSE if entity's role field is empty.
+ * @param array $element
+ *   The element being processed.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $complete_form
+ *   The complete form structure.
  */
-function _oe_content_person_validate_person_job_entity(PersonJobInterface $entity, string $type): bool {
-  if ($type === 'eu' && $entity->get('oe_role_reference')->isEmpty()) {
-    return FALSE;
-  }
-  if ($type === 'non_eu' && $entity->get('oe_role_name')->isEmpty()) {
-    return FALSE;
+function _oe_content_person_oe_person_job_validate(array &$element, FormStateInterface $form_state, array &$complete_form) {
+  $type = $form_state->getValue(['oe_person_type', 0, 'value']);
+  // If it's not an EU person, there is nothing to validate.
+  if ($type !== 'eu') {
+    return;
   }
 
-  return TRUE;
+  // If there are no new job entities, there is nothing to validate.
+  $person_jobs = $form_state->getValue(['oe_person_jobs', 'form']);
+  if (!is_array($person_jobs)) {
+    return;
+  }
+
+  foreach ($person_jobs as $key => $person_job_values) {
+    if ($key === 'inline_entity_form') {
+      continue;
+    }
+    $is_role_reference_set = isset($person_job_values['oe_role_reference'][0]['target_id']);
+    $is_role_name_empty = empty($person_job_values['oe_role_name'][0]['value']);
+    if ($is_role_name_empty && !$is_role_reference_set) {
+      $form_state->setError($element, t("Please fill in one of the Role fields of the EU Person's job."));
+    }
+    if (!$is_role_name_empty && $is_role_reference_set) {
+      $form_state->setError($element, t("Please fill in only one of the Role fields of the Person's job."));
+    }
+  }
 }
