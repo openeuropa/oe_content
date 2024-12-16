@@ -1,4 +1,13 @@
-# Changelog
+# Change log
+
+## [4.4.0](https://github.com/openeuropa/oe_content/tree/4.4.0) (2024-12-16)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.3.0...4.4.0)
+
+**Merged pull requests:**
+
+- EWPP-4860: Cache the access result of the resource in PersistentUrlController. [\#638](https://github.com/openeuropa/oe_content/pull/638) ([nagyad](https://github.com/nagyad))
+- EWPP-4927: Person job Role plaintext field should always be visible but required only for non-EU. [\#639](https://github.com/openeuropa/oe_content/pull/639) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.3.0](https://github.com/openeuropa/oe_content/tree/4.3.0) (2024-11-27)
 
