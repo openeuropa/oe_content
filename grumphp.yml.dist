@@ -1,36 +1,12 @@
 imports:
-  - { resource: vendor/openeuropa/code-review/dist/drupal-conventions.yml }
-
+  - { resource: ./vendor/openeuropa/code-review-drupal/dist/oe-component-conventions.yml }
 grumphp:
-  git_hook_variables:
-    EXEC_GRUMPHP_COMMAND: 'docker-compose exec -T web'
-  extensions:
-    - OpenEuropa\CodeReview\ExtraTasksExtension
-
-parameters:
-  tasks.phpcs.ignore_patterns:
-    - build/
-    - node_modules/
-    - vendor/
-  tasks.phpcs.triggered_by:
-    - php
-    - module
-    - inc
-    - theme
-    - install
-    - yml
-
-  extra_tasks:
+  tasks:
     phpparser:
       ignore_patterns:
-        - build/
-        - node_modules/
         - vendor/
-      visitors:
-        declare_strict_types: ~
-      triggered_by:
-        - php
-        - module
-        - inc
-        - theme
-        - install
+  git_hook_variables:
+    EXEC_GRUMPHP_COMMAND: 'docker-compose exec -T web'
+
+parameters:
+  tasks.phpstan.configuration: phpstan.neon.dist

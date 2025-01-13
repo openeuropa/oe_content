@@ -40,9 +40,11 @@ trait EntityReferenceTrait {
     $ids = [];
     foreach ($items as $item) {
       if ($target_entity_type_id === 'skos_concept') {
+        // @phpstan-ignore-next-line
         $entity = $this->loadSkosConceptEntityByLabel($item, $configuration['concept_schemes']);
       }
       else {
+        // @phpstan-ignore-next-line
         $entity = $this->loadEntityByLabel($target_entity_type_id, $item, $configuration['target_bundles']);
       }
       $ids[] = $entity->id();

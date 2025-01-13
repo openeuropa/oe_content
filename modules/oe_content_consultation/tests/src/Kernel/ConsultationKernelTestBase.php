@@ -62,7 +62,7 @@ abstract class ConsultationKernelTestBase extends SparqlKernelTestBase {
       'oe_content_departments_field',
       'oe_content_consultation',
     ]);
-    module_load_include('install', 'oe_content');
+    $this->container->get('module_handler')->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
   }
 

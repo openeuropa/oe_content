@@ -72,7 +72,7 @@ class AuthorSkosUpdaterTest extends SparqlKernelTestBase {
       'oe_content_sub_entity_author',
       'oe_content_sub_entity_author_test',
     ]);
-    module_load_include('install', 'oe_content');
+    $this->container->get('module_handler')->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
   }
 

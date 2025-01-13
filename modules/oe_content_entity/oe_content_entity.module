@@ -46,6 +46,7 @@ function oe_content_entity_default_preprocess(array &$variables, string $hook): 
 function oe_content_entity_default_theme_suggestion(array &$variables, string $hook): array {
   // We assume that the entity name and the theme hook are the same.
   $entity_key = '#' . $hook;
+  $entity = NULL;
   if (isset($variables['elements'][$entity_key])) {
     $entity = $variables['elements'][$entity_key];
   }
