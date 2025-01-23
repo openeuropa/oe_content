@@ -11,10 +11,12 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Utility\Error;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 use Drupal\oe_content_persistent\ContentUrlResolverInterface;
 use Drupal\oe_content_persistent\ContentUuidResolverInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -58,6 +60,13 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
   protected $siteConfig;
 
   /**
+   * A logger instance.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $logger;
+
+  /**
    * Constructs a new FilterPurl object.
    *
    * @param array $configuration
@@ -72,13 +81,16 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
    *   The content UUID resolver service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The configuration factory.
+   * @param \Psr\Log\LoggerInterface|null $logger
+   *   A logger instance.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver, ConfigFactoryInterface $config_factory) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ContentUrlResolverInterface $url_resolver, ContentUuidResolverInterface $uuid_resolver, ConfigFactoryInterface $config_factory, ?LoggerInterface $logger = NULL) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->contentUrlResolver = $url_resolver;
     $this->contentUuidResolver = $uuid_resolver;
     $this->purlConfig = $config_factory->get('oe_content_persistent.settings');
     $this->siteConfig = $config_factory->get('system.site');
+    $this->logger = $logger;
   }
 
   /**
@@ -91,7 +103,8 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
       $plugin_definition,
       $container->get('oe_content_persistent.url_resolver'),
       $container->get('oe_content_persistent.uuid_resolver'),
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('logger.factory')->get('filter_purl')
     );
   }
 
@@ -144,7 +157,7 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
         $result->addCacheableDependency($url);
       }
       catch (\Exception $e) {
-        watchdog_exception('filter_purl', $e);
+        Error::logException($this->logger, $e);
       }
     }
 

@@ -16,11 +16,11 @@ class PublicationFieldsRequiredValidator extends ConstraintValidator {
    * {@inheritdoc}
    */
   public function validate($node, Constraint $constraint) {
-    /** @var \Drupal\node\NodeInterface $node */
     if (!isset($node) || $node->getType() !== 'oe_publication') {
       return;
     }
 
+    /** @var \Drupal\node\NodeInterface $node */
     $is_collection = (bool) $node->get('oe_publication_collection')->value;
 
     if ($is_collection && $node->get('oe_publication_publications')->isEmpty()) {

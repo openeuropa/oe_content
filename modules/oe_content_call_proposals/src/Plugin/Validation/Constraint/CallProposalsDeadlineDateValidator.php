@@ -18,11 +18,11 @@ class CallProposalsDeadlineDateValidator extends ConstraintValidator {
    * {@inheritdoc}
    */
   public function validate($node, Constraint $constraint) {
-    /** @var \Drupal\node\NodeInterface $node */
     if (!isset($node) || $node->getType() !== 'oe_call_proposals') {
       return;
     }
 
+    /** @var \Drupal\node\NodeInterface $node */
     $wrapper = CallForProposalsNodeWrapper::getInstance($node);
 
     $deadline_model = $wrapper->getModel();

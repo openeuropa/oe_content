@@ -16,6 +16,27 @@ abstract class CallEntityWrapperBase extends EntityWrapperBase implements CallEn
   use StringTranslationTrait;
 
   /**
+   * Contains the entity bundle id.
+   *
+   * @var string
+   */
+  protected $entityBundle = '';
+
+  /**
+   * Contains the Publication date field id.
+   *
+   * @var string
+   */
+  protected $openingDate = '';
+
+  /**
+   * Contains the Deadline date field id.
+   *
+   * @var string
+   */
+  protected $deadline = '';
+
+  /**
    * {@inheritdoc}
    */
   public function getEntityId(): string {

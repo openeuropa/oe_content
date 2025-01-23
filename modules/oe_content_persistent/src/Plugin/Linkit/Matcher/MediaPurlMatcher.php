@@ -215,7 +215,7 @@ class MediaPurlMatcher extends EntityMatcher {
           ],
         ];
         $thumbnail = $entity->thumbnail->view($thumbnail_display_options);
-        $description_array[] = (string) $this->renderer->renderPlain(
+        $description_array[] = (string) $this->renderer->renderInIsolation(
           $thumbnail
         );
       }

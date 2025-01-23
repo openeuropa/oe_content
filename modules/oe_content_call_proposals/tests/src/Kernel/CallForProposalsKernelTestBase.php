@@ -58,7 +58,7 @@ abstract class CallForProposalsKernelTestBase extends SparqlKernelTestBase {
     $this->installEntitySchema('node');
     $this->installEntitySchema('media');
     $this->installEntitySchema('entity_test');
-    module_load_include('install', 'oe_content_documents_field');
+    $this->container->get('module_handler')->loadInclude('oe_content_documents_field', 'install');
     oe_content_documents_field_install(FALSE);
     $this->installConfig([
       'field',
@@ -69,7 +69,7 @@ abstract class CallForProposalsKernelTestBase extends SparqlKernelTestBase {
       'oe_content_social_media_links_field',
       'oe_content_call_proposals',
     ]);
-    module_load_include('install', 'oe_content');
+    $this->container->get('module_handler')->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
   }
 

@@ -39,7 +39,7 @@ class BaseFieldsTest extends SparqlKernelTestBase {
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
     $this->installConfig(['field', 'node']);
-    module_load_include('install', 'oe_content');
+    $this->container->get('module_handler')->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
   }
 

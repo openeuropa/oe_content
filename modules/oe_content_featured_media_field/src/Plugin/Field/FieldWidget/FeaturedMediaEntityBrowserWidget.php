@@ -345,6 +345,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
     // Determine if we're submitting and if submit came from this widget.
     $is_relevant_submit = FALSE;
     $triggering_element = $form_state->getTriggeringElement();
+    $field_name_key = 2;
     if ($triggering_element) {
       $last_parent = end($triggering_element['#parents']);
       if (in_array($last_parent, [
@@ -363,7 +364,7 @@ class FeaturedMediaEntityBrowserWidget extends EntityReferenceBrowserWidget {
         $is_relevant_submit &= ($triggering_element['#parents'][$field_name_key] === $this->fieldDefinition->getName()) &&
           (array_slice($triggering_element['#parents'], 0, count($element['#field_parents'])) == $element['#field_parents']);
       }
-    };
+    }
 
     if ($is_relevant_submit) {
       // Submit was triggered by hidden "target_id" element when entities were

@@ -78,7 +78,7 @@ abstract class EventKernelTestBase extends SparqlKernelTestBase {
       'oe_content_social_media_links_field',
       'oe_content_event',
     ]);
-    module_load_include('install', 'oe_content');
+    $this->container->get('module_handler')->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
   }
 

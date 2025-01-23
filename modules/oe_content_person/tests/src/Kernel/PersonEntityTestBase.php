@@ -75,7 +75,7 @@ abstract class PersonEntityTestBase extends EntityKernelTestBase {
     $this->installSchema('node', ['node_access']);
     $this->installSchema('file', ['file_usage']);
 
-    module_load_include('install', 'oe_content');
+    $this->container->get('module_handler')->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
   }
 

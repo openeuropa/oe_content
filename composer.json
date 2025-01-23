@@ -36,13 +36,13 @@
         "mikey179/vfsstream": "^1.6",
         "nikic/php-parser": "^4.18",
         "openeuropa/behat-transformation-context": "~0.2",
-        "openeuropa/code-review": "^2.0",
+        "openeuropa/code-review-drupal": "^1.0.0-alpha",
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha6",
         "openeuropa/oe_corporate_site_info": "^1.0",
         "openeuropa/oe_link_lists": "~0.21",
         "openeuropa/oe_multilingual": "^1.18",
         "openeuropa/oe_time_caching": "^1.5",
-        "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta6",
+        "openeuropa/task-runner-drupal-project-symlink": "^1.0",
         "openeuropa/task-runner-ensure-behat-batching": "^1.0",
         "phpspec/prophecy-phpunit": "^2",
         "symfony/phpunit-bridge": "^6.0"
@@ -70,6 +70,14 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/openeuropa/DrupalDriver.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/openeuropa/code-review-drupal.git"
         }
     ],
     "extra": {
@@ -112,6 +120,7 @@
             "drupal/core-composer-scaffold": true,
             "enable-patching": true,
             "phpro/grumphp": true,
+            "phpro/grumphp-shim": true,
             "phpstan/extension-installer": true
         }
     }

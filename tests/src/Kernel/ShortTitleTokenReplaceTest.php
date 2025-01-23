@@ -48,7 +48,7 @@ class ShortTitleTokenReplaceTest extends SparqlKernelTestBase {
     $this->installEntitySchema('node');
     $this->installSchema('node', 'node_access');
     $this->installConfig(['field', 'filter', 'node', 'system']);
-    module_load_include('install', 'oe_content');
+    $this->container->get('module_handler')->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     ConfigurableLanguage::createFromLangcode('fr')->save();

@@ -67,9 +67,9 @@ class PublicationEntityTest extends EntityKernelTestBase {
       $this->installEntitySchema($entity);
     }
 
-    module_load_include('install', 'oe_content_documents_field');
+    $this->container->get('module_handler')->loadInclude('oe_content_documents_field', 'install');
     oe_content_documents_field_install(FALSE);
-    module_load_include('install', 'oe_content');
+    $this->container->get('module_handler')->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     $this->installConfig([

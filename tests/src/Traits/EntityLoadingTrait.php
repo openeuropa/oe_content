@@ -19,13 +19,13 @@ trait EntityLoadingTrait {
    *   Entity type ID.
    * @param string $label
    *   Entity label.
-   * @param string|array $bundles
+   * @param array|string|null $bundles
    *   Entity bundle ID, or array of entity bundle IDs.
    *
    * @return \Drupal\Core\Entity\EntityInterface
    *   Entity object, if any.
    */
-  protected function loadEntityByLabel(string $entity_type, string $label, $bundles = NULL): EntityInterface {
+  protected function loadEntityByLabel(string $entity_type, string $label, array|string|null $bundles = NULL): EntityInterface {
     $bundles = (array) $bundles;
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
     $label_key = $storage->getEntityType()->getKey('label');
@@ -41,7 +41,7 @@ trait EntityLoadingTrait {
     $entities = $storage->loadByProperties($properties);
 
     if (empty($entities)) {
-      $bundles = $bundles ?? 'of type ' . implode(', ', $bundles);
+      $bundles = 'of type ' . implode(', ', $bundles);
       throw new \InvalidArgumentException("No '$entity_type' entity {$bundles}with label '$label' has been found.");
     }
 

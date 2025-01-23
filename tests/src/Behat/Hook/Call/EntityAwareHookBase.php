@@ -20,6 +20,7 @@ abstract class EntityAwareHookBase extends EntityHook {
     if ($scope instanceof EntityAwareHookScopeInterface) {
       return $scope->getEntityType() . '.' . $scope->getBundle() === $this->getFilterString();
     }
+    return FALSE;
   }
 
   /**
