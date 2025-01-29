@@ -1,33 +1,40 @@
-# Change log
+# Change Log
+
+## [4.5.0](https://github.com/openeuropa/oe_content/tree/4.5.0) (2025-01-29)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.4.0...4.5.0)
+
+**Merged pull requests:**
+
+- EWPP-4991: Ensure PHP8.3 compatibility. [\#644](https://github.com/openeuropa/oe_content/pull/644) ([nagyad](https://github.com/nagyad))
 
 ## [4.4.0](https://github.com/openeuropa/oe_content/tree/4.4.0) (2024-12-16)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.3.0...4.4.0)
 
 **Merged pull requests:**
 
+- Release 4.4.0 changelog. [\#643](https://github.com/openeuropa/oe_content/pull/643) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4927: Person job Role plaintext field should always be visible but required only for non-EU. [\#639](https://github.com/openeuropa/oe_content/pull/639) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4860: Cache the access result of the resource in PersistentUrlController. [\#638](https://github.com/openeuropa/oe_content/pull/638) ([nagyad](https://github.com/nagyad))
 - EWPP-4927: Person job Role plaintext field should always be visible but required only for non-EU. [\#639](https://github.com/openeuropa/oe_content/pull/639) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.3.0](https://github.com/openeuropa/oe_content/tree/4.3.0) (2024-11-27)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.2.0...4.3.0)
 
 **Merged pull requests:**
 
+- Prepare changelog for release 4.3.0. [\#642](https://github.com/openeuropa/oe_content/pull/642) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4968: Add Threads option to social media links. [\#640](https://github.com/openeuropa/oe_content/pull/640) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.2.0](https://github.com/openeuropa/oe_content/tree/4.2.0) (2024-10-28)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.1.0...4.2.0)
 
 **Merged pull requests:**
 
+- Release-4.2.0: Update changelog. [\#637](https://github.com/openeuropa/oe_content/pull/637) ([nagyad](https://github.com/nagyad))
 - EWPP-0001: Updating PurlMatcherTrait method signatures. [\#636](https://github.com/openeuropa/oe_content/pull/636) ([upchuk](https://github.com/upchuk))
 - EWPP-4782: Update timeline japanese translation. [\#635](https://github.com/openeuropa/oe_content/pull/635) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.1.0](https://github.com/openeuropa/oe_content/tree/4.1.0) (2024-08-29)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.0.0...4.1.0)
 
 **Merged pull requests:**
@@ -36,7 +43,6 @@
 - EWPP-4526: Add Japanese translations. [\#630](https://github.com/openeuropa/oe_content/pull/630) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0](https://github.com/openeuropa/oe_content/tree/4.0.0) (2024-08-05)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.3.0...4.0.0)
 
 **Merged pull requests:**
@@ -53,7 +59,6 @@
 - EWPP-4233: Simpler redirect link path processing. [\#620](https://github.com/openeuropa/oe_content/pull/620) ([upchuk](https://github.com/upchuk))
 
 ## [3.3.0](https://github.com/openeuropa/oe_content/tree/3.3.0) (2024-06-11)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.2.0...3.3.0)
 
 **Merged pull requests:**
@@ -63,7 +68,6 @@
 - EWPP-4041: Test typed\_link patch. [\#615](https://github.com/openeuropa/oe_content/pull/615) ([nagyad](https://github.com/nagyad))
 
 ## [3.2.0](https://github.com/openeuropa/oe_content/tree/3.2.0) (2024-04-16)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.1.1...3.2.0)
 
 **Merged pull requests:**
@@ -74,7 +78,6 @@
 - EWPP-3846: Refactor WISYWIG trait and context for CKEditor5. [\#608](https://github.com/openeuropa/oe_content/pull/608) ([nagyad](https://github.com/nagyad))
 
 ## [3.1.1](https://github.com/openeuropa/oe_content/tree/3.1.1) (2024-02-09)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.1.0...3.1.1)
 
 **Merged pull requests:**
@@ -83,7 +86,6 @@
 - EWPP-3855: Add repo name to the D10.1 patching instructions. [\#613](https://github.com/openeuropa/oe_content/pull/613) ([nagyad](https://github.com/nagyad))
 
 ## [3.1.0](https://github.com/openeuropa/oe_content/tree/3.1.0) (2024-02-08)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0...3.1.0)
 
 **Merged pull requests:**
@@ -92,7 +94,6 @@
 - EWPP-3855: Allow composer-patches v2. [\#611](https://github.com/openeuropa/oe_content/pull/611) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0](https://github.com/openeuropa/oe_content/tree/3.0.0) (2024-02-06)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta4...3.0.0)
 
 **Closed issues:**
@@ -108,7 +109,6 @@
 - EWPP-3855: Support D10.2 and drop D9. [\#609](https://github.com/openeuropa/oe_content/pull/609) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-beta4](https://github.com/openeuropa/oe_content/tree/3.0.0-beta4) (2023-12-13)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta3...3.0.0-beta4)
 
 **Merged pull requests:**
@@ -117,7 +117,6 @@
 - EWPP-3827: Drop 9.4 core support and update entity\_browser patch and selenium. [\#603](https://github.com/openeuropa/oe_content/pull/603) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-beta3](https://github.com/openeuropa/oe_content/tree/3.0.0-beta3) (2023-11-21)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta2...3.0.0-beta3)
 
 **Merged pull requests:**
@@ -127,7 +126,6 @@
 - EWPP-3502: Change skos\_concept term for content owner field. [\#596](https://github.com/openeuropa/oe_content/pull/596) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.0.0-beta2](https://github.com/openeuropa/oe_content/tree/3.0.0-beta2) (2023-09-18)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-beta1...3.0.0-beta2)
 
 **Merged pull requests:**
@@ -139,7 +137,6 @@
 - EWPP-3349: Update the CFT Opening date field and the logic to determine the status. [\#590](https://github.com/openeuropa/oe_content/pull/590) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta1](https://github.com/openeuropa/oe_content/tree/3.0.0-beta1) (2023-06-30)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha11...3.0.0-beta1)
 
 **Merged pull requests:**
@@ -150,7 +147,6 @@
 - EWPP-3070: Make subject field required on pages. [\#576](https://github.com/openeuropa/oe_content/pull/576) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [3.0.0-alpha11](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha11) (2023-05-04)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha10...3.0.0-alpha11)
 
 **Merged pull requests:**
@@ -159,7 +155,6 @@
 - EWPP-3008: D10 compatibility. [\#581](https://github.com/openeuropa/oe_content/pull/581) ([brummbar](https://github.com/brummbar))
 
 ## [3.0.0-alpha10](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha10) (2023-04-21)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha9...3.0.0-alpha10)
 
 **Merged pull requests:**
@@ -169,7 +164,6 @@
 - EWPP-2814: Adapt the timeline field processor. [\#580](https://github.com/openeuropa/oe_content/pull/580) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-alpha9](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha9) (2023-03-21)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha8...3.0.0-alpha9)
 
 **Merged pull requests:**
@@ -178,7 +172,6 @@
 - EWPP-3056: Introduce new decimal budget field for project content type. [\#573](https://github.com/openeuropa/oe_content/pull/573) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-alpha8](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha8) (2023-03-09)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha7...3.0.0-alpha8)
 
 **Merged pull requests:**
@@ -187,7 +180,6 @@
 - Remove IEF patch. [\#577](https://github.com/openeuropa/oe_content/pull/577) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-alpha7](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha7) (2023-03-06)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha6...3.0.0-alpha7)
 
 **Merged pull requests:**
@@ -209,7 +201,6 @@
 - EWPP-2744: Create the Person sub entity. [\#554](https://github.com/openeuropa/oe_content/pull/554) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [3.0.0-alpha6](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha6) (2023-01-04)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha5...3.0.0-alpha6)
 
 **Closed issues:**
@@ -226,7 +217,6 @@
 - EWPP-2714: Remove required fields constraint for Event Description field group. [\#552](https://github.com/openeuropa/oe_content/pull/552) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-alpha5](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha5) (2022-11-04)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha4...3.0.0-alpha5)
 
 **Merged pull requests:**
@@ -236,7 +226,6 @@
 - EWPP-2550: Change various content type date field widgets to datepicker. [\#549](https://github.com/openeuropa/oe_content/pull/549) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-alpha4](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha4) (2022-08-02)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha3...3.0.0-alpha4)
 
 **Merged pull requests:**
@@ -252,7 +241,6 @@
 - OEL-1550: Make oe\_content\_publication optional in oe\_content\_sub\_entity\_document\_reference. [\#535](https://github.com/openeuropa/oe_content/pull/535) ([escuriola](https://github.com/escuriola))
 
 ## [3.0.0-alpha3](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha3) (2022-06-22)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha2...3.0.0-alpha3)
 
 **Merged pull requests:**
@@ -263,7 +251,6 @@
 - EWPP-2194: Fix dependency from composer patches. [\#532](https://github.com/openeuropa/oe_content/pull/532) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [3.0.0-alpha2](https://github.com/openeuropa/oe_content/tree/3.0.0-alpha2) (2022-04-11)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/3.0.0-alpha1...3.0.0-alpha2)
 
 **Merged pull requests:**
@@ -285,4 +272,4 @@
 
 
 
-\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
+\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
