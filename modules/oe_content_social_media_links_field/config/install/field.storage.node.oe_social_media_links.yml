@@ -26,6 +26,7 @@ settings:
     twitter: X
     yammer: Yammer
     youtube: YouTube
+    chain: Other
   allowed_values_function: ''
 module: typed_link
 locked: false

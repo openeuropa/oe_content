@@ -198,6 +198,7 @@ Feature: Event content creation
       | X          |
       | Yammer     |
       | YouTube    |
+      | Other      |
 
   @javascript @av_portal
   @batch1
