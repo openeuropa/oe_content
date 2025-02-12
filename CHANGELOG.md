@@ -1,10 +1,18 @@
 # Change Log
 
+## [4.6.0](https://github.com/openeuropa/oe_content/tree/4.6.0) (2025-02-12)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.5.0...4.6.0)
+
+**Merged pull requests:**
+
+- EWPP-5181: Add Other option to social media fields. [\#646](https://github.com/openeuropa/oe_content/pull/646) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [4.5.0](https://github.com/openeuropa/oe_content/tree/4.5.0) (2025-01-29)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.4.0...4.5.0)
 
 **Merged pull requests:**
 
+- Release-4.5.0: Update changelog. [\#645](https://github.com/openeuropa/oe_content/pull/645) ([nagyad](https://github.com/nagyad))
 - EWPP-4991: Ensure PHP8.3 compatibility. [\#644](https://github.com/openeuropa/oe_content/pull/644) ([nagyad](https://github.com/nagyad))
 
 ## [4.4.0](https://github.com/openeuropa/oe_content/tree/4.4.0) (2024-12-16)
