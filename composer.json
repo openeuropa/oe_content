@@ -16,12 +16,13 @@
         "openeuropa/rdf_skos": "^1.0.0-alpha10"
     },
     "require-dev": {
-        "behat/mink-selenium2-driver": "1.6.0",
+        "lullabot/mink-selenium2-driver": "1.6.0 as 1.7.3",
         "composer/installers": "^1.5 || ^2.3",
         "drupal/address": "^1.11 || ^2.0",
         "drupal/composite_reference": "^2.2",
         "drupal/config_devel": "^1.9",
         "drupal/core-composer-scaffold": "^10 || ^11",
+        "drupal/core-dev": "^10 || ^11",
         "drupal/datetime_testing": "^1.0",
         "drupal/description_list_field": "^1.0.0-alpha5",
         "drupal/drupal-extension": "^5.0",
@@ -33,8 +34,6 @@
         "drupal/typed_link": "^2.1",
         "drush/drush": "^12.4 || ^13",
         "friends-of-behat/service-container-extension": "^1.0",
-        "mikey179/vfsstream": "^1.6",
-        "nikic/php-parser": "^4.18",
         "openeuropa/behat-transformation-context": "~0.2",
         "openeuropa/code-review-drupal": "^1.0.0-alpha",
         "openeuropa/oe_corporate_countries": "^2.3",
@@ -43,9 +42,7 @@
         "openeuropa/oe_multilingual": "^1.18",
         "openeuropa/oe_time_caching": "^1.8",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0",
-        "openeuropa/task-runner-ensure-behat-batching": "^1.0",
-        "phpspec/prophecy-phpunit": "^2",
-        "symfony/phpunit-bridge": "^6.0"
+        "openeuropa/task-runner-ensure-behat-batching": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -98,9 +95,7 @@
             }
         },
         "_readme": [
-            "Explicit requirement of symfony/phpunit-bridge to replace drupal/core-dev testing classes and traits.",
-            "Explicit requirement of behat/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests.",
-            "Explicit requirement of nikic/php-parser as ^5.0 generates GrumPHP Parser issues."
+            "Explicit requirement of lullabot/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests. Aliased as 1.7.3 because core-dev requires it on that version."
         ]
     },
     "config": {
