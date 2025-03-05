@@ -2,7 +2,7 @@ name: 'OpenEuropa Call for proposals Content'
 description: 'Contains the EC Call for proposals content type.'
 package: OpenEuropa
 type: module
-core_version_requirement: ^10
+core_version_requirement: ^10 || ^11
 
 dependencies:
   - link:link
