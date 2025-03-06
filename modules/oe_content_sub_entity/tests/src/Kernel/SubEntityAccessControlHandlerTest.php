@@ -15,6 +15,8 @@ use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Tests access handler.
@@ -154,6 +156,9 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
    */
   public function testCreateAccess(string $request_format, AccessResultInterface $expected_result): void {
     $request = new Request();
+    // Add a mock session on the request before pushing it on the stack.
+    // See: https://www.drupal.org/node/3337193
+    $request->setSession(new Session(new MockArraySessionStorage()));
     $request->setRequestFormat($request_format);
     $this->container->get('request_stack')->push($request);
     $result = $this->accessControlHandler->createAccess(NULL, NULL, [], TRUE);
