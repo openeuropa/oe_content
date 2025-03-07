@@ -45,4 +45,4 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityTypeBase;
  *   }
  * )
  */
-class SubEntityTypeTest extends SubEntityTypeBase {}
+class TestSubEntityType extends SubEntityTypeBase {}

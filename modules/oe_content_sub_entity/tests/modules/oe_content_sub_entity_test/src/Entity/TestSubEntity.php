@@ -48,4 +48,4 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityBase;
  *   content_translation_ui_skip = TRUE,
  * )
  */
-class SubEntityTest extends SubEntityBase {}
+class TestSubEntity extends SubEntityBase {}

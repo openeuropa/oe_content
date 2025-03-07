@@ -55,4 +55,4 @@ use Drupal\oe_content_entity\Entity\CorporateEntityBase;
  *  type = {"entity"}
  * )
  */
-class CorporateEntityTest extends CorporateEntityBase {}
+class TestCorporateEntity extends CorporateEntityBase {}
