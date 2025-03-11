@@ -17,7 +17,6 @@ use Drupal\Core\TypedData\DataDefinition;
  *   label = @Translation("Featured media"),
  *   module = "oe_content_featured_media_field",
  *   description = @Translation("Stores a featured media item and caption."),
- *   category = @Translation("OpenEuropa"),
  *   default_formatter = "oe_featured_media_label",
  *   default_widget = "oe_featured_media_autocomplete",
  *   column_groups = {
