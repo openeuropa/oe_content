@@ -14,6 +14,7 @@ use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Prophecy\Prophet;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
@@ -171,9 +172,10 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
    * @return array
    *   Expected results.
    */
-  public function createAccessTestCases(): array {
+  public static function createAccessTestCases(): array {
     $container = new ContainerBuilder();
-    $cache_contexts_manager = $this->prophesize(CacheContextsManager::class);
+    $prophet = new Prophet();
+    $cache_contexts_manager = $prophet->prophesize(CacheContextsManager::class);
     $cache_contexts_manager->assertValidTokens()->willReturn(TRUE);
     $cache_contexts_manager->reveal();
     $container->set('cache_contexts_manager', $cache_contexts_manager);
