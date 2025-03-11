@@ -51,7 +51,7 @@ class NodeFormRedirectLinkTest extends WebDriverTestBase {
 
     $this->nodeType = NodeType::create([
       'type' => 'test_with_redirect_link',
-      'title' => 'test Node type',
+      'name' => 'test Node type',
     ]);
     $this->nodeType->save();
 
