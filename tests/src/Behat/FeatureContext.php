@@ -9,6 +9,7 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ExpectationException;
+use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\Tests\oe_content\Traits\UtilityTrait;
 use Drupal\node\NodeInterface;
@@ -20,6 +21,54 @@ use PHPUnit\Framework\Assert;
 class FeatureContext extends RawDrupalContext {
 
   use UtilityTrait;
+
+  /**
+   * Stores the originally configured pattern of the core medium date format.
+   *
+   * @var string|null
+   * @see self::setMediumDateFormatPattern()
+   * @see self::resetMediumDateFormatPattern()
+   * @todo Remove when core versions lower than 11.1 are not supported anymore.
+   */
+  protected static ?string $originalMediumDateFormatPattern;
+
+  /**
+   * Sets the core default medium date format pattern.
+   *
+   * In Drupal 11.1.0 the installed default date formats have changed.
+   * See: https://www.drupal.org/node/3467774
+   * The project's date fields are using core medium format to display dates.
+   * Make sure the medium date format uses the D11.1 pattern, in order to
+   * have consistent tests that pass in previous core versions.
+   *
+   * @see self::resetMediumDateFormatPattern()
+   *
+   * @todo Remove when core versions lower than 11.1 are not supported anymore.
+   *
+   * @BeforeSuite
+   */
+  public static function setMediumDateFormatPattern(): void {
+    $date_format = DateFormat::load('medium');
+    // Store the original date format pattern to be restored after suite.
+    self::$originalMediumDateFormatPattern = $date_format->getPattern();
+    // Set the medium date format pattern to D11.1 version while running tests.
+    $date_format->setPattern('D, j M Y - H:i')->save();
+  }
+
+  /**
+   * Resets the core default medium date format pattern to its original value.
+   *
+   * @see self::setMediumDateFormatPattern()
+   *
+   * @todo Remove when core versions lower than 11.1 are not supported anymore.
+   *
+   * @AfterSuite
+   */
+  public static function resetMediumDateFormatPattern(): void {
+    DateFormat::load('medium')
+      ->setPattern(self::$originalMediumDateFormatPattern)
+      ->save();
+  }
 
   /**
    * Check that a link is pointing to a specific target.
