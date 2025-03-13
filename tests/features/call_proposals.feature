@@ -7,7 +7,7 @@ Feature: Call for proposals content creation and editing.
   @javascript
   @batch3
   Scenario: Creation of a Call for proposals content through the UI.
-    Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities, edit own image media" permission
     And the following document:
       | name          | file       |
       | My Document 1 | sample.pdf |

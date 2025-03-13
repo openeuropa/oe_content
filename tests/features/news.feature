@@ -7,7 +7,7 @@ Feature: News content creation
   @javascript @cleanup:media @av_portal
   @batch1
   Scenario: Creation of a News content through the UI.
-    Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_news content, access content, edit own oe_page content, view published skos concept entities, create av_portal_photo media, manage corporate content entities, edit own image media" permission
     And the following images:
       | name          | file           | alt                            |
       | Contact image | example_1.jpeg | Contact image alternative text |

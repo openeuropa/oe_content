@@ -7,7 +7,7 @@ Feature: Project content creation
   @javascript @remote-video
   @batch2
   Scenario: Creation of a Project content through the UI.
-    Given I am logged in as a user with the "create oe_project content, access content, edit own oe_project content, view published skos concept entities, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_project content, access content, edit own oe_project content, view published skos concept entities, manage corporate content entities, edit own image media" permission
     And the following images:
       | name          | file           | alt                |
       | Image 1       | example_1.jpeg | Alternative text 1 |

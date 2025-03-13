@@ -7,7 +7,7 @@ Feature: Person content creation
   @javascript
   @batch3
   Scenario: Creation of a Person content through the UI.
-    Given I am logged in as a user with the "create oe_person content, access content, edit own oe_person content, view published skos concept entities, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_person content, access content, edit own oe_person content, view published skos concept entities, manage corporate content entities, edit own image media" permission
     And the following images:
       | name          | file           | alt                |
       | Image 1       | example_1.jpeg | Alternative text 1 |

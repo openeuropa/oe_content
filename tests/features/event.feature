@@ -203,7 +203,7 @@ Feature: Event content creation
   @javascript @av_portal
   @batch1
   Scenario: Creation of a Event content through the UI.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities, edit own image media" permission
     And the following images:
       | name          | file           | alt                            |
       | Contact image | example_1.jpeg | Contact image alternative text |

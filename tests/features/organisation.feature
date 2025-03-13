@@ -7,7 +7,7 @@ Feature: Organisation content creation
   @javascript @disable-browser-required-field-validation @av_portal
   @batch1
   Scenario: Creation of a Organisation content through the UI.
-    Given I am logged in as a user with the "create oe_organisation content, access content, edit own oe_organisation content, view published skos concept entities, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_organisation content, access content, edit own oe_organisation content, view published skos concept entities, manage corporate content entities, edit own image media" permission
     And the following images:
       | name          | file            | alt                            |
       | Image 1       | placeholder.png | Alternative text 1             |
