@@ -1,0 +1,24 @@
+field.value.collapsible_test_field:
+  type: mapping
+  label: 'Default value'
+  mapping:
+    title:
+      type: text
+      label: 'Item title'
+    body:
+      type: text
+      label: 'Item body'
+    format:
+      type: string
+      label: 'Item body format'
+
+field.widget.settings.collapsible_test_widget:
+  type: mapping
+  mapping:
+    edit_mode:
+      type: string
+    additional_options:
+      type: sequence
+      orderby: key
+      sequence:
+        type: string

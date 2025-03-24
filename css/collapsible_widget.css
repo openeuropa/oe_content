@@ -1,0 +1,78 @@
+.collapsible-actions {
+  display: flex;
+  align-items: center;
+}
+
+.collapsible-actions > .button,
+.collapsible-actions > .button + .collapsible-dropdown {
+  margin-left: 5px;
+}
+
+.collapsible-actions > .button {
+  margin-right: 0;
+}
+
+.collapsible-actions .collapsible-dropdown {
+  position: relative;
+}
+
+.collapsible-actions .collapsible-dropdown-toggle {
+  display: block;
+  height: 36px;
+  width: 36px;
+  background: url("../icons/icon-dropdown.svg") no-repeat center;
+  background-size: 26px 26px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.1s;
+}
+
+@media (min-width: 768px) {
+  .collapsible-actions .collapsible-dropdown-toggle {
+    height: 26px;
+    width: 26px;
+  }
+}
+
+.collapsible-actions .collapsible-dropdown-toggle:hover,
+.collapsible-actions .collapsible-dropdown-toggle:focus {
+  background-color: #f9f8f6;
+  border: 1px solid #a6a6a6;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);
+  outline: none;
+}
+
+.collapsible-actions .collapsible-dropdown-actions {
+  display: none;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 36px;
+  z-index: 100;
+  background: #f9f8f6;
+  border: 1px solid #a6a6a6;
+  border-radius: 5px 0 5px 5px;
+  box-shadow: 0 2px 6px 0 #aaa;
+}
+
+@media (min-width: 768px) {
+  .collapsible-actions .collapsible-dropdown-actions {
+    top: 26px;
+  }
+}
+
+.collapsible-actions .collapsible-dropdown-action.button {
+  margin: 0;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-weight: 600;
+  line-height: 18px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.collapsible-actions .collapsible-dropdown.open .collapsible-dropdown-actions {
+  display: block;
+}
