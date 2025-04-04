@@ -102,7 +102,7 @@ class EventSpeakerEntityTest extends SparqlKernelTestBase {
         [
           'reference_field_name' => 'oe_person',
           'referenced_nodes' => NULL,
-          'expected_label' => 'Default',
+          'expected_label' => 'Person',
         ],
         [
           'reference_field_name' => 'oe_person',

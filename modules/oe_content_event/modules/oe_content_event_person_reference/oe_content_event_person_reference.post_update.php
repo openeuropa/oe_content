@@ -17,3 +17,12 @@ function oe_content_event_person_reference_post_update_00001(): void {
   $field_config->setThirdPartySetting('composite_reference', 'composite_revisions', FALSE);
   $field_config->save();
 }
+
+/**
+ * Change the label name of the oe_default bundle.
+ */
+function oe_content_event_person_reference_post_update_00002(): void {
+  $bundle = Drupal::entityTypeManager()->getStorage('oe_event_speaker_type')->load('oe_default');
+  $bundle->set('label', 'Person');
+  $bundle->save();
+}
