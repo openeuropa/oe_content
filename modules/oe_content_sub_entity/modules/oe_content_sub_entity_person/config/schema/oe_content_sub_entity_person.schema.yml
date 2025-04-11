@@ -11,3 +11,17 @@ oe_content_sub_entity_person.oe_person_type.*:
     description:
       type: text
       label: 'Description'
+
+field.formatter.settings.oe_content_sub_entity_person_reference_formatter:
+  type: mapping
+  label: 'Person reference field formatter settings'
+  mapping:
+    label_only:
+      type: boolean
+      label: 'Display as label'
+    rel:
+      type: string
+      label: 'Add rel "nofollow" to links'
+    target:
+      type: string
+      label: 'Open link in new window'
