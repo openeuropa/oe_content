@@ -24,7 +24,7 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
   sparql:
-    image: openeuropa/triple-store-dev
+    image: registry.fpfis.eu/fpfis/triple-store
     pull: true
     environment:
       - SPARQL_UPDATE=true
