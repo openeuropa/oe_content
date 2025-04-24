@@ -4,82 +4,90 @@ declare(strict_types=1);
 
 namespace Drupal\oe_content_timeline_field\Plugin\Field\FieldWidget;
 
-use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Field\Attribute\FieldWidget;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\WidgetBase;
-use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\oe_content\CollapsibleWidgetBase;
 use Symfony\Component\Validator\ConstraintViolation;
-use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Plugin implementation of the 'timeline_widget' widget.
- *
- * @FieldWidget(
- *   id = "timeline_widget",
- *   label = @Translation("Timeline widget"),
- *   field_types = {
- *     "timeline_field"
- *   }
- * )
  */
-class TimelineFieldWidget extends WidgetBase implements WidgetInterface {
+#[FieldWidget(
+  id: 'timeline_widget',
+  label: new TranslatableMarkup('Timeline widget'),
+  field_types: ['timeline_field'],
+)]
+class TimelineFieldWidget extends CollapsibleWidgetBase {
 
   /**
    * {@inheritdoc}
    */
-  public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $element['label'] = [
+  protected function getElementSummary(array $values): string {
+    $summary_values = [
+      $values['label'] ?? '',
+      $values['title'] ?? '',
+      strip_tags($values['body'] ?? ''),
+    ];
+    return implode(', ', array_filter($summary_values, fn($value) => trim($value) !== ''));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getElementFormItems(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state): array {
+    $open_element = [];
+    $open_element['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),
-      '#default_value' => $items[$delta]->label ?? NULL,
+      '#default_value' => $items[$delta]->label ?? '',
       '#size' => 60,
       '#maxlength' => 100,
       '#required' => FALSE,
     ];
-    $element['title'] = [
+    $open_element['title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
-      '#default_value' => $items[$delta]->title ?? NULL,
+      '#default_value' => $items[$delta]->title ?? '',
       '#size' => 60,
       '#maxlength' => 255,
       '#required' => FALSE,
     ];
-    $element['body'] = [
+    $open_element['body'] = [
       '#type' => 'text_format',
       '#title' => $this->t('Content'),
-      '#default_value' => $items[$delta]->body ?? NULL,
+      '#default_value' => $items[$delta]->body ?? '',
       '#rows' => 5,
       '#required' => FALSE,
       '#format' => $items[$delta]->format ?? filter_fallback_format(),
       '#base_type' => 'textarea',
     ];
-
-    return $element;
+    return $open_element;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
-    foreach ($values as &$item) {
-      $item['format'] = $item['body']['format'];
-      $item['body'] = $item['body']['value'];
-    }
+  public static function transformUserInputToItem(array $item, array $form, FormStateInterface $form_state): array {
+    $item['format'] = $item['body']['format'] ?? filter_fallback_format();
+    $item['body'] = $item['body']['value'] ?? '';
 
-    return $values;
+    return $item;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state) {
-    $property_path = $violation->arrayPropertyPath;
-    if (!empty($property_path) && $sub_element = NestedArray::getValue($element, $property_path)) {
-      return $sub_element;
-    }
-    return $element;
+  public static function transformItemToUserInput(array $item, array $form, FormStateInterface $form_state): array {
+    $item['body'] = [
+      'format' => $item['format'],
+      'value' => $item['body'],
+    ];
+    unset($item['format']);
+
+    return $item;
   }
 
   /**

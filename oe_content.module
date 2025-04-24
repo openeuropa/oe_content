@@ -136,3 +136,56 @@ function oe_content_node_prepare_form(EntityInterface $entity, $operation, FormS
   $content_owners = $site_information->getDefaultContentOwners();
   $entity->set('oe_content_content_owner', array_values($content_owners));
 }
+
+/**
+ * Implements hook_theme().
+ */
+function oe_content_theme() {
+  return [
+    'collapsible_actions' => [
+      'render element' => 'element',
+      'template' => 'collapsible-actions',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for the collapsible_actions component.
+ *
+ * Default template: collapsible-actions.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - actions: An array of default action buttons.
+ *   - dropdown_actions: An array of buttons for dropdown.
+ */
+function template_preprocess_collapsible_actions(&$variables) {
+  // Define variables for the template.
+  $variables += ['actions' => [], 'dropdown_actions' => []];
+
+  $element = $variables['element'];
+
+  if (!empty($element['actions'])) {
+    $variables['actions'] = $element['actions'];
+  }
+
+  if (!empty($element['dropdown_actions'])) {
+    $variables['dropdown_actions'] = $element['dropdown_actions'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field_multiple_value_form().
+ */
+function oe_content_preprocess_field_multiple_value_form(&$variables) {
+  if (!empty($variables['table']['#header']) && isset($variables['table']['#rows'][0])) {
+    // Find collapsible_actions and move to header.
+    // @see template_preprocess_field_multiple_value_form()
+    if (is_array($variables['table']['#rows'][0]['data'][1]) && !empty($variables['table']['#rows'][0]['data'][1]['data']['#field_header'])) {
+      $variables['table']['#header'][1]['data'] = [
+        $variables['table']['#rows'][0]['data'][1]['data'],
+      ];
+      unset($variables['table']['#rows'][0]);
+    }
+  }
+}

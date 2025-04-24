@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a collapsible actions component.
+ *
+ * Available variables:
+ * - actions - default actions, always visible and not in dropdown.
+ * - dropdown_actions - actions for dropdown subcomponent.
+ *
+ * @see template_preprocess()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="collapsible-actions">
+  {{ actions }}
+  {% set dropdown_actions_output = render_var(dropdown_actions) %}
+  {% if dropdown_actions_output %}
+    <div class="collapsible-dropdown">
+      <button class="collapsible-dropdown-toggle"><span class="visually-hidden">{% trans %}Toggle Actions{% endtrans %}</span></button>
+      <div class="collapsible-dropdown-actions">
+        {{ dropdown_actions_output }}
+      </div>
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,12 @@
+collapsible_widget:
+  css:
+    theme:
+      css/collapsible_widget.css: {}
+  js:
+    js/collapsible_widget.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/once
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal

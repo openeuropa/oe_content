@@ -25,3 +25,14 @@ field.value.timeline_field:
     format:
       type: string
       label: 'Timeline item body format'
+
+field.widget.settings.timeline_widget:
+  type: mapping
+  mapping:
+    edit_mode:
+      type: string
+    additional_options:
+      type: sequence
+      orderby: key
+      sequence:
+        type: string
