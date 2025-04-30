@@ -38,7 +38,7 @@ It is strongly recommended to use the provisioned Docker image for Virtuoso that
 
 ```
   sparql:
-    image: openeuropa/triple-store-dev
+    image: registry.fpfis.eu/fpfis/triple-store
     environment:
     - SPARQL_UPDATE=true
     - DBA_PASSWORD=dba
@@ -111,7 +111,7 @@ as "Default content owner" in the "Basic site settings" provided by the OpenEuro
 
 You can build the test site by running the following steps.
 
-* Install Virtuoso. The easiest way to do this is by using the OpenEuropa [Triple store](https://github.com/openeuropa/triple-store-dev) development Docker container which also pre-imports the main Europa vocabularies.
+* Install Virtuoso. The easiest way to do this is by using the [Triple store](https://git.fpfis.tech.ec.europa.eu/fpfis/triple-store) Docker container which also pre-imports the main Europa vocabularies.
 
 * Install all the composer dependencies:
 

@@ -23,7 +23,7 @@ services:
 #    ports:
 #      - 3306:3306
   sparql:
-    image: openeuropa/triple-store-dev
+    image: registry.fpfis.eu/fpfis/triple-store
     environment:
     - SPARQL_UPDATE=true
     - DBA_PASSWORD=dba
