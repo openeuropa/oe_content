@@ -1,10 +1,20 @@
 # Change Log
 
+## [4.7.0](https://github.com/openeuropa/oe_content/tree/4.7.0) (2025-05-02)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.6.0...4.7.0)
+
+**Merged pull requests:**
+
+- EWPP-5461: Update sparql image in docker-compose.yml and for drone.yml. [\#652](https://github.com/openeuropa/oe_content/pull/652) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5129: Change default event speaker label. [\#650](https://github.com/openeuropa/oe_content/pull/650) ([intelektron](https://github.com/intelektron))
+- EWPP-5272: Timeline field widget improvements. [\#649](https://github.com/openeuropa/oe_content/pull/649) ([intelektron](https://github.com/intelektron))
+
 ## [4.6.0](https://github.com/openeuropa/oe_content/tree/4.6.0) (2025-02-12)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.5.0...4.6.0)
 
 **Merged pull requests:**
 
+- Release-4.6.0: Update changelog. [\#647](https://github.com/openeuropa/oe_content/pull/647) ([nagyad](https://github.com/nagyad))
 - EWPP-5181: Add Other option to social media fields. [\#646](https://github.com/openeuropa/oe_content/pull/646) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.5.0](https://github.com/openeuropa/oe_content/tree/4.5.0) (2025-01-29)
