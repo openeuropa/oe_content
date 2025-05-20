@@ -909,12 +909,13 @@ abstract class CollapsibleWidgetBase extends WidgetBase implements WidgetInterfa
   /**
    * {@inheritdoc}
    */
-  public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state) {
-    $property_path = $violation->arrayPropertyPath;
-    if (!empty($property_path) && $sub_element = NestedArray::getValue($element, $property_path)) {
+  public function errorElement(array $element, ConstraintViolationInterface $violation, array $form, FormStateInterface $form_state): bool|array {
+    $property_path_array = explode('.', $violation->getPropertyPath());
+    array_shift($property_path_array);
+    if (!empty($property_path_array) && $sub_element = NestedArray::getValue($element, $property_path_array)) {
       return $sub_element;
     }
-    return $element;
+    return parent::errorElement($element, $violation, $form, $form_state);
   }
 
   /**
