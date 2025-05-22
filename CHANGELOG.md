@@ -1,11 +1,22 @@
-# Change Log
+# Changelog
 
-## [4.7.0](https://github.com/openeuropa/oe_content/tree/4.7.0) (2025-05-02)
+## [4.8.0](https://github.com/openeuropa/oe_content/tree/4.8.0) (2025-05-22)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.7.0...4.8.0)
+
+**Merged pull requests:**
+
+- EWPP-4642: Update to Drupal 11. [\#648](https://github.com/openeuropa/oe_content/pull/648) ([kp77](https://github.com/kp77))
+
+## [4.7.0](https://github.com/openeuropa/oe_content/tree/4.7.0) (2025-05-05)
+
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.6.0...4.7.0)
 
 **Merged pull requests:**
 
+- Release-4.7.0: Update changelog. [\#654](https://github.com/openeuropa/oe_content/pull/654) ([nagyad](https://github.com/nagyad))
 - EWPP-5461: Update sparql image in docker-compose.yml and for drone.yml. [\#652](https://github.com/openeuropa/oe_content/pull/652) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5467: Fix missing schema for PersonReferenceFormatter. [\#651](https://github.com/openeuropa/oe_content/pull/651) ([kp77](https://github.com/kp77))
 - EWPP-5129: Change default event speaker label. [\#650](https://github.com/openeuropa/oe_content/pull/650) ([intelektron](https://github.com/intelektron))
 - EWPP-5272: Timeline field widget improvements. [\#649](https://github.com/openeuropa/oe_content/pull/649) ([intelektron](https://github.com/intelektron))
 
