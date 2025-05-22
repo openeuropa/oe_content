@@ -7,7 +7,7 @@ Feature: Publication content creation
   @javascript
   @batch1
   Scenario: Creation of a Publication content through the UI.
-    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, manage corporate content entities, view published skos concept entities" permission
+    Given I am logged in as a user with the "create oe_publication content, access content, edit own oe_publication content, manage corporate content entities, view published skos concept entities, edit own image media" permission
     And the following documents:
       | name          | file       |
       | My Document 1 | sample.pdf |

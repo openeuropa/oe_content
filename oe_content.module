@@ -9,98 +9,39 @@ declare(strict_types=1);
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\link\LinkItemInterface;
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\oe_content\Hook\OeContentHooks;
 
 /**
  * Implements hook_entity_base_field_info().
+ *
+ * Drupal 11.1 introduced support for object-oriented hook implementations.
+ * See: https://www.drupal.org/node/3442349
+ *
+ * The changes in hook management introduced a new issue: in some contexts
+ * module hooks are not registered correctly.
+ * See: https://www.drupal.org/project/drupal/issues/3502302
+ * Due to this issue the oe_content_entity_base_field_info hook is not
+ * registered correctly in D11.1 using the old procedural hook implementation.
+ * Note: reason is a collision with the name of oe_content_entity submodule.
+ *
+ * As the issue doesn't have a fix yet, the workaround is to use the new OOP
+ * hook implementation for this hook that can be implemented in a backward
+ * compatible way for Drupal versions 10.1 to 11.0.
+ * The purpose of this legacy hook is to achieve backward compatibility for
+ * Drupal versions lower than 11.1.
+ *
+ * Also see the 'Drupal\oe_content\Hook\OeContentHooks' service in
+ * oe_content.services.yml (also added for backward compatibility).
+ *
+ * @todo Remove when core versions lower than 11.1 are not supported anymore.
+ *
+ * @see \Drupal\oe_content\Hook\OeContentHooks
  */
-function oe_content_entity_base_field_info(EntityTypeInterface $entity_type) {
-  $fields = [];
-
-  if ($entity_type->id() !== 'node') {
-    return $fields;
-  }
-
-  $fields['oe_content_short_title'] = BaseFieldDefinition::create('string')
-    ->setLabel(t('Alternative title'))
-    ->setDescription(t('Use this field to create an alternative title for use in the URL and in list views. If the page title is longer than 60 characters, you can add a shorter title here.'))
-    ->setRequired(FALSE)
-    ->setTranslatable(TRUE)
-    ->setRevisionable(TRUE)
-    ->setSetting('max_length', 255)
-    ->setDisplayOptions('form', [
-      'type' => 'string_textfield',
-      'weight' => 0,
-    ])
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
-
-  $fields['oe_content_navigation_title'] = BaseFieldDefinition::create('string')
-    ->setLabel(t('Navigation title'))
-    ->setDescription(t('When filled in, the navigation title will replace the page title in the breadcrumb, horizontal menu and navigation blocks.'))
-    ->setRequired(FALSE)
-    ->setTranslatable(TRUE)
-    ->setRevisionable(TRUE)
-    ->setSetting('max_length', 255)
-    ->setDisplayOptions('form', [
-      'type' => 'string_textfield',
-      'weight' => 0,
-    ])
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
-
-  $fields['oe_content_content_owner'] = BaseFieldDefinition::create('skos_concept_entity_reference')
-    ->setLabel(t('Content owner'))
-    ->setDescription(t('This is not the writer of the content, but the subject matter expert responsible for keeping this content up to date.'))
-    ->setRequired(TRUE)
-    ->setTranslatable(FALSE)
-    ->setRevisionable(TRUE)
-    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
-    ->setSettings([
-      'target_type' => 'skos_concept',
-      'handler_settings' => [
-        'concept_schemes' => [
-          'http://publications.europa.eu/resource/authority/corporate-body',
-        ],
-        'field' => [
-          'field_name' => 'oe_content_content_owner',
-          'entity_type' => 'node',
-          'bundle' => NULL,
-          'concept_schemes' => [
-            'http://publications.europa.eu/resource/authority/corporate-body',
-          ],
-        ],
-      ],
-      'default_value' => 0,
-    ])
-    ->setDisplayOptions('form', [
-      'type' => 'skos_concept_entity_reference_autocomplete',
-      'weight' => 0,
-    ])
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
-
-  $fields['oe_content_legacy_link'] = BaseFieldDefinition::create('link')
-    ->setLabel(t('Redirect link'))
-    ->setDescription(t('Add a link to this field to automatically redirect the user to a different page. Use this to prevent duplication of content.'))
-    ->setRequired(FALSE)
-    ->setTranslatable(TRUE)
-    ->setRevisionable(TRUE)
-    ->setSettings([
-      'link_type' => LinkItemInterface::LINK_EXTERNAL,
-      'title' => DRUPAL_DISABLED,
-    ])
-    ->setDisplayOptions('form', [
-      'type' => 'link_default',
-      'weight' => 0,
-    ])
-    ->setDisplayConfigurable('view', TRUE)
-    ->setDisplayConfigurable('form', TRUE);
-
-  return $fields;
+#[LegacyHook]
+function oe_content_entity_base_field_info(EntityTypeInterface $entity_type): array {
+  return \Drupal::service(OeContentHooks::class)->entityBaseFieldInfo($entity_type);
 }
 
 /**

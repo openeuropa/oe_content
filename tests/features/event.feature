@@ -203,7 +203,7 @@ Feature: Event content creation
   @javascript @av_portal
   @batch1
   Scenario: Creation of a Event content through the UI.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, manage corporate content entities, edit own image media" permission
     And the following images:
       | name          | file           | alt                            |
       | Contact image | example_1.jpeg | Contact image alternative text |
@@ -327,8 +327,8 @@ Feature: Event content creation
 
     Then I should see "My Event item"
     And I should see "Full text paragraph"
-    And I should see "Thu, 02/21/2019 - 02:15"
-    And I should see "Thu, 02/21/2019 - 14:15"
+    And I should see "Thu, 21 Feb 2019 - 02:15"
+    And I should see "Thu, 21 Feb 2019 - 14:15"
     And I should see "Info days"
     And I should see "Hungarian"
     And I should see "Types of audiences that this event targets"
@@ -339,8 +339,8 @@ Feature: Event content creation
     And I should see "Facebook"
     And I should see "Media image"
     And I should see "Online description text"
-    And I should see "Fri, 02/22/2019 - 02:30"
-    And I should see "Fri, 02/22/2019 - 14:30"
+    And I should see "Fri, 22 Feb 2019 - 02:30"
+    And I should see "Fri, 22 Feb 2019 - 14:30"
     And I should see the link "Online link"
     And I should see "Organiser name"
     And I should see "Description summary text"
@@ -351,8 +351,8 @@ Feature: Event content creation
     And I should see "More links to media items"
     And I should see the link "http://example.com"
     And I should see "Open"
-    And I should see "Sat, 02/23/2019 - 02:30"
-    And I should see "Sat, 02/23/2019 - 14:30"
+    And I should see "Sat, 23 Feb 2019 - 02:30"
+    And I should see "Sat, 23 Feb 2019 - 14:30"
     And I should see "Free of charge"
     And I should see "100 seats"
     # Venue entity values.
@@ -384,8 +384,8 @@ Feature: Event content creation
     # Event programme values.
     And I should see the text "Event programme"
     And I should see the text "Event programme description"
-    And I should see "Thu, 10/21/2021 - 02:15"
-    And I should see "Thu, 10/21/2021 - 14:15"
+    And I should see "Thu, 21 Oct 2021 - 02:15"
+    And I should see "Thu, 21 Oct 2021 - 14:15"
 
   @javascript @av_portal
   @batch2

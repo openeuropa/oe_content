@@ -29,4 +29,4 @@ use Drupal\oe_content_entity\Entity\CorporateEntityTypeBase;
  *   admin_permission = "manage corporate content entity types",
  * )
  */
-class CorporateEntityTypeTest extends CorporateEntityTypeBase {}
+class TestCorporateEntityType extends CorporateEntityTypeBase {}

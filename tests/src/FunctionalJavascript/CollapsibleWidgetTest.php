@@ -133,7 +133,6 @@ class CollapsibleWidgetTest extends WebDriverTestBase {
     ]);
     $this->performCollapsibleAction($field, 1, 'Edit');
     $this->performCollapsibleHeaderSubaction($field, 'Edit all');
-    $this->assertSession()->assertWaitOnAjaxRequest();
     $this->assertCollapsibleTable($field, [
       ['mode' => 'open', 'Title' => 'T1', 'Content' => 'B1'],
       ['mode' => 'open', 'Title' => 'T2', 'Content' => 'B2'],

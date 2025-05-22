@@ -7,7 +7,7 @@ Feature: Call for proposals content creation and editing.
   @javascript
   @batch3
   Scenario: Creation of a Call for proposals content through the UI.
-    Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities" permission
+    Given I am logged in as a user with the "create oe_call_proposals content, access content, edit own oe_call_proposals content, view published skos concept entities, manage corporate content entities, edit own image media" permission
     And the following document:
       | name          | file       |
       | My Document 1 | sample.pdf |
@@ -48,9 +48,9 @@ Feature: Call for proposals content creation and editing.
 
     Then I should see "Call for proposals My Call for proposals 1 has been updated."
     And I should see "My call for proposals 1"
-    And I should see "10/24/2020"
+    And I should see "24 Oct 2020"
     And I should see "Two-stage"
-    And I should see "12/31/2020 - 23:45"
+    And I should see "31 Dec 2020 - 23:45"
     And I should see "Teaser text"
     And I should see the link "financing"
 
@@ -100,7 +100,7 @@ Feature: Call for proposals content creation and editing.
     Then I should see "My Call for proposals 1 body"
     And I should see "My Call for proposals 1 reference"
     And I should see the link "Official Journal publication 1"
-    And I should see "10/25/2020"
+    And I should see "25 Oct 2020"
     And I should see the link "http://example.com/2"
     And I should see "Anti Fraud Information System (AFIS)"
     And I should see "Audit Board of the European Communities"
@@ -189,8 +189,8 @@ Feature: Call for proposals content creation and editing.
     And I press "Save"
 
     Then I should see "Call for proposals My Call for proposals 1 has been created."
-    And I should see "Thu, 12/31/2020 - 23:45"
-    And I should see "Fri, 01/15/2021 - 12:00"
+    And I should see "Thu, 31 Dec 2020 - 23:45"
+    And I should see "Fri, 15 Jan 2021 - 12:00"
 
   @javascript
   @batch3

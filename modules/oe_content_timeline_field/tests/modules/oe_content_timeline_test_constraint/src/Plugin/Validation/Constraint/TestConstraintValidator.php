@@ -62,7 +62,7 @@ class TestConstraintValidator extends ConstraintValidator implements ContainerIn
       }
 
       $this->context->buildViolation($constraint->message)
-        ->atPath($error_paths[$delta])
+        ->atPath((string) $error_paths[$delta])
         ->setParameters($parameters)
         ->addViolation();
     }
