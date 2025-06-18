@@ -13,3 +13,4 @@ vendor
 yarn.lock
 docker-compose.*.yml
 /.gitattributes
+recipes
