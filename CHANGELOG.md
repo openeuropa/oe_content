@@ -1,11 +1,20 @@
 # Changelog
 
+## [4.8.1](https://github.com/openeuropa/oe_content/tree/4.8.1) (2025-06-18)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.8.0...4.8.1)
+
+**Merged pull requests:**
+
+- EWPP-5553: Update triple-store with new image in docker-compose.yml and .drone.yml. [\#655](https://github.com/openeuropa/oe_content/pull/655) ([sergepavle](https://github.com/sergepavle))
+
 ## [4.8.0](https://github.com/openeuropa/oe_content/tree/4.8.0) (2025-05-22)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.7.0...4.8.0)
 
 **Merged pull requests:**
 
+- Release-4.8.0: Update changelog. [\#656](https://github.com/openeuropa/oe_content/pull/656) ([nagyad](https://github.com/nagyad))
 - EWPP-4642: Update to Drupal 11. [\#648](https://github.com/openeuropa/oe_content/pull/648) ([kp77](https://github.com/kp77))
 
 ## [4.7.0](https://github.com/openeuropa/oe_content/tree/4.7.0) (2025-05-05)
