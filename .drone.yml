@@ -103,20 +103,11 @@ pipeline:
 
 matrix:
   include:
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: behat, BATCH: '@batch3' }
 
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit }
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: behat, BATCH: '@batch1' }
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: behat, BATCH: '@batch2' }
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: behat, BATCH: '@batch3' }
-
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: behat, BATCH: '@batch3' }
 
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: phpunit }
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: behat, BATCH: '@batch1' }
@@ -127,3 +118,8 @@ matrix:
     - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.0, TYPE: behat, BATCH: '@batch1' }
     - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.0, TYPE: behat, BATCH: '@batch2' }
     - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.0, TYPE: behat, BATCH: '@batch3' }
+
+    - { PHP_VERSION: 8.3, CORE_VERSION: 11.2.0, TYPE: phpunit }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 11.2.0, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 11.2.0, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 11.2.0, TYPE: behat, BATCH: '@batch3' }
