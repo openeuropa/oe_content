@@ -10,7 +10,7 @@
         "cweagans/composer-patches": "^1.7 || ^2.0",
         "drupal/core": "^10 || ^11",
         "drupal/datetime_range_timezone": "^1.0.0-alpha3",
-        "drupal/linkit": "^6.0.0-beta4 || ^7.0",
+        "drupal/linkit": "^7.0",
         "drupal/maxlength": "^3.0.0-beta1",
         "openeuropa/oe_media": "^1.23.1",
         "openeuropa/rdf_skos": "^1.0.0-alpha10"
