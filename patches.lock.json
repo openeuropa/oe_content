@@ -1,0 +1,29 @@
+{
+    "_hash": "90aa2d6f8df7d880a74856f333ec684d019cc74a1e4f16738c594db2e297cf61",
+    "patches": {
+        "drupal/field_group": [
+            {
+                "package": "drupal/field_group",
+                "description": "https://www.drupal.org/project/field_group/issues/2787179",
+                "url": "https://www.drupal.org/files/issues/2024-08-05/2787179-highlight-html5-validation-101.patch",
+                "sha256": "0973a19791273bc206bd0c1eb000588aadd604a1d5d78c097fee0a1ac14dab29",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/entity_browser": [
+            {
+                "package": "drupal/entity_browser",
+                "description": "https://www.drupal.org/project/entity_browser/issues/2851580",
+                "url": "https://www.drupal.org/files/issues/2023-12-12/2851580-117.patch",
+                "sha256": "56e2ebe2c0d81afac10bab6ceeabdf1caf20faeb14c483c90ed1d641b9726bf1",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

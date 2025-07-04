@@ -13,6 +13,7 @@
         "drupal/linkit": "^6.0.0-beta4 || ^7.0",
         "drupal/maxlength": "^3.0.0-beta1",
         "openeuropa/oe_media": "^1.23.1",
+        "openeuropa/composer-dependent-patches": "dev-POC_improvements_1",
         "openeuropa/rdf_skos": "^1.0.0-alpha10"
     },
     "require-dev": {
@@ -67,6 +68,10 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/nagyad/composer_dependent_patches"
         }
     ],
     "extra": {
@@ -79,15 +84,30 @@
             "build/themes/contrib/{$name}": ["type:drupal-theme"]
         },
         "patches": {
-            "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"
-            },
             "drupal/field_group": {
                 "https://www.drupal.org/project/field_group/issues/2787179": "https://www.drupal.org/files/issues/2024-08-05/2787179-highlight-html5-validation-101.patch"
             },
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2023-12-12/2851580-117.patch"
             }
+        },
+        "dependent-patches": {
+          "drupal/core": [
+            {
+              "description": "https://www.drupal.org/project/drupal/issues/2230909",
+              "url": "https://www.drupal.org/files/issues/2025-07-02/2230909-379.patch",
+              "extra": {
+                "version": "<11.2"
+              }
+            },
+            {
+              "description": "https://www.drupal.org/project/drupal/issues/2230909",
+              "url": "https://www.drupal.org/files/issues/2025-06-19/core-simple-decimals-fails-validation-2230909-378.patch",
+              "extra": {
+                "version": ">=11.2"
+              }
+            }
+          ]
         },
         "drupal-scaffold": {
             "locations": {
@@ -106,6 +126,7 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "enable-patching": true,
+            "openeuropa/composer-dependent-patches": true,
             "php-http/discovery": false,
             "phpro/grumphp-shim": true,
             "phpstan/extension-installer": true,

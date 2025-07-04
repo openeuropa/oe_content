@@ -1,0 +1,18 @@
+{
+    "_hash": "5852ef3cfbd97dc6bdfdb35c6a942fa6a89e294513b467fcaa6b48bc465edd83",
+    "patches": {
+        "drupal/core": [
+            {
+                "package": "drupal/core",
+                "description": "https://www.drupal.org/project/drupal/issues/2230909",
+                "url": "https://www.drupal.org/files/issues/2025-06-19/core-simple-decimals-fails-validation-2230909-378.patch",
+                "sha256": "2d586faf09b32e8077654b3ecaafb351c4c6e41d3e6eda51bcdb0d4157643598",
+                "depth": 2,
+                "extra": {
+                    "version": ">=11.2",
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}
