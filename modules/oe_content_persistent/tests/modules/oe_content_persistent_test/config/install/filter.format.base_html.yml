@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - linkit
     - oe_content_persistent
 name: 'Base HTML'
 format: base_html
@@ -22,3 +23,11 @@ filters:
     status: true
     weight: 0
     settings: {  }
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: 0
+    settings:
+      title: true
+      media_substitution: metadata
