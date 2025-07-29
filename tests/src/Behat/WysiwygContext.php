@@ -123,8 +123,9 @@ class WysiwygContext extends RawDrupalContext {
     $this->pressWysiwygButton($field, 'Link (Ctrl+K)');
 
     $this->waitForAjaxToFinish();
+    $link_form = $page->find('css', '.ck-link-form');
 
-    $href_field = $page->find('css', 'input.form-linkit-autocomplete');
+    $href_field = $link_form->find('css', 'input.form-linkit-autocomplete');
     // Trigger a keydown event to activate an autocomplete search.
     $href_field->setValue($node_title);
     $href_field->keyDown(' ');
@@ -132,9 +133,9 @@ class WysiwygContext extends RawDrupalContext {
     $this->getSession()->wait(5000, "jQuery('.linkit-result-line.ui-menu-item').length > 0");
 
     // Find the first result and click it.
-    $page->find('xpath', '//li[contains(@class, "linkit-result-line") and contains(@class, "ui-menu-item")][1]')->click();
+    $link_form->find('xpath', '//li[contains(@class, "linkit-result-line") and contains(@class, "ui-menu-item")][1]')->click();
 
-    $page->find('css', '.ck-button-save')->click();
+    $link_form->find('css', 'button.ck-button[type="submit"]')->click();
 
     $this->waitForAjaxToFinish();
   }
