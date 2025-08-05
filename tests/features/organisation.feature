@@ -81,6 +81,10 @@ Feature: Organisation content creation
     And I fill in "Use existing media" with "My Document 1" in the "Organisation chart" region
     And I fill in "URL" with "http://example.com"
     And I fill in "Link text" with "Staff search"
+    And I fill in "Transparency" with "Organisation transparency text"
+    And I fill in "URL" with "https://example.com/transparency-link" in the "Organisation Transparency links" region
+    And I fill in "Link text" with "Transparency link" in the "Organisation Transparency links" region
+    And I fill in "Plans and reports" with "Organisation plans and reports text"
     And I select "Email" from "Link type"
     And I fill in "Persons" with "Jane Doe"
     And I press "Save"
@@ -127,6 +131,13 @@ Feature: Organisation content creation
 
     # Assert the staff search link value.
     And I should see the link "Staff search"
+
+    # Assert the transparency values.
+    And I should see the text "Organisation transparency text"
+    And I should see the link "Transparency link"
+
+    # Assert the plans and reports value.
+    And I should see the text "Organisation plans and reports text"
 
     # Assert organisation type for non-EU organisations.
     When I click "Edit"

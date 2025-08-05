@@ -132,6 +132,7 @@ default:
         Contact link: ".field--name-oe-link"
         Organisation contact: "#edit-oe-organisation-contact-wrapper"
         Organisation chart: ".field--name-oe-organisation-chart"
+        Organisation Transparency links: ".field--name-oe-organisation-transp-links"
         News contact: "#edit-oe-news-contacts-wrapper"
         News sources: ".field--name-oe-news-sources"
         Publication in the official journal: ".field--name-oe-call-proposals-journal"
