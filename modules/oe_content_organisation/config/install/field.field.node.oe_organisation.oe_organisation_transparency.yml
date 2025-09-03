@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_organisation_transparency
+    - node.type.oe_organisation
+  module:
+    - text
+id: node.oe_organisation.oe_organisation_transparency
+field_name: oe_organisation_transparency
+entity_type: node
+bundle: oe_organisation
+label: Transparency
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long
