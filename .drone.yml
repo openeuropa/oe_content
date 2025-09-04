@@ -44,7 +44,7 @@ pipeline:
     volumes:
       - /cache/${DRONE_REPO_NAME}:/cache
     commands:
-      - composer require drupal/core:~${CORE_VERSION} drupal/core-composer-scaffold:~${CORE_VERSION} --update-with-all-dependencies --ansi --no-progress --no-interaction
+      - composer require drupal/core:${CORE_VERSION} drupal/core-composer-scaffold:${CORE_VERSION} --update-with-all-dependencies --ansi --no-progress --no-interaction
 
   site-install:
     image: registry.fpfis.eu/digit/devsecops/httpd-php:${PHP_VERSION}-ci
@@ -103,17 +103,17 @@ pipeline:
 
 matrix:
   include:
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: phpunit }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: behat, BATCH: '@batch3' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.8, TYPE: phpunit }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.8, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.8, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.8, TYPE: behat, BATCH: '@batch3' }
 
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.5.0, TYPE: phpunit }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.5.0, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.5.0, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.5.0, TYPE: behat, BATCH: '@batch3' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.5.2, TYPE: phpunit }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.5.2, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.5.2, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.5.2, TYPE: behat, BATCH: '@batch3' }
 
-    - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.0, TYPE: phpunit }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.0, TYPE: behat, BATCH: '@batch1' }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.0, TYPE: behat, BATCH: '@batch2' }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.0, TYPE: behat, BATCH: '@batch3' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.7, TYPE: phpunit }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.7, TYPE: behat, BATCH: '@batch1' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.7, TYPE: behat, BATCH: '@batch2' }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 11.1.7, TYPE: behat, BATCH: '@batch3' }

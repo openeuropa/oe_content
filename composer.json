@@ -8,7 +8,7 @@
     "require": {
         "php": ">=8.1",
         "cweagans/composer-patches": "^1.7 || ^2.0",
-        "drupal/core": "^10 || ^11",
+        "drupal/core": ">=10.4.0 <=10.4.8 || >=10.5.0 <=10.5.2 || >=11.0.0 <=11.1.7",
         "drupal/datetime_range_timezone": "^1.0.0-alpha3",
         "drupal/linkit": "^7.0",
         "drupal/maxlength": "^3.0.0-beta1",
@@ -80,7 +80,7 @@
         },
         "patches": {
             "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2025-09-04/2230909-381.patch"
+                "https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"
             },
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2023-12-12/2851580-117.patch"
@@ -93,7 +93,8 @@
         },
         "_readme": [
             "Locked drupal/entity_browser to 2.13 to version because newer release is breaking media avportal entity browser.",
-            "Explicit requirement of lullabot/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests. Aliased as 1.7.3 because core-dev requires it on that version."
+            "Explicit requirement of lullabot/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests. Aliased as 1.7.3 because core-dev requires it on that version.",
+            "Limiting support to Drupal core to>=10.4.0 <=10.4.8 || >=10.5.0 <=10.5.2 || >=11.0.0 <=11.1.7 until we can have a unified patch to it. This was also reflected in drone.yml so when releasing, update there as well."
         ]
     },
     "config": {
@@ -107,7 +108,8 @@
             "php-http/discovery": false,
             "phpro/grumphp-shim": true,
             "phpstan/extension-installer": true,
-            "tbachert/spi": false
+            "tbachert/spi": false,
+            "phpro/grumphp": true
         }
     }
 }
