@@ -1,5 +1,7 @@
 .DS_Store
 .idea
+dependent-patches.lock.json
+patches.lock.json
 behat.yml
 build
 composer.lock
