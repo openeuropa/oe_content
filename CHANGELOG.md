@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.9.0](https://github.com/openeuropa/oe_content/tree/4.9.0) (2025-09-09)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.8.1...4.9.0)
+
+**Merged pull requests:**
+
+- EWPP-5771: Update patch rerolled for new core version in composer.json. [\#666](https://github.com/openeuropa/oe_content/pull/666) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5991: Lock entity browser version. [\#665](https://github.com/openeuropa/oe_content/pull/665) ([nagyad](https://github.com/nagyad))
+- EWPP-5820: Move rdf\_skos to drupal gitlab. [\#664](https://github.com/openeuropa/oe_content/pull/664) ([nagyad](https://github.com/nagyad))
+- EWPP-5825: Add new fields to Organisation CT. [\#663](https://github.com/openeuropa/oe_content/pull/663) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5768: Update to Drupal 10.5. [\#661](https://github.com/openeuropa/oe_content/pull/661) ([intelektron](https://github.com/intelektron))
+- EWPP-5741: Update Media and Node Purl matchers. [\#660](https://github.com/openeuropa/oe_content/pull/660) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5499: Update field\_group to 4.x. [\#657](https://github.com/openeuropa/oe_content/pull/657) ([nagyad](https://github.com/nagyad))
+
 ## [4.8.1](https://github.com/openeuropa/oe_content/tree/4.8.1) (2025-06-18)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.8.0...4.8.1)
