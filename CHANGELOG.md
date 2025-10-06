@@ -1,15 +1,35 @@
-# Changelog
+# Change Log
+
+## [4.10.0](https://github.com/openeuropa/oe_content/tree/4.10.0) (2025-09-25)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.9.0...4.10.0)
+
+**Merged pull requests:**
+
+- EWPP-5805: Unlock drupal core and use the dependent patches. [\#667](https://github.com/openeuropa/oe_content/pull/667) ([nagyad](https://github.com/nagyad))
+
+## [4.9.0](https://github.com/openeuropa/oe_content/tree/4.9.0) (2025-09-09)
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.8.1...4.9.0)
+
+**Merged pull requests:**
+
+- Release-4.9.0: Update changelog. [\#669](https://github.com/openeuropa/oe_content/pull/669) ([nagyad](https://github.com/nagyad))
+- EWPP-5771: Update patch rerolled for new core version in composer.json. [\#666](https://github.com/openeuropa/oe_content/pull/666) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5991: Lock entity browser version. [\#665](https://github.com/openeuropa/oe_content/pull/665) ([nagyad](https://github.com/nagyad))
+- EWPP-5820: Move rdf\_skos to drupal gitlab. [\#664](https://github.com/openeuropa/oe_content/pull/664) ([nagyad](https://github.com/nagyad))
+- EWPP-5825: Add new fields to Organisation CT. [\#663](https://github.com/openeuropa/oe_content/pull/663) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5768: Update to Drupal 10.5. [\#661](https://github.com/openeuropa/oe_content/pull/661) ([intelektron](https://github.com/intelektron))
+- EWPP-5741: Update Media and Node Purl matchers. [\#660](https://github.com/openeuropa/oe_content/pull/660) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5499: Update field\_group to 4.x. [\#657](https://github.com/openeuropa/oe_content/pull/657) ([nagyad](https://github.com/nagyad))
 
 ## [4.8.1](https://github.com/openeuropa/oe_content/tree/4.8.1) (2025-06-18)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.8.0...4.8.1)
 
 **Merged pull requests:**
 
+- Release-4.8.1: Update changelog and PHP docker images. [\#659](https://github.com/openeuropa/oe_content/pull/659) ([nagyad](https://github.com/nagyad))
 - EWPP-5553: Update triple-store with new image in docker-compose.yml and .drone.yml. [\#655](https://github.com/openeuropa/oe_content/pull/655) ([sergepavle](https://github.com/sergepavle))
 
 ## [4.8.0](https://github.com/openeuropa/oe_content/tree/4.8.0) (2025-05-22)
-
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.7.0...4.8.0)
 
 **Merged pull requests:**

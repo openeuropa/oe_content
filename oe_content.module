@@ -7,6 +7,9 @@
 
 declare(strict_types=1);
 
+use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
+use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -129,4 +132,53 @@ function oe_content_preprocess_field_multiple_value_form(&$variables) {
       unset($variables['table']['#rows'][0]);
     }
   }
+}
+
+/**
+ * Loads a config array from storage, determines the entity type and imports it.
+ *
+ * @param string $name
+ *   The config name.
+ * @param \Drupal\Core\Config\StorageInterface $storage
+ *   The configuration storage where the file is located.
+ * @param bool $create_if_missing
+ *   If the configuration entity should be created if not found. Defaults to
+ *   TRUE.
+ * @param bool $update_if_exists
+ *   If the configuration entity should be updated if found. Defaults to TRUE.
+ */
+function _oe_content_import_config_from_file(string $name, StorageInterface $storage, bool $create_if_missing = TRUE, bool $update_if_exists = TRUE): void {
+  $config_manager = \Drupal::service('config.manager');
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  $config = $storage->read($name);
+  if (!$config) {
+    throw new \LogicException(sprintf('The configuration value named %s was not found in the storage.', $name));
+  }
+
+  $entity_type = $config_manager->getEntityTypeIdByName($name);
+  /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
+  $entity_storage = $entity_type_manager->getStorage($entity_type);
+  $id_key = $entity_storage->getEntityType()->getKey('id');
+  $entity = $entity_storage->load($config[$id_key]);
+  if (!$entity instanceof ConfigEntityInterface) {
+    if (!$create_if_missing) {
+      throw new \LogicException(sprintf('The configuration entity "%s" was not found.', $config[$id_key]));
+    }
+
+    // When we create a new config, it usually means that we are also shipping
+    // it in the config/install folder so we want to make sure it gets the hash
+    // so Drupal treats it as a shipped config. This means that it gets exposed
+    // to be translated via the locale system as well.
+    $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
+    $entity = $entity_storage->createFromStorageRecord($config);
+    $entity->save();
+
+    return;
+  }
+  if (!$update_if_exists) {
+    return;
+  }
+  $entity = $entity_storage->updateFromStorageRecord($entity, $config);
+  $entity->save();
 }

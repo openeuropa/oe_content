@@ -111,3 +111,21 @@ function oe_content_organisation_post_update_20007(): void {
     $field_config->save();
   }
 }
+
+/**
+ * Creates new fields.
+ */
+function oe_content_organisation_post_update_40001(): void {
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_content_organisation') . '/config/post_updates/40001_transparency_plans_reports');
+  // Create the Transparency, Transparency links and Plans and reports fields.
+  foreach ($storage->listAll('field.storage') as $name) {
+    _oe_content_import_config_from_file($name, $storage);
+  }
+  foreach ($storage->listAll('field.field') as $name) {
+    _oe_content_import_config_from_file($name, $storage);
+  }
+  // Add the fields to the form displays.
+  foreach ($storage->listAll('core.') as $name) {
+    _oe_content_import_config_from_file($name, $storage);
+  }
+}
