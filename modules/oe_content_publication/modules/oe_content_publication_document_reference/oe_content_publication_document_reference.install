@@ -17,22 +17,8 @@ function oe_content_publication_document_reference_install($is_syncing): void {
     return;
   }
 
-  $entity_type_manager = \Drupal::entityTypeManager();
-  // If the oe_publication bundle already exists, bail out.
-  if ($entity_type_manager->getStorage('oe_document_reference_type')->load('oe_publication')) {
-    return;
-  }
-
   $extension = 'oe_content_publication_document_reference';
   $config_path = '/tasks/install';
-  $configs_to_import = [
-    'oe_content_sub_entity_document_reference.oe_document_reference_type.oe_publication',
-    'field.storage.oe_document_reference.oe_publication',
-    'field.field.oe_document_reference.oe_publication.oe_publication',
-    'core.entity_form_display.oe_document_reference.oe_publication.default',
-    'core.entity_view_display.oe_document_reference.oe_publication.default',
-  ];
-  ConfigImporter::importMultiple('module', $extension, $config_path, $configs_to_import);
 
   if (\Drupal::moduleHandler()->moduleExists('content_translation')) {
     ConfigImporter::importSingle('module', $extension, $config_path, 'language.content_settings.oe_document_reference.oe_publication');
