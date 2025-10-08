@@ -14,7 +14,6 @@
   </logging>
   <testsuites>
     <testsuite name="OpenEuropa Content">
-      <directory>./modules/**/modules/**/tests/</directory>
       <directory>./modules/**/tests/</directory>
       <directory>./tests/</directory>
     </testsuite>
