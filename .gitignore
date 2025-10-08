@@ -6,6 +6,7 @@ behat.yml
 build
 composer.lock
 grumphp.yml
+junit-export
 node_modules
 npm-debug.log
 package-lock.json

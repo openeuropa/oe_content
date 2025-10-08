@@ -8,3 +8,4 @@ parameters:
     # See: https://www.drupal.org/project/drupal/issues/3482464#comment-16101580
   	- src/Hook/OeContentHooks.php
   	- oe_content.module
+  	- '*.yml'
