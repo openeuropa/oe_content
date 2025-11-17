@@ -1,10 +1,20 @@
-# Change Log
+# Changelog
+
+## [4.11.0](https://github.com/openeuropa/oe_content/tree/4.11.0) (2025-11-17)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.10.0...4.11.0)
+
+**Merged pull requests:**
+
+- EWPP-6061: Support Drupal Core 11.2. [\#673](https://github.com/openeuropa/oe_content/pull/673) ([hernani](https://github.com/hernani))
+- EWPP-6041: Support Gitlab CI. [\#670](https://github.com/openeuropa/oe_content/pull/670) ([hernani](https://github.com/hernani))
 
 ## [4.10.0](https://github.com/openeuropa/oe_content/tree/4.10.0) (2025-09-25)
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.9.0...4.10.0)
 
 **Merged pull requests:**
 
+- Release-4.10.0: Update changelog. [\#671](https://github.com/openeuropa/oe_content/pull/671) ([nagyad](https://github.com/nagyad))
 - EWPP-5805: Unlock drupal core and use the dependent patches. [\#667](https://github.com/openeuropa/oe_content/pull/667) ([nagyad](https://github.com/nagyad))
 
 ## [4.9.0](https://github.com/openeuropa/oe_content/tree/4.9.0) (2025-09-09)
