@@ -121,6 +121,11 @@ class PersonNodeUpdaterTest extends KernelTestBase {
    * Tests update of person values to sub-entities by the service.
    */
   public function testNodeUpdate(): void {
+    // Skip this test in 11.2 as we can't save
+    // old revisions anymore like we did.
+    if (version_compare(\Drupal::VERSION, '11.2.0', '>=')) {
+      $this->markTestSkipped();
+    }
     // Create test Person nodes.
     $person_nodes = [];
     for ($i = 0; $i < 3; $i++) {
