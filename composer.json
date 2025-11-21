@@ -36,7 +36,6 @@
         "ec-europa/toolkit": "^10.23",
         "friends-of-behat/service-container-extension": "^1.0",
         "openeuropa/behat-transformation-context": "~0.2",
-        "openeuropa/composer-dependent-patches": "^0.1",
         "openeuropa/code-review-drupal": "^1.0.0-alpha",
         "openeuropa/oe_corporate_countries": "^2.3",
         "openeuropa/oe_corporate_site_info": "^1.2",
@@ -82,31 +81,6 @@
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2025-09-03/2851580-128.patch"
             }
-        },
-        "dependent-patches": {
-            "drupal/core": [
-                {
-                    "description": "https://www.drupal.org/project/drupal/issues/2230909",
-                    "url": "https://www.drupal.org/files/issues/2025-07-02/2230909-379.patch",
-                    "extra": {
-                        "version": ">=10.4.0 <=10.4.8 || >=10.5.0 <=10.5.2 || >=11.0.0 <11.2"
-                    }
-                },
-                {
-                    "description": "https://www.drupal.org/project/drupal/issues/2230909",
-                    "url": "https://www.drupal.org/files/issues/2025-09-04/2230909-381.patch",
-                    "extra": {
-                        "version": ">=10.5.3 <11"
-                    }
-                },
-                {
-                    "description": "https://www.drupal.org/project/drupal/issues/2230909",
-                    "url": "https://www.drupal.org/files/issues/2025-09-04/2230909-383.patch",
-                    "extra": {
-                        "version": ">=11.2"
-                    }
-                }
-            ]
         },
         "drupal-scaffold": {
             "locations": {
