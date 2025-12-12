@@ -182,9 +182,21 @@ Feature: Project content creation
     When I click "Edit"
     Then I fill in "Media item" with "Plant health in the EU" in the "featured media form element"
     And I fill in "Caption" with "Here is my featured video text caption." in the "featured media form element"
+    # Test budget limits due to https://www.drupal.org/project/drupal/issues/2230909
+    And I fill in "Overall budget" with "104479592" in the "Budget" region
+    And I fill in "EU contribution" with "104479592" in the "Budget" region
     When I press "Save"
     Then I should see "Plant health in the EU" in the "featured media field" region
+    And I should see "104479592"
     And I should see "Here is my featured video text caption." in the "featured media field" region
+
+    # Test other limits
+    When I click "Edit"
+    And I fill in "Overall budget" with "99999.0000" in the "Budget" region
+    And I fill in "EU contribution" with "20.13" in the "Budget" region
+    When I press "Save"
+    Then I should see "€99999.00"
+    And I should see "€20.13"
 
   @javascript
   @batch3
