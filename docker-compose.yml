@@ -1,6 +1,6 @@
 services:
   web:
-    image: registry.fpfis.eu/digit/devsecops/httpd-php:8.3-dev
+    image: fpfis/httpd-php:8.3-dev
     working_dir: /var/www/html
     ports:
       - 8080:8080
@@ -29,7 +29,7 @@ services:
 #    ports:
 #      - 3306:3306
   sparql:
-    image: registry.fpfis.eu/digit/devsecops/triplestore
+    image: fpfis/triplestore:1
     environment:
     - SPARQL_UPDATE=true
     - DBA_PASSWORD=dba
