@@ -1,11 +1,22 @@
 # Changelog
 
-## [4.11.0](https://github.com/openeuropa/oe_content/tree/4.11.0) (2025-11-17)
+## [4.12.0](https://github.com/openeuropa/oe_content/tree/4.12.0) (2026-01-09)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.11.0...4.12.0)
+
+**Merged pull requests:**
+
+- EWPP-6400: Update testing matrix. [\#677](https://github.com/openeuropa/oe_content/pull/677) ([nagyad](https://github.com/nagyad))
+- EWPP-6339: Update PHP and triplestore image registries. [\#676](https://github.com/openeuropa/oe_content/pull/676) ([nagyad](https://github.com/nagyad))
+- EWPP-6267: Remove core patch \#2230909. [\#675](https://github.com/openeuropa/oe_content/pull/675) ([hernani](https://github.com/hernani))
+
+## [4.11.0](https://github.com/openeuropa/oe_content/tree/4.11.0) (2025-11-18)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.10.0...4.11.0)
 
 **Merged pull requests:**
 
+- Release-4.11.0: Update changelog. [\#674](https://github.com/openeuropa/oe_content/pull/674) ([nagyad](https://github.com/nagyad))
 - EWPP-6061: Support Drupal Core 11.2. [\#673](https://github.com/openeuropa/oe_content/pull/673) ([hernani](https://github.com/hernani))
 - EWPP-6041: Support Gitlab CI. [\#670](https://github.com/openeuropa/oe_content/pull/670) ([hernani](https://github.com/hernani))
 
