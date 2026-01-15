@@ -1,6 +1,6 @@
 services:
   web:
-    image: registry.fpfis.eu/digit/devsecops/httpd-php:8.3-dev
+    image: fpfis/httpd-php:8.3-dev
     working_dir: /var/www/html
     ports:
       - 8080:8080
@@ -15,6 +15,12 @@ services:
       PHP_IDE_CONFIG: "serverName=Docker"
       # Enable step debugging for all PHP request. See ./README.md#step-debugging for more information.
       #XDEBUG_SESSION: 1
+      DRUPAL_DATABASE_NAME: "drupal"
+      DRUPAL_DATABASE_USERNAME: "root"
+      DRUPAL_DATABASE_PASSWORD: ""
+      DRUPAL_DATABASE_HOST: "mysql"
+      DRUPAL_DATABASE_PORT: "3306"
+      DRUPAL_DATABASE_PREFIX: ""
   mysql:
     image: percona/percona-server:8.0
     command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3 --skip-log-bin --innodb-flush-log-at-trx-commit=2 --innodb-read-io-threads=16 --innodb-write-io-threads=16
@@ -23,7 +29,7 @@ services:
 #    ports:
 #      - 3306:3306
   sparql:
-    image: registry.fpfis.eu/digit/devsecops/triplestore
+    image: fpfis/triplestore:1
     environment:
     - SPARQL_UPDATE=true
     - DBA_PASSWORD=dba

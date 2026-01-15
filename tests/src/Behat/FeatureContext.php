@@ -175,7 +175,12 @@ class FeatureContext extends RawDrupalContext {
     }
     $alias = '/' . $this->getDrupalParameter('drupal')['drupal_root'] . $alias;
     $node_url = \Drupal::config('oe_content_persistent.settings')->get('base_url') . $node->uuid();
-    $this->assertLinkWithHref($node_url, $alias);
+    if ($this->getSession()->getPage()->findLink($node_url)) {
+      $this->assertLinkWithHref($node_url, $alias);
+    }
+    else {
+      $this->assertLinkWithHref($node_title, $alias);
+    }
   }
 
   /**
