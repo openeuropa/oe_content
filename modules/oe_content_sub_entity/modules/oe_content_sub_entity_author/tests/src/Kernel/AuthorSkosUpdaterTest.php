@@ -25,8 +25,10 @@ class AuthorSkosUpdaterTest extends SparqlKernelTestBase {
     'user',
     'rdf_skos',
     'composite_reference',
+    'file',
     'media',
     'image',
+    'node_storage_body_field',
     'text',
     'options',
     'datetime',
@@ -63,6 +65,7 @@ class AuthorSkosUpdaterTest extends SparqlKernelTestBase {
 
     $this->installConfig([
       'node',
+      'node_storage_body_field',
       'filter',
       'media',
       'oe_content_social_media_links_field',

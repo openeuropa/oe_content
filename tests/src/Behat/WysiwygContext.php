@@ -122,20 +122,35 @@ class WysiwygContext extends RawDrupalContext {
 
     $this->pressWysiwygButton($field, 'Link (Ctrl+K)');
 
-    $this->waitForAjaxToFinish();
-    $link_form = $page->find('css', '.ck-link-form');
+    // Wait for the CKEditor link form balloon to appear and for the Linkit
+    // module to initialize the autocomplete on the URL input. Both are pure
+    // CKEditor/JS operations, not Drupal AJAX requests.
+    $session->wait(5000, "document.querySelector('.ck-link-form input.form-linkit-autocomplete') !== null");
 
-    $href_field = $link_form->find('css', 'input.form-linkit-autocomplete');
-    // Trigger a keydown event to activate an autocomplete search.
-    $href_field->setValue($node_title);
-    $href_field->keyDown(' ');
+    // Use JavaScript to set the value on the Linkit autocomplete input and
+    // trigger the search. Direct Mink interaction with CKEditor elements can
+    // fail due to CKEditor re-rendering the form and creating stale element
+    // references.
+    $escaped_title = addslashes($node_title);
+    $session->executeScript("
+      var input = document.querySelector('.ck-link-form input.form-linkit-autocomplete');
+      var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+      nativeInputValueSetter.call(input, '$escaped_title');
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+    ");
 
-    $this->getSession()->wait(5000, "jQuery('.linkit-result-line.ui-menu-item').length > 0");
+    $session->wait(5000, "jQuery('.linkit-result-line.ui-menu-item').length > 0");
 
-    // Find the first result and click it.
-    $link_form->find('xpath', '//li[contains(@class, "linkit-result-line") and contains(@class, "ui-menu-item")][1]')->click();
+    // Find the first autocomplete result and click it.
+    $result = $page->find('xpath', '//li[contains(@class, "linkit-result-line") and contains(@class, "ui-menu-item")][1]');
+    Assert::assertNotNull($result, 'No linkit autocomplete results found.');
+    $result->click();
 
-    $link_form->find('css', 'button.ck-button[type="submit"]')->click();
+    // Click the submit button.
+    $submit = $page->find('css', '.ck-link-form button[type="submit"]');
+    Assert::assertNotNull($submit, 'The link form submit button was not found.');
+    $submit->click();
 
     $this->waitForAjaxToFinish();
   }

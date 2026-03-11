@@ -19,12 +19,14 @@ class AuthorEntityTest extends SparqlKernelTestBase {
    */
   protected static $modules = [
     'node',
+    'node_storage_body_field',
     'link',
     'entity_reference_revisions',
     'sparql_entity_storage',
     'user',
     'rdf_skos',
     'composite_reference',
+    'file',
     'media',
     'image',
     'text',
@@ -61,6 +63,7 @@ class AuthorEntityTest extends SparqlKernelTestBase {
     $this->installEntitySchema('media');
     $this->installConfig([
       'node',
+      'node_storage_body_field',
       'filter',
       'media',
       'oe_content_social_media_links_field',

@@ -131,7 +131,7 @@ Feature: Consultation content creation
 
     When the "Document reference" sub-entity "Document reference to My Document 3" is updated as follows:
       | Published | No |
-    And I am visiting the "Consultation demo page" content
+    And I reload the page
     Then I should not see "sample.pdf"
 
     When I am logged in as a user with the "view unpublished sub entities" permission

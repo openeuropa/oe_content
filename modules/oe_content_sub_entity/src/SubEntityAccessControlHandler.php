@@ -54,7 +54,9 @@ class SubEntityAccessControlHandler extends EntityAccessControlHandler implement
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
     // Allowed when the operation is not view or the status is true.
     if ($operation === 'view') {
-      $access_result = AccessResult::allowedIf($entity->isPublished() || $account->hasPermission('view unpublished sub entities'));
+      $access_result = AccessResult::allowedIf($entity->isPublished() || $account->hasPermission('view unpublished sub entities'))
+        ->addCacheableDependency($entity)
+        ->cachePerPermissions();
     }
     else {
       $access_result = AccessResult::allowed();
