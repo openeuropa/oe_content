@@ -9,6 +9,7 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\Node;
+use Drupal\Tests\oe_content\Traits\TableDragTrait;
 
 /**
  * Tests the output of "oe_featured_media_entity_browser" widget.
@@ -16,6 +17,8 @@ use Drupal\node\Entity\Node;
  * @group oe_content_featured_media_field
  */
 class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestBase {
+
+  use TableDragTrait;
 
   /**
    * {@inheritdoc}
@@ -216,9 +219,7 @@ class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestB
 
     // Edit the node to reorder field items.
     $this->drupalGet($node->toUrl('edit-form'));
-    $handle = $this->assertSession()->elementExists('css', 'table#featured-media-field-values > tbody > tr:nth-child(1) a.tabledrag-handle');
-    $target = $this->getSession()->getPage()->find('css', 'table#featured-media-field-values > tbody > tr:nth-child(2) a.tabledrag-handle');
-    $handle->dragTo($target);
+    $this->sortTableDragRow('table#featured-media-field-values', 1, 2);
 
     // Check that 'Image 1' media item is placed after 'Image 2'.
     $this->assertOrderInPage(['Image 2', 'Image 1']);
