@@ -3,3 +3,5 @@ description: Test module to provide a test collapsible field.
 package: OpenEuropa
 type: module
 core_version_requirement: ^10 || ^11
+dependencies:
+  - oe_content_timeline_field:oe_content_timeline_field
