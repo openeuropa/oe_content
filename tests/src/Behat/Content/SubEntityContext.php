@@ -56,17 +56,19 @@ class SubEntityContext extends RawEntityContext {
     if (!isset($fields['Name'])) {
       throw new \InvalidArgumentException('You must specify a "Name" when creating a sub-entity.');
     }
+    $subentity_name = $fields['Name'];
+    unset($fields['Name']);
 
     // Lead entity type definition by its label.
     $definition = $this->loadDefinitionByLabel($entity_type_label);
     $bundle = $this->loadEntityByLabel($definition->getBundleEntityType(), $bundle_label)->id();
 
     // Create and save entity.
-    $entity = $this->createEntity($definition->id(), $bundle, $table->getRowsHash() + [
+    $entity = $this->createEntity($definition->id(), $bundle, $fields + [
       $definition->getKey('bundle') => $bundle,
     ]);
 
-    $this->setSubEntityByName($fields['Name'], $entity);
+    $this->setSubEntityByName($subentity_name, $entity);
   }
 
   /**
