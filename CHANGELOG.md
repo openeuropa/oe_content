@@ -1,11 +1,20 @@
 # Changelog
 
+## [4.12.1](https://github.com/openeuropa/oe_content/tree/4.12.1) (2026-04-20)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.12.0...4.12.1)
+
+**Merged pull requests:**
+
+- EWPP-6671: Fix Behat failures. [\#681](https://github.com/openeuropa/oe_content/pull/681) ([intelektron](https://github.com/intelektron))
+
 ## [4.12.0](https://github.com/openeuropa/oe_content/tree/4.12.0) (2026-01-09)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.11.0...4.12.0)
 
 **Merged pull requests:**
 
+- Release-4.12.0: Update changelog. [\#678](https://github.com/openeuropa/oe_content/pull/678) ([nagyad](https://github.com/nagyad))
 - EWPP-6400: Update testing matrix. [\#677](https://github.com/openeuropa/oe_content/pull/677) ([nagyad](https://github.com/nagyad))
 - EWPP-6339: Update PHP and triplestore image registries. [\#676](https://github.com/openeuropa/oe_content/pull/676) ([nagyad](https://github.com/nagyad))
 - EWPP-6267: Remove core patch \#2230909. [\#675](https://github.com/openeuropa/oe_content/pull/675) ([hernani](https://github.com/hernani))
