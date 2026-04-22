@@ -21,10 +21,10 @@ Feature: Person content creation
     And the following General Contact entity:
       | Name | A general contact in Organisation |
     And the following "Organisation" Content entity:
-      | Title             | Organisation as a contact         |
-      | Organisation type | EU organisation                   |
-      | EU organisation   | Directorate-General for Budget    |
-      | Contact           | A general contact in Organisation |
+      | Title              | Organisation as a contact         |
+      | Organisation type  | EU organisation                   |
+      | EU organisation    | Directorate-General for Budget    |
+      | Contacts           | A general contact in Organisation |
     And the following "Organisation" Content entity:
       | Title             | Organisation demo page         |
       | Organisation type | EU organisation                |
@@ -255,7 +255,6 @@ Feature: Person content creation
       | Document | My Document                       |
     And the following Person Content entity:
       | Title                               | Person demo page                  |
-      | Summary                             | Person summary                    |
       | Contacts                            | A general contact                 |
       | What type of person are you adding? | eu                                |
       | First name                          | First                             |

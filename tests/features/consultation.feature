@@ -119,7 +119,6 @@ Feature: Consultation content creation
       | Document | My Document 3                       |
     And the following Consultation Content entity:
       | Title             | Consultation demo page              |
-      | Summary           | Consultation summary                |
       | Teaser            | Consultation teaser                 |
       | Contacts          | A general contact                   |
       | Opening date      | 2019-02-22                          |
