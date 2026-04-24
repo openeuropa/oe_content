@@ -4,6 +4,7 @@ dependent-patches.lock.json
 patches.lock.json
 behat.yml
 build
+/config/sync/
 composer.lock
 grumphp.yml
 junit-export
