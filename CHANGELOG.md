@@ -1,11 +1,20 @@
 # Changelog
 
+## [4.13.0](https://github.com/openeuropa/oe_content/tree/4.13.0) (2026-04-27)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.12.1...4.13.0)
+
+**Merged pull requests:**
+
+- EWPP-6514: Support D11.3. [\#680](https://github.com/openeuropa/oe_content/pull/680) ([nagyad](https://github.com/nagyad))
+
 ## [4.12.1](https://github.com/openeuropa/oe_content/tree/4.12.1) (2026-04-20)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.12.0...4.12.1)
 
 **Merged pull requests:**
 
+- Release-4.12.1: Update changelog. [\#682](https://github.com/openeuropa/oe_content/pull/682) ([nagyad](https://github.com/nagyad))
 - EWPP-6671: Fix Behat failures. [\#681](https://github.com/openeuropa/oe_content/pull/681) ([intelektron](https://github.com/intelektron))
 
 ## [4.12.0](https://github.com/openeuropa/oe_content/tree/4.12.0) (2026-01-09)
