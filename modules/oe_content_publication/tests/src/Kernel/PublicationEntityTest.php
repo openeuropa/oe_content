@@ -25,6 +25,7 @@ class PublicationEntityTest extends EntityKernelTestBase {
     'field_group',
     'file',
     'node',
+    'node_storage_body_field',
     'link',
     'maxlength',
     'media',
@@ -75,6 +76,7 @@ class PublicationEntityTest extends EntityKernelTestBase {
     $this->installConfig([
       'field',
       'node',
+      'node_storage_body_field',
       'oe_content',
       'oe_content_departments_field',
       'oe_content_reference_code_field',

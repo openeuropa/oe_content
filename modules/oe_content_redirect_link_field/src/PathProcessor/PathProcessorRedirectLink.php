@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\oe_content_redirect_link_field\PathProcessor;
 
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\PathProcessor\OutboundPathProcessorInterface;
@@ -52,13 +53,23 @@ class PathProcessorRedirectLink implements OutboundPathProcessorInterface {
 
   /**
    * {@inheritdoc}
-   *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function processOutbound($path, &$options = [], ?Request $request = NULL, ?BubbleableMetadata $bubbleable_metadata = NULL) {
     try {
-      $router = new Router(\Drupal::service('router.route_provider'), \Drupal::service('path.current'), \Drupal::service('url_generator'));
+      $router = DeprecationHelper::backwardsCompatibleCall(
+        \Drupal::VERSION,
+        '11.3.0',
+        static fn (): Router => new Router(
+          \Drupal::service('router.route_provider'),
+          \Drupal::service('path.current')
+        ),
+        static fn (): Router => new Router(
+          \Drupal::service('router.route_provider'),
+          \Drupal::service('path.current'),
+          \Drupal::service('url_generator')
+        ),
+      );
+
       $router->setContext(\Drupal::service('router.request_context'));
       $match = $router->match($path);
     }

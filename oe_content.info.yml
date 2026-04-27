@@ -8,6 +8,7 @@ dependencies:
   - drupal:node
   - drupal:link
   - drupal:datetime
+  - drupal:node_storage_body_field
   - rdf_skos:rdf_skos
   - maxlength:maxlength
 

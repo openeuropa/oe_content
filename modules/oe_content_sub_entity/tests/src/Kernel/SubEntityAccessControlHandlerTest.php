@@ -276,61 +276,77 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
       'user without permissions / view / published entity' => [
         'permissions' => [],
         'operation' => 'view',
-        'expected_result' => AccessResult::forbidden()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::forbidden()
+          ->addCacheContexts(['user.permissions'])
+          ->addCacheTags(['oe_sub_entity_test:1']),
         'status' => 1,
       ],
       'user without permissions / view / unpublished entity' => [
         'permissions' => [],
         'operation' => 'view',
-        'expected_result' => AccessResult::forbidden()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::forbidden()
+          ->addCacheContexts(['user.permissions'])
+          ->addCacheTags(['oe_sub_entity_test:1']),
         'status' => 0,
       ],
       'user with access content / view / published entity' => [
         'permissions' => ['access content'],
         'operation' => 'view',
-        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['node:2']),
+        'expected_result' => AccessResult::allowed()
+          ->addCacheContexts(['user.permissions'])
+          ->addCacheTags(['node:2', 'oe_sub_entity_test:1']),
         'status' => 1,
       ],
       'user with access content / view / unpublished entity' => [
         'permissions' => ['access content'],
         'operation' => 'view',
-        'expected_result' => AccessResult::neutral(),
+        'expected_result' => AccessResult::neutral()
+          ->addCacheContexts(['user.permissions'])
+          ->addCacheTags(['oe_sub_entity_test:1']),
         'status' => 0,
       ],
       'user with access content view unpublished sub entities / view / unpublished entity' => [
         'permissions' => ['access content', 'view unpublished sub entities'],
         'operation' => 'view',
-        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions'])->addCacheTags(['node:2']),
+        'expected_result' => AccessResult::allowed()
+          ->addCacheContexts(['user.permissions'])
+          ->addCacheTags(['node:2', 'oe_sub_entity_test:1']),
         'status' => 0,
       ],
       'user with view unpublished sub entities / view / unpublished entity' => [
         'permissions' => ['view unpublished sub entities'],
         'operation' => 'view',
-        'expected_result' => AccessResult::forbidden()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::forbidden()
+          ->addCacheContexts(['user.permissions'])
+          ->addCacheTags(['oe_sub_entity_test:1']),
         'status' => 0,
       ],
       'user with access content / update' => [
         'permissions' => ['access content'],
         'operation' => 'update',
-        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::neutral()
+          ->addCacheContexts(['user.permissions']),
         'status' => 1,
       ],
       'user with access content / delete' => [
         'permissions' => ['access content'],
         'operation' => 'delete',
-        'expected_result' => AccessResult::neutral()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::neutral()
+          ->addCacheContexts(['user.permissions']),
         'status' => 1,
       ],
       'user with bypass node access / update' => [
         'permissions' => ['bypass node access'],
         'operation' => 'update',
-        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::allowed()
+          ->addCacheContexts(['user.permissions']),
         'status' => 1,
       ],
       'user with bypass node access / delete' => [
         'permissions' => ['bypass node access'],
         'operation' => 'delete',
-        'expected_result' => AccessResult::allowed()->addCacheContexts(['user.permissions']),
+        'expected_result' => AccessResult::allowed()
+          ->addCacheContexts(['user.permissions']),
         'status' => 1,
       ],
     ];

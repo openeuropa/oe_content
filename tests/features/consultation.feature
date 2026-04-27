@@ -119,7 +119,6 @@ Feature: Consultation content creation
       | Document | My Document 3                       |
     And the following Consultation Content entity:
       | Title             | Consultation demo page              |
-      | Summary           | Consultation summary                |
       | Teaser            | Consultation teaser                 |
       | Contacts          | A general contact                   |
       | Opening date      | 2019-02-22                          |
@@ -131,7 +130,7 @@ Feature: Consultation content creation
 
     When the "Document reference" sub-entity "Document reference to My Document 3" is updated as follows:
       | Published | No |
-    And I am visiting the "Consultation demo page" content
+    And I reload the page
     Then I should not see "sample.pdf"
 
     When I am logged in as a user with the "view unpublished sub entities" permission

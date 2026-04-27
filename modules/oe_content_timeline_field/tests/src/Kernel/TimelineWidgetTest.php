@@ -22,6 +22,7 @@ class TimelineWidgetTest extends EntityKernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'oe_content',
     'oe_content_timeline_field',
     'oe_content_timeline_test_constraint',
   ];

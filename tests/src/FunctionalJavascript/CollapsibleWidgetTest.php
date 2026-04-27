@@ -9,6 +9,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 use Drupal\Tests\oe_content\Traits\CollapsibleFieldTrait;
+use Drupal\Tests\oe_content\Traits\TableDragTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 
 /**
@@ -23,6 +24,7 @@ class CollapsibleWidgetTest extends WebDriverTestBase {
 
   use FieldUiTestTrait;
   use CollapsibleFieldTrait;
+  use TableDragTrait;
   use SparqlConnectionTrait;
 
   /**
@@ -211,9 +213,7 @@ class CollapsibleWidgetTest extends WebDriverTestBase {
     ]);
 
     // Test reordering items.
-    $handle = $field->find('css', "tbody > tr:nth-child(1) a.tabledrag-handle");
-    $second = $field->find('css', "tbody > tr:nth-child(2)");
-    $handle->dragTo($second);
+    $this->sortTableDragRow('.field--name-oe-collapsible-test table', 1, 2);
     $this->assertCollapsibleTable($field, [
       ['mode' => 'closed', 'Title' => 'T2-2', 'Content' => 'B2-2'],
       ['mode' => 'closed', 'Title' => 'T0', 'Content' => 'B0'],
@@ -223,9 +223,7 @@ class CollapsibleWidgetTest extends WebDriverTestBase {
     // Duplicate the first element and move it after the second element.
     $this->performCollapsibleSubaction($field, 1, 'Duplicate');
     $this->performCollapsibleAction($field, 2, 'Collapse');
-    $handle = $field->find('css', "tbody > tr:nth-child(2) a.tabledrag-handle");
-    $third = $field->find('css', "tbody > tr:nth-child(3)");
-    $handle->dragTo($third);
+    $this->sortTableDragRow('.field--name-oe-collapsible-test table', 2, 3);
     $this->performCollapsibleAction($field, 3, 'Edit');
     $this->assertCollapsibleTable($field, [
       ['mode' => 'closed', 'Title' => 'T2-2', 'Content' => 'B2-2'],
@@ -261,9 +259,7 @@ class CollapsibleWidgetTest extends WebDriverTestBase {
     ]);
 
     // Change order, save and check results.
-    $handle = $field->find('css', "tbody > tr:nth-child(2) a.tabledrag-handle");
-    $third = $field->find('css', "tbody > tr:nth-child(3)");
-    $handle->dragTo($third);
+    $this->sortTableDragRow('.field--name-oe-collapsible-test table', 2, 3);
     $this->assertCollapsibleTable($field, [
       ['mode' => 'closed', 'Title' => 'T2-2', 'Content' => 'B2-2'],
       ['mode' => 'closed', 'Title' => 'T2-2', 'Content' => 'B2-2'],

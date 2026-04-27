@@ -1,6 +1,11 @@
 includes:
   - ./vendor/openeuropa/code-review-drupal/dist/phpstan.drupal.neon
 parameters:
+  ignoreErrors:
+    -
+      identifier: arguments.count
+      path: modules/oe_content_redirect_link_field/src/PathProcessor/PathProcessorRedirectLink.php
+      reportUnmatched: false
   excludePaths:
     # Exclude the TimelineFieldProcessor due to very custom logic.
   	- modules/oe_content_timeline_field/src/TimelineFieldProcessor.php
