@@ -231,3 +231,51 @@ msgstr "Cuma"
 
 msgid "Saturday"
 msgstr "Cumartesi"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "Oca"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "Şub"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "Mar"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "Nis"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "May"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "Haz"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "Tem"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "Ağu"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "Eyl"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "Eki"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "Kas"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "Ara"

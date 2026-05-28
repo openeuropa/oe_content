@@ -189,3 +189,51 @@ msgstr "venerdì"
 
 msgid "Saturday"
 msgstr "sabato"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "gen"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "feb"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "mar"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "apr"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "mag"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "giu"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "lug"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "ago"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "set"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "ott"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "nov"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "dic"

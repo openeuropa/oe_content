@@ -231,3 +231,51 @@ msgstr "пт"
 
 msgid "Sa"
 msgstr "сб"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "янв."
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "фев."
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "мар."
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "апр."
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "май"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "июн."
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "июл."
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "авг."
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "сен."
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "окт."
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "ноя."
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "дек."

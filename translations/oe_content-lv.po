@@ -189,3 +189,51 @@ msgstr "piektdiena"
 
 msgid "Saturday"
 msgstr "sestdiena"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "janv."
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "febr."
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "mar."
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "apr."
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "mai."
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "jūn."
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "jūl."
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "aug."
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "sept."
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "okt."
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "nov."
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "dec."

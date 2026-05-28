@@ -185,3 +185,51 @@ msgstr "piątek"
 
 msgid "Saturday"
 msgstr "sobota"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "STY"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "LUT"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "MAR"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "KWI"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "MAJ"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "CZE"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "LIP"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "SIE"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "WRZ"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "PAŹ"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "LIS"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "GRU"

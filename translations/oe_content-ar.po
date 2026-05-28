@@ -231,3 +231,51 @@ msgstr "الجمعة"
 
 msgid "Saturday"
 msgstr "السبت"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "ينا"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "فبر"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "مار"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "أبر"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "ماي"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "يون"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "يول"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "أغ"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "سبت"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "أكت"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "نوف"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "ديس"

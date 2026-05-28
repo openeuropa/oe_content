@@ -231,3 +231,51 @@ msgstr "周五"
 
 msgid "Sa"
 msgstr "周六"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "一月"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "二月"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "三月"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "四月"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "五月"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "六月"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "七月"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "八月"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "九月"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "十月"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "十一月"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "十二月"

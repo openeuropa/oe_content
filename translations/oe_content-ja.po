@@ -189,3 +189,51 @@ msgstr "金曜日"
 
 msgid "Saturday"
 msgstr "土曜日"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "1月"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "2月"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "3月"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "4月"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "5月"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "6月"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "7月"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "8月"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "9月"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "10月"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "11月"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "12月"

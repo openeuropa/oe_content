@@ -189,3 +189,51 @@ msgstr "penktadienis"
 
 msgid "Saturday"
 msgstr "šeštadienis"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "sau."
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "vas."
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "kov."
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "bal."
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "geg."
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "bir."
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "lie."
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "rugp."
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "rgs."
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "spa."
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "lap."
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "gruo."
