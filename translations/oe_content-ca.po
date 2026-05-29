@@ -231,3 +231,51 @@ msgstr "divendres"
 
 msgid "Saturday"
 msgstr "dissabte"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "gen."
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "febr."
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "març"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "abr."
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "maig"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "juny"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "jul."
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "ag."
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "set."
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "oct."
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "nov."
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "des."

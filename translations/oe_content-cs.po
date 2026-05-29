@@ -189,3 +189,51 @@ msgstr "pátek"
 
 msgid "Saturday"
 msgstr "sobota"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "led"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "úno"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "bře"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "dub"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "kvě"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "čvn"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "čvc"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "srp"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "zář"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "říj"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "lis"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "pro"

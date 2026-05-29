@@ -190,3 +190,50 @@ msgstr "reede"
 msgid "Saturday"
 msgstr "laupäev"
 
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "jaan"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "veebr"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "märts"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "aprill"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "mai"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "juuni"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "juuli"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "aug"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "sept"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "okt"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "nov"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "dets"

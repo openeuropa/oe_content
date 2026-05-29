@@ -189,3 +189,51 @@ msgstr "П"
 msgctxt "Abbreviated 1 letter weekday Saturday"
 msgid "S"
 msgstr "С"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "Янр"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "Фев"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "Mар"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "Aпр"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "Mай"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "Юни"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "Юли"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "Aвг"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "Cеп"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "Oкт"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "Hое"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "Дек"

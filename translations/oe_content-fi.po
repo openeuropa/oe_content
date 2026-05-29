@@ -189,3 +189,51 @@ msgstr "perjantai"
 
 msgid "Saturday"
 msgstr "lauantai"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "tam"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "hel"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "maa"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "huh"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "tou"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "kes"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "hei"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "elo"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "syy"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "lok"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "mar"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "jou"

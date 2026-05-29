@@ -231,3 +231,51 @@ msgstr "Föstudagur"
 
 msgid "Saturday"
 msgstr "Laugardagur"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "Jan"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "Feb"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "Mar"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "Apr"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "Maí"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "Jún"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "Júl"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "Ágú"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "Sep"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "Okt"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "Nóv"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "Des"

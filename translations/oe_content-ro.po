@@ -189,3 +189,51 @@ msgstr "vineri"
 
 msgid "Saturday"
 msgstr "sâmbătă"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "ian"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "febr"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "mar"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "apr"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "mai"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "iun"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "iul"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "aug"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "sept"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "oct"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "noi"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "dec"

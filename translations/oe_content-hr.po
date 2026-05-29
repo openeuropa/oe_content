@@ -189,3 +189,51 @@ msgstr "petak"
 
 msgid "Saturday"
 msgstr "subota"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "sij"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "velj"
+
+msgctxt "Abbreviated month name"
+msgid "Mar"
+msgstr "ožu"
+
+msgctxt "Abbreviated month name"
+msgid "Apr"
+msgstr "tra"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "svi"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "lip"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "srp"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "kol"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "ruj"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "lis"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "stu"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "pro"
