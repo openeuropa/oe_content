@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_content_sub_entity_person\Kernel;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
+use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 use Drupal\field\Entity\FieldConfig;
 
 /**
@@ -16,6 +17,7 @@ class PersonNodeUpdaterTest extends KernelTestBase {
 
   use NodeCreationTrait;
   use ContentTypeCreationTrait;
+  use SparqlConnectionTrait;
 
   /**
    * {@inheritdoc}
@@ -60,6 +62,8 @@ class PersonNodeUpdaterTest extends KernelTestBase {
    */
   protected function setUp(): void {
     parent::setUp();
+
+    $this->setUpSparql();
 
     $this->installEntitySchema('user');
     $this->installEntitySchema('oe_person');

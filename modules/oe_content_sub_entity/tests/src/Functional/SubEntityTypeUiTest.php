@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_content_sub_entity\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\oe_content\Traits\EntityTypeUiTrait;
+use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 
 /**
  * Test sub entity type UIs.
@@ -13,6 +14,16 @@ use Drupal\Tests\oe_content\Traits\EntityTypeUiTrait;
 class SubEntityTypeUiTest extends BrowserTestBase {
 
   use EntityTypeUiTrait;
+  use SparqlConnectionTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->setUpSparql();
+  }
 
   /**
    * {@inheritdoc}
