@@ -1,11 +1,21 @@
 # Changelog
 
+## [4.14.0](https://github.com/openeuropa/oe_content/tree/4.14.0) (2026-06-02)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.13.0...4.14.0)
+
+**Merged pull requests:**
+
+- Fix test with sparql dependency in D11.3. [\#685](https://github.com/openeuropa/oe_content/pull/685) ([nagyad](https://github.com/nagyad))
+- EWPP-6812: Add translation context for abbreviated month names. [\#684](https://github.com/openeuropa/oe_content/pull/684) ([nagyad](https://github.com/nagyad))
+
 ## [4.13.0](https://github.com/openeuropa/oe_content/tree/4.13.0) (2026-04-27)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.12.1...4.13.0)
 
 **Merged pull requests:**
 
+- Release-4.13.0: Update changelog. [\#683](https://github.com/openeuropa/oe_content/pull/683) ([nagyad](https://github.com/nagyad))
 - EWPP-6514: Support D11.3. [\#680](https://github.com/openeuropa/oe_content/pull/680) ([nagyad](https://github.com/nagyad))
 
 ## [4.12.1](https://github.com/openeuropa/oe_content/tree/4.12.1) (2026-04-20)
