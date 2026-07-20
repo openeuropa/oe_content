@@ -126,11 +126,23 @@ class MediaPurlMatcher extends EntityMatcher {
         '#default_value' => $this->configuration['thumbnail']['show_thumbnail'],
       ];
 
+      // Build the list of available image styles. This replicates the
+      // deprecated image_style_options() helper so the code keeps working on
+      // Drupal 10 and 11.3, where the ImageDerivativeUtilities service that
+      // replaces it in Drupal 11.4 does not exist yet.
+      $image_style_options = [];
+      foreach ($this->entityTypeManager->getStorage('image_style')->loadMultiple() as $name => $image_style) {
+        $image_style_options[$name] = $image_style->label();
+      }
+      if (empty($image_style_options)) {
+        $image_style_options[''] = $this->t('No defined styles');
+      }
+
       $form['thumbnail']['thumbnail_image_style'] = [
         '#title' => $this->t('Thumbnail image style'),
         '#type' => 'select',
         '#default_value' => $this->configuration['thumbnail']['thumbnail_image_style'],
-        '#options' => image_style_options(FALSE),
+        '#options' => $image_style_options,
         '#states' => [
           'visible' => [
             ':input[name="thumbnail[show_thumbnail]"]' => ['checked' => TRUE],

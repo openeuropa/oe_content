@@ -61,11 +61,28 @@ class EntityTypeForm extends BundleEntityFormBase {
       '#required' => TRUE,
     ];
 
+    // Resolve the original entity type class to use as the machine name
+    // existence callback. getOriginalClass() is deprecated in Drupal 11.4 in
+    // favour of getDecoratedClasses(), which was introduced in the same
+    // version. The first decorated class is the original one; when the class
+    // has never been decorated the list is empty and the current class is the
+    // original. Detect the available API so this keeps working on Drupal 10
+    // and 11.3 too.
+    $entity_type_definition = $entity_type->getEntityType();
+    if (method_exists($entity_type_definition, 'getDecoratedClasses')) {
+      $decorated_classes = $entity_type_definition->getDecoratedClasses();
+      $original_class = $decorated_classes ? reset($decorated_classes) : $entity_type_definition->getClass();
+    }
+    else {
+      $original_class_method = 'getOriginalClass';
+      $original_class = $entity_type_definition->{$original_class_method}();
+    }
+
     $form['id'] = [
       '#type' => 'machine_name',
       '#default_value' => $entity_type->id(),
       '#machine_name' => [
-        'exists' => $entity_type->getEntityType()->getOriginalClass() . '::load',
+        'exists' => $original_class . '::load',
       ],
       '#disabled' => !$entity_type->isNew(),
     ];

@@ -92,7 +92,7 @@ class CollapsibleTestFieldItem extends FieldItemBase {
       [
         'title' => '',
         'body' => '',
-        'format' => filter_fallback_format(),
+        'format' => \Drupal::config('filter.settings')->get('fallback_format'),
       ],
       $notify
     );
