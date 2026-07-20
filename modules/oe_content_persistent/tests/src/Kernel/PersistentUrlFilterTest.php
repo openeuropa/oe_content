@@ -72,7 +72,11 @@ class PersistentUrlFilterTest extends KernelTestBase {
     $path_processor_manager = $this->container->get('path_processor_manager');
     /** @var \Drupal\path_alias\PathProcessor\AliasPathProcessor $path_processor */
     $path_processor = $this->container->get('path_alias.path_processor');
-    $path_processor_manager->addOutbound($path_processor);
+    // Only call the method when it still exists to stay compatible
+    // across the supported core range.
+    if (method_exists($path_processor_manager, 'addOutbound')) {
+      $path_processor_manager->addOutbound($path_processor);
+    }
   }
 
   /**

@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_content_sub_entity_author\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
+use Drupal\Tests\oe_content\Traits\NodeBodyFieldStorageTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 
 /**
@@ -15,6 +16,7 @@ class DefaultAuthorTest extends WebDriverTestBase {
 
   use SparqlConnectionTrait;
   use EntityReferenceTrait;
+  use NodeBodyFieldStorageTrait;
 
   /**
    * {@inheritdoc}
@@ -39,6 +41,7 @@ class DefaultAuthorTest extends WebDriverTestBase {
     parent::setUp();
 
     $this->setUpSparql();
+    $this->ensureNodeBodyTextWithSummary();
   }
 
   /**

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_content_publication\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\oe_content\Traits\NodeBodyFieldStorageTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 
 /**
@@ -13,6 +14,7 @@ use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 class PublicationEntityTest extends WebDriverTestBase {
 
   use SparqlConnectionTrait;
+  use NodeBodyFieldStorageTrait;
 
   /**
    * {@inheritdoc}
@@ -33,6 +35,7 @@ class PublicationEntityTest extends WebDriverTestBase {
     parent::setUp();
 
     $this->setUpSparql();
+    $this->ensureNodeBodyTextWithSummary();
   }
 
   /**
