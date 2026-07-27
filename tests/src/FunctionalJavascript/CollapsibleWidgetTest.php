@@ -11,6 +11,7 @@ use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 use Drupal\Tests\oe_content\Traits\CollapsibleFieldTrait;
 use Drupal\Tests\oe_content\Traits\TableDragTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test collapsible field widget.
@@ -22,6 +23,7 @@ class CollapsibleWidgetTest extends WebDriverTestBase {
    */
   protected $defaultTheme = 'stark';
 
+  use CachedDatabaseInstallTrait;
   use FieldUiTestTrait;
   use CollapsibleFieldTrait;
   use TableDragTrait;
@@ -45,6 +47,7 @@ class CollapsibleWidgetTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->setUpSparql();

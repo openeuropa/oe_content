@@ -9,6 +9,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\oe_content\Traits\CollapsibleFieldTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test timeline field widget.
@@ -20,6 +21,7 @@ class TimelineWidgetUiTest extends WebDriverTestBase {
    */
   protected $defaultTheme = 'stark';
 
+  use CachedDatabaseInstallTrait;
   use CollapsibleFieldTrait;
   use SparqlConnectionTrait;
 
@@ -41,6 +43,7 @@ class TimelineWidgetUiTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->setUpSparql();

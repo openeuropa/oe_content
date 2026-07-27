@@ -7,12 +7,14 @@ namespace Drupal\Tests\oe_content_sub_entity_author\FunctionalJavascript;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests the default content owner field values.
  */
 class DefaultAuthorTest extends WebDriverTestBase {
 
+  use CachedDatabaseInstallTrait;
   use SparqlConnectionTrait;
   use EntityReferenceTrait;
 
@@ -36,6 +38,7 @@ class DefaultAuthorTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->setUpSparql();

@@ -6,12 +6,14 @@ namespace Drupal\Tests\oe_content_persistent\Functional;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\linkit\Tests\ProfileCreationTrait;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests the media PURL matcher.
  */
 class MediaPurlMatcherTest extends WebDriverTestBase {
 
+  use CachedDatabaseInstallTrait;
   use ProfileCreationTrait;
 
   /**
@@ -27,6 +29,14 @@ class MediaPurlMatcherTest extends WebDriverTestBase {
     'media',
     'oe_content_persistent',
   ];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
+    parent::setUp();
+  }
 
   /**
    * Test adding the configurable media matcher to a profile.

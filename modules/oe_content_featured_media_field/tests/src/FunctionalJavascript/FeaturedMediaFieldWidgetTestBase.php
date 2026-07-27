@@ -10,12 +10,14 @@ use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Base class for testing the featured media widgets.
  */
 class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
 
+  use CachedDatabaseInstallTrait;
   use ContentTypeCreationTrait;
 
   /**
@@ -41,6 +43,7 @@ class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->createContentType(['type' => 'page']);

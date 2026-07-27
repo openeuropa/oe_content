@@ -7,12 +7,14 @@ namespace Drupal\Tests\oe_content_entity\Functional;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\oe_content\Traits\EntityTypeUiTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test corporate content entity UIs.
  */
 class CorporateEntityUiTest extends BrowserTestBase {
 
+  use CachedDatabaseInstallTrait;
   use EntityTypeUiTrait;
   use SparqlConnectionTrait;
 
@@ -34,6 +36,8 @@ class CorporateEntityUiTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
+
     parent::setUp();
 
     $this->setUpSparql();

@@ -6,12 +6,14 @@ namespace Drupal\Tests\oe_content_publication\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Functional tests for the Publication content type.
  */
 class PublicationEntityTest extends WebDriverTestBase {
 
+  use CachedDatabaseInstallTrait;
   use SparqlConnectionTrait;
 
   /**
@@ -30,6 +32,7 @@ class PublicationEntityTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->setUpSparql();

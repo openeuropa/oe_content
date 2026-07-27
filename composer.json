@@ -41,7 +41,8 @@
         "openeuropa/oe_corporate_site_info": "^1.2",
         "openeuropa/oe_link_lists": "^1.8",
         "openeuropa/oe_multilingual": "^1.18",
-        "openeuropa/oe_time_caching": "^1.8"
+        "openeuropa/oe_time_caching": "^1.8",
+        "openeuropa/oe_testing_utils": "^1"
     },
     "autoload": {
         "psr-4": {
@@ -102,6 +103,7 @@
             "phpro/grumphp": true,
             "phpro/grumphp-shim": true,
             "phpstan/extension-installer": true,
+            "symfony/runtime": true,
             "tbachert/spi": false
         }
     }
