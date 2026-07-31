@@ -12,13 +12,17 @@ use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\link\LinkItemInterface;
 use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Testing redirects to redirect link field value.
+ *
+ * @group batch1
  */
 class RedirectSubscriberTest extends BrowserTestBase {
 
+  use CachedDatabaseInstallTrait;
   use NodeCreationTrait;
 
   /**
@@ -57,6 +61,7 @@ class RedirectSubscriberTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->nodeType = NodeType::create([

@@ -9,6 +9,8 @@ use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Tests Person type Person entity.
+ *
+ * @group batch3
  */
 class PersonEntityLabelTest extends SparqlKernelTestBase {
 

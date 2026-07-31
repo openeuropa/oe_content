@@ -14,6 +14,8 @@ use Drupal\oe_content_event\Plugin\InternalLinkSourceFilter\EventPeriodFilter;
  * Tests the internal link source filters related to Events.
  *
  * @covers \Drupal\oe_content_event\Plugin\InternalLinkSourceFilter\EventPeriodFilter
+ *
+ * @group batch2
  */
 class EventLinkSourceFilterTest extends EventKernelTestBase {
 

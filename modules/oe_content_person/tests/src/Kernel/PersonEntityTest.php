@@ -6,6 +6,8 @@ namespace Drupal\Tests\oe_content_person\Kernel;
 
 /**
  * Tests the Person content type.
+ *
+ * @group batch1
  */
 class PersonEntityTest extends PersonEntityTestBase {
 

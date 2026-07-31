@@ -12,6 +12,8 @@ use Drupal\field\Entity\FieldConfig;
 
 /**
  * Tests the PersonNodeUpdater service.
+ *
+ * @group batch2
  */
 class PersonNodeUpdaterTest extends KernelTestBase {
 

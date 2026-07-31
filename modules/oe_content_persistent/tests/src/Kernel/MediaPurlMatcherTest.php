@@ -12,6 +12,8 @@ use Drupal\media\Entity\MediaType;
 
 /**
  * Tests media PURL matcher.
+ *
+ * @group batch3
  */
 class MediaPurlMatcherTest extends LinkitKernelTestBase {
 

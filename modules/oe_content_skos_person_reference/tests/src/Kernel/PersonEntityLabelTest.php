@@ -8,6 +8,8 @@ use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Tests Political leader Person entity bundle.
+ *
+ * @group batch2
  */
 class PersonEntityLabelTest extends SparqlKernelTestBase {
 

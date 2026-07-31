@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_content_persistent\Functional;
 
 use Drupal\Tests\BrowserTestBase;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests the module configuration.
  *
  * @group oe_content
+ * @group batch1
  */
 class PurlSettingsTest extends BrowserTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * {@inheritdoc}
@@ -30,6 +34,14 @@ class PurlSettingsTest extends BrowserTestBase {
     'system',
     'oe_content_persistent',
   ];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
+    parent::setUp();
+  }
 
   /**
    * Tests the module settings form works as intended.

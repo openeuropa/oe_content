@@ -25,7 +25,6 @@
         "drupal/core-dev": "^10 || ^11",
         "drupal/datetime_testing": "^1.0",
         "drupal/description_list_field": "^1.0.0-alpha5",
-        "drupal/drupal-extension": "^5.0",
         "drupal/entity_browser": "^2.15",
         "drupal/entity_reference_revisions": "^1.8",
         "drupal/field_group": "^4.0",
@@ -34,14 +33,13 @@
         "drupal/typed_link": "^2.1",
         "drush/drush": "^12.4 || ^13",
         "ec-europa/toolkit": "^10.23",
-        "friends-of-behat/service-container-extension": "^1.0",
-        "openeuropa/behat-transformation-context": "~0.2",
         "openeuropa/code-review-drupal": "^1.0.0-alpha",
         "openeuropa/oe_corporate_countries": "^2.3",
         "openeuropa/oe_corporate_site_info": "^1.2",
         "openeuropa/oe_link_lists": "^1.8",
         "openeuropa/oe_multilingual": "^1.18",
-        "openeuropa/oe_time_caching": "^1.8"
+        "openeuropa/oe_time_caching": "^1.8",
+        "openeuropa/oe_testing_utils": "dev-main"
     },
     "autoload": {
         "psr-4": {
@@ -102,8 +100,8 @@
             "phpro/grumphp": true,
             "phpro/grumphp-shim": true,
             "phpstan/extension-installer": true,
-            "tbachert/spi": false,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "tbachert/spi": false
         }
     }
 }

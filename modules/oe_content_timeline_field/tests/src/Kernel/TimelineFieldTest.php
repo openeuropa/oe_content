@@ -14,6 +14,8 @@ use Drupal\node\Entity\NodeType;
 
 /**
  * Tests the timeline field type definition.
+ *
+ * @group batch3
  */
 class TimelineFieldTest extends EntityKernelTestBase {
 

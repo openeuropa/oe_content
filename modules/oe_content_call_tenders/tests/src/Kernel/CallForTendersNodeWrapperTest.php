@@ -17,6 +17,7 @@ use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
  *
  * @coversDefaultClass \Drupal\oe_content_call_tenders\CallForTendersNodeWrapper
  * @group oe_content_call_tenders
+ * @group batch1
  */
 class CallForTendersNodeWrapperTest extends CallForTendersKernelTestBase {
 

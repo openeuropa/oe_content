@@ -8,7 +8,7 @@ use Drupal\Tests\field\Traits\EntityReferenceFieldCreationTrait;
 use Drupal\field\Entity\FieldConfig;
 
 /**
- * Helper trait to handle entity reference fields in Behat tests.
+ * Helper trait to handle entity reference fields in tests.
  */
 trait EntityReferenceTrait {
 
@@ -30,6 +30,27 @@ trait EntityReferenceTrait {
    *   Expanded field name with comma separated list of target IDs.
    */
   protected function getReferenceField(string $entity_type, string $bundle, string $field_name, string $labels): array {
+    return [
+      "{$field_name}:target_id" => implode(',', $this->getReferenceTargetIds($entity_type, $bundle, $field_name, $labels)),
+    ];
+  }
+
+  /**
+   * Get the IDs of the entities referenced by their label.
+   *
+   * @param string $entity_type
+   *   The entity type.
+   * @param string $bundle
+   *   The bundle.
+   * @param string $field_name
+   *   The field name.
+   * @param string $labels
+   *   Entity labels, comma separated.
+   *
+   * @return array
+   *   The list of target IDs.
+   */
+  protected function getReferenceTargetIds(string $entity_type, string $bundle, string $field_name, string $labels): array {
     $field_config = FieldConfig::loadByName($entity_type, $bundle, $field_name);
     $configuration = \Drupal::service('plugin.manager.entity_reference_selection')->getSelectionHandler($field_config)->getConfiguration();
     $target_entity_type_id = \Drupal::entityTypeManager()->getDefinition($configuration['target_type'])->id();
@@ -50,9 +71,7 @@ trait EntityReferenceTrait {
       $ids[] = $entity->id();
     }
 
-    return [
-      "{$field_name}:target_id" => implode(',', $ids),
-    ];
+    return $ids;
   }
 
 }

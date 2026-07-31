@@ -9,6 +9,8 @@ use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Tests the AuthorSkosUpdater service.
+ *
+ * @group batch1
  */
 class AuthorSkosUpdaterTest extends SparqlKernelTestBase {
 

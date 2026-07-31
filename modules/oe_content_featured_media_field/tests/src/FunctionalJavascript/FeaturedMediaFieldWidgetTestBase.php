@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_content_featured_media_field\FunctionalJavascript;
 
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Base class for testing the featured media widgets.
  */
 class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
 
+  use CachedDatabaseInstallTrait;
   use ContentTypeCreationTrait;
 
   /**
@@ -41,11 +44,14 @@ class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->createContentType(['type' => 'page']);
 
     // Create an image file.
+    $files_dir = 'public://';
+    \Drupal::service('file_system')->prepareDirectory($files_dir, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
     \Drupal::service('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
     $image = File::create(['uri' => 'public://example.jpg']);
     $image->save();

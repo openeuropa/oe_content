@@ -20,13 +20,13 @@ trait UtilityTrait {
    *   Thrown when not running on a JS-enabled browser.
    */
   protected function assertJavaScriptEnabledBrowser(): void {
-    $driver = $this->getMink()->getSession()->getDriver();
+    $driver = $this->getSession()->getDriver();
     try {
       $driver->isVisible('//body');
     }
     catch (UnsupportedDriverActionException $e) {
       // Show a helpful error message.
-      throw new UnsupportedDriverActionException('This test needs to run on a real browser like Selenium or PhantomJS. Please add the "@javascript" tag to the scenario.', $driver);
+      throw new UnsupportedDriverActionException('This test needs to run on a real browser. Please extend a JavaScript enabled test base class.', $driver);
     }
   }
 
@@ -87,7 +87,7 @@ trait UtilityTrait {
     $this->assertJavaScriptEnabledBrowser();
 
     /** @var \Behat\Mink\Driver\Selenium2Driver $driver */
-    $driver = $this->getMink()->getSession()->getDriver();
+    $driver = $this->getSession()->getDriver();
 
     // First check if the browser reports this to be visible.
     $is_visible = $driver->isVisible($element->getXpath());

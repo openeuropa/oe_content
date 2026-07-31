@@ -13,6 +13,8 @@ use Drupal\node\NodeInterface;
 
 /**
  * Tests Authors reference formatter for all author entity bundles.
+ *
+ * @group batch2
  */
 class AuthorFieldEntityTest extends EntityKernelTestBase {
 

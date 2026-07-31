@@ -16,6 +16,7 @@ use Drupal\node\Entity\NodeType;
  * Tests the featured media field type definition.
  *
  * @group oe_content_featured_media_field
+ * @group batch3
  */
 class FeaturedMediaFieldTest extends EntityKernelTestBase {
 

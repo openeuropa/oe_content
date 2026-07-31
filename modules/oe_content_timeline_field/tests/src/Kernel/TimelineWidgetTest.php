@@ -15,6 +15,8 @@ use Drupal\filter\Entity\FilterFormat;
 
 /**
  * Tests the timeline field widget.
+ *
+ * @group batch1
  */
 class TimelineWidgetTest extends EntityKernelTestBase {
 

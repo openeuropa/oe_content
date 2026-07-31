@@ -10,6 +10,8 @@ use Drupal\node\Entity\Node;
 
 /**
  * Tests the Publication content type.
+ *
+ * @group batch3
  */
 class PublicationEntityTest extends EntityKernelTestBase {
 

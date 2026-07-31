@@ -10,6 +10,8 @@ use Drupal\node\Entity\NodeType;
 
 /**
  * Tests the content type base field definitions.
+ *
+ * @group batch1
  */
 class BaseFieldsTest extends SparqlKernelTestBase {
 

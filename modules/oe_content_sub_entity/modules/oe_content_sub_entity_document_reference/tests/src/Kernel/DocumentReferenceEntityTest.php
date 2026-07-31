@@ -11,6 +11,8 @@ use Drupal\Tests\oe_content\Traits\EntityReferenceTrait;
 
 /**
  * Tests document reference entity.
+ *
+ * @group batch3
  */
 class DocumentReferenceEntityTest extends EntityKernelTestBase {
 
