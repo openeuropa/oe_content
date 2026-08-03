@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\oe_content_event;
 
+use Drupal\Core\Field\FieldPurger;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 
@@ -59,7 +60,18 @@ class EventDateRangeFieldTypeChanger {
     /** @var \Drupal\field\Entity\FieldConfig $field_config */
     $field_config = FieldConfig::load("node.oe_event.$field");
     $field_config->delete();
-    field_purge_batch(50);
+    // The FieldPurger service replaces the deprecated field_purge_batch()
+    // function in Drupal 11.4. Use whichever is available so the module keeps
+    // working on Drupal 10 and 11.3 too, where the service does not exist.
+    if (class_exists(FieldPurger::class)) {
+      /** @var \Drupal\Core\Field\FieldPurger $field_purger */
+      $field_purger = \Drupal::service(FieldPurger::class);
+      $field_purger->purgeBatch(50);
+    }
+    else {
+      $purge_function = 'field_purge_batch';
+      $purge_function(50);
+    }
 
     // Save the new field.
     $new_field_storage = FieldStorageConfig::create($new_field_storage);

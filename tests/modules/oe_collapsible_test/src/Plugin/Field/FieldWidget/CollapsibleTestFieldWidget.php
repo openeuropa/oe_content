@@ -50,7 +50,7 @@ class CollapsibleTestFieldWidget extends CollapsibleWidgetBase {
       '#default_value' => $items[$delta]->body ?? '',
       '#rows' => 5,
       '#required' => FALSE,
-      '#format' => $items[$delta]->format ?? filter_fallback_format(),
+      '#format' => $items[$delta]->format ?? \Drupal::config('filter.settings')->get('fallback_format'),
       '#base_type' => 'textarea',
     ];
     return $open_element;
@@ -60,7 +60,7 @@ class CollapsibleTestFieldWidget extends CollapsibleWidgetBase {
    * {@inheritdoc}
    */
   public static function transformUserInputToItem(array $item, array $form, FormStateInterface $form_state): array {
-    $item['format'] = $item['content']['format'] ?? filter_fallback_format();
+    $item['format'] = $item['content']['format'] ?? \Drupal::config('filter.settings')->get('fallback_format');
     $item['body'] = $item['content']['value'] ?? '';
     unset($item['content']);
 
