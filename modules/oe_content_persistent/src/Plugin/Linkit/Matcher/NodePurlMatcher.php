@@ -23,4 +23,16 @@ class NodePurlMatcher extends NodeMatcher {
     return $instance;
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * This method overrides the parent method to revert the database escapeLike
+   * for the user input to match the original URL.
+   */
+  public function findEntityIdByUrl($user_input, $base_url = '') {
+    // Revert database escapeLike for the user input to match the original URL.
+    $user_input = str_replace(['\\_'], ['_'], $user_input);
+    return parent::findEntityIdByUrl($user_input, $base_url);
+  }
+
 }
