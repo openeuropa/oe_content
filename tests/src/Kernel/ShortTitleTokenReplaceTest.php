@@ -13,6 +13,7 @@ use Drupal\node\Entity\NodeType;
  * Tests the generation of the short title token.
  *
  * @group node
+ * @group batch2
  */
 class ShortTitleTokenReplaceTest extends SparqlKernelTestBase {
 

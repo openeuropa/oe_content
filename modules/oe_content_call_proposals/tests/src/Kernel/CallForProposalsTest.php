@@ -9,6 +9,8 @@ use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 
 /**
  * Tests general logic related to Call for proposal nodes.
+ *
+ * @group batch2
  */
 class CallForProposalsTest extends CallForProposalsKernelTestBase {
 

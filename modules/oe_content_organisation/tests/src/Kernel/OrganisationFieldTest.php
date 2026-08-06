@@ -9,6 +9,8 @@ use Drupal\node\Entity\Node;
 
 /**
  * Test Organisation creation business logic.
+ *
+ * @group batch2
  */
 class OrganisationFieldTest extends SparqlKernelTestBase {
 

@@ -8,6 +8,7 @@ namespace Drupal\Tests\oe_content_featured_media_field\FunctionalJavascript;
  * Tests the output of "oe_featured_media_autocomplete" widget.
  *
  * @group oe_content_featured_media_field
+ * @group batch2
  */
 class FeaturedMediaFieldAutocompleteWidgetTest extends FeaturedMediaFieldWidgetTestBase {
 

@@ -13,6 +13,7 @@ use Drupal\node\Entity\NodeType;
  * Tests Persistent url related controller and service.
  *
  * @group path
+ * @group batch1
  */
 class PersistentUrlTest extends KernelTestBase {
 

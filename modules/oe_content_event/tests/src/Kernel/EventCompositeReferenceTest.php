@@ -6,6 +6,8 @@ namespace Drupal\Tests\oe_content_event\Kernel;
 
 /**
  * Test event composite entity reference fields.
+ *
+ * @group batch1
  */
 class EventCompositeReferenceTest extends EventKernelTestBase {
 

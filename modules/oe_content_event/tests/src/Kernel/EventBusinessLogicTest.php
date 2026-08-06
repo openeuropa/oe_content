@@ -8,6 +8,8 @@ use Drupal\node\Entity\Node;
 
 /**
  * Test event creation business logic.
+ *
+ * @group batch3
  */
 class EventBusinessLogicTest extends EventKernelTestBase {
 

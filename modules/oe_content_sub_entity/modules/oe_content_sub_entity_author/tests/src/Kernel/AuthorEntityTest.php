@@ -9,6 +9,8 @@ use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Tests all author entity bundles.
+ *
+ * @group batch3
  */
 class AuthorEntityTest extends SparqlKernelTestBase {
 

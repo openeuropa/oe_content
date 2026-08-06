@@ -15,6 +15,8 @@ use Drupal\link\LinkItemInterface;
 
 /**
  * Test outbound path processor for redirect links.
+ *
+ * @group batch1
  */
 class PathProcessorRedirectLinkTest extends KernelTestBase {
 

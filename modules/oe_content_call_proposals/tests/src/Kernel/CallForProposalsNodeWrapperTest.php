@@ -17,6 +17,7 @@ use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
  *
  * @coversDefaultClass \Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper
  * @group oe_content_call_proposals
+ * @group batch1
  */
 class CallForProposalsNodeWrapperTest extends CallForProposalsKernelTestBase {
 

@@ -17,6 +17,7 @@ use Drupal\oe_content_consultation\ConsultationNodeWrapper;
  *
  * @coversDefaultClass \Drupal\oe_content_consultation\ConsultationNodeWrapper
  * @group oe_content_consultation
+ * @group batch2
  */
 class ConsultationNodeWrapperTest extends ConsultationKernelTestBase {
 

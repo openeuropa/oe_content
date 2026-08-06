@@ -15,6 +15,7 @@ use Drupal\Tests\oe_content\Traits\TableDragTrait;
  * Tests the output of "oe_featured_media_entity_browser" widget.
  *
  * @group oe_content_featured_media_field
+ * @group batch2
  */
 class FeaturedMediaEntityBrowserWidgetTest extends FeaturedMediaFieldWidgetTestBase {
 

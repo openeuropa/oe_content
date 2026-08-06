@@ -10,6 +10,8 @@ use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 
 /**
  * Test the corporate entity access control handler.
+ *
+ * @group batch3
  */
 class CorporateEntityAccessControlHandlerTest extends EntityKernelTestBase {
 

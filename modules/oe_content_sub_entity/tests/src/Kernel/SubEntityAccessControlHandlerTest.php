@@ -23,6 +23,8 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
  * Tests access handler.
  *
  * @coversDefaultClass \Drupal\oe_content_sub_entity\SubEntityAccessControlHandler
+ *
+ * @group batch3
  */
 class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
 

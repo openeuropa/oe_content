@@ -44,6 +44,25 @@ trait NodeBodyFieldStorageTrait {
       }
     }
 
+    // Deleting the fields makes the config dependency system strip the "body"
+    // component from every entity form and view display, so preserve them too.
+    // A NULL component means that the field was explicitly hidden, which is a
+    // different state than not being placed at all.
+    $components = [];
+    foreach (['entity_form_display', 'entity_view_display'] as $display_entity_type) {
+      $displays = $this->container->get('entity_type.manager')
+        ->getStorage($display_entity_type)
+        ->loadByProperties(['targetEntityType' => 'node']);
+
+      foreach ($displays as $display) {
+        $component = $display->getComponent('body');
+        if ($component === NULL && !array_key_exists('body', $display->get('hidden') ?? [])) {
+          continue;
+        }
+        $components[$display_entity_type][$display->id()] = $component;
+      }
+    }
+
     // Deleting the storage cascades to its field instances.
     $storage->delete();
 
@@ -59,6 +78,29 @@ trait NodeBodyFieldStorageTrait {
 
     foreach ($field_values as $values) {
       FieldConfig::create($values)->save();
+    }
+
+    // Put the field back in the displays, with the widget and formatter
+    // settings, the weight and the region it had before.
+    foreach ($components as $display_entity_type => $display_components) {
+      $display_storage = $this->container->get('entity_type.manager')
+        ->getStorage($display_entity_type);
+      $display_storage->resetCache();
+
+      foreach ($display_components as $id => $component) {
+        $display = $display_storage->load($id);
+        if ($display === NULL) {
+          continue;
+        }
+
+        if ($component === NULL) {
+          $display->removeComponent('body');
+        }
+        else {
+          $display->setComponent('body', $component);
+        }
+        $display->save();
+      }
     }
   }
 

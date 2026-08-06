@@ -13,6 +13,8 @@ use Drupal\node\NodeInterface;
 
 /**
  * Tests Persons reference formatter.
+ *
+ * @group batch1
  */
 class PersonReferenceFormatterTest extends EntityKernelTestBase {
 

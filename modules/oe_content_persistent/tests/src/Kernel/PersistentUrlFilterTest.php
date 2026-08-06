@@ -13,6 +13,7 @@ use Drupal\node\Entity\Node;
  * Tests Persistent url related controller and service.
  *
  * @group path
+ * @group batch2
  */
 class PersistentUrlFilterTest extends KernelTestBase {
 

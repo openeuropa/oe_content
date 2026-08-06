@@ -9,6 +9,8 @@ use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 
 /**
  * Tests Person job entities.
+ *
+ * @group batch3
  */
 class PersonJobEntityTest extends EntityKernelTestBase {
 

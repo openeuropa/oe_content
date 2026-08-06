@@ -14,6 +14,8 @@ use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
  * Tests event wrapper class.
+ *
+ * @group batch2
  */
 class EventNodeWrapperTest extends EventKernelTestBase {
 

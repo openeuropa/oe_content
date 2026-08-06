@@ -15,12 +15,16 @@ use Drupal\file\FileInterface;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Drupal\node\Entity\NodeType;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests the document reference bundles defined in this module.
+ *
+ * @group batch3
  */
 class DocumentReferenceBundlesTest extends BrowserTestBase {
 
+  use CachedDatabaseInstallTrait;
   use EntityReferenceTrait;
   use TestFileCreationTrait;
 
@@ -41,6 +45,7 @@ class DocumentReferenceBundlesTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Create a node type.

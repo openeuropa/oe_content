@@ -9,12 +9,16 @@ use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\link\LinkItemInterface;
 use Drupal\node\Entity\NodeType;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests the redirect link field within the node add/edit form.
+ *
+ * @group batch2
  */
 class NodeFormRedirectLinkTest extends WebDriverTestBase {
 
+  use CachedDatabaseInstallTrait;
   use NodeCreationTrait;
 
   /**
@@ -47,6 +51,7 @@ class NodeFormRedirectLinkTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->nodeType = NodeType::create([

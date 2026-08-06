@@ -8,6 +8,8 @@ use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 
 /**
  * Test corporate entity routes access.
+ *
+ * @group batch1
  */
 class CorporateEntityRouteAccessTest extends EntityKernelTestBase {
 

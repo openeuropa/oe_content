@@ -8,13 +8,17 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests the PersistentUrlController response.
  *
  * @group oe_content
+ * @group batch2
  */
 class PersistentUrlControllerTest extends BrowserTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * Modules to enable.
@@ -44,6 +48,7 @@ class PersistentUrlControllerTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     NodeType::create(['type' => 'page'])->save();

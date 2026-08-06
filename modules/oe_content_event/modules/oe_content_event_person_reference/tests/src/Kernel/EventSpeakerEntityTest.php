@@ -9,6 +9,8 @@ use Drupal\Tests\sparql_entity_storage\Kernel\SparqlKernelTestBase;
 
 /**
  * Tests Event speaker entity.
+ *
+ * @group batch2
  */
 class EventSpeakerEntityTest extends SparqlKernelTestBase {
 

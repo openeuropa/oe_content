@@ -1,0 +1,13 @@
+name: ci
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - 4.x
+
+jobs:
+  automated-tests:
+    uses: openeuropa/github-ci/.github/workflows/drupal-ci.yml@main
+    with:
+      run_phpunit_batches: TRUE

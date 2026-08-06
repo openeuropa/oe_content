@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_content\Traits;
 
 use Behat\Mink\Element\NodeElement;
+use Behat\Mink\Exception\DriverException;
+use Behat\Mink\Exception\UnsupportedDriverActionException;
 use PHPUnit\Framework\Assert;
 
 /**
@@ -122,6 +124,82 @@ JS;
     }
     else {
       $this->getSession()->getPage()->fillField($label, $text);
+    }
+  }
+
+  /**
+   * Inserts a link to a node through the WYSIWYG editor and the Linkit widget.
+   *
+   * @param string $field
+   *   The field label of the field to which the WYSIWYG editor is attached.
+   * @param string $node_title
+   *   The title of the node to link to.
+   */
+  protected function insertWysiwygLink(string $field, string $node_title): void {
+    $session = $this->getSession();
+    $page = $session->getPage();
+
+    $this->pressWysiwygButton($field, 'Link (Ctrl+K)');
+
+    // Wait for the CKEditor link form balloon to appear and for the Linkit
+    // module to initialize the autocomplete on the URL input. Both are pure
+    // CKEditor/JS operations, not Drupal AJAX requests.
+    $session->wait(5000, "document.querySelector('.ck-link-form input.form-linkit-autocomplete') !== null");
+
+    // Use JavaScript to set the value on the Linkit autocomplete input and
+    // trigger the search. Direct Mink interaction with CKEditor elements can
+    // fail due to CKEditor re-rendering the form and creating stale element
+    // references.
+    $escaped_title = addslashes($node_title);
+    $session->executeScript("
+      var input = document.querySelector('.ck-link-form input.form-linkit-autocomplete');
+      var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+      nativeInputValueSetter.call(input, '$escaped_title');
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+    ");
+
+    $session->wait(5000, "jQuery('.linkit-result-line.ui-menu-item').length > 0");
+
+    // Find the first autocomplete result and click it.
+    $result = $page->find('xpath', '//li[contains(@class, "linkit-result-line") and contains(@class, "ui-menu-item")][1]');
+    Assert::assertNotNull($result, 'No linkit autocomplete results found.');
+    $result->click();
+
+    // Click the submit button.
+    $submit = $page->find('css', '.ck-link-form button[type="submit"]');
+    Assert::assertNotNull($submit, 'The link form submit button was not found.');
+    $submit->click();
+
+    $this->assertSession()->assertWaitOnAjaxRequest();
+  }
+
+  /**
+   * Checks whether the browser supports JavaScript.
+   *
+   * @return bool
+   *   TRUE when the browser environment supports executing JavaScript code.
+   */
+  protected function browserSupportsJavaScript(): bool {
+    $driver = $this->getSession()->getDriver();
+    try {
+      if (!$driver->isStarted()) {
+        $driver->start();
+      }
+    }
+    catch (DriverException $e) {
+      throw new \RuntimeException('Could not start webdriver.', 0, $e);
+    }
+
+    try {
+      $driver->executeScript('return;');
+      return TRUE;
+    }
+    catch (UnsupportedDriverActionException $e) {
+      return FALSE;
+    }
+    catch (DriverException $e) {
+      throw new \RuntimeException('Could not execute JavaScript.', 0, $e);
     }
   }
 

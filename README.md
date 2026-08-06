@@ -123,7 +123,7 @@ composer install
 changing relevant values, like your database credentials.
 
 This will also symlink the theme in the proper directory within the test site and
-perform token substitution in test configuration files such as `behat.yml.dist`.
+perform token substitution in test configuration files such as `phpunit.xml.dist`.
 
 * Install test site by running:
 
@@ -205,12 +205,6 @@ To run the phpunit tests:
 
 ```bash
 docker-compose exec web ./vendor/bin/phpunit
-```
-
-To run the behat tests:
-
-```bash
-docker-compose exec web ./vendor/bin/behat
 ```
 
 #### Step debugging
