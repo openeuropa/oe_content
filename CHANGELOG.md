@@ -1,11 +1,23 @@
 # Changelog
 
+## [4.15.0](https://github.com/openeuropa/oe_content/tree/4.15.0) (2026-08-21)
+
+[Full Changelog](https://github.com/openeuropa/oe_content/compare/4.14.0...4.15.0)
+
+**Merged pull requests:**
+
+- OEL-4912: Reroll Patch [\#691](https://github.com/openeuropa/oe_content/pull/691) ([AaronGilMartinez](https://github.com/AaronGilMartinez))
+- EWPP-7100: Remove escapeLike\(\) for linkit in findEntityIdByUrl\(\). [\#690](https://github.com/openeuropa/oe_content/pull/690) ([sergepavle](https://github.com/sergepavle))
+- EWPP-7166: Removing behat tests and cache DB on functional tests. [\#689](https://github.com/openeuropa/oe_content/pull/689) ([upchuk](https://github.com/upchuk))
+- EWPP-6988: Test against Drupal 11.4. [\#687](https://github.com/openeuropa/oe_content/pull/687) ([nagyad](https://github.com/nagyad))
+
 ## [4.14.0](https://github.com/openeuropa/oe_content/tree/4.14.0) (2026-06-02)
 
 [Full Changelog](https://github.com/openeuropa/oe_content/compare/4.13.0...4.14.0)
 
 **Merged pull requests:**
 
+- Release-4.14.0: Update changelog. [\#686](https://github.com/openeuropa/oe_content/pull/686) ([nagyad](https://github.com/nagyad))
 - Fix test with sparql dependency in D11.3. [\#685](https://github.com/openeuropa/oe_content/pull/685) ([nagyad](https://github.com/nagyad))
 - EWPP-6812: Add translation context for abbreviated month names. [\#684](https://github.com/openeuropa/oe_content/pull/684) ([nagyad](https://github.com/nagyad))
 
