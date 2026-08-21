@@ -77,7 +77,7 @@
         },
         "patches": {
             "drupal/entity_browser": {
-                "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2025-09-03/2851580-128.patch"
+                "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2026-08-12/2851580-38-20260812.patch"
             }
         },
         "drupal-scaffold": {
