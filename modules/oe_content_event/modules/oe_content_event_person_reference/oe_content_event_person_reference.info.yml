@@ -11,6 +11,7 @@ dependencies:
 config_devel:
   install:
     - core.entity_form_display.oe_event_speaker.oe_default.default
+    - core.entity_form_display.oe_event_speaker.oe_default.ife
     - field.field.oe_event_speaker.oe_default.oe_event_role
     - field.field.oe_event_speaker.oe_default.oe_person
     - field.storage.node.oe_event_speakers
