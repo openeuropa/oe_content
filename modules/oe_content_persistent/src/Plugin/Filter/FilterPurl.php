@@ -9,6 +9,7 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\Uuid\Uuid;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Utility\Error;
@@ -25,8 +26,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Filter(
  *   id = "filter_purl",
  *   title = @Translation("Convert Persistent Uniform Resource Locator into
- *   URLs"), type =
- *   Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_REVERSIBLE
+ *   URLs"),
+ *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_REVERSIBLE,
+ *   settings = {
+ *     "absolute_url" = FALSE
+ *   }
  * )
  */
 class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
@@ -144,8 +148,11 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
           $url = $this->contentUrlResolver->resolveUrl($entity);
           $parsed_href = UrlHelper::parse($href);
           $url = $url->setOption('query', $parsed_href['query'])
-            ->setOption('fragment', $parsed_href['fragment'])
-            ->toString(TRUE);
+            ->setOption('fragment', $parsed_href['fragment']);
+          if ($this->settings['absolute_url']) {
+            $url->setAbsolute();
+          }
+          $url = $url->toString(TRUE);
           $result->addCacheableDependency($entity);
         }
         else {
@@ -179,6 +186,19 @@ class FilterPurl extends FilterBase implements ContainerFactoryPluginInterface {
     }
 
     return Url::fromRoute('system.404');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+    $form['absolute_url'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Whether the URLs should be absolute'),
+      '#default_value' => $this->settings['absolute_url'] ?? FALSE,
+    ];
+
+    return $form;
   }
 
 }
