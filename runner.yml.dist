@@ -12,7 +12,8 @@ drupal:
     password: ""
   sparql:
     host: "sparql"
-    port: "8890"
+    port: "3030"
+    database: "triplestore"
   post_install:
     # Prepare the instance.
     - { task: "exec", command: "./vendor/bin/drush en toolbar field_ui language -y" }
@@ -35,7 +36,8 @@ drupal:
       $settings['extension_discovery_scan_tests'] = TRUE;
       $databases['sparql_default']['default'] = [
         'host' => 'sparql',
-        'port' => '8890',
+        'port' => '3030',
+        'database' => 'triplestore',
         'namespace' => 'Drupal\sparql_entity_storage\Driver\Database\sparql',
         'driver' => 'sparql',
       ];
