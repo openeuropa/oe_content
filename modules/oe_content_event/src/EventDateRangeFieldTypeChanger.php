@@ -34,6 +34,7 @@ class EventDateRangeFieldTypeChanger {
       ->countQuery()
       ->execute()
       ->fetchField();
+    $backup_data_table = $backup_revision_table = $data_table = $revision_table = '';
     if ($count > 0) {
       // Create a table based on the one we want to back up. We are using direct
       // SQL queries to rely on the database server performance instead of using
