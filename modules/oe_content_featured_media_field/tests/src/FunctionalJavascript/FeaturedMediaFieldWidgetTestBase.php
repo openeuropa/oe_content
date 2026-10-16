@@ -16,7 +16,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Base class for testing the featured media widgets.
  */
-class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
+abstract class FeaturedMediaFieldWidgetTestBase extends WebDriverTestBase {
 
   use CachedDatabaseInstallTrait;
   use ContentTypeCreationTrait;

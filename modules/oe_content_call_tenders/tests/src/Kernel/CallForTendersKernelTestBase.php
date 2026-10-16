@@ -58,7 +58,6 @@ abstract class CallForTendersKernelTestBase extends SparqlKernelTestBase {
     $this->installEntitySchema('node');
     $this->installEntitySchema('media');
     $this->installEntitySchema('entity_test');
-    $this->container->get('module_handler')->loadInclude('oe_content_documents_field', 'install');
     $this->installConfig(['oe_content_documents_field']);
     $this->installConfig([
       'field',

@@ -7,8 +7,8 @@ namespace Drupal\oe_content_entity;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder as CoreEntityListBuilder;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -20,11 +20,18 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class CorporateEntityListBuilder extends CoreEntityListBuilder {
 
   /**
-   * Storage for the current corporate content entity type bundles.
+   * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $bundleStorage;
+  protected $entityTypeManager;
+
+  /**
+   * The entity type.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeInterface
+   */
+  protected $entityType;
 
   /**
    * The date formatter service.
@@ -45,19 +52,18 @@ class CorporateEntityListBuilder extends CoreEntityListBuilder {
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type definition.
-   * @param \Drupal\Core\Entity\EntityStorageInterface $storage
-   *   Storage for the current corporate content entity type.
-   * @param \Drupal\Core\Entity\EntityStorageInterface $bundle_storage
-   *   Storage for the current corporate content entity type bundles.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
    */
-  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, EntityStorageInterface $bundle_storage, DateFormatterInterface $date_formatter, RendererInterface $renderer) {
+  public function __construct(EntityTypeInterface $entity_type, EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter, RendererInterface $renderer) {
+    $this->entityTypeManager = $entity_type_manager;
+    $this->entityType = $entity_type;
+    $storage = $entity_type_manager->getStorage($entity_type->id());
     parent::__construct($entity_type, $storage);
-
-    $this->bundleStorage = $bundle_storage;
     $this->dateFormatter = $date_formatter;
     $this->renderer = $renderer;
   }
@@ -68,8 +74,7 @@ class CorporateEntityListBuilder extends CoreEntityListBuilder {
   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
     return new static(
       $entity_type,
-      $container->get('entity_type.manager')->getStorage($entity_type->id()),
-      $container->get('entity_type.manager')->getStorage($entity_type->getBundleEntityType()),
+      $container->get('entity_type.manager'),
       $container->get('date.formatter'),
       $container->get('renderer')
     );
@@ -91,9 +96,10 @@ class CorporateEntityListBuilder extends CoreEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
+    $bundle_storage = $this->entityTypeManager->getStorage($this->entityType->getBundleEntityType());
     /** @var \Drupal\oe_content_entity\Entity\CorporateEntityInterface $entity */
     $row['id'] = $entity->toLink($entity->label());
-    $row['bundle'] = $this->bundleStorage->load($entity->bundle())->label();
+    $row['bundle'] = $bundle_storage->load($entity->bundle())->label();
     $row['created'] = $this->dateFormatter->format($entity->getCreatedTime(), 'short');
     $row['changed'] = $this->dateFormatter->format($entity->getChangedTime(), 'short');
 

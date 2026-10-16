@@ -47,13 +47,6 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
   protected $subEntity;
 
   /**
-   * Entity storage for sub entity.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected $subEntityStorage;
-
-  /**
    * The corporate entity type access control handler.
    *
    * @var \Drupal\oe_content_entity\CorporateEntityTypeAccessControlHandler
@@ -82,7 +75,6 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
     $this->installSchema('node', ['node_access']);
 
     $this->accessControlHandler = $this->entityTypeManager->getAccessControlHandler('oe_sub_entity_test');
-    $this->subEntityStorage = $this->entityTypeManager->getStorage('oe_sub_entity_test');
 
     // Create Page node type.
     $this->createContentType([
@@ -128,7 +120,7 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
     $page_node = $this->createNode([
       'title' => 'Page node label. Child node.',
     ]);
-    $sub_entity = $this->subEntityStorage->create([
+    $sub_entity = $this->entityTypeManager->getStorage('oe_sub_entity_test')->create([
       'type' => 'test_bundle',
       'field_reference' => [$page_node],
       'status' => 1,
@@ -142,7 +134,7 @@ class SubEntityAccessControlHandlerTest extends EntityKernelTestBase {
     $article_node->save();
 
     // Save sub entity for further processing.
-    $this->subEntity = $this->subEntityStorage->load($sub_entity->id());
+    $this->subEntity = $this->entityTypeManager->getStorage('oe_sub_entity_test')->load($sub_entity->id());
   }
 
   /**
