@@ -78,6 +78,10 @@
         "patches": {
             "drupal/entity_browser": {
                 "https://www.drupal.org/project/entity_browser/issues/2851580": "https://www.drupal.org/files/issues/2026-08-12/2851580-38-20260812.patch"
+            },
+            "drupal/sparql_entity_storage": {
+                "https://git.drupalcode.org/project/sparql_entity_storage/-/work_items/3603275": "https://git.drupalcode.org/project/sparql_entity_storage/-/merge_requests/41.diff",
+                "https://git.drupalcode.org/project/sparql_entity_storage/-/work_items/3603276": "https://git.drupalcode.org/project/sparql_entity_storage/-/merge_requests/42.diff"
             }
         },
         "drupal-scaffold": {
