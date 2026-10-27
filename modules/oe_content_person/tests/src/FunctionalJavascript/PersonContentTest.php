@@ -287,12 +287,13 @@ class PersonContentTest extends ContentTestBase {
     $page->selectFieldOption('What type of person are you adding?', 'EU institutions related person');
     $page->fillField('First name', 'Firstname');
     $page->fillField('Last name', 'Lastname');
+    // The genders are SKOS concepts, their order is not guaranteed.
     $this->assertSelectOptions('Gender', [
       '- Select a value -',
       'female',
       'male',
       'not stated',
-    ]);
+    ], FALSE);
     $page->selectFieldOption('Gender', 'not stated');
     $page->fillField('Content owner', 'Committee on Agriculture and Rural Development');
     $page->pressButton('Save');
