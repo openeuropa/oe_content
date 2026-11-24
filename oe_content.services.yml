@@ -8,3 +8,6 @@ services:
   Drupal\oe_content\Hook\OeContentHooks:
     class: Drupal\oe_content\Hook\OeContentHooks
     autowire: true
+  oe_content.datetime_field_storage_converter:
+    class: Drupal\oe_content\DateTimeFieldStorageConverter
+    arguments: ['@entity_type.manager', '@entity_field.manager', '@database']

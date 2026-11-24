@@ -101,6 +101,20 @@ This module provides an integration with the [OpenEuropa Corporate Site Informat
 When creating a new node if the fields "Content Owner" and "Authors" are avilable they will be automatically populated with the values configured
 as "Default content owner" in the "Basic site settings" provided by the OpenEuropa Corporate Site Info module.
 
+### Converting date-only fields to date and time
+
+The `oe_content.datetime_field_storage_converter` service converts a date-only `datetime` field storage to a date and time storage. 
+Both types share the same database schema, so the service changes
+the field storage setting and appends a time to the existing values, without the need to back up the field tables.
+
+The time defaults to `12:00:00` and is stored in UTC.
+
+After the conversion:
+
+- the form displays using the `datetime_default` widget show a time input. If certain bundles should keep a date-only
+  input, use the `Date only (fixed time)` (`oe_content_datetime_fixed_time`) widget, which saves the selected date with
+  a configurable fixed time (`12:00:00` by default, in UTC);
+
 ## Development setup
 
 ### Requirements
