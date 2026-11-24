@@ -1,0 +1,7 @@
+field.widget.settings.oe_content_datetime_fixed_time:
+  type: mapping
+  label: 'Date only (fixed time) widget settings'
+  mapping:
+    time:
+      type: string
+      label: 'Time'
