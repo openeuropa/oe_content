@@ -25,3 +25,11 @@ linkit.matcher.entity:media:
         thumbnail_image_style:
           type: string
           nullable: true
+
+filter_settings.filter_purl:
+  type: filter
+  label: 'Filter PURL'
+  mapping:
+    absolute_url:
+      type: boolean
+      label: 'Whether it should render absolute URLs'
